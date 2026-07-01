@@ -140,6 +140,10 @@ def get_month_from_date(
     # Convert all date types to ISO8601 date string
     date_str: str
     if isinstance(date, str):
+        # Year-only strings have no month information — avoid non-deterministic
+        # dateparser.parse("2015") which returns today's date in that year.
+        if len(date) <= 4:
+            return None
         parsed = dateparser.parse(date)
         if parsed is None:
             return None

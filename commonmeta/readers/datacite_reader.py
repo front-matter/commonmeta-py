@@ -447,11 +447,13 @@ def get_container(container: dict | None) -> dict | None:
         else None
     )
 
+    container_identifier = container.get("identifier", None)
     return compact(
         {
-            "id": container.get("identifier", None),
             "type": _type,
             "title": container.get("title", None),
+            "identifier": container_identifier,
+            "identifier_type": "URL" if container_identifier else None,
         }
     )
 

@@ -256,20 +256,19 @@ def get_reference(reference: dict | None) -> dict | None:
     if reference is None or not isinstance(reference, dict):
         return None
     doi = reference.get("DOI", None)
+    asserted_by_raw = reference.get("doi-asserted-by", None)
     metadata = {
         "key": reference.get("key", None),
         "id": normalize_doi(doi) if doi else None,
-        "contributor": reference.get("author", None),
         "title": reference.get("article-title", None),
         "publisher": reference.get("publisher", None),
-        "publicationYear": reference.get("year", None),
+        "publication_year": reference.get("year", None),
         "volume": reference.get("volume", None),
         "issue": reference.get("issue", None),
-        "firstPage": reference.get("first-page", None),
-        "lastPage": reference.get("last-page", None),
-        "containerTitle": reference.get("journal-title", None),
-        "edition": None,
+        "first_page": reference.get("first-page", None),
+        "last_page": reference.get("last-page", None),
         "unstructured": reference.get("unstructured", None),
+        "asserted_by": asserted_by_raw.capitalize() if asserted_by_raw else None,
     }
     return compact(metadata)
 

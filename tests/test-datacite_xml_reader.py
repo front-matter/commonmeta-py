@@ -75,7 +75,7 @@ def test_geo_location_empty():
     assert (subject.date_published == '2018'
         and subject.dates == {'created': '2018-06-20', 'available': '2018-06-21'})
     assert subject.subjects == [
-        {"subject": "Global", "subjectScheme": "coverage scope"}
+        {"subject": "Global"}
     ]
     assert subject.references is None
     # get_geolocation() correctly extracts the point present in this fixture

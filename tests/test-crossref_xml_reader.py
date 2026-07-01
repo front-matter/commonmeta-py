@@ -51,12 +51,10 @@ def test_doi_with_data_citation():
     assert subject.references[0] == {
         "key": "bib1",
         "id": "https://doi.org/10.1038/nature02100",
-        "contributor": "Bonke",
         "title": "APL regulates vascular tissue identity in Arabidopsis",
-        "publicationYear": "2003",
+        "publication_year": "2003",
         "volume": "426",
-        "firstPage": "181",
-        "containerTitle": "Nature",
+        "first_page": "181",
     }
     assert subject.funding_references is None
     # assert subject.funding_references == [
@@ -131,12 +129,10 @@ def test_journal_article():
     assert subject.references[0] == {
         "key": "ref1",
         "id": "https://doi.org/10.1056/nejm196502042720503",
-        "contributor": "AS Schneider",
         "title": "Hereditary Hemolytic Anemia with Triosephosphate Isomerase Deficiency.",
-        "publicationYear": "1965",
+        "publication_year": "1965",
         "volume": "272",
-        "firstPage": "229",
-        "containerTitle": "N Engl J Med",
+        "first_page": "229",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -193,12 +189,10 @@ def test_journal_article_with_funding():
     assert subject.references[0] == {
         "key": "ref1",
         "id": "https://doi.org/10.1016/j.plaphy.2013.11.002",
-        "contributor": "Agudelo-Romero",
         "title": "Perturbation of polyamine catabolism affects grape ripening of Vitis vinifera cv. Trincadeira",
-        "publicationYear": "2014",
+        "publication_year": "2014",
         "volume": "74",
-        "firstPage": "141",
-        "containerTitle": "Plant Physiol. Biochem.",
+        "first_page": "141",
     }
     assert subject.funding_references is None
     # assert subject.funding_references[1] == {
@@ -303,13 +297,11 @@ def test_journal_article_with_rdf_for_container():
     assert len(subject.references) == 111
     assert subject.references[0] == {
         "key": "bibr1",
-        "contributor": "Absolon",
         "title": "Die Gattung Candonaim Quartar von Europa",
-        "publicationYear": "1978",
+        "publication_year": "1978",
         "volume": "88",
         "issue": "5",
-        "firstPage": "1",
-        "containerTitle": "Rozpravy Ceskoslovenske Akademie Ved, Rada Matematickych A Prirodnich Ved",  # noqa: E501
+        "first_page": "1",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -409,11 +401,10 @@ def test_posted_content():
     assert subject.references[0] == {
         "key": "2024080313022960000_097196v2.1",
         "title": "An introduction to the joint principles for data citation",
-        "publicationYear": "2015",
+        "publication_year": "2015",
         "volume": "41",
         "issue": "3",
-        "firstPage": "43",
-        "containerTitle": "Bulletin of the American \\ldots",
+        "first_page": "43",
     }
     assert subject.funding_references is None
     assert subject.container == {"type": "Periodical"}
@@ -612,9 +603,8 @@ def test_doi_with_orcid():
     assert len(subject.references) == 27
     assert subject.references[0] == {
         "key": "1",
-        "publicationYear": "2009",
+        "publication_year": "2009",
         "volume": "179",
-        "containerTitle": "American Journal of Respiratory and Critical Care Medicine",
     }
     assert subject.references[-1] == {
         "key": "30",
@@ -672,23 +662,19 @@ def test_date_in_future():
     assert len(subject.references) == 98
     assert subject.references[0] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib1",
-        "contributor": "Allen",
         "id": "https://doi.org/10.4049/jimmunol.160.12.6062",
         "title": "Characterization of the peptide binding motif of a rhesus MHC class I molecule (Mamu-A*01) that binds an immunodominant CTL epitope from simianimmunodeficiency virus.",
-        "publicationYear": "1998",
+        "publication_year": "1998",
         "volume": "160",
-        "firstPage": "6062",
-        "containerTitle": "J. Immunol",
+        "first_page": "6062",
     }
     assert subject.references[-1] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib94",
         "id": "https://doi.org/10.1111/hiv.12134",
-        "contributor": "Zoufaly",
         "title": "Immune activation despite suppressive highly active antiretroviral therapy is associated with higher risk of viral blips in HIV-1-infected individuals",
-        "publicationYear": "2014",
+        "publication_year": "2014",
         "volume": "15",
-        "firstPage": "449",
-        "containerTitle": "HIV Med.",
+        "first_page": "449",
     }
     assert subject.funding_references is None
     # assert subject.funding_references[0] == {
@@ -743,21 +729,17 @@ def test_vor_with_url():
     assert len(subject.references) == 41
     assert subject.references[0] == {
         "key": "BFhdy201326_CR1",
-        "contributor": "J Alvarez",
-        "publicationYear": "1946",
+        "publication_year": "1946",
         "volume": "4",
-        "firstPage": "263",
-        "containerTitle": "An Esc Nac Cien Biol México",
+        "first_page": "263",
         "unstructured": "Alvarez J . (1946). Revisión del género Anoptichthys con descipción de una especie nueva (Pisces, Characidae). An Esc Nac Cien Biol México 4: 263–282.",
     }
     assert subject.references[-1] == {
         "key": "BFhdy201326_CR41",
         "id": "https://doi.org/10.1111/j.1095-8312.2003.00230.x",
-        "contributor": "H Wilkens",
-        "publicationYear": "2003",
+        "publication_year": "2003",
         "volume": "80",
-        "firstPage": "545",
-        "containerTitle": "Biol J Linn Soc",
+        "first_page": "545",
         "unstructured": "Wilkens H, Strecker U . (2003). Convergent evolution of the "
         "cavefish Astyanax (Characidae: Teleostei): Genetic evidence "
         "from reduced eye-size and pigmentation. Biol J Linn Soc 80: "
@@ -939,12 +921,10 @@ def test_book_chapter():
     assert subject.references[0] == {
         "key": "13_CR1",
         "id": "https://doi.org/10.1007/s00256-012-1391-8",
-        "contributor": "KS Ahn",
-        "publicationYear": "2012",
+        "publication_year": "2012",
         "volume": "41",
         "issue": "10",
-        "firstPage": "1301",
-        "containerTitle": "Skeletal Radiol",
+        "first_page": "1301",
         "unstructured": "Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation between magnetic resonance imaging and clinical impairment in patients with adhesive capsulitis. Skeletal Radiol. 2012;41(10):1301–8.",
     }
     assert subject.funding_references is None
@@ -1144,12 +1124,10 @@ def test_book():
     assert len(subject.references) == 273
     assert subject.references[0] == {
         "key": "9781108348843#EMT-rl-1_BIBe-r-273",
-        "contributor": "Qiusheng",
         "title": "Lu Jia de lishi yishi ji qi wenhua yiyi",
-        "publicationYear": "1997",
+        "publication_year": "1997",
         "volume": "5",
-        "firstPage": "67",
-        "containerTitle": "Qilu xuekan",
+        "first_page": "67",
     }
     assert subject.funding_references is None
     assert subject.container is None

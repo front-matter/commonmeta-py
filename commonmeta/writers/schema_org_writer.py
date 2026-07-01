@@ -54,7 +54,9 @@ def write_schema_org(metadata: Metadata) -> dict:
     if metadata.type == "Dataset" and container is not None:
         data_catalog = compact(
             {
-                "@id": container.get("id", None),
+                "@id": container.get("identifier", None)
+                if container.get("identifier_type", None) in ("DOI", "URL")
+                else None,
                 "@type": "DataCatalog",
                 "name": container.get("title", None),
             }
@@ -67,7 +69,7 @@ def write_schema_org(metadata: Metadata) -> dict:
                 if container.get("identifier_type", None) == "ISSN"
                 else None,
                 "@id": container.get("identifier", None)
-                if container.get("identifier_type", None) != "ISSN"
+                if container.get("identifier_type", None) == "DOI"
                 else None,
                 "@type": container.get("type", None)
                 if container.get("type", None) == "Journal"

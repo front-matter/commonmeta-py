@@ -121,7 +121,8 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     if furl(url).host == "zenodo.org":
         container = compact(
             {
-                "id": "https://www.re3data.org/repository/r3d100010468",
+                "identifier": "https://www.re3data.org/repository/r3d100010468",
+                "identifier_type": "URL",
                 "type": "DataRepository" if _type == "Dataset" else "Repository",
                 "title": "Zenodo",
             }

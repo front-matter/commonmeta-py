@@ -415,16 +415,13 @@ def crossref_reference(reference: dict | None) -> dict | None:
     metadata = {
         "key": reference.get("key", None),
         "id": normalize_doi(doi) if doi else None,
-        "contributor": reference.get("author", None),
         "title": reference.get("article_title", None),
         "publisher": reference.get("publisher", None),
-        "publicationYear": reference.get("cYear", None),
+        "publication_year": reference.get("cYear", None),
         "volume": reference.get("volume", None),
         "issue": reference.get("issue", None),
-        "firstPage": reference.get("first_page", None),
-        "lastPage": reference.get("last_page", None),
-        "containerTitle": reference.get("journal_title", None),
-        "edition": None,
+        "first_page": reference.get("first_page", None),
+        "last_page": reference.get("last_page", None),
         "unstructured": sanitize(text) if text else None,
     }
     return compact(metadata)

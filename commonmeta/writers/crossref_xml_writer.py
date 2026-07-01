@@ -1095,7 +1095,7 @@ def get_references(obj) -> Dict | None:
                 "author": ref.get("author", None),
                 "volume": ref.get("volume", None),
                 "first_page": ref.get("first_page", None),
-                "cYear": ref.get("publicationYear", None),
+                "cYear": ref.get("publication_year", None),
                 "article_title": ref.get("title", None),
                 "unstructured_citation": unstructured,
             }

@@ -64,6 +64,7 @@ def test_write_metadata_as_crossref_xml():
     assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "bib1",
         "volume": "426",
+        "first_page": "181",
         "cYear": "2003",
         "article_title": "APL regulates vascular tissue identity in Arabidopsis",
         "doi": "10.1038/nature02100",
@@ -1072,6 +1073,7 @@ def test_book():
     assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "9781108348843#EMT-rl-1_BIBe-r-273",
         "volume": "5",
+        "first_page": "67",
         "cYear": "1997",
         "article_title": "Lu Jia de lishi yishi ji qi wenhua yiyi",
     }
@@ -1105,6 +1107,7 @@ def test_book_chapter():
         "key": "13_CR1",
         "doi": "10.1007/s00256-012-1391-8",
         "volume": "41",
+        "first_page": "1301",
         "cYear": "2012",
         "unstructured_citation": "Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation between magnetic resonance imaging and clinical impairment in patients with adhesive capsulitis. Skeletal Radiol. 2012;41(10):1301–8.",
     }

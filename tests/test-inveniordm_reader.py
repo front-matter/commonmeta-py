@@ -60,7 +60,8 @@ def test_software():
         {"subject": "research software"},
     ]
     assert subject.container == {
-        "id": "https://www.re3data.org/repository/r3d100010468",
+        "identifier": "https://www.re3data.org/repository/r3d100010468",
+        "identifier_type": "URL",
         "type": "Repository",
         "title": "Zenodo",
     }
@@ -121,7 +122,8 @@ def test_presentation():
     )
     assert subject.subjects is None
     assert subject.container == {
-        "id": "https://www.re3data.org/repository/r3d100010468",
+        "identifier": "https://www.re3data.org/repository/r3d100010468",
+        "identifier_type": "URL",
         "type": "Repository",
         "title": "Zenodo",
     }
@@ -189,7 +191,8 @@ def test_publication():
         {"subject": "zoonosis"},
     ]
     assert subject.container == {
-        "id": "https://www.re3data.org/repository/r3d100010468",
+        "identifier": "https://www.re3data.org/repository/r3d100010468",
+        "identifier_type": "URL",
         "type": "Repository",
         "title": "Zenodo",
     }
@@ -256,7 +259,8 @@ def test_publication_with_url():
         {"subject": "zoonosis"},
     ]
     assert subject.container == {
-        "id": "https://www.re3data.org/repository/r3d100010468",
+        "identifier": "https://www.re3data.org/repository/r3d100010468",
+        "identifier_type": "URL",
         "type": "Repository",
         "title": "Zenodo",
     }
@@ -318,7 +322,8 @@ def test_dataset():
         {"subject": "covid19"},
     ]
     assert subject.container == {
-        "id": "https://www.re3data.org/repository/r3d100010468",
+        "identifier": "https://www.re3data.org/repository/r3d100010468",
+        "identifier_type": "URL",
         "type": "DataRepository",
         "title": "Zenodo",
     }

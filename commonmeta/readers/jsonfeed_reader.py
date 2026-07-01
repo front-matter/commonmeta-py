@@ -387,7 +387,7 @@ def get_references(references: list) -> list:
                 "type": reference.get("type", None),
                 "unstructured": reference.get("unstructured", None),
                 "title": reference.get("title", None),
-                "publicationYear": reference.get("publicationYear", None),
+                "publication_year": reference.get("publicationYear", None),
             }
         )
 

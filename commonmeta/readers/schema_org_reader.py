@@ -14,7 +14,6 @@ from ..base_utils import (
     compact,
     dig,
     first,
-    omit,
     parse_attributes,
     presence,
     sanitize,
@@ -193,9 +192,9 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
 
     publisher = meta.get("publisher", None)
     if publisher is not None:
-        publisher = omit(
-            publisher, ["@type", "logo", "url", "disambiguatingDescription"]
-        )
+        _pub_id = normalize_id(publisher.get("@id", None)) if isinstance(publisher, dict) else None
+        _pub_name = publisher.get("name", None) if isinstance(publisher, dict) else publisher
+        publisher = compact({"id": _pub_id, "name": _pub_name}) if (_pub_id or _pub_name) else None
 
     license_ = meta.get("license", None)
     if license_ is not None:

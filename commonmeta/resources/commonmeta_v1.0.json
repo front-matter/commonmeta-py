@@ -1,39 +1,58 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://commonmeta.org/commonmeta_v1.0.json",
   "title": "Commonmeta v1.0",
-  "description": "JSON representation of the Commonmeta schema.",
-  "commonmeta": {
-    "anyOf": [
-      {
-        "$ref": "#/definitions/commonmeta"
-      },
-      {
-        "type": "array",
-        "description": "An array of commonmeta objects.",
-        "items": {
-          "$ref": "#/definitions/commonmeta"
-        }
-      }
-    ]
+  "description": "JSON representation of the Commonmeta schema. The document is an array of objects, where each object is a work, an organization, or a person.",
+  "type": "array",
+  "uniqueItems": true,
+  "prefixItems": [
+    {
+      "description": "The first item in the array: a work, a person, or an organization. In a collection, this is typically the subject whose related entities follow.",
+      "$ref": "#/$defs/entity"
+    }
+  ],
+  "items": {
+    "description": "Subsequent items in the array: works, persons, or organizations related to the subject.",
+    "$ref": "#/$defs/entity"
   },
-  "definitions": {
-    "commonmeta": {
-      "description": "A commonmeta object.",
+  "$defs": {
+    "entity": {
+      "description": "A single Commonmeta entity: a work, a person, or an organization.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/work"
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/person"},
+            {"required": ["id"]}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/organization"},
+            {"required": ["id"]}
+          ]
+        }
+      ]
+    },
+    "work": {
+      "description": "A commonmeta work object.",
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "id": {
-          "$ref": "#/definitions/id"
+          "$ref": "#/$defs/id"
         },
         "type": {
-          "$ref": "#/definitions/type"
+          "$ref": "#/$defs/type"
         },
         "additional_descriptions": {
           "description": "The additional descriptions of the resource.",
           "type": "array",
           "items": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "description": {
                 "description": "The description of the resource.",
@@ -51,7 +70,7 @@
                 ]
               },
               "language": {
-                "$ref": "#/definitions/language"
+                "$ref": "#/$defs/language"
               }
             },
             "required": [
@@ -64,6 +83,7 @@
           "type": "array",
           "items": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "title": {
                 "description": "The title of the resource.",
@@ -79,7 +99,7 @@
                 ]
               },
               "language": {
-                "$ref": "#/definitions/language"
+                "$ref": "#/$defs/language"
               }
             },
             "required": [
@@ -110,27 +130,13 @@
           "description": "Citations of the resource by other resources.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "key": {
-                "type": "string"
-              },
-              "id": {
-                "$ref": "#/definitions/id"
-              },
-              "type": {
-                "$ref": "#/definitions/type"
-              },
-              "citation": {
-                "description": "The citation formatted as string.",
-                "type": "string"
-              }
-            }
+            "$ref": "#/$defs/reference"
           }
         },
         "container": {
           "description": "The container of the resource.",
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "identifier": {
               "description": "The identifier for the container.",
@@ -174,10 +180,10 @@
               "type": "string"
             },
             "language": {
-              "$ref": "#/definitions/language"
+              "$ref": "#/$defs/language"
             },
             "license": {
-              "$ref": "#/definitions/license"
+              "$ref": "#/$defs/license"
             },
             "platform": {
               "description": "The platform of the container.",
@@ -203,6 +209,14 @@
             "issue": {
               "description": "The issue of the resource.",
               "type": "string"
+            },
+            "location": {
+              "description": "The location of the conference or event.",
+              "type": "string"
+            },
+            "series": {
+              "description": "The series name or acronym for the conference or event.",
+              "type": "string"
             }
           }
         },
@@ -214,37 +228,38 @@
           "description": "The contributors to the resource.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/contributor"
+            "$ref": "#/$defs/contributor"
           },
           "minItems": 1
         },
         "date_published": {
-          "$ref": "#/definitions/date"
+          "$ref": "#/$defs/date"
         },
         "date_updated": {
-          "$ref": "#/definitions/date"
+          "$ref": "#/$defs/date"
         },
         "dates": {
           "description": "Other dates for the resource.",
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "created": {
-              "$ref": "#/definitions/date"
+              "$ref": "#/$defs/date"
             },
             "submitted": {
-              "$ref": "#/definitions/date"
+              "$ref": "#/$defs/date"
             },
             "accepted": {
-              "$ref": "#/definitions/date"
+              "$ref": "#/$defs/date"
             },
             "accessed": {
-              "$ref": "#/definitions/date"
+              "$ref": "#/$defs/date"
             },
             "available": {
-              "$ref": "#/definitions/date"
+              "$ref": "#/$defs/date"
             },
             "withdrawn": {
-              "$ref": "#/definitions/date"
+              "$ref": "#/$defs/date"
             }
           }
         },
@@ -257,6 +272,7 @@
           "type": "array",
           "items": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "bucket": {
                 "type": "string"
@@ -289,15 +305,16 @@
           "type": "array",
           "items": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "funder_id": {
-                "$ref": "#/definitions/id"
+                "$ref": "#/$defs/id"
               },
               "funder_name": {
                 "type": "string"
               },
               "award_id": {
-                "$ref": "#/definitions/id"
+                "$ref": "#/$defs/id"
               },
               "award_title": {
                 "type": "string"
@@ -306,7 +323,7 @@
                 "type": "string"
               },
               "asserted_by": {
-                "$ref": "#/definitions/provider"
+                "$ref": "#/$defs/provider"
               }
             },
             "anyOf": [
@@ -337,27 +354,28 @@
           "type": "array",
           "items": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "geo_location_place": {
                 "type": "string"
               },
               "geo_location_point_longitude": {
-                "$ref": "#/definitions/longitude"
+                "$ref": "#/$defs/longitude"
               },
               "geo_location_point_latitude": {
-                "$ref": "#/definitions/latitude"
+                "$ref": "#/$defs/latitude"
               },
               "geo_location_box_west_longitude": {
-                "$ref": "#/definitions/longitude"
+                "$ref": "#/$defs/longitude"
               },
               "geo_location_box_east_longitude": {
-                "$ref": "#/definitions/longitude"
+                "$ref": "#/$defs/longitude"
               },
               "geo_location_box_south_latitude": {
-                "$ref": "#/definitions/latitude"
+                "$ref": "#/$defs/latitude"
               },
               "geo_location_box_north_latitude": {
-                "$ref": "#/definitions/latitude"
+                "$ref": "#/$defs/latitude"
               },
               "geo_location_polygon": {
                 "description": "The polygon geometry, formatted as Well-Known Text (WKT).",
@@ -371,7 +389,7 @@
           "description": "Identifiers for the resource, including the id.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/identifier"
+            "$ref": "#/$defs/identifier"
           }
         },
         "image": {
@@ -380,43 +398,22 @@
           "format": "uri"
         },
         "language": {
-          "$ref": "#/definitions/language"
+          "$ref": "#/$defs/language"
         },
         "license": {
-          "$ref": "#/definitions/license"
+          "$ref": "#/$defs/license"
         },
         "provider": {
-          "$ref": "#/definitions/provider"
+          "$ref": "#/$defs/provider"
         },
         "publisher": {
-          "$ref": "#/definitions/organization"
+          "$ref": "#/$defs/organization"
         },
         "references": {
+          "description": "References cited by this resource.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "key": {
-                "type": "string"
-              },
-              "id": {
-                "$ref": "#/definitions/id"
-              },
-              "type": {
-                "$ref": "#/definitions/type"
-              },
-              "reference": {
-                "description": "The reference formatted as string.",
-                "type": "string"
-              },
-              "title": {
-                "description": "The title of the referenced article.",
-                "type": "string"
-              },
-              "asserted_by": {
-                "$ref": "#/definitions/provider"
-              }
-            }
+            "$ref": "#/$defs/reference"
           }
         },
         "relations": {
@@ -424,9 +421,10 @@
           "type": "array",
           "items": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "id": {
-                "$ref": "#/definitions/id"
+                "$ref": "#/$defs/id"
               },
               "type": {
                 "type": "string",
@@ -454,7 +452,7 @@
                 ]
               },
               "asserted_by": {
-                "$ref": "#/definitions/provider"
+                "$ref": "#/$defs/provider"
               }
             },
             "required": [
@@ -473,15 +471,16 @@
           "type": "array",
           "items": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "id": {
-                "$ref": "#/definitions/id"
+                "$ref": "#/$defs/id"
               },
               "subject": {
                 "type": "string"
               },
               "language": {
-                "$ref": "#/definitions/language"
+                "$ref": "#/$defs/language"
               }
             },
             "required": [
@@ -510,6 +509,7 @@
     },
     "contributor": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "type": {
           "type": "string",
@@ -519,16 +519,16 @@
           ]
         },
         "person": {
-          "$ref": "#/definitions/person"
+          "$ref": "#/$defs/person"
         },
         "organization": {
-          "$ref": "#/definitions/organization"
+          "$ref": "#/$defs/organization"
         },
         "roles": {
           "description": "List of roles assumed by the contributor when working on the resource.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/contributor_role"
+            "$ref": "#/$defs/contributor_role"
           }
         }
       },
@@ -555,6 +555,7 @@
     },
     "contributor_role": {
       "description": "The type of contribution made by a contributor",
+      "type": "string",
       "enum": [
         "Author",
         "Chair",
@@ -599,8 +600,7 @@
         "WorkPackageLeader",
         "WritingOriginalDraft",
         "WritingReviewEditing"
-      ],
-      "type": "string"
+      ]
     },
     "date": {
       "description": "An ISO 8601 / EDTF level 0 date or partial date (year, year-month, year-month-day, or full date-time).",
@@ -615,6 +615,7 @@
     "identifier": {
       "description": "An identifier for the resource.",
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "identifier": {
           "type": "string"
@@ -627,19 +628,26 @@
             "article_id",
             "Bibcode",
             "DOI",
+            "FundRef",
+            "GRID",
             "Handle",
             "ISBN",
+            "ISNI",
             "ISSN",
             "OpenAlex",
             "PMID",
             "PMCID",
             "PURL",
             "RAiD",
+            "ResearcherID",
+            "ROR",
+            "ScopusID",
             "SWHID",
             "URL",
             "URN",
             "UUID",
             "GUID",
+            "Wikidata",
             "Other"
           ]
         },
@@ -648,7 +656,7 @@
           "type": "string"
         },
         "asserted_by": {
-          "$ref": "#/definitions/provider"
+          "$ref": "#/$defs/provider"
         }
       },
       "required": [
@@ -665,9 +673,46 @@
       "minimum": -90,
       "maximum": 90
     },
+    "affiliation": {
+      "description": "An organizational affiliation of a person, optionally scoped by role and date range.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "ROR identifier URL.",
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://ror\\.org/[0-9a-z]{9}$"
+        },
+        "name": {
+          "description": "The name of the affiliated organization.",
+          "type": "string"
+        },
+        "role": {
+          "description": "The role or job title held at the organization.",
+          "type": "string"
+        },
+        "start_date": {
+          "description": "The date the affiliation began.",
+          "$ref": "#/$defs/date"
+        },
+        "end_date": {
+          "description": "The date the affiliation ended.",
+          "$ref": "#/$defs/date"
+        },
+        "asserted_by": {
+          "$ref": "#/$defs/provider"
+        }
+      },
+      "anyOf": [
+        {"required": ["id"]},
+        {"required": ["name"]}
+      ]
+    },
     "license": {
       "description": "The license for the resource. Use one of the SPDX license identifiers.",
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "id": {
           "type": "string"
@@ -680,7 +725,7 @@
           "format": "uri"
         },
         "asserted_by": {
-          "$ref": "#/definitions/provider"
+          "$ref": "#/$defs/provider"
         }
       }
     },
@@ -691,6 +736,7 @@
     },
     "organization": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "id": {
           "description": "ROR identifier URL.",
@@ -702,34 +748,97 @@
           "description": "The name of the organization.",
           "type": "string"
         },
-        "asserted_by": {
-          "$ref": "#/definitions/provider"
-        }
-      },
-      "anyOf": [
-        {
-          "required": [
-            "name"
+        "acronym": {
+          "description": "The acronym or abbreviation of the organization.",
+          "type": "string"
+        },
+        "additional_names": {
+          "description": "Alternate names, aliases, or translated names of the organization.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "types": {
+          "description": "The types of the organization.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "education",
+              "funder",
+              "healthcare",
+              "company",
+              "archive",
+              "nonprofit",
+              "government",
+              "facility",
+              "other"
+            ]
+          }
+        },
+        "status": {
+          "description": "The status of the organization.",
+          "type": "string",
+          "enum": [
+            "active",
+            "inactive",
+            "withdrawn"
           ]
         },
-        {
-          "required": [
-            "id"
-          ]
+        "established": {
+          "description": "The year the organization was established.",
+          "type": "integer"
+        },
+        "date_updated": {
+          "description": "The date the organization record was last updated.",
+          "$ref": "#/$defs/date"
+        },
+        "identifiers": {
+          "description": "External identifiers for the organization, e.g. GRID, ISNI, FundRef, or Wikidata.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          }
+        },
+        "urls": {
+          "description": "Website and other URLs associated with the organization.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "description": "A label for the URL.",
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": ["url"]
+          }
+        },
+        "country": {
+          "description": "The country of the organization, as an ISO 3166-1 alpha-2 code.",
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "asserted_by": {
+          "$ref": "#/$defs/provider"
         }
-      ]
+      }
     },
     "person": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "id": {
           "description": "ORCID identifier URL.",
           "type": "string",
           "format": "uri",
-          "pattern": "^https://orcid\\.org/\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$",
-          "asserted_by": {
-            "$ref": "#/definitions/provider"
-          }
+          "pattern": "^https://orcid\\.org/\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$"
         },
         "given_name": {
           "description": "The given name of the person.",
@@ -739,26 +848,63 @@
           "description": "The family name of the person.",
           "type": "string"
         },
+        "name": {
+          "description": "The display or credit name of the person.",
+          "type": "string"
+        },
+        "additional_names": {
+          "description": "Alternate names, pseudonyms, or previous names of the person.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "description": "A biographical description of the person.",
+          "type": "string"
+        },
         "affiliations": {
           "description": "The affiliations of the person.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/organization"
+            "$ref": "#/$defs/affiliation"
           }
-        }
-      },
-      "anyOf": [
-        {
-          "required": [
-            "given_name"
-          ]
         },
-        {
-          "required": [
-            "family_name"
-          ]
+        "identifiers": {
+          "description": "External identifiers for the person, e.g. Scopus Author ID or ResearcherID.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          }
+        },
+        "urls": {
+          "description": "Personal or professional URLs associated with the person.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "description": "A label for the URL.",
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": ["url"]
+          }
+        },
+        "country": {
+          "description": "The country of the person, as an ISO 3166-1 alpha-2 code.",
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "asserted_by": {
+          "$ref": "#/$defs/provider"
         }
-      ]
+      }
     },
     "provider": {
       "description": "The provider of the resource or the assertion. This can be a DOI registration agency, a repository, or any other entity asserting the information.",
@@ -845,6 +991,33 @@
         "Workflow",
         "Other"
       ]
+    },
+    "reference": {
+      "description": "A cited or citing work. Used for both references (works cited by this resource) and citations (works that cite this resource).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/type"
+        },
+        "reference": {
+          "description": "The reference formatted as string.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of the referenced article.",
+          "type": "string"
+        },
+        "asserted_by": {
+          "$ref": "#/$defs/provider"
+        }
+      }
     }
   }
 }

@@ -48,11 +48,13 @@ def test_blog_posting():
             "S., Mailloux, J.-Y., Newbold, E., Nielsen, L. H., Yahia, M., &amp; "
             "Ziedorn, F. (2016). <i>DataCite Metadata Schema Documentation for the "
             "Publication and Citation of Research Data v4.0</i>. DataCite e.V.",
+            "asserted_by": "Publisher",
         },
         {
             "id": "https://doi.org/10.5438/55e5-t5c0",
             "key": "ref2",
             "unstructured": "Fenner, M. (2016, December 15). <i>Cool DOI's</i>.",
+            "asserted_by": "Publisher",
         },
     ]
     assert subject.container == {

@@ -61,12 +61,11 @@ def test_doi_with_data_citation():
     assert subject.references[0] == {
         "key": "bib1",
         "id": "https://doi.org/10.1038/nature02100",
-        "contributor": "Bonke",
         "title": "APL regulates vascular tissue identity in Arabidopsis",
-        "publicationYear": "2003",
+        "publication_year": "2003",
         "volume": "426",
-        "firstPage": "181",
-        "containerTitle": "Nature",
+        "first_page": "181",
+        "asserted_by": "Publisher",
     }
     assert subject.relations == [
         {"type": "IsSupplementedBy", "id": "https://doi.org/10.5061/dryad.b835k"},
@@ -146,12 +145,11 @@ def test_journal_article():
     assert subject.references[-1] == {
         "key": "ref73",
         "id": "https://doi.org/10.1056/nejm199109123251104",
-        "contributor": "KB Hammond",
         "title": "Efficacy of statewide neonatal screening for cystic fibrosis by assay of trypsinogen concentrations.",
-        "publicationYear": "1991",
+        "publication_year": "1991",
         "volume": "325",
-        "firstPage": "769",
-        "containerTitle": "N Engl J Med",
+        "first_page": "769",
+        "asserted_by": "Crossref",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -205,12 +203,11 @@ def test_journal_article_with_funding():
     assert subject.references[-1] == {
         "key": "ref70",
         "id": "https://doi.org/10.17660/actahortic.2004.632.41",
-        "contributor": "Zheng",
         "title": "Effects of polyamines and salicylic acid on postharvest storage of “Ponkan” mandarin",
-        "publicationYear": "2004",
+        "publication_year": "2004",
         "volume": "632",
-        "firstPage": "317",
-        "containerTitle": "Acta Hortic.",
+        "first_page": "317",
+        "asserted_by": "Publisher",
     }
     assert subject.funding_references == [
         {
@@ -256,6 +253,7 @@ def test_journal_article_original_language():
         "key": "7",
         "id": "https://doi.org/10.1161/01.cir.95.6.1686",
         "unstructured": "Cheitlin MD et al. Circulation 95 : 1686-1744, 1997",
+        "asserted_by": "Crossref",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -305,11 +303,10 @@ def test_journal_article_with_rdf_for_container():
     assert len(subject.references) == 111
     assert subject.references[-1] == {
         "key": "bibr111",
-        "contributor": "Zenina",
         "title": "Ostracod assemblages of the freshened part of Amursky Bay and lower reaches of Razdolnaya River (Sea of Japan)",
-        "publicationYear": "2008",
+        "publication_year": "2008",
         "volume": "Vol. 1",
-        "firstPage": "156",
+        "first_page": "156",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -403,11 +400,10 @@ def test_posted_content():
     assert subject.references[0] == {
         "key": "2024080313022960000_097196v2.1",
         "title": "An introduction to the joint principles for data citation",
-        "publicationYear": "2015",
+        "publication_year": "2015",
         "volume": "41",
         "issue": "3",
-        "firstPage": "43",
-        "containerTitle": "Bulletin of the American \\ldots",
+        "first_page": "43",
     }
     assert subject.relations is None
     assert subject.funding_references is None
@@ -459,6 +455,7 @@ def test_blog_post():
         "id": "https://doi.org/10.1038/d41586-023-02554-0",
         "key": "ref1",
         "unstructured": "Vidal Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty. <i>Nature</i>, <i>620</i>(7974), 482–484.",
+        "asserted_by": "Publisher",
     }
     assert subject.relations == [
         {"type": "IsVersionOf", "id": "https://doi.org/10.53731/q5ges-cp507"}
@@ -664,6 +661,7 @@ def test_doi_with_orcid():
     assert subject.references[-1] == {
         "key": "30",
         "id": "https://doi.org/10.1378/chest.12-0045",
+        "asserted_by": "Publisher",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -679,7 +677,7 @@ def test_doi_with_orcid():
     assert subject.language == "en"
     assert (
         subject.description
-        == "Objective. To find a statistically significant separation point for the QuantiFERON Gold In-Tube (QFT) interferon gamma release assay that could define an optimal “retesting zone” for use in serially tested low-risk populations who have test “reversions” from initially positive to subsequently negative results.Method. Using receiver operating characteristic analysis (ROC) to analyze retrospective data collected from 3 major hospitals, we searched for predictors of reversion until statistically significant separation points were revealed. A confirmatory regression analysis was performed on an additional sample.Results. In 575 initially positive US healthcare workers (HCWs), 300 (52.2%) had reversions, while 275 (47.8%) had two sequential positive tests. The most statistically significant (Kappa = 0.48, chi-square = 131.0,P&lt;0.001) separation point identified by the ROC for predicting reversion was the tuberculosis antigen minus-nil (TBag-nil) value at 1.11 International Units per milliliter (IU/mL). The second separation point was found at TBag-nil at 0.72 IU/mL (Kappa = 0.16, chi-square = 8.2,P&lt;0.01). The model was validated by the regression analysis of 287 HCWs.Conclusion. Reversion likelihood increases as the TBag-nil approaches the manufacturer's cut-point of 0.35 IU/mL. The most statistically significant separation point between those who test repeatedly positive and those who revert is 1.11 IU/mL. Clinicians should retest low-risk individuals with initial QFT results &lt; 1.11 IU/mL."
+        == 'Objective. To find a statistically significant separation point for the QuantiFERON Gold In-Tube (QFT) interferon gamma release assay that could define an optimal “retesting zone” for use in serially tested low-risk populations who have test “reversions” from initially positive to subsequently negative results.Method. Using receiver operating characteristic analysis (ROC) to analyze retrospective data collected from 3 major hospitals, we searched for predictors of reversion until statistically significant separation points were revealed. A confirmatory regression analysis was performed on an additional sample.Results. In 575 initially positive US healthcare workers (HCWs), 300 (52.2%) had reversions, while 275 (47.8%) had two sequential positive tests. The most statistically significant (Kappa = 0.48, chi-square = 131.0,P&lt;0.001) separation point identified by the ROC for predicting reversion was the tuberculosis antigen minus-nil (TBag-nil) value at 1.11 International Units per milliliter (IU/mL). The second separation point was found at TBag-nil at 0.72 IU/mL (Kappa = 0.16, chi-square = 8.2,P&lt;0.01). The model was validated by the regression analysis of 287 HCWs.Conclusion. Reversion likelihood increases as the TBag-nil approaches the manufacturer\'s cut-point of 0.35 IU/mL. The most statistically significant separation point between those who test repeatedly positive and those who revert is 1.11 IU/mL. Clinicians should retest low-risk individuals with initial QFT results &lt; 1.11 IU/mL.'
     )
     assert subject.version is None
     assert subject.provider == "Crossref"
@@ -717,12 +715,11 @@ def test_date_in_future():
     assert subject.references[-1] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib94",
         "id": "https://doi.org/10.1111/hiv.12134",
-        "contributor": "Zoufaly",
         "title": "Immune activation despite suppressive highly active antiretroviral therapy is associated with higher risk of viral blips in HIV-1-infected individuals",
-        "publicationYear": "2014",
+        "publication_year": "2014",
         "volume": "15",
-        "firstPage": "449",
-        "containerTitle": "HIV Med.",
+        "first_page": "449",
+        "asserted_by": "Crossref",
     }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/0014-2999", "type": "IsPartOf"},
@@ -780,15 +777,14 @@ def test_vor_with_url():
     assert subject.references[-1] == {
         "key": "BFhdy201326_CR41",
         "id": "https://doi.org/10.1111/j.1095-8312.2003.00230.x",
-        "contributor": "H Wilkens",
-        "publicationYear": "2003",
+        "publication_year": "2003",
         "volume": "80",
-        "firstPage": "545",
-        "containerTitle": "Biol J Linn Soc",
+        "first_page": "545",
         "unstructured": "Wilkens H, Strecker U . (2003). Convergent evolution of the "
         "cavefish Astyanax (Characidae: Teleostei): Genetic evidence "
         "from reduced eye-size and pigmentation. Biol J Linn Soc 80: "
         "545–554.",
+        "asserted_by": "Publisher",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -897,6 +893,7 @@ def test_dataset_usda():
     assert subject.references[-1] == {
         "key": "ref6",
         "id": "https://doi.org/10.1674/0003-0031-178.1.47",
+        "asserted_by": "Publisher",
     }
     assert subject.funding_references == [{"funder_name": "U.S. Forest Service"}]
     assert subject.container == {
@@ -946,16 +943,15 @@ def test_book_chapter():
     assert subject.references[0] == {
         "key": "13_CR1",
         "id": "https://doi.org/10.1007/s00256-012-1391-8",
-        "contributor": "KS Ahn",
-        "publicationYear": "2012",
+        "publication_year": "2012",
         "volume": "41",
         "issue": "10",
-        "firstPage": "1301",
-        "containerTitle": "Skeletal Radiol",
+        "first_page": "1301",
         "unstructured": "Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation between "
         "magnetic resonance imaging and clinical impairment in "
         "patients with adhesive capsulitis. Skeletal Radiol. "
         "2012;41(10):1301–8.",
+        "asserted_by": "Publisher",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1195,12 +1191,10 @@ def test_book():
     assert len(subject.references) == 273
     assert subject.references[0] == {
         "key": "9781108348843#EMT-rl-1_BIBe-r-273",
-        "contributor": "Qiusheng",
         "title": "Lu Jia de lishi yishi ji qi wenhua yiyi",
-        "publicationYear": "1997",
+        "publication_year": "1997",
         "volume": "5",
-        "firstPage": "67",
-        "containerTitle": "Qilu xuekan",
+        "first_page": "67",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1256,6 +1250,7 @@ def test_proceedings_article():
     assert subject.references[-1] == {
         "key": "e_1_3_2_2_56_1",
         "id": "https://doi.org/10.5555/1364813.1364831",
+        "asserted_by": "Publisher",
     }
     assert subject.funding_references == [
         {
@@ -1318,12 +1313,11 @@ def test_multipe_titles():
     assert subject.references[-1] == {
         "key": "1345_CR20",
         "id": "https://doi.org/10.1159/000281702",
-        "contributor": "Wandschneider",
-        "publicationYear": "1990",
+        "publication_year": "1990",
         "volume": "45",
-        "firstPage": "177",
-        "containerTitle": "Urol Int",
+        "first_page": "177",
         "unstructured": "Wandschneider G, Hellbom B, Pummer K, Primus G (1990) Successful replantation of a totally amputated penis by using microvascular techniques. Urol Int 45: 177–180",
+        "asserted_by": "Crossref",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1417,14 +1411,13 @@ def test_get_reference():
         "key": "978-1-4666-1891-6.ch004.-31",
         "id": "https://doi.org/10.1109/iccv.2007.4408927",
         "unstructured": "Sinop, A. K., & Grady, L. (2007). A seeded image segmentation framework unifying graph cuts and random walker which yields a new algorithm. Proceedings of the 2007 International Conference on Computer Vision, (pp. 1-8).",
+        "asserted_by": "Crossref",
     } == get_reference(doi_metadata)
     assert {
         "key": "978-1-4666-1891-6.ch004.-14",
-        "contributor": "W.Donath",
         "title": "Algorithms for partitioning graphs and computer logic based on eigenvectors of connection matrices.",
-        "publicationYear": "1972",
+        "publication_year": "1972",
         "volume": "15",
-        "firstPage": "938",
-        "containerTitle": "IBM Technical Disclosure Bulletin",
+        "first_page": "938",
     } == get_reference(unstructured_metadata)
     assert None is get_reference(None)

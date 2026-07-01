@@ -82,12 +82,11 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     def format_subject(subject):
         """format_subject"""
         if isinstance(subject, str):
-            return {"subject": subject, "subjectScheme": "None"}
+            return {"subject": subject}
         if isinstance(subject, dict):
             return compact(
                 {
                     "subject": subject.get("#text", None),
-                    "subjectScheme": subject.get("subjectScheme", None),
                     "language": subject.get("xml:lang", None),
                 }
             )

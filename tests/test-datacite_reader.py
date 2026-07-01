@@ -143,7 +143,8 @@ def test_date():
     }
     assert subject.references is None
     assert subject.container == {
-        "id": "10.4230/LIPIcs.TQC.2013",
+        "identifier": "10.4230/LIPIcs.TQC.2013",
+        "identifier_type": "URL",
         "type": "Series",
         "title": "LIPIcs, Volume 22, TQC 2013",
     }

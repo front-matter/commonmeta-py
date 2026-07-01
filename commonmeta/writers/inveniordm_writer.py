@@ -419,8 +419,8 @@ def to_inveniordm_reference(reference: dict) -> dict | None:
         else:
             unstructured = "Unknown title"
 
-        if reference.get("publicationYear", None):
-            unstructured += f" ({reference.get('publicationYear')})."
+        if reference.get("publication_year", None):
+            unstructured += f" ({reference.get('publication_year')})."
 
         return compact(
             {

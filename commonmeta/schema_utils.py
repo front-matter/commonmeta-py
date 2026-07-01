@@ -54,15 +54,11 @@ def json_schema_errors(
             raise ValueError(f"Schema file not found: {file_path}")
         except json.JSONDecodeError:
             raise ValueError(f"Invalid JSON in schema file: {file_path}")
-        # The commonmeta schema files nest their entry schema under a
-        # non-standard top-level "commonmeta" key instead of putting
-        # validation keywords (anyOf/type/properties) directly at the
-        # document root like every other schema file in resources/. Without
-        # this, the root schema has no validation keywords of its own and
-        # silently validates everything.
-        entry_schema = schema_definition.pop("commonmeta", None)
-        if entry_schema is not None:
-            schema_definition = {**schema_definition, **entry_schema}
+        # The commonmeta v1.0 schema validates an array of entities.
+        # Wrap a single-record dict in a list so it passes the top-level
+        # "type": "array" check.
+        if schema == "commonmeta" and isinstance(instance, dict):
+            instance = [instance]
         validator = Draft202012Validator(schema_definition)
         errors = list(validator.iter_errors(instance))
         if not errors:
