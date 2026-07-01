@@ -1,5 +1,7 @@
 """datacite_xml reader for Commonmeta"""
 
+from __future__ import annotations
+
 from collections import defaultdict
 
 import requests

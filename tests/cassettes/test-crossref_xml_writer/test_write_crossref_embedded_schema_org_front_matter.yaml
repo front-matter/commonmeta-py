@@ -14,14 +14,13 @@ interactions:
     uri: https://doi.org/ra/10.53731
   response:
     body:
-      string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
+      string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n\
+        ]"
     headers:
       CF-RAY:
       - a136e6c89eb70b66-AMS
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:

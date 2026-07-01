@@ -223,8 +223,6 @@ interactions:
     headers:
       Alt-Svc:
       - h3=":443"; ma=2592000
-      Content-Encoding:
-      - gzip
       Content-Security-Policy:
       - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
         fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com

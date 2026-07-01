@@ -122,8 +122,6 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
-      content-encoding:
-      - gzip
       content-security-policy:
       - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
         ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch

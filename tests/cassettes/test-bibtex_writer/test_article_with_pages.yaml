@@ -20,8 +20,6 @@ interactions:
       - a136e52e3deb971d-AMS
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -264,8 +262,6 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
-      content-encoding:
-      - gzip
       permissions-policy:
       - interest-cohort=()
       server:
