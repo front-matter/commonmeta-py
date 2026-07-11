@@ -8,7 +8,6 @@ from datetime import datetime
 from time import time
 from typing import TYPE_CHECKING, Any, Dict
 
-import orjson as json
 import requests
 import xmltodict
 from dateutil.parser import parse as date_parse
@@ -22,6 +21,7 @@ from ..base_utils import compact, dig, get_crossref_xml_head, parse_xml, presenc
 from ..constants import CM_TO_CR_CONTRIBUTOR_ROLES, CM_TO_CR_CREDIT_ROLES
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
 from ..utils import validate_url
+from ..json import dumps as json_dumps
 from .inveniordm_writer import push_inveniordm
 
 if TYPE_CHECKING:
@@ -715,7 +715,7 @@ def push_crossref_xml(
             record["status"] = "updated"
 
     # Return JSON response
-    return json.dumps(record, option=json.OPT_INDENT_2).decode("utf-8")
+    return json_dumps(record, option=json.OPT_INDENT_2).decode("utf-8")  # TODO option
 
 
 def push_crossref_xml_list(
@@ -779,7 +779,7 @@ def push_crossref_xml_list(
         items.append(record)
 
     # Return JSON response
-    return json.dumps(items, option=json.OPT_INDENT_2)
+    return json_dumps(items, option=json.OPT_INDENT_2)  # TODO option
 
 
 def get_attributes(obj, **kwargs) -> dict:

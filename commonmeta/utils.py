@@ -11,7 +11,6 @@ from typing import Any
 from urllib.parse import urlparse
 
 import bibtexparser
-import orjson as json
 import pycountry
 import requests
 import yaml
@@ -31,6 +30,7 @@ from .base_utils import (
 )
 from .constants import OPENALEX_SUBFIELD_MAPPINGS
 from .doi_utils import doi_as_url, doi_from_url, get_doi_ra, normalize_doi, validate_doi
+from .json import loads as json_loads
 
 
 @lru_cache(maxsize=1)
@@ -1051,7 +1051,7 @@ def dict_to_spdx(dct: dict) -> dict | None:
     )
     with open(file_path, encoding="utf-8") as file:
         string = file.read()
-        spdx = json.loads(string).get("licenses")
+        spdx = json_loads(string).get("licenses")
     license_ = next(
         (
             lic
@@ -1465,7 +1465,7 @@ def find_from_format_by_string(string: str | None) -> str | None:
     if string is None:
         return None
     try:
-        data = json.loads(string)
+        data = json_loads(string)
         if not isinstance(data, dict):
             raise TypeError
         if data.get("schema", "").startswith("https://commonmeta.org"):
@@ -1490,7 +1490,7 @@ def find_from_format_by_string(string: str | None) -> str | None:
             return "csl"
         if dig(data, "conceptdoi") is not None:
             return "inveniordm"
-    except (TypeError, json.JSONDecodeError):
+    except (TypeError, ValueError):
         pass
     try:
         data = BeautifulSoup(string, "xml")

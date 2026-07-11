@@ -38,8 +38,6 @@ dependencies = [
     "python-dateutil>=2.8.2,<3",
     "nh3>=0.2.14,<0.3",
     "pyjwt>=2.8.0,<3",
-    "orjson>=3.9.14,<4",
-    "orjsonl>=1.0.0,<2",
     "edtf>=5.0.0,<6",
     "requests>=2.32.3",
     "requests-toolbelt>=1.0.0",
@@ -62,6 +60,17 @@ dependencies = [
 # the extra resolves to nothing and backend.py's require_backend() raises the clear
 # "needs Python 3.14+" error at call time instead.
 backend = ["commonmeta-rs>=0.9.41 ; python_full_version >= '3.14'"]
+
+ujson = [
+  "ujson>=5.13.0",
+]
+orjson = [
+  "orjson>=3.9.14,<4",
+  "orjsonl>=1.0.0,<2",
+]
+msgspec = [
+  "msgspec>=0.21.0",
+]
 
 [project.urls]
 Homepage = "https://python.commonmeta.org"

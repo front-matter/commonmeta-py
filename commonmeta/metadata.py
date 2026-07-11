@@ -6,7 +6,6 @@ import os
 from os import path
 from typing import Any
 
-import orjson as json
 import yaml
 
 from .backend import (
@@ -18,6 +17,7 @@ from .backend import (
 from .base_utils import dig, parse_xml, wrap
 from .io_utils import write_output
 from .readers.bibtex_reader import read_bibtex
+from .json import loads as json_loads, dumps as json_dumps
 from .readers.cff_reader import get_cff, read_cff
 from .readers.codemeta_reader import (
     get_codemeta,
@@ -435,10 +435,10 @@ class Metadata:
                 "ror",
                 "orcid",
             ]:
-                return json.loads(string)
+                return json_loads(string)
             else:
                 raise ValueError("No input format found")
-        except (TypeError, json.JSONDecodeError) as error:
+        except (TypeError, ValueError) as error:
             return {"error": str(error)}
 
     def read_metadata(self, data: dict[str, Any], **kwargs) -> dict[str, Any]:
@@ -524,7 +524,7 @@ class Metadata:
                     self.is_valid = False
             if output is None:
                 return b"{}"
-            return json.dumps(output)
+            return json_dumps(output)
         # Text-based output formats
         elif to == "bibtex":
             return write_bibtex(self)
@@ -635,7 +635,7 @@ class MetadataList:
         if self.via in [
             "inveniordm",
         ]:
-            return {"items": json.loads(string)}
+            return {"items": json_loads(string)}
         if self.via in [
             "commonmeta",
             "crossref",
@@ -645,7 +645,7 @@ class MetadataList:
             "openalex",
             "schema_org",
         ]:
-            data = json.loads(string)
+            data = json_loads(string)
             # Accept both a bare JSON array - the commonmeta v1.0 list form that
             # write() now emits, matching the schema and commonmeta-rs - and a
             # legacy {"items": [...]} envelope.
@@ -678,13 +678,13 @@ class MetadataList:
             else:
                 return output
         elif to == "commonmeta":
-            output = json.dumps(write_commonmeta_list(self))
+            output = json_dumps(write_commonmeta_list(self))
             if self.file:
                 return write_output(self.file, output, [".json", ".jsonl"])
             else:
                 return output
         elif to == "crossref":
-            output = json.dumps(write_crossref_list(self))
+            output = json_dumps(write_crossref_list(self))
             if self.file:
                 return write_output(self.file, output, [".json"])
             else:
@@ -707,19 +707,19 @@ class MetadataList:
                 self.is_valid = False
                 return None
         elif to == "csl":
-            output = json.dumps(write_csl_list(self))
+            output = json_dumps(write_csl_list(self))
             if self.file:
                 return write_output(self.file, output, [".json"])
             else:
                 return output
         elif to == "datacite":
-            output = json.dumps(write_datacite_list(self))
+            output = json_dumps(write_datacite_list(self))
             if self.file:
                 return write_output(self.file, output, [".json"])
             else:
                 return output
         elif to == "inveniordm":
-            output = json.dumps(write_inveniordm_list(self))
+            output = json_dumps(write_inveniordm_list(self))
             if self.file:
                 return write_output(self.file, output, [".json"])
             else:
@@ -754,7 +754,7 @@ class MetadataList:
             else:
                 return output
         elif to == "schema_org":
-            output = json.dumps(write_schema_org_list(self))
+            output = json_dumps(write_schema_org_list(self))
             if self.file:
                 return write_output(self.file, output, [".json"])
             else:

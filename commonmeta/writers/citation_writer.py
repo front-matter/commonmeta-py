@@ -5,7 +5,6 @@ from __future__ import annotations
 import re
 from typing import TYPE_CHECKING
 
-import orjson as json
 from citeproc import (
     Citation,
     CitationItem,
@@ -17,6 +16,7 @@ from citeproc.source.json import CiteProcJSON
 from citeproc_styles import get_style_filepath
 
 from ..base_utils import omit
+from ..json import loads as json_loads
 
 if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
@@ -55,7 +55,7 @@ def write_citation_item(metadata: Metadata) -> CiteProcJSON | None:
     csl_output = metadata.write(to="csl")
     if csl_output is None:
         return None
-    csl = json.loads(csl_output)
+    csl = json_loads(csl_output)
 
     # Remove keys that are not supported by citeproc-py.
     csl = omit(csl, "copyright", "categories")
