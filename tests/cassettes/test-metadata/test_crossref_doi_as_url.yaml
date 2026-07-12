@@ -17,32 +17,32 @@ interactions:
       string: "[\n  {\n    \"DOI\": \"10.7554\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a136e8e818d8c11c-AMS
+      - a19ecfb558bc6f82-CDG
+      Cf-Cache-Status:
+      - DYNAMIC
       Connection:
       - keep-alive
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 29 Jun 2026 18:14:15 GMT
+      - Sun, 12 Jul 2026 08:52:21 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Permissions-Policy:
+      - interest-cohort=(),browsing-topics=()
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=%2FNV1F8PXWPJXBaylMgccbH%2Btmkh%2FV%2BLwlL3zMDoXDjSamI3s5zI09jZ7PrqQ5s7dA2vGq1%2FDLEd4fYpkONak0OY8nT%2BC9YHoHQ3l4LuZWd03EjYCQ7PHnDbKbm1TP3%2FFe7NWVz0%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=n2PcS3j34oQr1E0WHYGVUwvOV4TjSSCJMLdU0n7Ls%2FLk6RQj4IAEAyJQsYu58QSrVQealSMlfU6cREQrxER6Un9MEL7iXiuaznV6F6hVNY%2BIPgfYUB%2F2%2FFolasV2l%2FLPBzUF%2BjM%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      cf-cache-status:
-      - DYNAMIC
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-      vary:
+      Vary:
       - Origin
       - accept-encoding
+      alt-svc:
+      - h3=":443"; ma=86400
     status:
       code: 200
       message: OK
@@ -154,7 +154,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2026 18:14:15 GMT
+      - Sun, 12 Jul 2026 08:52:22 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

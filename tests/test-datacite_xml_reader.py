@@ -82,8 +82,8 @@ def test_geo_location_empty():
     # despite the file's name.
     assert subject.geo_locations == [
         {
-            "geo_location_point_longitude": -68.2975,
-            "geo_location_point_latitude": -11.64583333,
+            "point_longitude": -68.2975,
+            "point_latitude": -11.64583333,
         }
     ]
     assert subject.language == "en"
@@ -94,8 +94,8 @@ def test_geo_location_empty():
     assert json_schema_errors(commonmeta, "commonmeta") is None
     assert commonmeta["geo_locations"] == [
         {
-            "geo_location_point_longitude": -68.2975,
-            "geo_location_point_latitude": -11.64583333,
+            "point_longitude": -68.2975,
+            "point_latitude": -11.64583333,
         }
     ]
 

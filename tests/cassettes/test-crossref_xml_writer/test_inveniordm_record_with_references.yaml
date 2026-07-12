@@ -49,13 +49,13 @@ interactions:
         false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
         {"ids": ["093ada45-3a02-4007-b8b6-be28f221e01d", "d79fe364-6d96-40b6-b437-b93ca3493106"],
         "default": "093ada45-3a02-4007-b8b6-be28f221e01d", "entries": [{"id": "093ada45-3a02-4007-b8b6-be28f221e01d",
-        "created": "2025-03-19T18:43:14.713108+00:00", "updated": "2026-06-29T17:42:12.342285+00:00",
-        "links": {}, "revision_id": 1092, "slug": "crossref", "metadata": {"title":
+        "created": "2025-03-19T18:43:14.713108+00:00", "updated": "2026-07-12T08:14:31.434342+00:00",
+        "links": {}, "revision_id": 1483, "slug": "crossref", "metadata": {"title":
         "Crossref Blog", "description": "Recent content in Blog on Crossref", "type":
         {"id": "blog"}, "website": "https://www.crossref.org/blog/"}, "access": {"visibility":
         "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
         "open", "review_policy": "open"}, "custom_fields": {"feed:feed_url": "https://www.crossref.org/blog/feed.xml",
-        "feed:created": "2026-06-08", "feed:updated": "2026-06-26T10:24:06+00:00",
+        "feed:created": "2026-06-08", "feed:updated": "2026-07-09T13:42:27+00:00",
         "feed:feed_format": {"id": "atom"}, "feed:generator": {"id": "Hugo"}, "feed:status":
         {"id": "active"}, "feed:authors": [{"name": "Crossref Staff"}], "rs:prefix":
         {"id": "10.64000"}, "rs:doi": "https://doi.org/10.64000/crossref", "rs:license":
@@ -267,7 +267,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2026 18:12:56 GMT
+      - Sun, 12 Jul 2026 08:51:31 GMT
       Etag:
       - '"37"'
       Link:
@@ -277,7 +277,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '57'
+      - '58'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -295,7 +295,7 @@ interactions:
       X-Ratelimit-Remaining:
       - '498'
       X-Ratelimit-Reset:
-      - '1782756834'
+      - '1783846350'
       X-Xss-Protection:
       - 1; mode=block
     status:

@@ -152,7 +152,7 @@ def read_crossref_xml(data: dict | None, **kwargs) -> Commonmeta:
         or dig(bibmeta, "doi_data.doi")
     )
     _type = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
-    if _type == "Article" and dig(publisher, "name") == "Front Matter":
+    if _type == "Preprint" and dig(publisher, "name") == "Front Matter":
         _type = "BlogPost"
 
     url = first(parse_attributes(dig(bibmeta, "doi_data.resource")))

@@ -192,9 +192,19 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
 
     publisher = meta.get("publisher", None)
     if publisher is not None:
-        _pub_id = normalize_id(publisher.get("@id", None)) if isinstance(publisher, dict) else None
-        _pub_name = publisher.get("name", None) if isinstance(publisher, dict) else publisher
-        publisher = compact({"id": _pub_id, "name": _pub_name}) if (_pub_id or _pub_name) else None
+        _pub_id = (
+            normalize_id(publisher.get("@id", None))
+            if isinstance(publisher, dict)
+            else None
+        )
+        _pub_name = (
+            publisher.get("name", None) if isinstance(publisher, dict) else publisher
+        )
+        publisher = (
+            compact({"id": _pub_id, "name": _pub_name})
+            if (_pub_id or _pub_name)
+            else None
+        )
 
     license_ = meta.get("license", None)
     if license_ is not None:
@@ -228,7 +238,7 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
                 "last_page": meta.get("pageEnd", None),
             }
         )
-    elif _type in ["Article", "BlogPost"]:
+    elif _type in ["Preprint", "BlogPost"]:
         container_type = "Blog" if _type == "BlogPost" else "Periodical"
         issn = dig(meta, "isPartOf.issn")
         container_url = dig(meta, "publisher.url")
@@ -236,16 +246,16 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
             {
                 "type": container_type,
                 "title": dig(meta, "isPartOf.name"),
-                "identifier": issn
-                if issn is not None
-                else container_url
-                if container_url is not None
-                else None,
-                "identifier_type": "ISSN"
-                if issn is not None
-                else "URL"
-                if container_url is not None
-                else None,
+                "identifier": (
+                    issn
+                    if issn is not None
+                    else container_url if container_url is not None else None
+                ),
+                "identifier_type": (
+                    "ISSN"
+                    if issn is not None
+                    else "URL" if container_url is not None else None
+                ),
             }
         )
     else:
@@ -404,8 +414,8 @@ def schema_org_geolocation(geo_location: dict | None) -> dict | None:
 
     if type_ == "GeoCoordinates":
         return {
-            "geo_location_point_longitude": longitude,
-            "geo_location_point_latitude": latitude,
+            "point_longitude": longitude,
+            "point_latitude": latitude,
         }
     return None
 

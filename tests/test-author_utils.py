@@ -78,7 +78,8 @@ def test_one_author():
             "family_name": "Ollomo",
             "affiliations": [
                 {
-                    "id": "https://ror.org/01wyqb997",
+                    "identifier": "https://ror.org/01wyqb997",
+                    "identifier_type": "ROR",
                     "name": "Centre International de Recherches Médicales de Franceville",
                 }
             ],
@@ -331,8 +332,9 @@ def test_get_authors():
                 "family_name": "Jones",
                 "affiliations": [
                     {
+                        "identifier": "https://ror.org/02t274463",
+                        "identifier_type": "ROR",
                         "name": "University of California, Santa Barbara",
-                        "id": "https://ror.org/02t274463",
                     }
                 ],
             },
@@ -352,8 +354,9 @@ def test_get_affiliations():
     )
     assert [
         {
+            "identifier": "https://ror.org/02t274463",
+            "identifier_type": "ROR",
             "name": "University of California, Santa Barbara",
-            "id": "https://ror.org/02t274463",
         }
     ] == get_affiliations(
         [
@@ -367,8 +370,9 @@ def test_get_affiliations():
     )
     assert [
         {
+            "identifier": "https://ror.org/02t274463",
+            "identifier_type": "ROR",
             "name": "University of California, Santa Barbara",
-            "id": "https://ror.org/02t274463",
         }
     ] == get_affiliations(
         [

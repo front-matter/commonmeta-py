@@ -198,9 +198,10 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
     if tags is not None:
         subjects += wrap([format_subject(i) for i in tags])
     references = get_references(wrap(meta.get("reference", None)))
-    citations = get_citations(wrap(meta.get("citations", None)))
     funding_references = get_funding_references(meta)
     relations = get_relations(wrap(meta.get("relationships", None)))
+    # citing works are represented as IsReferencedBy relations
+    relations += get_citations(wrap(meta.get("citations", None)))
     if meta.get("blog_slug", None):
         relations.append(
             {
@@ -233,7 +234,6 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
         "additional_descriptions": presence(additional_descriptions),
         "additional_titles": presence(additional_titles),
         "additional_type": None,
-        "citations": presence(citations),
         "container": presence(container),
         "content": presence(content),
         "contributors": presence(contributors),
@@ -340,7 +340,6 @@ def read_jsonfeed_blog(data: dict | None, **kwargs) -> Commonmeta:
         "additional_descriptions": presence(additional_descriptions),
         "additional_titles": presence(additional_titles),
         "additional_type": None,
-        "citations": None,
         "container": None,
         "content": None,
         "contributors": presence(contributors),
@@ -395,25 +394,32 @@ def get_references(references: list) -> list:
 
 
 def get_citations(citations: list) -> list:
-    """get jsonfeed citations."""
+    """Convert jsonfeed citing works to IsReferencedBy relations, unifying
+    citations into relations."""
 
     def get_citation(citation: dict) -> dict | None:
         if citation is None or not isinstance(citation, dict):
             return None
 
-        return compact(
-            {
-                "id": normalize_doi(citation.get("citation")),
-                "type": citation.get("type", None),
-                "unstructured": citation.get("unstructured", None),
-                "published_at": citation.get("published_at", None),
-                "updated_at": citation.get("updated_at", None),
-            }
-        )
+        id_ = normalize_doi(citation.get("citation"))
+        if not id_:
+            return None
+        return {
+            "id": id_,
+            "type": "IsReferencedBy",
+            # retained only for ordering; stripped before serialization
+            "_published_at": citation.get("published_at", None),
+        }
 
-    citations = [get_citation(i) for i in citations if i.get("validated", False)]
-    citations.sort(key=lambda x: x.get("published_at", None))
-    return citations
+    result = [
+        c
+        for c in (get_citation(i) for i in citations if i.get("validated", False))
+        if c is not None
+    ]
+    result.sort(key=lambda x: x.get("_published_at") or "")
+    for c in result:
+        c.pop("_published_at", None)
+    return result
 
 
 def get_funding_references(meta: dict | None) -> list | None:
@@ -574,7 +580,10 @@ def get_funding_references(meta: dict | None) -> list | None:
     return [
         to_v1_funding_reference(i)
         for i in awards
-        if i.get("funderName") or i.get("funderIdentifier") or i.get("awardNumber") or i.get("awardTitle")
+        if i.get("funderName")
+        or i.get("funderIdentifier")
+        or i.get("awardNumber")
+        or i.get("awardTitle")
     ]
 
 

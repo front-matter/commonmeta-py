@@ -14,36 +14,35 @@ interactions:
     uri: https://doi.org/ra/10.14264
   response:
     body:
-      string: "[\n  {\n    \"DOI\": \"10.14264\",\n    \"RA\": \"Crossref\"\n  }\n\
-        ]"
+      string: "[\n  {\n    \"DOI\": \"10.14264\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a136e5405f956729-AMS
+      - a19ecd2c6b62f16c-CDG
+      Cf-Cache-Status:
+      - DYNAMIC
       Connection:
       - keep-alive
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 29 Jun 2026 18:11:45 GMT
+      - Sun, 12 Jul 2026 08:50:38 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Permissions-Policy:
+      - interest-cohort=(),browsing-topics=()
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=oOw6a9ZPDOUHsWIdYm6OZnH0aH%2BEz5IlERTcj14OumRxOyTPVoWCEPutul2OUmOqLmVKd%2BIV%2FJkqsLNGpqw060dW2mTEoCVULSFrSYjfY0i3%2FOnR73XwAnp4PqETKxJmDZJIDNI%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Um2bdtFOfNbZyVCLCuExJ6f6pvAqOa6BFQ7gKvJqsOn7bU9INKg%2FrtbcoUkohBxz0PMBxOO05OszeUsI5w3Znj1OM1dp2MSkN4YU4Bjv9f%2BP%2BO%2FmYrba1pMnWBOOVluKATHmvM0%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      cf-cache-status:
-      - DYNAMIC
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-      vary:
+      Vary:
       - Origin
       - accept-encoding
+      alt-svc:
+      - h3=":443"; ma=86400
     status:
       code: 200
       message: OK
@@ -77,7 +76,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2026 18:11:45 GMT
+      - Sun, 12 Jul 2026 08:50:38 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

@@ -296,7 +296,7 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
 
     # raise error if type is not supported by Crossref
     if metadata.type not in [
-        "Article",
+        "Preprint",
         "Blog",
         "BlogPost",
         "BlogVolume",
@@ -329,7 +329,7 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
     license = get_license(metadata)
     kwargs = {}
 
-    if metadata.type == "Article":
+    if metadata.type == "Preprint":
         if metadata.additional_type in POSTED_CONTENT_TYPES:
             kwargs["type"] = metadata.additional_type
         else:
@@ -873,12 +873,14 @@ def get_contributors(obj) -> dict | None:
                     "institution": compact(
                         {
                             "institution_name": affiliation.get("name", None),
-                            "institution_id": {
-                                "@type": "ror",
-                                "#text": affiliation.get("id"),
-                            }
-                            if affiliation.get("id", None) is not None
-                            else None,
+                            "institution_id": (
+                                {
+                                    "@type": "ror",
+                                    "#text": affiliation.get("identifier"),
+                                }
+                                if affiliation.get("identifier_type", None) == "ROR"
+                                else None
+                            ),
                         }
                     ),
                 }
@@ -1224,7 +1226,7 @@ def get_relations(obj) -> Dict | None:
         if validate_doi(relation_id):
             identifier_type = "doi"
             _id = doi_from_url(relation_id)
-        elif f.host == "portal.issn.org" and obj.type in ["Article", "BlogPost"]:
+        elif f.host == "portal.issn.org" and obj.type in ["Preprint", "BlogPost"]:
             identifier_type = "issn"
             _id = f.path.segments[-1] if f.path.segments else None
         elif validate_url(relation_id) == "URL":

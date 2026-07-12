@@ -23,7 +23,7 @@ def test_doi_with_data_citation():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
-    assert subject.additional_type == "Article"
+    assert subject.additional_type == "Preprint"
     assert subject.url == "https://doi.org/10.7554/elife.01567"
     assert subject.title == 'Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth'
     assert len(subject.contributors) == 5
@@ -34,7 +34,8 @@ def test_doi_with_data_citation():
             "family_name": "Sankar",
             "affiliations": [
                 {
-                    "id": "https://ror.org/019whta54",
+                    "identifier": "https://ror.org/019whta54",
+                    "identifier_type": "ROR",
                     "name": "University of Lausanne"
                 }
             ]
@@ -117,7 +118,8 @@ def test_journal_article():
             "family_name": "Ralser",
             "affiliations": [
                 {
-                    "id": "https://ror.org/03ate3e03",
+                    "identifier": "https://ror.org/03ate3e03",
+                    "identifier_type": "ROR",
                     "name": "Max Planck Institute for Molecular Genetics"
                 }
             ]
@@ -204,7 +206,8 @@ def test_journal_article_with_funding():
             "family_name": "Fortes",
             "affiliations": [
                 {
-                    "id": "https://ror.org/01c27hj86",
+                    "identifier": "https://ror.org/01c27hj86",
+                    "identifier_type": "ROR",
                     "name": "University of Lisbon"
                 }
             ]
@@ -335,7 +338,8 @@ def test_journal_article_with_rdf_for_container():
             "family_name": "Escriv\u00e0",
             "affiliations": [
                 {
-                    "id": "https://ror.org/043nxc105",
+                    "identifier": "https://ror.org/043nxc105",
+                    "identifier_type": "ROR",
                     "name": "Universitat de Val\u00e8ncia"
                 }
             ]
@@ -397,7 +401,8 @@ def test_book_chapter_with_rdf_for_container():
             "family_name": "Chen",
             "affiliations": [
                 {
-                    "id": "https://ror.org/02kkvpp62",
+                    "identifier": "https://ror.org/02kkvpp62",
+                    "identifier_type": "ROR",
                     "name": "Technical University of Munich"
                 }
             ]
@@ -438,7 +443,7 @@ def test_posted_content():
     subject = Metadata(string, via="openalex")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1101/097196"
-    assert subject.type == "Article"
+    assert subject.type == "Preprint"
     assert subject.url == "https://doi.org/10.1101/097196"
     assert subject.title == 'A Data Citation Roadmap for Scholarly Data Repositories'
     assert len(subject.contributors) == 11
@@ -448,7 +453,7 @@ def test_posted_content():
             "id": "https://orcid.org/0000-0003-1419-2405",
             "given_name": "Martin",
             "family_name": "Fenner",
-            "affiliations": [{"id": "https://ror.org/04wxnsj81", "name": "DataCite"}],
+            "affiliations": [{"identifier": "https://ror.org/04wxnsj81", "identifier_type": "ROR", "name": "DataCite"}],
         },
         "roles": [
             "Author"
@@ -502,7 +507,7 @@ def test_blog_post():
     subject = Metadata(string, via="openalex")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/ybhah-9jy85"
-    assert subject.type == "Article"
+    assert subject.type == "Preprint"
     assert subject.url == "https://doi.org/10.53731/ybhah-9jy85"
     assert subject.title == 'The rise of the (science) newsletter'
     assert len(subject.contributors) == 1
@@ -565,11 +570,13 @@ def test_peer_review():
             "family_name": "Magland",
             "affiliations": [
                 {
-                    "id": "https://ror.org/0508h6p74",
+                    "identifier": "https://ror.org/0508h6p74",
+                    "identifier_type": "ROR",
                     "name": "Flatiron Health (United States)"
                 },
                 {
-                    "id": "https://ror.org/00sekdz59",
+                    "identifier": "https://ror.org/00sekdz59",
+                    "identifier_type": "ROR",
                     "name": "Flatiron Institute"
                 }
             ]
@@ -660,7 +667,7 @@ def test_doi_with_sici():
         subject.id == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
     )
     assert subject.type == "JournalArticle"
-    assert subject.additional_type == "Article"
+    assert subject.additional_type == "Preprint"
     assert (
         subject.url == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
     )
@@ -674,7 +681,8 @@ def test_doi_with_sici():
             "family_name": "Fenton",
             "affiliations": [
                 {
-                    "id": "https://ror.org/04xs57h96",
+                    "identifier": "https://ror.org/04xs57h96",
+                    "identifier_type": "ROR",
                     "name": "University of Liverpool"
                 }
             ]
@@ -718,7 +726,7 @@ def test_doi_with_orcid():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
-    assert subject.additional_type == "Article"
+    assert subject.additional_type == "Preprint"
     assert subject.url == "https://doi.org/10.1155/2012/291294"
     assert subject.title == 'Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers'
     assert len(subject.contributors) == 7
@@ -730,11 +738,13 @@ def test_doi_with_orcid():
             "family_name": "Hernandez",
             "affiliations": [
                 {
-                    "id": "https://ror.org/02hd1sz82",
+                    "identifier": "https://ror.org/02hd1sz82",
+                    "identifier_type": "ROR",
                     "name": "Mental Illness Research, Education and Clinical Centers"
                 },
                 {
-                    "id": "https://ror.org/00f54p054",
+                    "identifier": "https://ror.org/00f54p054",
+                    "identifier_type": "ROR",
                     "name": "Stanford University"
                 }
             ]
@@ -786,7 +796,7 @@ def test_date_in_future():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1016/j.ejphar.2015.03.018"
     assert subject.type == "JournalArticle"
-    assert subject.additional_type == "Article"
+    assert subject.additional_type == "Preprint"
     assert subject.url == "https://doi.org/10.1016/j.ejphar.2015.03.018"
     assert subject.title == 'Paving the path to HIV neurotherapy: Predicting SIV CNS disease'
     assert len(subject.contributors) == 10
@@ -798,11 +808,13 @@ def test_date_in_future():
             "family_name": "Beck",
             "affiliations": [
                 {
-                    "id": "https://ror.org/00za53h95",
+                    "identifier": "https://ror.org/00za53h95",
+                    "identifier_type": "ROR",
                     "name": "Johns Hopkins University"
                 },
                 {
-                    "id": "https://ror.org/037zgn354",
+                    "identifier": "https://ror.org/037zgn354",
+                    "identifier_type": "ROR",
                     "name": "Johns Hopkins Medicine"
                 }
             ]
@@ -853,7 +865,7 @@ def test_vor_with_url():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1038/hdy.2013.26"
     assert subject.type == "JournalArticle"
-    assert subject.additional_type == "Article"
+    assert subject.additional_type == "Preprint"
     assert subject.url == "https://doi.org/10.1038/hdy.2013.26"
     assert subject.title == 'Albinism in phylogenetically and geographically distinct populations of Astyanax cavefish arises through the same loss-of-function Oca2 allele'
     assert len(subject.contributors) == 2
@@ -865,7 +877,8 @@ def test_vor_with_url():
             "family_name": "Gross",
             "affiliations": [
                 {
-                    "id": "https://ror.org/01e3m7079",
+                    "identifier": "https://ror.org/01e3m7079",
+                    "identifier_type": "ROR",
                     "name": "University of Cincinnati"
                 }
             ]
@@ -1011,7 +1024,8 @@ def test_dataset_usda():
             "family_name": "Ribic",
             "affiliations": [
                 {
-                    "id": "https://ror.org/035a68863",
+                    "identifier": "https://ror.org/035a68863",
+                    "identifier_type": "ROR",
                     "name": "United States Geological Survey"
                 }
             ]
@@ -1058,11 +1072,13 @@ def test_book_chapter():
             "family_name": "Diercks",
             "affiliations": [
                 {
-                    "id": "https://ror.org/03cv38k47",
+                    "identifier": "https://ror.org/03cv38k47",
+                    "identifier_type": "ROR",
                     "name": "University Medical Center Groningen"
                 },
                 {
-                    "id": "https://ror.org/012p63287",
+                    "identifier": "https://ror.org/012p63287",
+                    "identifier_type": "ROR",
                     "name": "University of Groningen"
                 }
             ]
@@ -1118,11 +1134,13 @@ def test_another_book_chapter():
             "family_name": "Jones",
             "affiliations": [
                 {
-                    "id": "https://ror.org/02kgve346",
+                    "identifier": "https://ror.org/02kgve346",
+                    "identifier_type": "ROR",
                     "name": "NOAA Oceanic and Atmospheric Research"
                 },
                 {
-                    "id": "https://ror.org/02z5nhe81",
+                    "identifier": "https://ror.org/02z5nhe81",
+                    "identifier_type": "ROR",
                     "name": "National Oceanic and Atmospheric Administration"
                 }
             ]
@@ -1181,7 +1199,8 @@ def test_yet_another_book_chapter():
             "family_name": "Bichot",
             "affiliations": [
                 {
-                    "id": "https://ror.org/029brtt94",
+                    "identifier": "https://ror.org/029brtt94",
+                    "identifier_type": "ROR",
                     "name": "Universit\u00e9 Claude Bernard Lyon 1"
                 }
             ]
@@ -1220,7 +1239,7 @@ def test_missing_contributor():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.3390/publications6020015"
     assert subject.type == "JournalArticle"
-    assert subject.additional_type == "Article"
+    assert subject.additional_type == "Preprint"
     assert subject.url == "https://doi.org/10.3390/publications6020015"
     assert subject.title == 'Converting the Literature of a Scientific Field to Open Access through Global Collaboration: The Experience of SCOAP3 in Particle Physics'
     assert subject.contributors[0] == {
@@ -1231,7 +1250,8 @@ def test_missing_contributor():
             "family_name": "Kohls",
             "affiliations": [
                 {
-                    "id": "https://ror.org/01ggx4157",
+                    "identifier": "https://ror.org/01ggx4157",
+                    "identifier_type": "ROR",
                     "name": "European Organization for Nuclear Research"
                 }
             ]
@@ -1323,7 +1343,8 @@ def test_too_many_contributor_names():
             "family_name": "dos Santos",
             "affiliations": [
                 {
-                    "id": "https://ror.org/03kfjwy31",
+                    "identifier": "https://ror.org/03kfjwy31",
+                    "identifier_type": "ROR",
                     "name": "Laboratoire d'Automatique, de Génie des Procédés et de Génie Pharmaceutique"
                 }
             ]
@@ -1402,7 +1423,7 @@ def test_proceedings_article():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1145/3448016.3452841"
     assert subject.type == "ProceedingsArticle"
-    assert subject.additional_type == "Article"
+    assert subject.additional_type == "Preprint"
     assert subject.url == "https://doi.org/10.1145/3448016.3452841"
     assert subject.title == 'Vector Quotient Filters'
     assert len(subject.contributors) == 6
@@ -1414,11 +1435,13 @@ def test_proceedings_article():
             "family_name": "Pandey",
             "affiliations": [
                 {
-                    "id": "https://ror.org/02jbv0t02",
+                    "identifier": "https://ror.org/02jbv0t02",
+                    "identifier_type": "ROR",
                     "name": "Lawrence Berkeley National Laboratory"
                 },
                 {
-                    "id": "https://ror.org/01an7q238",
+                    "identifier": "https://ror.org/01an7q238",
+                    "identifier_type": "ROR",
                     "name": "University of California, Berkeley"
                 }
             ]
@@ -1482,7 +1505,8 @@ def test_multipe_titles():
             "family_name": "Lehsnau",
             "affiliations": [
                 {
-                    "id": "https://ror.org/011zjcv36",
+                    "identifier": "https://ror.org/011zjcv36",
+                    "identifier_type": "ROR",
                     "name": "Unfallkrankenhaus Berlin"
                 }
             ]

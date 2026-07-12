@@ -18,6 +18,7 @@ import yaml
 
 from .base_utils import dig, parse_xml, wrap
 from .io_utils import write_output
+from .readers.bibtex_reader import read_bibtex
 from .readers.cff_reader import get_cff, read_cff
 from .readers.codemeta_reader import (
     get_codemeta,
@@ -47,7 +48,6 @@ from .readers.openalex_reader import (
     get_openalex,
     read_openalex,
 )
-from .readers.bibtex_reader import read_bibtex
 from .readers.ris_reader import read_ris
 from .readers.schema_org_reader import (
     get_schema_org,
@@ -141,7 +141,6 @@ class Metadata:
         self.provider = meta.get("provider")
         self.publisher = meta.get("publisher")
         self.references = meta.get("references")
-        self.citations = meta.get("citations")
         self.relations = meta.get("relations")
         self.subjects = meta.get("subjects")
         self.url = meta.get("url")
@@ -174,12 +173,14 @@ class Metadata:
         # error.
         self.errors = meta.get("errors", None) or (
             json_schema_errors(json.loads(self.write()))
-            if meta.get("state", None) not in ["not_found", "forbidden", "bad_request", "timeout"]
+            if meta.get("state", None)
+            not in ["not_found", "forbidden", "bad_request", "timeout"]
             else None
         )
         self.write_errors = None
         self.is_valid = (
-            meta.get("state", None) not in ["not_found", "forbidden", "bad_request", "timeout"]
+            meta.get("state", None)
+            not in ["not_found", "forbidden", "bad_request", "timeout"]
             and self.errors is None
             and self.write_errors is None
         )
@@ -306,7 +307,14 @@ class Metadata:
     def write(self, to: str = "commonmeta", **kwargs) -> bytes | None:
         """convert metadata list into different formats"""
         # JSON-based output formats
-        if to in ["commonmeta", "crossref", "datacite", "inveniordm", "schema_org", "csl"]:
+        if to in [
+            "commonmeta",
+            "crossref",
+            "datacite",
+            "inveniordm",
+            "schema_org",
+            "csl",
+        ]:
             writer_map = {
                 "commonmeta": write_commonmeta,
                 "crossref": write_crossref,

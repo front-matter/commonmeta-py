@@ -319,9 +319,13 @@ def get_affiliations(affiliations: list[dict | str]) -> list[dict]:
                 if f.scheme in ["http", "https"]:
                     affiliation_identifier = i.get("id")
             name = i.get("name", None) or i.get("#text", None)
+        # affiliation.identifier is ROR-only per the v1.0 schema; a non-ROR
+        # identifier is dropped rather than leaking into the ROR-only field.
+        ror = to_ror_id(affiliation_identifier)
         return compact(
             {
-                "id": to_ror_id(affiliation_identifier),
+                "identifier": ror,
+                "identifier_type": "ROR" if ror else None,
                 "name": name,
             }
         )

@@ -174,9 +174,9 @@ interactions:
         "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files":
         {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries": {}},
         "status": "published", "deletion_status": {"is_deleted": false, "status":
-        "P"}, "stats": {"this_version": {"views": 2, "unique_views": 2, "downloads":
-        0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions": {"views": 2,
-        "unique_views": 2, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}}}'
+        "P"}, "stats": {"this_version": {"views": 6, "unique_views": 5, "downloads":
+        0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions": {"views": 6,
+        "unique_views": 5, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}}}'
     headers:
       Alt-Svc:
       - h3=":443"; ma=2592000
@@ -188,7 +188,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2026 18:14:00 GMT
+      - Sun, 12 Jul 2026 08:51:58 GMT
       Etag:
       - '"27"'
       Link:
@@ -198,7 +198,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '5'
+      - '31'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -214,9 +214,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '495'
+      - '493'
       X-Ratelimit-Reset:
-      - '1782756846'
+      - '1783846350'
       X-Xss-Protection:
       - 1; mode=block
     status:

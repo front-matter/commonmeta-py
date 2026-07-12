@@ -104,7 +104,7 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
     url = normalize_url(dig(meta, "resource.primary.URL"))
     title, additional_titles = get_titles(meta)
     publisher = compact({"name": meta.get("publisher", None)})
-    if _type == "Article" and dig(publisher, "name") == "Front Matter":
+    if _type == "Preprint" and dig(publisher, "name") == "Front Matter":
         _type = "BlogPost"
     date_published = (
         dig(meta, "issued.date-time")

@@ -24,6 +24,7 @@ from ..constants import (
 )
 from ..date_utils import normalize_date_dict, strip_milliseconds
 from ..doi_utils import datacite_api_url, doi_as_url, doi_from_url, normalize_doi
+from ..readers.datacite_reader import DC_TO_CM_RELATION_TYPES
 from ..utils import dict_to_spdx, normalize_cc_url, normalize_url
 
 
@@ -243,6 +244,7 @@ def get_xml_relations(relations: list) -> list:
     def is_relation(relation):
         """is_relation"""
         return relation.get("relationType", None) in [
+            "IsCitedBy",
             "IsNewVersionOf",
             "IsPreviousVersionOf",
             "IsVersionOf",
@@ -265,13 +267,19 @@ def get_xml_relations(relations: list) -> list:
         identifier = relation.get("relatedIdentifier", None)
         identifier_type = relation.get("relatedIdentifierType", None)
         if identifier and identifier_type == "DOI":
-            relation["doi"] = normalize_doi(identifier)
+            _id = normalize_doi(identifier)
         elif identifier and identifier_type == "URL":
-            relation["url"] = normalize_url(identifier)
-        return {
-            "id": identifier,
-            "type": identifier_type,
-        }
+            _id = normalize_url(identifier)
+        else:
+            _id = identifier
+        relation_type = relation.get("relationType", None)
+        relation_type = DC_TO_CM_RELATION_TYPES.get(relation_type, relation_type)
+        return compact(
+            {
+                "id": _id,
+                "type": relation_type,
+            }
+        )
 
     return [map_relation(i) for i in relations if is_relation(i)]
 
@@ -306,10 +314,12 @@ def get_titles(titles: list) -> tuple[str | None, list]:
             return compact(
                 {
                     "title": title.get("#text", None),
-                    "type": title.get("titleType")
-                    if title.get("titleType", None)
-                    in ["AlternativeTitle", "Subtitle", "TranslatedTitle"]
-                    else None,
+                    "type": (
+                        title.get("titleType")
+                        if title.get("titleType", None)
+                        in ["AlternativeTitle", "Subtitle", "TranslatedTitle"]
+                        else None
+                    ),
                     "language": title.get("xml:lang", None),
                 }
             )
@@ -421,10 +431,9 @@ def get_funding_references(funding_references: list) -> list:
 def get_geolocation(geolocations: list) -> list:
     """get_geolocation
 
-    Returns flat v1.0-shaped geo_locations (geo_location_place,
-    geo_location_point_longitude/_latitude,
-    geo_location_box_*_longitude/_latitude, geo_location_polygon as WKT)
-    instead of the nested geoLocationPoint/Box/Polygon shape.
+    Returns flat v1.0-shaped geo_locations (place,
+    point_longitude/point_latitude, box_*_longitude/box_*_latitude,
+    polygon as WKT) instead of the nested geoLocationPoint/Box/Polygon shape.
     """
 
     def point_value(point, key: str) -> float | None:
@@ -453,23 +462,21 @@ def get_geolocation(geolocations: list) -> list:
 
     def map_geolocation(location) -> dict | None:
         if isinstance(location, str):
-            return {"geo_location_place": location}
+            return {"place": location}
         if not isinstance(location, dict):
             return None
         point = location.get("geoLocationPoint", None) or {}
         box = location.get("geoLocationBox", None) or {}
         return compact(
             {
-                "geo_location_place": location.get("geoLocationPlace", None),
-                "geo_location_point_longitude": point_value(point, "pointLongitude"),
-                "geo_location_point_latitude": point_value(point, "pointLatitude"),
-                "geo_location_box_west_longitude": box_value(box, "westBoundLongitude"),
-                "geo_location_box_east_longitude": box_value(box, "eastBoundLongitude"),
-                "geo_location_box_south_latitude": box_value(box, "southBoundLatitude"),
-                "geo_location_box_north_latitude": box_value(box, "northBoundLatitude"),
-                "geo_location_polygon": polygon_to_wkt(
-                    location.get("geoLocationPolygon", None)
-                ),
+                "place": location.get("geoLocationPlace", None),
+                "point_longitude": point_value(point, "pointLongitude"),
+                "point_latitude": point_value(point, "pointLatitude"),
+                "box_west_longitude": box_value(box, "westBoundLongitude"),
+                "box_east_longitude": box_value(box, "eastBoundLongitude"),
+                "box_south_latitude": box_value(box, "southBoundLatitude"),
+                "box_north_latitude": box_value(box, "northBoundLatitude"),
+                "polygon": polygon_to_wkt(location.get("geoLocationPolygon", None)),
             }
         )
 

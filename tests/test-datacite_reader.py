@@ -764,19 +764,19 @@ def test_geolocation_box():
 
     assert subject.geo_locations == [
         {
-            "geo_location_place": "Providence Creek (Lower, Upper and P301)",
-            "geo_location_point_longitude": -119.221094,
-            "geo_location_point_latitude": 37.047756,
-            "geo_location_box_west_longitude": -119.211,
-            "geo_location_box_east_longitude": -119.182,
-            "geo_location_box_south_latitude": 37.046,
-            "geo_location_box_north_latitude": 37.075,
+            "place": "Providence Creek (Lower, Upper and P301)",
+            "point_longitude": -119.221094,
+            "point_latitude": 37.047756,
+            "box_west_longitude": -119.211,
+            "box_east_longitude": -119.182,
+            "box_south_latitude": 37.046,
+            "box_north_latitude": 37.075,
         },
         {
-            "geo_location_box_west_longitude": -119.211,
-            "geo_location_box_east_longitude": -119.182,
-            "geo_location_box_south_latitude": 37.046,
-            "geo_location_box_north_latitude": 37.075,
+            "box_west_longitude": -119.211,
+            "box_east_longitude": -119.182,
+            "box_south_latitude": 37.046,
+            "box_north_latitude": 37.075,
         },
     ]
     assert subject.funding_references == [
@@ -1566,7 +1566,7 @@ def test_geolocation_box():
 #     )
 #   end
 
-#   it 'geo_location_polygon' do
+#   it 'polygon' do
 #     text = "#{fixture_path}datacite-example-polygon-v4.1.xml"
 #     subject = described_class.new(text: input)
 #     expect(subject.id).to eq('https://doi.org/10.5072/example-polygon')
@@ -1904,9 +1904,9 @@ def test_geolocation():
     )
     assert subject.geo_locations == [
         {
-            "geo_location_place": "Mogi Gua\u00e7u (municipality)",
-            "geo_location_point_longitude": -46.946,
-            "geo_location_point_latitude": -22.368,
+            "place": "Mogi Gua\u00e7u (municipality)",
+            "point_longitude": -46.946,
+            "point_latitude": -22.368,
         }
     ]
 

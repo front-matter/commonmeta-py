@@ -27,20 +27,20 @@ interactions:
         "resource_type": {"title": "Presentation", "type": "presentation"}, "meeting":
         {"title": "CERN/NASA Accelerating the Adoption of Open Science Summit", "dates":
         "10-14 July 2023", "place": "Geneva, Switzerland", "url": "https://home.cern/news/announcement/knowledge-sharing/cernnasa-summit-accelerating-adoption-open-science"},
-        "license": {"id": "cc-by-4.0"}, "communities": [{"id": "tops"}, {"id": "cern-nasa-open-science-summit-july-2023"}],
-        "relations": {"version": [{"index": 0, "is_last": true, "parent": {"pid_type":
-        "recid", "pid_value": "8173302"}}]}}, "title": "ARCHIVE - 11 July 2023 (Day
-        2) CERN \u2013 NASA Open Science Summit Sketch Notes", "links": {"self": "https://zenodo.org/api/records/8173303",
-        "self_html": "https://zenodo.org/records/8173303", "preview_html": "https://zenodo.org/records/8173303?preview=1",
-        "doi": "https://doi.org/10.5281/zenodo.8173303", "self_doi": "https://doi.org/10.5281/zenodo.8173303",
-        "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.8173303", "reserve_doi":
-        "https://zenodo.org/api/records/8173303/draft/pids/doi", "parent": "https://zenodo.org/api/records/8173302",
-        "parent_html": "https://zenodo.org/records/8173302", "parent_doi": "https://doi.org/10.5281/zenodo.8173302",
-        "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.8173302", "self_iiif_manifest":
-        "https://zenodo.org/api/iiif/record:8173303/manifest", "self_iiif_sequence":
-        "https://zenodo.org/api/iiif/record:8173303/sequence/default", "files": "https://zenodo.org/api/records/8173303/files",
-        "media_files": "https://zenodo.org/api/records/8173303/media-files", "thumbnails":
-        {"10": "https://zenodo.org/api/iiif/record:8173303:20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/full/%5E10,/0/default.jpg",
+        "license": {"id": "cc-by-4.0"}, "communities": [{"id": "cern-nasa-open-science-summit-july-2023"},
+        {"id": "tops"}], "relations": {"version": [{"index": 0, "is_last": true, "parent":
+        {"pid_type": "recid", "pid_value": "8173302"}}]}}, "title": "ARCHIVE - 11
+        July 2023 (Day 2) CERN \u2013 NASA Open Science Summit Sketch Notes", "links":
+        {"self": "https://zenodo.org/api/records/8173303", "self_html": "https://zenodo.org/records/8173303",
+        "preview_html": "https://zenodo.org/records/8173303?preview=1", "doi": "https://doi.org/10.5281/zenodo.8173303",
+        "self_doi": "https://doi.org/10.5281/zenodo.8173303", "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.8173303",
+        "reserve_doi": "https://zenodo.org/api/records/8173303/draft/pids/doi", "parent":
+        "https://zenodo.org/api/records/8173302", "parent_html": "https://zenodo.org/records/8173302",
+        "parent_doi": "https://doi.org/10.5281/zenodo.8173302", "parent_doi_html":
+        "https://zenodo.org/doi/10.5281/zenodo.8173302", "self_iiif_manifest": "https://zenodo.org/api/iiif/record:8173303/manifest",
+        "self_iiif_sequence": "https://zenodo.org/api/iiif/record:8173303/sequence/default",
+        "files": "https://zenodo.org/api/records/8173303/files", "media_files": "https://zenodo.org/api/records/8173303/media-files",
+        "thumbnails": {"10": "https://zenodo.org/api/iiif/record:8173303:20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/full/%5E10,/0/default.jpg",
         "50": "https://zenodo.org/api/iiif/record:8173303:20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/full/%5E50,/0/default.jpg",
         "100": "https://zenodo.org/api/iiif/record:8173303:20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/full/%5E100,/0/default.jpg",
         "250": "https://zenodo.org/api/iiif/record:8173303:20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/full/%5E250,/0/default.jpg",
@@ -63,9 +63,9 @@ interactions:
         "size": 13994803, "checksum": "md5:45d8b11d4ef0da78b9db5397d8e0e8d9", "links":
         {"self": "https://zenodo.org/api/records/8173303/files/20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/content"}}],
         "swh": {}, "owners": [{"id": "363883"}], "status": "published", "stats": {"downloads":
-        115, "unique_downloads": 106, "views": 121, "unique_views": 100, "version_downloads":
-        115, "version_unique_downloads": 106, "version_unique_views": 100, "version_views":
-        121}, "state": "done", "submitted": true}'
+        115, "unique_downloads": 106, "views": 124, "unique_views": 103, "version_downloads":
+        115, "version_unique_downloads": 106, "version_unique_views": 103, "version_views":
+        124}, "state": "done", "submitted": true}'
     headers:
       access-control-allow-origin:
       - '*'
@@ -78,7 +78,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Mon, 29 Jun 2026 18:15:14 GMT
+      - Sun, 12 Jul 2026 08:52:43 GMT
       etag:
       - W/"8"
       link:
@@ -88,7 +88,7 @@ interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '49'
+      - '14'
       server:
       - nginx
       strict-transport-security:
@@ -104,9 +104,9 @@ interactions:
       x-ratelimit-limit:
       - '133'
       x-ratelimit-remaining:
-      - '131'
+      - '125'
       x-ratelimit-reset:
-      - '1782756964'
+      - '1783846378'
       x-source:
       - api
       x-xss-protection:

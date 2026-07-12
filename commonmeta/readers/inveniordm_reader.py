@@ -93,7 +93,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     publisher = meta.get("publisher", None) or dig(meta, "metadata.publisher")
     if publisher:
         publisher = {"name": publisher}
-    if _type == "Article" and dig(publisher, "name") == "Front Matter":
+    if _type == "Preprint" and dig(publisher, "name") == "Front Matter":
         _type = "BlogPost"
 
     title = dig(meta, "metadata.title")
@@ -185,8 +185,9 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         references = get_references_from_relations(
             wrap(dig(meta, "metadata.related_identifiers"))
         )
-    citations = get_citations(wrap(dig(meta, "custom_fields.rs:citations")))
     relations = get_relations(wrap(dig(meta, "metadata.related_identifiers")))
+    # citing works are represented as IsReferencedBy relations
+    relations += get_citations(wrap(dig(meta, "custom_fields.rs:citations")))
 
     # if data is for a parent record
     if kwargs.get("parent_doi", None):
@@ -230,7 +231,6 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             "additional_descriptions": presence(additional_descriptions),
             "additional_titles": presence(additional_titles),
             # "additional_type": additional_type,
-            "citations": presence(citations),
             "container": container,
             "content": presence(content),
             "contributors": contributors,
@@ -280,7 +280,8 @@ def get_references(references: list) -> list:
 
 
 def get_citations(citations: list) -> list:
-    """get citations."""
+    """Convert citing works (custom_fields.rs:citations) to IsReferencedBy
+    relations, unifying citations into relations."""
 
     def get_citation(citation: dict) -> dict | None:
         if not isinstance(citation, dict):
@@ -292,12 +293,14 @@ def get_citations(citations: list) -> list:
             id_ = normalize_url(citation.get("identifier"))
         else:
             id_ = citation.get("identifier")
+        if not id_:
+            return None
         return {
             "id": id_,
-            "unstructured": citation.get("reference", None),
+            "type": "IsReferencedBy",
         }
 
-    return [get_citation(i) for i in citations]
+    return [c for c in (get_citation(i) for i in citations) if c is not None]
 
 
 def get_references_from_relations(references: list) -> list:

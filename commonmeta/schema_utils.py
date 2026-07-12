@@ -24,7 +24,7 @@ def json_schema_errors(
     """
     schema_map = {
         "cff": "cff_v1.2.0",
-        "commonmeta": "commonmeta_v1.0",
+        "commonmeta": "commonmeta_v1.0rc1",
         "crossref_xml": "crossref-v5.4.0",
         "csl": "csl-data",
         "datacite": "datacite-v4.5",
@@ -92,11 +92,20 @@ def xml_schema_errors(
             raise ValueError("No schema found")
         base_dir = path.join(path.dirname(__file__), "resources", "crossref")
         schema_path = path.join(base_dir, "crossref5.4.0.xsd")
+        # One bundled JATS XSD imports the MathML namespace without a
+        # schemaLocation; map it to the local MathML 3 schema so xmlschema
+        # doesn't fall back to the (sandbox-blocked) remote URL.
+        mathml_path = path.join(base_dir, "standard-modules", "mathml3", "mathml3.xsd")
+        locations = {"http://www.w3.org/1998/Math/MathML": mathml_path}
         try:
             # Load schema with allow="sandbox" to prevent network access
             # and validation="skip" to skip validation of the schema itself
             schema_obj = xmlschema.XMLSchema(
-                schema_path, base_url=base_dir, allow="sandbox", validation="skip"
+                schema_path,
+                base_url=base_dir,
+                locations=locations,
+                allow="sandbox",
+                validation="skip",
             )
         except FileNotFoundError:
             raise ValueError(f"Schema file not found: {schema_path}")

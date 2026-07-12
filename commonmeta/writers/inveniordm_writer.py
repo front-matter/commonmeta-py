@@ -95,7 +95,6 @@ def write_inveniordm(metadata: Metadata) -> dict:
         }
     )
     references = [to_inveniordm_reference(i) for i in wrap(metadata.references)]
-    citations = [to_inveniordm_reference(i) for i in wrap(metadata.citations)]
     related_identifiers = [
         to_inveniordm_related_identifier(i)
         for i in wrap(metadata.relations)
@@ -167,23 +166,29 @@ def write_inveniordm(metadata: Metadata) -> dict:
                     "creators": creators,
                     "contributors": presence(contributors),
                     "title": metadata.title,
-                    "publisher": metadata.publisher.get("name", None)
-                    if metadata.publisher
-                    else None,
-                    "publication_date": get_iso8601_date(metadata.date_published)
-                    if metadata.date_published
-                    else None,
+                    "publisher": (
+                        metadata.publisher.get("name", None)
+                        if metadata.publisher
+                        else None
+                    ),
+                    "publication_date": (
+                        get_iso8601_date(metadata.date_published)
+                        if metadata.date_published
+                        else None
+                    ),
                     "dates": presence(dates),
                     "subjects": presence(subjects),
                     "description": metadata.description,
-                    "rights": [{"id": metadata.license.get("id").lower()}]
-                    if metadata.license.get("id", None)
-                    else None,
-                    "languages": [
-                        {"id": get_language(metadata.language, format="alpha_3")}
-                    ]
-                    if metadata.language
-                    else None,
+                    "rights": (
+                        [{"id": metadata.license.get("id").lower()}]
+                        if metadata.license.get("id", None)
+                        else None
+                    ),
+                    "languages": (
+                        [{"id": get_language(metadata.language, format="alpha_3")}]
+                        if metadata.language
+                        else None
+                    ),
                     "identifiers": identifiers,
                     "references": presence(references),
                     "related_identifiers": presence(related_identifiers),
@@ -204,7 +209,6 @@ def write_inveniordm(metadata: Metadata) -> dict:
                     ),
                     "rs:content_html": presence(metadata.content),
                     "rs:image": presence(metadata.image),
-                    "rs:citations": presence(citations),
                     "feed:generator": container.get("platform", None),
                 }
             ),
@@ -357,9 +361,16 @@ def to_inveniordm_affiliations(person: dict) -> list | None:
     """Convert a v1.0 person's affiliations to inveniordm affiliations."""
 
     def format_affiliation(affiliation):
+        # affiliation identifiers are ROR-only in v1.0; emit the InvenioRDM
+        # affiliation id only for ROR-typed identifiers.
+        ror = (
+            affiliation.get("identifier", None)
+            if affiliation.get("identifier_type", None) == "ROR"
+            else None
+        )
         return compact(
             {
-                "id": id_from_url(affiliation.get("id", None)),
+                "id": id_from_url(ror),
                 "name": affiliation.get("name", None),
             }
         )

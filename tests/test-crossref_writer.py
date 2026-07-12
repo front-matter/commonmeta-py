@@ -264,7 +264,8 @@ def test_write_affiliation_with_ror():
                     "family_name": "Doe",
                     "affiliations": [
                         {
-                            "id": "https://ror.org/04fa4r544",
+                            "identifier": "https://ror.org/04fa4r544",
+                            "identifier_type": "ROR",
                             "name": "CERN",
                             "asserted_by": "Publisher",
                         }

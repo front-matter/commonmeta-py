@@ -14,36 +14,35 @@ interactions:
     uri: https://doi.org/ra/10.53731
   response:
     body:
-      string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n\
-        ]"
+      string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a136e59e399bb6a8-AMS
+      - a19ecd7dcb716f17-CDG
+      Cf-Cache-Status:
+      - DYNAMIC
       Connection:
       - keep-alive
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 29 Jun 2026 18:12:00 GMT
+      - Sun, 12 Jul 2026 08:50:51 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Permissions-Policy:
+      - interest-cohort=(),browsing-topics=()
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=oUVsVUTcbaZOmTJA%2FGRt0krLMAxYpA2XjBpfvOXc9wBFL7ZuS6Wt33x9yEIMwNR20HNdwy1YsSYmsTjVwPowwWZtIk9KZshGEndI4JxzneNE4yZlTRlCBE7pNkicrC07tdkm2n4%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=afA6QxKsm%2FwR4BWfA7sOeqRIl48J7%2BgEwp6wewaf56Hfoopu5SbOv3OtKlk20c0cQfpIXYbtCvu7o0Z4bhJrAGCm34YSaEI927KiezakZA6eAvrkbl6RRFA%2BllMTauVk8hly04A%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      cf-cache-status:
-      - DYNAMIC
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-      vary:
+      Vary:
       - Origin
       - accept-encoding
+      alt-svc:
+      - h3=":443"; ma=86400
     status:
       code: 200
       message: OK
@@ -86,7 +85,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2026 18:12:00 GMT
+      - Sun, 12 Jul 2026 08:50:51 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

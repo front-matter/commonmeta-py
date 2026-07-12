@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
-from ..base_utils import compact, presence, wrap
+from ..base_utils import compact, wrap
 from ..doi_utils import doi_from_url
 
 if TYPE_CHECKING:
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 # commonmeta type → Crossref REST API type
 _CM_TO_CR_TYPE: dict[str, str] = {
-    "Article": "posted-content",
+    "Preprint": "posted-content",
     "Blog": "journal",
     "BlogPost": "posted-content",
     "BlogVolume": "journal-volume",
@@ -62,10 +62,12 @@ def _contributor_to_cr(contributor: dict, sequence: str) -> dict:
     organization = contributor.get("organization")
 
     if organization:
-        return compact({
-            "name": organization.get("name"),
-            "sequence": sequence,
-        })
+        return compact(
+            {
+                "name": organization.get("name"),
+                "sequence": sequence,
+            }
+        )
 
     if not person:
         return {"sequence": sequence}
@@ -81,16 +83,18 @@ def _contributor_to_cr(contributor: dict, sequence: str) -> dict:
 
     affiliations = []
     for aff in wrap(person.get("affiliations")):
-        aff_id = aff.get("id", "")
+        aff_id = aff.get("identifier", "")
         aff_ids = []
         if aff_id:
-            id_type = "ROR" if "ror.org" in aff_id else "other"
+            id_type = aff.get("identifier_type", "") or "other"
             asserted_by = aff.get("asserted_by", "publisher")
-            aff_ids.append({
-                "id": aff_id,
-                "id-type": id_type,
-                "asserted-by": asserted_by.lower(),
-            })
+            aff_ids.append(
+                {
+                    "id": aff_id,
+                    "id-type": id_type,
+                    "asserted-by": asserted_by.lower(),
+                }
+            )
         aff_entry = compact({"name": aff.get("name", ""), "id": aff_ids or None})
         if aff_entry:
             affiliations.append(aff_entry)
@@ -164,21 +168,27 @@ def _build_references(references: list[dict] | None) -> list[dict]:
         title = r.get("title", "")
         # Use the separately-stored title; fall back to reference text only
         # when there is no unstructured field (the reference text IS the title).
-        article_title = title if title else ("" if unstructured else r.get("reference", ""))
+        article_title = (
+            title if title else ("" if unstructured else r.get("reference", ""))
+        )
         pub_year = r.get("publication_year", "")
-        entry = compact({
-            "key": r.get("key", ""),
-            "DOI": ref_doi or None,
-            "doi-asserted-by": r.get("asserted_by", "").lower() if ref_doi else None,
-            "article-title": article_title or None,
-            "unstructured": unstructured or None,
-            "year": pub_year or None,
-            "volume": r.get("volume", "") or None,
-            "issue": r.get("issue", "") or None,
-            "first-page": r.get("first_page", "") or None,
-            "last-page": r.get("last_page", "") or None,
-            "publisher": r.get("publisher", "") or None,
-        })
+        entry = compact(
+            {
+                "key": r.get("key", ""),
+                "DOI": ref_doi or None,
+                "doi-asserted-by": (
+                    r.get("asserted_by", "").lower() if ref_doi else None
+                ),
+                "article-title": article_title or None,
+                "unstructured": unstructured or None,
+                "year": pub_year or None,
+                "volume": r.get("volume", "") or None,
+                "issue": r.get("issue", "") or None,
+                "first-page": r.get("first_page", "") or None,
+                "last-page": r.get("last_page", "") or None,
+                "publisher": r.get("publisher", "") or None,
+            }
+        )
         if entry:
             result.append(entry)
     return result
@@ -249,7 +259,9 @@ def _to_cr_work(metadata: Metadata) -> dict:
     issued = {"date-parts": date_parts} if date_parts else None
     posted = {"date-parts": date_parts} if (date_parts and is_posted_content) else None
 
-    publisher_name = (metadata.publisher or {}).get("name", "") if metadata.publisher else ""
+    publisher_name = (
+        (metadata.publisher or {}).get("name", "") if metadata.publisher else ""
+    )
 
     subjects = [s["subject"] for s in wrap(metadata.subjects) if s.get("subject")]
 
@@ -257,11 +269,7 @@ def _to_cr_work(metadata: Metadata) -> dict:
     reference = _build_references(metadata.references)
 
     url = metadata.url or ""
-    resource = (
-        {"primary": {"URL": url}}
-        if url
-        else None
-    )
+    resource = {"primary": {"URL": url}} if url else None
 
     link = [
         {"URL": f.get("url"), "content-type": f.get("mime_type")}
@@ -269,11 +277,7 @@ def _to_cr_work(metadata: Metadata) -> dict:
         if f.get("url") and f.get("mime_type") != "unspecified"
     ]
 
-    version = (
-        {"version": metadata.version}
-        if metadata.version
-        else None
-    )
+    version = {"version": metadata.version} if metadata.version else None
 
     doi_url = f"https://doi.org/{doi}" if doi else ""
 

@@ -373,7 +373,7 @@ def test_posted_content():
     subject = Metadata(string, via="crossref_xml")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1101/097196"
-    assert subject.type == "Article"
+    assert subject.type == "Preprint"
     assert subject.url == "http://biorxiv.org/lookup/doi/10.1101/097196"
     assert subject.title == "A Data Citation Roadmap for Scholarly Data Repositories"
     assert len(subject.contributors) == 11

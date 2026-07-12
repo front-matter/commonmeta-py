@@ -56,17 +56,16 @@ def write_commonmeta(metadata: Metadata | None) -> dict | None:
     # issue, first_page, last_page, publisher, unstructured, etc.) and
     # map unstructured → reference when the reference field is absent.
     _REFERENCE_SCHEMA_KEYS = {"key", "id", "type", "reference", "title", "asserted_by"}
-    for field in ("references", "citations"):
-        if data.get(field):
-            cleaned = []
-            for r in wrap(data[field]):
-                ref = {k: v for k, v in r.items() if k in _REFERENCE_SCHEMA_KEYS}
-                if "reference" not in ref:
-                    fallback = r.get("unstructured") or r.get("reference")
-                    if fallback:
-                        ref["reference"] = fallback
-                cleaned.append(compact(ref))
-            data[field] = presence(cleaned)
+    if data.get("references"):
+        cleaned = []
+        for r in wrap(data["references"]):
+            ref = {k: v for k, v in r.items() if k in _REFERENCE_SCHEMA_KEYS}
+            if "reference" not in ref:
+                fallback = r.get("unstructured") or r.get("reference")
+                if fallback:
+                    ref["reference"] = fallback
+            cleaned.append(compact(ref))
+        data["references"] = presence(cleaned)
 
     return compact(data)
 
@@ -86,5 +85,3 @@ def write_commonmeta_list(metalist: MetadataList | None) -> dict | None:
             "items": items,
         }
     )
-
-

@@ -14,36 +14,35 @@ interactions:
     uri: https://doi.org/ra/10.53731
   response:
     body:
-      string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n\
-        ]"
+      string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a136e6c89eb70b66-AMS
+      - a19ece38fa18d10b-CDG
+      Cf-Cache-Status:
+      - DYNAMIC
       Connection:
       - keep-alive
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 29 Jun 2026 18:12:48 GMT
+      - Sun, 12 Jul 2026 08:51:21 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Permissions-Policy:
+      - interest-cohort=(),browsing-topics=()
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=sviPnsVK2viaW6KfNaC0QUlxyw12AAot19GnZ%2B902uC47aHi9oTw0wpQ4Aqwx%2Bsrqe9HCZUgSQS66jHkSmGaZAe%2Fg6oEoHiC2O%2FzIiLk2%2Fqk4Uen1xB%2BQcb35v3M2BYlyddvQqA%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=37F%2F7m99qYVrZ6%2FtanXwb1Z%2B8CGvOjia3vtC3mBXvtqwclO0f5Be3d5KV0sbduMQtDOTn6eKsgn4SnGakXIATqqu8j%2FtjgNpFRBQBdXAXHd%2Ffj6py3gYB68Fz8nppMhqTFeZCIU%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      cf-cache-status:
-      - DYNAMIC
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-      vary:
+      Vary:
       - Origin
       - accept-encoding
+      alt-svc:
+      - h3=":443"; ma=86400
     status:
       code: 200
       message: OK

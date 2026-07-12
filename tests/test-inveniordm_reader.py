@@ -374,7 +374,6 @@ def test_rogue_scholar():
         {"id": "https://doi.org/10.59350/sfw0f-2fe65", "type": "IsVersionOf"}
     ]
     assert subject.publisher == {"name": "Front Matter"}
-    assert subject.citations is None
     assert subject.funding_references is None
     assert subject.description.startswith(
         "Elicit.com, Consensus, and Undermind.ai are among the new leading comprehensive cross-disciplinary"
@@ -424,20 +423,14 @@ def test_rogue_scholar_with_citations():
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert subject.date_published == "2007-05-24T16:09:00"
-    assert subject.relations is None
+    # citing works are represented as IsReferencedBy relations
+    assert subject.relations == [
+        {"id": "https://doi.org/10.59350/4q8j1-1ap35", "type": "IsReferencedBy"},
+        {"id": "https://doi.org/10.59350/jtzzf-jfz50", "type": "IsReferencedBy"},
+    ]
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.funding_references is None
     assert subject.references is None
-    assert subject.citations == [
-        {
-            "id": "https://doi.org/10.59350/4q8j1-1ap35",
-            "unstructured": "Willighagen, E. (2007, May 25). Numbers are copyrighted?. <i>Chem-bla-ics</i>.",
-        },
-        {
-            "id": "https://doi.org/10.59350/jtzzf-jfz50",
-            "unstructured": "Willighagen, E. (2007, May 25). Numbers are copyrighted?. <i>Chem-bla-ics</i>.",
-        },
-    ]
     assert subject.description.startswith("Carl Zimmer, An Open Mouse")
     assert subject.container == {
         "type": "Blog",
@@ -495,7 +488,6 @@ def test_rogue_scholar_with_parent_doi():
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.funding_references is None
     assert subject.references is None
-    assert subject.citations is None
     assert subject.description.startswith(
         "Readers with good memories will remember that back in May last year"
     )

@@ -14,7 +14,9 @@ from commonmeta.api_utils import (
 def test_generate_ghost_token():
     "generate_ghost_token"
     _id = "abc"
-    key = b"secret"
+    # Ghost Admin API secrets are 32-byte hex strings; use a full-length key
+    # so the HMAC key meets the SHA256 minimum (avoids InsecureKeyLengthWarning).
+    key = b"secret_key_that_is_32_bytes_long"
     token = generate_ghost_token(f"{_id}:{key.hex()}")
     decoded_token = jwt.decode(token, key, algorithms="HS256", audience="/admin/")
     assert decoded_token["iat"] == int(date.now().timestamp())

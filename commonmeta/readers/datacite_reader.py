@@ -225,12 +225,22 @@ def get_references(references: list) -> list:
     ]
 
 
+# DataCite relationType → commonmeta relation type. Types not listed pass
+# through unchanged.
+DC_TO_CM_RELATION_TYPES = {
+    "IsCitedBy": "IsReferencedBy",
+    "Reviews": "IsReviewOf",
+    "IsReviewedBy": "HasReview",
+}
+
+
 def get_relations(relations: list) -> list:
     """get_relations"""
 
     def is_relation(relation) -> bool:
         """relation"""
         return relation.get("relationType", None) in [
+            "IsCitedBy",
             "IsNewVersionOf",
             "IsPreviousVersionOf",
             "IsVersionOf",
@@ -255,6 +265,7 @@ def get_relations(relations: list) -> list:
             relation.get("relatedIdentifier", None)
         ) or relation.get("relatedIdentifier", None)
         relation_type = relation.get("relationType", None)
+        relation_type = DC_TO_CM_RELATION_TYPES.get(relation_type, relation_type)
         return compact(
             {
                 "id": identifier,
@@ -330,10 +341,12 @@ def get_titles(titles: list) -> tuple[str | None, list]:
         return compact(
             {
                 "title": title.get("title", None),
-                "type": title.get("titleType")
-                if title.get("titleType", None)
-                in ["AlternativeTitle", "Subtitle", "TranslatedTitle"]
-                else None,
+                "type": (
+                    title.get("titleType")
+                    if title.get("titleType", None)
+                    in ["AlternativeTitle", "Subtitle", "TranslatedTitle"]
+                    else None
+                ),
                 "language": title.get("lang", None),
             }
         )
@@ -390,10 +403,9 @@ def get_publisher(publisher: dict) -> dict:
 def get_geolocation(geolocations: list) -> list:
     """get_geolocation
 
-    Returns flat v1.0-shaped geo_locations (geo_location_place,
-    geo_location_point_longitude/_latitude,
-    geo_location_box_*_longitude/_latitude, geo_location_polygon as WKT)
-    instead of the nested geoLocationPoint/Box/Polygon shape.
+    Returns flat v1.0-shaped geo_locations (place,
+    point_longitude/point_latitude, box_*_longitude/box_*_latitude,
+    polygon as WKT) instead of the nested geoLocationPoint/Box/Polygon shape.
     """
 
     def point_value(point: dict, key: str) -> float | None:
@@ -421,16 +433,14 @@ def get_geolocation(geolocations: list) -> list:
         box = location.get("geoLocationBox", None) or {}
         return compact(
             {
-                "geo_location_place": location.get("geoLocationPlace", None),
-                "geo_location_point_longitude": point_value(point, "pointLongitude"),
-                "geo_location_point_latitude": point_value(point, "pointLatitude"),
-                "geo_location_box_west_longitude": box_value(box, "westBoundLongitude"),
-                "geo_location_box_east_longitude": box_value(box, "eastBoundLongitude"),
-                "geo_location_box_south_latitude": box_value(box, "southBoundLatitude"),
-                "geo_location_box_north_latitude": box_value(box, "northBoundLatitude"),
-                "geo_location_polygon": polygon_to_wkt(
-                    location.get("geoLocationPolygon", None)
-                ),
+                "place": location.get("geoLocationPlace", None),
+                "point_longitude": point_value(point, "pointLongitude"),
+                "point_latitude": point_value(point, "pointLatitude"),
+                "box_west_longitude": box_value(box, "westBoundLongitude"),
+                "box_east_longitude": box_value(box, "eastBoundLongitude"),
+                "box_south_latitude": box_value(box, "southBoundLatitude"),
+                "box_north_latitude": box_value(box, "northBoundLatitude"),
+                "polygon": polygon_to_wkt(location.get("geoLocationPolygon", None)),
             }
         )
 

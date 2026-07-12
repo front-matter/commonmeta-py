@@ -36,7 +36,8 @@ def test_wordpress_with_references():
             "family_name": "Wedel",
             "affiliations": [
                 {
-                    "id": "https://ror.org/05167c961",
+                    "identifier": "https://ror.org/05167c961",
+                    "identifier_type": "ROR",
                     "name": "Western University of Health Sciences",
                 }
             ],
@@ -120,7 +121,7 @@ def test_post_with_relationships():
             "id": "https://orcid.org/0000-0003-1419-2405",
             "given_name": "Martin",
             "family_name": "Fenner",
-            "affiliations": [{"id": "https://ror.org/04wxnsj81", "name": "DataCite"}],
+            "affiliations": [{"identifier": "https://ror.org/04wxnsj81", "identifier_type": "ROR", "name": "DataCite"}],
         },
         "roles": ["Author"],
     }
@@ -203,7 +204,7 @@ def test_post_with_citations():
             "given_name": "David M.",
             "family_name": "Shotton",
             "affiliations": [
-                {"id": "https://ror.org/052gg0110", "name": "University of Oxford"}
+                {"identifier": "https://ror.org/052gg0110", "identifier_type": "ROR", "name": "University of Oxford"}
             ],
         },
         "roles": ["Author"],
@@ -314,7 +315,7 @@ def test_post_with_relationships_as_doi():
             "id": "https://orcid.org/0000-0003-1419-2405",
             "given_name": "Martin",
             "family_name": "Fenner",
-            "affiliations": [{"id": "https://ror.org/04wxnsj81", "name": "DataCite"}],
+            "affiliations": [{"identifier": "https://ror.org/04wxnsj81", "identifier_type": "ROR", "name": "DataCite"}],
         },
         "roles": ["Author"],
     }
@@ -387,7 +388,7 @@ def test_post_with_funding():
             "given_name": "Ted",
             "family_name": "Habermann",
             "affiliations": [
-                {"id": "https://ror.org/05bp8ka05", "name": "Metadata Game Changers"}
+                {"identifier": "https://ror.org/05bp8ka05", "identifier_type": "ROR", "name": "Metadata Game Changers"}
             ],
         },
         "roles": ["Author"],
@@ -512,7 +513,7 @@ def test_post_with_funding_ror():
             "given_name": "Ted",
             "family_name": "Habermann",
             "affiliations": [
-                {"id": "https://ror.org/05bp8ka05", "name": "Metadata Game Changers"}
+                {"identifier": "https://ror.org/05bp8ka05", "identifier_type": "ROR", "name": "Metadata Game Changers"}
             ],
         },
         "roles": ["Author"],
@@ -725,7 +726,7 @@ def test_ghost_with_affiliations():
             "given_name": "Martin",
             "family_name": "Fenner",
             "affiliations": [
-                {"id": "https://ror.org/008zgvp64", "name": "Public Library of Science"}
+                {"identifier": "https://ror.org/008zgvp64", "identifier_type": "ROR", "name": "Public Library of Science"}
             ],
         },
         "roles": ["Author"],
@@ -1128,7 +1129,7 @@ def test_get_jsonfeed_blog():
         "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date_updated == "2026-06-15T13:22:41" and subject.dates == {
+    assert subject.date_updated == "2026-07-04T15:32:40" and subject.dates == {
         "created": "2023-01-01T01:00:00"
     }
     assert subject.publisher == {

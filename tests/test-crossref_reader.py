@@ -373,7 +373,7 @@ def test_posted_content():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1101/097196"
-    assert subject.type == "Article"
+    assert subject.type == "Preprint"
     assert subject.additional_type == "preprint"
     assert subject.url == "http://biorxiv.org/lookup/doi/10.1101/097196"
     assert subject.title == "A Data Citation Roadmap for Scholarly Data Repositories"

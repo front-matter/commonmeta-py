@@ -63,7 +63,7 @@ BIB_TO_CM_TRANSLATIONS = {
 }
 
 CM_TO_BIB_TRANSLATIONS = {
-    "Article": "article",
+    "Preprint": "article",
     "BlogPost": "article",
     "Book": "book",
     "BookChapter": "inbook",
@@ -78,10 +78,10 @@ CM_TO_BIB_TRANSLATIONS = {
 
 # source: https://docs.citationstyles.org/en/stable/specification.html?highlight=book#appendix-iii-types
 CSL_TO_CM_TRANSLATIONS = {
-    "article": "Article",
+    "article": "Preprint",
     "article-journal": "JournalArticle",
-    "article-magazine": "Article",
-    "article-newspaper": "Article",
+    "article-magazine": "Preprint",
+    "article-newspaper": "Preprint",
     "bill": "LegalDocument",
     "book": "Book",
     "broadcast": "Audiovisual",
@@ -126,7 +126,7 @@ CSL_TO_CM_TRANSLATIONS = {
 }
 
 CM_TO_CSL_TRANSLATIONS = {
-    "Article": "article",
+    "Preprint": "article",
     "Blog": "periodical",
     "BlogPost": "post-weblog",
     "Book": "book",
@@ -178,7 +178,7 @@ CR_TO_CM_TRANSLATIONS = {
     "monograph": "Book",
     "other": "Other",
     "peer-review": "PeerReview",
-    "posted-content": "Article",
+    "posted-content": "Preprint",
     "proceedings-article": "ProceedingsArticle",
     "proceedings-series": "ProceedingsSeries",
     "proceedings": "Proceedings",
@@ -191,7 +191,7 @@ CR_TO_CM_TRANSLATIONS = {
 }
 
 CM_TO_CR_TRANSLATIONS = {
-    "Article": "PostedContent",
+    "Preprint": "PostedContent",
     "Blog": "Journal",
     "BlogPost": "PostedContent",
     "BlogVolume": "JournalVolume",
@@ -241,7 +241,7 @@ DC_TO_CM_TRANSLATIONS = {
     "PeerReview": "PeerReview",
     "PhysicalObject": "PhysicalObject",
     "Poster": "Presentation",
-    "Preprint": "Article",
+    "Preprint": "Preprint",
     "Report": "Report",
     "Service": "Service",
     "Software": "Software",
@@ -286,7 +286,7 @@ INVENIORDM_TO_CM_TRANSLATIONS = {
     "publication-other": "Other",
     "publication-patent": "Patent",
     "publication-peerreview": "PeerReview",
-    "publication-preprint": "Article",
+    "publication-preprint": "Preprint",
     "publication-report": "Report",
     "publication-section": "BookChapter",
     "publication-standard": "Standard",
@@ -306,7 +306,7 @@ INVENIORDM_TO_CM_TRANSLATIONS = {
 }
 
 CM_TO_INVENIORDM_TRANSLATIONS = {
-    "Article": "publication-preprint",
+    "Preprint": "publication-preprint",
     "BlogPost": "publication-blogpost",
     "Book": "publication-book",
     "BookChapter": "publication-section",
@@ -326,7 +326,7 @@ CM_TO_INVENIORDM_TRANSLATIONS = {
 }
 
 CM_TO_DC_TRANSLATIONS = {
-    "Article": "Preprint",
+    "Preprint": "Preprint",
     "Audiovisual": "Audiovisual",
     "BlogPost": "Preprint",
     "Book": "Book",
@@ -416,7 +416,7 @@ RIS_TO_CM_TRANSLATIONS = {
 }
 
 CM_TO_RIS_TRANSLATIONS = {
-    "Article": "JOUR",
+    "Preprint": "RPRT",
     "Audiovisual": "VIDEO",
     "BlogPost": "BLOG",
     "Book": "BOOK",
@@ -448,7 +448,7 @@ CM_TO_RIS_TRANSLATIONS = {
 }
 
 SO_TO_CM_TRANSLATIONS = {
-    "Article": "Article",
+    "Article": "Preprint",
     "Blog": "Blog",
     "BlogPosting": "BlogPost",
     "Book": "Book",
@@ -460,7 +460,7 @@ SO_TO_CM_TRANSLATIONS = {
     "Instrument": "Instrument",
     "MusicRecording": "Audiovisual",
     "MusicAlbum": "Audiovisual",
-    "NewsArticle": "Article",
+    "NewsArticle": "Preprint",
     "Legislation": "LegalDocument",
     "ProfilePage": "WebPage",
     "Report": "Report",
@@ -487,7 +487,7 @@ OG_TO_SO_TRANSLATIONS = {
 }
 
 CM_TO_SO_TRANSLATIONS = {
-    "Article": "Article",
+    "Preprint": "Article",
     "Audiovisual": "CreativeWork",
     "Blog": "Blog",
     "BlogPost": "BlogPosting",
@@ -511,7 +511,7 @@ CM_TO_SO_TRANSLATIONS = {
 
 # source: https://api.openalex.org/works?group_by=type
 OA_TO_CM_TRANSLATIONS = {
-    "article": "Article",
+    "article": "Preprint",
     "book": "Book",
     "book-chapter": "BookChapter",
     "dataset": "Dataset",
@@ -519,16 +519,16 @@ OA_TO_CM_TRANSLATIONS = {
     "editorial": "Document",
     "erratum": "Other",
     "grant": "Grant",
-    "letter": "Article",
+    "letter": "Preprint",
     "libguides": "InteractiveResource",
     "other": "Other",
     "paratext": "Component",
     "peer-review": "PeerReview",
-    "preprint": "Article",
+    "preprint": "Preprint",
     "reference-entry": "Other",
     "report": "Report",
     "retraction": "Other",
-    "review": "Article",
+    "review": "Preprint",
     "standard": "Standard",
     "supplementary-materials": "Component",
 }
@@ -564,7 +564,7 @@ CROSSREF_CONTAINER_TYPES = {
 }
 
 COMMONMETA_CONTAINER_TYPES = {
-    "Article": "Periodical",
+    "Preprint": "Periodical",
     "BookChapter": "Book",
     "Book": "BookSeries",
     "Dataset": "Repository",

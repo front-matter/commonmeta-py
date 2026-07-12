@@ -128,11 +128,13 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
         if not funder_name:
             continue
         funder_id = normalize_ror(funder) if funder else None
-        f = compact({
-            "funder_id": funder_id,
-            "funder_name": funder_name,
-            "award_number": grant.get("award_id") or None,
-        })
+        f = compact(
+            {
+                "funder_id": funder_id,
+                "funder_name": funder_name,
+                "award_number": grant.get("award_id") or None,
+            }
+        )
         funding_references.append(f)
     funding_references = unique(funding_references) or None
 
@@ -193,7 +195,10 @@ def build_identifiers(meta: dict, _id: str | None) -> list[dict]:
     oa_id = validate_openalex(meta.get("id"))
     if oa_id:
         identifiers.append(
-            {"identifier": f"https://openalex.org/{oa_id}", "identifier_type": "OpenAlex"}
+            {
+                "identifier": f"https://openalex.org/{oa_id}",
+                "identifier_type": "OpenAlex",
+            }
         )
 
     # Additional identifiers from the ids map, in a defined order
@@ -238,19 +243,25 @@ def get_contributors(contributors: list) -> list:
     """Parse contributor from OpenAlex authorship dicts."""
 
     def parse_contributor(c: dict) -> dict:
+        # emit the intermediate {id, name} shape; get_affiliations (called via
+        # get_authors) converts a ROR id into identifier/identifier_type.
         affiliations = [
-            compact({
-                "id": normalize_ror(affiliation.get("ror")),
-                "name": affiliation.get("display_name"),
-            })
+            compact(
+                {
+                    "id": normalize_ror(affiliation.get("ror")),
+                    "name": affiliation.get("display_name"),
+                }
+            )
             for affiliation in c.get("institutions", [])
             if affiliation.get("display_name") or affiliation.get("ror")
         ]
-        return compact({
-            "id": normalize_orcid(dig(c, "author.orcid")),
-            "name": dig(c, "author.display_name"),
-            "affiliations": affiliations or None,
-        })
+        return compact(
+            {
+                "id": normalize_orcid(dig(c, "author.orcid")),
+                "name": dig(c, "author.display_name"),
+                "affiliations": affiliations or None,
+            }
+        )
 
     return [parse_contributor(i) for i in contributors]
 

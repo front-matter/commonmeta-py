@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 def _wkt_to_polygon_points(wkt: str | None) -> list | None:
     if not wkt or not wkt.startswith("POLYGON((") or not wkt.endswith("))"):
         return None
-    body = wkt[len("POLYGON(("):-2]
+    body = wkt[len("POLYGON((") : -2]
     points = []
     for pair in body.split(", "):
         parts = pair.strip().split(" ")
@@ -39,26 +39,26 @@ def _geo_locations_to_datacite(geo_locations: list | None) -> list | None:
     for g in wrap(geo_locations):
         point = compact(
             {
-                "pointLongitude": g.get("geo_location_point_longitude", None),
-                "pointLatitude": g.get("geo_location_point_latitude", None),
+                "pointLongitude": g.get("point_longitude", None),
+                "pointLatitude": g.get("point_latitude", None),
             }
         )
         box = compact(
             {
-                "westBoundLongitude": g.get("geo_location_box_west_longitude", None),
-                "eastBoundLongitude": g.get("geo_location_box_east_longitude", None),
-                "southBoundLatitude": g.get("geo_location_box_south_latitude", None),
-                "northBoundLatitude": g.get("geo_location_box_north_latitude", None),
+                "westBoundLongitude": g.get("box_west_longitude", None),
+                "eastBoundLongitude": g.get("box_east_longitude", None),
+                "southBoundLatitude": g.get("box_south_latitude", None),
+                "northBoundLatitude": g.get("box_north_latitude", None),
             }
         )
         items.append(
             compact(
                 {
-                    "geoLocationPlace": g.get("geo_location_place", None),
+                    "geoLocationPlace": g.get("place", None),
                     "geoLocationPoint": presence(point),
                     "geoLocationBox": presence(box),
                     "geoLocationPolygon": _wkt_to_polygon_points(
-                        g.get("geo_location_polygon", None)
+                        g.get("polygon", None)
                     ),
                 }
             )
@@ -120,9 +120,7 @@ def write_datacite(metadata: Metadata) -> dict | None:
             "ris": CM_TO_RIS_TRANSLATIONS.get(metadata.type, "GEN"),
         }
     )
-    publication_year = (
-        metadata.date_published[:4] if metadata.date_published else None
-    )
+    publication_year = metadata.date_published[:4] if metadata.date_published else None
 
     def to_datacite_date(date_item: tuple[str, str]) -> dict:
         """Convert date tuple (key, value) to datacite date"""
@@ -147,9 +145,11 @@ def write_datacite(metadata: Metadata) -> dict | None:
         [
             compact(
                 {
-                    "rightsIdentifier": metadata.license.get("id").lower()
-                    if metadata.license.get("id", None)
-                    else None,
+                    "rightsIdentifier": (
+                        metadata.license.get("id").lower()
+                        if metadata.license.get("id", None)
+                        else None
+                    ),
                     "rightsIdentifierScheme": "SPDX",
                     "rightsUri": metadata.license.get("url", None),
                     "schemeUri": "https://spdx.org/licenses/",
@@ -172,9 +172,10 @@ def write_datacite(metadata: Metadata) -> dict | None:
     ]
 
     all_descriptions = (
-        ([{"description": metadata.description, "type": "Abstract"}] if metadata.description else [])
-        + wrap(metadata.additional_descriptions)
-    )
+        [{"description": metadata.description, "type": "Abstract"}]
+        if metadata.description
+        else []
+    ) + wrap(metadata.additional_descriptions)
     descriptions = [
         compact(
             {
@@ -186,9 +187,8 @@ def write_datacite(metadata: Metadata) -> dict | None:
         for i in all_descriptions
     ]
 
-    all_titles = (
-        ([{"title": metadata.title}] if metadata.title else [])
-        + wrap(metadata.additional_titles)
+    all_titles = ([{"title": metadata.title}] if metadata.title else []) + wrap(
+        metadata.additional_titles
     )
     titles = to_datacite_titles(all_titles)
 

@@ -50,14 +50,14 @@ interactions:
         {"ids": ["19c501a7-647b-4a11-9f5e-cf400817cce3", "5c72edc3-b568-4c9c-9ca9-bda160e39eec",
         "d79fe364-6d96-40b6-b437-b93ca3493106", "f5585376-cf4d-4ba8-b423-16834e1f708f"],
         "default": "19c501a7-647b-4a11-9f5e-cf400817cce3", "entries": [{"id": "19c501a7-647b-4a11-9f5e-cf400817cce3",
-        "created": "2024-10-05T18:45:09.152768+00:00", "updated": "2026-06-29T17:29:33.162904+00:00",
-        "links": {}, "revision_id": 1513, "slug": "ropensci", "metadata": {"title":
+        "created": "2024-10-05T18:45:09.152768+00:00", "updated": "2026-07-12T08:16:12.756700+00:00",
+        "links": {}, "revision_id": 1905, "slug": "ropensci", "metadata": {"title":
         "rOpenSci - open tools for open science", "description": "Open Tools and R
         Packages for Open Science", "type": {"id": "blog"}, "website": "https://ropensci.org/blog"},
         "access": {"visibility": "public", "members_visibility": "public", "member_policy":
         "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
         {"feed:feed_url": "https://ropensci.org/blog/index.json", "feed:created":
-        "2026-06-08", "feed:updated": "2026-06-29T15:18:38+00:00", "feed:feed_format":
+        "2026-06-08", "feed:updated": "2026-07-08T12:47:52+00:00", "feed:feed_format":
         {"id": "jsonfeed"}, "feed:generator": {"id": "Other"}, "feed:status": {"id":
         "active"}, "feed:authors": [{"name": "The rOpenSci Team"}], "feed:secure":
         true, "rs:prefix": {"id": "10.59350"}, "rs:doi": "https://doi.org/10.59350/ropensci",
@@ -169,9 +169,9 @@ interactions:
         "files": {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries":
         {}}, "media_files": {"enabled": false, "order": [], "count": 0, "total_bytes":
         0, "entries": {}}, "status": "published", "deletion_status": {"is_deleted":
-        false, "status": "P"}, "stats": {"this_version": {"views": 2, "unique_views":
-        2, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions":
-        {"views": 2, "unique_views": 2, "downloads": 0, "unique_downloads": 0, "data_volume":
+        false, "status": "P"}, "stats": {"this_version": {"views": 4, "unique_views":
+        4, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions":
+        {"views": 4, "unique_views": 4, "downloads": 0, "unique_downloads": 0, "data_volume":
         0.0}}}'
     headers:
       Alt-Svc:
@@ -184,7 +184,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Jun 2026 18:14:01 GMT
+      - Sun, 12 Jul 2026 08:51:58 GMT
       Etag:
       - '"53"'
       Link:
@@ -194,7 +194,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '4'
+      - '31'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -210,9 +210,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '492'
+      - '490'
       X-Ratelimit-Reset:
-      - '1782756846'
+      - '1783846350'
       X-Xss-Protection:
       - 1; mode=block
     status:

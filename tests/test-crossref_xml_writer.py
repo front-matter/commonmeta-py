@@ -597,7 +597,7 @@ def test_jsonfeed_without_doi():
                 "given_name": "Nees Jan",
                 "family_name": "van Eck",
                 "affiliations": [
-                    {"id": "https://ror.org/027bh9e22", "name": "Leiden University"}
+                    {"identifier": "https://ror.org/027bh9e22", "identifier_type": "ROR", "name": "Leiden University"}
                 ],
             },
             "roles": ["Author"],
@@ -609,7 +609,7 @@ def test_jsonfeed_without_doi():
                 "given_name": "Ludo",
                 "family_name": "Waltman",
                 "affiliations": [
-                    {"id": "https://ror.org/027bh9e22", "name": "Leiden University"}
+                    {"identifier": "https://ror.org/027bh9e22", "identifier_type": "ROR", "name": "Leiden University"}
                 ],
             },
             "roles": ["Author"],
@@ -669,7 +669,7 @@ def test_ghost_with_affiliations():
             "id": "https://orcid.org/0000-0003-1419-2405",
             "given_name": "Martin",
             "family_name": "Fenner",
-            "affiliations": [{"id": "https://ror.org/04wxnsj81", "name": "DataCite"}],
+            "affiliations": [{"identifier": "https://ror.org/04wxnsj81", "identifier_type": "ROR", "name": "DataCite"}],
         },
         "roles": ["Author"],
     }
@@ -1250,7 +1250,7 @@ def test_arxiv():
     string = "https://doi.org/10.48550/arXiv.2311.16162"
     subject = Metadata(string, via="datacite")
     assert subject.id == "https://doi.org/10.48550/arxiv.2311.16162"
-    assert subject.type == "Article"
+    assert subject.type == "Preprint"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid

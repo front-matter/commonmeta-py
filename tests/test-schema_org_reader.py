@@ -167,10 +167,10 @@ def test_pangaea():
     assert subject.version is None
     assert subject.geo_locations == [
         {
-            "geo_location_point_longitude": -50.18037,
-            "geo_location_point_latitude": 67.12594,
+            "point_longitude": -50.18037,
+            "point_latitude": 67.12594,
         },
-        {"geo_location_place": "Two Boat Lake, Kangerlussuaq, Greenland"},
+        {"place": "Two Boat Lake, Kangerlussuaq, Greenland"},
     ]
     assert subject.provider == "DataCite"
 
@@ -227,7 +227,7 @@ def test_yet_another_blog_post():
         subject.id
         == "https://www.johnhawks.net/p/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
     )
-    assert subject.type == "Article"
+    assert subject.type == "Preprint"
     assert (
         subject.url
         == "https://www.johnhawks.net/p/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
@@ -355,8 +355,8 @@ def test_schema_org_geolocation():
     }
     none_coverage = {"spatialCoverage": None}
     assert {
-        "geo_location_point_latitude": 67.12594,
-        "geo_location_point_longitude": -50.18037,
+        "point_latitude": 67.12594,
+        "point_longitude": -50.18037,
     } == schema_org_geolocation(spatial_coverage)
     assert None is schema_org_geolocation(none_coverage)
 
@@ -367,7 +367,7 @@ def test_yet_another_ghost_post():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://www.ideasurg.pub/why-surgery-needs-ideas/"
-    assert subject.type == "Article"
+    assert subject.type == "Preprint"
     assert subject.url == "https://www.ideasurg.pub/why-surgery-needs-ideas/"
     assert subject.title == "Why Surgery Needs I.D.E.A.S."
     assert subject.contributors and len(subject.contributors) == 1
@@ -406,7 +406,7 @@ def test_arxiv():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.48550/arxiv.1902.02534"
-    assert subject.type == "Article"
+    assert subject.type == "Preprint"
     assert subject.url == "https://arxiv.org/abs/1902.02534"
     assert (
         subject.title
@@ -463,7 +463,7 @@ def test_orcid_blog():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://info.orcid.org/orcid-2023-annual-report/"
-    assert subject.type == "Article"
+    assert subject.type == "Preprint"
     assert subject.state == "findable"
 
 
