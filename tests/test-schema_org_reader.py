@@ -59,7 +59,7 @@ def test_blog_posting():
         },
     ]
     assert subject.container == {
-        "type": "Periodical",
+        "type": "Blog",
         "title": "Front Matter",
     }
     assert subject.description.startswith(
@@ -316,7 +316,7 @@ def test_with_upstream_blog_post():
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.references is None
     assert subject.container == {
-        "type": "Periodical",
+        "type": "Blog",
         "title": "Upstream",
     }
     assert subject.description.startswith(

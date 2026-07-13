@@ -104,8 +104,19 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
     url = normalize_url(dig(meta, "resource.primary.URL"))
     title, additional_titles = get_titles(meta)
     publisher = compact({"name": meta.get("publisher", None)})
-    if _type == "Preprint" and dig(publisher, "name") == "Front Matter":
-        _type = "BlogPost"
+    # Front Matter blog content is registered as posted-content (Preprint) or a
+    # journal (Journal) but maps to BlogPost / Blog. Front Matter may be the
+    # publisher (Rogue Scholar) or the institution (Crossref-registered blogs).
+    institution_names = [
+        i.get("name", None)
+        for i in wrap(meta.get("institution", None))
+        if isinstance(i, dict)
+    ]
+    if "Front Matter" in institution_names or dig(publisher, "name") == "Front Matter":
+        if _type == "Preprint":
+            _type = "BlogPost"
+        elif _type == "Journal":
+            _type = "Blog"
     date_published = (
         dig(meta, "issued.date-time")
         or get_date_from_date_parts(meta.get("issued", None))
@@ -119,6 +130,11 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
         license_ = dict_to_spdx({"url": license_}) if license_ else None
     issn = get_issn(meta)
     container = get_container(meta, issn=issn)
+    if _type == "BlogPost":
+        # a blog post has no additional_type and its container is a Blog
+        additional_type = None
+        if container:
+            container = {**container, "type": "Blog"}
     relations = get_relations(meta.get("relation", None))
     if issn is not None:
         relations.append(

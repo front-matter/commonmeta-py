@@ -465,7 +465,7 @@ def test_blog_post():
     assert subject.funding_references is None
     assert subject.container == {
         "title": "Front Matter",
-        "type": "Periodical",
+        "type": "Blog",
     }
     assert subject.subjects is None
     assert subject.language is None

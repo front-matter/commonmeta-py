@@ -154,8 +154,19 @@ def read_crossref_xml(data: dict | None, **kwargs) -> Commonmeta:
         or dig(bibmeta, "doi_data.doi")
     )
     _type = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
-    if _type == "Preprint" and dig(publisher, "name") == "Front Matter":
-        _type = "BlogPost"
+    # Front Matter blog content is registered as posted-content (Preprint) or a
+    # journal (Journal) but maps to BlogPost / Blog. Front Matter may be the
+    # publisher (Rogue Scholar) or the institution (Crossref-registered blogs).
+    institution_names = [
+        i.get("institution_name", None)
+        for i in wrap(dig(bibmeta, "institution"))
+        if isinstance(i, dict)
+    ]
+    if "Front Matter" in institution_names or dig(publisher, "name") == "Front Matter":
+        if _type == "Preprint":
+            _type = "BlogPost"
+        elif _type == "Journal":
+            _type = "Blog"
 
     url = first(parse_attributes(dig(bibmeta, "doi_data.resource")))
     url = normalize_url(url)
@@ -228,6 +239,8 @@ def read_crossref_xml(data: dict | None, **kwargs) -> Commonmeta:
     # else:
     #     container = None
     container = crossref_container(meta, resource_type=resource_type)
+    if _type == "BlogPost" and container:
+        container = {**container, "type": "Blog"}
     references = crossref_references(dig(bibmeta, "citation_list.citation"))
     files = crossref_files(dig(bibmeta, "doi_data.collection"))
     identifiers = crossref_identifiers(_id, bibmeta)

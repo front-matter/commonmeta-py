@@ -1009,12 +1009,21 @@ def test_proceedings_article_with_multiple_funding_references():
     }
     assert subject.state == "findable"
 
-    with pytest.raises(CrossrefError) as exc_info:
-        subject.write(to="crossref_xml")
-    assert (
-        "Tag ('{http://www.crossref.org/schema/5.5.0}isbn' | '{http://www.crossref.org/schema/5.5.0}noisbn') expected."
-        in str(exc_info.value)
+    crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
+    assert subject.is_valid
+    conference = dig(crossref_xml, "doi_batch.body.conference")
+    # conference wraps event_metadata + proceedings_metadata + conference_paper
+    assert dig(conference, "event_metadata.conference_name") == (
+        "Proceedings of the 2021 International Conference on Management of Data"
     )
+    # proceedings_metadata requires isbn or noisbn; no ISBN here → noisbn
+    assert dig(conference, "proceedings_metadata.noisbn") == {"reason": "simple_series"}
+    # paper-level fields are nested inside conference_paper, not the conference
+    assert set(dig(conference, "conference_paper").keys()) >= {
+        "contributors",
+        "titles",
+        "doi_data",
+    }
 
 
 @pytest.mark.vcr

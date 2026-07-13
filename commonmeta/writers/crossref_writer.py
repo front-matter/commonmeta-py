@@ -282,7 +282,10 @@ def _to_cr_work(metadata: Metadata) -> dict:
     if doi:
         work["DOI"] = doi
     work["type"] = cr_type
-    if metadata.additional_type:
+    if metadata.type == "BlogPost":
+        # a BlogPost is deposited as posted-content with subtype "blog"
+        work["subtype"] = "blog"
+    elif metadata.additional_type:
         work["subtype"] = metadata.additional_type
     if titles:
         work["title"] = titles

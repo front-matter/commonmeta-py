@@ -89,6 +89,8 @@ def _wrap_crossref_body(item: dict[str, Any]) -> dict[str, Any]:
             database_metadata = {**{"titles": val}, **database_metadata}
         database_metadata["institution"] = institution or {}
         component = input_obj.pop("component", None) or {}
+        # version_info is not allowed inside a <component> (Crossref 5.5.0)
+        input_obj.pop("version_info", None)
         return {
             "database": {
                 **attributes,
@@ -115,20 +117,30 @@ def _wrap_crossref_body(item: dict[str, Any]) -> dict[str, Any]:
             journal_payload |= input_obj
         return {"journal": compact(journal_payload)}
 
-    if item_type == "proceedings_article":
-        proceedings_metadata = dig(input_obj, "proceedings_metadata") or {}
-        input_obj.pop("proceedings_metadata", None)
+    if item_type == "conference":
+        event_metadata = input_obj.pop("event_metadata", None)
+        proceedings_metadata = input_obj.pop("proceedings_metadata", None)
+        conference_paper_attrs = input_obj.pop("conference_paper", None) or {}
+        # version_info is not allowed inside <conference_paper> (Crossref 5.5.0)
+        input_obj.pop("version_info", None)
         return {
-            "proceedings": {
-                **attributes,
-                "proceedings_metadata": proceedings_metadata,
-                "conference_paper": input_obj,
-            }
+            "conference": compact(
+                {
+                    **attributes,
+                    "event_metadata": event_metadata,
+                    "proceedings_metadata": proceedings_metadata,
+                    "conference_paper": compact(
+                        {**conference_paper_attrs, **input_obj}
+                    ),
+                }
+            )
         }
 
     if item_type == "sa_component":
         component = dig(input_obj, "component") or {}
         input_obj.pop("component", None)
+        # version_info is not allowed inside a <component> (Crossref 5.5.0)
+        input_obj.pop("version_info", None)
         return {
             "sa_component": {
                 **attributes,
@@ -191,6 +203,8 @@ def _wrap_crossref_body_list(items: list[dict[str, Any]]) -> dict[str, Any]:
         elif item_type == "sa_component":
             component = dig(input_obj, "component") or {}
             input_obj.pop("component", None)
+            # version_info is not allowed inside a <component> (Crossref 5.5.0)
+            input_obj.pop("version_info", None)
             wrapped = {
                 "sa_component": {
                     **attributes,
@@ -199,18 +213,26 @@ def _wrap_crossref_body_list(items: list[dict[str, Any]]) -> dict[str, Any]:
             }
             item_type_key = "sa_component"
             payload = wrapped["sa_component"]
-        elif item_type == "proceedings_article":
-            proceedings_metadata = dig(input_obj, "proceedings_metadata") or {}
-            input_obj.pop("proceedings_metadata", None)
+        elif item_type == "conference":
+            event_metadata = input_obj.pop("event_metadata", None)
+            proceedings_metadata = input_obj.pop("proceedings_metadata", None)
+            conference_paper_attrs = input_obj.pop("conference_paper", None) or {}
+            # version_info is not allowed inside <conference_paper> (Crossref 5.5.0)
+            input_obj.pop("version_info", None)
             wrapped = {
-                "proceedings": {
-                    **attributes,
-                    "proceedings_metadata": proceedings_metadata,
-                    "conference_paper": input_obj,
-                }
+                "conference": compact(
+                    {
+                        **attributes,
+                        "event_metadata": event_metadata,
+                        "proceedings_metadata": proceedings_metadata,
+                        "conference_paper": compact(
+                            {**conference_paper_attrs, **input_obj}
+                        ),
+                    }
+                )
             }
-            item_type_key = "proceedings"
-            payload = wrapped["proceedings"]
+            item_type_key = "conference"
+            payload = wrapped["conference"]
         else:
             wrapped = {item_type: attributes | input_obj}
             item_type_key = item_type
@@ -294,6 +316,7 @@ class CrossrefXMLSchema(Schema):
     item_number = fields.Dict()
     institution = fields.Dict()
     isbn = fields.List(fields.Dict())
+    noisbn = fields.Dict()
     issn = fields.String()
     publisher = fields.Dict()
     description = fields.Dict()
@@ -390,6 +413,8 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
         )
     elif metadata.type == "Book":
         kwargs["book_type"] = "monograph"
+        # Crossref requires either <isbn> or <noisbn> in book_metadata.
+        isbn = get_isbn(metadata, media_type="online")
         data = compact(
             {
                 "book": get_attributes(metadata, **kwargs),
@@ -398,7 +423,8 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
                 "titles": titles,
                 "abstracts": abstracts,
                 "publication_date": get_publication_date(metadata, media_type="online"),
-                "isbn": get_isbn(metadata, media_type="online"),
+                "isbn": isbn,
+                "noisbn": None if isbn else {"@reason": "monograph"},
                 "publisher": get_publisher(metadata),
                 "publisher_item": None,
                 "funding_references": funding_references,
@@ -411,6 +437,8 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
         )
     elif metadata.type == "BookChapter":
         kwargs["book_type"] = "monograph"
+        # Crossref requires either <isbn> or <noisbn> in book_metadata.
+        isbn = get_isbn(metadata)
         data = compact(
             {
                 "book": get_attributes(metadata, **kwargs),
@@ -418,7 +446,8 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
                 "contributors": contributors,
                 "titles": titles,
                 "publication_date": get_publication_date(metadata, media_type="online"),
-                "isbn": get_isbn(metadata),
+                "isbn": isbn,
+                "noisbn": None if isbn else {"@reason": "monograph"},
                 "publisher": get_publisher(metadata),
                 "abstracts": abstracts,
                 "funding_references": funding_references,
@@ -523,11 +552,8 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
             }
         )
     elif metadata.type == "ProceedingsArticle":
-        publisher = dig(metadata, "publisher.name")
-        if publisher is not None:
-            publisher_item = {
-                "title": publisher,
-            }
+        # the publisher is carried in proceedings_metadata; conference_paper
+        # has no title-bearing publisher_item.
         data = compact(
             {
                 "conference": get_attributes(metadata, **kwargs),
@@ -536,9 +562,9 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
                 "conference_paper": get_attributes(metadata, **kwargs),
                 "contributors": contributors,
                 "titles": titles,
-                "publication_date": get_publication_date(metadata),
                 "abstracts": abstracts,
-                "publisher_item": publisher_item,
+                "publication_date": get_publication_date(metadata),
+                "publisher_item": None,
                 "funding_references": funding_references,
                 "license": license,
                 "crossmark": None,
@@ -823,8 +849,11 @@ def get_proceedings_metadata(obj) -> dict | None:
         },
         "publication_date": get_publication_date(obj, media_type="online"),
     }
+    # Crossref requires either <isbn> or <noisbn> in proceedings_metadata.
     if dig(obj, "container.identifier_type") == "ISBN":
         proceedings_metadata["isbn"] = get_isbn(obj)
+    else:
+        proceedings_metadata["noisbn"] = {"@reason": "simple_series"}
     return compact(proceedings_metadata)
 
 
@@ -870,29 +899,29 @@ def get_contributors(obj) -> dict | None:
     """get contributors"""
 
     def map_affiliations(affiliations):
-        """map affiliations"""
-        if affiliations is None:
-            return None
-        return [
+        """Map affiliations to a single <affiliations> element with one
+        <institution> child per affiliation. Crossref 5.5.0 allows only one
+        <affiliations> per person_name (with multiple institutions inside)."""
+        institutions = [
             compact(
                 {
-                    "institution": compact(
+                    "institution_name": affiliation.get("name", None),
+                    "institution_id": (
                         {
-                            "institution_name": affiliation.get("name", None),
-                            "institution_id": (
-                                {
-                                    "@type": "ror",
-                                    "#text": affiliation.get("identifier"),
-                                }
-                                if affiliation.get("identifier_type", None) == "ROR"
-                                else None
-                            ),
+                            "@type": "ror",
+                            "#text": affiliation.get("identifier"),
                         }
+                        if affiliation.get("identifier_type", None) == "ROR"
+                        else None
                     ),
                 }
             )
-            for affiliation in affiliations
+            for affiliation in wrap(affiliations)
         ]
+        institutions = [institution for institution in institutions if institution]
+        if not institutions:
+            return None
+        return {"institution": institutions}
 
     if len(wrap(dig(obj, "contributors"))) == 0:
         return None

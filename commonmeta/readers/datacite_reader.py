@@ -112,6 +112,11 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         wrap(meta.get("dates", None)), meta.get("publicationYear", None)
     )
     container = get_container(meta.get("container", None))
+    if _type == "BlogPost":
+        # a blog post has no additional_type and its container is a Blog
+        additional_type = None
+        if container:
+            container = {**container, "type": "Blog"}
     license_ = meta.get("rightsList", [])
     if len(license_) > 0:
         license_ = normalize_cc_url(license_[0].get("rightsUri", None))

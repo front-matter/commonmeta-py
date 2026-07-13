@@ -138,6 +138,11 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     )
 
     container = get_container(dig(meta, "relatedItems.relatedItem"))
+    if _type == "BlogPost":
+        # a blog post has no additional_type and its container is a Blog
+        additional_type = None
+        if container:
+            container = {**container, "type": "Blog"}
 
     files = meta.get("contentUrl", None)
     state = "findable" if _id or read_options else "not_found"

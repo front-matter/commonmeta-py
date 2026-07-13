@@ -8,15 +8,24 @@
 
 # commonmeta-py
 
-commonmeta-py is a Python library to implement Commonmeta, the common Metadata Model for Scholarly Metadata. Use commonmeta-py to convert scholarly metadata, in a variety of formats, listed below. Commonmeta-py is work in progress, the first release on PyPi (version 0.5.0) was on February 16, 2023. Up until version 0.5.1, the library was called talbot. Commonmeta-py is modelled after the [commonmeta-ruby ruby gem](https://github.com/front-matter/commonmeta-ruby).
+commonmeta-py is a Python library to implement Commonmeta, the common Metadata Model for Scholarly Metadata. Use commonmeta-py to convert scholarly metadata, in a variety of formats, listed below. The first release on PyPi (version 0.5.0) was on February 16, 2023. Up until version 0.5.1, the library was called talbot. Commonmeta is also available as a Rust library [commonmeta-rs](https://codeberg.org/front-matter/commonmeta-rs).
 
 commonmeta-py uses semantic versioning. Currently, its major version number is still at 0, meaning the API is not yet stable, and breaking changes are expected in the internal API and commonmeta JSON format.
 
 ## Installation
 
-Stable version
+Add commonmeta-py as a library dependency to your project:
 
     uv add commonmeta-py
+
+To use the `commonmeta` command-line tool, install it globally with
+[uv](https://docs.astral.sh/uv/) instead:
+
+    uv tool install commonmeta-py
+
+This makes `commonmeta` available on your `PATH`. Upgrade it later with
+`uv tool upgrade commonmeta-py`, or remove it with `uv tool uninstall
+commonmeta-py`.
 
 ## Supported Metadata Formats
 
@@ -47,23 +56,75 @@ _commonmeta_: the Commonmeta format is the native format for the library and use
 _Planned_: we plan to implement this format for the v1.0 public release.
 _Later_: we plan to implement this format in a later release.
 
+## Command-line interface
+
+Installing commonmeta-py provides a `commonmeta` command with the subcommands
+`convert`, `list`, `put`, `push`, `encode`, and `decode`.
+
+You can also run the CLI without installing anything, using
+[uv](https://docs.astral.sh/uv/). Because the package name (`commonmeta-py`)
+differs from the command name (`commonmeta`), pass it with `--from`:
+
+```sh
+uvx --from commonmeta-py commonmeta convert 10.5555/12345678 --to csl
+```
+
+The examples below use `commonmeta ...`; prefix them with
+`uvx --from commonmeta-py` to run the same commands without installing.
+
+```sh
+# Encode/decode a Crockford base32 identifier suffix given a DOI prefix
+commonmeta encode 10.5555
+commonmeta decode 10.5555/nwbyp-29t86
+
+# Convert a single record between formats, fetching it by DOI
+# (--from is auto-detected from a DOI/URL, so it can usually be omitted)
+commonmeta convert 10.5555/12345678 --to csl
+
+# Convert a local file and write the result to disk
+commonmeta convert record.json --from commonmeta --to csl --file out.json
+
+# Render a formatted citation (CSL style + locale)
+commonmeta convert 10.5555/12345678 --to citation --style apa --locale en-US
+
+# Convert to Crossref XML, DataCite JSON, schema.org, BibTeX, or RIS
+commonmeta convert 10.5555/12345678 --to crossref_xml
+commonmeta convert 10.5555/12345678 --to datacite
+
+# Convert a list of records from a local JSON/JSONL file
+commonmeta list records.json --to bibtex --file out.bib
+
+# Read a VRAIX daily dump and convert it (the --from value is the source)
+commonmeta list --from crossref --date 2026-06-15 --to commonmeta --file out.json
+
+# Fetch a batch of random records from an API (crossref, datacite, or openalex)
+commonmeta list --sample --from crossref --number 5
+
+# Register records with a live InvenioRDM instance (creates/updates and publishes
+# real records — registration is currently only supported with --to inveniordm)
+commonmeta push records.json --to inveniordm --host rogue-scholar.org --token TOKEN
+
+# Same as push, but for a single record (DOI, URL, or file path)
+commonmeta put 10.5555/12345678 --from crossref --to inveniordm --host rogue-scholar.org --token TOKEN
+
+# Work fully offline — fails fast if a network call would be required
+commonmeta convert record.json --from commonmeta --to csl --no-network
+```
+
+Use `commonmeta <subcommand> --help` for the full list of options. `--from`/`-f`
+sets the input format (auto-detected when omitted) and `--to`/`-t` the output
+format. JSON output (`commonmeta`, `datacite`, `schema_org`, `crossref`,
+`inveniordm`, `csl`) is pretty-printed; use `--file` to write to disk instead of
+stdout.
+
+`convert` and `list` accept `--no-network`: any step that would make an outbound
+request (fetching a DOI/URL, `--sample`, or downloading a VRAIX dump) fails
+immediately with a clear message, while operations on local files always
+succeed. `push` and `put` always require network access.
+
 ## Documentation
 
-Documentation (work in progress) for using the library is available at the [commonmeta-py Documentation](https://python.commonmeta.org/) website and includes several interactive Jupyter Notebooks .
-
-This repository includes a Nixpacks configuration to build and serve the Quarto documentation site in the `docs/` folder.
-
-- Config file: [nixpacks.toml](nixpacks.toml)
-- Quarto project: [docs/_quarto.yml](docs/_quarto.yml)
-- Build output: [docs/_site](docs/_site)
-
-### Coolify setup
-
-- App type: Nixpacks
-- Repository/branch: this repo, `main`
-- Build: auto-detected via Nixpacks
-- Port: Coolify provides `PORT`. The start command respects `${PORT}` and falls back to `3000` for local runs.
-- Healthcheck: HTTP path `/`, interval 10s, timeout 5s, retries 3
+Documentation (work in progress) for using the library is available at the [commonmeta-py Documentation](https://python.commonmeta.org/) website.
 
 ## Meta
 

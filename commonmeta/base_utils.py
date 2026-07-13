@@ -411,6 +411,8 @@ def unparse_xml(input: dict | None, **kwargs) -> bytes:
             database_metadata = {**{"titles": val}, **database_metadata}
             database_metadata["institution"] = institution or {}
             component = input.pop("component", None) or {}
+            # version_info is not allowed inside a <component> (Crossref 5.5.0)
+            input.pop("version_info", None)
             input = {
                 "database": {
                     **attributes,
@@ -445,6 +447,8 @@ def unparse_xml(input: dict | None, **kwargs) -> bytes:
         elif item_type == "sa_component":
             component = dig(input, "component") or {}
             input.pop("component")
+            # version_info is not allowed inside a <component> (Crossref 5.5.0)
+            input.pop("version_info", None)
             input = {
                 "sa_component": {
                     **attributes,

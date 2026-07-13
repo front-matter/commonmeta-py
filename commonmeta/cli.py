@@ -15,6 +15,7 @@ from commonmeta.readers.crossref_reader import get_random_crossref_id
 from commonmeta.readers.datacite_reader import get_random_datacite_id
 from commonmeta.readers.openalex_reader import get_random_openalex_id
 from commonmeta.readers.vraix_reader import get_vraix_list
+from commonmeta.utils import normalize_id
 
 
 @click.group()
@@ -36,9 +37,51 @@ def format_from_file(file: str) -> str:
         return "commonmeta"
 
 
+# Output formats that serialize to JSON and can be pretty-printed.
+JSON_FORMATS = {
+    "commonmeta",
+    "crossref",
+    "datacite",
+    "inveniordm",
+    "schema_org",
+    "csl",
+}
+
+
+def echo_output(output, to: str) -> None:
+    """Echo writer output, pretty-printing (2-space indent) JSON formats and
+    leaving text/XML formats (bibtex, ris, citation, crossref_xml) untouched."""
+    if output is None:
+        return
+    if to in JSON_FORMATS:
+        try:
+            output = json.dumps(json.loads(output), option=json.OPT_INDENT_2)
+        except (ValueError, TypeError):
+            pass
+    click.echo(output)
+
+
+def require_network(no_network: bool, action: str) -> None:
+    """Reject an operation that needs the network when --no-network is set.
+
+    Mirrors commonmeta-rs: operations on local files always succeed, but any
+    step that would make an outbound request fails fast with a clear message.
+    """
+    if no_network:
+        raise click.ClickException(
+            f"{action} requires network access, but --no-network is set"
+        )
+
+
+def input_requires_network(value) -> bool:
+    """A DOI/URL/identifier input must be fetched; a local file or inline
+    string is read offline."""
+    return isinstance(value, str) and normalize_id(value) is not None
+
+
 @cli.command()
 @click.argument("input", type=str, required=True)
-@click.option("--via", "-f", type=str, default=None)
+@click.option("--from", "--via", "-f", "via", type=str, default=None)
 @click.option("--to", "-t", type=str, default="commonmeta")
 @click.option("--style", "-s", type=str, default="apa")
 @click.option("--locale", "-l", type=str, default="en-US")
@@ -47,6 +90,12 @@ def format_from_file(file: str) -> str:
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
+@click.option(
+    "--no-network",
+    is_flag=True,
+    default=False,
+    help="Disable outbound network requests; fails if the input must be fetched",
+)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 def convert(
     input,
@@ -59,13 +108,16 @@ def convert(
     depositor,
     email,
     registrant,
+    no_network,
     show_errors,
 ):
+    if no_network and input_requires_network(input):
+        require_network(no_network, "fetching the input record")
     metadata = Metadata(input, via=via, doi=doi, prefix=prefix)
     if show_errors and not metadata.is_valid:
         raise click.ClickException(str(metadata.errors))
 
-    click.echo(
+    echo_output(
         metadata.write(
             to=to,
             style=style,
@@ -73,7 +125,8 @@ def convert(
             depositor=depositor,
             email=email,
             registrant=registrant,
-        )
+        ),
+        to,
     )
     if show_errors and metadata.write_errors:
         raise click.ClickException(str(metadata.write_errors))
@@ -81,7 +134,7 @@ def convert(
 
 @cli.command()
 @click.argument("input", type=str, required=True)
-@click.option("--via", "-f", type=str, default=None)
+@click.option("--from", "--via", "-f", "via", type=str, default=None)
 @click.option("--to", "-t", type=str, default="commonmeta")
 @click.option("--style", "-s", type=str, default="apa")
 @click.option("--locale", "-l", type=str, default="en-US")
@@ -90,9 +143,9 @@ def convert(
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
-@click.option("--login_id", type=str)
-@click.option("--login_passwd", type=str)
-@click.option("--test_mode", type=bool, default=False)
+@click.option("--login-id", "--login_id", "login_id", type=str)
+@click.option("--login-passwd", "--login_passwd", "login_passwd", type=str)
+@click.option("--test-mode", "--test_mode", "test_mode", type=bool, default=False)
 @click.option("--host", type=str)
 @click.option("--token", type=str)
 @click.option("--legacy-conn", type=str)
@@ -141,29 +194,51 @@ def put(
 
 @cli.command()
 @click.argument("string", type=str, required=False)
-@click.option("--via", "-f", type=str)
+@click.option("--from", "--via", "-f", "via", type=str)
 @click.option("--to", "-t", type=str, default=None)
 @click.option("--style", "-s", type=str, default="apa")
 @click.option("--locale", "-l", type=str, default="en-US")
 @click.option("--prefix", type=str)
+@click.option(
+    "--number",
+    "-n",
+    type=int,
+    default=10,
+    help="Number of records to return with --sample",
+)
+@click.option(
+    "--type",
+    "item_type",
+    type=str,
+    help="Work type filter for --sample --from crossref",
+)
+@click.option(
+    "--sample",
+    "sample",
+    is_flag=True,
+    default=False,
+    help="Return random works from --from (crossref, datacite, or openalex)",
+)
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
 @click.option(
-    "--from",
-    "source",
+    "--date",
     type=str,
-    help="VRAIX source, 'crossref' or 'datacite'. Used with --via vraix.",
-)
-@click.option(
-    "--date", type=str, help="VRAIX dump date, YYYY-MM-DD. Used with --via vraix."
+    help="VRAIX dump date, YYYY-MM-DD. Reads the --from (crossref/datacite) dump.",
 )
 @click.option(
     "--input-path",
     type=str,
-    help="Local VRAIX SQLite dump, read instead of downloading. Used with --via vraix.",
+    help="Local VRAIX SQLite dump, read instead of downloading.",
 )
 @click.option("--file", type=str)
+@click.option(
+    "--no-network",
+    is_flag=True,
+    default=False,
+    help="Disable outbound network requests; fails if the operation needs one",
+)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 @click.option("--show-timer/--no-timer", type=bool, show_default=True, default=False)
 def list(
@@ -173,38 +248,54 @@ def list(
     style,
     locale,
     prefix,
+    number,
+    item_type,
+    sample,
     depositor,
     email,
     registrant,
-    source,
     date,
     input_path,
     file,
+    no_network,
     show_errors,
     show_timer,
 ):
     start = time.time()
-    if via == "vraix":
-        items = get_vraix_list(source, date, input_path=input_path)
-        metadata_list = MetadataList(
-            {"items": items},
-            via=via,
-            file=file,
-            depositor=depositor,
-            email=email,
-            registrant=registrant,
-            prefix=prefix,
-        )
+    list_kwargs = dict(
+        file=file,
+        depositor=depositor,
+        email=email,
+        registrant=registrant,
+        prefix=prefix,
+    )
+    if sample:
+        # random works from an API, e.g. `list --sample --from crossref -n 5`
+        require_network(no_network, "--sample")
+        provider = via or "crossref"
+        if provider == "crossref":
+            items = get_random_crossref_id(number, prefix=prefix, _type=item_type)
+        elif provider == "datacite":
+            items = get_random_datacite_id(number)
+        elif provider == "openalex":
+            items = get_random_openalex_id(number)
+        else:
+            raise click.ClickException(
+                f"--sample is only supported for --from crossref, datacite, "
+                f"or openalex (got {provider!r})"
+            )
+        metadata_list = MetadataList({"items": items}, via=provider, **list_kwargs)
+    # VRAIX daily dump: `list --from crossref --date … ` (the --from value is the
+    # source), matching commonmeta-rs. Also triggered by a local --input-path.
+    elif date or input_path:
+        if not input_path:
+            require_network(no_network, "downloading a VRAIX dump")
+        items = get_vraix_list(via, date, input_path=input_path)
+        metadata_list = MetadataList({"items": items}, via="vraix", **list_kwargs)
     else:
-        metadata_list = MetadataList(
-            string,
-            via=via,
-            file=file,
-            depositor=depositor,
-            email=email,
-            registrant=registrant,
-            prefix=prefix,
-        )
+        if input_requires_network(string):
+            require_network(no_network, "fetching the input record")
+        metadata_list = MetadataList(string, via=via, **list_kwargs)
     end = time.time()
     runtime = end - start
     if show_errors and not metadata_list.is_valid:
@@ -219,7 +310,7 @@ def list(
     if file:
         metadata_list.write(to=to, **write_kwargs)
     else:
-        click.echo(metadata_list.write(to=to, **write_kwargs))
+        echo_output(metadata_list.write(to=to, **write_kwargs), to)
 
     if show_errors and len(metadata_list.write_errors) > 0:
         raise click.ClickException(str(metadata_list.write_errors))
@@ -229,7 +320,7 @@ def list(
 
 @cli.command()
 @click.argument("string", type=str, required=True)
-@click.option("--via", "-f", type=str)
+@click.option("--from", "--via", "-f", "via", type=str)
 @click.option("--to", "-t", type=str, default="commonmeta")
 @click.option("--style", "-s", type=str, default="apa")
 @click.option("--locale", "-l", type=str, default="en-US")
@@ -237,9 +328,9 @@ def list(
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
-@click.option("--login_id", type=str)
-@click.option("--login_passwd", type=str)
-@click.option("--test_mode", type=bool, default=False)
+@click.option("--login-id", "--login_id", "login_id", type=str)
+@click.option("--login-passwd", "--login_passwd", "login_passwd", type=str)
+@click.option("--test-mode", "--test_mode", "test_mode", type=bool, default=False)
 @click.option("--host", type=str)
 @click.option("--token", type=str)
 @click.option("--legacy-conn", type=str)
@@ -295,41 +386,6 @@ def push(
 
 
 @cli.command()
-@click.option("--provider", type=str, default="crossref")
-@click.option("--prefix", type=str)
-@click.option("--type", type=str)
-@click.option("--number", "-n", type=int, default=1)
-@click.option("--to", "-t", type=str, default="commonmeta")
-@click.option("--style", "-s", type=str, default="apa")
-@click.option("--locale", "-l", type=str, default="en-US")
-@click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
-def sample(provider, prefix, item_type, number, to, style, locale, show_errors):
-    if provider == "crossref":
-        string = json.dumps(
-            {"items": get_random_crossref_id(number, prefix=prefix, _type=item_type)}
-        )
-    elif provider == "datacite":
-        string = json.dumps({"items": get_random_datacite_id(number)})
-    elif provider == "openalex":
-        string = json.dumps({"items": get_random_openalex_id(number)})
-    else:
-        output = "Provider not supported. Use 'crossref' or 'datacite' instead."
-        click.echo(output)
-    lst = MetadataList(
-        string,
-        via=provider,
-        style=style,
-        locale=locale,
-    )
-    for item in lst.items:
-        output = item.write(to=to)
-        if show_errors and not item.is_valid:
-            message = f"{item}: {item.errors}"
-            raise click.ClickException(message)
-        click.echo(output)
-
-
-@cli.command()
 @click.argument("prefix", type=str, required=True)
 def encode(prefix: str) -> None:
     if validate_prefix(prefix) is None:
@@ -358,6 +414,58 @@ def update_ghost_post(id: str, api_key: str, api_url: str) -> None:
 def version() -> None:
     version = importlib.metadata.version("commonmeta-py")
     click.echo(f"commonmeta-py {version}")
+
+
+# --- commands present in commonmeta-rs but not yet implemented in commonmeta-py ---
+# These are local-SQLite-database and bulk-import/validate features. They are
+# declared so the CLI surface matches commonmeta-rs; invoking one reports that
+# it is not implemented yet rather than failing with "No such command".
+
+_NOT_IMPLEMENTED = dict(
+    context_settings=dict(ignore_unknown_options=True, allow_extra_args=True)
+)
+
+
+@cli.command(name="import", **_NOT_IMPLEMENTED)
+@click.argument("args", nargs=-1, type=click.UNPROCESSED)
+def import_(args) -> None:
+    """Import scholarly metadata into the local commonmeta database."""
+    click.echo("command not yet implemented")
+
+
+@cli.command(name="match", **_NOT_IMPLEMENTED)
+@click.argument("args", nargs=-1, type=click.UNPROCESSED)
+def match(args) -> None:
+    """Match a string to an identifier."""
+    click.echo("command not yet implemented")
+
+
+@cli.command(name="migrate", **_NOT_IMPLEMENTED)
+@click.argument("args", nargs=-1, type=click.UNPROCESSED)
+def migrate(args) -> None:
+    """Apply any pending database schema migrations."""
+    click.echo("command not yet implemented")
+
+
+@cli.command(name="settings", **_NOT_IMPLEMENTED)
+@click.argument("args", nargs=-1, type=click.UNPROCESSED)
+def settings(args) -> None:
+    """Show key/value settings stored in the local SQLite database."""
+    click.echo("command not yet implemented")
+
+
+@cli.command(name="validate", **_NOT_IMPLEMENTED)
+@click.argument("args", nargs=-1, type=click.UNPROCESSED)
+def validate(args) -> None:
+    """Validate records in the local commonmeta database against the v1.0 schema."""
+    click.echo("command not yet implemented")
+
+
+@cli.command(name="package", **_NOT_IMPLEMENTED)
+@click.argument("args", nargs=-1, type=click.UNPROCESSED)
+def package(args) -> None:
+    """Write a VRAIX SQLite dump as a Parquet file."""
+    click.echo("command not yet implemented")
 
 
 if __name__ == "__main__":
