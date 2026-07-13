@@ -14,11 +14,29 @@ from ..utils import dict_to_spdx, get_language, normalize_url
 
 # Month abbreviations and full names → month number
 _MONTH_MAP: dict[str, int] = {
-    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
-    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
-    "january": 1, "february": 2, "march": 3, "april": 4, "june": 6,
-    "july": 7, "august": 8, "september": 9, "october": 10,
-    "november": 11, "december": 12,
+    "jan": 1,
+    "feb": 2,
+    "mar": 3,
+    "apr": 4,
+    "may": 5,
+    "jun": 6,
+    "jul": 7,
+    "aug": 8,
+    "sep": 9,
+    "oct": 10,
+    "nov": 11,
+    "dec": 12,
+    "january": 1,
+    "february": 2,
+    "march": 3,
+    "april": 4,
+    "june": 6,
+    "july": 7,
+    "august": 8,
+    "september": 9,
+    "october": 10,
+    "november": 11,
+    "december": 12,
 }
 
 # Map BibTeX entry type to the container type
@@ -62,11 +80,13 @@ def _parse_names(raw: str, role: str = "Author") -> list[dict]:
             result.append({"name": name, "contributor_roles": [role]})
         else:
             family, given = name.split(",", 1)
-            result.append({
-                "familyName": family.strip(),
-                "givenName": given.strip(),
-                "contributor_roles": [role],
-            })
+            result.append(
+                {
+                    "familyName": family.strip(),
+                    "givenName": given.strip(),
+                    "contributor_roles": [role],
+                }
+            )
     return result
 
 
@@ -128,8 +148,8 @@ def _entry_to_commonmeta(entry: dict, **kwargs) -> Commonmeta:
         contributor_dicts.extend(_parse_names(editor_raw, role="Editor"))
     contributors = get_authors(contributor_dicts) if contributor_dicts else None
 
-    # Date
-    date_published = _parse_date(
+    # Date: prefer the biblatex `date` field, else assemble year/month/day
+    date_published = entry.get("date") or _parse_date(
         entry.get("year"), entry.get("month"), entry.get("day")
     )
 
@@ -144,9 +164,11 @@ def _entry_to_commonmeta(entry: dict, **kwargs) -> Commonmeta:
 
     # Publisher / institution
     publisher = None
-    pub_name = entry.get("publisher") or (
-        entry.get("school") if entry_type == "phdthesis" else None
-    ) or entry.get("institution")
+    pub_name = (
+        entry.get("publisher")
+        or (entry.get("school") if entry_type == "phdthesis" else None)
+        or entry.get("institution")
+    )
     if pub_name:
         publisher = {"name": pub_name}
 
@@ -183,16 +205,18 @@ def _entry_to_commonmeta(entry: dict, **kwargs) -> Commonmeta:
 
     container = None
     if any([container_title, identifier, volume, issue, first_page]):
-        container = compact({
-            "type": _CONTAINER_TYPE.get(entry_type, "Periodical"),
-            "title": container_title,
-            "identifier": identifier,
-            "identifier_type": identifier_type,
-            "volume": volume,
-            "issue": issue,
-            "first_page": first_page,
-            "last_page": last_page,
-        })
+        container = compact(
+            {
+                "type": _CONTAINER_TYPE.get(entry_type, "Periodical"),
+                "title": container_title,
+                "identifier": identifier,
+                "identifier_type": identifier_type,
+                "volume": volume,
+                "issue": issue,
+                "first_page": first_page,
+                "last_page": last_page,
+            }
+        )
 
     return {
         "id": _id,
@@ -208,5 +232,4 @@ def _entry_to_commonmeta(entry: dict, **kwargs) -> Commonmeta:
         "identifiers": identifiers or None,
         "language": language,
         "version": version,
-        "provider": "BibTeX",
     } | read_options

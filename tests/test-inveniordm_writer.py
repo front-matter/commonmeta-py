@@ -124,7 +124,7 @@ def test_journal_article():
     assert len(references) == 27
     assert references[0] == {
         "identifier": "10.1038/nature02100",
-        "reference": "APL regulates vascular tissue identity in Arabidopsis (2003).",
+        "reference": "APL regulates vascular tissue identity in Arabidopsis",
         "scheme": "doi",
     }
     assert dig(inveniordm, "metadata.funding") == [
@@ -188,8 +188,8 @@ def test_rogue_scholar():
     assert dig(inveniordm, "metadata.publication_date") == "2024-10-07"
 
     assert dig(inveniordm, "metadata.dates") == [
-        {"date": "2024-10-07T02:00:00", "type": {"id": "issued"}},
-        {"date": "2026-03-17T00:33:02", "type": {"id": "updated"}},
+        {"date": "2024-10-07T00:00:00Z", "type": {"id": "issued"}},
+        {"date": "2026-03-16T23:33:02Z", "type": {"id": "updated"}},
     ]
     assert dig(inveniordm, "metadata.languages.0.id") == "eng"
     assert dig(inveniordm, "metadata.version") == "v1"
@@ -284,8 +284,8 @@ def test_from_jsonfeed():
     assert dig(inveniordm, "metadata.title") == "Linguistic roots of connectionism"
     assert dig(inveniordm, "metadata.publication_date") == "2021-07-22"
     assert dig(inveniordm, "metadata.dates") == [
-        {"date": "2021-07-22T02:00:00", "type": {"id": "issued"}},
-        {"date": "2026-02-15T08:37:27", "type": {"id": "updated"}},
+        {"date": "2021-07-22T00:00:00Z", "type": {"id": "issued"}},
+        {"date": "2026-02-15T07:37:27Z", "type": {"id": "updated"}},
     ]
     assert dig(inveniordm, "metadata.languages.0.id") == "eng"
     assert dig(inveniordm, "metadata.identifiers") == [
@@ -369,8 +369,8 @@ def test_from_jsonfeed_affiliations():
     )
     assert dig(inveniordm, "metadata.publication_date") == "2024-07-14"
     assert dig(inveniordm, "metadata.dates") == [
-        {"date": "2024-07-14T02:00:00", "type": {"id": "issued"}},
-        {"date": "2026-01-25T06:36:25", "type": {"id": "updated"}},
+        {"date": "2024-07-14T00:00:00Z", "type": {"id": "issued"}},
+        {"date": "2026-01-25T05:36:25Z", "type": {"id": "updated"}},
     ]
     assert dig(inveniordm, "metadata.languages.0.id") == "eng"
     assert dig(inveniordm, "metadata.identifiers") == [
@@ -445,12 +445,12 @@ def test_from_jsonfeed_dates():
     assert dig(inveniordm, "metadata.publication_date") == "2018-08-28"
     assert dig(inveniordm, "metadata.dates") == [
         {
-            "date": "2018-08-28T02:00:00",
+            "date": "2018-08-28T00:00:00Z",
             "type": {
                 "id": "issued",
             },
         },
-        {"date": "2025-12-06T00:28:54", "type": {"id": "updated"}},
+        {"date": "2025-12-05T23:28:54Z", "type": {"id": "updated"}},
     ]
     assert dig(inveniordm, "custom_fields.rs:content_html").startswith(
         "<p>I was lucky enough to have Phil Mannion as one of the peer-reviewers"
@@ -632,7 +632,7 @@ def test_from_jsonfeed_citations():
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/dcw3y-7em87"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert dig(inveniordm, "metadata.title") == "Use of CiTO in CiteULike"
-    citations = dig(inveniordm, "custom_fields.rs:citations")
+    # citations are now represented as IsReferencedBy relations, not rs:citations
     # assert len(citations) == 2
     # assert citations[0] == {
     #     "identifier": "10.1007/s11192-013-1108-3",

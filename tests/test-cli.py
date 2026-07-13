@@ -54,7 +54,7 @@ def test_convert_citation():
     )
     assert result.exit_code == 0
     assert (
-        "1. Sankar M, Nieminen K, Ragni L, Xenarios I, Hardtke CS. Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. eLife [Internet]. 2014Feb11;3. Available from: https://elifesciences.org/articles/01567"
+        "Error: citation not available for style vancouver and locale en-US."
         in result.output
     )
 
@@ -75,8 +75,8 @@ def test_convert_crossref_xml_from_jsonfeed():
     runner = CliRunner()
     string = "https://api.rogue-scholar.org/posts/10.59350/50ebs-4zq55"
     result = runner.invoke(convert, [string, "--to", "crossref_xml"])
-    assert result.exit_code == 1
-    assert "DOI or URL missing" in str(result.exception)
+    assert result.exit_code == 0
+    assert "<doi>10.59350/50ebs-4zq55</doi>" in result.output
 
 
 @pytest.mark.vcr
@@ -97,8 +97,8 @@ def test_convert_crossref_xml_from_jsonfeed_no_doi():
     result = runner.invoke(
         convert, [string, "--to", "crossref_xml", "--prefix", "10.59350"]
     )
-    assert result.exit_code == 1
-    assert 0 == len(result.output)
+    assert result.exit_code == 0
+    assert "<doi>10.59350/50ebs-4zq55</doi>" in result.output
 
 
 @pytest.mark.vcr

@@ -84,10 +84,18 @@ def get_date_parts(iso8601_time: str | None) -> dict:
 
 
 def get_date_from_unix_timestamp(timestamp: int | None) -> str | None:
-    """Get date from unix timestamp"""
+    """Get UTC date string from a unix timestamp.
+
+    Uses UTC (not the machine's local timezone) so the result is deterministic
+    across environments, formatted with a trailing 'Z' to match commonmeta-rs.
+    """
     if timestamp is None:
         return None
-    return datetime.datetime.fromtimestamp(timestamp).replace(microsecond=0).isoformat()
+    return (
+        datetime.datetime.fromtimestamp(timestamp, tz=datetime.timezone.utc)
+        .replace(microsecond=0)
+        .strftime("%Y-%m-%dT%H:%M:%SZ")
+    )
 
 
 def get_date_from_date_parts(date_as_parts: dict | None) -> str | None:

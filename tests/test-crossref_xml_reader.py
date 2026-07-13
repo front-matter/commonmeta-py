@@ -51,22 +51,33 @@ def test_doi_with_data_citation():
     assert subject.references[0] == {
         "key": "bib1",
         "id": "https://doi.org/10.1038/nature02100",
-        "title": "APL regulates vascular tissue identity in Arabidopsis",
-        "publication_year": "2003",
-        "volume": "426",
-        "first_page": "181",
+        "reference": "APL regulates vascular tissue identity in Arabidopsis",
     }
-    assert subject.funding_references is None
-    # assert subject.funding_references == [
-    #     {"funderName": "SystemsX"},
-    #     {"funderName": "EMBO longterm post-doctoral fellowships"},
-    #     {"funderName": "Marie Heim-Voegtlin"},
-    #     {
-    #         "funderName": "University of Lausanne",
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #     },
-    # ]
+    assert subject.funding_references == [
+        {"funder_name": "SystemsX"},
+        {"funder_name": "EMBO longterm post-doctoral fellowships"},
+        {"funder_name": "Marie Heim-Voegtlin"},
+        {
+            "funder_id": "https://doi.org/10.13039/501100006390",
+            "funder_name": "University of Lausanne",
+        },
+    ]
+    assert subject.dates == {"submitted": "2013-09-20", "accepted": "2013-12-24"}
+    # date_updated keeps the full Crossref timestamp (drifts as the record is
+    # re-deposited upstream).
+    assert subject.date_updated.startswith("20") and subject.date_updated.endswith("Z")
+    assert subject.identifiers == [
+        {
+            "identifier": "https://doi.org/10.7554/elife.01567",
+            "identifier_type": "DOI",
+        },
+        {"identifier": "e01567", "identifier_type": "Other"},
+    ]
+    assert subject.archive_locations == ["CLOCKSS"]
+    assert subject.relations == [
+        {"id": "https://portal.issn.org/resource/ISSN/2050-084X", "type": "IsPartOf"},
+        {"id": "https://doi.org/10.5061/dryad.b835k", "type": "IsSupplementedBy"},
+    ]
     assert subject.container == {
         "identifier": "2050-084X",
         "identifier_type": "ISSN",
@@ -120,19 +131,17 @@ def test_journal_article():
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert (subject.date_published == '2006-12-20'
-        and subject.date_updated == '2021-08-06'
-        and subject.dates == {'created': '2006-12-20'})
+        and subject.date_updated[:10] == '2021-08-06'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "Public Library of Science (PLoS)",
     }
-    assert len(subject.references) == 73
+    assert len(subject.references) == 67
     assert subject.references[0] == {
         "key": "ref1",
         "id": "https://doi.org/10.1056/nejm196502042720503",
-        "title": "Hereditary Hemolytic Anemia with Triosephosphate Isomerase Deficiency.",
-        "publication_year": "1965",
-        "volume": "272",
-        "first_page": "229",
+        "reference": "Hereditary Hemolytic Anemia with Triosephosphate Isomerase Deficiency.",
+        "asserted_by": "Crossref",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -180,27 +189,24 @@ def test_journal_article_with_funding():
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert (subject.date_published == '2019-07-02'
-        and subject.date_updated == '2019-09-22'
-        and subject.dates == {'created': '2019-07-02'})
+        and subject.date_updated[:10] == '2019-09-22'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "Frontiers Media SA",
     }
-    assert len(subject.references) == 70
+    assert len(subject.references) == 69
     assert subject.references[0] == {
         "key": "ref1",
         "id": "https://doi.org/10.1016/j.plaphy.2013.11.002",
-        "title": "Perturbation of polyamine catabolism affects grape ripening of Vitis vinifera cv. Trincadeira",
-        "publication_year": "2014",
-        "volume": "74",
-        "first_page": "141",
+        "reference": "Perturbation of polyamine catabolism affects grape ripening of Vitis vinifera cv. Trincadeira",
     }
-    assert subject.funding_references is None
-    # assert subject.funding_references[1] == {
-    #     "funderName": "COST (European Cooperation in Science and Technology)",
-    #     "funderIdentifier": "https://doi.org/10.13039/501100000921",
-    #     "funderIdentifierType": "Crossref Funder ID",
-    #     "awardNumber": "CA17111",
-    # }
+    assert subject.funding_references == [
+        {
+            "funder_id": "https://doi.org/10.13039/501100000921",
+            "funder_name": "COST (European Cooperation in Science and Technology)",
+            "award_number": "CA17111",
+        }
+    ]
     assert subject.container == {
         "identifier": "1664-462X",
         "identifier_type": "ISSN",
@@ -230,8 +236,8 @@ def test_journal_article_original_language():
     assert subject.contributors is None
     assert subject.license is None
     assert (subject.date_published == '2007'
-        and subject.date_updated == '2021-05-20'
-        and subject.dates == {'created': '2012-08-30'})
+        and subject.date_updated[:10] == '2021-05-20'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "The Japanese Society of Physical Fitness and Sports Medicine",
     }
@@ -239,12 +245,14 @@ def test_journal_article_original_language():
     assert subject.references[0] == {
         "key": "1",
         "id": "https://doi.org/10.1111/j.1469-7793.2000.00407.x",
-        "unstructured": "Seals DR Esler MD J Physiol. 528 : 407-417, 2000",
+        "reference": "Seals DR Esler MD J Physiol. 528 : 407-417, 2000",
+        "asserted_by": "Crossref",
     }
     assert subject.references[-1] == {
         "key": "7",
         "id": "https://doi.org/10.1161/01.cir.95.6.1686",
-        "unstructured": "Cheitlin MD et al. Circulation 95 : 1686-1744, 1997",
+        "reference": "Cheitlin MD et al. Circulation 95 : 1686-1744, 1997",
+        "asserted_by": "Crossref",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -289,19 +297,17 @@ def test_journal_article_with_rdf_for_container():
     }
     assert subject.license is None
     assert (subject.date_published == '2012-01-01'
-        and subject.date_updated == '2024-05-01'
-        and subject.dates == {'created': '2012-11-20'})
+        and subject.date_updated[:10] == '2024-05-01'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "Oxford University Press (OUP)",
     }
-    assert len(subject.references) == 111
+    assert len(subject.references) == 45
     assert subject.references[0] == {
-        "key": "bibr1",
-        "title": "Die Gattung Candonaim Quartar von Europa",
-        "publication_year": "1978",
-        "volume": "88",
-        "issue": "5",
-        "first_page": "1",
+        "key": "bibr5",
+        "id": "https://doi.org/10.1080/08927014.2001.9522785",
+        "reference": "The elusive model of a biological invasion process: time to take differences among aquatic and terrestrial ecosystems into account?",
+        "asserted_by": "Crossref",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -349,7 +355,7 @@ def test_book_chapter_with_rdf_for_container():
     assert len(subject.references) == 11
     assert subject.references[-1] == {
         "key": "49_CR11",
-        "unstructured": "Griesser, A., Roeck, D.S., Neubeck, A., Van Gool, L.: Gpu-based foreground-background segmentation using an extended colinearity criterion. In: Proc. of Vison, Modeling, and Visualization (VMV), pp. 319–326 (2005)",
+        "reference": "Griesser, A., Roeck, D.S., Neubeck, A., Van Gool, L.: Gpu-based foreground-background segmentation using an extended colinearity criterion. In: Proc. of Vison, Modeling, and Visualization (VMV), pp. 319–326 (2005)",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -397,14 +403,12 @@ def test_posted_content():
     assert subject.publisher == {
         "name": "openRxiv",
     }
-    assert len(subject.references) == 26
+    # the leading structured-only citation (no DOI, no unstructured text) is
+    # dropped, so the first surviving reference is the unstructured v2.2 entry.
+    assert len(subject.references) == 25
     assert subject.references[0] == {
-        "key": "2024080313022960000_097196v2.1",
-        "title": "An introduction to the joint principles for data citation",
-        "publication_year": "2015",
-        "volume": "41",
-        "issue": "3",
-        "first_page": "43",
+        "key": "2024080313022960000_097196v2.2",
+        "reference": "Altman, M. , &amp; Crosas, M. (2013). The Evolution of Data Citation: From Principles to Implementation. IASSIST Quarterly. Retrieved from http://scholar.harvard.edu/mercecrosas/publications/evolution-data-citation-principles-implementation",
     }
     assert subject.funding_references is None
     assert subject.container == {"type": "Periodical"}
@@ -447,13 +451,15 @@ def test_peer_review():
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert (subject.date_published == '2020-04-29'
-        and subject.date_updated == '2024-04-26'
-        and subject.dates == {'created': '2020-05-19'})
+        and subject.date_updated[:10] == '2024-04-26'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "eLife Sciences Publications, Ltd",
     }
     assert len(subject.references) == 0
-    assert subject.relations is None
+    assert subject.relations == [
+        {"id": "https://doi.org/10.7554/elife.55167", "type": "IsReviewOf"}
+    ]
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -486,8 +492,8 @@ def test_dissertation():
     }
     assert subject.license is None
     assert (subject.date_published == '2020-06-08'
-        and subject.date_updated == '2020-06-08'
-        and subject.dates == {'created': '2020-06-08'})
+        and subject.date_updated[:10] == '2020-06-08'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "University of Queensland Library",
     }
@@ -540,7 +546,7 @@ def test_doi_with_sici():
     }
     assert subject.references[-1] == {
         "key": "i0012-9658-87-11-2832-ydenberg1",
-        "unstructured": "R. C. Ydenberg, 1998 .Behavioral decisions about foraging and predator avoidance .Pages343 -378 R. Dukas, editorCognitive ecology: the evolutionary ecology of information processing and decision making University of Chicago Press, Chicago, Illinois, USA.",
+        "reference": "R. C. Ydenberg, 1998 .Behavioral decisions about foraging and predator avoidance .Pages343 -378 R. Dukas, editorCognitive ecology: the evolutionary ecology of information processing and decision making University of Chicago Press, Chicago, Illinois, USA.",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -595,16 +601,16 @@ def test_doi_with_orcid():
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
     assert (subject.date_published == '2012'
-        and subject.date_updated == '2016-08-02'
-        and subject.dates == {'created': '2012-12-30'})
+        and subject.date_updated[:10] == '2016-08-02'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "Wiley",
     }
-    assert len(subject.references) == 27
+    # structured-only citations without a DOI or unstructured text are dropped.
+    assert len(subject.references) == 17
     assert subject.references[0] == {
-        "key": "1",
-        "publication_year": "2009",
-        "volume": "179",
+        "key": "2",
+        "id": "https://doi.org/10.1128/cvi.00168-09",
     }
     assert subject.references[-1] == {
         "key": "30",
@@ -654,35 +660,51 @@ def test_date_in_future():
     }
     assert subject.license == {"url": "https://www.elsevier.com/tdm/userlicense/1.0"}
     assert (subject.date_published == '2015-07'
-        and subject.date_updated == '2023-08-09'
-        and subject.dates == {'created': '2015-04-06'})
+        and subject.date_updated[:10] == '2023-08-09'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "Elsevier BV",
     }
-    assert len(subject.references) == 98
+    assert len(subject.references) == 89
     assert subject.references[0] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib1",
         "id": "https://doi.org/10.4049/jimmunol.160.12.6062",
-        "title": "Characterization of the peptide binding motif of a rhesus MHC class I molecule (Mamu-A*01) that binds an immunodominant CTL epitope from simianimmunodeficiency virus.",
-        "publication_year": "1998",
-        "volume": "160",
-        "first_page": "6062",
+        "reference": "Characterization of the peptide binding motif of a rhesus MHC class I molecule (Mamu-A*01) that binds an immunodominant CTL epitope from simianimmunodeficiency virus.",
+        "asserted_by": "Crossref",
     }
     assert subject.references[-1] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib94",
         "id": "https://doi.org/10.1111/hiv.12134",
-        "title": "Immune activation despite suppressive highly active antiretroviral therapy is associated with higher risk of viral blips in HIV-1-infected individuals",
-        "publication_year": "2014",
-        "volume": "15",
-        "first_page": "449",
+        "reference": "Immune activation despite suppressive highly active antiretroviral therapy is associated with higher risk of viral blips in HIV-1-infected individuals",
+        "asserted_by": "Crossref",
     }
-    assert subject.funding_references is None
-    # assert subject.funding_references[0] == {
-    #     "awardNumber": "R01 NS089482",
-    #     "funderIdentifier": "https://doi.org/10.13039/100000002",
-    #     "funderIdentifierType": "Crossref Funder ID",
-    #     "funderName": "NIH",
-    # }
+    assert subject.funding_references == [
+        {
+            "funder_id": "https://doi.org/10.13039/100000002",
+            "funder_name": "NIH",
+            "award_number": "R01 NS089482",
+        },
+        {
+            "funder_id": "https://doi.org/10.13039/100000002",
+            "funder_name": "NIH",
+            "award_number": "R01 NS077869",
+        },
+        {
+            "funder_id": "https://doi.org/10.13039/100000002",
+            "funder_name": "NIH",
+            "award_number": "P01 MH070306",
+        },
+        {
+            "funder_id": "https://doi.org/10.13039/100000002",
+            "funder_name": "NIH",
+            "award_number": "P40 OD013117",
+        },
+        {
+            "funder_id": "https://doi.org/10.13039/100000002",
+            "funder_name": "NIH",
+            "award_number": "T32 OD011089",
+        },
+    ]
     assert subject.container == {
         "identifier": "0014-2999",
         "identifier_type": "ISSN",
@@ -721,26 +743,20 @@ def test_vor_with_url():
     }
     assert subject.license == {"url": "https://www.springer.com/tdm"}
     assert (subject.date_published == '2013-04-10'
-        and subject.date_updated == '2023-05-18'
-        and subject.dates == {'created': '2013-04-10'})
+        and subject.date_updated[:10] == '2023-05-18'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "Springer Science and Business Media LLC",
     }
     assert len(subject.references) == 41
     assert subject.references[0] == {
         "key": "BFhdy201326_CR1",
-        "publication_year": "1946",
-        "volume": "4",
-        "first_page": "263",
-        "unstructured": "Alvarez J . (1946). Revisión del género Anoptichthys con descipción de una especie nueva (Pisces, Characidae). An Esc Nac Cien Biol México 4: 263–282.",
+        "reference": "Alvarez J . (1946). Revisión del género Anoptichthys con descipción de una especie nueva (Pisces, Characidae). An Esc Nac Cien Biol México 4: 263–282.",
     }
     assert subject.references[-1] == {
         "key": "BFhdy201326_CR41",
         "id": "https://doi.org/10.1111/j.1095-8312.2003.00230.x",
-        "publication_year": "2003",
-        "volume": "80",
-        "first_page": "545",
-        "unstructured": "Wilkens H, Strecker U . (2003). Convergent evolution of the "
+        "reference": "Wilkens H, Strecker U . (2003). Convergent evolution of the "
         "cavefish Astyanax (Characidae: Teleostei): Genetic evidence "
         "from reduced eye-size and pigmentation. Biol J Linn Soc 80: "
         "545–554.",
@@ -783,7 +799,7 @@ def test_dataset():
         ]
     }
     assert subject.license is None
-    assert subject.dates["created"].startswith("2006-01")
+    assert subject.dates is None
     assert subject.date_published.startswith("2006-01")
     assert subject.date_updated.startswith("2025-05")
     assert subject.publisher == {
@@ -814,8 +830,8 @@ def test_component():
     assert subject.contributors is None
     assert subject.license is None
     assert (subject.date_published == '2015-10-20'
-        and subject.date_updated == '2018-10-19'
-        and subject.dates == {'created': '2015-10-20'})
+        and subject.date_updated[:10] == '2018-10-19'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "Public Library of Science (PLoS)",
     }
@@ -856,24 +872,17 @@ def test_dataset_usda():
     }
     assert subject.license is None
     assert (subject.date_published == '2017-08-09'
-        and subject.date_updated == '2021-07-01'
-        and subject.dates == {'created': '2017-08-09'})
+        and subject.date_updated[:10] == '2021-07-01'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "USDA Forest Service",
     }
-    assert len(subject.references) == 6
+    assert len(subject.references) == 5
     assert subject.references[-1] == {
         "key": "ref6",
         "id": "https://doi.org/10.1674/0003-0031-178.1.47",
     }
     assert subject.funding_references is None
-    # assert subject.funding_references == [
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/100006959",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "U.S. Forest Service",
-    #     }
-    # ]
     assert subject.container == {
         "title": "Forest Service Research Data Archive",
         "type": "DataRepository",
@@ -921,11 +930,7 @@ def test_book_chapter():
     assert subject.references[0] == {
         "key": "13_CR1",
         "id": "https://doi.org/10.1007/s00256-012-1391-8",
-        "publication_year": "2012",
-        "volume": "41",
-        "issue": "10",
-        "first_page": "1301",
-        "unstructured": "Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation between magnetic resonance imaging and clinical impairment in patients with adhesive capsulitis. Skeletal Radiol. 2012;41(10):1301–8.",
+        "reference": "Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation between magnetic resonance imaging and clinical impairment in patients with adhesive capsulitis. Skeletal Radiol. 2012;41(10):1301–8.",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1011,12 +1016,12 @@ def test_yet_another_book_chapter():
     }
     assert subject.license is None
     assert (subject.date_published == '2012-08-08'
-        and subject.date_updated == '2019-07-02'
-        and subject.dates == {'created': '2012-08-08'})
+        and subject.date_updated[:10] == '2019-07-02'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "IGI Global Scientific Publishing",
     }
-    assert len(subject.references) == 33
+    assert len(subject.references) == 29
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Book",
@@ -1060,19 +1065,19 @@ def test_missing_contributor():
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert (subject.date_published == '2018-04-09'
-        and subject.date_updated == '2025-10-11'
-        and subject.dates == {'created': '2018-04-10'})
+        and subject.date_updated[:10] == '2025-10-11'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "MDPI AG",
     }
-    assert len(subject.references) == 23
+    assert len(subject.references) == 22
     assert subject.references[0] == {
         "key": "ref_1",
-        "unstructured": "(2018, February 20). CERN Convention for the Establishment of a European Organization for Nuclear Research. Available online: https://council.web.cern.ch/en/content/convention-establishment-european-organization-nuclear-research.",
+        "reference": "(2018, February 20). CERN Convention for the Establishment of a European Organization for Nuclear Research. Available online: https://council.web.cern.ch/en/content/convention-establishment-european-organization-nuclear-research.",
     }
     assert subject.references[-1] == {
         "key": "ref_23",
-        "unstructured": "(2018, February 20). SCOAP3 News: APS Joins SCOAP3. Available online: http://www.webcitation.org/6xNFQb5iD.",
+        "reference": "(2018, February 20). SCOAP3 News: APS Joins SCOAP3. Available online: http://www.webcitation.org/6xNFQb5iD.",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1121,13 +1126,11 @@ def test_book():
     assert subject.publisher == {
         "name": "Cambridge University Press (CUP)",
     }
-    assert len(subject.references) == 273
+    # structured-only citations without a DOI or unstructured text are dropped.
+    assert len(subject.references) == 100
     assert subject.references[0] == {
-        "key": "9781108348843#EMT-rl-1_BIBe-r-273",
-        "title": "Lu Jia de lishi yishi ji qi wenhua yiyi",
-        "publication_year": "1997",
-        "volume": "5",
-        "first_page": "67",
+        "key": "9781108348843#EMT-rl-1_BIBe-r-266",
+        "id": "https://doi.org/10.1093/acprof:oso/9780199367344.001.0001",
     }
     assert subject.funding_references is None
     assert subject.container is None
@@ -1175,8 +1178,8 @@ def test_proceedings_article():
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert (subject.date_published == '2021-06-09'
-        and subject.date_updated == '2025-06-17'
-        and subject.dates == {'created': '2021-06-18'})
+        and subject.date_updated[:10] == '2025-06-17'
+        and subject.dates is None)
     assert subject.publisher == {
         "name": "Association for Computing Machinery (ACM)",
     }
@@ -1185,13 +1188,18 @@ def test_proceedings_article():
         "key": "e_1_3_2_2_56_1",
         "id": "https://doi.org/10.5555/1364813.1364831",
     }
-    assert subject.funding_references is None
-    # assert subject.funding_references[0] == {
-    #     "funderName": "NSF (National Science Foundation)",
-    #     "funderIdentifier": "https://doi.org/10.13039/100000001",
-    #     "funderIdentifierType": "Crossref Funder ID",
-    #     "awardNumber": "CCF 805476",
-    # }
+    assert subject.funding_references == [
+        {
+            "funder_id": "https://doi.org/10.13039/100000001",
+            "funder_name": "NSF (National Science Foundation)",
+            "award_number": "CCF 805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680",
+        },
+        {
+            "funder_id": "https://doi.org/10.13039/100000015",
+            "funder_name": "DOE U.S. Department of Energy",
+            "award_number": "DE-AC02-05CH11231,17-SC-20-SC",
+        },
+    ]
     assert subject.container == {
         "type": "Proceedings",
         "identifier": "9781450383431",

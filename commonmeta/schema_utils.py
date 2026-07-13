@@ -7,10 +7,14 @@ from typing import Any
 
 import orjson as json
 import xmlschema
+from commonmeta_schema import schema_path as commonmeta_schema_path
 from jsonschema import Draft202012Validator, ValidationError
 from jsonschema.exceptions import best_match
 
 from .base_utils import normalize_xml_dict
+
+# Commonmeta JSON Schema version, provided by the commonmeta-schema package.
+COMMONMETA_SCHEMA_VERSION = "1.0rc2"
 
 
 def json_schema_errors(
@@ -22,10 +26,11 @@ def json_schema_errors(
         str: Error message if validation fails
         None: If validation succeeds
     """
+    # The commonmeta schema is provided by the commonmeta-schema package; the
+    # remaining schemas are bundled locally under resources/.
     schema_map = {
         "cff": "cff_v1.2.0",
-        "commonmeta": "commonmeta_v1.0rc1",
-        "crossref_xml": "crossref-v5.4.0",
+        "crossref_xml": "crossref-v5.5.0",
         "csl": "csl-data",
         "datacite": "datacite-v4.5",
         "inveniordm": "inveniordm-v0.1",
@@ -34,7 +39,7 @@ def json_schema_errors(
     if instance is None:
         raise ValueError("No instance provided")
     try:
-        if schema not in schema_map:
+        if schema != "commonmeta" and schema not in schema_map:
             raise ValueError("No schema found")
 
         # The Crossref JSON schema uses a normalized representation without
@@ -43,9 +48,12 @@ def json_schema_errors(
         if schema == "crossref_xml":
             instance = normalize_xml_dict(instance)
 
-        file_path = path.join(
-            path.dirname(__file__), f"resources/{schema_map[schema]}.json"
-        )
+        if schema == "commonmeta":
+            file_path = str(commonmeta_schema_path(COMMONMETA_SCHEMA_VERSION))
+        else:
+            file_path = path.join(
+                path.dirname(__file__), f"resources/{schema_map[schema]}.json"
+            )
         try:
             with open(file_path, encoding="utf-8") as file:
                 string = file.read()
@@ -83,7 +91,7 @@ def xml_schema_errors(
         None: If validation succeeds
     """
     schema_map = {
-        "crossref_xml": "crossref5.4.0",
+        "crossref_xml": "crossref5.5.0",
     }
     if instance is None:
         raise ValueError("No instance provided")
@@ -91,16 +99,17 @@ def xml_schema_errors(
         if schema not in schema_map:
             raise ValueError("No schema found")
         base_dir = path.join(path.dirname(__file__), "resources", "crossref")
-        schema_path = path.join(base_dir, "crossref5.4.0.xsd")
+        schema_path = path.join(base_dir, "crossref5.5.0.xsd")
         # One bundled JATS XSD imports the MathML namespace without a
         # schemaLocation; map it to the local MathML 3 schema so xmlschema
         # doesn't fall back to the (sandbox-blocked) remote URL.
         mathml_path = path.join(base_dir, "standard-modules", "mathml3", "mathml3.xsd")
         locations = {"http://www.w3.org/1998/Math/MathML": mathml_path}
         try:
-            # Load schema with allow="sandbox" to prevent network access
-            # and validation="skip" to skip validation of the schema itself
-            schema_obj = xmlschema.XMLSchema(
+            # Crossref schema 5.5.0 is XSD 1.1 (uses xsd:assert), so it must be
+            # loaded with the XSD 1.1 validator. allow="sandbox" prevents network
+            # access; validation="skip" skips validating the schema itself.
+            schema_obj = xmlschema.XMLSchema11(
                 schema_path,
                 base_url=base_dir,
                 locations=locations,

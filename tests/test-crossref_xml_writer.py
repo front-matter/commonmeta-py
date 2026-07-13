@@ -26,7 +26,7 @@ def test_write_crossref_xml_header():
     assert lines[0] == '<?xml version="1.0" encoding="utf-8"?>'
     assert (
         lines[1]
-        == '<doi_batch xmlns="http://www.crossref.org/schema/5.4.0" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" xmlns:rel="http://www.crossref.org/relations.xsd" xmlns:fr="http://www.crossref.org/fundref.xsd" version="5.4.0">'
+        == '<doi_batch xmlns="http://www.crossref.org/schema/5.5.0" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" xmlns:rel="http://www.crossref.org/relations.xsd" xmlns:fr="http://www.crossref.org/fundref.xsd" version="5.5.0">'
     )
 
 
@@ -60,13 +60,13 @@ def test_write_metadata_as_crossref_xml():
         "Among various advantages, their small size makes model organisms preferred subjects of investigation."
     )
     assert dig(crossref_xml, "doi_data.doi") == "10.7554/elife.01567"
-    assert len(dig(crossref_xml, "citation_list.citation")) == 27
+    # the frozen fixture drops bib6 (no DOI, no unstructured text); the rc2
+    # reference collapses the citation text into `reference`, written back as
+    # unstructured_citation.
+    assert len(dig(crossref_xml, "citation_list.citation")) == 26
     assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "bib1",
-        "volume": "426",
-        "first_page": "181",
-        "cYear": "2003",
-        "article_title": "APL regulates vascular tissue identity in Arabidopsis",
+        "unstructured_citation": "APL regulates vascular tissue identity in Arabidopsis",
         "doi": "10.1038/nature02100",
     }
 
@@ -398,7 +398,7 @@ def test_jsonfeed_upstream_blog():
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
-    assert dig(crossref_xml, "type") == "other"
+    assert dig(crossref_xml, "type") == "blog"
     assert dig(crossref_xml, "language") == "en"
     assert len(dig(crossref_xml, "contributors.person_name")) == 1
     assert dig(crossref_xml, "contributors.person_name.0") == {
@@ -438,7 +438,7 @@ def test_jsonfeed_upstream_blog_archived():
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
-    assert dig(crossref_xml, "type") == "other"
+    assert dig(crossref_xml, "type") == "blog"
     assert dig(crossref_xml, "language") == "en"
     assert len(dig(crossref_xml, "contributors.person_name")) == 1
     assert dig(crossref_xml, "contributors.person_name.0") == {
@@ -714,11 +714,24 @@ def test_jsonfeed_with_organizational_author():
     ]
     assert subject.version == "v1"
 
-    with pytest.raises(CrossrefError) as exc_info:
-        subject.write(to="crossref_xml")
+    crossref_xml = subject.write(to="crossref_xml")
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "contributors.organization.0") == {
+        "contributor_role": "author",
+        "sequence": "first",
+        "#text": "Liberate Science",
+    }
+    assert dig(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
+    assert dig(crossref_xml, "posted_date") == {
+        "month": "5",
+        "day": "9",
+        "year": "2023",
+    }
+    assert dig(crossref_xml, "doi_data.doi") == "10.59350/2shz7-ehx26"
     assert (
-        "DOI or URL missing for Crossref XML: https://doi.org/10.59350/2shz7-ehx26"
-        in str(exc_info.value)
+        dig(crossref_xml, "doi_data.resource")
+        == "https://libscie.org/ku-leuven-supports-researchequals"
     )
 
 
@@ -732,7 +745,10 @@ def test_jsonfeed_with_archived_content():
     #     subject.url
     #     == "https://wayback.archive-it.org/22143/2023-11-03T19:24:18Z/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
     # )
-    assert subject.url is None
+    assert (
+        subject.url
+        == "https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
+    )
     assert subject.version == "v1"
 
     # crossref_xml = subject.write(to="crossref_xml")
@@ -996,7 +1012,7 @@ def test_proceedings_article_with_multiple_funding_references():
     with pytest.raises(CrossrefError) as exc_info:
         subject.write(to="crossref_xml")
     assert (
-        "Tag ('{http://www.crossref.org/schema/5.4.0}isbn' | '{http://www.crossref.org/schema/5.4.0}noisbn') expected."
+        "Tag ('{http://www.crossref.org/schema/5.5.0}isbn' | '{http://www.crossref.org/schema/5.5.0}noisbn') expected."
         in str(exc_info.value)
     )
 
@@ -1075,7 +1091,7 @@ def test_book():
         "volume": "5",
         "first_page": "67",
         "cYear": "1997",
-        "article_title": "Lu Jia de lishi yishi ji qi wenhua yiyi",
+        "unstructured_citation": "Lu Jia de lishi yishi ji qi wenhua yiyi",
     }
 
 
@@ -1103,6 +1119,8 @@ def test_book_chapter():
     )
     assert dig(crossref_xml, "abstract") is None
     assert len(dig(crossref_xml, "citation_list.citation")) == 22
+    # the rc2 reference collapses the citation text into a single `reference`
+    # string, written back as unstructured_citation.
     assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "13_CR1",
         "doi": "10.1007/s00256-012-1391-8",

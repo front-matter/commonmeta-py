@@ -1,6 +1,13 @@
 """Shared pytest fixtures for commonmeta-py tests."""
 
+import os
+import sys
+
 import pytest
+
+# Make sibling helper modules (e.g. conformance_common) importable from the
+# test-*.py files regardless of pytest's import mode.
+sys.path.insert(0, os.path.dirname(__file__))
 
 
 @pytest.fixture(scope="module")

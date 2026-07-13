@@ -44,7 +44,7 @@ def test_rdataone():
     assert subject.license == {
         "id": "Apache-2.0",
         "title": "Apache License 2.0",
-        "url": "http://www.apache.org/licenses/LICENSE-2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0",
     }
     assert subject.version == "2.0.0"
 
@@ -81,6 +81,6 @@ def test_metadata_reports():
     assert subject.license == {
         "id": "MIT",
         "title": "MIT License",
-        "url": "https://opensource.org/licenses/MIT",
+        "url": "https://opensource.org/license/mit/",
     }
     assert subject.version is None

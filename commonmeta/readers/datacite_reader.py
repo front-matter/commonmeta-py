@@ -11,8 +11,11 @@ from ..author_utils import get_authors
 from ..base_utils import compact, dig, presence, unique, wrap
 from ..constants import (
     CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
+    CSL_TO_CM_TRANSLATIONS,
+    DC_RESOURCE_TYPE_TO_CM,
     DC_TO_CM_CONTAINER_TRANSLATIONS,
     DC_TO_CM_TRANSLATIONS,
+    SO_TO_CM_TRANSLATIONS,
     Commonmeta,
 )
 from ..date_utils import normalize_date_dict
@@ -58,13 +61,41 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     resource__typegeneral = dig(meta, "types.resourceTypeGeneral")
     resource_type = dig(meta, "types.resourceType")
     _type = DC_TO_CM_TRANSLATIONS.get(resource__typegeneral, "Other")
+    # resourceType refines/overrides resourceTypeGeneral when it maps to a
+    # commonmeta type: first the standard DataCite map (schema 4.3+ subtypes),
+    # then the free-text subtype map (e.g. "blogpost" -> "BlogPost"). When it
+    # resolves, additional_type is left unset.
     additional_type = DC_TO_CM_TRANSLATIONS.get(resource_type, None)
-    # if resource_type is one of the new resource__typegeneral types introduced in schema 4.3, use it
+    rt_additional = DC_RESOURCE_TYPE_TO_CM.get(
+        resource_type.lower() if isinstance(resource_type, str) else ""
+    )
     if additional_type:
         _type = additional_type
         additional_type = None
+    elif rt_additional:
+        _type = rt_additional
+        additional_type = None
     else:
-        additional_type = resource_type
+        # resourceTypeGeneral "Text" is a coarse catch-all; when resourceType
+        # did not resolve, refine the type via the citeproc or schema.org hints.
+        refined = None
+        if resource__typegeneral == "Text":
+            refined = CSL_TO_CM_TRANSLATIONS.get(
+                dig(meta, "types.citeproc"), None
+            ) or SO_TO_CM_TRANSLATIONS.get(dig(meta, "types.schemaOrg"), None)
+        if refined:
+            _type = refined
+            additional_type = None
+        elif (
+            isinstance(resource_type, str)
+            and resource_type
+            and resource_type.lower() != _type.lower()
+            and not resource_type.startswith("info:")
+        ):
+            # keep resourceType as additional_type only when it adds information
+            additional_type = resource_type
+        else:
+            additional_type = None
     title, additional_titles = get_titles(wrap(meta.get("titles", None)))
 
     contributors = get_authors(wrap(meta.get("creators", None)))
@@ -88,15 +119,8 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
 
     files = [get_file(i) for i in wrap(meta.get("content_url"))]
 
+    # The DOI is the primary id; it is not duplicated into identifiers.
     identifiers = get_identifiers(wrap(meta.get("alternateIdentifiers", None)))
-    identifiers.append(
-        compact(
-            {
-                "identifier": normalize_doi(_id),
-                "identifier_type": "DOI",
-            }
-        )
-    )
 
     references = get_references(
         wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None))
@@ -116,7 +140,6 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
             {
                 "id": subject.get("valueURI", None),
                 "subject": subject.get("subject", None),
-                "language": subject.get("lang", None),
             }
         )
 
@@ -163,7 +186,7 @@ def get_identifiers(identifiers: list) -> list:
 
     def is_identifier(identifier) -> bool:
         """supported identifier types"""
-        return identifier.get("identifierType", None) in [
+        return identifier.get("alternateIdentifierType", None) in [
             "ARK",
             "arXiv",
             "Bibcode",
@@ -182,7 +205,7 @@ def get_identifiers(identifiers: list) -> list:
     def format_identifier(identifier) -> dict:
         """format_identifier"""
         if is_identifier(identifier):
-            type_ = identifier.get("identifierType")
+            type_ = identifier.get("alternateIdentifierType")
         else:
             type_ = "Other"
 
@@ -203,7 +226,7 @@ def get_references(references: list) -> list:
         """is_reference"""
         return reference.get("relationType", None) in ["Cites", "References"]
 
-    def map_reference(reference, index) -> dict:
+    def map_reference(reference) -> dict:
         """map_reference"""
         identifier = reference.get("relatedIdentifier", None)
         identifier_type = reference.get("relatedIdentifierType", None)
@@ -213,16 +236,12 @@ def get_references(references: list) -> list:
             id_ = normalize_url(identifier)
         else:
             id_ = identifier
-        return compact(
-            {
-                "key": f"ref{index + 1}",
-                "id": id_,
-            }
+        ref_type = DC_TO_CM_TRANSLATIONS.get(
+            reference.get("resourceTypeGeneral", None), None
         )
+        return compact({"id": id_, "type": ref_type})
 
-    return [
-        map_reference(i, index) for index, i in enumerate(references) if is_reference(i)
-    ]
+    return [map_reference(i) for i in references if is_reference(i)]
 
 
 # DataCite relationType → commonmeta relation type. Types not listed pass
@@ -258,12 +277,14 @@ def get_relations(relations: list) -> list:
             "IsSupplementTo",
         ]
 
-    def map_relation(relation) -> dict:
+    def map_relation(relation) -> dict | None:
         """map_relation"""
-
-        identifier = normalize_doi(
-            relation.get("relatedIdentifier", None)
-        ) or relation.get("relatedIdentifier", None)
+        related = relation.get("relatedIdentifier", None)
+        # only DOI/URL identifiers are kept as relations; others (ISBN, ISSN,
+        # ...) don't normalize to a resolvable id and are dropped.
+        identifier = normalize_doi(related) or normalize_url(related)
+        if identifier is None:
+            return None
         relation_type = relation.get("relationType", None)
         relation_type = DC_TO_CM_RELATION_TYPES.get(relation_type, relation_type)
         return compact(
@@ -273,7 +294,11 @@ def get_relations(relations: list) -> list:
             }
         )
 
-    return [map_relation(i) for i in relations if is_relation(i)]
+    return [
+        r
+        for r in (map_relation(i) for i in relations if is_relation(i))
+        if r is not None
+    ]
 
 
 def get_file(file: str) -> dict:
@@ -458,12 +483,20 @@ def get_container(container: dict | None) -> dict | None:
     )
 
     container_identifier = container.get("identifier", None)
+    # EISSN and PISSN are subtypes of ISSN; normalize to the schema's "ISSN".
+    identifier_type = container.get("identifierType", None)
+    if identifier_type in ("EISSN", "PISSN"):
+        identifier_type = "ISSN"
     return compact(
         {
             "type": _type,
             "title": container.get("title", None),
             "identifier": container_identifier,
-            "identifier_type": "URL" if container_identifier else None,
+            "identifier_type": identifier_type,
+            "volume": container.get("volume", None),
+            "issue": container.get("issue", None),
+            "first_page": container.get("firstPage", None),
+            "last_page": container.get("lastPage", None),
         }
     )
 

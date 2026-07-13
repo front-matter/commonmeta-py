@@ -54,11 +54,11 @@ def test_ruby_cff():
     assert subject.license == {
         "id": "Apache-2.0",
         "title": "Apache License 2.0",
-        "url": "http://www.apache.org/licenses/LICENSE-2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0",
     }
-    assert subject.references is None
+    assert subject.references == [{"id": "https://doi.org/10.5281/zenodo.1003149"}]
     assert subject.publisher == {"name": "GitHub"}
-    assert subject.provider == "DataCite"
+    assert subject.provider is None
 
 
 def test_cff_converter_python():
@@ -102,11 +102,11 @@ def test_cff_converter_python():
     assert subject.license == {
         "id": "Apache-2.0",
         "title": "Apache License 2.0",
-        "url": "http://www.apache.org/licenses/LICENSE-2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0",
     }
-    assert subject.references is None
+    assert subject.references == [{"id": "https://doi.org/10.5281/zenodo.1310751"}]
     assert subject.publisher == {"name": "GitHub"}
-    assert subject.provider == "GitHub"
+    assert subject.provider is None
 
 
 def test_github_repo():
@@ -136,4 +136,4 @@ def test_github_repo():
     assert subject.license is None
     assert subject.references is None
     assert subject.publisher == {"name": "GitHub"}
-    assert subject.provider == "DataCite"
+    assert subject.provider is None

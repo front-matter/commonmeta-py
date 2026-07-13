@@ -1,26 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fr="http://www.crossref.org/fundref.xsd" xmlns:fd="http://www.crossref.org/fundingdata5.4.0.xsd" xmlns:ct="http://www.crossref.org/clinicaltrials.xsd" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" xmlns:rel="http://www.crossref.org/relations.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1">
+<?xml version="1.1" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fr="http://www.crossref.org/fundref.xsd" xmlns:fd="http://www.crossref.org/fundingdata5.5.0.xsd" xmlns:ct="http://www.crossref.org/clinicaltrials.xsd" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" xmlns:rel="http://www.crossref.org/relations.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1"
+	xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    vc:minVersion="1.1">
 
 
 	<!--*************************************************************
-	Crossref Metadata Input Schema, common file v. 5.4.0
+	Crossref Metadata Input Schema, common file v. 5.5.0
 	*************************************************************
-
+	
 This is the latest iteration of the Crossref Metadata Input Schema, used to register metadata records with Crossref. This schema was originally developed for Crossref by Inera (http://www.inera.com) and is currently maintained by Crossref staff.
 
 As of version 4.5.0 all changes are noted in the release notes for the schema repository in GitLab:  https://gitlab.com/crossref/schema/-/releases
-
+	
 Prior updates are noted as comments within previous schema versions.
-
+	
   -->
 
 	<xsd:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation="http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd"/>
-	<xsd:import namespace="http://www.crossref.org/fundingdata5.4.0.xsd" schemaLocation="fundingdata5.4.0.xsd"/>
+	<xsd:import namespace="http://www.crossref.org/fundingdata5.5.0.xsd" schemaLocation="fundingdata5.5.0.xsd"/>
 	<xsd:import namespace="http://www.crossref.org/fundref.xsd" schemaLocation="fundref.xsd"/>
 	<xsd:import namespace="http://www.crossref.org/AccessIndicators.xsd" schemaLocation="AccessIndicators.xsd"/>
 	<xsd:import namespace="http://www.crossref.org/clinicaltrials.xsd" schemaLocation="clinicaltrials.xsd"/>
-	<xsd:include schemaLocation="languages5.4.0.xsd"/>
-	<xsd:include schemaLocation="mediatypes5.4.0.xsd"/>
+	<xsd:include schemaLocation="languages5.5.0.xsd"/>
+	<xsd:include schemaLocation="mediatypes5.5.0.xsd"/>
 
 
 	<xsd:complexType name="xrefFaces" mixed="true">
@@ -30,7 +32,7 @@ Prior updates are noted as comments within previous schema versions.
 	</xsd:complexType>
 	<xsd:group name="face_markup">
 		<xsd:annotation>
-			<xsd:documentation>The following are basic data types for face markup. Face markup that appears in the title, subtitle, and original_language_title elements should be retained when depositing metadata. Face markup in other elements (e.g. small caps in author names) must be dropped. Face markup support includes bold (b), italic (i), underline (u), over-line (ovl), superscript (sup), subscript (sub), small caps (scp), and typewriter text (tt). See https://support.crossref.org/hc/en-us/articles/214532023
+			<xsd:documentation>The following are basic data types for face markup. Face markup that appears in the title, subtitle, and original_language_title elements should be retained when depositing metadata. Face markup in other elements (e.g. small caps in author names) must be dropped. Face markup support includes bold (b), italic (i), underline (u), over-line (ovl), superscript (sup), subscript (sub), small caps (scp), and typewriter text (tt). See https://support.crossref.org/hc/en-us/articles/214532023 
 
 MathML may also be included using the 'mml' namespace prefix.</xsd:documentation>
 		</xsd:annotation>
@@ -558,7 +560,7 @@ MathML may also be included using the 'mml' namespace prefix.</xsd:documentation
 		</xsd:complexType>
 	</xsd:element>
 
-
+	
 	<!--END NAME ELEMENTs-->
 
 
@@ -772,7 +774,7 @@ MathML may also be included using the 'mml' namespace prefix.</xsd:documentation
 					<xsd:enumeration value="report"/>
 					<xsd:enumeration value="software"/>
 					<xsd:enumeration value="standard"/>
-					<xsd:enumeration value="web_resource"/>
+					<xsd:enumeration value="web_resource"/>		
 				</xsd:restriction>
 			</xsd:simpleType>
 		</xsd:attribute>

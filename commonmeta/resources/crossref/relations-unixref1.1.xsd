@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.crossref.org/relations.xsd"
+    xmlns="http://www.crossref.org/relations.xsd" version="1.1">
+
+
+    <xsd:annotation>
+        <xsd:documentation> relations schema for unixref.1.1.xsd </xsd:documentation>
+    </xsd:annotation>
+
+
+
+    <xsd:element name="program">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="related_item" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string" fixed="relations"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="related_item">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:annotation>
+                    <xsd:documentation> Description of the relationship to the target item or of the
+                        target item itself </xsd:documentation>
+                </xsd:annotation>
+                <xsd:element ref="description" minOccurs="0" maxOccurs="1"/>
+                <xsd:choice>
+                    <xsd:element ref="inter_work_relation" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element ref="intra_work_relation" minOccurs="1" maxOccurs="1"/>
+                </xsd:choice>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="inter_work_relation">
+        <xsd:complexType mixed="true">
+            <xsd:attribute name="relationship-type" use="required">
+                <xsd:annotation>
+                    <xsd:documentation> Used to describe relations between items that are not the
+                        same work. </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="isDerivedFrom"/>
+                        <!-- hasDerivation -->
+                        <xsd:enumeration value="hasDerivation"/>
+                        <!-- isDerivedFrom -->
+                        <xsd:enumeration value="isReviewOf"/>
+                        <!-- hasReview -->
+                        <xsd:enumeration value="hasReview"/>
+                        <!-- isReviewOf -->
+                        <xsd:enumeration value="isCommentOn"/>
+                        <!-- hasComment -->
+                        <xsd:enumeration value="hasComment"/>
+                        <!-- isCommentOn -->
+                        <xsd:enumeration value="isReplyTo"/>
+                        <!-- hasReply -->
+                        <xsd:enumeration value="hasReply"/>
+                        <!-- isReplyTo -->
+                        <xsd:enumeration value="basedOnData"/>
+                        <!-- isDataBasisFor -->
+                        <xsd:enumeration value="isDataBasisFor"/>
+                        <!-- basedOnData -->
+                        <xsd:enumeration value="hasRelatedMaterial"/>
+                        <!-- isRelatedMaterial -->
+                        <xsd:enumeration value="isRelatedMaterial"/>
+                        <!-- hasRelatedMaterial -->
+
+                        <xsd:enumeration value="isCompiledBy"/>
+                        <!-- compiles -->
+                        <xsd:enumeration value="compiles"/>
+                        <!-- isCompiledBy -->
+                        <xsd:enumeration value="isDocumentedBy"/>
+                        <!-- documents -->
+                        <xsd:enumeration value="documents"/>
+                        <!-- isDocumentedBy -->
+                        <xsd:enumeration value="isSupplementTo"/>
+                        <!-- isSupplememtedBy -->
+                        <xsd:enumeration value="isSupplementedBy"/>
+                        <!-- isSupplementTo -->
+                        <xsd:enumeration value="isContinuedBy"/>
+                        <!-- continues -->
+                        <xsd:enumeration value="continues"/>
+                        <!-- isContinuedBy -->
+
+                        <xsd:enumeration value="isPartOf"/>
+                        <!-- hasPart -->
+                        <xsd:enumeration value="hasPart"/>
+                        <!-- isPartOf -->
+                        <xsd:enumeration value="references"/>
+                        <!-- isReferencedBy -->
+                        <xsd:enumeration value="isReferencedBy"/>
+                        <!-- references -->
+                        <xsd:enumeration value="isBasedOn"/>
+                        <!-- isBasisFor -->
+                        <xsd:enumeration value="isBasisFor"/>
+                        <!-- isBasedOn -->
+                        <xsd:enumeration value="requires"/>
+                        <!-- isRequiredBy -->
+                        <xsd:enumeration value="isRequiredBy"/>
+                        <!-- requires -->
+                        <xsd:enumeration value="finances"/>
+                        <!-- isFinancedBy -->
+                        <xsd:enumeration value="isFinancedBy"/>
+                        <!-- finances -->
+
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attributeGroup ref="relations_type.atts"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="intra_work_relation">
+        <xsd:complexType mixed="true">
+            <xsd:attribute name="relationship-type" use="required">
+                <xsd:annotation>
+                    <xsd:documentation>Used to define relations between items that are essentially
+                        the same work but may differ in some way that impacts citation, for example
+                        a difference in format, language, or revision. Assigning different
+                        identifers to exactly the same item available in one place or as copies in
+                        multiple places can be problematic and should be avoided.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="isTranslationOf"/>
+                        <!-- hasTranslation -->
+                        <xsd:enumeration value="hasTranslation"/>
+                        <!-- isTranslationOf -->
+                        <xsd:enumeration value="isPreprintOf"/>
+                        <!-- hasPreprint -->
+                        <xsd:enumeration value="hasPreprint"/>
+                        <!-- isPreprintOf -->
+                        <xsd:enumeration value="isManuscriptOf"/>
+                        <!-- hasManuscript -->
+                        <xsd:enumeration value="hasManuscript"/>
+                        <!-- isManuscriptOf -->
+                        <xsd:enumeration value="isExpressionOf"/>
+                        <!-- hasExpression -->
+                        <xsd:enumeration value="hasExpression"/>
+                        <!-- isExpressionOf -->
+                        <xsd:enumeration value="isManifestationOf"/>
+                        <!-- hasManifestation -->
+                        <xsd:enumeration value="hasManifestation"/>
+                        <!-- isManifestationOf -->
+                        <xsd:enumeration value="isReplacedBy"/>
+                        <!-- replaces -->
+                        <xsd:enumeration value="replaces"/>
+                        <!-- isReplacedBy -->
+                        <xsd:enumeration value="isSameAs"/>
+                        <!-- isSameAs -->
+
+                        <xsd:enumeration value="isIdenticalTo"/>
+                        <!-- isIdenticalTo -->
+                        <xsd:enumeration value="isVariantFormOf"/>
+                        <!-- isOriginalFormOf -->
+                        <xsd:enumeration value="isOriginalFormOf"/>
+                        <!-- isVariantFormOf -->
+
+                        <xsd:enumeration value="isVersionOf"/>
+                        <!-- hasVersion -->
+                        <xsd:enumeration value="hasVersion"/>
+                        <!-- isVersionOf -->
+                        <xsd:enumeration value="isFormatOf"/>
+                        <!-- hasFormat -->
+                        <xsd:enumeration value="hasFormat"/>
+                        <!-- isFormatOf -->
+
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attributeGroup ref="relations_type.atts"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- =========================================================== -->
+
+    <xsd:attributeGroup name="relations_type.atts">
+        <xsd:attribute name="identifier-type" use="required">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="doi"/>
+                    <xsd:enumeration value="issn"/>
+                    <xsd:enumeration value="isbn"/>
+                    <xsd:enumeration value="uri"/>
+                    <xsd:enumeration value="pmid"/>
+                    <xsd:enumeration value="pmcid"/>
+                    <xsd:enumeration value="purl"/>
+                    <xsd:enumeration value="arxiv"/>
+                    <xsd:enumeration value="ark"/>
+                    <xsd:enumeration value="handle"/>
+                    <xsd:enumeration value="uuid"/>
+                    <xsd:enumeration value="ecli"/>
+                    <xsd:enumeration value="accession"/>
+                    <xsd:enumeration value="other"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+
+        <xsd:attribute name="namespace">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:maxLength value="1024"/>
+                    <xsd:minLength value="4"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+
+
+        <xsd:attribute name="provider">
+            <xsd:annotation>
+                <xsd:documentation>An identifier systems may require a namespace that is needed in
+                    addition to the identifer value to provide uniqueness.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:maxLength value="1024"/>
+                    <xsd:minLength value="1"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+    </xsd:attributeGroup>
+
+    <xsd:element name="description">
+        <xsd:annotation>
+            <xsd:documentation>A narrative description of the relationship target
+                item</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType mixed="true">
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:group ref="face_markup"/>
+            </xsd:choice>
+            <xsd:attributeGroup ref="language.atts"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="xrefFaces" mixed="true">
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:group ref="face_markup"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:group name="face_markup">
+        <xsd:annotation>
+            <xsd:documentation>Basic data types for face markup in the target related
+                item</xsd:documentation>
+        </xsd:annotation>
+        <xsd:choice>
+            <xsd:element ref="b"/>
+            <xsd:element ref="i"/>
+            <xsd:element ref="em"/>
+            <xsd:element ref="strong"/>
+            <xsd:element ref="u"/>
+            <xsd:element ref="ovl"/>
+            <xsd:element ref="sup"/>
+            <xsd:element ref="sub"/>
+            <xsd:element ref="scp"/>
+            <xsd:element ref="tt"/>
+            <xsd:element ref="font"/>
+        </xsd:choice>
+    </xsd:group>
+    <xsd:element name="b" type="xrefFaces"/>
+    <xsd:element name="i" type="xrefFaces"/>
+    <xsd:element name="em" type="xrefFaces"/>
+    <xsd:element name="strong" type="xrefFaces"/>
+    <xsd:element name="u" type="xrefFaces"/>
+    <xsd:element name="ovl" type="xrefFaces"/>
+    <xsd:element name="sup" type="xrefFaces"/>
+    <xsd:element name="sub" type="xrefFaces"/>
+    <xsd:element name="scp" type="xrefFaces"/>
+    <xsd:element name="tt" type="xrefFaces"/>
+    <xsd:element name="font" type="xrefFaces"/>
+
+    <xsd:attributeGroup name="language.atts">
+        <xsd:attribute name="language" use="optional">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:maxLength value="1024"/>
+                    <xsd:minLength value="1"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+    </xsd:attributeGroup>
+
+
+</xsd:schema>

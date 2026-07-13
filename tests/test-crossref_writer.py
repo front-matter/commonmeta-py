@@ -51,7 +51,7 @@ def test_write_journal_article():
     ref = msg["reference"][0]
     assert ref["key"] == "bib1"
     assert ref["DOI"] == "10.1038/nature02100"
-    assert ref["article-title"] == "APL regulates vascular tissue identity in Arabidopsis"
+    assert ref["unstructured"] == "APL regulates vascular tissue identity in Arabidopsis"
 
 
 def test_write_posted_content():

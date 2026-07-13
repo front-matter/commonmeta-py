@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="http://www.crossref.org/fundingdata5.4.0.xsd"
-    xmlns="http://www.crossref.org/fundingdata5.4.0.xsd">
+    targetNamespace="http://www.crossref.org/fundingdata5.5.0.xsd"
+    xmlns="http://www.crossref.org/fundingdata5.5.0.xsd"
+	xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    vc:minVersion="1.1">
     
     <!--=========Change History===========
-    10/9/24 (PDF) added ror identifier    
-    5/2/13 (PDF) changed funding_identifier to award_number
-    04/10/24 (PDF) added ror and grant_doi  
+    08/22/25 (PDF) added grant_id    
+    10/9/24 (PDF) added ror identifier, created versioned fundingdata5.4.0.xsd schema    
+    05/2/13 (PDF) changed funding_identifier to award_number
     -->
     
     <xsd:element name="program">
@@ -23,11 +25,12 @@
     <xsd:element name="assertion">
         <xsd:annotation>
             <xsd:documentation>Funding data attributes included in assertion are:
-* fundgroup: used to group funding info for items with multiple funding sources. Required for items with multiple award_number assertions, optional for items with a single award_number
-* funder_identifier: funding agency identifier, must be nested within the funder_name assertion
-* ror: ROR ID of a funder
-* funder_name: name of the funding agency (required)
-* award_number: grant number or other fund identifier
+                * fundgroup: used to group funding metadata for items with multiple funding sources. Required for items with multiple award_number assertions, optional for items with a single award_number
+                * funder_identifier: funding agency identifier
+                * ror: ROR ID of a funder
+                * funder_name: name of the funding agency 
+                * award_number: grant number or other fund identifier
+                * grant_doi: awards or grants registered as grant IDs (DOIs)
             </xsd:documentation>
         </xsd:annotation>
         <xsd:complexType mixed="true">
@@ -50,7 +53,7 @@
                         <xsd:enumeration value="ror"/>
                         <xsd:enumeration value="funder_name"/>
                         <xsd:enumeration value="award_number"/>
-                        <!--<xsd:enumeration value="grant_doi"/>  -->
+                        <xsd:enumeration value="grant_doi"/>
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:attribute>

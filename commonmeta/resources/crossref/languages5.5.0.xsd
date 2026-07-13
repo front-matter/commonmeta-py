@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.crossref.org/schema/5.4.0" version="5.4.0">
+<?xml version="1.1" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.crossref.org/schema/5.5.0"
+    version="5.5.0"
+	xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    vc:minVersion="1.1">
     <xsd:annotation><xsd:documentation>2 and 3 character language codes taken from ISO 639-1 and ISO 639-3</xsd:documentation></xsd:annotation>
     <xsd:attributeGroup name="language.atts">
         <xsd:attribute name="language" use="optional">

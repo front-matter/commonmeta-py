@@ -35,9 +35,10 @@ def test_write_metadata_as_datacite_json():
     ]
     assert len(datacite["relatedIdentifiers"]) == 27
     assert datacite["relatedIdentifiers"][0] == {
-        "relatedIdentifier": "https://doi.org/10.1038/nature02100",
+        "relatedIdentifier": "10.1038/nature02100",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
+        "resourceTypeGeneral": "Other",
     }
     assert datacite["rightsList"] == [
         {
@@ -97,9 +98,10 @@ def test_with_data_citation():
     ]
     assert len(datacite["relatedIdentifiers"]) == 27
     assert datacite["relatedIdentifiers"][0] == {
-        "relatedIdentifier": "https://doi.org/10.1038/nature02100",
+        "relatedIdentifier": "10.1038/nature02100",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
+        "resourceTypeGeneral": "Other",
     }
     assert datacite["rightsList"] == [
         {

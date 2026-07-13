@@ -43,7 +43,7 @@ def test_journal_article():
     assert subject.identifiers == [
         {"identifier": "https://doi.org/10.7554/elife.01567", "identifier_type": "DOI"}
     ]
-    assert subject.provider == "BibTeX"
+    assert subject.provider is None
 
 
 def test_dissertation():
@@ -70,7 +70,7 @@ def test_dissertation():
     }
     assert subject.language == "en"
     assert subject.identifiers is None
-    assert subject.provider == "BibTeX"
+    assert subject.provider is None
 
 
 def test_inline_journal_article():

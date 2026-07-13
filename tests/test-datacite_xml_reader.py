@@ -65,7 +65,11 @@ def test_geo_location_empty():
         {
             "identifier": "http://www.earthchem.org/library/browse/view?id=1185",
             "identifier_type": "URL",
-        }
+        },
+        {
+            "identifier": "https://doi.org/10.1594/ieda/111185",
+            "identifier_type": "DOI",
+        },
     ]
     assert subject.license == {
         "id": "CC-BY-NC-SA-3.0",

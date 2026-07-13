@@ -28,6 +28,7 @@ def test_blog_posting():
             "id": "https://orcid.org/0000-0003-1419-2405",
             "given_name": "Martin",
             "family_name": "Fenner",
+            "asserted_by": "Publisher",
         },
         "roles": ["Author"],
     }
@@ -42,7 +43,7 @@ def test_blog_posting():
         {
             "id": "https://doi.org/10.5438/0012",
             "key": "ref1",
-            "unstructured": "DataCite Metadata Working Group, Starr, J., Smaele, M. de ., Ashton, "
+            "reference": "DataCite Metadata Working Group, Starr, J., Smaele, M. de ., Ashton, "
             "J., Barton, A., Bradford, T., Ciolek-Figiel, A., Dietiker, S., "
             "Elliot, J., Genat, B., Harzenetter, K., Hirschmann, B., Jakobsson, "
             "S., Mailloux, J.-Y., Newbold, E., Nielsen, L. H., Yahia, M., &amp; "
@@ -53,7 +54,7 @@ def test_blog_posting():
         {
             "id": "https://doi.org/10.5438/55e5-t5c0",
             "key": "ref2",
-            "unstructured": "Fenner, M. (2016, December 15). <i>Cool DOI's</i>.",
+            "reference": "Fenner, M. (2016, December 15). <i>Cool DOI's</i>.",
             "asserted_by": "Publisher",
         },
     ]
@@ -302,6 +303,7 @@ def test_with_upstream_blog_post():
             "id": "https://orcid.org/0000-0002-7378-2408",
             "given_name": "John",
             "family_name": "Chodacki",
+            "asserted_by": "Publisher",
         },
         "roles": ["Author"],
     }
@@ -392,7 +394,7 @@ def test_yet_another_ghost_post():
     assert subject.description.startswith(
         "I am by no means an expert on the future of academic publishing."
     )
-    assert subject.subjects == [{"subject": "essay"}]
+    assert subject.subjects == [{"subject": "Essay"}]
     assert subject.language == "en"
     assert subject.version is None
     assert subject.geo_locations is None
@@ -437,7 +439,6 @@ def test_arxiv():
     )
     assert subject.subjects == [
         {
-            "language": "en",
             "subject": "Digital Libraries (cs.DL)",
         },
         {
@@ -447,11 +448,7 @@ def test_arxiv():
     assert subject.language is None
     assert subject.version == "2"
     assert subject.identifiers == [
-        {"identifier": "1902.02534", "identifier_type": "Other"},
-        {
-            "identifier": "https://doi.org/10.48550/arxiv.1902.02534",
-            "identifier_type": "DOI",
-        },
+        {"identifier": "1902.02534", "identifier_type": "arXiv"},
     ]
     assert subject.provider == "DataCite"
 

@@ -32,7 +32,7 @@ def test_blog_posting():
     assert subject.description.startswith("Eating your own dog food")
     assert subject.license is None
     assert subject.date_published == "2016-12-20"
-    assert subject.provider == "DataCite"
+    assert subject.provider is None
 
     commonmeta = json.loads(subject.write())
     assert json_schema_errors(commonmeta, "commonmeta") is None
@@ -72,7 +72,7 @@ def test_no_categories():
     assert subject.title == "Eating your own Dog Food"
     assert subject.description.startswith("Eating your own dog food")
     assert subject.date_published == "2016-12-20"
-    assert subject.provider == "DataCite"
+    assert subject.provider is None
 
 
 def test_no_author():
@@ -87,4 +87,4 @@ def test_no_author():
     assert subject.title == "Eating your own Dog Food"
     assert subject.description.startswith("Eating your own dog food")
     assert subject.date_published == "2016-12-20"
-    assert subject.provider == "DataCite"
+    assert subject.provider is None

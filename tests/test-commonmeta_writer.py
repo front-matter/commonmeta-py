@@ -31,7 +31,7 @@ def test_journal_article():
     assert commonmeta["references"][0] == {
         "key": "bib1",
         "id": "https://doi.org/10.1038/nature02100",
-        "title": "APL regulates vascular tissue identity in Arabidopsis",
+        "reference": "APL regulates vascular tissue identity in Arabidopsis",
         "asserted_by": "Publisher",
     }
     assert commonmeta["license"] == {
@@ -61,7 +61,7 @@ def test_journal_article_crossref_xml():
     assert commonmeta["references"][0] == {
         "key": "bib1",
         "id": "https://doi.org/10.1038/nature02100",
-        "title": "APL regulates vascular tissue identity in Arabidopsis",
+        "reference": "APL regulates vascular tissue identity in Arabidopsis",
     }
     assert commonmeta["license"] == {
         "id": "CC-BY-3.0",

@@ -96,11 +96,13 @@ def ris_meta(data: str | None) -> dict:
         key = values[0].strip()
         if len(values) == 1:
             continue
+        value = values[1].strip()
         if meta.get(key, None) is None:
-            meta[key] = values[1].strip()
+            meta[key] = value
         elif isinstance(meta[key], str):
-            meta[key] = [meta[key]]
+            # first repeat: keep both the existing and the current value
+            meta[key] = [meta[key], value]
         elif isinstance(meta[key], list):
-            meta[key].append(values[1].strip())
+            meta[key].append(value)
 
     return meta

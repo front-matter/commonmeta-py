@@ -33,15 +33,13 @@ def test_journal_article():
     )
     assert len(schema_org.get("author")) == 5
     assert schema_org.get("author")[0] == {
+        "@type": "Person",
         "givenName": "Martial",
         "familyName": "Sankar",
-        "name": "Martial Sankar",
-        "affiliations": [
-            {
-                "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
-            }
-        ],
-        "@type": "Person",
+        "affiliation": {
+            "@type": "Organization",
+            "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland",
+        },
     }
     assert schema_org.get("description").startswith(
         "Among various advantages, their small size makes model"
@@ -53,13 +51,13 @@ def test_journal_article():
     assert schema_org.get("datePublished") == "2014-02-11"
     assert schema_org.get("url") == "https://elifesciences.org/articles/01567"
     assert schema_org.get("periodical") == {
+        "@type": "Periodical",
         "issn": "2050-084X",
-        "@type": "Journal",
         "name": "eLife",
     }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
-    assert schema_org.get("inLanguage") == "English"
+    assert schema_org.get("inLanguage") == "en"
     assert (
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/3.0/legalcode"
@@ -88,12 +86,11 @@ def test_inveniordm_software():
     assert schema_org.get("name") == "commonmeta-ruby"
     assert len(schema_org.get("author")) == 1
     assert schema_org.get("author")[0] == {
-        "id": "https://orcid.org/0000-0003-1419-2405",
+        "@type": "Person",
+        "@id": "https://orcid.org/0000-0003-1419-2405",
         "givenName": "Martin",
         "familyName": "Fenner",
-        "affiliations": [{"name": "Front Matter"}],
-        "@type": "Person",
-        "name": "Martin Fenner",
+        "affiliation": {"@type": "Organization", "name": "Front Matter"},
     }
     assert schema_org.get("description").startswith(
         "Ruby gem and command-line utility for conversion"
@@ -108,7 +105,7 @@ def test_inveniordm_software():
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") is None
-    assert schema_org.get("license") == "https://opensource.org/licenses/MIT"
+    assert schema_org.get("license") == "https://opensource.org/license/mit/"
     assert len(schema_org.get("encoding")) == 1
     assert schema_org.get("encoding")[0] == {
         "@type": "MediaObject",
@@ -143,11 +140,10 @@ def test_inveniordm_presentation():
     )
     assert len(schema_org.get("author")) == 1
     assert schema_org.get("author")[0] == {
-        "id": "https://orcid.org/0000-0002-8960-9642",
+        "@type": "Person",
+        "@id": "https://orcid.org/0000-0002-8960-9642",
         "givenName": "Heidi",
         "familyName": "Seibold",
-        "@type": "Person",
-        "name": "Heidi Seibold",
     }
     assert schema_org.get("description").startswith(
         "CERN/NASA “Accelerating the Adoption of Open Science”"
@@ -192,15 +188,13 @@ def test_inveniordm_publication():
     assert schema_org.get("name") == "The Origins of SARS-CoV-2: A Critical Review"
     assert len(schema_org.get("author")) == 21
     assert schema_org.get("author")[0] == {
+        "@type": "Person",
         "givenName": "Edward C",
         "familyName": "Holmes",
-        "affiliations": [
-            {
-                "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia"
-            }
-        ],
-        "@type": "Person",
-        "name": "Edward C Holmes",
+        "affiliation": {
+            "@type": "Organization",
+            "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia",
+        },
     }
     assert schema_org.get("description").startswith(
         "The Origins of SARS-CoV-2: A Critical Review Holmes et al."
@@ -245,12 +239,14 @@ def test_inveniordm_report():
     assert schema_org.get("name") == "An open letter to Mehra et al and The Lancet"
     assert len(schema_org.get("author")) == 1
     assert schema_org.get("author")[0] == {
-        "id": "https://orcid.org/0000-0001-5524-0325",
+        "@type": "Person",
+        "@id": "https://orcid.org/0000-0001-5524-0325",
         "givenName": "James Watson on the behalf of 201",
         "familyName": "signatories",
-        "affiliations": [{"name": "Mahidol Oxford Tropical Medicine Research Unit"}],
-        "@type": "Person",
-        "name": "James Watson on the behalf of 201 signatories",
+        "affiliation": {
+            "@type": "Organization",
+            "name": "Mahidol Oxford Tropical Medicine Research Unit",
+        },
     }
     assert schema_org.get("description").startswith(
         "Open letter to MR Mehra, SS Desai, F Ruschitzka, and AN Patel"
@@ -264,7 +260,7 @@ def test_inveniordm_report():
     }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
-    assert schema_org.get("inLanguage") == "English"
+    assert schema_org.get("inLanguage") == "en"
     assert (
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/4.0/legalcode"
@@ -298,11 +294,13 @@ def test_inveniordm_preprint():
     )
     assert len(schema_org.get("author")) == 9
     assert schema_org.get("author")[0] == {
+        "@type": "Person",
         "givenName": "BS",
         "familyName": "Nicolas Hulscher",
-        "affiliations": [{"name": "University of Michigan School of Public Health"}],
-        "@type": "Person",
-        "name": "BS Nicolas Hulscher",
+        "affiliation": {
+            "@type": "Organization",
+            "name": "University of Michigan School of Public Health",
+        },
     }
     assert schema_org.get("description").startswith(
         "<strong>ABSTRACT</strong> <strong>Background:</strong>"
@@ -316,7 +314,7 @@ def test_inveniordm_preprint():
     }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
-    assert schema_org.get("inLanguage") == "English"
+    assert schema_org.get("inLanguage") == "en"
     assert (
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/4.0/legalcode"
@@ -350,12 +348,11 @@ def test_inveniordm_dataset():
     )
     assert len(schema_org.get("author")) == 9
     assert schema_org.get("author")[0] == {
-        "id": "https://orcid.org/0000-0001-8499-824X",
+        "@type": "Person",
+        "@id": "https://orcid.org/0000-0001-8499-824X",
         "givenName": "Juan M.",
         "familyName": "Banda",
-        "affiliations": [{"name": "Georgia State University"}],
-        "@type": "Person",
-        "name": "Juan M. Banda",
+        "affiliation": {"@type": "Organization", "name": "Georgia State University"},
     }
     assert schema_org.get("description").startswith(
         "<em><strong>Version 162 of the dataset."
@@ -366,7 +363,7 @@ def test_inveniordm_dataset():
     assert schema_org.get("inDataCatalog") is None
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
-    assert schema_org.get("inLanguage") == "English"
+    assert schema_org.get("inLanguage") == "en"
     assert schema_org.get("license") is None
     assert len(schema_org.get("distribution")) == 24
     assert schema_org.get("distribution")[0] == {
@@ -399,14 +396,12 @@ def test_article_with_pages():
         "@type": "Person",
         "familyName": "Twittenhoff",
         "givenName": "Christian",
-        "name": "Christian Twittenhoff",
     }
     assert schema_org.get("editor") == [
         {
+            "@type": "Person",
             "givenName": "Guy",
             "familyName": "Tran Van Nhieu",
-            "@type": "Person",
-            "name": "Guy Tran Van Nhieu",
         }
     ]
     assert schema_org.get("description") is None
@@ -418,12 +413,12 @@ def test_article_with_pages():
     assert schema_org.get("url") == "https://dx.plos.org/10.1371/journal.ppat.1008184"
     assert schema_org.get("periodical") == {
         "issn": "1553-7374",
-        "@type": "Journal",
+        "@type": "Periodical",
         "name": "PLOS Pathogens",
     }
     assert schema_org.get("pageStart") == "e1008184"
     assert schema_org.get("pageEnd") is None
-    assert schema_org.get("inLanguage") == "English"
+    assert schema_org.get("inLanguage") == "en"
     assert (
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/4.0/legalcode"

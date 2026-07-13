@@ -323,7 +323,7 @@ def parse_xml(string: str | bytes | None, **kwargs) -> dict | list | None:
     if dialect == "crossref":
         # remove namespaces from xml
         namespaces = {
-            "http://www.crossref.org/schema/5.4.0": None,
+            "http://www.crossref.org/schema/5.5.0": None,
             "http://www.crossref.org/qrschema/3.0": None,
             "http://www.crossref.org/xschema/1.0": None,
             "http://www.crossref.org/xschema/1.1": None,
@@ -456,11 +456,11 @@ def unparse_xml(input: dict | None, **kwargs) -> bytes:
 
         head = kwargs.get("head", {}) or {}
         doi_batch = {
-            "@xmlns": "http://www.crossref.org/schema/5.4.0",
+            "@xmlns": "http://www.crossref.org/schema/5.5.0",
             "@xmlns:ai": "http://www.crossref.org/AccessIndicators.xsd",
             "@xmlns:rel": "http://www.crossref.org/relations.xsd",
             "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
-            "@version": "5.4.0",
+            "@version": "5.5.0",
             "head": get_crossref_xml_head(head),
             "body": input,
         }
@@ -543,11 +543,11 @@ def unparse_xml_list(input: list | None, **kwargs) -> bytes:
                 body_content[type_key] = items  # Use array when multiple items
         head = kwargs.get("head", {}) or {}
         doi_batch = {
-            "@xmlns": "http://www.crossref.org/schema/5.4.0",
+            "@xmlns": "http://www.crossref.org/schema/5.5.0",
             "@xmlns:ai": "http://www.crossref.org/AccessIndicators.xsd",
             "@xmlns:rel": "http://www.crossref.org/relations.xsd",
             "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
-            "@version": "5.4.0",
+            "@version": "5.5.0",
             "head": get_crossref_xml_head(head),
             "body": body_content,
         }

@@ -100,6 +100,7 @@ def write_bibtex_item(metadata: Metadata) -> dict:
     )
     series = container.get("series", None)
     url = metadata.url
+    volume = container.get("volume", None)
     year = date_published[:4] if date_published else None
 
     return compact(
@@ -125,6 +126,7 @@ def write_bibtex_item(metadata: Metadata) -> dict:
             "title": title,
             "url": url,
             "urldate": date_published,
+            "volume": volume,
             "year": year,
         }
     )

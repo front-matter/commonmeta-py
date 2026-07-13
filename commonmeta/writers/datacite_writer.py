@@ -120,7 +120,9 @@ def write_datacite(metadata: Metadata) -> dict | None:
             "ris": CM_TO_RIS_TRANSLATIONS.get(metadata.type, "GEN"),
         }
     )
-    publication_year = metadata.date_published[:4] if metadata.date_published else None
+    publication_year = None
+    if metadata.date_published and metadata.date_published[:4].isdigit():
+        publication_year = int(metadata.date_published[:4])
 
     def to_datacite_date(date_item: tuple[str, str]) -> dict:
         """Convert date tuple (key, value) to datacite date"""
@@ -201,6 +203,7 @@ def write_datacite(metadata: Metadata) -> dict | None:
             "titles": titles,
             "publisher": metadata.publisher,
             "publicationYear": publication_year,
+            "container": to_datacite_container(metadata.container),
             "subjects": subjects,
             "contributors": contributors,
             "dates": dates,
@@ -219,6 +222,45 @@ def write_datacite(metadata: Metadata) -> dict | None:
             "schemaVersion": "http://datacite.org/schema/kernel-4",
         }
     )
+
+
+def to_datacite_container(container: dict | None) -> dict | None:
+    """Convert a v1.0 container to a DataCite container."""
+    if not container:
+        return None
+    return compact(
+        {
+            "type": container.get("type", None),
+            "identifier": container.get("identifier", None),
+            "identifierType": container.get("identifier_type", None),
+            "title": container.get("title", None),
+            "volume": container.get("volume", None),
+            "issue": container.get("issue", None),
+            "firstPage": container.get("first_page", None),
+            "lastPage": container.get("last_page", None),
+        }
+    )
+
+
+def to_datacite_affiliations(affiliations) -> list | None:
+    """Convert v1.0 affiliations to DataCite affiliation objects, promoting a
+    ROR identifier to affiliationIdentifier/affiliationIdentifierScheme."""
+    out = []
+    for a in wrap(affiliations):
+        if isinstance(a, str):
+            if a:
+                out.append({"name": a})
+            continue
+        if not isinstance(a, dict):
+            continue
+        entry = {"name": a.get("name", None)}
+        identifier = a.get("identifier", None)
+        if identifier and a.get("identifier_type", None) == "ROR":
+            entry["affiliationIdentifier"] = identifier
+            entry["affiliationIdentifierScheme"] = "ROR"
+            entry["schemeUri"] = "https://ror.org"
+        out.append(compact(entry))
+    return out or None
 
 
 def to_datacite_name_identifiers(_id: str | None) -> list | None:
@@ -257,7 +299,7 @@ def to_datacite_creator(creator: dict) -> dict:
             "familyName": family_name,
             "nameType": _type + "al" if _type else None,
             "nameIdentifiers": to_datacite_name_identifiers(_id),
-            "affiliation": person.get("affiliations", None),
+            "affiliation": to_datacite_affiliations(person.get("affiliations", None)),
         }
     )
 
@@ -288,7 +330,7 @@ def to_datacite_contributor(contributor: dict) -> dict:
             "familyName": family_name,
             "nameType": _type + "al" if _type else None,
             "nameIdentifiers": to_datacite_name_identifiers(_id),
-            "affiliation": person.get("affiliations", None),
+            "affiliation": to_datacite_affiliations(person.get("affiliations", None)),
             "contributorType": _role,
         }
     )
@@ -325,13 +367,17 @@ def to_datacite_titles(titles: list) -> list:
 
 def to_datacite_related_identifier(reference: dict) -> dict:
     """Convert reference to datacite related_identifier"""
-    _id = normalize_doi(reference.get("id", None))
+    doi = doi_from_url(reference.get("id", None))
     url = reference.get("id", None)
     return compact(
         {
-            "relatedIdentifier": _id if _id else url,
-            "relatedIdentifierType": "DOI" if _id else "URL",
+            # DataCite uses the bare DOI (not the doi.org URL) here.
+            "relatedIdentifier": doi if doi else url,
+            "relatedIdentifierType": "DOI" if doi else "URL",
             "relationType": "References",
+            "resourceTypeGeneral": CM_TO_DC_TRANSLATIONS.get(
+                reference.get("type", None), "Other"
+            ),
         }
     )
 

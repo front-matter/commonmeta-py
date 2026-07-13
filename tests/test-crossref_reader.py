@@ -61,7 +61,7 @@ def test_doi_with_data_citation():
     assert subject.references[0] == {
         "key": "bib1",
         "id": "https://doi.org/10.1038/nature02100",
-        "title": "APL regulates vascular tissue identity in Arabidopsis",
+        "reference": "APL regulates vascular tissue identity in Arabidopsis",
         "publication_year": "2003",
         "volume": "426",
         "first_page": "181",
@@ -145,7 +145,7 @@ def test_journal_article():
     assert subject.references[-1] == {
         "key": "ref73",
         "id": "https://doi.org/10.1056/nejm199109123251104",
-        "title": "Efficacy of statewide neonatal screening for cystic fibrosis by assay of trypsinogen concentrations.",
+        "reference": "Efficacy of statewide neonatal screening for cystic fibrosis by assay of trypsinogen concentrations.",
         "publication_year": "1991",
         "volume": "325",
         "first_page": "769",
@@ -203,7 +203,7 @@ def test_journal_article_with_funding():
     assert subject.references[-1] == {
         "key": "ref70",
         "id": "https://doi.org/10.17660/actahortic.2004.632.41",
-        "title": "Effects of polyamines and salicylic acid on postharvest storage of “Ponkan” mandarin",
+        "reference": "Effects of polyamines and salicylic acid on postharvest storage of “Ponkan” mandarin",
         "publication_year": "2004",
         "volume": "632",
         "first_page": "317",
@@ -252,7 +252,7 @@ def test_journal_article_original_language():
     assert subject.references[-1] == {
         "key": "7",
         "id": "https://doi.org/10.1161/01.cir.95.6.1686",
-        "unstructured": "Cheitlin MD et al. Circulation 95 : 1686-1744, 1997",
+        "reference": "Cheitlin MD et al. Circulation 95 : 1686-1744, 1997",
         "asserted_by": "Crossref",
     }
     assert subject.funding_references is None
@@ -303,7 +303,7 @@ def test_journal_article_with_rdf_for_container():
     assert len(subject.references) == 111
     assert subject.references[-1] == {
         "key": "bibr111",
-        "title": "Ostracod assemblages of the freshened part of Amursky Bay and lower reaches of Razdolnaya River (Sea of Japan)",
+        "reference": "Ostracod assemblages of the freshened part of Amursky Bay and lower reaches of Razdolnaya River (Sea of Japan)",
         "publication_year": "2008",
         "volume": "Vol. 1",
         "first_page": "156",
@@ -348,7 +348,7 @@ def test_book_chapter_with_rdf_for_container():
     assert len(subject.references) == 11
     assert subject.references[-1] == {
         "key": "49_CR11",
-        "unstructured": "Griesser, A., Roeck, D.S., Neubeck, A., Van Gool, L.: Gpu-based foreground-background segmentation using an extended colinearity criterion. In: Proc. of Vison, Modeling, and Visualization (VMV), pp. 319–326 (2005)",
+        "reference": "Griesser, A., Roeck, D.S., Neubeck, A., Van Gool, L.: Gpu-based foreground-background segmentation using an extended colinearity criterion. In: Proc. of Vison, Modeling, and Visualization (VMV), pp. 319–326 (2005)",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -384,6 +384,7 @@ def test_posted_content():
             "id": "https://orcid.org/0000-0003-1419-2405",
             "given_name": "Martin",
             "family_name": "Fenner",
+            "asserted_by": "Publisher",
         },
         "roles": ["Author"],
     }
@@ -399,7 +400,7 @@ def test_posted_content():
     assert len(subject.references) == 26
     assert subject.references[0] == {
         "key": "2024080313022960000_097196v2.1",
-        "title": "An introduction to the joint principles for data citation",
+        "reference": "An introduction to the joint principles for data citation",
         "publication_year": "2015",
         "volume": "41",
         "issue": "3",
@@ -440,6 +441,7 @@ def test_blog_post():
             "id": "https://orcid.org/0000-0003-1419-2405",
             "given_name": "Martin",
             "family_name": "Fenner",
+            "asserted_by": "Publisher",
         },
         "roles": ["Author"],
     }
@@ -454,7 +456,7 @@ def test_blog_post():
     assert subject.references[0] == {
         "id": "https://doi.org/10.1038/d41586-023-02554-0",
         "key": "ref1",
-        "unstructured": "Vidal Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty. <i>Nature</i>, <i>620</i>(7974), 482–484.",
+        "reference": "Vidal Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty. <i>Nature</i>, <i>620</i>(7974), 482–484.",
         "asserted_by": "Publisher",
     }
     assert subject.relations == [
@@ -500,15 +502,11 @@ def test_peer_review():
             "affiliations": [
                 {"name": "Center for Computational Mathematics, Flatiron Institute"}
             ],
+            "asserted_by": "Contributor",
         },
         "roles": ["Author"],
     }
-    assert subject.identifiers == [
-        {
-            "identifier": "https://doi.org/10.7554/elife.55167.sa2",
-            "identifier_type": "DOI",
-        }
-    ]
+    assert subject.identifiers is None
     assert subject.license == {
         "id": "CC-BY-4.0",
         "title": "Creative Commons Attribution 4.0 International",
@@ -551,6 +549,7 @@ def test_dissertation():
             "id": "https://orcid.org/0000-0003-3086-4443",
             "given_name": "Patricia Maree",
             "family_name": "Collingwood",
+            "asserted_by": "Contributor",
         },
         "roles": ["Author"],
     }
@@ -599,7 +598,7 @@ def test_doi_with_sici():
     assert len(subject.references) == 39
     assert subject.references[-1] == {
         "key": "i0012-9658-87-11-2832-ydenberg1",
-        "unstructured": "R. C. Ydenberg, 1998 .Behavioral decisions about foraging and predator avoidance .Pages343 -378inR. Dukas, editorCognitive ecology: the evolutionary ecology of information processing and decision making University of Chicago Press, Chicago, Illinois, USA.",
+        "reference": "R. C. Ydenberg, 1998 .Behavioral decisions about foraging and predator avoidance .Pages343 -378inR. Dukas, editorCognitive ecology: the evolutionary ecology of information processing and decision making University of Chicago Press, Chicago, Illinois, USA.",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -647,6 +646,7 @@ def test_doi_with_orcid():
                     "name": "Department of Psychiatry and Behavioral Sciences, Stanford University School of Medicine, Stanford, CA 94304, USA"
                 },
             ],
+            "asserted_by": "Contributor",
         },
         "roles": ["Author"],
     }
@@ -715,7 +715,7 @@ def test_date_in_future():
     assert subject.references[-1] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib94",
         "id": "https://doi.org/10.1111/hiv.12134",
-        "title": "Immune activation despite suppressive highly active antiretroviral therapy is associated with higher risk of viral blips in HIV-1-infected individuals",
+        "reference": "Immune activation despite suppressive highly active antiretroviral therapy is associated with higher risk of viral blips in HIV-1-infected individuals",
         "publication_year": "2014",
         "volume": "15",
         "first_page": "449",
@@ -780,7 +780,7 @@ def test_vor_with_url():
         "publication_year": "2003",
         "volume": "80",
         "first_page": "545",
-        "unstructured": "Wilkens H, Strecker U . (2003). Convergent evolution of the "
+        "reference": "Wilkens H, Strecker U . (2003). Convergent evolution of the "
         "cavefish Astyanax (Characidae: Teleostei): Genetic evidence "
         "from reduced eye-size and pigmentation. Biol J Linn Soc 80: "
         "545–554.",
@@ -883,6 +883,7 @@ def test_dataset_usda():
             "given_name": "Christine A.",
             "family_name": "Ribic",
             "affiliations": [{"name": "U.S. Geological Survey"}],
+            "asserted_by": "Contributor",
         },
         "roles": ["Author"],
     }
@@ -947,7 +948,7 @@ def test_book_chapter():
         "volume": "41",
         "issue": "10",
         "first_page": "1301",
-        "unstructured": "Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation between "
+        "reference": "Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation between "
         "magnetic resonance imaging and clinical impairment in "
         "patients with adhesive capsulitis. Skeletal Radiol. "
         "2012;41(10):1301–8.",
@@ -990,7 +991,7 @@ def test_another_book_chapter():
     assert len(subject.references) == 44
     assert subject.references[0] == {
         "key": "1_CR1",
-        "unstructured": "Associated Press First heat, now fog dogging Olympic event planning in Sochi (2014) The National [Internet]. 2014 Feb 17; Available from: https://www.thenational.ae/sport/first-heat-now-fog-dogging-olympic-event-planning-in-sochi-1.280874",
+        "reference": "Associated Press First heat, now fog dogging Olympic event planning in Sochi (2014) The National [Internet]. 2014 Feb 17; Available from: https://www.thenational.ae/sport/first-heat-now-fog-dogging-olympic-event-planning-in-sochi-1.280874",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1076,6 +1077,7 @@ def test_missing_contributor():
             "given_name": "Alexander",
             "family_name": "Kohls",
             "affiliations": [{"name": "CERN, CH-1211 Geneva 23, Switzerland"}],
+            "asserted_by": "Publisher",
         },
         "roles": ["Author"],
     }
@@ -1089,7 +1091,7 @@ def test_missing_contributor():
     assert len(subject.references) == 23
     assert subject.references[-1] == {
         "key": "ref_23",
-        "unstructured": "(2018, February 20). SCOAP3 News: APS Joins SCOAP3. Available online: http://www.webcitation.org/6xNFQb5iD.",
+        "reference": "(2018, February 20). SCOAP3 News: APS Joins SCOAP3. Available online: http://www.webcitation.org/6xNFQb5iD.",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1131,6 +1133,7 @@ def test_missing_contributor_name():
             "id": "https://orcid.org/0000-0001-5777-3141",
             "given_name": "Peter",
             "family_name": "Wilson",
+            "asserted_by": "Contributor",
         },
         "roles": ["Author"],
     }
@@ -1191,7 +1194,7 @@ def test_book():
     assert len(subject.references) == 273
     assert subject.references[0] == {
         "key": "9781108348843#EMT-rl-1_BIBe-r-273",
-        "title": "Lu Jia de lishi yishi ji qi wenhua yiyi",
+        "reference": "Lu Jia de lishi yishi ji qi wenhua yiyi",
         "publication_year": "1997",
         "volume": "5",
         "first_page": "67",
@@ -1316,7 +1319,7 @@ def test_multipe_titles():
         "publication_year": "1990",
         "volume": "45",
         "first_page": "177",
-        "unstructured": "Wandschneider G, Hellbom B, Pummer K, Primus G (1990) Successful replantation of a totally amputated penis by using microvascular techniques. Urol Int 45: 177–180",
+        "reference": "Wandschneider G, Hellbom B, Pummer K, Primus G (1990) Successful replantation of a totally amputated penis by using microvascular techniques. Urol Int 45: 177–180",
         "asserted_by": "Crossref",
     }
     assert subject.funding_references is None
@@ -1410,12 +1413,12 @@ def test_get_reference():
     assert {
         "key": "978-1-4666-1891-6.ch004.-31",
         "id": "https://doi.org/10.1109/iccv.2007.4408927",
-        "unstructured": "Sinop, A. K., & Grady, L. (2007). A seeded image segmentation framework unifying graph cuts and random walker which yields a new algorithm. Proceedings of the 2007 International Conference on Computer Vision, (pp. 1-8).",
+        "reference": "Sinop, A. K., & Grady, L. (2007). A seeded image segmentation framework unifying graph cuts and random walker which yields a new algorithm. Proceedings of the 2007 International Conference on Computer Vision, (pp. 1-8).",
         "asserted_by": "Crossref",
     } == get_reference(doi_metadata)
     assert {
         "key": "978-1-4666-1891-6.ch004.-14",
-        "title": "Algorithms for partitioning graphs and computer logic based on eigenvectors of connection matrices.",
+        "reference": "Algorithms for partitioning graphs and computer logic based on eigenvectors of connection matrices.",
         "publication_year": "1972",
         "volume": "15",
         "first_page": "938",

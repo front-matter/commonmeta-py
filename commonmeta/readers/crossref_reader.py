@@ -111,15 +111,8 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
         or get_date_from_date_parts(meta.get("issued", None))
         or dig(meta, "created.date-time")
     )
-    identifiers = []
-    identifiers.append(
-        compact(
-            {
-                "identifier": _id,
-                "identifier_type": "DOI",
-            }
-        )
-    )
+    # The DOI is the primary id; it is not duplicated into identifiers.
+    identifiers: list = []
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))
@@ -165,7 +158,7 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
             "files": presence(files),
             "funding_references": presence(funding_references),
             "geo_locations": None,
-            "identifiers": identifiers,
+            "identifiers": presence(identifiers),
             "language": meta.get("language", None),
             "license": license_,
             "provider": "Crossref",
@@ -260,14 +253,16 @@ def get_reference(reference: dict | None) -> dict | None:
     metadata = {
         "key": reference.get("key", None),
         "id": normalize_doi(doi) if doi else None,
-        "title": reference.get("article-title", None),
+        # the formatted reference string prefers the unstructured citation,
+        # then falls back to the structured article title.
+        "reference": reference.get("unstructured", None)
+        or reference.get("article-title", None),
         "publisher": reference.get("publisher", None),
         "publication_year": reference.get("year", None),
         "volume": reference.get("volume", None),
         "issue": reference.get("issue", None),
         "first_page": reference.get("first-page", None),
         "last_page": reference.get("last-page", None),
-        "unstructured": reference.get("unstructured", None),
         "asserted_by": asserted_by_raw.capitalize() if asserted_by_raw else None,
     }
     return compact(metadata)
@@ -358,11 +353,15 @@ def get_issn(meta: dict) -> str | None:
         )
         or {}
     )
-    return (
+    normalized = (
         normalize_issn(issn.get("value", None) or issn.get("id", None))
         if issn
         else None
     )
+    # fall back to the plain ISSN array when no typed ISSN is present
+    if normalized is None:
+        normalized = normalize_issn(first(wrap(meta.get("ISSN", None))))
+    return normalized
 
 
 def get_container(meta: dict, issn: str | None) -> dict:
@@ -396,7 +395,7 @@ def get_container(meta: dict, issn: str | None) -> dict:
         or dig(meta, "institution.0.name")
     )
     volume = meta.get("volume", None)
-    issue = dig(meta, "journal-issue.issue")
+    issue = dig(meta, "journal-issue.issue") or meta.get("issue", None)
     page = meta.get("page", None)
     if page is not None:
         pages = page.split("-")

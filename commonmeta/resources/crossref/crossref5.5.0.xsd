@@ -1,37 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns="http://www.crossref.org/schema/5.4.0"
+<?xml version="1.1" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.crossref.org/schema/5.5.0"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://www.crossref.org/schema/5.4.0"
+	targetNamespace="http://www.crossref.org/schema/5.5.0"
 	xmlns:fr="http://www.crossref.org/fundref.xsd"
-	xmlns:fd="http://www.crossref.org/fundingdata5.4.0.xsd"
+	xmlns:fd="http://www.crossref.org/fundingdata5.5.0.xsd"
 	xmlns:ct="http://www.crossref.org/clinicaltrials.xsd"
 	xmlns:ai="http://www.crossref.org/AccessIndicators.xsd"
 	xmlns:rel="http://www.crossref.org/relations.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-	xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1">
+	xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1"
+	xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    vc:minVersion="1.1">
 
 	<!--*************************************************************
-	Crossref Metadata Input Schema v. 5.4.0
+	Crossref Metadata Input Schema v. 5.5.0 
 	*************************************************************
-
+	
 This is the latest iteration of the Crossref Metadata Input Schema, used to register metadata records with Crossref. This schema was originally developed for Crossref by Inera (http://www.inera.com) and is currently maintained by Crossref staff.
 
 As of version 4.5.0 all changes are noted in the release notes for the schema repository in GitLab:  https://gitlab.com/crossref/schema/-/releases
-
+	
 Prior updates are noted as comments within previous schema versions.  -->
 
 	<!-- include common schema -->
 
-	<xsd:include schemaLocation="common5.4.0.xsd"/>
+	<xsd:include schemaLocation="common5.5.0.xsd"/>
 
 	<!-- imported schema -->
-	<xsd:import namespace="http://www.ncbi.nlm.nih.gov/JATS1" schemaLocation="JATS-journalpublishing1-3d2-mathml3.xsd"/>
-	<xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2009/01/xml.xsd"/>
-	<xsd:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation="http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd"/>
+	<xsd:import namespace="http://www.ncbi.nlm.nih.gov/JATS1"
+		schemaLocation="JATS-journalpublishing1-3d2-mathml3.xsd"/>
+	<xsd:import namespace="http://www.w3.org/XML/1998/namespace"
+		schemaLocation="http://www.w3.org/2009/01/xml.xsd"/>
+	<xsd:import namespace="http://www.w3.org/1998/Math/MathML"
+		schemaLocation="http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd"/>
 	<xsd:import namespace="http://www.crossref.org/fundref.xsd" schemaLocation="fundref.xsd"/>
-	<xsd:import namespace="http://www.crossref.org/fundingdata5.4.0.xsd" schemaLocation="fundingdata5.4.0.xsd"/>
-	<xsd:import namespace="http://www.crossref.org/clinicaltrials.xsd" schemaLocation="clinicaltrials.xsd"/>
-	<xsd:import namespace="http://www.crossref.org/AccessIndicators.xsd" schemaLocation="AccessIndicators.xsd"/>
+	<xsd:import namespace="http://www.crossref.org/fundingdata5.5.0.xsd"
+		schemaLocation="fundingdata5.5.0.xsd"/>
+	<xsd:import namespace="http://www.crossref.org/clinicaltrials.xsd"
+		schemaLocation="clinicaltrials.xsd"/>
+	<xsd:import namespace="http://www.crossref.org/AccessIndicators.xsd"
+		schemaLocation="AccessIndicators.xsd"/>
 	<xsd:import namespace="http://www.crossref.org/relations.xsd" schemaLocation="relations.xsd"/>
+	<xsd:import namespace="http://www.crossref.org/clinicaltrials.xsd"
+		schemaLocation="clinicaltrials.xsd"/>
 
 	<!-- *** Head elements (used when processing submission XML) -->
 	<xsd:element name="doi_batch">
@@ -43,7 +53,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 				<xsd:element ref="head"/>
 				<xsd:element ref="body"/>
 			</xsd:sequence>
-			<xsd:attribute name="version" type="xsd:string" fixed="5.4.0"/>
+			<xsd:attribute name="version" type="xsd:string" fixed="5.5.0"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="head">
@@ -126,7 +136,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 
 	<xsd:element name="abbrev_title">
 		<xsd:annotation>
-			<xsd:documentation> Common abbreviation or abbreviations used when citing a journal. It is recommended that periods be included after abbreviated words within the title.
+			<xsd:documentation> Common abbreviation or abbreviations used when citing a journal. It is recommended that periods be included after abbreviated words within the title. 
 			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleType>
@@ -320,9 +330,9 @@ Prior updates are noted as comments within previous schema versions.  -->
 	</xsd:simpleType>
 	<xsd:element name="conference_date">
 		<xsd:annotation>
-			<xsd:documentation>The start and end dates of a conference event. conference_date may be used in three ways:
-				1. If publishers that do not have parsed date values, provide just text with the conference dates. The date text should be taken from the proceedings title page.
-				2. If publishers have parsed date values, provide them in the attributes.
+			<xsd:documentation>The start and end dates of a conference event. conference_date may be used in three ways: 
+				1. If publishers that do not have parsed date values, provide just text with the conference dates. The date text should be taken from the proceedings title page. 
+				2. If publishers have parsed date values, provide them in the attributes. 
 				3. If both parsed date values and the date text are available, both should be provided. This is the preferred tagging for conference_date. For example:
 				<conference_date start_month="01" start_year="1997" start_day="15" end_year="1997" end_month="01" end_day="17">Jan. 15-17, 1997</conference_date>
 			</xsd:documentation>
@@ -506,6 +516,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 					<xsd:sequence>
 						<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1"/>
 						<xsd:element ref="ai:program" minOccurs="0" maxOccurs="1"/>
+						<xsd:element ref="ct:program" minOccurs="0" maxOccurs="1"/>
 					</xsd:sequence>
 				</xsd:choice>
 				<xsd:element ref="rel:program" minOccurs="0"/>
@@ -551,6 +562,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 					<xsd:sequence>
 						<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1"/>
 						<xsd:element ref="ai:program" minOccurs="0" maxOccurs="1"/>
+						<xsd:element ref="ct:program" minOccurs="0" maxOccurs="1"/>
 					</xsd:sequence>
 				</xsd:choice>
 				<xsd:element ref="rel:program" minOccurs="0"/>
@@ -590,6 +602,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 					<xsd:sequence>
 						<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1"/>
 						<xsd:element ref="ai:program" minOccurs="0" maxOccurs="1"/>
+						<xsd:element ref="ct:program" minOccurs="0" maxOccurs="1"/>
 					</xsd:sequence>
 				</xsd:choice>
 				<xsd:element ref="rel:program" minOccurs="0"/>
@@ -681,6 +694,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 					<xsd:sequence>
 						<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1"/>
 						<xsd:element ref="ai:program" minOccurs="0" maxOccurs="1"/>
+						<xsd:element ref="ct:program" minOccurs="0" maxOccurs="1"/>
 					</xsd:sequence>
 				</xsd:choice>
 				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
@@ -754,6 +768,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 					<xsd:sequence>
 						<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1"/>
 						<xsd:element ref="ai:program" minOccurs="0" maxOccurs="1"/>
+						<xsd:element ref="ct:program" minOccurs="0" maxOccurs="1"/>
 					</xsd:sequence>
 				</xsd:choice>
 				<xsd:element ref="rel:program" minOccurs="0"/>
@@ -808,6 +823,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 					<xsd:sequence>
 						<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1"/>
 						<xsd:element ref="ai:program" minOccurs="0" maxOccurs="1"/>
+						<xsd:element ref="ct:program" minOccurs="0" maxOccurs="1"/>
 					</xsd:sequence>
 				</xsd:choice>
 				<xsd:element ref="rel:program" minOccurs="0"/>
@@ -845,6 +861,14 @@ Prior updates are noted as comments within previous schema versions.  -->
 				<xsd:element ref="institution" minOccurs="0" maxOccurs="5"/>
 				<xsd:element ref="publisher_item" minOccurs="0"/>
 				<xsd:element ref="contract_number" minOccurs="0"/>
+				<xsd:choice>
+					<xsd:element ref="crossmark" minOccurs="0"/>
+					<xsd:sequence>
+						<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1"/>
+						<xsd:element ref="ai:program" minOccurs="0" maxOccurs="1"/>
+						<xsd:element ref="ct:program" minOccurs="0" maxOccurs="1"/>
+					</xsd:sequence>
+				</xsd:choice>
 				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="version_info" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="doi_data" minOccurs="0"/>
@@ -892,6 +916,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 					<xsd:sequence>
 						<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1"/>
 						<xsd:element ref="ai:program" minOccurs="0" maxOccurs="1"/>
+						<xsd:element ref="ct:program" minOccurs="0" maxOccurs="1"/>
 					</xsd:sequence>
 				</xsd:choice>
 				<xsd:element ref="rel:program" minOccurs="0"/>
@@ -967,6 +992,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 					<xsd:sequence>
 						<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1"/>
 						<xsd:element ref="ai:program" minOccurs="0" maxOccurs="1"/>
+						<xsd:element ref="ct:program" minOccurs="0" maxOccurs="1"/>
 					</xsd:sequence>
 				</xsd:choice>
 				<xsd:element ref="rel:program" minOccurs="0"/>
@@ -1142,6 +1168,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 					<xsd:sequence>
 						<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1"/>
 						<xsd:element ref="ai:program" minOccurs="0" maxOccurs="1"/>
+						<xsd:element ref="ct:program" minOccurs="0" maxOccurs="1"/>
 					</xsd:sequence>
 				</xsd:choice>
 				<xsd:element ref="rel:program" minOccurs="0"/>
@@ -1173,9 +1200,11 @@ Prior updates are noted as comments within previous schema versions.  -->
 				<xsd:element ref="institution" minOccurs="0" maxOccurs="5"/>
 				<xsd:element ref="item_number" minOccurs="0" maxOccurs="3"/>
 				<xsd:element ref="jats:abstract" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1" />
+				<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="ai:program" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="ct:program" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="rel:program" minOccurs="0"/>
+				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="scn_policies" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="version_info" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="doi_data" minOccurs="1"/>
@@ -1185,12 +1214,11 @@ Prior updates are noted as comments within previous schema versions.  -->
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:NMTOKEN">
 						<xsd:enumeration value="preprint"/>
-						<xsd:enumeration value="working_paper"/>
+						<xsd:enumeration value="blog"/>
 						<xsd:enumeration value="letter"/>
-						<xsd:enumeration value="dissertation"/>
-						<xsd:enumeration value="report"/>
-						<xsd:enumeration value="review"/>
 						<xsd:enumeration value="other"/>
+						<xsd:enumeration value="poster"/>
+						<xsd:enumeration value="review"/>
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
@@ -1370,7 +1398,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 	</xsd:attributeGroup>
 
 	<xsd:attributeGroup name="contributor.atts">
-		<xsd:attribute name="sequence" use="required">
+		<xsd:attribute name="sequence" use="optional">
 			<xsd:simpleType>
 				<xsd:restriction base="xsd:NMTOKEN">
 					<xsd:enumeration value="first"/>
@@ -1378,7 +1406,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 				</xsd:restriction>
 			</xsd:simpleType>
 		</xsd:attribute>
-		<xsd:attribute name="contributor_role" use="required">
+		<xsd:attribute name="contributor_role" use="optional">
 			<xsd:simpleType>
 				<xsd:restriction base="xsd:NMTOKEN">
 					<xsd:enumeration value="author"/>
@@ -1390,12 +1418,14 @@ Prior updates are noted as comments within previous schema versions.  -->
 					<xsd:enumeration value="reviewer-external"/>
 					<xsd:enumeration value="reader"/>
 					<xsd:enumeration value="translator"/>
+					<xsd:enumeration value="corresponding-author"/>
+					<xsd:enumeration value="other"/>
 				</xsd:restriction>
 			</xsd:simpleType>
 		</xsd:attribute>
 		<xsd:attribute name="name-style" use="optional">
 			<xsd:simpleType>
-				<xsd:restriction base="xsd:token">
+				<xsd:restriction base="xsd:NMTOKEN">
 					<xsd:enumeration value="western"/>
 					<xsd:enumeration value="eastern"/>
 					<xsd:enumeration value="islensk"/>
@@ -1405,8 +1435,71 @@ Prior updates are noted as comments within previous schema versions.  -->
 		</xsd:attribute>
 		<xsd:attributeGroup ref="language.atts"/>
 	</xsd:attributeGroup>
-
-
+	<xsd:attributeGroup name="roles.atts">
+		<xsd:attribute name="type" use="optional">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="author"/>
+					<xsd:enumeration value="editor"/>
+					<xsd:enumeration value="chair"/>
+					<xsd:enumeration value="reviewer"/>
+					<xsd:enumeration value="review-assistant"/>
+					<xsd:enumeration value="stats-reviewer"/>
+					<xsd:enumeration value="reviewer-external"/>
+					<xsd:enumeration value="reader"/>
+					<xsd:enumeration value="translator"/>
+					<xsd:enumeration value="corresponding-author"/>
+					<xsd:enumeration value="other"/>
+					<xsd:enumeration value="conceptualization"/>
+					<xsd:enumeration value="data-curation"/>
+					<xsd:enumeration value="formal-analysis"/>
+					<xsd:enumeration value="funding-acquisition"/>
+					<xsd:enumeration value="investigation"/>
+					<xsd:enumeration value="methodology"/>
+					<xsd:enumeration value="project-administration"/>
+					<xsd:enumeration value="resources"/>
+					<xsd:enumeration value="software"/>
+					<xsd:enumeration value="supervision"/>
+					<xsd:enumeration value="validation"/>
+					<xsd:enumeration value="visualization"/>
+					<xsd:enumeration value="writing-original-draft"/>
+					<xsd:enumeration value="writing-review-editing"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="vocab" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:NMTOKEN">
+					<xsd:enumeration value="crossref"/>
+					<xsd:enumeration value="credit"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+	<xsd:element name="role">
+		<xsd:annotation>
+			<xsd:documentation>specific contribution made by an individual or organisation to research</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:attributeGroup ref="roles.atts"/>
+			
+			<xsd:assert test="
+				not(@vocab='crossref') or
+				@type = (
+				'author','editor','chair','reviewer','review-assistant','stats-reviewer',
+				'reviewer-external','reader','translator','corresponding-author','other'
+				)" xmlns:xerces="http://xerces.apache.org" xerces:message="The 'type' value provided is not part of the selected 'credit' vocabulary"/>
+			
+			<xsd:assert test="
+				not(@vocab='credit') or
+				@type = (
+				'conceptualization','data-curation','formal-analysis','funding-acquisition',
+				'investigation','methodology','project-administration','resources','software',
+				'supervision','validation','visualization',
+				'writing-original-draft','writing-review-editing')"  xmlns:xerces="http://xerces.apache.org" xerces:message="The 'type' value provided is not part of the selected 'crossref' vocabulary"/>
+		</xsd:complexType>
+	
+	</xsd:element>
 	<xsd:element name="contributors">
 		<xsd:annotation>
 			<xsd:documentation>The container for all who contributed to authoring or editing an item.</xsd:documentation>
@@ -1446,24 +1539,16 @@ Prior updates are noted as comments within previous schema versions.  -->
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:choice>
-					<xsd:sequence>
-						<xsd:element ref="given_name" minOccurs="1"/>
-						<xsd:element ref="surname" minOccurs="1"/>
-						<xsd:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-					<xsd:sequence>
-						<xsd:element ref="surname" minOccurs="1"/>
-						<xsd:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
-					</xsd:sequence>
-					<xsd:element ref="name" minOccurs="1" maxOccurs="unbounded"/>
-				</xsd:choice>
+				<xsd:element ref="given_name" minOccurs="0"/>
+				<xsd:element ref="surname"/>
 				<xsd:element ref="suffix" minOccurs="0"/>
+				<xsd:element ref="role" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element ref="affiliations" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="ORCID" minOccurs="0" maxOccurs="1"/>
-				<!--<xsd:element ref="alt-name" minOccurs="0"/>-->
+				<xsd:element ref="alt-name" minOccurs="0"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="contributor.atts"/>
+			<xsd:assert test="exists(@contributor_role) or exists(*:role)"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="anonymous">
@@ -1472,49 +1557,32 @@ Prior updates are noted as comments within previous schema versions.  -->
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
+				<xsd:element ref="role" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element ref="affiliations" minOccurs="0" maxOccurs="1"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="contributor.atts"/>
 		</xsd:complexType>
 	</xsd:element>
-
-	<xsd:element name="name">
-		<xsd:annotation>
-			<xsd:documentation>Full name of a contributor (includes family names, middle names, given names) Should represent name as it appears in citations </xsd:documentation>
-		</xsd:annotation>
-		<xsd:simpleType>
-			<xsd:restriction base="xsd:string">
-				<xsd:maxLength value="60"/>
-				<xsd:minLength value="1"/>
-				<xsd:pattern value="[^\d\?]*[^\?\s]+[^\d]*"/>
-				<xsd:whiteSpace value="collapse"/>
-			</xsd:restriction>
-		</xsd:simpleType>
-	</xsd:element>
-
-
 	<xsd:element name="given_name">
 		<xsd:annotation>
 			<xsd:documentation>A contributor's given name.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
-				<xsd:maxLength value="60"/>
+				<xsd:maxLength value="200"/>
 				<xsd:minLength value="1"/>
-				<xsd:pattern value="[^\d\?]*[^\?\s]+[^\d]*"/>
 				<xsd:whiteSpace value="collapse"/>
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:element>
 	<xsd:element name="surname">
 		<xsd:annotation>
-			<xsd:documentation>The family_name of a contributor.</xsd:documentation>
+			<xsd:documentation>The family name of a contributor.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
-				<xsd:maxLength value="60"/>
+				<xsd:maxLength value="200"/>
 				<xsd:minLength value="1"/>
-				<xsd:pattern value="[^\d\?]*[^\?\s]+[^\d]*"/>
 				<xsd:whiteSpace value="collapse"/>
 			</xsd:restriction>
 		</xsd:simpleType>
@@ -1535,7 +1603,6 @@ Prior updates are noted as comments within previous schema versions.  -->
 			<xsd:pattern value="https?://orcid.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}"/>
 		</xsd:restriction>
 	</xsd:simpleType>
-
 	<xsd:element name="ORCID">
 		<xsd:annotation>
 			<xsd:documentation>The ORCID iD for an author.</xsd:documentation>
@@ -1555,7 +1622,6 @@ Prior updates are noted as comments within previous schema versions.  -->
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-	<!--
 	<xsd:element name="alt-name">
 		<xsd:complexType>
 			<xsd:choice maxOccurs="unbounded">
@@ -1564,8 +1630,6 @@ Prior updates are noted as comments within previous schema versions.  -->
 			</xsd:choice>
 		</xsd:complexType>
 	</xsd:element>
-	-->
-	<!--
 	<xsd:element name="name">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -1618,8 +1682,6 @@ Prior updates are noted as comments within previous schema versions.  -->
 			<xsd:attributeGroup ref="language.atts"/>
 		</xsd:complexType>
 	</xsd:element>
-
-	-->
 	<xsd:element name="prefix">
 		<xsd:complexType mixed="true">
 			<xsd:attribute name="content-type"/>
@@ -2100,6 +2162,7 @@ Prior updates are noted as comments within previous schema versions.  -->
 						<xsd:enumeration value="ADS"/>
 						<xsd:enumeration value="BL"/>
 						<xsd:enumeration value="Cariniana Network"/>
+						<xsd:enumeration value="CINES"/>
 						<xsd:enumeration value="CLOCKSS"/>
 						<xsd:enumeration value="DWT"/>
 						<xsd:enumeration value="HathiTrust"/>

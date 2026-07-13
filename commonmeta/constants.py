@@ -254,6 +254,17 @@ DC_TO_CM_TRANSLATIONS = {
     "Other": "Other",
 }
 
+# DataCite free-text resourceType subtype → commonmeta type. Applied (case
+# -insensitively) to refine the coarse resourceTypeGeneral; when it resolves,
+# the type is set and additional_type is left unset.
+DC_RESOURCE_TYPE_TO_CM = {
+    "blogpost": "BlogPost",
+    "blog-post": "BlogPost",
+    "blog post": "BlogPost",
+    "blog posting": "BlogPost",
+    "blogposting": "BlogPost",
+}
+
 # https://github.com/zenodo/zenodo/blob/master/zenodo/modules/records/data/objecttypes.json
 INVENIORDM_TO_CM_TRANSLATIONS = {
     "annotationcollection": "Collection",
@@ -739,13 +750,38 @@ CR_TO_CM_CONTRIBUTOR_ROLES = {
     "translator": "Translator",
 }
 
+# commonmeta contributor role → Crossref 5.5.0 contributor_role attribute value
 CM_TO_CR_CONTRIBUTOR_ROLES = {
     "Author": "author",
-    "Editor": "editor",
     "Chair": "chair",
-    "Reviewer": "reviewer",
+    "CorrespondingAuthor": "corresponding-author",
+    "Editor": "editor",
+    "Other": "other",
     "Reader": "reader",
+    "ReviewAssistant": "review-assistant",
+    "Reviewer": "reviewer",
+    "ReviewerExternal": "reviewer-external",
+    "StatsReviewer": "stats-reviewer",
     "Translator": "translator",
+}
+
+# commonmeta contributor role → Crossref 5.5.0 CRediT role, emitted as a
+# <role vocab="credit" type="..."> child element of person_name.
+CM_TO_CR_CREDIT_ROLES = {
+    "Conceptualization": "conceptualization",
+    "DataCuration": "data-curation",
+    "FormalAnalysis": "formal-analysis",
+    "FundingAcquisition": "funding-acquisition",
+    "Investigation": "investigation",
+    "Methodology": "methodology",
+    "ProjectAdministration": "project-administration",
+    "Resources": "resources",
+    "Software": "software",
+    "Supervision": "supervision",
+    "Validation": "validation",
+    "Visualization": "visualization",
+    "WritingOriginalDraft": "writing-original-draft",
+    "WritingReviewEditing": "writing-review-editing",
 }
 
 # from commonmeta schema

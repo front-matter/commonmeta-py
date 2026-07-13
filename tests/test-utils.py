@@ -77,7 +77,7 @@ def test_dict_to_spdx_id():
     assert {
         "id": "Apache-2.0",
         "title": "Apache License 2.0",
-        "url": "http://www.apache.org/licenses/LICENSE-2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0",
     } == dict_to_spdx({"id": "Apache-2.0"})
 
 
@@ -833,10 +833,9 @@ def test_to_schema_org_creators():
     ]
     assert [
         {
+            "@type": "Person",
             "givenName": "Matt",
             "familyName": "Jones",
-            "name": "Matt Jones",
-            "@type": "Person",
         }
     ] == to_schema_org_creators(authors)
     assert [

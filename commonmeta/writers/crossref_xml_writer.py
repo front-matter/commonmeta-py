@@ -19,7 +19,7 @@ from requests.exceptions import RequestException
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 from ..base_utils import compact, dig, get_crossref_xml_head, parse_xml, presence, wrap
-from ..constants import CM_TO_CR_CONTRIBUTOR_ROLES
+from ..constants import CM_TO_CR_CONTRIBUTOR_ROLES, CM_TO_CR_CREDIT_ROLES
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
 from ..utils import validate_url
 from .inveniordm_writer import push_inveniordm
@@ -29,14 +29,15 @@ if TYPE_CHECKING:
 
 log = logging.getLogger(__name__)
 
+# posted_content @type enum, Crossref schema 5.5.0 (adds blog and poster;
+# drops working_paper, dissertation, report from 5.4.0).
 POSTED_CONTENT_TYPES = [
     "preprint",
-    "working_paper",
+    "blog",
     "letter",
-    "dissertation",
-    "report",
-    "review",
     "other",
+    "poster",
+    "review",
 ]
 
 MARSHMALLOW_MAP = {
@@ -46,6 +47,20 @@ MARSHMALLOW_MAP = {
     "relations": "rel:program",
     "references": "citation_list",
 }
+
+# Crossref 5.5.0 contributor roles: traditional contributor_role attribute
+# values plus CRediT taxonomy roles.
+_ALLOWED_CONTRIBUTOR_ROLES = set(CM_TO_CR_CONTRIBUTOR_ROLES) | set(
+    CM_TO_CR_CREDIT_ROLES
+)
+
+
+def _is_allowed_contributor(roles: list) -> bool:
+    """A contributor is included if it has no roles (treated as author) or at
+    least one role Crossref recognizes."""
+    if not roles:
+        return True
+    return any(role in _ALLOWED_CONTRIBUTOR_ROLES for role in roles)
 
 
 def _wrap_crossref_body(item: dict[str, Any]) -> dict[str, Any]:
@@ -224,11 +239,11 @@ def tostring(data: dict | list, *, head: dict | None = None) -> str:
 
     output: dict[str, Any] = {
         "doi_batch": {
-            "@xmlns": "http://www.crossref.org/schema/5.4.0",
+            "@xmlns": "http://www.crossref.org/schema/5.5.0",
             "@xmlns:ai": "http://www.crossref.org/AccessIndicators.xsd",
             "@xmlns:rel": "http://www.crossref.org/relations.xsd",
             "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
-            "@version": "5.4.0",
+            "@version": "5.5.0",
             "head": get_crossref_xml_head(head),
             "body": body,
         }
@@ -307,6 +322,8 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
         "Dissertation",
         "JournalArticle",
         "PeerReview",
+        "Poster",
+        "Presentation",
         "ProceedingsArticle",
         "Report",
         "Standard",
@@ -329,11 +346,21 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
     license = get_license(metadata)
     kwargs = {}
 
-    if metadata.type == "Preprint":
-        if metadata.additional_type in POSTED_CONTENT_TYPES:
+    if metadata.type in ("Preprint", "BlogPost", "Poster", "Presentation"):
+        # Crossref 5.5.0 posted_content subtypes: BlogPost → blog, Poster →
+        # poster, Presentation → other. A Preprint uses its additional_type
+        # when it names a valid subtype, else defaults to preprint.
+        _posted_type = {
+            "BlogPost": "blog",
+            "Poster": "poster",
+            "Presentation": "other",
+        }.get(metadata.type)
+        if _posted_type is not None:
+            kwargs["type"] = _posted_type
+        elif metadata.additional_type in POSTED_CONTENT_TYPES:
             kwargs["type"] = metadata.additional_type
         else:
-            kwargs["type"] = "other"
+            kwargs["type"] = "preprint"
         kwargs["language"] = metadata.language
         data = compact(
             {
@@ -359,27 +386,6 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
             {
                 "journal": {},
                 "journal_metadata": get_journal_metadata(metadata),
-            }
-        )
-    elif metadata.type == "BlogPost":
-        kwargs["type"] = "other"
-        kwargs["language"] = metadata.language
-        data = compact(
-            {
-                "posted_content": get_attributes(metadata, **kwargs),
-                "group_title": get_group_title(metadata),
-                "contributors": contributors,
-                "titles": titles,
-                "posted_date": get_publication_date(metadata),
-                "institution": get_institution(metadata),
-                "item_number": get_item_number(metadata),
-                "abstracts": abstracts,
-                "funding_references": funding_references,
-                "license": license,
-                "relations": relations,
-                "version_info": get_version_info(metadata),
-                "doi_data": doi_data,
-                "references": references,
             }
         )
     elif metadata.type == "Book":
@@ -891,11 +897,13 @@ def get_contributors(obj) -> dict | None:
     if len(wrap(dig(obj, "contributors"))) == 0:
         return None
 
-    allowed_roles = {"Author", "Editor", "Reviewer", "Translator"}
+    # Crossref 5.5.0 allows the traditional contributor_role attribute values
+    # plus the CRediT taxonomy roles; a contributor with no roles is treated as
+    # an author (backwards compatible).
     con = [
         c
         for c in dig(obj, "contributors", [])
-        if set(c.get("roles", [])) & allowed_roles
+        if _is_allowed_contributor(wrap(c.get("roles")))
     ]
 
     person_names = []
@@ -912,6 +920,12 @@ def get_contributors(obj) -> dict | None:
             ),
             "author",
         )
+        # CRediT roles are emitted as <role vocab="credit" type="..."> children
+        credit_roles = [
+            {"@vocab": "credit", "@type": CM_TO_CR_CREDIT_ROLES[role]}
+            for role in roles
+            if role in CM_TO_CR_CREDIT_ROLES
+        ]
         sequence = "first" if num == 0 else "additional"
         organization = contributor.get("organization", None)
         person = contributor.get("person", None) or {}
@@ -934,6 +948,7 @@ def get_contributors(obj) -> dict | None:
                         "@sequence": sequence,
                         "given_name": person.get("given_name", None),
                         "surname": person.get("family_name", None),
+                        "role": credit_roles or None,
                         "affiliations": map_affiliations(
                             person.get("affiliations", None)
                         ),
@@ -1078,7 +1093,9 @@ def get_references(obj) -> Dict | None:
     for i, ref in enumerate(dig(obj, "references", [])):
         # Validate DOI before using it
         doi = doi_from_url(ref.get("id", None))
-        unstructured = ref.get("unstructured", None)
+        # the commonmeta `reference` field is the formatted reference string
+        # (Crossref's unstructured_citation); fall back to the legacy field.
+        unstructured = ref.get("reference", None) or ref.get("unstructured", None)
 
         # include id in unstructured_citation if it is not a DOI
         if (

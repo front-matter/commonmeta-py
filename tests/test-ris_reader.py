@@ -16,7 +16,7 @@ def test_journal_article():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
     assert subject.url == "http://elifesciences.org/lookup/doi/10.7554/eLife.01567"
-    assert len(subject.contributors) == 4
+    assert len(subject.contributors) == 5
     assert subject.contributors[0] == {
         "type": "Person",
         "person": {

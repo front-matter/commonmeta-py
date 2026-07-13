@@ -34,7 +34,7 @@ def test_software():
     assert subject.license == {
         "id": "MIT",
         "title": "MIT License",
-        "url": "https://opensource.org/licenses/MIT",
+        "url": "https://opensource.org/license/mit/",
     }
 
     assert (

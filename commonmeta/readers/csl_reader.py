@@ -9,8 +9,28 @@ from ..constants import (
     Commonmeta,
 )
 from ..date_utils import get_date_from_date_parts
-from ..doi_utils import doi_from_url, encode_doi, get_doi_ra
-from ..utils import dict_to_spdx, from_csl, issn_as_url, name_to_fos, normalize_id
+from ..doi_utils import doi_from_url, encode_doi
+from ..utils import (
+    dict_to_spdx,
+    from_csl,
+    get_language,
+    issn_as_url,
+    name_to_fos,
+    normalize_id,
+)
+
+# commonmeta type → container type for CSL records
+_CSL_CONTAINER_TYPES = {
+    "JournalArticle": "Periodical",
+    "JournalIssue": "Periodical",
+    "JournalVolume": "Periodical",
+    "Journal": "Periodical",
+    "ProceedingsArticle": "Proceedings",
+    "Proceedings": "Proceedings",
+    "BookChapter": "Book",
+    "Book": "Book",
+    "Dataset": "DataRepository",
+}
 
 
 def read_csl(data: dict | None, **kwargs) -> Commonmeta:
@@ -38,9 +58,8 @@ def read_csl(data: dict | None, **kwargs) -> Commonmeta:
 
     date_published = get_date_from_date_parts(meta.get("issued", None))
 
-    license_ = meta.get("copyright", None)
-    if license_ is not None:
-        license_ = dict_to_spdx({"url": meta.get("copyright")})
+    license_url = meta.get("license", None) or meta.get("copyright", None)
+    license_ = dict_to_spdx({"url": license_url}) if license_url else None
 
     pages = meta.get("page", "").split("-")
     publisher = meta.get("publisher", None)
@@ -57,7 +76,7 @@ def read_csl(data: dict | None, **kwargs) -> Commonmeta:
         )
     container = compact(
         {
-            "type": "Periodical",
+            "type": _CSL_CONTAINER_TYPES.get(_type, None),
             "title": meta.get("container-title", None),
             "identifier": issn,
             "identifier_type": "ISSN" if meta.get("ISSN", None) else None,
@@ -69,11 +88,18 @@ def read_csl(data: dict | None, **kwargs) -> Commonmeta:
     )
 
     state = "findable" if _id or read_options else "not_found"
-    subjects = [name_to_fos(i) for i in wrap(meta.get("keywords", None))]
+    # CSL-JSON uses `categories`; fall back to the singular/plural keyword fields.
+    # A comma-separated keyword string is split into individual subjects.
+    raw_subjects = (
+        meta.get("categories", None)
+        or meta.get("keyword", None)
+        or meta.get("keywords", None)
+    )
+    if isinstance(raw_subjects, str):
+        raw_subjects = [k.strip() for k in raw_subjects.split(",") if k.strip()]
+    subjects = [name_to_fos(i) for i in wrap(raw_subjects)]
 
     description = sanitize(str(meta.get("abstract"))) if meta.get("abstract") else None
-
-    provider = get_doi_ra(_id)
 
     return {
         "id": _id,
@@ -82,8 +108,8 @@ def read_csl(data: dict | None, **kwargs) -> Commonmeta:
         "contributors": presence(contributors),
         "date_published": date_published,
         "description": description,
+        "language": get_language(meta.get("language", None)),
         "license": license_,
-        "provider": provider,
         "publisher": presence(publisher),
         "references": None,
         "relations": presence(relations),

@@ -184,6 +184,9 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
     date_published = strip_milliseconds(meta.get("datePublished", None))
     date_updated = strip_milliseconds(meta.get("dateModified", None))
     dates: dict = {}
+    date_created = strip_milliseconds(meta.get("dateCreated", None))
+    if date_created:
+        dates["created"] = date_created
     # if no date is found, use today's date
     if date_published is None and date_updated is None:
         dates["accessed"] = read_options.get(
@@ -272,10 +275,10 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
         {"description": i, "type": "Abstract"} for i in descriptions[1:]
     ]
 
-    # convert keywords as comma-separated string into list
+    # convert keywords as comma-separated string into list (original casing)
     subj = meta.get("keywords", None)
     if isinstance(subj, str):
-        subj = subj.lower().split(", ")
+        subj = [k.strip() for k in subj.split(",") if k.strip()]
     subjects = [name_to_fos(i) for i in wrap(subj)]
 
     if isinstance(meta.get("inLanguage"), str):
@@ -408,16 +411,25 @@ def schema_org_geolocation(geo_location: dict | None) -> dict | None:
     if geo_location is None:
         return None
 
-    type_ = dig(geo_location, "geo.@type")
-    longitude = dig(geo_location, "geo.longitude")
-    latitude = dig(geo_location, "geo.latitude")
+    def _coord(value) -> float | None:
+        try:
+            return float(value) if value not in (None, "") else None
+        except (TypeError, ValueError):
+            return None
 
-    if type_ == "GeoCoordinates":
-        return {
+    # place is the Place name, falling back to the geo coordinates' address
+    place = geo_location.get("name", None) or dig(geo_location, "geo.address")
+    longitude = _coord(dig(geo_location, "geo.longitude"))
+    latitude = _coord(dig(geo_location, "geo.latitude"))
+
+    result = compact(
+        {
+            "place": place,
             "point_longitude": longitude,
             "point_latitude": latitude,
         }
-    return None
+    )
+    return result or None
 
 
 def get_html_meta(soup) -> dict:

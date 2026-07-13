@@ -71,10 +71,10 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
     if meta.get("posts", None) is not None:
         return read_jsonfeed_blog(meta, **kwargs)
 
-    if dig(meta, "blog.status", None) in ["active", "expired"]:
-        url = normalize_url(meta.get("url", None))
-    elif dig(meta, "blog.status", None) == "archived" and meta.get("archive_url", None):
+    if dig(meta, "blog.status", None) == "archived" and meta.get("archive_url", None):
         url = normalize_url(meta.get("archive_url", None))
+    else:
+        url = normalize_url(meta.get("url", None))
 
     # generate DOI string for registration if not provided
     _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None))
@@ -157,7 +157,7 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
 
     description = meta.get("abstract", None) or meta.get("summary", None)
     if description is not None:
-        description = sanitize(description)
+        description = sanitize(description).strip()
     additional_descriptions: list = []
     subfield = OPENALEX_SUBFIELD_MAPPINGS.get(dig(meta, "blog.subfield"), None)
     if subfield is not None:
@@ -385,7 +385,7 @@ def get_references(references: list) -> list:
                 "key": reference.get("key", None),
                 "type": reference.get("type", None),
                 "unstructured": reference.get("unstructured", None),
-                "title": reference.get("title", None),
+                "reference": reference.get("title", None),
                 "publication_year": reference.get("publicationYear", None),
             }
         )

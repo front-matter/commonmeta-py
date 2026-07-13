@@ -88,6 +88,7 @@ def get_one_author(author, **kwargs) -> dict | None:
                 format_name_identifier(i)
                 for i in wrap(
                     author.get("nameIdentifiers", None)
+                    or author.get("nameIdentifier", None)
                     or author.get("identifiers", None)
                 )
             ),
@@ -145,15 +146,26 @@ def get_one_author(author, **kwargs) -> dict | None:
             }
         )
 
+    orcid = normalize_orcid(_id)
+    # Crossref: authenticated-orcid=true means the author verified the ORCID via
+    # OAuth ("Contributor"); otherwise the publisher supplied it ("Publisher").
+    asserted_by = None
+    if orcid and kwargs.get("via", None) == "crossref":
+        asserted_by = (
+            "Contributor"
+            if author.get("authenticated-orcid", None) is True
+            else "Publisher"
+        )
     person = compact(
         {
             # person.id is ORCID-only per the v1.0 schema; non-ORCID
             # identifiers (ISNI, etc.) are dropped rather than leaking a
             # non-ORCID id into an ORCID-only field.
-            "id": normalize_orcid(_id),
+            "id": orcid,
             "given_name": given_name,
             "family_name": family_name,
             "affiliations": presence(get_affiliations(wrap(affiliations))),
+            "asserted_by": asserted_by,
         }
     )
     return compact(
@@ -294,6 +306,7 @@ def get_affiliations(affiliations: list[dict | str]) -> list[dict]:
     def format_element(i):
         """format single affiliation element"""
         affiliation_identifier = None
+        asserted_by = None
         if isinstance(i, str):
             name = i
             scheme_uri = None
@@ -314,6 +327,15 @@ def get_affiliations(affiliations: list[dict | str]) -> list[dict]:
                     )
                     else normalize_id(affiliation_identifier)
                 )
+            elif isinstance(i.get("id", None), list):
+                # Crossref affiliation id: list of {id, id-type, asserted-by}
+                ror_entry = next(
+                    (x for x in i["id"] if x.get("id-type", None) == "ROR"), None
+                )
+                if ror_entry is not None:
+                    affiliation_identifier = ror_entry.get("id", None)
+                    if ror_entry.get("asserted-by", None):
+                        asserted_by = str(ror_entry["asserted-by"]).capitalize()
             elif i.get("id", None) is not None:
                 f = furl(i.get("id"))
                 if f.scheme in ["http", "https"]:
@@ -327,6 +349,7 @@ def get_affiliations(affiliations: list[dict | str]) -> list[dict]:
                 "identifier": ror,
                 "identifier_type": "ROR" if ror else None,
                 "name": name,
+                "asserted_by": asserted_by if ror else None,
             }
         )
 

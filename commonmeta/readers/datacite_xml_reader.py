@@ -18,14 +18,13 @@ from ..base_utils import (
     wrap,
 )
 from ..constants import (
-    CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     DC_TO_CM_TRANSLATIONS,
     Commonmeta,
 )
 from ..date_utils import normalize_date_dict, strip_milliseconds
 from ..doi_utils import datacite_api_url, doi_as_url, doi_from_url, normalize_doi
 from ..readers.datacite_reader import DC_TO_CM_RELATION_TYPES
-from ..utils import dict_to_spdx, normalize_cc_url, normalize_url
+from ..utils import dict_to_spdx, normalize_arxiv, normalize_cc_url, normalize_url
 
 
 def get_datacite_xml(pid: str, **kwargs) -> dict:
@@ -55,18 +54,31 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     resource__typegeneral = dig(meta, "resourceType.resourceTypeGeneral")
     _type = DC_TO_CM_TRANSLATIONS.get(resource__typegeneral, "Other")
     additional_type = dig(meta, "resourceType.#text")
+    # Drop additional_type when it is redundant with the resolved type: it
+    # maps to a known CM type or just repeats the type (matching
+    # commonmeta-rs, e.g. resourceType "dataset" under a Dataset).
+    if additional_type and (
+        DC_TO_CM_TRANSLATIONS.get(additional_type, None)
+        or additional_type.lower() == _type.lower()
+        or additional_type.startswith("info:")
+    ):
+        additional_type = None
 
     identifiers = wrap(dig(meta, "alternateIdentifiers.alternateIdentifier"))
     identifiers = get_xml_identifiers(identifiers)
+    # DataCite stores the DOI as the primary <identifier>; include it as a
+    # DOI identifier (matching commonmeta-rs) unless already present.
+    if _id and not any(i.get("identifier", None) == _id for i in identifiers):
+        identifiers = identifiers + [{"identifier": _id, "identifier_type": "DOI"}]
 
     title, additional_titles = get_titles(wrap(dig(meta, "titles.title")))
 
     contributors = get_authors(wrap(dig(meta, "creators.creator")))
-    contrib = get_authors(wrap(meta.get("contributors", None)))
+    contrib = get_authors(wrap(dig(meta, "contributors.contributor")))
     if contrib:
         contributors = contributors + contrib
 
-    publisher = {"name": dig(meta, "publisher")}
+    publisher = {"name": first(parse_attributes(meta.get("publisher", None)))}
     date_published, date_updated, dates = get_dates(
         wrap(dig(meta, "dates.date")), meta.get("publicationYear", None)
     )
@@ -125,6 +137,8 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         wrap(dig(meta, "fundingReferences.fundingReference"))
     )
 
+    container = get_container(dig(meta, "relatedItems.relatedItem"))
+
     files = meta.get("contentUrl", None)
     state = "findable" if _id or read_options else "not_found"
 
@@ -137,7 +151,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             "additional_descriptions": presence(additional_descriptions),
             "additional_titles": presence(additional_titles),
             "additional_type": presence(additional_type),
-            "container": presence(meta.get("container", None)),
+            "container": presence(container),
             "contributors": presence(contributors),
             "date_published": presence(date_published),
             "date_updated": presence(date_updated),
@@ -238,6 +252,40 @@ def get_xml_references(references: list) -> list:
     return [map_reference(i) for i in references if is_reference(i)]
 
 
+def get_container(related_items: list) -> dict | None:
+    """Build a container from a DataCite relatedItem (relationType
+    ``IsPublishedIn``), e.g. the journal a work was published in."""
+    item = next(
+        (
+            i
+            for i in wrap(related_items)
+            if isinstance(i, dict) and i.get("relationType", None) == "IsPublishedIn"
+        ),
+        None,
+    )
+    if item is None:
+        return None
+    rii = item.get("relatedItemIdentifier", None)
+    if isinstance(rii, dict):
+        identifier = rii.get("#text", None)
+        identifier_type = rii.get("relatedItemIdentifierType", None)
+    else:
+        identifier = rii
+        identifier_type = None
+    return compact(
+        {
+            "type": item.get("relatedItemType", None),
+            "identifier": identifier,
+            "identifier_type": identifier_type,
+            "title": dig(item, "titles.title"),
+            "volume": item.get("volume", None),
+            "issue": item.get("issue", None),
+            "first_page": item.get("firstPage", None),
+            "last_page": item.get("lastPage", None),
+        }
+    )
+
+
 def get_xml_relations(relations: list) -> list:
     """get_xml_relations"""
 
@@ -264,10 +312,16 @@ def get_xml_relations(relations: list) -> list:
 
     def map_relation(relation):
         """map_relation"""
-        identifier = relation.get("relatedIdentifier", None)
+        # the identifier value is the element text (#text) when the element
+        # carries attributes (relatedIdentifierType, relationType, ...).
+        identifier = relation.get("relatedIdentifier", None) or relation.get(
+            "#text", None
+        )
         identifier_type = relation.get("relatedIdentifierType", None)
         if identifier and identifier_type == "DOI":
             _id = normalize_doi(identifier)
+        elif identifier and identifier_type == "arXiv":
+            _id = normalize_arxiv(identifier)
         elif identifier and identifier_type == "URL":
             _id = normalize_url(identifier)
         else:
@@ -376,8 +430,8 @@ def get_funding_references(funding_references: list) -> list:
 
     DataCite funding references use funderIdentifier/funderIdentifierType,
     which may be ROR, Crossref Funder ID, GRID, ISNI, Ringgold, or Other.
-    Commonmeta's funder_id is ROR-only, so Crossref Funder ID is translated to ROR
-    where possible.
+    ROR ids are kept as-is and Crossref Funder IDs as DOIs (matching
+    commonmeta-rs); other schemes have no resolvable id and are dropped.
     """
 
     def map_funding_reference(funding: dict) -> dict:
@@ -398,11 +452,9 @@ def get_funding_references(funding_references: list) -> list:
         if funder_identifier_type == "ROR":
             funder_id = funder_identifier
         elif funder_identifier_type == "Crossref Funder ID":
-            funder_id = CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS.get(
-                funder_identifier, None
-            )
-        # GRID/ISNI/Ringgold/Other/None have no ROR equivalent: funder_id
-        # stays None rather than leaking a non-ROR identifier.
+            funder_id = normalize_doi(funder_identifier)
+        # GRID/ISNI/Ringgold/Other/None have no resolvable id: funder_id
+        # stays None rather than leaking a non-DOI/ROR identifier.
 
         award_number_node = funding.get("awardNumber", None)
         if isinstance(award_number_node, dict):

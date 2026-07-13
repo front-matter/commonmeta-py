@@ -34,6 +34,7 @@ def test_doi_with_data_citation():
     title = {Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth},
     url = {https://elifesciences.org/articles/01567},
     urldate = {2014-02-11},
+    volume = {3},
     year = {2014}
 }
 """
@@ -118,6 +119,7 @@ def test_article_with_pages():
     title = {An RNA thermometer dictates production of a secreted bacterial toxin},
     url = {https://dx.plos.org/10.1371/journal.ppat.1008184},
     urldate = {2020-01-17},
+    volume = {16},
     year = {2020}
 }
 """
@@ -146,6 +148,7 @@ def test_article_dlib_magazine():
     title = {The Scholix Framework for Interoperability in Data-Literature Information Exchange},
     url = {http://www.dlib.org/dlib/january17/burton/01burton.html},
     urldate = {2017-01},
+    volume = {23},
     year = {2017}
 }
 """
@@ -276,7 +279,7 @@ def test_inveniordm_software():
         == """@misc{10.5281/zenodo.7752775,
     abstract = {Ruby gem and command-line utility for conversion of DOI metadata from and to different metadata formats, including schema.org. Fork of version 1.19.12 of the bolognese gem.},
     author = {Fenner, Martin},
-    copyright = {https://opensource.org/licenses/MIT},
+    copyright = {https://opensource.org/license/mit/},
     doi = {10.5281/zenodo.7752775},
     month = mar,
     publisher = {Zenodo},

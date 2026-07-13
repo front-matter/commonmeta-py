@@ -422,41 +422,30 @@ def to_inveniordm_reference(reference: dict) -> dict | None:
         identifier = None
         scheme = None
 
-    if reference.get("unstructured", None) is None:
-        # use title as unstructured reference
-        title = reference.get("title", None)
-        if title:
-            unstructured = str(title)
-        else:
-            unstructured = "Unknown title"
-
-        if reference.get("publication_year", None):
-            unstructured += f" ({reference.get('publication_year')})."
-
-        return compact(
-            {
-                "reference": unstructured,
-                "scheme": scheme,
-                "identifier": identifier,
-            }
-        )
-    else:
-        unstructured = reference.get("unstructured", "")
-
+    # the commonmeta `reference` field holds the formatted reference string
+    # (falling back to the legacy unstructured/title fields).
+    unstructured = reference.get("reference", None) or reference.get(
+        "unstructured", None
+    )
+    if unstructured:
         if reference.get("id", None):
             # remove duplicate ID from unstructured reference
             unstructured = unstructured.replace(reference.get("id"), "")
-
         # remove optional trailing whitespace
         unstructured = unstructured.rstrip()
+    else:
+        title = reference.get("title", None)
+        unstructured = str(title) if title else "Unknown title"
+        if reference.get("publication_year", None):
+            unstructured += f" ({reference.get('publication_year')})."
 
-        return compact(
-            {
-                "reference": unstructured,
-                "scheme": scheme,
-                "identifier": identifier,
-            }
-        )
+    return compact(
+        {
+            "reference": unstructured,
+            "scheme": scheme,
+            "identifier": identifier,
+        }
+    )
 
 
 def to_inveniordm_funding(funding: dict) -> dict | None:

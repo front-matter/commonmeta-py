@@ -103,7 +103,6 @@ def read_cff(data: dict | None, **kwargs) -> Commonmeta:
             "description": description,
             # 'identifiers' => identifiers,
             "license": license_,
-            "provider": "DataCite" if _id else "GitHub",
             "publisher": publisher,
             "references": presence(references),
             "state": state,
@@ -172,7 +171,7 @@ def cff_references(references) -> list:
             next(
                 (
                     item
-                    for item in wrap(i.get("identifers", None))
+                    for item in wrap(i.get("identifiers", None))
                     if item.get("type", None) == "doi"
                 ),
                 None,
@@ -185,7 +184,7 @@ def cff_references(references) -> list:
         identifier = next(
             (
                 item
-                for item in wrap(i.get("identifers", None))
+                for item in wrap(i.get("identifiers", None))
                 if item.get("type", None) == "doi"
             ),
             {},
@@ -193,7 +192,7 @@ def cff_references(references) -> list:
         value = identifier.get("value", None)
         return compact(
             {
-                "doi": normalize_id(first(parse_attributes(value))),
+                "id": normalize_id(first(parse_attributes(value))),
             }
         )
 

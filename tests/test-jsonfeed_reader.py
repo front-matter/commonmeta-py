@@ -51,8 +51,8 @@ def test_wordpress_with_references():
     }
 
     assert (
-        subject.date_published == "2023-06-09T02:00:00"
-        and subject.date_updated == "2025-12-05T02:36:30"
+        subject.date_published == "2023-06-09T00:00:00Z"
+        and subject.date_updated == "2025-12-05T01:36:30Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -132,8 +132,8 @@ def test_post_with_relationships():
     }
 
     assert (
-        subject.date_published == "2019-03-28T01:00:00"
-        and subject.date_updated == "2026-06-06T12:34:07"
+        subject.date_published == "2019-03-28T00:00:00Z"
+        and subject.date_updated == "2026-06-06T10:34:07Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -216,8 +216,8 @@ def test_post_with_citations():
     }
 
     assert (
-        subject.date_published == "2010-10-21T02:00:00"
-        and subject.date_updated == "2025-10-24T08:45:16"
+        subject.date_published == "2010-10-21T00:00:00Z"
+        and subject.date_updated == "2025-10-24T06:45:16Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -276,7 +276,10 @@ def test_another_post_with_citations():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/50ebs-4zq55"
     assert subject.type == "BlogPost"
-    assert subject.url is None
+    assert (
+        subject.url
+        == "https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies"
+    )
     assert subject.title == "Ruby CDK for Newbies"
     # assert subject.citations == [
     #     {
@@ -326,8 +329,8 @@ def test_post_with_relationships_as_doi():
     }
 
     assert (
-        subject.date_published == "2019-03-28T01:00:00"
-        and subject.date_updated == "2026-06-06T12:34:07"
+        subject.date_published == "2019-03-28T00:00:00Z"
+        and subject.date_updated == "2026-06-06T10:34:07Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -400,8 +403,8 @@ def test_post_with_funding():
     }
 
     assert (
-        subject.date_published == "2023-12-05T01:00:00"
-        and subject.date_updated == "2026-06-09T17:48:31"
+        subject.date_published == "2023-12-05T00:00:00Z"
+        and subject.date_updated == "2026-06-09T15:48:31Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -525,8 +528,8 @@ def test_post_with_funding_ror():
     }
 
     assert (
-        subject.date_published == "2022-03-08T01:00:00"
-        and subject.date_updated == "2025-12-06T11:57:05"
+        subject.date_published == "2022-03-08T00:00:00Z"
+        and subject.date_updated == "2025-12-06T10:57:05Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -636,8 +639,8 @@ def test_ghost_with_institutional_author():
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert (
-        subject.date_published == "2023-01-24T01:00:00"
-        and subject.date_updated == "2025-04-14T01:21:55"
+        subject.date_published == "2023-01-24T00:00:00Z"
+        and subject.date_updated == "2025-04-13T23:21:55Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -738,8 +741,8 @@ def test_ghost_with_affiliations():
     }
 
     assert (
-        subject.date_published == "2013-07-02T02:00:00"
-        and subject.date_updated == "2026-06-06T13:23:07"
+        subject.date_published == "2013-07-02T00:00:00Z"
+        and subject.date_updated == "2026-06-06T11:23:07Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -814,8 +817,8 @@ def test_ghost_with_personal_name_parsing():
     }
 
     assert (
-        subject.date_published == "2024-05-08T02:00:00"
-        and subject.date_updated == "2025-08-02T22:32:30"
+        subject.date_published == "2024-05-08T00:00:00Z"
+        and subject.date_updated == "2025-08-02T20:32:30Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -960,8 +963,8 @@ def test_post_with_contributor_roles():
     }
 
     assert (
-        subject.date_published == "2025-10-14T02:00:00"
-        and subject.date_updated == "2026-06-09T17:55:20"
+        subject.date_published == "2025-10-14T00:00:00Z"
+        and subject.date_updated == "2026-06-09T15:55:20Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -1129,8 +1132,8 @@ def test_get_jsonfeed_blog():
         "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date_updated == "2026-07-04T15:32:40" and subject.dates == {
-        "created": "2023-01-01T01:00:00"
+    assert subject.date_updated == "2026-07-04T13:32:40Z" and subject.dates == {
+        "created": "2023-01-01T00:00:00Z"
     }
     assert subject.publisher == {
         "name": "Front Matter",

@@ -12,7 +12,6 @@ from ..constants import (
 )
 from ..utils import (
     dict_to_spdx,
-    doi_from_url,
     from_schema_org_creators,
     github_as_codemeta_url,
     github_as_repo_url,
@@ -84,7 +83,6 @@ def read_codemeta(data: dict | None, **kwargs) -> Commonmeta:
     if license_:
         license_ = dict_to_spdx({"id": meta.get("licenseId")})
 
-    provider = "DataCite" if doi_from_url(_id) else "GitHub"
     state = "findable" if meta or read_options else "not_found"
 
     return {
@@ -98,7 +96,6 @@ def read_codemeta(data: dict | None, **kwargs) -> Commonmeta:
             "description": description,
             "identifiers": None,
             "license": license_,
-            "provider": provider,
             "publisher": publisher,
             "state": state,
             "subjects": presence(subjects),

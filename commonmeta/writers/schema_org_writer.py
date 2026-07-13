@@ -63,19 +63,16 @@ def write_schema_org(metadata: Metadata) -> dict:
         )
         periodical = None
     elif container is not None:
+        is_journal = container.get("type", None) == "Journal"
         periodical = compact(
             {
-                "issn": container.get("identifier", None)
-                if container.get("identifier_type", None) == "ISSN"
-                else None,
                 "@id": container.get("identifier", None)
                 if container.get("identifier_type", None) == "DOI"
                 else None,
-                "@type": container.get("type", None)
-                if container.get("type", None) == "Journal"
-                else None,
-                "additionalType": container.get("type", None)
-                if container.get("type", None) != "Journal"
+                "@type": "Periodical" if is_journal else None,
+                "additionalType": None if is_journal else container.get("type", None),
+                "issn": container.get("identifier", None)
+                if container.get("identifier_type", None) == "ISSN"
                 else None,
                 "name": container.get("title", None),
             }
@@ -107,20 +104,21 @@ def write_schema_org(metadata: Metadata) -> dict:
         {
             "@context": "http://schema.org",
             "@id": metadata.id,
-            "identifier": metadata.id,
+            "identifier": [metadata.id] if metadata.id else None,
             "@type": schema_org,
             "url": metadata.url,
             "additionalType": additional_type,
             "name": metadata.title,
             "author": to_schema_org_creators(authors),
             "editor": to_schema_org_creators(editors),
+            "citation": to_schema_org_citations(metadata.references),
             "description": metadata.description,
             "license": metadata.license.get("url", None) if metadata.license else None,
             "version": metadata.version,
             "keywords": parse_attributes(
                 wrap(metadata.subjects), content="subject", first=False
             ),
-            "inLanguage": get_language(metadata.language, format="name"),
+            "inLanguage": get_language(metadata.language, format="alpha_2"),
             "dateCreated": (metadata.dates or {}).get("created", None),
             "datePublished": metadata.date_published,
             "dateModified": metadata.date_updated,
@@ -141,11 +139,24 @@ def write_schema_org(metadata: Metadata) -> dict:
             }
             if metadata.publisher
             else None,
-            "provider": {"@type": "Organization", "name": metadata.provider}
-            if metadata.provider
-            else None,
+            "provider": {"@type": "Organization", "name": metadata.provider or ""},
         }
     )
+
+
+def to_schema_org_citations(references) -> list | None:
+    """Convert v1.0 references to schema.org citations (CreativeWork)."""
+    citations = [
+        compact(
+            {
+                "@id": r.get("id", None),
+                "@type": "CreativeWork",
+                "name": r.get("reference", None) or r.get("title", None),
+            }
+        )
+        for r in wrap(references)
+    ]
+    return citations or None
 
 
 def write_schema_org_list(metalist: MetadataList) -> list | None:

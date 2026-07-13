@@ -70,7 +70,7 @@ def test_blog_posting():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/zhyx-n122"
-    assert subject.type == "Document"
+    assert subject.type == "BlogPost"
     assert subject.url == "https://datacite.org/blog/datacite-member-survey-2022/"
     assert subject.title == "DataCite Member Survey 2022"
     assert len(subject.contributors) == 2
@@ -92,8 +92,8 @@ def test_blog_posting():
     assert subject.publisher == {"name": "DataCite"}
     assert len(subject.references) == 8
     assert subject.references[0] == {
-        "key": "ref1",
         "id": "https://doi.org/10.5438/k1gw-y723",
+        "type": "Document",
     }
     assert subject.container is None
     assert subject.description.startswith(
@@ -144,16 +144,18 @@ def test_date():
     assert subject.references is None
     assert subject.container == {
         "identifier": "10.4230/LIPIcs.TQC.2013",
-        "identifier_type": "URL",
+        "identifier_type": "DOI",
         "type": "Series",
         "title": "LIPIcs, Volume 22, TQC 2013",
+        "volume": "22",
+        "first_page": "93",
+        "last_page": "105",
     }
     assert subject.description.startswith(
         "We investigate the problem of constructing unextendible product bases"
     )
     assert subject.subjects == [
         {
-            "language": "en",
             "subject": "unextendible product basis; quantum entanglement; graph factorization",
         }
     ]

@@ -164,13 +164,10 @@ def _build_references(references: list[dict] | None) -> list[dict]:
     result = []
     for r in wrap(references):
         ref_doi = doi_from_url(r.get("id", "")) or ""
-        unstructured = r.get("unstructured", "")
-        title = r.get("title", "")
-        # Use the separately-stored title; fall back to reference text only
-        # when there is no unstructured field (the reference text IS the title).
-        article_title = (
-            title if title else ("" if unstructured else r.get("reference", ""))
-        )
+        # the commonmeta `reference` field is the formatted reference string
+        # (Crossref's unstructured); fall back to the legacy unstructured field.
+        unstructured = r.get("reference", "") or r.get("unstructured", "")
+        article_title = r.get("title", "")
         pub_year = r.get("publication_year", "")
         entry = compact(
             {

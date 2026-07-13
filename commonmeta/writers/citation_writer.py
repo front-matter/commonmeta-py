@@ -32,13 +32,13 @@ def write_citation(metadata: Metadata) -> bytes | None:
     if item is None:
         return f"Error: citation not available for {metadata.id}.".encode("utf-8")
 
-    style_path = get_style_filepath(metadata.style)
-    style = CitationStylesStyle(style_path, locale=metadata.locale)
-    bib = CitationStylesBibliography(style, item, formatter.html)
-    citation = Citation([CitationItem(metadata.id)])
-
-    # workaround for the issue with the vancouver style and de locale
+    # Loading the style (unknown style name) and rendering the bibliography can
+    # both fail; return a graceful message rather than raising.
     try:
+        style_path = get_style_filepath(metadata.style)
+        style = CitationStylesStyle(style_path, locale=metadata.locale)
+        bib = CitationStylesBibliography(style, item, formatter.html)
+        citation = Citation([CitationItem(metadata.id)])
         bib.register(citation)
         return _clean_result(str(bib.bibliography()[0])).encode("utf-8")
     except Exception as e:

@@ -570,6 +570,30 @@ def normalize_cc_url(url: str | None) -> str | None:
     return NORMALIZED_LICENSES.get(url, url)
 
 
+def normalize_arxiv(pid: str | None) -> str | None:
+    """Normalize an arXiv identifier to https://arxiv.org/abs/XXXX.
+
+    Accepts bare IDs (2512.00826, archive/9901001), prefixed forms
+    (arXiv:2512.00826) and full URLs. Returns None for unrecognized input.
+    """
+    if not isinstance(pid, str):
+        return None
+    s = pid.strip()
+    for prefix in ("https://arxiv.org/abs/", "http://arxiv.org/abs/"):
+        if s.startswith(prefix):
+            rest = s[len(prefix) :]
+            return f"https://arxiv.org/abs/{rest}" if rest else None
+    for prefix in ("arXiv:", "arxiv:"):
+        if s.startswith(prefix):
+            bare = s[len(prefix) :]
+            return f"https://arxiv.org/abs/{bare}" if bare else None
+    if re.match(
+        r"^\d{4}\.\d{4,5}(?:v\d+)?$|^[a-z\-]+(?:\.[A-Z]{2})?/\d{7}(?:v\d+)?$", s
+    ):
+        return f"https://arxiv.org/abs/{s}"
+    return None
+
+
 def normalize_ror(ror: str | None) -> str | None:
     """Normalize ROR ID"""
     ror = validate_ror(ror)
@@ -944,6 +968,9 @@ def format_name_identifier(ni: str | dict | None) -> str | None:
         ni.get("nameIdentifier", None)
         or ni.get("identifier", None)
         or ni.get("publisherIdentifier", None)
+        # DataCite XML carries the value as element text (#text) with the
+        # scheme in a sibling attribute.
+        or ni.get("#text", None)
     )
     name_identifier_scheme = (
         ni.get("nameIdentifierScheme", None)
@@ -1004,7 +1031,7 @@ def dict_to_spdx(dct: dict) -> dict | None:
             lic
             for lic in spdx
             if lic["licenseId"].casefold() == dct.get("id", "").casefold()
-            or lic["seeAlso"][0] == dct.get("url", None)
+            or (lic.get("seeAlso") and lic["seeAlso"][0] == dct.get("url", None))
         ),
         None,
     )
@@ -1017,7 +1044,7 @@ def dict_to_spdx(dct: dict) -> dict | None:
         {
             "id": license_["licenseId"],
             "title": license_["name"],
-            "url": license_["seeAlso"][0],
+            "url": license_["seeAlso"][0] if license_.get("seeAlso") else None,
         }
     )
 
@@ -1154,7 +1181,9 @@ def to_csl(elements: list) -> list:
         element["family"] = person.get("family_name", None)
         element["given"] = person.get("given_name", None)
         element["literal"] = (
-            organization.get("name", None) if not person.get("family_name", None) else None
+            organization.get("name", None)
+            if not person.get("family_name", None)
+            else None
         )
         return compact(element)
 
@@ -1200,27 +1229,53 @@ def to_schema_org_creators(elements: list) -> list:
     """Convert contributors (v1.0 {type, person|organization, roles} shape)
     to Schema.org"""
 
+    def format_affiliation(affiliations):
+        """Schema.org affiliation(s): a single Organization object, or a list."""
+        out = []
+        for a in wrap(affiliations):
+            if isinstance(a, str):
+                if a:
+                    out.append({"@type": "Organization", "name": a})
+                continue
+            if not isinstance(a, dict):
+                continue
+            out.append(
+                compact(
+                    {
+                        "@id": a.get("identifier", None)
+                        if a.get("identifier_type", None) == "ROR"
+                        else None,
+                        "@type": "Organization",
+                        "name": a.get("name", None),
+                    }
+                )
+            )
+        if not out:
+            return None
+        return out[0] if len(out) == 1 else out
+
     def format_element(element):
         """format element"""
         organization = element.get("organization", None)
         person = element.get("person", None) or {}
         given_name = person.get("given_name", None)
         family_name = person.get("family_name", None)
-        if family_name:
+        if family_name or given_name:
             return compact(
                 {
                     "@type": "Person",
-                    "id": person.get("id", None),
-                    "name": " ".join([given_name or "", family_name]).strip(),
+                    "@id": person.get("id", None),
                     "givenName": given_name,
                     "familyName": family_name,
-                    "affiliations": person.get("affiliations", None),
+                    "affiliation": format_affiliation(
+                        person.get("affiliations", None)
+                    ),
                 }
             )
         return compact(
             {
                 "@type": "Organization",
-                "id": organization.get("id", None) if organization else None,
+                "@id": organization.get("id", None) if organization else None,
                 "name": organization.get("name", None) if organization else None,
             }
         )
@@ -1238,9 +1293,11 @@ def to_schema_org_container(element: dict | None, **kwargs) -> dict | None:
     return compact(
         {
             "@id": element.get("identifier", None),
-            "@type": "DataCatalog"
-            if kwargs.get("type", None) == "DataRepository"
-            else "Periodical",
+            "@type": (
+                "DataCatalog"
+                if kwargs.get("type", None) == "DataRepository"
+                else "Periodical"
+            ),
             "name": element.get("title", None) or kwargs.get("container_title", None),
         }
     )
@@ -1466,15 +1523,22 @@ def from_schema_org_creators(elements: list) -> list:
             element["id"] = i.get("@id")
             element["type"] = "Person"
         elif isinstance(i.get("@type", None), str):
-            element["type"] = i.get("@type")
+            # normalize case (codemeta uses lowercase "organization"/"person")
+            _t = i.get("@type")
+            element["type"] = {"organization": "Organization", "person": "Person"}.get(
+                _t.lower(), _t
+            )
         elif isinstance(i.get("@type", None), list):
             # Find first element that matches the condition
             element["type"] = next(
                 (x for x in i["@type"] if x in ["Person", "Organization"]), None
             )
 
+        # a creator may carry givenName/familyName without a combined name
+        _name = str(i.get("name")) if i.get("name") is not None else ""
+
         # strip text after comma if suffix is an academic title
-        if str(i["name"]).split(", ", maxsplit=1)[-1] in [
+        if _name and _name.split(", ", maxsplit=1)[-1] in [
             "MD",
             "PhD",
             "DVM",
@@ -1500,23 +1564,29 @@ def from_schema_org_creators(elements: list) -> list:
             "BEng",
             "BPhil",
         ]:
-            i["name"] = str(i["name"]).split(", ", maxsplit=1)[0]
-        length = len(str(i["name"]).split(" "))
+            i["name"] = _name.split(", ", maxsplit=1)[0]
+            _name = i["name"]
+        length = len(_name.split(" "))
         if i.get("givenName", None):
             element["givenName"] = i.get("givenName", None)
         if i.get("familyName", None):
             element["familyName"] = i.get("familyName", None)
             element["type"] = "Person"
-        # parentheses around the last word indicate an organization
-        elif length > 1 and not str(i["name"]).rsplit(" ", maxsplit=1)[-1].startswith(
-            "("
+        # parentheses around the last word indicate an organization; an explicit
+        # @type of Organization also means the name must not be split into
+        # given/family parts.
+        elif (
+            element.get("type", None) != "Organization"
+            and _name
+            and length > 1
+            and not _name.rsplit(" ", maxsplit=1)[-1].startswith("(")
         ):
-            element["givenName"] = " ".join(str(i["name"]).split(" ")[0 : length - 1])
-            element["familyName"] = str(i["name"]).rsplit(" ", maxsplit=1)[1:]
+            element["givenName"] = " ".join(_name.split(" ")[0 : length - 1])
+            element["familyName"] = _name.rsplit(" ", maxsplit=1)[1:]
         if not element.get("familyName", None):
             element["creatorName"] = compact(
                 {
-                    "type": i.get("@type", None),
+                    "type": element.get("type", None) or i.get("@type", None),
                     "#text": i.get("name", None),
                 }
             )
