@@ -19,7 +19,7 @@ keywords = [
     "inveniordm",
 ]
 dependencies = [
-    "commonmeta-schema==1.0rc2",
+    "commonmeta-schema==1.0rc4",
     "dateparser>=1.1.7,<2",
     "PyYAML>=5.4",
     "beautifulsoup4>=4.11,<5",
@@ -83,7 +83,7 @@ dev = [
 
 [tool.uv]
 default-groups = ["docs", "dev"]
-# commonmeta-schema is currently a release (1.0rc2)
+# commonmeta-schema is currently a release (1.0rc4)
 prerelease = "allow"
 
 [tool.hatch.build.targets.sdist]

@@ -959,7 +959,7 @@ requires-dist = [
     { name = "citeproc-py", specifier = ">=0.9,<1" },
     { name = "citeproc-py-styles", specifier = ">=0.1.2,<1" },
     { name = "click", specifier = ">=8.1.7,<9" },
-    { name = "commonmeta-schema", specifier = "==1.0rc2" },
+    { name = "commonmeta-schema", specifier = "==1.0rc4" },
     { name = "datacite", specifier = ">=1.1.1,<2" },
     { name = "dateparser", specifier = ">=1.1.7,<2" },
     { name = "edtf", specifier = ">=5.0.0,<6" },
@@ -1009,11 +1009,11 @@ docs = [
 
 [[package]]
 name = "commonmeta-schema"
-version = "1.0rc2"
+version = "1.0rc4"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/dc/c8/83443c7df21d15194319fb3327bccfa735f585d247e8d065b49ae08e8481/commonmeta_schema-1.0rc2.tar.gz", hash = "sha256:8f44717b6a38e02c89bf1fc46f8892f62fe44ba72a52baeeea57ec3daddcf87d", size = 187841, upload-time = "2026-07-13T17:05:01.542Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c0/b6/7817380b2a048534b24bc6fe7490ed34bfa78f0ae272c0a2df67cc21821a/commonmeta_schema-1.0rc4.tar.gz", hash = "sha256:6d6ffcb51f2cbabe6e0e68824d4ed1d7532bc462cd164b8a9c12a67f8aa1dc4f", size = 188746, upload-time = "2026-07-14T06:46:40.997Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9e/15/df4b6d3f154c0c76d204a539085d37ec7df96618224732c0b444713e0e63/commonmeta_schema-1.0rc2-py3-none-any.whl", hash = "sha256:0d30847a6ec7883f471fa260e420d133aa705706310f58a335a91acaba894431", size = 248485, upload-time = "2026-07-13T17:03:50.083Z" },
+    { url = "https://files.pythonhosted.org/packages/ba/10/0d8a0b54fd4a22f5d649e0716fb313a27300112ca9d55b95fd00d7013e6a/commonmeta_schema-1.0rc4-py3-none-any.whl", hash = "sha256:b37eb6b444fc250e2d0f2146b2df5df9085ff4d427ef4c5781a8b4c3d03668d3", size = 259247, upload-time = "2026-07-14T06:46:38.734Z" },
 ]
 
 [[package]]

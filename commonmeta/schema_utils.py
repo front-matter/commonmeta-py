@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from importlib.metadata import version as _package_version
 from os import path
 from typing import Any
 
@@ -13,8 +14,11 @@ from jsonschema.exceptions import best_match
 
 from .base_utils import normalize_xml_dict
 
-# Commonmeta JSON Schema version, provided by the commonmeta-schema package.
-COMMONMETA_SCHEMA_VERSION = "1.0rc2"
+# Commonmeta JSON Schema version, derived from the installed commonmeta-schema
+# package so it tracks the pinned dependency automatically. The version string
+# (e.g. "1.0rc4") maps directly to the bundled schema file (commonmeta_v1.0rc4.json);
+# commonmeta_schema_path raises FileNotFoundError if the two ever diverge.
+COMMONMETA_SCHEMA_VERSION = _package_version("commonmeta-schema")
 
 
 def json_schema_errors(
