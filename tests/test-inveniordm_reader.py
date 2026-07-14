@@ -427,6 +427,7 @@ def test_rogue_scholar_with_citations():
     assert subject.relations == [
         {"id": "https://doi.org/10.59350/4q8j1-1ap35", "type": "IsReferencedBy"},
         {"id": "https://doi.org/10.59350/jtzzf-jfz50", "type": "IsReferencedBy"},
+        {"id": "https://doi.org/10.63485/enjv5-xh191", "type": "IsVersionOf"},
     ]
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.funding_references is None

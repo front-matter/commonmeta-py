@@ -597,7 +597,11 @@ def test_jsonfeed_without_doi():
                 "given_name": "Nees Jan",
                 "family_name": "van Eck",
                 "affiliations": [
-                    {"identifier": "https://ror.org/027bh9e22", "identifier_type": "ROR", "name": "Leiden University"}
+                    {
+                        "identifier": "https://ror.org/027bh9e22",
+                        "identifier_type": "ROR",
+                        "name": "Leiden University",
+                    }
                 ],
             },
             "roles": ["Author"],
@@ -609,7 +613,11 @@ def test_jsonfeed_without_doi():
                 "given_name": "Ludo",
                 "family_name": "Waltman",
                 "affiliations": [
-                    {"identifier": "https://ror.org/027bh9e22", "identifier_type": "ROR", "name": "Leiden University"}
+                    {
+                        "identifier": "https://ror.org/027bh9e22",
+                        "identifier_type": "ROR",
+                        "name": "Leiden University",
+                    }
                 ],
             },
             "roles": ["Author"],
@@ -669,7 +677,13 @@ def test_ghost_with_affiliations():
             "id": "https://orcid.org/0000-0003-1419-2405",
             "given_name": "Martin",
             "family_name": "Fenner",
-            "affiliations": [{"identifier": "https://ror.org/04wxnsj81", "identifier_type": "ROR", "name": "DataCite"}],
+            "affiliations": [
+                {
+                    "identifier": "https://ror.org/04wxnsj81",
+                    "identifier_type": "ROR",
+                    "name": "DataCite",
+                }
+            ],
         },
         "roles": ["Author"],
     }
@@ -1471,7 +1485,12 @@ def test_rogue_scholar_with_parent_doi():
             "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
         },
     ]
-    assert dig(crossref_xml, "program.1") is None
+    assert dig(crossref_xml, "program.1.name") == "relations"
+    assert dig(crossref_xml, "program.1.related_item.0.intra_work_relation") == {
+        "relationship-type": "isVersionOf",
+        "identifier-type": "doi",
+        "#text": "10.53731/dj4cp-2b786",
+    }
     assert dig(crossref_xml, "doi_data.doi") == "10.53731/m7gng-jmm19"
     assert (
         dig(crossref_xml, "doi_data.resource")

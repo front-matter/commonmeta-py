@@ -189,8 +189,11 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     # citing works are represented as IsReferencedBy relations
     relations += get_citations(wrap(dig(meta, "custom_fields.rs:citations")))
 
+    explicit_parent_doi = kwargs.get("parent_doi", None)
+    nested_parent_doi = dig(meta, "parent.pids.doi.identifier")
+
     # if data is for a parent record
-    if kwargs.get("parent_doi", None):
+    if explicit_parent_doi:
         related_id = doi_as_url(meta.get("doi", None)) or doi_as_url(
             dig(meta, "pids.doi.identifier")
         )
@@ -198,6 +201,13 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             {
                 "id": related_id,
                 "type": "HasVersion",
+            }
+        )
+    elif nested_parent_doi:
+        relations.append(
+            {
+                "id": doi_as_url(nested_parent_doi),
+                "type": "IsVersionOf",
             }
         )
     elif meta.get("conceptdoi", None):
@@ -262,9 +272,6 @@ def get_references(references: list) -> list:
     """get_references"""
 
     def get_reference(reference: dict) -> dict | None:
-        if not isinstance(reference, dict):
-            return None
-
         if reference.get("scheme", None) == "doi":
             id_ = normalize_doi(reference.get("identifier"))
         elif reference.get("scheme", None) == "url":
