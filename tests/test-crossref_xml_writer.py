@@ -1443,6 +1443,28 @@ def test_zenodo():
 
 
 @pytest.mark.vcr
+def test_zenodo_poster():
+    """Poster metadata from Zenodo is correctly mapped to Crossref."""
+    string = "https://zenodo.org/api/records/4927605"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.5281/zenodo.4927605"
+    assert subject.type == "Poster"
+    assert subject.url == "https://zenodo.org/records/4927605"
+    assert (
+        subject.title
+        == "SPACE to evolve academic assessment: A rubric for analyzing institutional conditions and progress indicators"
+    )
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    print(crossref_xml)
+    assert dig(crossref_xml, "doi_batch.version") == "5.5.0"
+    assert dig(crossref_xml, "doi_batch.body.posted_content.type") == "poster"
+
+
+@pytest.mark.vcr
 def test_rogue_scholar_with_parent_doi():
     """Rogue Scholar with parent DOI"""
     string = "https://rogue-scholar.org/api/records/a9awy-52h48"
