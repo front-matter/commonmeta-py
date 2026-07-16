@@ -19,7 +19,7 @@ keywords = [
     "inveniordm",
 ]
 dependencies = [
-    "commonmeta-schema==1.0rc8",
+    "commonmeta-schema==1.0rc9",
     "dateparser>=1.1.7,<2",
     "PyYAML>=5.4",
     "beautifulsoup4>=4.11,<5",
@@ -56,9 +56,12 @@ dependencies = [
 [project.optional-dependencies]
 # The Rust backend (bulk import, local SQLite store, Parquet/archive output) that
 # commonmeta/backend.py loads on demand. commonmeta-rs ships abi3-py314 wheels for
-# macOS arm64 and Linux x86_64 plus an sdist; its own requires-python (>=3.14)
-# surfaces the real reason on older interpreters instead of resolving to nothing.
-backend = ["commonmeta-rs>=0.9.32"]
+# macOS arm64 and Linux x86_64 plus an sdist. The python_full_version marker keeps
+# it out of the universal lock below 3.14: commonmeta-py itself supports 3.9+, so
+# an unmarked pin makes the whole resolution unsatisfiable on 3.9-3.13. Below 3.14
+# the extra resolves to nothing and backend.py's require_backend() raises the clear
+# "needs Python 3.14+" error at call time instead.
+backend = ["commonmeta-rs>=0.9.33 ; python_full_version >= '3.14'"]
 
 [project.urls]
 Homepage = "https://python.commonmeta.org"
@@ -91,9 +94,9 @@ dev = [
 
 [tool.uv]
 default-groups = ["docs", "dev"]
-# commonmeta-schema is currently a prerelease (1.0rc8); it ships the final
+# commonmeta-schema is currently a prerelease (1.0rc9); it ships the final
 # commonmeta_v1.0.json, which is the schema this package targets. "explicit" allows
-# prereleases only for packages pinned to one (commonmeta-schema==1.0rc8); "allow"
+# prereleases only for packages pinned to one (commonmeta-schema==1.0rc9); "allow"
 # is global and let the resolver pick prereleases for every dependency - it was
 # installing lxml 7.0.0a3 in place of the 6.1.1 release.
 prerelease = "explicit"

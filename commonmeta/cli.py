@@ -80,7 +80,13 @@ def require_network(no_network: bool, action: str) -> None:
 
 def input_requires_network(value) -> bool:
     """A DOI/URL/identifier input must be fetched; a local file or inline
-    string is read offline."""
+    string is read offline.
+
+    Used by the ``list`` command, which reads through MetadataList and has no
+    local-store fallback. The ``convert`` command instead enforces --no-network
+    at fetch time (see Metadata), because its DOI/URL/ROR/ORCID inputs can be
+    served offline from the Rust backend's SQLite store.
+    """
     return isinstance(value, str) and normalize_id(value) is not None
 
 
@@ -116,9 +122,16 @@ def convert(
     no_network,
     show_errors,
 ):
-    if no_network and input_requires_network(input):
-        require_network(no_network, "fetching the input record")
-    metadata = Metadata(input, via=via, doi=doi, prefix=prefix)
+    # --no-network is enforced at fetch time inside Metadata: DOI/URL, ROR and
+    # ORCID inputs can be served from the local SQLite store via the Rust
+    # backend, so whether the network is needed depends on a store miss, not on
+    # the input type. A miss under --no-network raises BackendError.
+    try:
+        metadata = Metadata(
+            input, via=via, doi=doi, prefix=prefix, no_network=no_network
+        )
+    except BackendError as error:
+        raise click.ClickException(str(error))
     if show_errors and not metadata.is_valid:
         raise click.ClickException(str(metadata.errors))
 

@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
+import os
 import re
 
 import base32_lib as base32
 import requests
 from furl import furl
 
+from .backend import backend_available, require_backend, resolve_db_path
 from .base_utils import compact
 
 
@@ -137,15 +139,37 @@ def doi_resolver(doi, **kwargs) -> str | None:
     return "https://doi.org/"
 
 
-def get_doi_ra(doi) -> str | None:
-    """Return the DOI registration agency for a given DOI"""
+def get_doi_ra(doi, no_network: bool = False) -> str | None:
+    """Return the DOI registration agency ("Crossref", "DataCite", …) for a DOI.
+
+    Consults the local SQLite ``prefixes`` cache first via the Rust backend when
+    it and a database are present, then falls back to the DOI RA API, caching the
+    result for next time. The API request stays on this module's ``requests``
+    client (so tests keep mocking it through VCR); only the cache read/write
+    crosses into the backend. Under ``no_network`` only the cache is consulted -
+    a miss returns None rather than fetching.
+    """
     prefix = validate_prefix(doi)
     if prefix is None:
         return None
+
+    db = resolve_db_path()
+    use_cache = backend_available() and os.path.exists(db)
+    if use_cache:
+        cached = require_backend().lookup_doi_ra_sqlite(doi, db)
+        if cached is not None:
+            return cached
+
+    if no_network:
+        return None
+
     response = requests.get("https://doi.org/ra/" + prefix, timeout=10)
     if response.status_code != 200:
         return None
-    return response.json()[0].get("RA", None)
+    ra = response.json()[0].get("RA", None)
+    if ra is not None and use_cache:
+        require_backend().store_doi_ra_sqlite(doi, ra, db)
+    return ra
 
 
 def encode_doi(prefix, number: int | None = None, checksum: bool = True) -> str:

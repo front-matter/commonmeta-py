@@ -16,11 +16,17 @@ top of anything that does need it.
 
 from __future__ import annotations
 
+import os
 import sys
 from functools import lru_cache
 from typing import Any
 
 from .schema_utils import COMMONMETA_SCHEMA_URI
+
+# Environment override for the local SQLite store, matching commonmeta-rs'
+# COMMONMETA_DB. The store holds imported commonmeta works plus ROR organizations
+# and ORCID persons, so reads can be served from it offline.
+DB_PATH_ENV = "COMMONMETA_DB"
 
 # commonmeta-rs builds against the stable ABI from 3.14 on (abi3-py314), so it
 # cannot be installed below that. commonmeta-py itself keeps a 3.9 floor: the
@@ -70,6 +76,33 @@ def _load() -> Any:
             "commonmeta-schema versions the two packages pin."
         )
     return commonmeta_rs
+
+
+def _data_dir() -> str:
+    """Per-user data directory, matching the Rust `dirs` crate that
+    commonmeta-rs uses, so both resolve the same default database path."""
+    if sys.platform == "darwin":
+        base = os.path.expanduser("~/Library/Application Support")
+    elif sys.platform == "win32":
+        base = os.environ.get("APPDATA") or os.path.expanduser("~/AppData/Roaming")
+    else:
+        base = os.environ.get("XDG_DATA_HOME") or os.path.expanduser("~/.local/share")
+    return os.path.join(base, "commonmeta")
+
+
+def resolve_db_path(explicit: str | None = None) -> str:
+    """Resolve the local commonmeta SQLite database path.
+
+    Precedence, mirroring commonmeta-rs' ``resolve_db_path``: an explicit path,
+    then the ``COMMONMETA_DB`` environment variable, then
+    ``<data_dir>/commonmeta/commonmeta.sqlite3``.
+    """
+    if explicit:
+        return explicit
+    env = os.environ.get(DB_PATH_ENV)
+    if env:
+        return env
+    return os.path.join(_data_dir(), "commonmeta.sqlite3")
 
 
 def backend_available() -> bool:

@@ -11,36 +11,39 @@ from commonmeta import Metadata
 from commonmeta.readers.orcid_reader import read_orcid
 
 
-def test_person_json():
-    """ORCID person JSON (the /person endpoint)"""
+def test_record_json():
+    """ORCID record JSON (the /record endpoint), with affiliations"""
     subject = Metadata(
-        read_text(fixture_path("orcid", "person_0000-0003-1419-2405.json")),
+        read_text(fixture_path("orcid", "0000-0002-0068-716X.json")),
         via="orcid",
     )
     assert subject.is_valid
     assert subject.entity_type == "person"
-    assert subject.id == "https://orcid.org/0000-0003-1419-2405"
-    assert subject.given_name == "Martin"
-    assert subject.family_name == "Fenner"
-    assert subject.name == "Martin Fenner"
-    assert subject.additional_names == ["Martin Hellmut Fenner"]
-    assert subject.country == "DE"
+    assert subject.id == "https://orcid.org/0000-0002-0068-716X"
+    assert subject.given_name == "Cameron"
+    assert subject.family_name == "Neylon"
+    assert subject.name == "Cameron Neylon"
+    assert subject.country == "SE"
     assert subject.asserted_by == "ORCID"
-    # last-modified-date is milliseconds since the epoch in the person JSON
-    assert subject.date_updated == "2026-06-16T19:54:19Z"
+    # last-modified-date is milliseconds since the epoch in the record JSON
+    assert subject.date_updated == "2026-07-16T09:46:15Z"
     assert subject.identifiers == [
-        {"identifier": "000000035060549X", "identifier_type": "ISNI"}
+        {"identifier": "9738760800", "identifier_type": "ScopusID"},
+        {"identifier": "0000000138376191", "identifier_type": "ISNI"},
     ]
     assert subject.urls == [
-        {"name": "Mastodon", "url": "https://hachyderm.io/@mfenner"},
-        {"name": "GitHub", "url": "https://github.com/mfenner"},
-        {"name": "Blog", "url": "https://blog.front-matter.de"},
+        {"name": "Personal website", "url": "http://cameronneylon.net"},
+        {"name": "Mastodon", "url": "https://hcommons.social/@cameronneylon"},
     ]
-    # a biography's line breaks are content, and survive the writer
-    assert subject.description.startswith("Martin Fenner is the Founder")
-    assert "\n" in subject.description
-    # the /person endpoint carries no employments
-    assert getattr(subject, "affiliations", None) is None
+    assert subject.description.startswith("Cameron Neylon is an independent researcher")
+    # the /record endpoint carries employments and educations as affiliations;
+    # educations keep an "Education" role prefix so they stay distinguishable
+    assert len(subject.affiliations) == 6
+    assert (
+        subject.affiliations[0]["name"]
+        == "Curtin University, Centre for Culture & Technology"
+    )
+    assert subject.affiliations[-1]["role"] == "Education: BSc (Hons)"
 
 
 def test_unmapped_external_id_keeps_scheme():

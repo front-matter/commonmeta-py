@@ -914,6 +914,19 @@ CM_TO_ORCID_IDENTIFIER_TYPES = {
     "Wikidata": "Wikidata",
 }
 
+# ORCID affiliation disambiguation-source <- commonmeta identifier_type, for
+# writing an affiliation's organization id back into a record. The inverse of
+# ORCID_TO_CM_AFFILIATION_TYPES, picking the canonical source where two ORCID
+# names collapse to one commonmeta type (FUNDREF over OFR for FundRef).
+CM_TO_ORCID_AFFILIATION_TYPES = {
+    "ROR": "ROR",
+    "FundRef": "FUNDREF",
+    "GRID": "GRID",
+    "ISNI": "ISNI",
+    "Ringgold": "RINGGOLD",
+    "Wikidata": "WIKIDATA",
+}
+
 # --- ROR (organization entities) ---
 
 # ROR external_ids[].type -> commonmeta identifier_type. ROR's "fundref" is the

@@ -2,13 +2,19 @@
 
 from __future__ import annotations
 
+import os
 from os import path
 from typing import Any
 
 import orjson as json
 import yaml
 
-from .backend import require_backend
+from .backend import (
+    BackendError,
+    backend_available,
+    require_backend,
+    resolve_db_path,
+)
 from .base_utils import dig, parse_xml, wrap
 from .io_utils import write_output
 from .readers.bibtex_reader import read_bibtex
@@ -108,10 +114,15 @@ class Metadata:
         # is what commonmeta-rs does - its `list` path doesn't validate either.
         # Reader errors are reported regardless.
         self._validate = kwargs.get("validate", True)
+        # When set, reads must be served from the local SQLite store (Rust
+        # backend) and never touch the network; a store miss raises rather than
+        # falling back to an API. Mirrors commonmeta-rs' --no-network. Private
+        # (underscore) so write_commonmeta doesn't serialize it into the record.
+        self._no_network = kwargs.get("no_network", False)
         if isinstance(string, str):
             pid = normalize_id(string)
             if pid is not None and self.via is None:
-                self.via = find_from_format(pid=pid)
+                self.via = find_from_format(pid=pid, no_network=self._no_network)
             elif path.exists(string):
                 with open(string, encoding="utf-8") as file:
                     string = file.read()
@@ -301,8 +312,63 @@ class Metadata:
         # Default fallback
         raise ValueError("No metadata found")
 
+    def _read_pid_from_backend(self, pid, via) -> dict[str, Any] | None:
+        """Try the local SQLite store (Rust backend) before any network fetch.
+
+        Returns a record dict for the matching reader, or ``None`` when the
+        backend or database is unavailable or the record is not stored. DOI/URL
+        inputs come back already converted to commonmeta (``via`` is switched to
+        ``"commonmeta"``); ROR and ORCID come back as their raw upstream JSON,
+        which ``read_ror`` / ``read_orcid`` then convert. Never touches network.
+        """
+        if not backend_available():
+            return None
+        db = resolve_db_path()
+        if not os.path.exists(db):
+            return None
+        backend = require_backend()
+        try:
+            if via == "ror":
+                raw = backend.fetch_ror_sqlite(pid, db)
+                return {**raw, "via": "ror"} if raw is not None else None
+            if via == "orcid":
+                raw = backend.fetch_orcid_sqlite(pid, db)
+                return {**raw, "via": "orcid"} if raw is not None else None
+            # Any DOI/URL: the store keys works by their commonmeta id (DOI URL)
+            # and returns the record already in commonmeta form.
+            record = backend.read_sqlite_by_id(pid, db)
+            if record is not None:
+                self.via = "commonmeta"
+                return dict(record)
+        except Exception:
+            # The backend is a best-effort accelerator: a malformed or
+            # unmigrated database (e.g. "no such table") is a miss, not a fatal
+            # error - fall back to the network path (or the no_network error).
+            return None
+        return None
+
     def _get_metadata_from_pid(self, pid, via) -> dict[str, Any]:
-        """Helper method to get metadata from a PID."""
+        """Helper method to get metadata from a PID.
+
+        Reads from the local SQLite store first when the Rust backend is
+        installed and a database exists; only on a miss does it fetch over the
+        network. Under ``no_network`` a miss raises instead of fetching.
+        """
+        record = self._read_pid_from_backend(pid, via)
+        if record is not None:
+            return record
+        if self._no_network:
+            db = resolve_db_path()
+            where = (
+                f"no local database at '{db}'"
+                if not os.path.exists(db)
+                else f"'{pid}' is not in the local database '{db}'"
+            )
+            raise BackendError(
+                f"fetching '{pid}' requires network access, but --no-network is "
+                f"set: {where}. Run 'commonmeta import' to populate the database, "
+                "or drop --no-network."
+            )
         if via == "schema_org":
             return get_schema_org(pid)
         elif via == "datacite":

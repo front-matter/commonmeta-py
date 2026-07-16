@@ -19,7 +19,7 @@ from commonmeta.readers.orcid_xml_reader import (
 def test_record_xml():
     """ORCID record XML (as found in the bulk summaries dumps)"""
     subject = Metadata(
-        read_text(fixture_path("orcid", "0000-0002-0068-716X.xml")), via="orcid_xml"
+        read_text(fixture_path("orcid_xml", "0000-0002-0068-716X.xml")), via="orcid_xml"
     )
     assert subject.is_valid
     assert subject.entity_type == "person"
@@ -27,9 +27,9 @@ def test_record_xml():
     assert subject.given_name == "Cameron"
     assert subject.family_name == "Neylon"
     assert subject.name == "Cameron Neylon"
-    assert subject.country == "AU"
+    assert subject.country == "SE"
     # the XML carries an ISO 8601 string rather than a unix timestamp
-    assert subject.date_updated == "2026-07-13T08:32:09.212Z"
+    assert subject.date_updated == "2026-07-16T09:46:15.485Z"
     assert subject.identifiers == [
         {"identifier": "9738760800", "identifier_type": "ScopusID"},
         {"identifier": "0000000138376191", "identifier_type": "ISNI"},
@@ -39,7 +39,7 @@ def test_record_xml():
 def test_affiliations():
     """employments and educations both become affiliations"""
     subject = Metadata(
-        read_text(fixture_path("orcid", "0000-0002-0068-716X.xml")), via="orcid_xml"
+        read_text(fixture_path("orcid_xml", "0000-0002-0068-716X.xml")), via="orcid_xml"
     )
     assert len(subject.affiliations) == 6
     # department-name is folded into the organization name
@@ -49,6 +49,7 @@ def test_affiliations():
         "name": "Curtin University, Centre for Culture & Technology",
         "role": "Professor of Research Communications",
         "start_date": "2015-07-21",
+        "end_date": "2024-12-31",
     }
     # an organization without a disambiguated id carries no identifier
     assert "identifier" not in subject.affiliations[1]

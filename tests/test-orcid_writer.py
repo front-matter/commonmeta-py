@@ -11,48 +11,86 @@ from commonmeta.readers.orcid_reader import read_orcid
 
 
 def test_roundtrip_is_identity():
-    """ORCID person -> commonmeta -> ORCID person -> commonmeta is the same.
+    """ORCID -> commonmeta -> ORCID -> commonmeta is the same.
 
     Reading ORCID into commonmeta is lossy by design (visibility, source,
     put-codes; see the writer's docstring), so the writer is checked against what
-    commonmeta models rather than against the input verbatim.
+    commonmeta models rather than against the input verbatim. Affiliations are
+    part of the /record the writer emits, so they round-trip too.
     """
-    raw = read_text(fixture_path("orcid", "person_0000-0003-1419-2405.json"))
+    raw = read_text(fixture_path("orcid", "0000-0002-0068-716X.json"))
     before = json.loads(Metadata(raw, via="orcid").write(to="commonmeta"))
     orcid = Metadata(raw, via="orcid").write(to="orcid")
     after = json.loads(Metadata(orcid.decode(), via="orcid").write(to="commonmeta"))
     assert not diff(before, after)
 
 
-def test_person():
-    """A person is rebuilt in the ORCID API's shape."""
-    raw = read_text(fixture_path("orcid", "person_0000-0003-1419-2405.json"))
+def test_record():
+    """A person is rebuilt in the ORCID /record shape, affiliations included."""
+    raw = read_text(fixture_path("orcid", "0000-0002-0068-716X.json"))
     out = json.loads(Metadata(raw, via="orcid").write(to="orcid"))
 
-    assert out["path"] == "/0000-0003-1419-2405/person"
-    assert out["name"]["given-names"] == {"value": "Martin"}
-    assert out["name"]["family-name"] == {"value": "Fenner"}
-    assert out["other-names"] == {"other-name": [{"content": "Martin Hellmut Fenner"}]}
-    assert out["addresses"] == {"address": [{"country": {"value": "DE"}}]}
-    assert out["biography"]["content"].startswith("Martin Fenner is the Founder")
-    assert out["external-identifiers"] == {
+    assert out["orcid-identifier"] == {
+        "uri": "https://orcid.org/0000-0002-0068-716X",
+        "path": "0000-0002-0068-716X",
+    }
+    person = out["person"]
+    assert person["path"] == "/0000-0002-0068-716X/person"
+    assert person["name"]["given-names"] == {"value": "Cameron"}
+    assert person["name"]["family-name"] == {"value": "Neylon"}
+    assert person["addresses"] == {"address": [{"country": {"value": "SE"}}]}
+    assert person["biography"]["content"].startswith("Cameron Neylon is an independent")
+    assert person["external-identifiers"] == {
         "external-identifier": [
-            {"external-id-type": "ISNI", "external-id-value": "000000035060549X"}
+            {"external-id-type": "Scopus Author ID", "external-id-value": "9738760800"},
+            {"external-id-type": "ISNI", "external-id-value": "0000000138376191"},
         ]
     }
-    assert out["researcher-urls"]["researcher-url"][0] == {
-        "url-name": "Mastodon",
-        "url": {"value": "https://hachyderm.io/@mfenner"},
+    assert person["researcher-urls"]["researcher-url"][0] == {
+        "url-name": "Personal website",
+        "url": {"value": "http://cameronneylon.net"},
     }
+
+
+def test_activities_summary():
+    """Affiliations become employments and educations under activities-summary."""
+    raw = read_text(fixture_path("orcid", "0000-0002-0068-716X.json"))
+    activities = json.loads(Metadata(raw, via="orcid").write(to="orcid"))[
+        "activities-summary"
+    ]
+
+    employments = activities["employments"]["affiliation-group"]
+    educations = activities["educations"]["affiliation-group"]
+    assert len(employments) == 4
+    assert len(educations) == 2
+
+    summary = employments[0]["summaries"][0]["employment-summary"]
+    assert summary["organization"] == {
+        "name": "Curtin University, Centre for Culture & Technology",
+        "disambiguated-organization": {
+            "disambiguated-organization-identifier": "1649",
+            "disambiguation-source": "RINGGOLD",
+        },
+    }
+    assert summary["role-title"] == "Professor of Research Communications"
+    # ISO date parts come back {value}-wrapped
+    assert summary["start-date"] == {
+        "year": {"value": "2015"},
+        "month": {"value": "07"},
+        "day": {"value": "21"},
+    }
+    # the "Education" role prefix is stripped back off the education title
+    education = educations[-1]["summaries"][0]["education-summary"]
+    assert education["role-title"] == "BSc (Hons)"
 
 
 def test_last_modified_is_milliseconds():
     """ORCID reports person dates as milliseconds since the epoch."""
-    raw = read_text(fixture_path("orcid", "person_0000-0003-1419-2405.json"))
-    out = json.loads(Metadata(raw, via="orcid").write(to="orcid"))
-    # the reader turned 1781639659032 into 2026-06-16T19:54:19Z; it goes back
+    raw = read_text(fixture_path("orcid", "0000-0002-0068-716X.json"))
+    person = json.loads(Metadata(raw, via="orcid").write(to="orcid"))["person"]
+    # the reader turned 1784195175480 into 2026-07-16T09:46:15Z; it goes back
     # whole-second, so the sub-second part of the original is not restored
-    assert out["last-modified-date"] == {"value": 1781639659000}
+    assert person["last-modified-date"] == {"value": 1784195175000}
 
 
 def test_credit_name_only_when_it_differs():
@@ -68,11 +106,11 @@ def test_credit_name_only_when_it_differs():
         }
     )
     out = json.loads(Metadata(json.dumps(derived), via="commonmeta").write(to="orcid"))
-    assert "credit-name" not in out["name"]
+    assert "credit-name" not in out["person"]["name"]
 
     explicit = dict(derived, name="J. Carberry")
     out = json.loads(Metadata(json.dumps(explicit), via="commonmeta").write(to="orcid"))
-    assert out["name"]["credit-name"] == {"value": "J. Carberry"}
+    assert out["person"]["name"]["credit-name"] == {"value": "J. Carberry"}
 
 
 def test_other_identifier_restores_its_scheme():
@@ -89,7 +127,7 @@ def test_other_identifier_restores_its_scheme():
         ],
     }
     out = json.loads(Metadata(json.dumps(person), via="commonmeta").write(to="orcid"))
-    assert out["external-identifiers"] == {
+    assert out["person"]["external-identifiers"] == {
         "external-identifier": [
             {"external-id-type": "Loop profile", "external-id-value": "12345"}
         ]

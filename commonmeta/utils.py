@@ -520,6 +520,19 @@ def normalize_id(pid: str | bytes | None, **kwargs) -> str | None:
     if doi is not None:
         return doi
 
+    # check for a ROR id in bare (046ak2485) or URL form; validate_ror is
+    # anchored to the ROR shape or an explicit ror.org/ prefix, so non-ROR URLs
+    # fall through to the generic HTTP handling below.
+    ror = normalize_ror(pid_str)
+    if ror is not None:
+        return ror
+
+    # check for an ORCID in bare (0000-0001-...) or URL form; validate_orcid is
+    # anchored and checksum-validated, so only genuine ORCIDs match here.
+    orcid = normalize_orcid(pid_str)
+    if orcid is not None:
+        return orcid
+
     # check for valid HTTP uri and ensure https
     f = furl(pid_str)
     if not f.host or f.scheme not in ["http", "https"]:
@@ -1350,11 +1363,11 @@ def to_schema_org_relations(related_items: list, relation_type=None) -> list:
 
 
 def find_from_format(
-    pid=None, string=None, ext=None, dct=None, filename=None
+    pid=None, string=None, ext=None, dct=None, filename=None, no_network=False
 ) -> str | None:
     """Find reader from format"""
     if pid is not None:
-        return find_from_format_by_id(pid)
+        return find_from_format_by_id(pid, no_network=no_network)
     if string is not None and ext is not None:
         return find_from_format_by_ext(ext)
     if dct is not None:
@@ -1366,10 +1379,13 @@ def find_from_format(
     return "datacite"
 
 
-def find_from_format_by_id(pid: str) -> str:
+def find_from_format_by_id(pid: str, no_network: bool = False) -> str:
     """Find reader from format by id"""
     doi = validate_doi(pid)
-    if doi and (registration_agency := get_doi_ra(doi)) is not None:
+    if (
+        doi
+        and (registration_agency := get_doi_ra(doi, no_network=no_network)) is not None
+    ):
         return registration_agency.lower()
     if (
         re.match(r"\A(http|https):/(/)?github\.com/(.+)/CITATION.cff\Z", pid)
@@ -1381,6 +1397,10 @@ def find_from_format_by_id(pid: str) -> str:
         is not None
     ):
         return "codemeta"
+    if re.match(r"\A(http|https):/(/)?ror\.org/(.+)\Z", pid) is not None:
+        return "ror"
+    if re.match(r"\A(http|https):/(/)?orcid\.org/(.+)\Z", pid) is not None:
+        return "orcid"
     if re.match(r"\A(http|https):/(/)?openalex\.org/(.+)\Z", pid) is not None:
         return "openalex"
     if (

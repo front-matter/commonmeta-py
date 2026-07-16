@@ -127,3 +127,162 @@ def test_parquet_roundtrip():
         json.loads(metalist.write(to="commonmeta"))["items"][0]["id"]
         == records[0]["id"]
     )
+
+
+@needs_backend
+def test_convert_reads_from_local_store_offline(monkeypatch, tmp_path):
+    """A pid in the local SQLite store is served offline, no network."""
+    from commonmeta import Metadata
+
+    db = str(tmp_path / "store.sqlite3")
+    doi = "https://doi.org/10.5555/offline-hit"
+    record = {
+        "id": doi,
+        "type": "JournalArticle",
+        "schema_version": COMMONMETA_SCHEMA_URI,
+    }
+    require_backend().write_sqlite([record], db)
+    monkeypatch.setenv("COMMONMETA_DB", db)
+
+    subject = Metadata(doi, no_network=True)
+    assert subject.is_valid
+    # served straight from the store as commonmeta, bypassing any reader
+    assert subject.via == "commonmeta"
+    assert subject.id == doi
+    assert subject.type == "JournalArticle"
+
+
+@needs_backend
+def test_convert_offline_miss_raises(monkeypatch, tmp_path):
+    """--no-network with a pid absent from the store raises, never fetches."""
+    from commonmeta import Metadata
+    from commonmeta.backend import BackendError
+
+    db = str(tmp_path / "store.sqlite3")
+    require_backend().write_sqlite(
+        [{"id": "https://doi.org/10.5555/present", "type": "JournalArticle"}], db
+    )
+    monkeypatch.setenv("COMMONMETA_DB", db)
+
+    with pytest.raises(BackendError, match="requires network access"):
+        Metadata("https://doi.org/10.5555/absent", no_network=True)
+
+
+@needs_backend
+def test_convert_offline_miss_no_database_raises(monkeypatch, tmp_path):
+    """--no-network with no database at all names the missing file."""
+    from commonmeta import Metadata
+    from commonmeta.backend import BackendError
+
+    monkeypatch.setenv("COMMONMETA_DB", str(tmp_path / "does-not-exist.sqlite3"))
+    with pytest.raises(BackendError, match="no local database"):
+        Metadata("https://doi.org/10.5555/absent", no_network=True)
+
+
+@needs_backend
+def test_get_doi_ra_uses_prefix_cache(monkeypatch, tmp_path):
+    """get_doi_ra reads the SQLite prefixes cache before any network call."""
+    from commonmeta import doi_utils
+
+    db = str(tmp_path / "store.sqlite3")
+    # write_sqlite creates the database file so use_cache is enabled
+    require_backend().write_sqlite(
+        [{"id": "https://doi.org/10.5555/seed", "type": "JournalArticle"}], db
+    )
+    require_backend().store_doi_ra_sqlite("10.7554/elife.01567", "Crossref", db)
+    monkeypatch.setenv("COMMONMETA_DB", db)
+
+    def _no_http(*args, **kwargs):
+        raise AssertionError("network call despite a prefix-cache hit")
+
+    monkeypatch.setattr(doi_utils.requests, "get", _no_http)
+    assert doi_utils.get_doi_ra("10.7554/elife.01567") == "Crossref"
+
+
+@needs_backend
+def test_get_doi_ra_no_network_miss_returns_none(monkeypatch, tmp_path):
+    """Under no_network a prefix-cache miss returns None, no network."""
+    from commonmeta import doi_utils
+
+    db = str(tmp_path / "store.sqlite3")
+    require_backend().write_sqlite(
+        [{"id": "https://doi.org/10.5555/seed", "type": "JournalArticle"}], db
+    )
+    monkeypatch.setenv("COMMONMETA_DB", db)
+
+    def _no_http(*args, **kwargs):
+        raise AssertionError("network call under no_network")
+
+    monkeypatch.setattr(doi_utils.requests, "get", _no_http)
+    assert doi_utils.get_doi_ra("10.99999/uncached", no_network=True) is None
+
+
+@needs_backend
+def test_get_doi_ra_caches_after_fetch(monkeypatch, tmp_path):
+    """A network resolve is written back to the prefixes cache."""
+    from commonmeta import doi_utils
+
+    db = str(tmp_path / "store.sqlite3")
+    require_backend().write_sqlite(
+        [{"id": "https://doi.org/10.5555/seed", "type": "JournalArticle"}], db
+    )
+    monkeypatch.setenv("COMMONMETA_DB", db)
+
+    calls = []
+
+    class _Resp:
+        status_code = 200
+
+        @staticmethod
+        def json():
+            return [{"RA": "DataCite"}]
+
+    def _fake_get(url, *args, **kwargs):
+        calls.append(url)
+        return _Resp()
+
+    monkeypatch.setattr(doi_utils.requests, "get", _fake_get)
+    assert doi_utils.get_doi_ra("10.1234/example") == "DataCite"
+    assert len(calls) == 1
+    # now cached: a second call hits the store, not the network
+    assert require_backend().lookup_doi_ra_sqlite("10.1234/example", db) == "DataCite"
+    assert doi_utils.get_doi_ra("10.1234/example") == "DataCite"
+    assert len(calls) == 1
+
+
+@needs_backend
+def test_orcid_reads_from_people_table_offline(monkeypatch, tmp_path):
+    """An ORCID in the local people table is served offline via the backend.
+
+    convert <orcid> checks the SQLite people table first and only falls back to
+    the ORCID API when the record is absent (and --no-network isn't set).
+    """
+    import json
+    import sqlite3
+
+    import zstandard
+
+    from commonmeta import Metadata
+
+    db = str(tmp_path / "store.sqlite3")
+    orcid_url = "https://orcid.org/0000-0002-0068-716X"
+    person = {
+        "path": "/0000-0002-0068-716X/person",
+        "name": {
+            "given-names": {"value": "Cameron"},
+            "family-name": {"value": "Neylon"},
+        },
+    }
+    blob = zstandard.ZstdCompressor().compress(json.dumps(person).encode())
+    con = sqlite3.connect(db)
+    con.execute("CREATE TABLE people (id TEXT PRIMARY KEY, metadata BLOB)")
+    con.execute("INSERT INTO people (id, metadata) VALUES (?, ?)", (orcid_url, blob))
+    con.commit()
+    con.close()
+    monkeypatch.setenv("COMMONMETA_DB", db)
+
+    subject = Metadata("0000-0002-0068-716X", via="orcid", no_network=True)
+    assert subject.is_valid
+    assert subject.entity_type == "person"
+    assert subject.id == orcid_url
+    assert subject.name == "Cameron Neylon"

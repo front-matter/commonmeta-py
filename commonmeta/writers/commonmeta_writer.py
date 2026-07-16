@@ -39,6 +39,7 @@ def write_commonmeta(metadata: Metadata | None) -> dict | None:
             "via",
             "entity_type",
             "_validate",
+            "_no_network",
             "is_valid",
             "errors",
             "write_errors",

@@ -1,15 +1,17 @@
 """ORCID writer for commonmeta-py.
 
-Writes a commonmeta *person* entity as `ORCID 3.0 person JSON
+Writes a commonmeta *person* entity as `ORCID 3.0 record JSON
 <https://info.orcid.org/documentation/>`_ - the shape the ORCID API's
-``/person`` endpoint serves, and the inverse of
+``/record`` endpoint serves (identity under ``person``, employments and
+educations under ``activities-summary``), and the inverse of
 :mod:`commonmeta.readers.orcid_reader`.
 
-Only what commonmeta models is written. An ORCID person carries per-field
+Only what commonmeta models is written. An ORCID record carries per-field
 `visibility`, `source`, `put-code` and created/modified dates that commonmeta has
 no home for, so reading is lossy and writing back cannot invent what was dropped.
-Affiliations are not written: they live in an ORCID *record*, not a person, and
-have no place in this shape.
+Affiliations round-trip: commonmeta folds an organization's department into its
+name and prefixes educations with "Education", and this writer preserves both, so
+read -> write -> read is stable.
 """
 
 from __future__ import annotations
@@ -18,22 +20,24 @@ import datetime
 from typing import TYPE_CHECKING
 
 from ..base_utils import compact, presence, wrap
-from ..constants import CM_TO_ORCID_IDENTIFIER_TYPES
+from ..constants import CM_TO_ORCID_AFFILIATION_TYPES, CM_TO_ORCID_IDENTIFIER_TYPES
 from ..utils import validate_orcid
 
 if TYPE_CHECKING:
     from ..metadata import Metadata
 
+_EDUCATION_PREFIX = "Education"
+
 
 def write_orcid(metadata: Metadata | None) -> dict | None:
-    """Write a commonmeta person as ORCID person JSON."""
+    """Write a commonmeta person as ORCID record JSON."""
     if metadata is None:
         return None
     if getattr(metadata, "entity_type", None) != "person":
         raise ValueError("Only person entities can be written as ORCID")
 
     orcid = validate_orcid(metadata.id)
-    return compact(
+    person = compact(
         {
             "last-modified-date": presence(format_last_modified(metadata)),
             "name": presence(format_name(metadata, orcid)),
@@ -45,6 +49,98 @@ def write_orcid(metadata: Metadata | None) -> dict | None:
             "path": f"/{orcid}/person" if orcid else None,
         }
     )
+    return compact(
+        {
+            "orcid-identifier": {
+                "uri": f"https://orcid.org/{orcid}",
+                "path": orcid,
+            }
+            if orcid
+            else None,
+            "person": presence(person),
+            "activities-summary": presence(format_activities(metadata)),
+        }
+    )
+
+
+def format_activities(metadata: Metadata) -> dict:
+    """affiliations become the record's employments and educations.
+
+    Educations are the affiliations whose role carries the "Education" prefix the
+    reader adds to keep the two apart in commonmeta's single affiliation list;
+    everything else is an employment. Each affiliation becomes its own
+    affiliation-group with a single summary, mirroring the /record JSON nesting.
+    """
+    employments: list[dict] = []
+    educations: list[dict] = []
+    for affiliation in wrap(metadata.affiliations):
+        summary = format_affiliation_summary(affiliation)
+        if summary is None:
+            continue
+        (educations if is_education(affiliation.get("role")) else employments).append(
+            summary
+        )
+
+    def groups(summaries: list[dict], key: str) -> dict:
+        return {"affiliation-group": [{"summaries": [{key: s}]} for s in summaries]}
+
+    return compact(
+        {
+            "employments": groups(employments, "employment-summary")
+            if employments
+            else None,
+            "educations": groups(educations, "education-summary")
+            if educations
+            else None,
+        }
+    )
+
+
+def is_education(role: str | None) -> bool:
+    """Whether an affiliation role marks it an education (reader-added prefix)."""
+    return role == _EDUCATION_PREFIX or bool(
+        role and role.startswith(f"{_EDUCATION_PREFIX}: ")
+    )
+
+
+def format_affiliation_summary(affiliation: dict) -> dict | None:
+    """Convert a commonmeta affiliation to an ORCID employment/education summary."""
+    name = affiliation.get("name", None)
+    if not name:
+        return None
+
+    role = affiliation.get("role", None)
+    if is_education(role):
+        # strip the reader's "Education"/"Education: " prefix back off the title
+        role = role[len(f"{_EDUCATION_PREFIX}: ") :] if role and ": " in role else None
+
+    organization: dict = {"name": name}
+    identifier = affiliation.get("identifier", None)
+    source = CM_TO_ORCID_AFFILIATION_TYPES.get(affiliation.get("identifier_type", None))
+    if identifier and source:
+        organization["disambiguated-organization"] = {
+            "disambiguated-organization-identifier": identifier,
+            "disambiguation-source": source,
+        }
+
+    return compact(
+        {
+            "organization": organization,
+            "role-title": role,
+            "start-date": format_affiliation_date(affiliation.get("start_date", None)),
+            "end-date": format_affiliation_date(affiliation.get("end_date", None)),
+        }
+    )
+
+
+def format_affiliation_date(date: str | None) -> dict | None:
+    """An ISO 8601 date (YYYY, YYYY-MM, or YYYY-MM-DD) as ORCID's {value}-wrapped
+    year/month/day parts. The inverse of the reader's format_affiliation_date."""
+    if not date:
+        return None
+    parts = date.split("-")
+    keys = ("year", "month", "day")
+    return {key: {"value": part} for key, part in zip(keys, parts) if part} or None
 
 
 def format_last_modified(metadata: Metadata) -> dict:
