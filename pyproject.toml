@@ -58,7 +58,7 @@ dependencies = [
 # commonmeta/backend.py loads on demand. commonmeta-rs ships abi3-py314 wheels for
 # macOS arm64 and Linux x86_64 plus an sdist; its own requires-python (>=3.14)
 # surfaces the real reason on older interpreters instead of resolving to nothing.
-backend = ["commonmeta-rs>=0.9.31"]
+backend = ["commonmeta-rs>=0.9.32"]
 
 [project.urls]
 Homepage = "https://python.commonmeta.org"
