@@ -1,10 +1,12 @@
 """Test cli"""
 
 from os import path
+from types import SimpleNamespace
 
 import pytest
 from click.testing import CliRunner
 
+from commonmeta.backend import INSTALL_HINT, BackendError
 from commonmeta.cli import (
     convert,
     decode,
@@ -121,7 +123,7 @@ def test_convert_crossref_xml_from_jsonfeed_no_doi():
 def test_list():
     """Test commonmeta list"""
     runner = CliRunner()
-    string = "posts.json"
+    string = path.join(path.dirname(__file__), "fixtures", "posts.json")
     result = runner.invoke(list, [string])
     assert result.exit_code == 0
     # assert 2 == len(result.output)
@@ -146,17 +148,60 @@ def test_decode():
 
 
 @pytest.mark.parametrize(
-    "command",
-    [import_, match, migrate, settings, validate, package],
-    ids=lambda c: c.name,
+    "command,name",
+    [
+        (import_, "import"),
+        (match, "match"),
+        (migrate, "migrate"),
+        (settings, "settings"),
+        (validate, "validate"),
+        (package, "package"),
+    ],
+    ids=lambda c: c if isinstance(c, str) else c.name,
 )
-def test_not_yet_implemented_commands(command):
-    """Commands mirrored from commonmeta-rs but not implemented report so and
-    exit cleanly, accepting (and ignoring) any arguments."""
+def test_backend_commands_forward_to_rust(command, name, monkeypatch):
+    """Backend commands forward their subcommand and raw arguments to the
+    commonmeta-rs CLI, which parses the flags. `run_cli` is stubbed here because
+    the real one would import a corpus; the contract under test is the handoff."""
+    calls = []
+    backend = SimpleNamespace(run_cli=calls.append)
+    monkeypatch.setattr("commonmeta.cli.require_backend", lambda: backend)
+
     runner = CliRunner()
     result = runner.invoke(command, ["some-input", "--from", "crossref", "-n", "5"])
     assert result.exit_code == 0
-    assert "command not yet implemented" in result.output
+    assert calls == [
+        ["commonmeta", name, "some-input", "--from", "crossref", "-n", "5"]
+    ]
+
+
+def test_backend_command_without_backend(monkeypatch):
+    """Without the optional extra installed, the command says how to install it
+    rather than failing with a traceback."""
+
+    def missing():
+        raise BackendError(INSTALL_HINT)
+
+    monkeypatch.setattr("commonmeta.cli.require_backend", missing)
+    runner = CliRunner()
+    result = runner.invoke(import_, ["10.5555/12345678"])
+    assert result.exit_code != 0
+    assert "commonmeta-py[backend]" in result.output
+
+
+def test_backend_command_reports_failure(monkeypatch):
+    """A failure inside the Rust CLI surfaces as a CLI error, not a traceback."""
+
+    def boom(args):
+        raise ValueError("import: no such file 'nope.sqlite3'")
+
+    monkeypatch.setattr(
+        "commonmeta.cli.require_backend", lambda: SimpleNamespace(run_cli=boom)
+    )
+    runner = CliRunner()
+    result = runner.invoke(import_, ["nope.sqlite3"])
+    assert result.exit_code != 0
+    assert "no such file" in result.output
 
 
 @pytest.mark.parametrize("flag", ["--from", "-f", "--via"])
@@ -216,8 +261,6 @@ def test_list_sample_option_present():
 def test_list_sample_no_network_rejects():
     """list --sample needs an API, so --no-network fails fast."""
     runner = CliRunner()
-    result = runner.invoke(
-        list, ["--sample", "--from", "crossref", "--no-network"]
-    )
+    result = runner.invoke(list, ["--sample", "--from", "crossref", "--no-network"])
     assert result.exit_code == 1
     assert "requires network access" in result.output

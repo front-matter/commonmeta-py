@@ -1,12 +1,13 @@
-"""VRAIX reader for commonmeta-py, backed by the commonmeta_rs PyO3 bindings.
+"""VRAIX reader for commonmeta-py.
 
-Disabled: commonmeta_rs hasn't been migrated to the commonmeta v1.0 schema
-yet. Re-enable once commonmeta-rs is refactored to use v1.0.
+Fetches VRAIX daily dumps, which are corpus-scale SQLite files. That work lives
+in the optional Rust backend (``pip install 'commonmeta-py[backend]'``); without
+it, :func:`get_vraix_list` explains how to install it.
 """
 
 from __future__ import annotations
 
-# import commonmeta_rs
+from ..backend import require_backend
 
 
 def get_vraix_list(source: str, date: str, **kwargs) -> list[dict]:
@@ -14,15 +15,12 @@ def get_vraix_list(source: str, date: str, **kwargs) -> list[dict]:
     "datacite") and `date` (YYYY-MM-DD), already parsed into commonmeta-shaped
     dicts. With `input_path`, reads a local SQLite file directly instead of
     downloading from metadata.vraix.org."""
-    raise NotImplementedError(
-        "vraix reading is temporarily disabled: commonmeta_rs has not yet "
-        "been migrated to the commonmeta v1.0 schema."
+    backend = require_backend()
+    return backend.fetch_vraix(
+        source,
+        date,
+        input_path=kwargs.get("input_path"),
+        limit=kwargs.get("limit"),
+        offset=kwargs.get("offset", 0),
+        cache_ttl_days=kwargs.get("cache_ttl_days", 30),
     )
-    # return commonmeta_rs.fetch_vraix(
-    #     source,
-    #     date,
-    #     input_path=kwargs.get("input_path"),
-    #     limit=kwargs.get("limit"),
-    #     offset=kwargs.get("offset", 0),
-    #     cache_ttl_days=kwargs.get("cache_ttl_days", 30),
-    # )

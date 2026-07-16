@@ -10,6 +10,11 @@ import orjson as json
 
 from commonmeta import Metadata, MetadataList  # __version__
 from commonmeta.api_utils import update_ghost_post_via_api
+from commonmeta.backend import (
+    BACKEND_PYTHON_SUPPORTED,
+    BackendError,
+    require_backend,
+)
 from commonmeta.doi_utils import decode_doi, encode_doi, validate_prefix
 from commonmeta.readers.crossref_reader import get_random_crossref_id
 from commonmeta.readers.datacite_reader import get_random_datacite_id
@@ -416,56 +421,73 @@ def version() -> None:
     click.echo(f"commonmeta-py {version}")
 
 
-# --- commands present in commonmeta-rs but not yet implemented in commonmeta-py ---
-# These are local-SQLite-database and bulk-import/validate features. They are
-# declared so the CLI surface matches commonmeta-rs; invoking one reports that
-# it is not implemented yet rather than failing with "No such command".
+# --- commands backed by the optional Rust backend (commonmeta-py[backend]) ---
+# These are local-SQLite-database and bulk-import/validate features, implemented
+# in commonmeta-rs and reached through its PyO3 module. Each forwards its
+# arguments verbatim to the commonmeta-rs CLI, which is why they are declared
+# with ignore_unknown_options/allow_extra_args: the flags are parsed on the Rust
+# side, so this package doesn't duplicate (and drift from) their definitions.
+# Without the extra installed they explain how to get it.
 
-_NOT_IMPLEMENTED = dict(
-    context_settings=dict(ignore_unknown_options=True, allow_extra_args=True)
+# add_help_option=False so `--help` reaches the Rust CLI too: it documents the
+# flags these commands actually accept, in far more detail than a click stub
+# could. Without it click intercepts --help and prints a docstring instead.
+_PASSTHROUGH = dict(
+    context_settings=dict(ignore_unknown_options=True, allow_extra_args=True),
+    add_help_option=False,
 )
 
 
-@cli.command(name="import", **_NOT_IMPLEMENTED)
-@click.argument("args", nargs=-1, type=click.UNPROCESSED)
-def import_(args) -> None:
-    """Import scholarly metadata into the local commonmeta database."""
-    click.echo("command not yet implemented")
+def _run_backend_cli(command: str, args) -> None:
+    """Forward a subcommand and its raw arguments to the commonmeta-rs CLI."""
+    try:
+        backend = require_backend()
+        backend.run_cli(["commonmeta", command, *args])
+    except BackendError as error:
+        raise click.ClickException(str(error)) from error
+    except ValueError as error:
+        # run_cli raises ValueError on command failure; surface it as a CLI
+        # error rather than a traceback.
+        raise click.ClickException(str(error)) from error
 
 
-@cli.command(name="match", **_NOT_IMPLEMENTED)
-@click.argument("args", nargs=-1, type=click.UNPROCESSED)
-def match(args) -> None:
-    """Match a string to an identifier."""
-    click.echo("command not yet implemented")
+def _backend_command(name: str, help_text: str) -> click.Command:
+    """Build a click command that forwards `name` and its args to the Rust CLI."""
+
+    @click.command(name=name, help=help_text, **_PASSTHROUGH)
+    @click.argument("args", nargs=-1, type=click.UNPROCESSED)
+    def command(args) -> None:
+        _run_backend_cli(name, args)
+
+    return command
 
 
-@cli.command(name="migrate", **_NOT_IMPLEMENTED)
-@click.argument("args", nargs=-1, type=click.UNPROCESSED)
-def migrate(args) -> None:
-    """Apply any pending database schema migrations."""
-    click.echo("command not yet implemented")
+# Docstrings are deliberately short: `--help` reaches the Rust CLI, which
+# documents each command's flags in full. These only describe the command for
+# `commonmeta --help`.
+import_ = _backend_command(
+    "import", "Import scholarly metadata into the local commonmeta database."
+)
+match = _backend_command("match", "Match a string to an identifier.")
+migrate = _backend_command("migrate", "Apply any pending database schema migrations.")
+settings = _backend_command(
+    "settings", "Show key/value settings stored in the local SQLite database."
+)
+validate = _backend_command(
+    "validate",
+    "Validate records in the local commonmeta database against the v1.0 schema.",
+)
+package = _backend_command("package", "Write a VRAIX SQLite dump as a Parquet file.")
 
-
-@cli.command(name="settings", **_NOT_IMPLEMENTED)
-@click.argument("args", nargs=-1, type=click.UNPROCESSED)
-def settings(args) -> None:
-    """Show key/value settings stored in the local SQLite database."""
-    click.echo("command not yet implemented")
-
-
-@cli.command(name="validate", **_NOT_IMPLEMENTED)
-@click.argument("args", nargs=-1, type=click.UNPROCESSED)
-def validate(args) -> None:
-    """Validate records in the local commonmeta database against the v1.0 schema."""
-    click.echo("command not yet implemented")
-
-
-@cli.command(name="package", **_NOT_IMPLEMENTED)
-@click.argument("args", nargs=-1, type=click.UNPROCESSED)
-def package(args) -> None:
-    """Write a VRAIX SQLite dump as a Parquet file."""
-    click.echo("command not yet implemented")
+# Registered only where the backend can exist. commonmeta-rs requires Python
+# 3.14 (abi3-py314), so below that these commands could never work: listing them
+# would advertise a capability the interpreter cannot have. On 3.14+ they are
+# always listed - the extra may not be installed yet, and then invoking one says
+# how to install it. The commands are constructed unconditionally so importing
+# them from this module works on any interpreter.
+if BACKEND_PYTHON_SUPPORTED:
+    for _command in (import_, match, migrate, settings, validate, package):
+        cli.add_command(_command)
 
 
 if __name__ == "__main__":

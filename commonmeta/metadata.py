@@ -5,17 +5,10 @@ from __future__ import annotations
 from os import path
 from typing import Any
 
-# commonmeta_rs (the commonmeta-rs PyO3 bindings) hasn't been migrated to
-# the v1.0 schema yet, so its integration - and the tarfile/zipfile/BytesIO
-# archive-writing it needs - is disabled here pending that migration. See
-# write(to="parquet"/"zip"/"tgz") below.
-# import tarfile
-# import zipfile
-# from io import BytesIO
-# import commonmeta_rs
 import orjson as json
 import yaml
 
+from .backend import require_backend
 from .base_utils import dig, parse_xml, wrap
 from .io_utils import write_output
 from .readers.bibtex_reader import read_bibtex
@@ -48,20 +41,19 @@ from .readers.openalex_reader import (
     get_openalex,
     read_openalex,
 )
+from .readers.orcid_reader import get_orcid, read_orcid
+from .readers.orcid_xml_reader import parse_orcid_xml, read_orcid_xml
 from .readers.ris_reader import read_ris
+from .readers.ror_reader import get_ror, read_ror
 from .readers.schema_org_reader import (
     get_schema_org,
     read_schema_org,
 )
 from .schema_utils import json_schema_errors, xml_schema_errors
-from .utils import find_from_format, is_chain_object, normalize_id
+from .utils import find_entity_type, find_from_format, is_chain_object, normalize_id
 from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
-from .writers.commonmeta_writer import (
-    write_commonmeta,
-    write_commonmeta_list,
-    # write_commonmeta_records_for_rust,  # disabled with commonmeta_rs, see above
-)
+from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
 from .writers.crossref_writer import write_crossref, write_crossref_list
 from .writers.crossref_xml_writer import (
     CrossrefError,
@@ -79,7 +71,9 @@ from .writers.inveniordm_writer import (
     write_inveniordm,
     write_inveniordm_list,
 )
+from .writers.orcid_writer import write_orcid
 from .writers.ris_writer import write_ris, write_ris_list
+from .writers.ror_writer import write_ror
 from .writers.schema_org_writer import write_schema_org, write_schema_org_list
 
 
@@ -87,8 +81,33 @@ from .writers.schema_org_writer import write_schema_org, write_schema_org_list
 class Metadata:
     """Metadata"""
 
+    # Attributes of a person or organization entity. _read_entity sets these with
+    # setattr(), which type checkers can't follow, so they're declared here.
+    # These are annotations only - no assignment - so no class attribute is
+    # created and vars(instance) still holds exactly what was set, which is what
+    # write_commonmeta() serializes. Only the entity branch sets them; a work
+    # raises AttributeError on access, as it did before.
+    given_name: str | None
+    family_name: str | None
+    name: str | None
+    additional_names: list[str] | None
+    affiliations: list[dict] | None
+    urls: list[dict] | None
+    country: str | None
+    asserted_by: str | None
+    acronym: str | None
+    types: list[str] | None
+    status: str | None
+    established: int | None
+
     def __init__(self, string: str | dict[str, Any] | None, **kwargs):
         self.via = kwargs.get("via", None)
+        # Validating a record against the JSON schema is the dominant cost of
+        # reading one (~0.5 ms of ~1.3 ms). Bulk callers converting a corpus opt
+        # out via validate=False and validate separately if they need to, which
+        # is what commonmeta-rs does - its `list` path doesn't validate either.
+        # Reader errors are reported regardless.
+        self._validate = kwargs.get("validate", True)
         if isinstance(string, str):
             pid = normalize_id(string)
             if pid is not None and self.via is None:
@@ -116,6 +135,15 @@ class Metadata:
             raise ValueError("No valid input found")
 
         meta = self.read_metadata(data=data, **kwargs)
+
+        # A commonmeta document is a work, a person, or an organization. The
+        # work attributes below don't apply to the other two (the schema sets
+        # additionalProperties: false on each), so entity records take a
+        # separate branch and are handled by _read_entity.
+        self.entity_type = find_entity_type(meta)
+        if self.entity_type != "work":
+            self._read_entity(meta, **kwargs)
+            return
 
         # required properties
         self.id = meta.get("id")  # pylint: disable=C0103
@@ -171,9 +199,19 @@ class Metadata:
         # bad_request/timeout states: there's no resolved resource to
         # validate (id/type are typically absent), and that's not a schema
         # error.
+        #
+        # write_commonmeta() is called directly rather than via self.write():
+        # write() validates its own output and would repeat this exact check,
+        # and json.loads(self.write()) would serialize to JSON only to parse it
+        # straight back. This is the single commonmeta validation per record.
+        # (write_commonmeta only returns None for a None metadata, never self.)
+        #
+        # validate=False skips only the schema check - reader errors still
+        # surface. MetadataList passes it for bulk conversion; see _validate.
         self.errors = meta.get("errors", None) or (
-            json_schema_errors(json.loads(self.write()))
-            if meta.get("state", None)
+            json_schema_errors(write_commonmeta(self) or {})
+            if self._validate
+            and meta.get("state", None)
             not in ["not_found", "forbidden", "bad_request", "timeout"]
             else None
         )
@@ -181,6 +219,70 @@ class Metadata:
         self.is_valid = (
             meta.get("state", None)
             not in ["not_found", "forbidden", "bad_request", "timeout"]
+            and self.errors is None
+            and self.write_errors is None
+        )
+
+    # Attributes of a commonmeta person or organization entity, by entity_type.
+    # Both share id/identifiers/urls/country/date_updated/asserted_by; the rest
+    # are specific to one. Kept as an explicit allowlist because the schema sets
+    # additionalProperties: false, so an attribute that isn't in the entity's
+    # definition fails validation rather than being ignored.
+    _ENTITY_ATTRIBUTES = {
+        "person": (
+            "id",
+            "given_name",
+            "family_name",
+            "name",
+            "additional_names",
+            "description",
+            "affiliations",
+            "identifiers",
+            "urls",
+            "country",
+            "date_updated",
+            "asserted_by",
+        ),
+        "organization": (
+            "id",
+            "name",
+            "acronym",
+            "additional_names",
+            "types",
+            "status",
+            "established",
+            "date_updated",
+            "identifiers",
+            "urls",
+            "country",
+            "geo_locations",
+            "relations",
+            "asserted_by",
+        ),
+    }
+
+    def _read_entity(self, meta: dict, **kwargs) -> None:
+        """Populate a person or organization entity, then validate it.
+
+        Mirrors the tail of __init__ for works: set the schema attributes, then
+        run the record back through the commonmeta writer and JSON schema.
+        """
+        for attribute in self._ENTITY_ATTRIBUTES[self.entity_type]:
+            setattr(self, attribute, meta.get(attribute))
+
+        state = meta.get("state", None)
+        self.state = state
+        # Validated via write_commonmeta() rather than self.write(), for the
+        # same reason as the work branch above: one validation per record.
+        self.errors = meta.get("errors", None) or (
+            json_schema_errors(write_commonmeta(self) or {})
+            if self._validate
+            and state not in ["not_found", "forbidden", "bad_request", "timeout"]
+            else None
+        )
+        self.write_errors = None
+        self.is_valid = (
+            state not in ["not_found", "forbidden", "bad_request", "timeout"]
             and self.errors is None
             and self.write_errors is None
         )
@@ -219,6 +321,10 @@ class Metadata:
             return get_inveniordm(pid)
         elif via == "openalex":
             return get_openalex(pid)
+        elif via == "ror":
+            return get_ror(pid)
+        elif via == "orcid":
+            return get_orcid(pid)
         else:
             return {"pid": pid}
 
@@ -240,6 +346,8 @@ class Metadata:
                         dict(result) if isinstance(result, dict) else {"items": result}
                     )
                 return {}
+            elif via == "orcid_xml":
+                return parse_orcid_xml(string) or {}
             # YAML and other plain text formats
             elif via == "cff":
                 return dict(yaml.safe_load(string) or {})
@@ -258,6 +366,8 @@ class Metadata:
                 "codemeta",
                 "inveniordm",
                 "openalex",
+                "ror",
+                "orcid",
             ]:
                 return json.loads(string)
             else:
@@ -301,6 +411,12 @@ class Metadata:
             return dict(read_bibtex(data["data"] if isinstance(data, dict) else data))
         elif via == "ris":
             return dict(read_ris(data["data"] if isinstance(data, dict) else data))
+        elif via == "ror":
+            return dict(read_ror(data, **kwargs))
+        elif via == "orcid":
+            return dict(read_orcid(data, **kwargs))
+        elif via == "orcid_xml":
+            return dict(read_orcid_xml(data, **kwargs))
         else:
             raise ValueError("No input format found")
 
@@ -314,6 +430,8 @@ class Metadata:
             "inveniordm",
             "schema_org",
             "csl",
+            "ror",
+            "orcid",
         ]:
             writer_map = {
                 "commonmeta": write_commonmeta,
@@ -322,9 +440,19 @@ class Metadata:
                 "inveniordm": write_inveniordm,
                 "schema_org": write_schema_org,
                 "csl": write_csl,
+                "ror": write_ror,
+                "orcid": write_orcid,
             }
             output = writer_map[to](self)
-            if to != "crossref":
+            # "crossref", "ror" and "orcid" have no bundled JSON schema to
+            # validate against. "commonmeta" is skipped because __init__ already
+            # validated this record against the commonmeta schema and recorded
+            # the outcome in self.errors (which feeds is_valid); the writer is
+            # deterministic, so re-validating its output would repeat that exact
+            # check on every record written. The remaining formats are validated
+            # here because their writers can introduce errors the commonmeta
+            # record itself doesn't have.
+            if to not in ("crossref", "commonmeta", "ror", "orcid"):
                 self.write_errors = json_schema_errors(output, schema=to)
                 if self.write_errors is not None:
                     self.is_valid = False
@@ -358,7 +486,6 @@ class Metadata:
                 "registrant": self.registrant,
             }
             bytes = tostring(output, head=head)
-            print(bytes)
             self.write_errors = xml_schema_errors(bytes, schema=to)
             if self.write_errors is not None:
                 raise CrossrefError(self.write_errors)
@@ -459,6 +586,11 @@ class MetadataList:
     def read_metadata_list(self, items, **kwargs) -> list[Metadata]:
         """read_metadata_list"""
         kwargs["via"] = kwargs.get("via", None) or self.via
+        # Bulk conversion doesn't schema-validate each record, matching
+        # commonmeta-rs (`src/cmd/list.rs` has no validation step); validating a
+        # corpus is what `commonmeta validate` is for. Reader errors still
+        # surface via item.errors. Pass validate=True to opt back in.
+        kwargs.setdefault("validate", False)
         return [Metadata(i, **kwargs) for i in items]
 
     def write(self, to: str = "commonmeta", **kwargs) -> str | bytes | None:
@@ -523,15 +655,28 @@ class MetadataList:
             else:
                 return output
         elif to in ("parquet", "zip", "tgz"):
-            # Disabled: commonmeta_rs hasn't been migrated to the v1.0
-            # schema yet. Re-enable once commonmeta-rs is refactored to use
-            # commonmeta v1.0, at which point write_commonmeta_records_for_rust()
-            # (the v1.0->v0.18 conversion for this FFI boundary) can also be
-            # removed since the records will already be v1.0-shaped.
-            raise NotImplementedError(
-                f"write(to={to!r}) is temporarily disabled: commonmeta_rs has "
-                "not yet been migrated to the commonmeta v1.0 schema."
-            )
+            # Corpus-scale output, provided by the optional Rust backend: pure
+            # Python would mean pyarrow, a zstd binding and an archive writer to
+            # reimplement what commonmeta-rs already does. Both sides now encode
+            # commonmeta v1.0, so the records go across as-is - the old
+            # v1.0->v0.18 conversion this boundary used is gone.
+            backend = require_backend()
+            records = [write_commonmeta(item) for item in self.items]
+            if to == "parquet":
+                output = backend.write_parquet(records)
+                if self.file:
+                    return write_output(self.file, output, [".parquet"])
+                return output
+            # zip/tgz are batched: write_archive returns (filename, bytes) pairs
+            # so a corpus too large for one file splits across several.
+            base_name = kwargs.get("base_name", None) or "commonmeta"
+            batch_size = kwargs.get("batch_size", None) or 100_000
+            entries = backend.write_archive(records, to, base_name, batch_size)
+            if self.file:
+                for name, data in entries:
+                    write_output(name, data, [f".{to}"])
+                return self.file
+            return entries
         elif to == "ris":
             output = write_ris_list(self)
             if self.file and output is not None:

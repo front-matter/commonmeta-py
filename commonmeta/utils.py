@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 import re
 import time
+from functools import lru_cache
 from io import BytesIO
 from typing import Any
 from urllib.parse import urlparse
@@ -16,7 +17,6 @@ import requests
 import yaml
 from bs4 import BeautifulSoup
 from furl import furl
-from idutils import validators
 from isbnlib import canonical, is_isbn10, is_isbn13
 from PIL import Image, ImageOps
 
@@ -31,6 +31,19 @@ from .base_utils import (
 )
 from .constants import OPENALEX_SUBFIELD_MAPPINGS
 from .doi_utils import doi_as_url, doi_from_url, get_doi_ra, normalize_doi, validate_doi
+
+
+@lru_cache(maxsize=1)
+def _idutils_validators():
+    """idutils.validators, imported on first use.
+
+    idutils costs ~150ms to import but is only needed by validate_orcid and
+    validate_isni, which most callers never reach.
+    """
+    from idutils import validators
+
+    return validators
+
 
 NORMALIZED_LICENSES = {
     "https://creativecommons.org/licenses/by/1.0": "https://creativecommons.org/licenses/by/1.0/legalcode",
@@ -656,7 +669,7 @@ def validate_orcid(orcid: str | None) -> str | None:
     if match is None:
         return None
     orcid = match.group(1).replace(" ", "-")
-    if not validators.is_orcid(orcid):
+    if not _idutils_validators().is_orcid(orcid):
         return None
     return orcid
 
@@ -672,7 +685,7 @@ def validate_isni(isni: str | None) -> str | None:
     if match is None:
         return None
     isni = match.group(1).replace(" ", "").replace("-", "")
-    if not validators.is_isni(isni):
+    if not _idutils_validators().is_isni(isni):
         return None
     return isni
 
@@ -1267,9 +1280,7 @@ def to_schema_org_creators(elements: list) -> list:
                     "@id": person.get("id", None),
                     "givenName": given_name,
                     "familyName": family_name,
-                    "affiliation": format_affiliation(
-                        person.get("affiliations", None)
-                    ),
+                    "affiliation": format_affiliation(person.get("affiliations", None)),
                 }
             )
         return compact(
@@ -1748,6 +1759,77 @@ def string_to_slug(text: str) -> str:
 #                            '@type': r['resourceTypeGeneral'] or 'ScholarlyArticle',
 #                            'identifier': r['relatedIdentifierType'] == 'DOI' ? nil : to_identifier(r) }.compact
 #                        end.unwrap }.compact
+
+
+def find_entity_type(meta: dict) -> str:
+    """Classify a commonmeta entity as "work", "person", or "organization".
+
+    The v1.0 schema's top-level entity is a oneOf over these three, discriminated
+    structurally rather than by a tag. Ported from commonmeta-rs
+    (metadata.rs, ``detect_entity_kind``) so both implementations classify the
+    same document the same way. Checks, in order:
+
+      1. the `id` shape — an ORCID URL is a person, a ROR URL an organization.
+         This comes first so it wins over a legacy `type` that disagrees.
+      2. a legacy `type` discriminator — the literals "Person"/"Organization",
+         which older commonmeta documents used; any other non-empty `type` is a
+         work type, and `type` is required on works.
+      3. field structure, for entities lacking both an id and a `type`.
+
+    Anything else is a work: the common case, and the shape every reader other
+    than ror produces.
+    """
+    if not isinstance(meta, dict):
+        return "work"
+
+    _id = meta.get("id", None)
+    if validate_orcid(_id):
+        return "person"
+    if validate_ror(_id):
+        return "organization"
+
+    _type = meta.get("type", None)
+    if isinstance(_type, str) and _type:
+        if _type == "Person":
+            return "person"
+        if _type == "Organization":
+            return "organization"
+        return "work"
+
+    if "given_name" in meta or "family_name" in meta:
+        return "person"
+    if (
+        "acronym" in meta
+        or "status" in meta
+        or "types" in meta
+        or "established" in meta
+    ):
+        return "organization"
+    return "work"
+
+
+def dedupe_subjects(subjects: list[dict]) -> list[dict]:
+    """Deduplicate subjects on (subject, scheme), preserving order.
+
+    DataCite frequently repeats the same subject with and without a schemeURI.
+    Keep the first occurrence and merge the richer fields in, rather than
+    emitting a near-duplicate that differs only by scheme_uri.
+    """
+    result: list[dict] = []
+    index: dict[tuple, dict] = {}
+    for subject in subjects:
+        if not subject:
+            continue
+        key = (subject.get("subject"), subject.get("scheme"))
+        existing = index.get(key)
+        if existing is None:
+            index[key] = subject
+            result.append(subject)
+            continue
+        for field in ("scheme_uri", "id", "language"):
+            if not existing.get(field) and subject.get(field):
+                existing[field] = subject[field]
+    return result
 
 
 def name_to_fos(name: str) -> dict | None:

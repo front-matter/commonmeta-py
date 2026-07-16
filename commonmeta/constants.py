@@ -880,6 +880,75 @@ INVENIORDM_IDENTIFIER_TYPES = {
 }
 
 
+# --- ORCID (person entities) ---
+
+# ORCID external-id-type -> commonmeta identifier_type. Types without a
+# commonmeta equivalent become "Other" and keep the original name in `scheme`.
+ORCID_TO_CM_IDENTIFIER_TYPES = {
+    "ResearcherID": "ResearcherID",
+    "rid": "ResearcherID",
+    "Scopus Author ID": "ScopusID",
+    "ISNI": "ISNI",
+    "Wikidata": "Wikidata",
+}
+
+# ORCID disambiguation-source -> commonmeta identifier_type for an affiliated
+# organization. Sources absent from this map carry no identifier.
+ORCID_TO_CM_AFFILIATION_TYPES = {
+    "ROR": "ROR",
+    "FUNDREF": "FundRef",
+    "OFR": "FundRef",
+    "GRID": "GRID",
+    "ISNI": "ISNI",
+    "RINGGOLD": "Ringgold",
+    "WIKIDATA": "Wikidata",
+}
+
+# ORCID external-id-type <- commonmeta identifier_type, for writing person JSON.
+# Types written as "Other" carry their original name in `scheme`, which the
+# writer restores, so they don't need an entry here.
+CM_TO_ORCID_IDENTIFIER_TYPES = {
+    "ResearcherID": "ResearcherID",
+    "ScopusID": "Scopus Author ID",
+    "ISNI": "ISNI",
+    "Wikidata": "Wikidata",
+}
+
+# --- ROR (organization entities) ---
+
+# ROR external_ids[].type -> commonmeta identifier_type. ROR's "fundref" is the
+# Crossref Funder ID; the schema spells that identifier type "FundRef". Types
+# absent from this map have no commonmeta equivalent and are dropped.
+ROR_TO_CM_IDENTIFIER_TYPES = {
+    "fundref": "FundRef",
+    "grid": "GRID",
+    "isni": "ISNI",
+    "wikidata": "Wikidata",
+}
+
+CM_TO_ROR_IDENTIFIER_TYPES = {
+    "FundRef": "fundref",
+    "GRID": "grid",
+    "ISNI": "isni",
+    "Wikidata": "wikidata",
+}
+
+# ROR relationship type -> commonmeta organization relation type. ROR models the
+# hierarchy from the *other* side: a "child" relationship names an organization
+# this one contains, so it maps to HasPart rather than IsPartOf.
+ROR_TO_CM_RELATION_TYPES = {
+    "parent": "IsPartOf",
+    "child": "HasPart",
+    "related": "IsRelatedTo",
+}
+
+CM_TO_ROR_RELATION_TYPES = {
+    "IsPartOf": "parent",
+    "HasPart": "child",
+    "IsRelatedTo": "related",
+}
+
+
 CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS = {
     "https://doi.org/10.13039/100000001": "https://ror.org/021nxhr62",
     "https://doi.org/10.13039/100000015": "https://ror.org/01bj3aw27",

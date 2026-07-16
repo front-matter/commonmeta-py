@@ -14,6 +14,40 @@ import xmltodict
 
 T = TypeVar("T")
 
+# The namespaces an ORCID record declares, all under http://www.orcid.org/ns/.
+# parse_xml(dialect="orcid") maps each to None so elements are addressed by
+# local name.
+ORCID_XML_NAMESPACES = (
+    "activities",
+    "address",
+    "bulk",
+    "common",
+    "deprecated",
+    "distinction",
+    "education",
+    "email",
+    "employment",
+    "error",
+    "external-identifier",
+    "funding",
+    "history",
+    "internal",
+    "invited-position",
+    "keyword",
+    "membership",
+    "other-name",
+    "peer-review",
+    "person",
+    "personal-details",
+    "preferences",
+    "qualification",
+    "record",
+    "research-resource",
+    "researcher-url",
+    "service",
+    "work",
+)
+
 
 def _tokens(path: str | Iterable[Any]) -> Generator[str | int, None, None]:
     """Yield tokens from a dot/bracket path like a.b[0]['c'] or a.0.b"""
@@ -320,6 +354,24 @@ def parse_xml(string: str | bytes | None, **kwargs) -> dict | list | None:
         xml_string = string
 
     dialect = kwargs.get("dialect", None)
+    if dialect == "orcid":
+        # An ORCID record declares ~28 namespaces, all under orcid.org/ns/, and
+        # tags every element with one. Map them all to None so elements are
+        # addressed by local name ("given-names", not "personal-details:given-names").
+        # Local names don't collide across ORCID's namespaces.
+        kwargs["process_namespaces"] = True
+        kwargs["namespaces"] = {
+            f"http://www.orcid.org/ns/{name}": None for name in ORCID_XML_NAMESPACES
+        }
+        # Elements that are repeatable in the schema but appear once in some
+        # records; force_list keeps the reader from special-casing single items.
+        kwargs["force_list"] = {
+            "affiliation-group",
+            "other-name",
+            "external-identifier",
+            "researcher-url",
+            "address",
+        }
     if dialect == "crossref":
         # remove namespaces from xml
         namespaces = {

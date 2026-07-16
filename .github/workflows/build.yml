@@ -6,6 +6,27 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
+  test:
+    # requires-python is >=3.9, so test the declared floor and the current
+    # ceiling. SonarCloud below covers 3.12 and reports coverage.
+    name: Test (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.9', '3.14']
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v5
+      - name: Install tox and any other packages
+        run: uv tool install tox --with tox-uv
+      - name: Run tox
+        run: tox -e py
+
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest

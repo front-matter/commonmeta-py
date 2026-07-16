@@ -30,6 +30,9 @@ from conformance_common import (
     writer_pairs,
 )
 
+from commonmeta.utils import find_entity_type
+from commonmeta.writers.commonmeta_writer import collapse_whitespace
+
 # --- commonmeta round-trip (strict) ---
 
 
@@ -37,9 +40,28 @@ from conformance_common import (
     "path", collect_json(fixture_path("commonmeta")), ids=lambda p: p.split("/")[-1]
 )
 def test_commonmeta_roundtrip(path):
-    """Every commonmeta fixture re-serializes to an equivalent document."""
+    """Every commonmeta fixture re-serializes to an equivalent document.
+
+    Compares against the fixture as authored, not against a second convert()
+    of the same input: running both sides through the reader+writer makes the
+    assertion tautological, so any field the pipeline drops disappears from
+    expected and actual alike and the diff is empty by construction.
+    """
     raw = read_text(path)
-    expected = canonical_commonmeta_value(raw, path)
+    expected = json.loads(raw)
+    if isinstance(expected, list):
+        expected = expected[0]
+    # A work's description is whitespace-normalized on write by design (see
+    # collapse_whitespace), so a hard-wrapped fixture description re-serializes
+    # to a single line. Apply the same transform to the expectation rather than
+    # asserting on formatting the writer deliberately discards. Person and
+    # organization entities are exempt: a biography's line breaks are content.
+    if find_entity_type(expected) == "work":
+        if expected.get("description"):
+            expected["description"] = collapse_whitespace(expected["description"])
+        for d in expected.get("additional_descriptions") or []:
+            if isinstance(d, dict) and d.get("description"):
+                d["description"] = collapse_whitespace(d["description"])
     actual = convert("commonmeta", "commonmeta", raw)
     diffs = diff(expected, actual)
     assert not diffs, "\n".join(str(d) for d in diffs)
@@ -127,6 +149,35 @@ def test_datacite_xml_to_commonmeta_golden(pair):
     input_path, expected_path = pair
     expected = canonical_commonmeta_value(read_text(expected_path), expected_path)
     actual = convert_or_xfail("datacite_xml", "commonmeta", read_text(input_path))
+    assert_golden_or_xfail(expected, actual)
+
+
+@pytest.mark.parametrize("pair", reader_pairs("ror"), ids=pair_id)
+def test_ror_to_commonmeta_golden(pair):
+    """ROR API records convert to commonmeta organization entities."""
+    input_path, expected_path = pair
+    expected = canonical_commonmeta_value(read_text(expected_path), expected_path)
+    actual = convert_or_xfail("ror", "commonmeta", read_text(input_path))
+    assert_golden_or_xfail(expected, actual)
+
+
+@pytest.mark.parametrize("pair", reader_pairs("orcid"), ids=pair_id)
+def test_orcid_to_commonmeta_golden(pair):
+    """ORCID person JSON converts to commonmeta person entities."""
+    input_path, expected_path = pair
+    expected = canonical_commonmeta_value(read_text(expected_path), expected_path)
+    actual = convert_or_xfail("orcid", "commonmeta", read_text(input_path))
+    assert_golden_or_xfail(expected, actual)
+
+
+@pytest.mark.parametrize(
+    "pair", reader_pairs("orcid", "xml", "orcid_commonmeta"), ids=pair_id
+)
+def test_orcid_xml_to_commonmeta_golden(pair):
+    """ORCID record XML converts to commonmeta person entities."""
+    input_path, expected_path = pair
+    expected = canonical_commonmeta_value(read_text(expected_path), expected_path)
+    actual = convert_or_xfail("orcid_xml", "commonmeta", read_text(input_path))
     assert_golden_or_xfail(expected, actual)
 
 

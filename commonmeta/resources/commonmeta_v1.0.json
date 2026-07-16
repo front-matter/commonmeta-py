@@ -1,0 +1,1166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://commonmeta.org/commonmeta_v1.0.json",
+  "title": "Commonmeta v1.0",
+  "description": "JSON representation of the Commonmeta schema. The document is an array of objects, where each object is a work, an organization, or a person.",
+  "type": "array",
+  "uniqueItems": true,
+  "prefixItems": [
+    {
+      "description": "The first item in the array: a work, a person, or an organization. In a collection, this is typically the subject whose related entities follow.",
+      "$ref": "#/$defs/entity"
+    }
+  ],
+  "items": {
+    "description": "Subsequent items in the array: works, persons, or organizations related to the subject.",
+    "$ref": "#/$defs/entity"
+  },
+  "$defs": {
+    "entity": {
+      "description": "A single Commonmeta entity: a work, a person, or an organization.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/work"
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/person"
+            },
+            {
+              "required": [
+                "id"
+              ]
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/organization"
+            },
+            {
+              "required": [
+                "id"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "work": {
+      "description": "A commonmeta work object.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/type"
+        },
+        "additional_descriptions": {
+          "description": "The additional descriptions of the resource.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "description": {
+                "description": "The description of the resource.",
+                "type": "string"
+              },
+              "type": {
+                "description": "The type of the description.",
+                "type": "string",
+                "enum": [
+                  "Abstract",
+                  "Summary",
+                  "Methods",
+                  "TechnicalInfo",
+                  "Other"
+                ]
+              },
+              "language": {
+                "$ref": "#/$defs/language"
+              }
+            },
+            "required": [
+              "description"
+            ]
+          }
+        },
+        "additional_titles": {
+          "description": "Additional titles of the resource.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "title": {
+                "description": "The title of the resource.",
+                "type": "string"
+              },
+              "type": {
+                "description": "The type of the title.",
+                "type": "string",
+                "enum": [
+                  "AlternativeTitle",
+                  "Subtitle",
+                  "TranslatedTitle"
+                ]
+              },
+              "language": {
+                "$ref": "#/$defs/language"
+              }
+            },
+            "required": [
+              "title"
+            ]
+          }
+        },
+        "additional_type": {
+          "description": "The additional type of the resource.",
+          "type": "string"
+        },
+        "archive_locations": {
+          "description": "The locations where content is archived.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "CLOCKSS",
+              "LOCKSS",
+              "Portico",
+              "KB",
+              "Internet Archive",
+              "DWT"
+            ]
+          }
+        },
+        "container": {
+          "description": "The container of the resource.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "identifier": {
+              "description": "The identifier for the container.",
+              "type": "string"
+            },
+            "identifier_type": {
+              "type": "string",
+              "enum": [
+                "ARK",
+                "arXiv",
+                "article_id",
+                "Bibcode",
+                "DOI",
+                "Handle",
+                "ISBN",
+                "ISSN",
+                "OpenAlex",
+                "PMID",
+                "PMCID",
+                "PURL",
+                "RAiD",
+                "SWHID",
+                "URL",
+                "URN",
+                "UUID",
+                "GUID",
+                "Other"
+              ]
+            },
+            "scheme": {
+              "description": "The scheme for identifiers with identifier_type 'Other', e.g. 'LISSN' or 'IGSN'.",
+              "type": "string"
+            },
+            "type": {
+              "description": "The type of the container.",
+              "type": "string",
+              "enum": [
+                "Blog",
+                "Book",
+                "BookSeries",
+                "Journal",
+                "Proceedings",
+                "ProceedingsSeries",
+                "Repository",
+                "DataRepository",
+                "Periodical",
+                "Series",
+                "Other"
+              ]
+            },
+            "title": {
+              "description": "The title of the container.",
+              "type": "string"
+            },
+            "description": {
+              "description": "The description of the container.",
+              "type": "string"
+            },
+            "language": {
+              "$ref": "#/$defs/language"
+            },
+            "license": {
+              "$ref": "#/$defs/license"
+            },
+            "platform": {
+              "description": "The platform of the container.",
+              "type": "string"
+            },
+            "image": {
+              "description": "The image for the container.",
+              "type": "string",
+              "format": "uri"
+            },
+            "first_page": {
+              "description": "The first page of the resource.",
+              "type": "string"
+            },
+            "last_page": {
+              "description": "The last page of the resource.",
+              "type": "string"
+            },
+            "volume": {
+              "description": "The volume of the resource.",
+              "type": "string"
+            },
+            "issue": {
+              "description": "The issue of the resource.",
+              "type": "string"
+            },
+            "location": {
+              "description": "The location of the conference or event.",
+              "type": "string"
+            },
+            "series": {
+              "description": "The series name or acronym for the conference or event.",
+              "type": "string"
+            }
+          }
+        },
+        "content": {
+          "description": "The full text content of the resource, e.g. the body of a blog post.",
+          "type": "string"
+        },
+        "contributors": {
+          "description": "The contributors to the resource.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/contributor"
+          },
+          "minItems": 1
+        },
+        "date_published": {
+          "$ref": "#/$defs/date"
+        },
+        "date_updated": {
+          "$ref": "#/$defs/date"
+        },
+        "dates": {
+          "description": "Other dates for the resource.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "created": {
+              "$ref": "#/$defs/date"
+            },
+            "submitted": {
+              "$ref": "#/$defs/date"
+            },
+            "accepted": {
+              "$ref": "#/$defs/date"
+            },
+            "accessed": {
+              "$ref": "#/$defs/date"
+            },
+            "available": {
+              "$ref": "#/$defs/date"
+            },
+            "withdrawn": {
+              "$ref": "#/$defs/date"
+            },
+            "collected": {
+              "$ref": "#/$defs/date"
+            },
+            "valid": {
+              "$ref": "#/$defs/date"
+            },
+            "copyrighted": {
+              "$ref": "#/$defs/date"
+            },
+            "other": {
+              "$ref": "#/$defs/date"
+            }
+          }
+        },
+        "description": {
+          "description": "The description of the resource.",
+          "type": "string"
+        },
+        "files": {
+          "description": "The downloadable files for the resource.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "bucket": {
+                "type": "string"
+              },
+              "key": {
+                "type": "string"
+              },
+              "checksum": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "size": {
+                "type": "integer"
+              },
+              "mime_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "minItems": 1
+        },
+        "funding_references": {
+          "description": "The funding references for the resource.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "funder_id": {
+                "$ref": "#/$defs/id"
+              },
+              "funder_name": {
+                "type": "string"
+              },
+              "award_id": {
+                "$ref": "#/$defs/id"
+              },
+              "award_title": {
+                "type": "string"
+              },
+              "award_number": {
+                "type": "string"
+              },
+              "asserted_by": {
+                "$ref": "#/$defs/provider"
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "funder_name"
+                ]
+              },
+              {
+                "required": [
+                  "funder_id"
+                ]
+              },
+              {
+                "required": [
+                  "award_number"
+                ]
+              },
+              {
+                "required": [
+                  "award_title"
+                ]
+              }
+            ]
+          }
+        },
+        "geo_locations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/geo_location"
+          },
+          "uniqueItems": true
+        },
+        "identifiers": {
+          "description": "Identifiers for the resource, excluding the id.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          }
+        },
+        "image": {
+          "description": "The image for the resource, e.g. a thumbnail for a blog post.",
+          "type": "string",
+          "format": "uri"
+        },
+        "language": {
+          "$ref": "#/$defs/language"
+        },
+        "license": {
+          "$ref": "#/$defs/license"
+        },
+        "provider": {
+          "$ref": "#/$defs/provider"
+        },
+        "publisher": {
+          "$ref": "#/$defs/organization"
+        },
+        "references": {
+          "description": "References cited by this resource.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reference"
+          }
+        },
+        "relations": {
+          "description": "Other resolvable persistent unique IDs related to the resource.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "IsNewVersionOf",
+                  "IsPreviousVersionOf",
+                  "IsVersionOf",
+                  "HasVersion",
+                  "IsPartOf",
+                  "HasPart",
+                  "IsVariantFormOf",
+                  "IsOriginalFormOf",
+                  "IsIdenticalTo",
+                  "IsTranslationOf",
+                  "HasTranslation",
+                  "IsReviewOf",
+                  "HasReview",
+                  "IsPreprintOf",
+                  "HasPreprint",
+                  "IsReferencedBy",
+                  "IsSupplementTo",
+                  "IsSupplementedBy",
+                  "Other"
+                ]
+              },
+              "name": {
+                "description": "A human-readable label for the related resource.",
+                "type": "string"
+              },
+              "asserted_by": {
+                "$ref": "#/$defs/provider"
+              }
+            },
+            "required": [
+              "id",
+              "type"
+            ]
+          },
+          "minItems": 1
+        },
+        "schema_version": {
+          "description": "The URI of the commonmeta JSON Schema version used.",
+          "type": "string",
+          "const": "https://commonmeta.org/commonmeta_v1.0.json"
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "subject": {
+                "type": "string"
+              },
+              "scheme": {
+                "description": "The subject classification scheme, e.g. FOS, ANZSRC, or JEL.",
+                "type": "string"
+              },
+              "scheme_uri": {
+                "description": "A URI identifying the subject classification scheme.",
+                "type": "string",
+                "format": "uri"
+              },
+              "language": {
+                "$ref": "#/$defs/language"
+              }
+            },
+            "required": [
+              "subject"
+            ]
+          }
+        },
+        "title": {
+          "description": "The title of the resource.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL of the resource.",
+          "type": "string",
+          "format": "uri"
+        },
+        "version": {
+          "description": "The version of the resource.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "person": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "ORCID identifier URL.",
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://orcid\\.org/\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$"
+        },
+        "given_name": {
+          "description": "The given name of the person.",
+          "type": "string"
+        },
+        "family_name": {
+          "description": "The family name of the person.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The display or credit name of the person.",
+          "type": "string"
+        },
+        "additional_names": {
+          "description": "Alternate names, pseudonyms, or previous names of the person.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "description": "A biographical description of the person.",
+          "type": "string"
+        },
+        "affiliations": {
+          "description": "The affiliations of the person.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/affiliation"
+          }
+        },
+        "identifiers": {
+          "description": "External identifiers for the person, e.g. Scopus Author ID or ResearcherID.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          }
+        },
+        "urls": {
+          "description": "Personal or professional URLs associated with the person.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "description": "A label for the URL.",
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          }
+        },
+        "country": {
+          "description": "The country of the person, as an ISO 3166-1 alpha-2 code.",
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "date_updated": {
+          "description": "The date the person record was last updated.",
+          "$ref": "#/$defs/date"
+        },
+        "asserted_by": {
+          "$ref": "#/$defs/provider"
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "id"
+          ]
+        },
+        {
+          "required": [
+            "name"
+          ]
+        },
+        {
+          "required": [
+            "given_name"
+          ]
+        },
+        {
+          "required": [
+            "family_name"
+          ]
+        }
+      ]
+    },
+    "organization": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "ROR identifier URL.",
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://ror\\.org/[0-9a-z]{9}$"
+        },
+        "name": {
+          "description": "The name of the organization.",
+          "type": "string"
+        },
+        "acronym": {
+          "description": "The acronym or abbreviation of the organization.",
+          "type": "string"
+        },
+        "additional_names": {
+          "description": "Alternate names, aliases, or translated names of the organization.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "types": {
+          "description": "The types of the organization.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "education",
+              "funder",
+              "healthcare",
+              "company",
+              "archive",
+              "nonprofit",
+              "government",
+              "facility",
+              "other"
+            ]
+          }
+        },
+        "status": {
+          "description": "The status of the organization.",
+          "type": "string",
+          "enum": [
+            "active",
+            "inactive",
+            "withdrawn"
+          ]
+        },
+        "established": {
+          "description": "The year the organization was established.",
+          "type": "integer"
+        },
+        "date_updated": {
+          "description": "The date the organization record was last updated.",
+          "$ref": "#/$defs/date"
+        },
+        "identifiers": {
+          "description": "External identifiers for the organization, e.g. GRID, ISNI, FundRef, or Wikidata.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          }
+        },
+        "urls": {
+          "description": "Website and other URLs associated with the organization.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "description": "A label for the URL.",
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          }
+        },
+        "country": {
+          "description": "The country of the organization, as an ISO 3166-1 alpha-2 code.",
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "geo_locations": {
+          "description": "Geographic locations of the organization.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/geo_location"
+          },
+          "uniqueItems": true
+        },
+        "relations": {
+          "description": "Other organizations related to this organization.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "description": "ROR URL of the related organization.",
+                "type": "string",
+                "format": "uri"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "IsPartOf",
+                  "HasPart",
+                  "IsRelatedTo",
+                  "Other"
+                ]
+              },
+              "name": {
+                "description": "A human-readable label for the related organization.",
+                "type": "string"
+              },
+              "asserted_by": {
+                "$ref": "#/$defs/provider"
+              }
+            },
+            "required": [
+              "id",
+              "type"
+            ]
+          },
+          "minItems": 1
+        },
+        "asserted_by": {
+          "$ref": "#/$defs/provider"
+        }
+      }
+    },
+    "affiliation": {
+      "description": "An organizational affiliation of a person, optionally scoped by role and date range.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "description": "The identifier of the affiliated organization.",
+          "type": "string"
+        },
+        "identifier_type": {
+          "description": "The type of the identifier.",
+          "type": "string",
+          "enum": [
+            "ROR",
+            "FundRef",
+            "GRID",
+            "ISNI",
+            "Ringgold",
+            "URL",
+            "Wikidata",
+            "Other"
+          ]
+        },
+        "name": {
+          "description": "The name of the affiliated organization.",
+          "type": "string"
+        },
+        "role": {
+          "description": "The role or job title held at the organization.",
+          "type": "string"
+        },
+        "start_date": {
+          "description": "The date the affiliation began.",
+          "$ref": "#/$defs/date"
+        },
+        "end_date": {
+          "description": "The date the affiliation ended.",
+          "$ref": "#/$defs/date"
+        },
+        "asserted_by": {
+          "$ref": "#/$defs/provider"
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "identifier"
+          ]
+        },
+        {
+          "required": [
+            "name"
+          ]
+        }
+      ]
+    },
+    "contributor": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Person",
+            "Organization"
+          ]
+        },
+        "person": {
+          "$ref": "#/$defs/person"
+        },
+        "organization": {
+          "$ref": "#/$defs/organization"
+        },
+        "roles": {
+          "description": "List of roles assumed by the contributor when working on the resource.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/contributor_role"
+          }
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Person"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "person"
+        ]
+      },
+      "else": {
+        "required": [
+          "organization"
+        ]
+      }
+    },
+    "contributor_role": {
+      "description": "The type of contribution made by a contributor",
+      "type": "string",
+      "enum": [
+        "Author",
+        "Chair",
+        "Conceptualization",
+        "ContactPerson",
+        "CorrespondingAuthor",
+        "DataCollector",
+        "DataCuration",
+        "DataManager",
+        "Distributor",
+        "Editor",
+        "FormalAnalysis",
+        "FundingAcquisition",
+        "HostingInstitution",
+        "Interviewee",
+        "Investigation",
+        "Maintainer",
+        "Methodology",
+        "Other",
+        "Producer",
+        "ProjectAdministration",
+        "ProjectLeader",
+        "ProjectManager",
+        "ProjectMember",
+        "Reader",
+        "RelatedPerson",
+        "RegistrationAgency",
+        "RegistrationAuthority",
+        "ResearchGroup",
+        "Researcher",
+        "Resources",
+        "Reviewer",
+        "ReviewerExternal",
+        "ReviewAssistant",
+        "RightsHolder",
+        "Software",
+        "Sponsor",
+        "StatsReviewer",
+        "Supervision",
+        "Translator",
+        "Validation",
+        "Visualization",
+        "WorkPackageLeader",
+        "WritingOriginalDraft",
+        "WritingReviewEditing"
+      ]
+    },
+    "date": {
+      "description": "An ISO 8601 / EDTF level 0 date or partial date (year, year-month, year-month-day, or full date-time).",
+      "type": "string",
+      "pattern": "^\\d{4}(-\\d{2}(-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})?)?)?)?$"
+    },
+    "geo_location": {
+      "description": "A geographic location associated with the resource.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "place": {
+          "type": "string"
+        },
+        "point_longitude": {
+          "$ref": "#/$defs/longitude"
+        },
+        "point_latitude": {
+          "$ref": "#/$defs/latitude"
+        },
+        "box_west_longitude": {
+          "$ref": "#/$defs/longitude"
+        },
+        "box_east_longitude": {
+          "$ref": "#/$defs/longitude"
+        },
+        "box_south_latitude": {
+          "$ref": "#/$defs/latitude"
+        },
+        "box_north_latitude": {
+          "$ref": "#/$defs/latitude"
+        },
+        "polygon": {
+          "description": "The polygon geometry, formatted as Well-Known Text (WKT).",
+          "type": "string"
+        }
+      }
+    },
+    "id": {
+      "description": "The unique identifier for the resource.",
+      "type": "string",
+      "format": "uri"
+    },
+    "identifier": {
+      "description": "An identifier for the resource.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "identifier_type": {
+          "type": "string",
+          "enum": [
+            "ARK",
+            "arXiv",
+            "article_id",
+            "Bibcode",
+            "DOI",
+            "FundRef",
+            "GeoNames",
+            "GRID",
+            "Handle",
+            "ISBN",
+            "ISNI",
+            "ISSN",
+            "OpenAlex",
+            "PMID",
+            "PMCID",
+            "PURL",
+            "RAiD",
+            "ResearcherID",
+            "ROR",
+            "ScopusID",
+            "SWHID",
+            "URL",
+            "URN",
+            "UUID",
+            "GUID",
+            "Wikidata",
+            "Other"
+          ]
+        },
+        "scheme": {
+          "description": "The scheme for identifiers with identifier_type 'Other', e.g. 'IGSN' or 'MGDS'.",
+          "type": "string"
+        },
+        "asserted_by": {
+          "$ref": "#/$defs/provider"
+        }
+      },
+      "required": [
+        "identifier",
+        "identifier_type"
+      ]
+    },
+    "language": {
+      "description": "The language. Use one of the language codes from the IETF BCP 47 standard.",
+      "type": "string"
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "license": {
+      "description": "The license for the resource. Use one of the SPDX license identifiers.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "asserted_by": {
+          "$ref": "#/$defs/provider"
+        }
+      }
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180
+    },
+    "provider": {
+      "description": "The provider of the resource or the assertion. This can be a DOI registration agency, a repository, or any other entity asserting the information.",
+      "type": "string",
+      "enum": [
+        "Crossref",
+        "DataCite",
+        "Airiti",
+        "CNKI",
+        "JaLC",
+        "KISTI",
+        "mEDRA",
+        "OP",
+        "Contributor",
+        "Commonmeta",
+        "GitHub",
+        "OpenAIRE",
+        "OpenAlex",
+        "ORCID",
+        "Publisher",
+        "PubMed",
+        "ROR",
+        "Other"
+      ]
+    },
+    "reference": {
+      "description": "A cited or citing work. Used for both references (works cited by this resource) and citations (works that cite this resource).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "$ref": "#/$defs/type"
+        },
+        "reference": {
+          "description": "The reference formatted as string.",
+          "type": "string"
+        },
+        "asserted_by": {
+          "$ref": "#/$defs/provider"
+        }
+      }
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Preprint",
+        "Audiovisual",
+        "Blog",
+        "BlogPost",
+        "BlogVolume",
+        "Book",
+        "BookChapter",
+        "BookPart",
+        "BookSection",
+        "BookSeries",
+        "BookSet",
+        "Collection",
+        "Component",
+        "ComputationalNotebook",
+        "Database",
+        "Dataset",
+        "Dissertation",
+        "Document",
+        "Entry",
+        "Event",
+        "Figure",
+        "Grant",
+        "Image",
+        "Instrument",
+        "InteractiveResource",
+        "Journal",
+        "JournalArticle",
+        "JournalIssue",
+        "JournalVolume",
+        "LegalDocument",
+        "Manuscript",
+        "Map",
+        "Model",
+        "OutputManagementPlan",
+        "Patent",
+        "PeerReview",
+        "Performance",
+        "PersonalCommunication",
+        "PhysicalObject",
+        "Poster",
+        "Presentation",
+        "Proceedings",
+        "ProceedingsArticle",
+        "ProceedingsSeries",
+        "Report",
+        "ReportComponent",
+        "ReportSeries",
+        "Review",
+        "Service",
+        "Software",
+        "Sound",
+        "Standard",
+        "StudyRegistration",
+        "WebPage",
+        "Workflow",
+        "Other"
+      ]
+    }
+  }
+}

@@ -159,9 +159,11 @@ def test_pangaea():
     assert subject.subjects == [
         {
             "subject": "Multiple investigations",
+            "scheme": "Method",
         },
         {
             "subject": "GReenland Analogue Surface Project (GRASP)",
+            "scheme": "Project",
         },
     ]
     assert subject.language == "en"
@@ -440,9 +442,12 @@ def test_arxiv():
     assert subject.subjects == [
         {
             "subject": "Digital Libraries (cs.DL)",
+            "scheme": "arXiv",
         },
         {
             "subject": "FOS: Computer and information sciences",
+            "scheme": "Fields of Science and Technology (FOS)",
+            "scheme_uri": "http://www.oecd.org/science/inno/38235147.pdf",
         },
     ]
     assert subject.language is None

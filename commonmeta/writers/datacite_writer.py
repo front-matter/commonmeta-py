@@ -14,7 +14,7 @@ from ..constants import (
     CM_TO_RIS_TRANSLATIONS,
     CM_TO_SO_TRANSLATIONS,
 )
-from ..doi_utils import doi_from_url, normalize_doi
+from ..doi_utils import doi_from_url
 
 if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList

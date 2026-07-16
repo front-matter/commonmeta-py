@@ -24,7 +24,13 @@ from ..constants import (
 from ..date_utils import normalize_date_dict, strip_milliseconds
 from ..doi_utils import datacite_api_url, doi_as_url, doi_from_url, normalize_doi
 from ..readers.datacite_reader import DC_TO_CM_RELATION_TYPES
-from ..utils import dict_to_spdx, normalize_arxiv, normalize_cc_url, normalize_url
+from ..utils import (
+    dedupe_subjects,
+    dict_to_spdx,
+    normalize_arxiv,
+    normalize_cc_url,
+    normalize_url,
+)
 
 
 def get_datacite_xml(pid: str, **kwargs) -> dict:
@@ -55,8 +61,8 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     _type = DC_TO_CM_TRANSLATIONS.get(resource__typegeneral, "Other")
     additional_type = dig(meta, "resourceType.#text")
     # Drop additional_type when it is redundant with the resolved type: it
-    # maps to a known CM type or just repeats the type (matching
-    # commonmeta-rs, e.g. resourceType "dataset" under a Dataset).
+    # maps to a known CM type or just repeats the type (e.g. resourceType
+    # "dataset" under a Dataset).
     if additional_type and (
         DC_TO_CM_TRANSLATIONS.get(additional_type, None)
         or additional_type.lower() == _type.lower()
@@ -67,7 +73,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     identifiers = wrap(dig(meta, "alternateIdentifiers.alternateIdentifier"))
     identifiers = get_xml_identifiers(identifiers)
     # DataCite stores the DOI as the primary <identifier>; include it as a
-    # DOI identifier (matching commonmeta-rs) unless already present.
+    # DOI identifier unless already present.
     if _id and not any(i.get("identifier", None) == _id for i in identifiers):
         identifiers = identifiers + [{"identifier": _id, "identifier_type": "DOI"}]
 
@@ -102,12 +108,17 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             return compact(
                 {
                     "subject": subject.get("#text", None),
+                    "scheme": subject.get("subjectScheme", None),
+                    # DataCite XML spells this schemeURI; the JSON API uses schemeUri.
+                    "scheme_uri": subject.get("schemeURI", None),
                     "language": subject.get("xml:lang", None),
                 }
             )
         return None
 
-    subjects = [format_subject(i) for i in wrap(dig(meta, "subjects.subject")) if i]
+    subjects = dedupe_subjects(
+        [format_subject(i) for i in wrap(dig(meta, "subjects.subject")) if i]
+    )
 
     geo_locations = get_geolocation(wrap(dig(meta, "geoLocations.geoLocation")))
 
@@ -435,8 +446,8 @@ def get_funding_references(funding_references: list) -> list:
 
     DataCite funding references use funderIdentifier/funderIdentifierType,
     which may be ROR, Crossref Funder ID, GRID, ISNI, Ringgold, or Other.
-    ROR ids are kept as-is and Crossref Funder IDs as DOIs (matching
-    commonmeta-rs); other schemes have no resolvable id and are dropped.
+    ROR ids are kept as-is and Crossref Funder IDs as DOIs; other schemes have
+    no resolvable id and are dropped.
     """
 
     def map_funding_reference(funding: dict) -> dict:

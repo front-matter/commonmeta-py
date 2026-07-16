@@ -8,7 +8,7 @@ import requests
 from requests.exceptions import ReadTimeout
 
 from ..author_utils import get_authors
-from ..base_utils import compact, dig, presence, unique, wrap
+from ..base_utils import compact, dig, presence, wrap
 from ..constants import (
     CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     CSL_TO_CM_TRANSLATIONS,
@@ -26,6 +26,7 @@ from ..doi_utils import (
     doi_from_url,
 )
 from ..utils import (
+    dedupe_subjects,
     dict_to_spdx,
     format_name_identifier,
     normalize_cc_url,
@@ -145,10 +146,14 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
             {
                 "id": subject.get("valueURI", None),
                 "subject": subject.get("subject", None),
+                "scheme": subject.get("subjectScheme", None),
+                "scheme_uri": subject.get("schemeUri", None),
             }
         )
 
-    subjects = unique([format_subject(i) for i in wrap(meta.get("subjects", None))])
+    subjects = dedupe_subjects(
+        [format_subject(i) for i in wrap(meta.get("subjects", None))]
+    )
     state = "findable"
 
     return {

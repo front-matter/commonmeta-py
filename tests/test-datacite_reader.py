@@ -54,8 +54,16 @@ def test_dataset():
         "Plasmodium falciparum is the major human malaria agent responsible"
     )
     assert subject.subjects == [
-        {"subject": "Plasmodium"},
-        {"subject": "Malaria"},
+        {
+            "subject": "Plasmodium",
+            "scheme": "PLOS Subject Area Thesaurus",
+            "scheme_uri": "https://github.com/PLOS/plos-thesaurus",
+        },
+        {
+            "subject": "Malaria",
+            "scheme": "PLOS Subject Area Thesaurus",
+            "scheme_uri": "https://github.com/PLOS/plos-thesaurus",
+        },
         {"subject": "mitochondrial genome"},
         {"subject": "Parasites"},
     ]
@@ -339,11 +347,19 @@ def test_is_identical():
         "<b>RAIN: RNA–protein Association and Interaction Networks</b>"
     )
     assert subject.subjects == [
-        {"subject": "60102 Bioinformatics"},
-        {"subject": "FOS: Computer and information sciences"},
+        {"subject": "60102 Bioinformatics", "scheme": "FOR"},
+        {
+            "subject": "FOS: Computer and information sciences",
+            "scheme": "Fields of Science and Technology (FOS)",
+            "scheme_uri": "http://www.oecd.org/science/inno/38235147.pdf",
+        },
         {"subject": "Computational Biology"},
-        {"subject": "60114 Systems Biology"},
-        {"subject": "FOS: Biological sciences"},
+        {"subject": "60114 Systems Biology", "scheme": "FOR"},
+        {
+            "subject": "FOS: Biological sciences",
+            "scheme": "Fields of Science and Technology (FOS)",
+            "scheme_uri": "http://www.oecd.org/science/inno/38235147.pdf",
+        },
     ]
     assert subject.language is None
     assert subject.version is None
@@ -392,9 +408,14 @@ def test_subject_scheme_for():
     assert subject.publisher == {"name": "figshare"}
     assert subject.subjects == [
         {"subject": "Evolutionary Biology"},
-        {"subject": "FOS: Biological sciences"},
+        {
+            "subject": "FOS: Biological sciences",
+            "scheme": "Fields of Science and Technology (FOS)",
+            "scheme_uri": "http://www.oecd.org/science/inno/38235147.pdf",
+        },
         {
             "subject": "60412 Quantitative Genetics (incl. Disease and Trait Mapping Genetics)",
+            "scheme": "FOR",
         },
     ]
     assert subject.language is None
@@ -409,8 +430,12 @@ def test_more_subject_scheme_for():
     assert subject.id == "https://doi.org/10.4225/03/5a6931f57c654"
     assert subject.type == "Dissertation"
     assert subject.subjects == [
-        {"subject": "90301 Biomaterials"},
-        {"subject": "FOS: Medical engineering"},
+        {"subject": "90301 Biomaterials", "scheme": "FOR"},
+        {
+            "subject": "FOS: Medical engineering",
+            "scheme": "Fields of Science and Technology (FOS)",
+            "scheme_uri": "http://www.oecd.org/science/inno/38235147.pdf",
+        },
     ]
 
 
@@ -422,13 +447,25 @@ def test_even_more_subject_scheme_for():
     assert subject.id == "https://doi.org/10.4225/03/5a31ec65634ef"
     assert subject.type == "Presentation"
     assert subject.subjects == [
-        {"subject": "130103 Higher Education"},
-        {"subject": "FOS: Educational sciences"},
+        {"subject": "130103 Higher Education", "scheme": "FOR"},
         {
-            "subject": "130313 Teacher Education and Professional Development of Educators"
+            "subject": "FOS: Educational sciences",
+            "scheme": "Fields of Science and Technology (FOS)",
+            "scheme_uri": "http://www.oecd.org/science/inno/38235147.pdf",
         },
-        {"subject": "80799 Library and Information Studies not elsewhere classified"},
-        {"subject": "FOS: Media and communications"},
+        {
+            "subject": "130313 Teacher Education and Professional Development of Educators",
+            "scheme": "FOR",
+        },
+        {
+            "subject": "80799 Library and Information Studies not elsewhere classified",
+            "scheme": "FOR",
+        },
+        {
+            "subject": "FOS: Media and communications",
+            "scheme": "Fields of Science and Technology (FOS)",
+            "scheme_uri": "http://www.oecd.org/science/inno/38235147.pdf",
+        },
         {"subject": "Library and Information Studies"},
     ]
 
@@ -754,14 +791,37 @@ def test_geolocation_box():
             "available": "2016-03-14T17:02:02Z",
         }
     )
+    lter = {
+        "scheme": "LTER Controlled Vocabulary",
+        "scheme_uri": "http://vocab.lternet.edu",
+    }
+    # "FOS: Environmental engineering" appears twice under different schemes, so
+    # both are kept: subjects dedupe on (subject, scheme), not on subject alone.
     assert subject.subjects == [
-        {"subject": "air temperature"},
-        {"subject": "Earth sciences"},
-        {"subject": "Nevada, Sierra (mountain range)"},
-        {"subject": "snow depth"},
-        {"subject": "soil temperature"},
-        {"subject": "water balance"},
-        {"subject": "FOS: Environmental engineering"},
+        {"subject": "air temperature", **lter},
+        {
+            "subject": "Earth sciences",
+            "scheme": "PLOS Subject Area Thesaurus",
+            "scheme_uri": "https://github.com/PLOS/plos-thesaurus",
+        },
+        {
+            "subject": "Nevada, Sierra (mountain range)",
+            "scheme": "Getty Thesaurus of Geographic Names",
+            "scheme_uri": "http://www.getty.edu/research/tools/vocabularies/tgn/",
+        },
+        {"subject": "snow depth", **lter},
+        {"subject": "soil temperature", **lter},
+        {"subject": "water balance", **lter},
+        {
+            "subject": "FOS: Environmental engineering",
+            "scheme": "fos",
+            "scheme_uri": "https://web-archive.oecd.org/2012-06-15/138575-38235147.pdf",
+        },
+        {
+            "subject": "FOS: Environmental engineering",
+            "scheme": "Fields of Science and Technology (FOS)",
+            "scheme_uri": "http://www.oecd.org/science/inno/38235147.pdf",
+        },
     ]
 
     assert subject.geo_locations == [

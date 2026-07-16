@@ -5,11 +5,23 @@ from __future__ import annotations
 import datetime
 from datetime import datetime as dt
 
-import dateparser
 from edtf import Date, DateAndTime, parse_edtf
 from edtf.parser.edtf_exceptions import EDTFParseException
 
 from .base_utils import compact
+
+
+def _dateparser():
+    """dateparser, imported on first use.
+
+    dateparser costs ~120ms to import (it loads language data) and is only
+    reached when a date can't be handled by the caller's fast paths. Python
+    caches the module, so repeat calls are a sys.modules lookup.
+    """
+    import dateparser
+
+    return dateparser
+
 
 MONTH_NAMES = {
     "01": "jan",
@@ -52,7 +64,7 @@ def get_iso8601_date(date: datetime.datetime | datetime.date | str | int | None)
         return date.strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, str):
         length = len(date)
-        parsed = dateparser.parse(date)
+        parsed = _dateparser().parse(date)
         if parsed is None:
             return ""
         if length == 7:
@@ -152,7 +164,7 @@ def get_month_from_date(
         # dateparser.parse("2015") which returns today's date in that year.
         if len(date) <= 4:
             return None
-        parsed = dateparser.parse(date)
+        parsed = _dateparser().parse(date)
         if parsed is None:
             return None
         date_str = parsed.strftime(ISO8601_DATE_FORMAT)

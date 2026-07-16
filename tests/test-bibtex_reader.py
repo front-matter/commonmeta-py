@@ -1,6 +1,5 @@
 """BibTeX reader tests"""
 
-import pytest
 
 from commonmeta import Metadata
 from commonmeta.readers.bibtex_reader import read_bibtex
