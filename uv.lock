@@ -962,7 +962,7 @@ requires-dist = [
     { name = "citeproc-py", specifier = ">=0.9,<1" },
     { name = "citeproc-py-styles", specifier = ">=0.1.2,<1" },
     { name = "click", specifier = ">=8.1.7,<9" },
-    { name = "commonmeta-rs", marker = "python_full_version >= '3.14' and extra == 'backend'", specifier = ">=0.9.34" },
+    { name = "commonmeta-rs", marker = "python_full_version >= '3.14' and extra == 'backend'", specifier = ">=0.9.35" },
     { name = "commonmeta-schema", specifier = "==1.0rc10" },
     { name = "datacite", specifier = ">=1.1.1,<2" },
     { name = "dateparser", specifier = ">=1.1.7,<2" },
@@ -1015,12 +1015,12 @@ docs = [
 
 [[package]]
 name = "commonmeta-rs"
-version = "0.9.34"
+version = "0.9.35"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/d1/95/82cc0c350eaa3d48e6497525393c45b9a16649324943777fc0da1d7b652c/commonmeta_rs-0.9.34.tar.gz", hash = "sha256:7544eacfba3ac74054ffd724544326c4da20492833a0cfb14c49da7231daaa46", size = 724167, upload-time = "2026-07-17T04:51:51.633Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/1f/23/00655753a808f82d36b9c8e3636efa4ef6a72a7c3a25d0e730a7baca542e/commonmeta_rs-0.9.35.tar.gz", hash = "sha256:f4f14dc55342846ef333ba4b09f5a0de744bc37a025e4f0adf92746c1b6ba5fd", size = 727013, upload-time = "2026-07-17T06:02:51.627Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fc/e6/de6091d05157d2a596089112f525601f52aaf051e9d78069450defa004a3/commonmeta_rs-0.9.34-cp314-abi3-macosx_11_0_arm64.whl", hash = "sha256:cb73dee66f6463474d66781c4e9a7b5af19160d08b5030d8adf4a4a6f9a10542", size = 13491400, upload-time = "2026-07-17T04:51:43.77Z" },
-    { url = "https://files.pythonhosted.org/packages/46/75/4b96268867be3c0c6fea892ca8a078af4d69d9ccbb1e100e9ce13da34e56/commonmeta_rs-0.9.34-cp314-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:df21212cef850d693b7435be3e3daab51559b4fd4df701d29c161642dbfb3e72", size = 15113120, upload-time = "2026-07-17T04:51:49.438Z" },
+    { url = "https://files.pythonhosted.org/packages/6f/29/7064748dc38e9479cbf77231209d3497e4af9ad81cd230b5d83153038044/commonmeta_rs-0.9.35-cp314-abi3-macosx_11_0_arm64.whl", hash = "sha256:3769390681d9d00b709b9cd3da8c1109b8781a0f024facff74e64302fdb522c7", size = 13486824, upload-time = "2026-07-17T06:02:43.795Z" },
+    { url = "https://files.pythonhosted.org/packages/5f/ba/37a1a4ac47065f6b3ef40093870e595562197a698d32b93ee106de0aba93/commonmeta_rs-0.9.35-cp314-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f0c4e2b143ff2fbf5031b250cc1b17f83a58c8f9ff1a0800a00f61eccccd9a5b", size = 15112937, upload-time = "2026-07-17T06:02:49.469Z" },
 ]
 
 [[package]]
