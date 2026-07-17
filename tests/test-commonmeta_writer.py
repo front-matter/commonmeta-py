@@ -128,8 +128,10 @@ def test_write_commonmeta_list():
     commonmeta_list = subject_list.write()
     assert commonmeta_list is not None
     commonmeta_list = json.loads(commonmeta_list)
-    assert len(commonmeta_list["items"]) == 20
-    commonmeta = commonmeta_list["items"][0]
+    # commonmeta list output is a bare JSON array (schema top-level is an array)
+    assert isinstance(commonmeta_list, list)
+    assert len(commonmeta_list) == 20
+    commonmeta = commonmeta_list[0]
     assert (
         commonmeta["id"]
         == "https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
@@ -151,8 +153,9 @@ def test_write_commonmeta_list_jsonfeed():
     commonmeta_list = subject_list.write()
     assert commonmeta_list is not None
     commonmeta_list = json.loads(commonmeta_list)
-    assert len(commonmeta_list["items"]) == 15
-    commonmeta = commonmeta_list["items"][0]
+    assert isinstance(commonmeta_list, list)
+    assert len(commonmeta_list) == 15
+    commonmeta = commonmeta_list[0]
     assert commonmeta["id"] == "https://doi.org/10.59350/26ft6-dmv65"
     assert commonmeta["type"] == "BlogPost"
     assert (

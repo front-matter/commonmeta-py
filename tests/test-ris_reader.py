@@ -19,20 +19,15 @@ def test_journal_article():
     assert len(subject.contributors) == 5
     assert subject.contributors[0] == {
         "type": "Person",
-        "person": {
-            "given_name": "Martial",
-            "family_name": "Sankar"
-        },
-        "roles": [
-            "Author"
-        ]
+        "person": {"given_name": "Martial", "family_name": "Sankar"},
+        "roles": ["Author"],
     }
-    assert subject.title == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
-    assert subject.publisher is None
     assert (
-        subject.description
-        .startswith("Among various advantages,")
+        subject.title
+        == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
     )
+    assert subject.publisher is None
+    assert subject.description.startswith("Among various advantages,")
     assert subject.license is None
     assert subject.container == {
         "type": "Journal",
@@ -67,19 +62,11 @@ def test_thesis():
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
-        "person": {
-            "given_name": "Y.",
-            "family_name": "Toparlar"
-        },
-        "roles": [
-            "Author"
-        ]
+        "person": {"given_name": "Y.", "family_name": "Toparlar"},
+        "roles": ["Author"],
     }
     assert subject.title == "A multiscale analysis of the urban heat island effect"
-    assert (
-        subject.description
-        .startswith("Designing the climates of cities")
-    )
+    assert subject.description.startswith("Designing the climates of cities")
     assert subject.license is None
     assert subject.container == {
         "title": "from city averaged temperatures to the energy demand of individual buildings"

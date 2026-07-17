@@ -121,18 +121,15 @@ def write_commonmeta(metadata: Metadata | None) -> dict | None:
     return compact(data)
 
 
-def write_commonmeta_list(metalist: MetadataList | None) -> dict | None:
-    """Write commonmeta list. If file is provided,
-    write to file. Supports JSON, JSON Lines and YAML format."""
+def write_commonmeta_list(metalist: MetadataList | None) -> list | None:
+    """Write a commonmeta list as a bare JSON array of records.
+
+    The commonmeta v1.0 schema is an array of entities with no list-level
+    wrapper, matching commonmeta-rs' `list` output and the `commonmeta_list`
+    conformance fixtures. A MetadataList's own id/title/description are not part
+    of that schema, so they are omitted here. (MetadataList still *reads* both a
+    bare array and a legacy ``{"items": [...]}`` envelope on input.)
+    """
     if metalist is None:
         return None
-
-    items = [write_commonmeta(item) for item in metalist.items]
-    return compact(
-        {
-            "id": metalist.id,
-            "title": metalist.title,
-            "description": metalist.description,
-            "items": items,
-        }
-    )
+    return [write_commonmeta(item) for item in metalist.items]

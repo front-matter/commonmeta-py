@@ -1,6 +1,5 @@
 """BibTeX reader tests"""
 
-
 from commonmeta import Metadata
 from commonmeta.readers.bibtex_reader import read_bibtex
 
@@ -12,7 +11,10 @@ def test_journal_article():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
     assert subject.url == "http://elifesciences.org/lookup/doi/10.7554/eLife.01567"
-    assert subject.title == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+    assert (
+        subject.title
+        == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+    )
     assert len(subject.contributors) == 5
     assert subject.contributors[0] == {
         "type": "Person",
@@ -25,7 +27,10 @@ def test_journal_article():
         "roles": ["Author"],
     }
     assert subject.date_published == "2014-02"
-    assert subject.description == "Among various advantages, their small size makes model organisms preferred subjects of investigation. Yet, even in model systems detailed analysis of numerous developmental processes at cellular level is severely hampered by their scale."
+    assert (
+        subject.description
+        == "Among various advantages, their small size makes model organisms preferred subjects of investigation. Yet, even in model systems detailed analysis of numerous developmental processes at cellular level is severely hampered by their scale."
+    )
     assert subject.license == {
         "id": "CC-BY-3.0",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
@@ -51,7 +56,10 @@ def test_dissertation():
     subject = Metadata(string, via="bibtex")
     assert subject.id == "dbbe66e459a446a0b6fddf42d3401ccb"
     assert subject.type == "Dissertation"
-    assert subject.title == "A multiscale analysis of the urban heat island effect: from city averaged temperatures to the energy demand of individual buildings"
+    assert (
+        subject.title
+        == "A multiscale analysis of the urban heat island effect: from city averaged temperatures to the energy demand of individual buildings"
+    )
     assert subject.contributors == [
         {
             "type": "Person",

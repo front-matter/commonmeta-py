@@ -134,7 +134,10 @@ def test_epijats_reference():
     subject = Metadata(string)
     assert subject.id == "ref26"
     assert subject.type == "Other"
-    assert subject.title == "'I don't talk about my distress to others; I feel that I have to suffer my problems...' voices of indian women with breast cancer: a qualitative interview study"
+    assert (
+        subject.title
+        == "'I don't talk about my distress to others; I feel that I have to suffer my problems...' voices of indian women with breast cancer: a qualitative interview study"
+    )
     assert (
         subject.write(to="citation").decode("utf-8")
         == "Daniel, S., Venkateswaran, C., Hutchinson, A.&amp; Johnson, M. (2021). 'I don't talk about my distress to others; I feel that I have to suffer my problems...' voices of indian women with breast cancer: a qualitative interview study. In <i>Support Care Cancer</i> (Vol. 29, Issue 5, pp. 2591–2600)."

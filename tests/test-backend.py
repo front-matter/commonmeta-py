@@ -123,10 +123,7 @@ def test_parquet_roundtrip():
     assert [i["id"] for i in back] == [r["id"] for r in records]
     # the round-trip is lossless: each row carries the full record as JSON
     assert back[0]["title"] == "Test 0"
-    assert (
-        json.loads(metalist.write(to="commonmeta"))["items"][0]["id"]
-        == records[0]["id"]
-    )
+    assert json.loads(metalist.write(to="commonmeta"))[0]["id"] == records[0]["id"]
 
 
 @needs_backend

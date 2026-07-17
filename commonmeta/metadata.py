@@ -645,7 +645,11 @@ class MetadataList:
             "openalex",
             "schema_org",
         ]:
-            return json.loads(string)
+            data = json.loads(string)
+            # Accept both a bare JSON array - the commonmeta v1.0 list form that
+            # write() now emits, matching the schema and commonmeta-rs - and a
+            # legacy {"items": [...]} envelope.
+            return data if isinstance(data, dict) else {"items": data}
         else:
             raise ValueError("No input format found")
 

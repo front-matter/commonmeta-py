@@ -13,6 +13,7 @@ from commonmeta.api_utils import update_ghost_post_via_api
 from commonmeta.backend import (
     BACKEND_PYTHON_SUPPORTED,
     BackendError,
+    backend_available,
     require_backend,
 )
 from commonmeta.doi_utils import decode_doi, encode_doi, validate_prefix
@@ -28,6 +29,33 @@ from commonmeta.utils import normalize_id
 def cli(show_errors):
     if show_errors:
         click.echo("Show errors mode is on")
+
+
+def main() -> None:
+    """Console-script entry point for the ``commonmeta`` command.
+
+    With the Rust backend extra installed, delegate the whole CLI to
+    commonmeta-rs via ``run_cli``, so commonmeta-py exposes the full commonmeta-rs
+    command surface: every subcommand and option, ``--version``, the array
+    (commonmeta JSON) ``convert`` output with a person's works, the local SQLite
+    store, bulk ``import``, and so on. Without the backend, fall back to the
+    pure-Python Click CLI below - a subset that needs no native extension, which
+    is what a plain ``pip install commonmeta-py`` (e.g. InvenioRDM) gets.
+    """
+    import sys
+
+    if not backend_available():
+        cli()
+        return
+
+    # run_cli parses with clap: --help/--version/usage errors print and exit the
+    # process themselves; application failures come back as an exception, which
+    # we report on stderr with a non-zero exit like any CLI.
+    try:
+        require_backend().run_cli(["commonmeta", *sys.argv[1:]])
+    except Exception as error:  # noqa: BLE001 - surface any backend failure cleanly
+        click.echo(str(error), err=True)
+        sys.exit(1)
 
 
 def format_from_file(file: str) -> str:

@@ -21,15 +21,9 @@ def test_rdataone():
             "id": "https://orcid.org/0000-0003-0077-4738",
             "given_name": "Matt",
             "family_name": "Jones",
-            "affiliations": [
-                {
-                    "name": "NCEAS"
-                }
-            ]
+            "affiliations": [{"name": "NCEAS"}],
         },
-        "roles": [
-            "Author"
-        ]
+        "roles": ["Author"],
     }
     assert subject.title == "R Interface to the DataONE REST API"
     assert subject.description.startswith(
@@ -37,9 +31,11 @@ def test_rdataone():
     )
     # [{'subject': 'data sharing'}], [{'subject': 'data repository'}], [{'subject': 'dataone'}]
     assert subject.subjects is None
-    assert (subject.date_published == '2016-05-27'
-        and subject.date_updated == '2016-05-27'
-        and subject.dates == {'created': '2016-05-27'})
+    assert (
+        subject.date_published == "2016-05-27"
+        and subject.date_updated == "2016-05-27"
+        and subject.dates == {"created": "2016-05-27"}
+    )
     assert subject.publisher == {"name": "https://cran.r-project.org"}
     assert subject.license == {
         "id": "Apache-2.0",
@@ -63,20 +59,20 @@ def test_metadata_reports():
         "person": {
             "id": "https://orcid.org/0000-0003-0077-4738",
             "given_name": "Martin",
-            "family_name": "Fenner"
+            "family_name": "Fenner",
         },
-        "roles": [
-            "Author"
-        ]
+        "roles": ["Author"],
     }
     assert subject.title == "DOI Registrations for Software"
     assert subject.description.startswith(
         "Analysis of DataCite DOIs registered for software"
     )
     assert subject.subjects is None
-    assert (subject.date_published == '2018-05-17'
-        and subject.date_updated == '2018-05-17'
-        and subject.dates == {'created': '2018-03-09'})
+    assert (
+        subject.date_published == "2018-05-17"
+        and subject.date_updated == "2018-05-17"
+        and subject.dates == {"created": "2018-03-09"}
+    )
     assert subject.publisher == {"name": "DataCite"}
     assert subject.license == {
         "id": "MIT",

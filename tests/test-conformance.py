@@ -72,6 +72,33 @@ def test_commonmeta_fixtures_present():
     assert collect_json(fixture_path("commonmeta")), "no commonmeta fixtures found"
 
 
+# --- list output (commonmeta array: an entity followed by its works) ---
+
+
+@pytest.mark.parametrize(
+    "path",
+    collect_json(fixture_path("commonmeta_list")),
+    ids=lambda p: p.split("/")[-1],
+)
+def test_commonmeta_list_is_schema_valid_array(path):
+    """A `list` result is a commonmeta JSON array [entity, work, …].
+
+    It is the shape `list --from orcid|ror … --to commonmeta` returns (person or
+    organization first, then works), the counterpart to `convert`'s single object.
+    The whole array validates against the v1.0 schema (whose top level is an
+    array), and every element round-trips through the reader+writer.
+    """
+    from commonmeta.schema_utils import json_schema_errors
+
+    records = json.loads(read_text(path))
+    assert isinstance(records, list) and len(records) >= 2
+    assert json_schema_errors(records) is None, "list array fails schema validation"
+    assert find_entity_type(records[0]) in ("person", "organization")
+    assert all(find_entity_type(r) == "work" for r in records[1:])
+    for record in records:
+        convert("commonmeta", "commonmeta", json.dumps(record))
+
+
 # --- reader golden tests (xfail on divergence) ---
 
 

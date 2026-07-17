@@ -19,13 +19,8 @@ def test_blog_posting():
     assert subject.contributors == [
         {
             "type": "Person",
-            "person": {
-                "given_name": "Martin",
-                "family_name": "Fenner"
-            },
-            "roles": [
-                "Author"
-            ]
+            "person": {"given_name": "Martin", "family_name": "Fenner"},
+            "roles": ["Author"],
         }
     ]
     assert subject.title == "Eating your own Dog Food"
@@ -60,13 +55,8 @@ def test_no_categories():
     assert subject.contributors == [
         {
             "type": "Person",
-            "person": {
-                "given_name": "Martin",
-                "family_name": "Fenner"
-            },
-            "roles": [
-                "Author"
-            ]
+            "person": {"given_name": "Martin", "family_name": "Fenner"},
+            "roles": ["Author"],
         }
     ]
     assert subject.title == "Eating your own Dog Food"

@@ -14,17 +14,15 @@ def test_default():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://elifesciences.org/articles/01567"
-    assert subject.title == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+    assert (
+        subject.title
+        == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+    )
     assert len(subject.contributors) == 5
     assert subject.contributors[0] == {
         "type": "Person",
-        "person": {
-            "given_name": "Martial",
-            "family_name": "Sankar"
-        },
-        "roles": [
-            "Author"
-        ]
+        "person": {"given_name": "Martial", "family_name": "Sankar"},
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "CC-BY-3.0",
@@ -48,34 +46,23 @@ def test_default():
         "containerTitle": "Nature",
     }
     assert subject.funding_references == [
-        {
-            "funder_name": "SystemsX"
-        },
-        {
-            "funder_name": "EMBO longterm post-doctoral fellowships"
-        },
-        {
-            "funder_name": "Marie Heim-Voegtlin"
-        },
+        {"funder_name": "SystemsX"},
+        {"funder_name": "EMBO longterm post-doctoral fellowships"},
+        {"funder_name": "Marie Heim-Voegtlin"},
         {
             "funder_id": "https://ror.org/019whta54",
-            "funder_name": "University of Lausanne"
+            "funder_name": "University of Lausanne",
         },
-        {
-            "funder_name": "SystemsX"
-        },
-        {
-            "funder_id": "https://ror.org/04wfr2810",
-            "funder_name": "EMBO"
-        },
+        {"funder_name": "SystemsX"},
+        {"funder_id": "https://ror.org/04wfr2810", "funder_name": "EMBO"},
         {
             "funder_id": "https://ror.org/00yjd3n13",
-            "funder_name": "Swiss National Science Foundation"
+            "funder_name": "Swiss National Science Foundation",
         },
         {
             "funder_id": "https://ror.org/019whta54",
-            "funder_name": "University of Lausanne"
-        }
+            "funder_name": "University of Lausanne",
+        },
     ]
     assert subject.container == {
         "identifier": "2050-084X",
@@ -84,9 +71,8 @@ def test_default():
         "type": "Journal",
         "volume": "3",
     }
-    assert (
-        subject.description
-        .startswith("Among various advantages, their small size makes")
+    assert subject.description.startswith(
+        "Among various advantages, their small size makes"
     )
     assert subject.subjects == []
     assert subject.language is None
@@ -484,17 +470,15 @@ def test_string():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://elifesciences.org/articles/01567"
-    assert subject.title == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+    assert (
+        subject.title
+        == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+    )
     assert len(subject.contributors) == 5
     assert subject.contributors[0] == {
         "type": "Person",
-        "person": {
-            "given_name": "Martial",
-            "family_name": "Sankar"
-        },
-        "roles": [
-            "Author"
-        ]
+        "person": {"given_name": "Martial", "family_name": "Sankar"},
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "CC-BY-3.0",
@@ -518,34 +502,23 @@ def test_string():
         "containerTitle": "Nature",
     }
     assert subject.funding_references == [
-        {
-            "funder_name": "SystemsX"
-        },
-        {
-            "funder_name": "EMBO longterm post-doctoral fellowships"
-        },
-        {
-            "funder_name": "Marie Heim-Voegtlin"
-        },
+        {"funder_name": "SystemsX"},
+        {"funder_name": "EMBO longterm post-doctoral fellowships"},
+        {"funder_name": "Marie Heim-Voegtlin"},
         {
             "funder_id": "https://ror.org/019whta54",
-            "funder_name": "University of Lausanne"
+            "funder_name": "University of Lausanne",
         },
-        {
-            "funder_name": "SystemsX"
-        },
-        {
-            "funder_id": "https://ror.org/04wfr2810",
-            "funder_name": "EMBO"
-        },
+        {"funder_name": "SystemsX"},
+        {"funder_id": "https://ror.org/04wfr2810", "funder_name": "EMBO"},
         {
             "funder_id": "https://ror.org/00yjd3n13",
-            "funder_name": "Swiss National Science Foundation"
+            "funder_name": "Swiss National Science Foundation",
         },
         {
             "funder_id": "https://ror.org/019whta54",
-            "funder_name": "University of Lausanne"
-        }
+            "funder_name": "University of Lausanne",
+        },
     ]
     assert subject.container == {
         "identifier": "2050-084X",
@@ -554,9 +527,8 @@ def test_string():
         "type": "Journal",
         "volume": "3",
     }
-    assert (
-        subject.description
-        .startswith("Among various advantages, their small size makes")
+    assert subject.description.startswith(
+        "Among various advantages, their small size makes"
     )
     assert subject.subjects == []
     assert subject.language is None
