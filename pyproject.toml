@@ -61,7 +61,7 @@ dependencies = [
 # an unmarked pin makes the whole resolution unsatisfiable on 3.9-3.13. Below 3.14
 # the extra resolves to nothing and backend.py's require_backend() raises the clear
 # "needs Python 3.14+" error at call time instead.
-backend = ["commonmeta-rs>=0.9.35 ; python_full_version >= '3.14'"]
+backend = ["commonmeta-rs>=0.9.36 ; python_full_version >= '3.14'"]
 
 [project.urls]
 Homepage = "https://python.commonmeta.org"

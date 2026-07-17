@@ -962,7 +962,7 @@ requires-dist = [
     { name = "citeproc-py", specifier = ">=0.9,<1" },
     { name = "citeproc-py-styles", specifier = ">=0.1.2,<1" },
     { name = "click", specifier = ">=8.1.7,<9" },
-    { name = "commonmeta-rs", marker = "python_full_version >= '3.14' and extra == 'backend'", specifier = ">=0.9.35" },
+    { name = "commonmeta-rs", marker = "python_full_version >= '3.14' and extra == 'backend'", specifier = ">=0.9.36" },
     { name = "commonmeta-schema", specifier = "==1.0rc10" },
     { name = "datacite", specifier = ">=1.1.1,<2" },
     { name = "dateparser", specifier = ">=1.1.7,<2" },
@@ -1015,12 +1015,12 @@ docs = [
 
 [[package]]
 name = "commonmeta-rs"
-version = "0.9.35"
+version = "0.9.36"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/1f/23/00655753a808f82d36b9c8e3636efa4ef6a72a7c3a25d0e730a7baca542e/commonmeta_rs-0.9.35.tar.gz", hash = "sha256:f4f14dc55342846ef333ba4b09f5a0de744bc37a025e4f0adf92746c1b6ba5fd", size = 727013, upload-time = "2026-07-17T06:02:51.627Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/1c/32/5581db8cd57f02dbed4fb9b9f70819a62bfc8ea75ed2a2ab1f4adeae2c2d/commonmeta_rs-0.9.36.tar.gz", hash = "sha256:0bbfa95475db5195471bc2c01cbc3591ed3bd7703834eede257a84edaed78ea4", size = 731950, upload-time = "2026-07-17T14:03:50.213Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6f/29/7064748dc38e9479cbf77231209d3497e4af9ad81cd230b5d83153038044/commonmeta_rs-0.9.35-cp314-abi3-macosx_11_0_arm64.whl", hash = "sha256:3769390681d9d00b709b9cd3da8c1109b8781a0f024facff74e64302fdb522c7", size = 13486824, upload-time = "2026-07-17T06:02:43.795Z" },
-    { url = "https://files.pythonhosted.org/packages/5f/ba/37a1a4ac47065f6b3ef40093870e595562197a698d32b93ee106de0aba93/commonmeta_rs-0.9.35-cp314-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f0c4e2b143ff2fbf5031b250cc1b17f83a58c8f9ff1a0800a00f61eccccd9a5b", size = 15112937, upload-time = "2026-07-17T06:02:49.469Z" },
+    { url = "https://files.pythonhosted.org/packages/33/9f/8cb34bb976295691bcab1bce6af4f66f8a6c397f02f5836653a6948032e3/commonmeta_rs-0.9.36-cp314-abi3-macosx_11_0_arm64.whl", hash = "sha256:13513cf721a1f904916cccd841c698456ca1bdd7bd439e6e9773aea21642d576", size = 13511252, upload-time = "2026-07-17T14:03:41.782Z" },
+    { url = "https://files.pythonhosted.org/packages/68/1e/57ff9977c480ed3c1e6424459e70bac2f1b1140e2e00ba26bb24077571aa/commonmeta_rs-0.9.36-cp314-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2cf4a79afb287def571f2fac435ab81a05ee85f8a68dbfa09f5969c3a806c454", size = 15123686, upload-time = "2026-07-17T14:03:48.231Z" },
 ]
 
 [[package]]
@@ -2191,16 +2191,16 @@ wheels = [
 
 [[package]]
 name = "jupyter-builder"
-version = "1.1.0"
+version = "1.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jupyter-core", version = "5.9.1", source = { registry = "https://pypi.org/simple" } },
     { name = "tomli", marker = "python_full_version < '3.11'" },
     { name = "traitlets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/0d/df/db5efc4e28803a1421350445e53d85ec571a4e6928e3524ccc39f4e16584/jupyter_builder-1.1.0.tar.gz", hash = "sha256:b996e8af616900f18724fa34883169d869be2205497940bec78a3a1031eb897d", size = 971142, upload-time = "2026-07-11T07:24:02.4Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c3/61/47f7ae054f5cd3983c10e1d65a6eb7fcd4b87ebb1056e190ef7d63ff4f19/jupyter_builder-1.1.1.tar.gz", hash = "sha256:1a13977912b08deda77fce2c803940131c27cf77a27ed64b9ffca25aa0ed7e6c", size = 971667, upload-time = "2026-07-17T13:14:47.761Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7c/fb/53adbc72931b4429275b160044c3e1bcbc8fbb5ea6b8f318a357834842fb/jupyter_builder-1.1.0-py3-none-any.whl", hash = "sha256:d9d5280e8845f726663545c3a6db55bd205127616eeb8958481091d6cba71b6a", size = 912964, upload-time = "2026-07-11T07:24:00.279Z" },
+    { url = "https://files.pythonhosted.org/packages/83/cc/f6a12de1c890ea5dd2816c5c76d5ac6d3ed52db3c37f78691328207d13b9/jupyter_builder-1.1.1-py3-none-any.whl", hash = "sha256:f9c14bc55c0488a073f62af12d468936fcf9ecb7e9dd802f6f9c33de46ad70db", size = 913264, upload-time = "2026-07-17T13:14:45.857Z" },
 ]
 
 [[package]]
