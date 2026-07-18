@@ -191,25 +191,33 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
 
     explicit_parent_doi = kwargs.get("parent_doi", None)
     nested_parent_doi = dig(meta, "parent.pids.doi.identifier")
+    own_doi = doi_as_url(meta.get("doi", None)) or doi_as_url(
+        dig(meta, "pids.doi.identifier")
+    )
 
-    # if data is for a parent record
+    # Version relationships. The parent/concept DOI deposit (``parent_doi``
+    # kwarg, ``_id`` == concept DOI) links to its version via ``HasVersion``; a
+    # version record links to its concept DOI via ``IsVersionOf``. Crossref
+    # accepts both as ``rel:intra_work_relation``. Both are guarded against
+    # self-referential links (relation id == the record's own DOI).
     if explicit_parent_doi:
-        related_id = doi_as_url(meta.get("doi", None)) or doi_as_url(
-            dig(meta, "pids.doi.identifier")
-        )
-        relations.append(
-            {
-                "id": related_id,
-                "type": "HasVersion",
-            }
-        )
+        parent_url = doi_as_url(explicit_parent_doi)
+        if own_doi and own_doi != parent_url:
+            relations.append(
+                {
+                    "id": own_doi,
+                    "type": "HasVersion",
+                }
+            )
     elif nested_parent_doi:
-        relations.append(
-            {
-                "id": doi_as_url(nested_parent_doi),
-                "type": "IsVersionOf",
-            }
-        )
+        parent_url = doi_as_url(nested_parent_doi)
+        if parent_url and parent_url != own_doi:
+            relations.append(
+                {
+                    "id": parent_url,
+                    "type": "IsVersionOf",
+                }
+            )
     elif meta.get("conceptdoi", None):
         relations.append(
             {

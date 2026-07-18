@@ -1564,7 +1564,17 @@ def test_rogue_scholar_as_parent_doi():
             "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
         },
     ]
-    assert dig(crossref_xml, "program.1") is None
+    # The parent/concept deposit now emits an explicit HasVersion relation to
+    # its version (previously dropped, leaving the concept DOI unlinked).
+    assert dig(crossref_xml, "program.1.name") == "relations"
+    assert dig(
+        crossref_xml,
+        "program.1.related_item.0.intra_work_relation",
+    ) == {
+        "#text": "10.53731/m7gng-jmm19",
+        "identifier-type": "doi",
+        "relationship-type": "hasVersion",
+    }
     assert dig(crossref_xml, "doi_data.doi") == "10.53731/dj4cp-2b786"
     assert (
         dig(crossref_xml, "doi_data.resource")
@@ -1779,3 +1789,27 @@ def test_write_blog():
     assert dig(crossref_xml, "issn") == "2749-9952"
     assert dig(crossref_xml, "doi_data.doi") == "10.53731/front_matter"
     assert dig(crossref_xml, "doi_data.resource") == "https://blog.front-matter.de/"
+
+
+def test_get_relations_emits_version_relations():
+    """Both IsVersionOf and HasVersion serialize as intra_work_relation.
+
+    HasVersion was previously dropped (relying on Crossref inferring it from a
+    version's IsVersionOf), which left the concept DOI with no version links.
+    """
+    from commonmeta.writers.crossref_xml_writer import get_relations
+
+    result = get_relations(
+        {
+            "relations": [
+                {"id": "https://doi.org/10.53731/3jbwv-w1332", "type": "IsVersionOf"},
+                {"id": "https://doi.org/10.53731/kdqkf-nf052", "type": "HasVersion"},
+            ]
+        }
+    )
+    types = [
+        dig(item, "rel:intra_work_relation.@relationship-type")
+        for item in dig(result, "rel:related_item")
+    ]
+    assert "isVersionOf" in types
+    assert "hasVersion" in types

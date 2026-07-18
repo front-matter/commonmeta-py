@@ -675,3 +675,46 @@ def test_search_by_doi_returns_none_when_not_found():
         result = search_by_doi("10.59350/nonexistent", "rogue-scholar.org", "token")
 
     assert result is None
+
+
+def _version_record(own_doi, parent_doi):
+    """Minimal InvenioRDM version record dict for relation tests."""
+    return {
+        "id": "fktsh-g4g95",
+        "pids": {"doi": {"identifier": own_doi, "provider": "crossref"}},
+        "parent": {"id": "3jbwv-w1332", "pids": {"doi": {"identifier": parent_doi}}},
+        "metadata": {
+            "title": "Test",
+            "publication_date": "2024-01-01",
+            "resource_type": {"id": "blogpost"},
+            "creators": [],
+        },
+    }
+
+
+def test_version_relation_isversionof():
+    """A version record links to its concept DOI via IsVersionOf."""
+    record = _version_record("10.53731/kdqkf-nf052", "10.53731/3jbwv-w1332")
+    subject = Metadata(record, via="inveniordm")
+    assert {
+        "id": "https://doi.org/10.53731/3jbwv-w1332",
+        "type": "IsVersionOf",
+    } in subject.relations
+
+
+def test_parent_relation_hasversion():
+    """The parent/concept deposit links to its version via HasVersion."""
+    record = _version_record("10.53731/kdqkf-nf052", "10.53731/3jbwv-w1332")
+    # The concept deposit passes the parent DOI as a kwarg (ChainObject path).
+    subject = Metadata(record, via="inveniordm", parent_doi="10.53731/3jbwv-w1332")
+    assert {
+        "id": "https://doi.org/10.53731/kdqkf-nf052",
+        "type": "HasVersion",
+    } in subject.relations
+
+
+def test_version_relation_no_self_reference():
+    """No IsVersionOf when the parent DOI equals the record's own DOI."""
+    record = _version_record("10.53731/kdqkf-nf052", "10.53731/kdqkf-nf052")
+    subject = Metadata(record, via="inveniordm")
+    assert all(r["type"] != "IsVersionOf" for r in (subject.relations or []))

@@ -1258,7 +1258,7 @@ def get_relations(obj) -> Dict | None:
             "IsTranslationOf",
             "HasTranslation",
             "IsVersionOf",
-            # "HasVersion", # HasVersion is added implicity by Crossref when there is a IsVersionOf relation
+            "HasVersion",
         ]:
             group = "rel:intra_work_relation"
         else:
