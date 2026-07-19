@@ -16,7 +16,7 @@ interactions:
     body:
       string: '{"authors":[{"contributor_roles":[],"family":"Azam","given":"James"},{"contributor_roles":[],"family":"Gruson","given":"Hugo"},{"contributor_roles":[],"family":"Kucharski","given":"Adam"}],"blog":{"authors":null,"community_id":"d52c2a61-9adc-4b9a-88ef-8c5f5092ad96","created":1718755200,"current_feed_url":null,"description":"A
         place for Epiverse-TRACE to share their reflections, learnings, and showcase
-        available tools.","favicon":"https://rogue-scholar.org/api/communities/d52c2a61-9adc-4b9a-88ef-8c5f5092ad96/logo","feed_format":"application/rss+xml","feed_url":"https://epiverse-trace.github.io/blog-doi.xml","filter":null,"generator":"Quarto","home_page_url":"https://epiverse-trace.github.io/blog.html#category=DOI","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"epiverse_trace","status":"active","subfield":"2611","title":"Epiverse-TRACE:
+        available tools.","doi":"https://doi.org/10.59350/epiverse_trace","favicon":"https://rogue-scholar.org/api/communities/d52c2a61-9adc-4b9a-88ef-8c5f5092ad96/logo","feed_format":"application/rss+xml","feed_url":"https://epiverse-trace.github.io/blog-doi.xml","filter":null,"generator":"Quarto","home_page_url":"https://epiverse-trace.github.io/blog.html#category=DOI","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"epiverse_trace","status":"active","subfield":"2611","title":"Epiverse-TRACE:
         tools for outbreak analytics","updated":1783171941,"use_api":null},"blog_name":"Epiverse-TRACE:
         tools for outbreak analytics","blog_slug":"epiverse_trace","content_html":"<p>There
         are ongoing outbreaks of mpox globally. The Democratic Republic of Congo (DRC)
@@ -318,13 +318,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:19 GMT
+      - Sun, 19 Jul 2026 06:48:34 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
+      content-length:
+      - '27333'
     status:
       code: 200
       message: OK

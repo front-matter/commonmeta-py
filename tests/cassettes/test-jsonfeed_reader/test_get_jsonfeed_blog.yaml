@@ -16,7 +16,19 @@ interactions:
     body:
       string: '{"authors":[{"name":"Martin Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"community_id":"15a362ea-8138-42b8-917f-1840a92addf8","created_at":1672531200,"current_feed_url":null,"description":"The
         Front Matter Blog covers the intersection of science and technology since
-        2007.","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","posts":[{"doi":"https://doi.org/10.53731/204cn-q6m42","guid":"https://doi.org/10.53731/204cn-q6m42","published_at":1781481600,"summary":"The
+        2007.","doi":"https://doi.org/10.53731/front_matter","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","posts":[{"doi":"https://doi.org/10.53731/kdqkf-nf052","guid":"https://doi.org/10.53731/kdqkf-nf052","published_at":1784073600,"summary":"Commonmeta
+        is a set of libraries to convert scholarly metadata into different formats
+        via an intermediary format defined by JSON Schema. The schema is now available
+        as a v1.0 version release candidate, with v1.0 planned to be released in September.
+        The feature image of this post is from a presentation by Geoffrey Bilder from
+        the early work on the Research Organization Registry (ROR) where we were both
+        involved.","title":"Announcing the commonmeta schema 1.0 release candidate","updated_at":1784443517,"url":"https://blog.front-matter.de/posts/announcing-commonmeta-schema-1-0rc/"},{"doi":"https://doi.org/10.53731/kct5e-8fn82","guid":"https://doi.org/10.53731/kct5e-8fn82","published_at":1783987200,"summary":"Yesterday
+        the Rogue Scholar science blog archive started using Crossref schema 5.5 that
+        was released last Friday. The most relevant change in the new schema for Rogue
+        Scholar is the introduction of a dedicated content type blog post (as type
+        posted_content, subtype blog). This makes it easier to cite blog posts with
+        Crossref DOIs as many citation styles (e.g. APA) format blog posts differently
+        than preprints.","title":"Rogue Scholar supports Crossref schema 5.5","updated_at":1784443554,"url":"https://blog.front-matter.de/posts/rogue-scholar-supports-crossref-schema-5-5/"},{"doi":"https://doi.org/10.53731/204cn-q6m42","guid":"https://doi.org/10.53731/204cn-q6m42","published_at":1781481600,"summary":"The
         science blogging archive Rogue Scholar launched a new feature this week: author
         profile pages. This feature is similar to functionality common to blogging
         platforms, but integrates all blog posts by a given author that were archived
@@ -257,19 +269,8 @@ interactions:
         blog archive. The newsletter reports on new blogs that have joined the platform,
         important technical updates in Rogue Scholar infrastructure, community updates,
         and other news relevant to Rogue Scholar users.","title":"Rogue Scholar Newsletter
-        May 2025","updated_at":1780857142,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-may-2025/"},{"doi":"https://doi.org/10.53731/69k7z-w7030","guid":"https://doi.org/10.53731/69k7z-w7030","published_at":1748304000,"summary":"Today
-        I released a new version of the commonmeta-py Python library with major improvements
-        in Crossref DOI registration, including refactoring to use the Python marshmallow
-        library, XML schema validation, and API calls to Crossref and InvenioRDM instances
-        via the commonmeta-py command-line interface. Using the marshmallow library
-        Marshmallow is a popular Python library for converting complex objects to
-        and from simple Python datatypes.","title":"Major update on Commonmeta Crossref
-        DOI registration","updated_at":1780857144,"url":"https://blog.front-matter.de/posts/major-update-on-commonmeta-crossref-doi-registration/"},{"doi":"https://doi.org/10.53731/sq5vs-mvv29","guid":"https://doi.org/10.53731/sq5vs-mvv29","published_at":1747612800,"summary":"Last
-        week I released updated Python, and Go versions of the commonmeta library
-        that can now read metadata from OpenAlex. OpenAlex is an open index of over
-        250 million scholarly works from 250k sources.","title":"Commonmeta understands
-        OpenAlex","updated_at":1780857145,"url":"https://blog.front-matter.de/posts/commonmeta-understands-openalex/"}],"prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
-        Matter","updated_at":1783171960,"use_api":true}
+        May 2025","updated_at":1780857142,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-may-2025/"}],"prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
+        Matter","updated_at":1784105018,"use_api":true}
 
         '
     headers:
@@ -280,13 +281,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:21 GMT
+      - Sun, 19 Jul 2026 06:48:37 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
+      content-length:
+      - '31338'
     status:
       code: 200
       message: OK

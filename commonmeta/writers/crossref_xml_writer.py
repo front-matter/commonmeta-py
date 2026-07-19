@@ -369,13 +369,14 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
     license = get_license(metadata)
     kwargs = {}
 
-    if metadata.type in ("Preprint", "BlogPost", "Poster", "Presentation"):
+    if metadata.type in ("Preprint", "BlogPost", "Poster", "Presentation", "Review"):
         # Crossref 5.5.0 posted_content subtypes: BlogPost → blog, Poster →
-        # poster, Presentation → other. A Preprint uses its additional_type
+        # poster, Review → review, Presentation → other. A Preprint uses its additional_type
         # when it names a valid subtype, else defaults to preprint.
         _posted_type = {
             "BlogPost": "blog",
             "Poster": "poster",
+            "Review": "review",
             "Presentation": "other",
         }.get(metadata.type)
         if _posted_type is not None:

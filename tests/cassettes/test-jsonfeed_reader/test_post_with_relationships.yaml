@@ -17,8 +17,8 @@ interactions:
       string: '{"authors":[{"affiliation":[{"id":"https://ror.org/04wxnsj81","name":"DataCite"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"authors":[{"name":"Martin
         Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"community_id":"15a362ea-8138-42b8-917f-1840a92addf8","created":1672531200,"current_feed_url":null,"description":"The
         Front Matter Blog covers the intersection of science and technology since
-        2007.","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
-        Matter","updated":1783171960,"use_api":true},"blog_name":"Front Matter","blog_slug":"front_matter","content_html":"<p>Persistent
+        2007.","doi":"https://doi.org/10.53731/front_matter","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
+        Matter","updated":1784105018,"use_api":true},"blog_name":"Front Matter","blog_slug":"front_matter","content_html":"<p>Persistent
         identifiers (PIDs) are not only important to uniquely identify a publication,
         dataset, or person, but the metadata for these persistent identifiers can
         provide unambiguous linking between persistent identifiers of the same type,
@@ -197,13 +197,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:15 GMT
+      - Sun, 19 Jul 2026 06:48:30 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
+      content-length:
+      - '17140'
     status:
       code: 200
       message: OK

@@ -79,12 +79,10 @@ interactions:
     headers:
       Connection:
       - keep-alive
-      Content-Length:
-      - '2754'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:51:37 GMT
+      - Sun, 19 Jul 2026 07:12:53 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -92,6 +90,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
+      content-length:
+      - '8692'
       permissions-policy:
       - interest-cohort=()
       server:

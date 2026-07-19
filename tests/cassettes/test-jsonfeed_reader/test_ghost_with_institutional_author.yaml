@@ -15,7 +15,7 @@ interactions:
   response:
     body:
       string: '{"authors":[{"contributor_roles":[],"name":"OA.Works"}],"blog":{"authors":null,"community_id":"c7a225a8-6466-473e-9cfd-b1fb38593045","created":1672790400,"current_feed_url":null,"description":"OA.Works
-        Blog","favicon":"https://rogue-scholar.org/api/communities/c7a225a8-6466-473e-9cfd-b1fb38593045/logo","feed_format":"application/rss+xml","feed_url":"https://blog.oa.works/rss/","filter":null,"generator":"Ghost","home_page_url":"https://blog.oa.works/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"oa_works","status":"active","subfield":"1802","title":"OA.Works
+        Blog","doi":"https://doi.org/10.59350/oa_works","favicon":"https://rogue-scholar.org/api/communities/c7a225a8-6466-473e-9cfd-b1fb38593045/logo","feed_format":"application/rss+xml","feed_url":"https://blog.oa.works/rss/","filter":null,"generator":"Ghost","home_page_url":"https://blog.oa.works/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"oa_works","status":"active","subfield":"1802","title":"OA.Works
         Blog","updated":1783172060,"use_api":false},"blog_name":"OA.Works Blog","blog_slug":"oa_works","content_html":"<p><img\nsrc=\"https://blog.oa.works/content/images/2023/01/nature-website-v2.png\"\nalt=\"Nature
         features OA.Report&#39;s work putting OA policy into practice!\" /></p>\n<p>After
         a couple of years of working to support institutions\nimplementing their OA
@@ -58,16 +58,16 @@ interactions:
       - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
-      Content-Length:
-      - '1605'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:17 GMT
+      - Sun, 19 Jul 2026 06:48:32 GMT
       Server:
       - gunicorn
       Vary:
       - Accept-Encoding
+      content-length:
+      - '4647'
     status:
       code: 200
       message: OK

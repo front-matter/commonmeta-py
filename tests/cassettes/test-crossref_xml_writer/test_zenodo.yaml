@@ -114,14 +114,16 @@ interactions:
         "size": 5335, "checksum": "md5:b1b5979db4d4755601b85f160ce664b9", "links":
         {"self": "https://zenodo.org/api/records/5244404/files/gisaid_acknowledgement_table.pdf/content"}}],
         "swh": {}, "owners": [{"id": "145956"}], "status": "published", "stats": {"downloads":
-        91396, "unique_downloads": 82073, "views": 152677, "unique_views": 134228,
-        "version_downloads": 2669, "version_unique_downloads": 2455, "version_unique_views":
-        4095, "version_views": 4416}, "state": "done", "submitted": true}'
+        91481, "unique_downloads": 82158, "views": 152832, "unique_views": 134380,
+        "version_downloads": 2694, "version_unique_downloads": 2480, "version_unique_views":
+        4116, "version_views": 4438}, "state": "done", "submitted": true}'
     headers:
       access-control-allow-origin:
       - '*'
       access-control-expose-headers:
       - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+      content-length:
+      - '9133'
       content-security-policy:
       - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
         ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
@@ -129,7 +131,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sun, 12 Jul 2026 08:51:37 GMT
+      - Sun, 19 Jul 2026 07:12:53 GMT
       etag:
       - W/"7"
       link:
@@ -139,7 +141,7 @@ interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '1'
+      - '60'
       server:
       - nginx
       strict-transport-security:
@@ -155,9 +157,9 @@ interactions:
       x-ratelimit-limit:
       - '133'
       x-ratelimit-remaining:
-      - '127'
+      - '132'
       x-ratelimit-reset:
-      - '1783846299'
+      - '1784445234'
       x-source:
       - api
       x-xss-protection:

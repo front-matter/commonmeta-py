@@ -963,7 +963,7 @@ requires-dist = [
     { name = "citeproc-py-styles", specifier = ">=0.1.2,<1" },
     { name = "click", specifier = ">=8.1.7,<9" },
     { name = "commonmeta-rs", marker = "python_full_version >= '3.14' and extra == 'backend'", specifier = ">=0.9.36" },
-    { name = "commonmeta-schema", specifier = "==1.0rc10" },
+    { name = "commonmeta-schema", specifier = "==1.0rc12" },
     { name = "datacite", specifier = ">=1.1.1,<2" },
     { name = "dateparser", specifier = ">=1.1.7,<2" },
     { name = "edtf", specifier = ">=5.0.0,<6" },
@@ -1025,11 +1025,11 @@ wheels = [
 
 [[package]]
 name = "commonmeta-schema"
-version = "1.0rc10"
+version = "1.0rc12"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/51/a0/f4a3b2b24c13e417561948711cb435f4f7b2b6e9a209e0218aca85182976/commonmeta_schema-1.0rc10.tar.gz", hash = "sha256:d90869277aa45dae3d4881ef9626fe933281432989c2cd4b5b8b65fc0004ee2f", size = 222055, upload-time = "2026-07-17T04:37:45.71Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d4/18/d7cd0f23535afdab6f074d3e5505af32a615c34b14a1ee363fd98844d9eb/commonmeta_schema-1.0rc12.tar.gz", hash = "sha256:3127ecaf198cac762429416d7ed18143a33c4c8b6ebb5253f7d96d528e58ac49", size = 246642, upload-time = "2026-07-19T09:15:33.708Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/39/86/3554b224c8bfe749967fa780dc357d6a5c39e5600df5469f162219b44e17/commonmeta_schema-1.0rc10-py3-none-any.whl", hash = "sha256:5de94fd7675a583f65ba7557d40caed41136e9fcf213368b43ea89dc182a7265", size = 334432, upload-time = "2026-07-17T04:37:44.51Z" },
+    { url = "https://files.pythonhosted.org/packages/cc/f7/5e479eef6ea15c56fa3e2eb58a012d948f85dc4abc449207b84e3afb2767/commonmeta_schema-1.0rc12-py3-none-any.whl", hash = "sha256:b83f80f0fbffe58ff68c4d4ed68db0273179335c633453737c194f95b9f9633e", size = 369437, upload-time = "2026-07-19T09:15:30.199Z" },
 ]
 
 [[package]]

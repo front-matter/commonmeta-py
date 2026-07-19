@@ -16,7 +16,7 @@ interactions:
     body:
       string: '{"authors":[{"affiliation":[{"id":"https://ror.org/03yty8687","name":"GigaScience
         Press"}],"contributor_roles":[],"family":"Edmunds","given":"Scott","url":"https://orcid.org/0000-0001-6444-1436"}],"blog":{"authors":null,"community_id":"52db0518-e228-4260-8c54-c4e323b2569d","created":1675555200,"current_feed_url":null,"description":"Data
-        driven blogging from the GigaScience editors","favicon":"https://rogue-scholar.org/api/communities/52db0518-e228-4260-8c54-c4e323b2569d/logo","feed_format":"application/atom+xml","feed_url":"http://gigasciencejournal.com/blog/feed/atom/","filter":null,"generator":"Other","home_page_url":"https://gigasciencejournal.com/blog","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":false,"slug":"gigablog","status":"archived","subfield":"1311","title":"GigaBlog","updated":null,"use_api":null},"blog_name":"GigaBlog","blog_slug":"gigablog","content_html":"<p><em>A
+        driven blogging from the GigaScience editors","doi":"https://doi.org/10.59350/gigablog","favicon":"https://rogue-scholar.org/api/communities/52db0518-e228-4260-8c54-c4e323b2569d/logo","feed_format":"application/atom+xml","feed_url":"http://gigasciencejournal.com/blog/feed/atom/","filter":null,"generator":"Other","home_page_url":"https://gigasciencejournal.com/blog","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":false,"slug":"gigablog","status":"archived","subfield":"1311","title":"GigaBlog","updated":null,"use_api":null},"blog_name":"GigaBlog","blog_slug":"gigablog","content_html":"<p><em>A
         new era is starting at GigaScience, today being the last day for the Hong
         Kong team including Nicole Nogoy, Chris Hunter, Peter Li, Mary Ann Tuli, Bastien
         Molcrette and Ken Cho. Joining them, and as outgoing Editor in Chief, I thought
@@ -422,13 +422,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:19 GMT
+      - Sun, 19 Jul 2026 06:48:35 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
+      content-length:
+      - '37898'
     status:
       code: 200
       message: OK

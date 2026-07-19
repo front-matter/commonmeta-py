@@ -15,7 +15,7 @@ interactions:
   response:
     body:
       string: '{"authors":[{"contributor_roles":[],"name":"Liberate Science"}],"blog":{"authors":null,"community_id":"8655fbee-45c9-4cd4-9500-f55f85811cee","created":1672790400,"current_feed_url":null,"description":"Supporting
-        research as a common good.","favicon":"https://rogue-scholar.org/api/communities/8655fbee-45c9-4cd4-9500-f55f85811cee/logo","feed_format":"application/rss+xml","feed_url":"https://libscie.org/rss/","filter":"visibility:public","generator":"Ghost","home_page_url":"https://www.libscie.org/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"libscie","status":"archived","subfield":"1802","title":"Liberate
+        research as a common good.","doi":"https://doi.org/10.59350/libscie","favicon":"https://rogue-scholar.org/api/communities/8655fbee-45c9-4cd4-9500-f55f85811cee/logo","feed_format":"application/rss+xml","feed_url":"https://libscie.org/rss/","filter":"visibility:public","generator":"Ghost","home_page_url":"https://www.libscie.org/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"libscie","status":"archived","subfield":"1802","title":"Liberate
         Science","updated":null,"use_api":false},"blog_name":"Liberate Science","blog_slug":"libscie","content_html":"<p>KU
         Leuven is now an inaugural supporting member of ResearchEquals,\nsustaining
         and governing the development of modular publishing.</p>\n<p>As part of their
@@ -62,16 +62,16 @@ interactions:
       - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
-      Content-Length:
-      - '1895'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:51:28 GMT
+      - Sun, 19 Jul 2026 07:12:48 GMT
       Server:
       - gunicorn
       Vary:
       - Accept-Encoding
+      content-length:
+      - '4476'
     status:
       code: 200
       message: OK

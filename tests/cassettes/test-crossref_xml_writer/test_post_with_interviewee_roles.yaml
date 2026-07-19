@@ -17,8 +17,8 @@ interactions:
       string: '{"authors":[{"contributor_roles":[],"family":"Bellini","given":"Alejandra"},{"contributor_roles":[],"family":"Black","given":"Chris"},{"contributor_roles":[],"family":"LeBauer","given":"David"},{"contributor_roles":[],"family":"Scott","given":"Eric","url":"https://orcid.org/0000-0002-7430-7879"},{"contributor_roles":[],"family":"Casalla","given":"Lucio"},{"contributor_roles":[],"family":"Dietze","given":"Michael"},{"contributor_roles":[],"family":"Kooper","given":"Rob"},{"contributor_roles":[],"family":"LaZerte","given":"Steffi","url":"https://orcid.org/0000-0002-7690-8360"},{"contributor_roles":[],"family":"Bellini
         Saibene","given":"Yanina","url":"https://orcid.org/0000-0002-4522-7466"}],"blog":{"authors":[{"name":"The
         rOpenSci Team"}],"community_id":"19c501a7-647b-4a11-9f5e-cf400817cce3","created":1780876800,"current_feed_url":null,"description":"Open
-        Tools and R Packages for Open Science","favicon":"https://rogue-scholar.org/api/communities/19c501a7-647b-4a11-9f5e-cf400817cce3/logo","feed_format":"application/feed+json","feed_url":"https://ropensci.org/blog/index.json","filter":null,"generator":"Other","home_page_url":"https://ropensci.org/blog","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"ropensci","status":"active","subfield":"1710","title":"rOpenSci
-        - open tools for open science","updated":1783514872,"use_api":null},"blog_name":"rOpenSci
+        Tools and R Packages for Open Science","doi":"https://doi.org/10.59350/ropensci","favicon":"https://rogue-scholar.org/api/communities/19c501a7-647b-4a11-9f5e-cf400817cce3/logo","feed_format":"application/feed+json","feed_url":"https://ropensci.org/blog/index.json","filter":null,"generator":"Other","home_page_url":"https://ropensci.org/blog","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"ropensci","status":"active","subfield":"1710","title":"rOpenSci
+        - open tools for open science","updated":1783993035,"use_api":null},"blog_name":"rOpenSci
         - open tools for open science","blog_slug":"ropensci","content_html":"<p>A
         new post of our interview series <a href=\"https://ropensci.org/tags/r-universe-stars/\">\"Meeting
         the stars of the R-universe\"</a>. We aim to introduce the teams and people
@@ -142,13 +142,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:51:41 GMT
+      - Sun, 19 Jul 2026 07:12:55 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
+      content-length:
+      - '11469'
     status:
       code: 200
       message: OK

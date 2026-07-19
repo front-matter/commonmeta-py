@@ -18,8 +18,8 @@ interactions:
         University"}],"contributor_roles":[],"family":"van Eck","given":"Nees Jan","url":"https://orcid.org/0000-0001-8448-4521"},{"affiliation":[{"id":"https://ror.org/027bh9e22","name":"Leiden
         University"}],"contributor_roles":[],"family":"Waltman","given":"Ludo","url":"https://orcid.org/0000-0001-8249-1752"}],"blog":{"authors":[{"name":"Leiden
         Madtrics"}],"community_id":"d8304840-75c2-4164-bc37-ec879c4f065b","created":1780876800,"current_feed_url":null,"description":"Leiden
-        Madtrics","favicon":"https://rogue-scholar.org/api/communities/d8304840-75c2-4164-bc37-ec879c4f065b/logo","feed_format":"application/atom+xml","feed_url":"https://www.leidenmadtrics.nl/atom/","filter":null,"generator":"Other","home_page_url":"https://www.leidenmadtrics.nl/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":null,"slug":"leidenmadtrics","status":"active","subfield":"1804","title":"Leiden
-        Madtrics","updated":1783597632,"use_api":null},"blog_name":"Leiden Madtrics","blog_slug":"leidenmadtrics","content_html":"<p
+        Madtrics","doi":"https://doi.org/10.59350/leidenmadtrics","favicon":"https://rogue-scholar.org/api/communities/d8304840-75c2-4164-bc37-ec879c4f065b/logo","feed_format":"application/atom+xml","feed_url":"https://www.leidenmadtrics.nl/atom/","filter":null,"generator":"Other","home_page_url":"https://www.leidenmadtrics.nl/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":null,"slug":"leidenmadtrics","status":"active","subfield":"1804","title":"Leiden
+        Madtrics","updated":1784193807,"use_api":null},"blog_name":"Leiden Madtrics","blog_slug":"leidenmadtrics","content_html":"<p
         dir=\"ltr\">Classifying research publications into research topics or research
         areas is crucial for many bibliometric analyses. While there are lots of approaches
         for classifying publications, most of these approaches lack transparency.
@@ -209,13 +209,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:51:26 GMT
+      - Sun, 19 Jul 2026 07:12:47 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
+      content-length:
+      - '17094'
     status:
       code: 200
       message: OK

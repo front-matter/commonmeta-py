@@ -15,7 +15,7 @@ interactions:
   response:
     body:
       string: '{"authors":[{"affiliation":[{"id":"https://ror.org/04fa4r544","name":"ORCID"}],"contributor_roles":[],"family":"Deane-Pratt","given":"Ad\u00e8nik\u00e9","url":"https://orcid.org/0000-0001-9940-9233"}],"blog":{"authors":null,"community_id":"9e52146d-52b4-4733-9b05-1b23091c3835","created":1695254400,"current_feed_url":null,"description":"Technical
-        and Human infrastructure for Open Research.","favicon":"https://rogue-scholar.org/api/communities/9e52146d-52b4-4733-9b05-1b23091c3835/logo","feed_format":"application/feed+json","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"generator":"Other","home_page_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"thor","status":"archived","subfield":"1802","title":"Project
+        and Human infrastructure for Open Research.","doi":"https://doi.org/10.59350/thor","favicon":"https://rogue-scholar.org/api/communities/9e52146d-52b4-4733-9b05-1b23091c3835/logo","feed_format":"application/feed+json","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"generator":"Other","home_page_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"thor","status":"archived","subfield":"1802","title":"Project
         THOR","updated":null,"use_api":true},"blog_name":"Project THOR","blog_slug":"thor","doi":"https://doi.org/10.59350/p000s-pth40","guid":"http://project-thor.eu/?p=1759","image":"https://thorproject2014.files.wordpress.com/2017/11/photo-1.png?w=756&h=426","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1511481600,"rid":"2y05e-e5z63","summary":"Project
         THOR is coming to a close. Our final event was held in Italy on 15 November
         at ''La Sapienza'' \u2013 the University of Rome \u2013 just a stone''s throw
@@ -30,16 +30,16 @@ interactions:
       - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
-      Content-Length:
-      - '1019'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:19 GMT
+      - Sun, 19 Jul 2026 06:48:34 GMT
       Server:
       - gunicorn
       Vary:
       - Accept-Encoding
+      content-length:
+      - '1931'
     status:
       code: 200
       message: OK

@@ -19,7 +19,7 @@ interactions:
       Accept-Ranges:
       - bytes
       Age:
-      - '0'
+      - '246210'
       Alt-Svc:
       - clear
       Connection:
@@ -27,20 +27,20 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Sun, 12 Jul 2026 08:51:19 GMT
+      - Sun, 19 Jul 2026 07:12:42 GMT
       Ghost-Fastly:
       - true;production
       Vary:
       - Cookie
       X-Cache:
-      - MISS, MISS, MISS
+      - MISS, HIT, MISS
       X-Cache-Hits:
-      - 0, 0, 0
+      - 0, 8, 0
       X-Served-By:
-      - cache-ams-eham8680044-AMS, cache-ams-eham8680044-AMS, cache-ams-eham8680044-AMS,
-        cache-dus1260037-DUS
+      - cache-ams-eham8680059-AMS, cache-ams-eham8680059-AMS, cache-ams-eham8680044-AMS,
+        cache-dus1260039-DUS
       X-Timer:
-      - S1783846279.024430,VS0,VE47
+      - S1784445163.911675,VS0,VE5
       cache-control:
       - public, max-age=31536000
       location:
@@ -52,7 +52,7 @@ interactions:
       via:
       - 1.1 varnish, 1.1 varnish, 1.1 varnish
       x-request-id:
-      - 7f8e529b-d3a0-4082-aad5-711dd1bc41a2
+      - de681560-a33a-4571-8ea1-e21f6ebe2a3f
     status:
       code: 301
       message: Moved Permanently
@@ -1031,52 +1031,52 @@ interactions:
         figure,div.text iframe,div.text p{margin-bottom:12.8px}div.text .kg-bookmark-thumbnail{display:none}div.text
         .kg-callout-card{padding:1em}div.text .kg-callout-card div.kg-callout-text{font-size:13px}div.text
         .kg-embed-card iframe{height:250px}div.text .kg-signup-card-text{padding:20px
-        0 0}}</style>\r\n<link href=\"https://blog.front-matter.de/assets/dist/plugins.min.css?v=b16ca36ff7\"
+        0 0}}</style>\r\n<link href=\"https://blog.front-matter.de/assets/dist/plugins.min.css?v=49014c2e87\"
         type=\"text/css\" rel=\"preload\" as=\"style\" onload=\"this.rel='stylesheet'\">\r\n\r\n\r\n\r\n\r\n<style>\r\n/*
         dm-sans-regular - latin */\r\n@font-face {\r\n    font-display: swap; /* Check
         https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for
         other options. */\r\n    font-family: 'DM Sans';\r\n    font-style: normal;\r\n
-        \   font-weight: 400;\r\n    src: url(https://blog.front-matter.de/assets/fonts/dm-sans-v14-latin-regular.woff2?v=b16ca36ff7)
+        \   font-weight: 400;\r\n    src: url(https://blog.front-matter.de/assets/fonts/dm-sans-v14-latin-regular.woff2?v=49014c2e87)
         format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+
         */\r\n}\r\n/* dm-sans-italic - latin */\r\n@font-face {\r\n    font-display:
         swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
         for other options. */\r\n    font-family: 'DM Sans';\r\n    font-style: italic;\r\n
-        \   font-weight: 400;\r\n    src: url(https://blog.front-matter.de/assets/fonts/dm-sans-v14-latin-italic.woff2?v=b16ca36ff7)
+        \   font-weight: 400;\r\n    src: url(https://blog.front-matter.de/assets/fonts/dm-sans-v14-latin-italic.woff2?v=49014c2e87)
         format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+
         */\r\n}\r\n/* dm-sans-700 - latin */\r\n@font-face {\r\n    font-display:
         swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
         for other options. */\r\n    font-family: 'DM Sans';\r\n    font-style: normal;\r\n
-        \   font-weight: 700;\r\n    src: url(https://blog.front-matter.de/assets/fonts/dm-sans-v14-latin-700.woff2?v=b16ca36ff7)
+        \   font-weight: 700;\r\n    src: url(https://blog.front-matter.de/assets/fonts/dm-sans-v14-latin-700.woff2?v=49014c2e87)
         format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+
         */\r\n}\r\n/* dm-sans-700italic - latin */\r\n@font-face {\r\n    font-display:
         swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
         for other options. */\r\n    font-family: 'DM Sans';\r\n    font-style: italic;\r\n
-        \   font-weight: 700;\r\n    src: url(https://blog.front-matter.de/assets/fonts/dm-sans-v14-latin-700italic.woff2?v=b16ca36ff7)
+        \   font-weight: 700;\r\n    src: url(https://blog.front-matter.de/assets/fonts/dm-sans-v14-latin-700italic.woff2?v=49014c2e87)
         format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+
         */\r\n}\r\n\r\n/* urbanist-500 - latin */\r\n@font-face {\r\n    font-display:
         swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
         for other options. */\r\n    font-family: 'Urbanist';\r\n    font-style: normal;\r\n
-        \   font-weight: 500;\r\n    src: url(https://blog.front-matter.de/assets/fonts/urbanist-v15-latin-500.woff2?v=b16ca36ff7)
+        \   font-weight: 500;\r\n    src: url(https://blog.front-matter.de/assets/fonts/urbanist-v15-latin-500.woff2?v=49014c2e87)
         format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+
         */\r\n}\r\n/* urbanist-600 - latin */\r\n@font-face {\r\n    font-display:
         swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
         for other options. */\r\n    font-family: 'Urbanist';\r\n    font-style: normal;\r\n
-        \   font-weight: 600;\r\n    src: url(https://blog.front-matter.de/assets/fonts/urbanist-v15-latin-600.woff2?v=b16ca36ff7)
+        \   font-weight: 600;\r\n    src: url(https://blog.front-matter.de/assets/fonts/urbanist-v15-latin-600.woff2?v=49014c2e87)
         format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+
         */\r\n}\r\n/* urbanist-700 - latin */\r\n@font-face {\r\n    font-display:
         swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
         for other options. */\r\n    font-family: 'Urbanist';\r\n    font-style: normal;\r\n
-        \   font-weight: 700;\r\n    src: url(https://blog.front-matter.de/assets/fonts/urbanist-v15-latin-700.woff2?v=b16ca36ff7)
+        \   font-weight: 700;\r\n    src: url(https://blog.front-matter.de/assets/fonts/urbanist-v15-latin-700.woff2?v=49014c2e87)
         format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+
         */\r\n}\r\n/* urbanist-700italic - latin */\r\n@font-face {\r\n    font-display:
         swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
         for other options. */\r\n    font-family: 'Urbanist';\r\n    font-style: italic;\r\n
-        \   font-weight: 700;\r\n    src: url(https://blog.front-matter.de/assets/fonts/urbanist-v15-latin-700italic.woff2?v=b16ca36ff7)
+        \   font-weight: 700;\r\n    src: url(https://blog.front-matter.de/assets/fonts/urbanist-v15-latin-700italic.woff2?v=49014c2e87)
         format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+
         */\r\n}\r\n/* urbanist-800 - latin */\r\n@font-face {\r\n    font-display:
         swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
         for other options. */\r\n    font-family: 'Urbanist';\r\n    font-style: normal;\r\n
-        \   font-weight: 800;\r\n    src: url(https://blog.front-matter.de/assets/fonts/urbanist-v15-latin-800.woff2?v=b16ca36ff7)
+        \   font-weight: 800;\r\n    src: url(https://blog.front-matter.de/assets/fonts/urbanist-v15-latin-800.woff2?v=49014c2e87)
         format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+
         */\r\n}\r\n</style>\r\n<style>\r\n    :root{\r\n            --epcl-background-color:
         #FAF8FF;\r\n            --epcl-boxes-background-color: #ffffff;\r\n            --epcl-border-color:
@@ -1212,7 +1212,7 @@ interactions:
         can be found here.\\n\\nThe greatest threat to global public health is the
         continued failure of world leaders to keep the global temperature rise below
         1.5\xB0C and to restore na\",\n    \"mainEntityOfPage\": \"https://blog.front-matter.de/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/\"\n}\n
-        \   </script>\n\n    <meta name=\"generator\" content=\"Ghost 6.51\">\n    <link
+        \   </script>\n\n    <meta name=\"generator\" content=\"Ghost 6.52\">\n    <link
         rel=\"alternate\" type=\"application/rss+xml\" title=\"Front Matter\" href=\"https://blog.front-matter.de/rss/\">\n
         \   <script defer src=\"https://cdn.jsdelivr.net/ghost/portal@~2.69/umd/portal.min.js\"
         data-i18n=\"true\" data-ghost=\"https://blog.front-matter.de/\" data-key=\"d0d5aabcc0f96718307d5944b6\"
@@ -1238,10 +1238,10 @@ interactions:
         data-key=\"d0d5aabcc0f96718307d5944b6\" data-styles=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css\"
         data-sodo-search=\"https://front-matter.ghost.io/\" data-locale=\"en\" crossorigin=\"anonymous\"></script>\n
         \   \n    <link href=\"https://blog.front-matter.de/webmentions/receive/\"
-        rel=\"webmention\">\n    <script defer src=\"/public/cards.min.js?v=b16ca36ff7\"></script>\n
-        \   <link rel=\"stylesheet\" type=\"text/css\" href=\"/public/cards.min.css?v=b16ca36ff7\">\n
-        \   <script defer src=\"/public/comment-counts.min.js?v=b16ca36ff7\" data-ghost-comments-counts-api=\"https://blog.front-matter.de/members/api/comments/counts/\"></script>\n
-        \   <script defer src=\"/public/ghost-stats.min.js?v=b16ca36ff7\" data-stringify-payload=\"false\"
+        rel=\"webmention\">\n    <script defer src=\"/public/cards.min.js?v=49014c2e87\"></script>\n
+        \   <link rel=\"stylesheet\" type=\"text/css\" href=\"/public/cards.min.css?v=49014c2e87\">\n
+        \   <script defer src=\"/public/comment-counts.min.js?v=49014c2e87\" data-ghost-comments-counts-api=\"https://blog.front-matter.de/members/api/comments/counts/\"></script>\n
+        \   <script defer src=\"/public/ghost-stats.min.js?v=49014c2e87\" data-stringify-payload=\"false\"
         data-datasource=\"analytics_events\" data-storage=\"localStorage\" data-host=\"https://blog.front-matter.de/.ghost/analytics/api/v1/page_hit\"
         \ tb_site_uuid=\"c533c955-b5f3-4ff1-ae2d-6b52a212e602\" tb_post_uuid=\"61f8a4f7-3fa1-4eb0-9d21-8bb12cf5f4e0\"
         tb_post_type=\"post\" tb_member_uuid=\"undefined\" tb_member_status=\"undefined\"
@@ -1251,10 +1251,10 @@ interactions:
         \ plausible.init()\n</script>\n<link href=\"/atom/\" type=\"application/atom+xml\"
         rel=\"alternate\" title=\"Atom feed\" />\n<link rel=\"me\" href=\"https://hachyderm.io/@mfenner\"
         />\r\n\r\n</head>\r\n<body class=\" post-template tag-research-blogging\"
-        >\r\n    \r\n    <img loading=\"eager\" fetchpriority=\"high\" src=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7\"
+        >\r\n    \r\n    <img loading=\"eager\" fetchpriority=\"high\" src=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87\"
         alt=\"Social Icons\" style=\"display:none;\">\r\n\r\n    <!-- start: .mobile.main-nav
         -->\r\n    <nav class=\"mobile main-nav\">\r\n        <div class=\"close\"><svg
-        class=\"icon\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#close-icon\"></use></svg></div>\r\n
+        class=\"icon\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#close-icon\"></use></svg></div>\r\n
         \           <div class=\"logo\" ><a href=\"https://blog.front-matter.de\"><img
         src=\"https://storage.ghost.io/c/c5/33/c533c955-b5f3-4ff1-ae2d-6b52a212e602/content/images/2022/12/logo.png\"
         alt=\"Front Matter\" width=\"170\" height=\"60\" decoding=\"async\"></a></div>\r\n
@@ -1271,7 +1271,7 @@ interactions:
         \               \r\n                <!-- start: .main-nav -->\r\n                <nav
         class=\"main-nav\">      \r\n                    <ul class=\"menu\">\r\n                        <li
         class=\"search-menu-item\"><span class=\"link\" data-ghost-search><svg class=\"icon
-        main-color large\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#search-icon\"></use></svg>
+        main-color large\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#search-icon\"></use></svg>
         <span class=\"hide-on-mobile\">Quick Search...</span></span></li> \r\n                    </ul>
         \                 \r\n                </nav>\r\n                <!-- end:
         .main-nav -->\r\n\r\n                    <div class=\"logo\" ><a href=\"https://blog.front-matter.de\"><img
@@ -1282,7 +1282,7 @@ interactions:
         class=\"link-button epcl-login\">Login</a>\r\n                        <a href=\"https://blog.front-matter.de/subscribe\"
         class=\"epcl-button\">Subscribe</a>                                                           \r\n
         \               </div>\r\n\r\n                <div class=\"open-menu\">\r\n
-        \                   <svg class=\"open icon ularge\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#menu-icon\"></use></svg>\r\n
+        \                   <svg class=\"open icon ularge\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#menu-icon\"></use></svg>\r\n
         \               </div>\r\n\r\n                <div class=\"clear\"></div>\r\n
         \           \r\n            </div>\t\t\r\n            \r\n            <div
         class=\"clear\"></div>\r\n        </div>\r\n\t\t\r\n\t</div>\r\n\t<!-- end:
@@ -1294,37 +1294,63 @@ interactions:
         tablet-grid-30 hide-on-tablet hide-on-mobile\">\r\n\r\n\r\n\r\n\r\n\r\n        <!--
         start: .widget-tag-cloud -->\r\n<div class=\"widget widget_epcl_article_info
         grid-25 tablet-grid-50 mobile-grid-100\">\r\n    <h3 class=\"widget-title
-        title medium bordered\"><svg class=\"decoration\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#title-decoration\"></use></svg><span>Article
+        title medium bordered\"><svg class=\"decoration\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#title-decoration\"></use></svg><span>Article
         Information</span></h3>\r\n    <div class=\"info meta bg-box\">\r\n            <div
         class=\"item meta-info\">\r\n                <svg class=\"icon main-color\"><use
-        xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#website-icon\"></use></svg>\r\n
+        xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#website-icon\"></use></svg>\r\n
         \               <a href=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\"
         class=\"author-name\">https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw</a>\r\n
         \           </div>\r\n            <div class=\"item meta-info\">\r\n                <svg
-        class=\"icon main-color\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#tag-icon\"></use></svg>\r\n
+        class=\"icon main-color\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#tag-icon\"></use></svg>\r\n
         \               <span class=\"fw-semibold\">Category:</span>\r\n                <a
         href=\"/tag/research-blogging/\" class=\"tag-name\">Research Blogging</a>\r\n
         \           </div>\r\n\r\n        <time class=\"meta-info\" datetime=\"2021-09-06\">\r\n
-        \   <svg class=\"icon main-color\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#clock-icon\"></use></svg>
+        \   <svg class=\"icon main-color\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#clock-icon\"></use></svg>
         <span class=\"name\">Updated:</span>\r\n    Jan 23, 2025\r\n</time>\r\n            <div
         class=\"item meta-info\">\r\n                <svg class=\"icon main-color\"><use
-        xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#author-icon\"></use></svg>\r\n
+        xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#author-icon\"></use></svg>\r\n
         \               <span class=\"fw-semibold\">Author:</span>\r\n                <a
         href=\"/author/martin/\" class=\"author-name\">Martin Fenner</a>\r\n            </div>\r\n
         \           <div class=\"min-read meta-info\">\r\n                <svg class=\"icon
-        main-color\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#reading-icon\"></use></svg>\r\n
+        main-color\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#reading-icon\"></use></svg>\r\n
         \               <span class=\"fw-semibold\">Reading time:</span>\r\n                2
         min\r\n            </div>\r\n        \r\n    </div>\r\n</div>\r\n<!-- end:
         .widget-tag-cloud -->            <div class=\"widget widget_epcl_toc\">\r\n
         \   <h3 class=\"widget-title title medium bordered\"><svg class=\"decoration\"><use
-        xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#title-decoration\"></use></svg><span>Table
+        xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#title-decoration\"></use></svg><span>Table
         of Contents</span></h3>\r\n    <div class=\"toc\"></div>\r\n</div>\r\n                    <!--
         start: .recent-articles -->\r\n        <div class=\"widget widget_epcl_posts_thumbs
         grid-33 tablet-grid-50 mobile-grid-100\">\r\n            <h3 class=\"widget-title
-        title medium bordered\"><svg class=\"decoration\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#title-decoration\"></use></svg><span>Latest
-        Articles</span></h3>\r\n                <article class=\"post tag-rogue-scholar
-        item ctag-rogue-scholar \">\r\n    <div class=\"info epcl-flex\">                    \r\n
-        \           <a href=\"/posts/rogue-scholar-launched-author-profiles-this-week/\"
+        title medium bordered\"><svg class=\"decoration\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#title-decoration\"></use></svg><span>Latest
+        Articles</span></h3>\r\n                <article class=\"post tag-metadata
+        item ctag-metadata \">\r\n    <div class=\"info epcl-flex\">                    \r\n
+        \           <a href=\"/posts/announcing-commonmeta-schema-1-0rc/\" class=\"thumb
+        translate-effect epcl-loader\">\r\n                <img class=\"fullimage
+        cover lazy\" data-src=\"https://storage.ghost.io/c/c5/33/c533c955-b5f3-4ff1-ae2d-6b52a212e602/content/images/size/w300h300/2026/07/three-legs.png\"
+        alt=\"Image of: Announcing the commonmeta schema 1.0 release candidate\">\r\n
+        \               <span class=\"screen-reader-text\">Announcing the commonmeta
+        schema 1.0 release candidate</span>\r\n            </a>\r\n        <div class=\"right\">\r\n
+        \           <h4 class=\"title usmall underline-effect\"><a href=\"/posts/announcing-commonmeta-schema-1-0rc/\">Announcing
+        the commonmeta schema 1.0 release candidate</a></h4>\t\r\n            <div
+        class=\"meta small\">\r\n                <time class=\"meta-info\" datetime=\"2026-07-15\">\r\n
+        \   <svg class=\"icon main-color small\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#calendar-icon\"></use></svg>\r\n
+        \   Jul 15, 2026\r\n</time>            </div>\t\t\r\n        </div>\t\t\t\t\r\n
+        \   </div>\r\n    <div class=\"clear\"></div>\r\n</article>                <article
+        class=\"post tag-rogue-scholar tag-metadata item ctag-rogue-scholar \">\r\n
+        \   <div class=\"info epcl-flex\">                    \r\n            <a href=\"/posts/rogue-scholar-supports-crossref-schema-5-5/\"
+        class=\"thumb translate-effect epcl-loader\">\r\n                <img class=\"fullimage
+        cover lazy\" data-src=\"https://images.unsplash.com/photo-1471965187167-4a4c69ae4707?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDF8fHJvbGVzfGVufDB8fHx8MTc4NDAyMDQyOXww&amp;ixlib&#x3D;rb-4.1.0&amp;q&#x3D;80&amp;w&#x3D;300&amp;h&#x3D;300\"
+        alt=\"Image of: Rogue Scholar supports Crossref schema 5.5\">\r\n                <span
+        class=\"screen-reader-text\">Rogue Scholar supports Crossref schema 5.5</span>\r\n
+        \           </a>\r\n        <div class=\"right\">\r\n            <h4 class=\"title
+        usmall underline-effect\"><a href=\"/posts/rogue-scholar-supports-crossref-schema-5-5/\">Rogue
+        Scholar supports Crossref schema 5.5</a></h4>\t\r\n            <div class=\"meta
+        small\">\r\n                <time class=\"meta-info\" datetime=\"2026-07-14\">\r\n
+        \   <svg class=\"icon main-color small\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#calendar-icon\"></use></svg>\r\n
+        \   Jul 14, 2026\r\n</time>            </div>\t\t\r\n        </div>\t\t\t\t\r\n
+        \   </div>\r\n    <div class=\"clear\"></div>\r\n</article>                <article
+        class=\"post tag-rogue-scholar item ctag-rogue-scholar \">\r\n    <div class=\"info
+        epcl-flex\">                    \r\n            <a href=\"/posts/rogue-scholar-launched-author-profiles-this-week/\"
         class=\"thumb translate-effect epcl-loader\">\r\n                <img class=\"fullimage
         cover lazy\" data-src=\"https://storage.ghost.io/c/c5/33/c533c955-b5f3-4ff1-ae2d-6b52a212e602/content/images/size/w300h300/2026/06/Bildschirmfoto-2026-06-15-um-12.14.56.png\"
         alt=\"Image of: Rogue Scholar launched author profiles this week\">\r\n                <span
@@ -1333,34 +1359,8 @@ interactions:
         usmall underline-effect\"><a href=\"/posts/rogue-scholar-launched-author-profiles-this-week/\">Rogue
         Scholar launched author profiles this week</a></h4>\t\r\n            <div
         class=\"meta small\">\r\n                <time class=\"meta-info\" datetime=\"2026-06-15\">\r\n
-        \   <svg class=\"icon main-color small\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#calendar-icon\"></use></svg>\r\n
+        \   <svg class=\"icon main-color small\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#calendar-icon\"></use></svg>\r\n
         \   Jun 15, 2026\r\n</time>            </div>\t\t\r\n        </div>\t\t\t\t\r\n
-        \   </div>\r\n    <div class=\"clear\"></div>\r\n</article>                <article
-        class=\"post tag-rogue-scholar tag-newsletter item ctag-rogue-scholar \">\r\n
-        \   <div class=\"info epcl-flex\">                    \r\n            <a href=\"/posts/rogue-scholar-newsletter-may-2026/\"
-        class=\"thumb translate-effect epcl-loader\">\r\n                <img class=\"fullimage
-        cover lazy\" data-src=\"https://images.unsplash.com/photo-1591685173129-b725b2f52070?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDF8fHJob2RlZGVuZHJvbnxlbnwwfHx8fDE3ODA1OTk3NjZ8MA&amp;ixlib&#x3D;rb-4.1.0&amp;q&#x3D;80&amp;w&#x3D;300&amp;h&#x3D;300\"
-        alt=\"Image of: Rogue Scholar Newsletter May 2026\">\r\n                <span
-        class=\"screen-reader-text\">Rogue Scholar Newsletter May 2026</span>\r\n
-        \           </a>\r\n        <div class=\"right\">\r\n            <h4 class=\"title
-        usmall underline-effect\"><a href=\"/posts/rogue-scholar-newsletter-may-2026/\">Rogue
-        Scholar Newsletter May 2026</a></h4>\t\r\n            <div class=\"meta small\">\r\n
-        \               <time class=\"meta-info\" datetime=\"2026-06-04\">\r\n    <svg
-        class=\"icon main-color small\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#calendar-icon\"></use></svg>\r\n
-        \   Jun 04, 2026\r\n</time>            </div>\t\t\r\n        </div>\t\t\t\t\r\n
-        \   </div>\r\n    <div class=\"clear\"></div>\r\n</article>                <article
-        class=\"post tag-rogue-scholar item ctag-rogue-scholar \">\r\n    <div class=\"info
-        epcl-flex\">                    \r\n            <a href=\"/posts/rogue-scholar-50-000/\"
-        class=\"thumb translate-effect epcl-loader\">\r\n                <img class=\"fullimage
-        cover lazy\" data-src=\"https://images.unsplash.com/photo-1688049852292-4d1bff897476?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDEyfHw1MHxlbnwwfHx8fDE3ODAzODE0ODN8MA&amp;ixlib&#x3D;rb-4.1.0&amp;q&#x3D;80&amp;w&#x3D;300&amp;h&#x3D;300\"
-        alt=\"Image of: Rogue Scholar has now archived 50,000 science blog posts\">\r\n
-        \               <span class=\"screen-reader-text\">Rogue Scholar has now archived
-        50,000 science blog posts</span>\r\n            </a>\r\n        <div class=\"right\">\r\n
-        \           <h4 class=\"title usmall underline-effect\"><a href=\"/posts/rogue-scholar-50-000/\">Rogue
-        Scholar has now archived 50,000 science blog posts</a></h4>\t\r\n            <div
-        class=\"meta small\">\r\n                <time class=\"meta-info\" datetime=\"2026-06-02\">\r\n
-        \   <svg class=\"icon main-color small\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#calendar-icon\"></use></svg>\r\n
-        \   Jun 02, 2026\r\n</time>            </div>\t\t\r\n        </div>\t\t\t\t\r\n
         \   </div>\r\n    <div class=\"clear\"></div>\r\n</article>        </div>\r\n
         \       <!-- end: .recent-articles -->\r\n\r\n\r\n    \r\n\t\r\n</aside>\r\n<!--
         end: #sidebar -->     \r\n\r\n        <!-- start: .content -->\r\n        <div
@@ -1372,7 +1372,7 @@ interactions:
         temperature increases, restore biodiversity, and protect health</h1>  \r\n
         \           <!-- start: .meta -->\r\n            <div class=\"meta small\">\r\n
         \               <time class=\"fw-semibold\" datetime=\"2021-09-06\">\r\n                    <svg
-        class=\"icon main-color\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#calendar-icon\"></use></svg>\r\n
+        class=\"icon main-color\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#calendar-icon\"></use></svg>\r\n
         \                   Published: September 06, 2021\r\n                </time>\r\n
         \           </div>\r\n            <!-- end: .meta -->   \r\n            <div
         class=\"clear\"></div>     \r\n        </div>\r\n            <div class=\"featured-image\">\r\n
@@ -1419,11 +1419,11 @@ interactions:
         fill-color\">\r\n                        <h5 class=\"title usmall fw-semibold\">Share
         Article:</h5>\r\n                        <a class=\"bluesky\" href=\"https://bsky.app/intent/compose?text=Editorial%20by%20more%20than%20200%20health%20journals%3A%20Call%20for%20emergency%20action%20to%20limit%20global%20temperature%20increases%2C%20restore%20biodiversity%2C%20and%20protect%20health%20https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\"
         target=\"_blank\">\r\n                            <svg class=\"icon\"><use
-        xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#bluesky-icon\"></use></svg>\r\n
+        xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#bluesky-icon\"></use></svg>\r\n
         \                       </a>\r\n                        <a class=\"email\"
         href=\"mailto:?subject=Editorial%20by%20more%20than%20200%20health%20journals%3A%20Call%20for%20emergency%20action%20to%20limit%20global%20temperature%20increases%2C%20restore%20biodiversity%2C%20and%20protect%20health&body=https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\"
         target=\"_blank\">\r\n                           <svg class=\"icon\"><use
-        xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#email-icon\"></use></svg>\r\n
+        xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#email-icon\"></use></svg>\r\n
         \                       </a>\r\n                        <div class=\"clear\"></div>\r\n
         \                       <div class=\"permalink\">\r\n                            <div
         class=\"form-group\">\r\n                                <input type=\"text\"
@@ -1440,7 +1440,7 @@ interactions:
         \                           <h4 class=\"title usmall white fw-semibold\">A
         step forward for software citation: GitHub&#x27;s enhanced software citation
         support</h4>\r\n                        </div>\r\n                        <span
-        class=\"arrow\"><svg class=\"icon large\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#left-arrow\"></use></svg></span>\r\n
+        class=\"arrow\"><svg class=\"icon large\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#left-arrow\"></use></svg></span>\r\n
         \                       <a href=\"/posts/step-forward-for-software-citation/\"
         class=\"full-link\"></a>\r\n                    </article>\r\n                \r\n
         \               <div class=\"separator hide-on-mobile\"></div>\r\n                    <article
@@ -1448,7 +1448,7 @@ interactions:
         class=\"info\">\r\n                            <p>Next Article</p>\r\n                            <h4
         class=\"title usmall white fw-semibold\">The Front Matter blog now uses DOIs</h4>\r\n
         \                       </div>\r\n                        <span class=\"arrow\"><svg
-        class=\"icon large\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#right-arrow\"></use></svg></span>\r\n
+        class=\"icon large\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#right-arrow\"></use></svg></span>\r\n
         \                       <a href=\"/posts/the-front-matter-blog-now-uses-dois/\"
         class=\"full-link\"></a>\r\n                    </article>\r\n                <div
         class=\"clear\"></div>                              \r\n            </section>\r\n
@@ -1563,16 +1563,16 @@ interactions:
         hide-on-tablet\">\r\n\r\n            <!-- start: .widget-social -->\r\n<div
         class=\"widget widget_epcl_social widget_menu grid-33 tablet-grid-50 mobile-grid-100\">\r\n
         \   <h3 class=\"widget-title title medium bordered\"><svg class=\"decoration\"><use
-        xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#title-decoration\"></use></svg><span>Follow
+        xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#title-decoration\"></use></svg><span>Follow
         Us</span></h3>\r\n    <ul class=\"icons\">\r\n            <li>\r\n                <a
         href=\"https://github.com/front-matter\" class=\"github\" target=\"_blank\">\r\n
         \                   <span class=\"name\">Contribute on <b>Github</b></span>\r\n
-        \                   <span class=\"icon\"><svg class=\"icon\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#github-icon\"></use></svg></span>
+        \                   <span class=\"icon\"><svg class=\"icon\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#github-icon\"></use></svg></span>
         \                   \r\n                </a>\r\n            </li>\r\n\r\n
         \   </ul>\t\t\t\r\n</div>\r\n<!-- end: .widget-social-->\r\n            <!--
         start: .widget -->\r\n<section class=\"widget widget_menu grid-33 tablet-grid-50
         mobile-grid-100\">\r\n    <h2 class=\"widget-title title medium bordered\"><svg
-        class=\"decoration\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#title-decoration\"></use></svg><span>Quick
+        class=\"decoration\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#title-decoration\"></use></svg><span>Quick
         Links</span></h2>\r\n        <nav class=\"secondary-nav grid-container grid-small
         textcenter\">\r\n        <ul class=\"menu\">\r\n                <li class=\"nav-front-matter\"><span
         class=\"sep\"></span><a href=\"https://front-matter.io/\">Front Matter</a></li>\r\n
@@ -1601,7 +1601,7 @@ interactions:
         \       \r\n        <div class=\"mobile-footer hide-on-desktop\">\r\n            <!--
         start: .widget -->\r\n<section class=\"widget widget_menu grid-33 tablet-grid-50
         mobile-grid-100\">\r\n    <h2 class=\"widget-title title medium bordered\"><svg
-        class=\"decoration\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=b16ca36ff7#title-decoration\"></use></svg><span>Quick
+        class=\"decoration\"><use xlink:href=\"https://blog.front-matter.de/assets/images/svg-icons.svg?v=49014c2e87#title-decoration\"></use></svg><span>Quick
         Links</span></h2>\r\n        <nav class=\"secondary-nav grid-container grid-small
         textcenter\">\r\n        <ul class=\"menu\">\r\n                <li class=\"nav-front-matter\"><span
         class=\"sep\"></span><a href=\"https://front-matter.io/\">Front Matter</a></li>\r\n
@@ -1637,23 +1637,21 @@ interactions:
         stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m12 5l6 6m-6-6l-6 6m6-6v14\"/>\r\n
         \       </svg>\r\n    </span>\r\n\r\n</footer>\r\n<!-- end: #footer -->\r\n
         \   </div>\r\n    <!-- end: #wrapper -->\r\n\r\n    \r\n\r\n    <script defer
-        src=\"https://blog.front-matter.de/assets/dist/scripts.min.js?v=b16ca36ff7\"></script>\r\n\r\n
+        src=\"https://blog.front-matter.de/assets/dist/scripts.min.js?v=49014c2e87\"></script>\r\n\r\n
         \   <script defer src=\"https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js\"></script>\r\n
         \   <script defer src=\"https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js\"></script>\r\n
-        \   <script defer src=\"https://blog.front-matter.de/assets/dist/prism-plugins.min.js?v=b16ca36ff7\"></script>\r\n\r\n\r\n</body>\r\n</html>\r\n"
+        \   <script defer src=\"https://blog.front-matter.de/assets/dist/prism-plugins.min.js?v=49014c2e87\"></script>\r\n\r\n\r\n</body>\r\n</html>\r\n"
     headers:
       Accept-Ranges:
       - bytes
       Age:
-      - '283325'
+      - '246210'
       Alt-Svc:
       - clear
       Connection:
       - keep-alive
-      Content-Length:
-      - '33321'
       Date:
-      - Sun, 12 Jul 2026 08:51:19 GMT
+      - Sun, 19 Jul 2026 07:12:42 GMT
       Ghost-Fastly:
       - true;production
       Vary:
@@ -1661,18 +1659,20 @@ interactions:
       X-Cache:
       - MISS, HIT, MISS
       X-Cache-Hits:
-      - 0, 8, 0
+      - 0, 9, 0
       X-Served-By:
       - cache-ams-eham8680058-AMS, cache-ams-eham8680058-AMS, cache-ams-eham8680058-AMS,
-        cache-dus1260030-DUS
+        cache-dus1260023-DUS
       X-Timer:
-      - S1783846279.116116,VS0,VE5
+      - S1784445163.975980,VS0,VE5
       cache-control:
       - public, max-age=0
+      content-length:
+      - '183384'
       content-type:
       - text/html; charset=utf-8
       etag:
-      - W/"2ccc7-wd0j1zD7JtsGkARUV7kpoiOs6QM"
+      - W/"2cc58-B347bygo53CuHHHAewl2Q9GAf7c"
       server:
       - openresty
       status:
@@ -1680,7 +1680,7 @@ interactions:
       via:
       - 1.1 varnish, 1.1 varnish, 1.1 varnish
       x-request-id:
-      - 3503cda1-03cf-44d7-9551-7a071c38016e
+      - aac69d3d-b067-4c13-818b-a93510fa98ee
     status:
       code: 200
       message: OK
@@ -1702,32 +1702,34 @@ interactions:
       string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a19ece2d3f8b8c76-CDG
-      Cf-Cache-Status:
-      - DYNAMIC
+      - a1d7eb5d99363857-AMS
       Connection:
       - keep-alive
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sun, 12 Jul 2026 08:51:19 GMT
+      - Sun, 19 Jul 2026 07:12:43 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
-      Permissions-Policy:
-      - interest-cohort=(),browsing-topics=()
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=S9cgSHGMqMbRoxGb%2F4jNUALCAwXITMyC7vi3B0keKI%2FzHWAQU59k8qoaHwcIYsG21IbOvZy8WeNsq88CYA0%2FGnNNJzGlZ0PjF8vlVHj6WJeSFhf9p4p84gfZ1gtTuj48cU1%2FVJ0%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=mYoQiZy9uKtkGwPWHWd%2FTAzAM96kbfAldkKpxIeEIraD46zSysk4CGfD2VC4WeNSG%2BivFKL7TauPWjG%2FWSQ5PAYw2djIryT7GP2Oc3KdKOx1hZNtHtWLmoVlTUDJ7C6L0RwA0LE%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Origin
-      - accept-encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '55'
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
+      - accept-encoding
     status:
       code: 200
       message: OK
@@ -1765,12 +1767,10 @@ interactions:
     headers:
       Connection:
       - keep-alive
-      Content-Length:
-      - '1518'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:51:19 GMT
+      - Sun, 19 Jul 2026 07:12:43 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -1778,6 +1778,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
+      content-length:
+      - '4276'
       permissions-policy:
       - interest-cohort=()
       server:

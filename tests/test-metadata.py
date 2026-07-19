@@ -3,6 +3,7 @@
 import pytest
 
 from commonmeta import Metadata, MetadataList
+from commonmeta.backend import backend_available, require_backend
 
 
 @pytest.mark.vcr
@@ -60,13 +61,12 @@ def test_list_of_pids():
     assert subject.type == "JournalArticle"
 
 
-@pytest.mark.skip(
-    reason="commonmeta_rs integration disabled pending its v1.0 schema migration"
+@pytest.mark.skipif(
+    not backend_available(),
+    reason="requires the optional Rust backend (commonmeta-py[backend], Python 3.14+)",
 )
 def test_write_parquet_roundtrip():
-    """write list as parquet, then read it back via commonmeta_rs"""
-    import commonmeta_rs
-
+    """write list as parquet, then read it back via the Rust backend"""
     dct = {
         "items": [
             {
@@ -79,13 +79,15 @@ def test_write_parquet_roundtrip():
     subject_lst = MetadataList(dct, via="commonmeta")
     output = subject_lst.write(to="parquet")
     assert isinstance(output, bytes)
-    records = commonmeta_rs.read_parquet(output)
+    records = require_backend().read_parquet(output)
     assert len(records) == 1
     assert records[0]["id"] == "https://doi.org/10.5555/12345678"
 
 
 @pytest.mark.skip(
-    reason="commonmeta_rs integration disabled pending its v1.0 schema migration"
+    reason="write(to='zip') needs a backend binding that returns a compressed "
+    "archive as bytes; commonmeta-rs only writes zip/tgz to a file path so far "
+    "(Python-side compression is intentionally avoided)"
 )
 def test_write_zip_archive():
     """write list as a zip archive of commonmeta JSON batches"""

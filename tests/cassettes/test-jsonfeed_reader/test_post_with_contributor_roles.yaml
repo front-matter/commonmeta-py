@@ -17,8 +17,8 @@ interactions:
       string: '{"authors":[{"contributor_roles":[],"family":"Salmon","given":"Ma\u00eblle","url":"https://orcid.org/0000-0002-2815-0399"},{"contributor_roles":[],"family":"Bellini
         Saibene","given":"Yanina","url":"https://orcid.org/0000-0002-4522-7466"}],"blog":{"authors":[{"name":"The
         rOpenSci Team"}],"community_id":"19c501a7-647b-4a11-9f5e-cf400817cce3","created":1780876800,"current_feed_url":null,"description":"Open
-        Tools and R Packages for Open Science","favicon":"https://rogue-scholar.org/api/communities/19c501a7-647b-4a11-9f5e-cf400817cce3/logo","feed_format":"application/feed+json","feed_url":"https://ropensci.org/blog/index.json","filter":null,"generator":"Other","home_page_url":"https://ropensci.org/blog","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"ropensci","status":"active","subfield":"1710","title":"rOpenSci
-        - open tools for open science","updated":1783514872,"use_api":null},"blog_name":"rOpenSci
+        Tools and R Packages for Open Science","doi":"https://doi.org/10.59350/ropensci","favicon":"https://rogue-scholar.org/api/communities/19c501a7-647b-4a11-9f5e-cf400817cce3/logo","feed_format":"application/feed+json","feed_url":"https://ropensci.org/blog/index.json","filter":null,"generator":"Other","home_page_url":"https://ropensci.org/blog","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"ropensci","status":"active","subfield":"1710","title":"rOpenSci
+        - open tools for open science","updated":1783993035,"use_api":null},"blog_name":"rOpenSci
         - open tools for open science","blog_slug":"ropensci","content_html":"<p>Our
         own dev guide <a href=\"https://devguide.ropensci.org/maintenance_collaboration.html#attributions\">states</a></p><blockquote><p>Be
         generous with attributions</p></blockquote><p>Recognizing the diverse forms
@@ -77,13 +77,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:18 GMT
+      - Sun, 19 Jul 2026 06:48:34 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
+      content-length:
+      - '5799'
     status:
       code: 200
       message: OK

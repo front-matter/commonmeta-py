@@ -16,7 +16,7 @@ interactions:
     body:
       string: '{"authors":[{"affiliation":[{"id":"https://ror.org/04ers2y35","name":"University
         of Bremen"}],"contributor_roles":[],"family":"Stocker","given":"Markus","url":"https://orcid.org/0000-0001-5492-3212"}],"blog":{"authors":null,"community_id":"9e52146d-52b4-4733-9b05-1b23091c3835","created":1695254400,"current_feed_url":null,"description":"Technical
-        and Human infrastructure for Open Research.","favicon":"https://rogue-scholar.org/api/communities/9e52146d-52b4-4733-9b05-1b23091c3835/logo","feed_format":"application/feed+json","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"generator":"Other","home_page_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"thor","status":"archived","subfield":"1802","title":"Project
+        and Human infrastructure for Open Research.","doi":"https://doi.org/10.59350/thor","favicon":"https://rogue-scholar.org/api/communities/9e52146d-52b4-4733-9b05-1b23091c3835/logo","feed_format":"application/feed+json","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"generator":"Other","home_page_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"thor","status":"archived","subfield":"1802","title":"Project
         THOR","updated":null,"use_api":true},"blog_name":"Project THOR","blog_slug":"thor","doi":"https://doi.org/10.59350/faeph-x4x84","funding_references":[{"awardNumber":"654039","awardTitle":"Technical
         and Human Infrastructure for Open Research","funderIdentifier":"https://ror.org/00k4n6c32","funderIdentifierType":"ROR","funderName":"European
         Commission"}],"guid":"http://project-thor.eu/?p=664","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1470787200,"rid":"ewn0f-f5a52","summary":"This
@@ -33,16 +33,16 @@ interactions:
       - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
-      Content-Length:
-      - '1056'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:51:28 GMT
+      - Sun, 19 Jul 2026 07:12:48 GMT
       Server:
       - gunicorn
       Vary:
       - Accept-Encoding
+      content-length:
+      - '2114'
     status:
       code: 200
       message: OK

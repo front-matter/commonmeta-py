@@ -62,10 +62,6 @@ def test_wordpress_with_references():
         "unstructured": "Bilbey, S.A., Hall, J.E., and Hall, D.A. 2000. Preliminary results on a new haplocanthosaurid sauropod dinosaur from the lower Morrison Formation of northeastern Utah. Journal of Vertebrate Paleontology 20(supp. to no. 3): 30A.",
     }
     assert subject.relations == [
-        {
-            "id": "https://rogue-scholar.org/api/communities/svpow",
-            "type": "IsPartOf",
-        },
         {"id": "https://portal.issn.org/resource/ISSN/3033-3695", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
@@ -163,10 +159,6 @@ def test_post_with_relationships():
             "type": "IsIdenticalTo",
         },
         {"id": "https://doi.org/10.5438/jwvf-8a66", "type": "IsIdenticalTo"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/front_matter",
-            "type": "IsPartOf",
-        },
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
@@ -255,7 +247,7 @@ def test_post_with_citations():
     # ]
     assert subject.relations == [
         {
-            "id": "https://rogue-scholar.org/api/communities/opencitations",
+            "id": "https://doi.org/10.59350/opencitations",
             "type": "IsPartOf",
         },
     ]
@@ -268,8 +260,8 @@ def test_post_with_citations():
     assert subject.container == {
         "type": "Blog",
         "title": "OpenCitations blog",
-        "identifier": "https://rogue-scholar.org/blogs/opencitations",
-        "identifier_type": "URL",
+        "identifier": "https://doi.org/10.59350/opencitations",
+        "identifier_type": "DOI",
         "platform": "WordPress",
     }
     assert subject.content.startswith(
@@ -366,10 +358,6 @@ def test_post_with_relationships_as_doi():
             "type": "IsIdenticalTo",
         },
         {"id": "https://doi.org/10.5438/jwvf-8a66", "type": "IsIdenticalTo"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/front_matter",
-            "type": "IsPartOf",
-        },
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
@@ -439,7 +427,7 @@ def test_post_with_funding():
         }
     ]
     assert subject.relations == [
-        {"id": "https://rogue-scholar.org/api/communities/upstream", "type": "IsPartOf"}
+        {"id": "https://doi.org/10.54900/upstream", "type": "IsPartOf"}
     ]
     assert subject.identifiers == [
         {
@@ -459,8 +447,8 @@ def test_post_with_funding():
         "type": "Blog",
         "title": "Upstream",
         "platform": "Ghost",
-        "identifier": "https://rogue-scholar.org/blogs/upstream",
-        "identifier_type": "URL",
+        "identifier": "https://doi.org/10.54900/upstream",
+        "identifier_type": "DOI",
     }
     assert subject.content.startswith(
         '<h2 id="introduction">Introduction</h2><p>A recent'
@@ -486,10 +474,6 @@ def test_post_with_more_funding():
     )
     assert subject.references is None
     assert subject.relations == [
-        {
-            "id": "https://rogue-scholar.org/api/communities/front_matter",
-            "type": "IsPartOf",
-        },
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
@@ -607,7 +591,7 @@ def test_post_with_even_more_funding():
     assert subject.references is None
     assert subject.relations == [
         {
-            "id": "https://rogue-scholar.org/api/communities/chem_bla_ics",
+            "id": "https://doi.org/10.59350/chem_bla_ics",
             "type": "IsPartOf",
         }
     ]
@@ -629,8 +613,8 @@ def test_post_with_even_more_funding():
     assert subject.container == {
         "type": "Blog",
         "title": "chem-bla-ics",
-        "identifier": "https://rogue-scholar.org/blogs/chem_bla_ics",
-        "identifier_type": "URL",
+        "identifier": "https://doi.org/10.59350/chem_bla_ics",
+        "identifier_type": "DOI",
         "platform": "Jekyll",
     }
 
@@ -671,7 +655,7 @@ def test_ghost_with_institutional_author():
     }
     assert subject.references is None
     assert subject.relations == [
-        {"id": "https://rogue-scholar.org/api/communities/oa_works", "type": "IsPartOf"}
+        {"id": "https://doi.org/10.59350/oa_works", "type": "IsPartOf"}
     ]
     assert subject.identifiers == [
         {"identifier": "63cef642602205003d6f50fb", "identifier_type": "GUID"},
@@ -705,8 +689,8 @@ def test_ghost_with_institutional_author():
     assert subject.container == {
         "type": "Blog",
         "title": "OA.Works Blog",
-        "identifier": "https://rogue-scholar.org/blogs/oa_works",
-        "identifier_type": "URL",
+        "identifier": "https://doi.org/10.59350/oa_works",
+        "identifier_type": "DOI",
         "platform": "Ghost",
     }
     assert subject.description.startswith("After a couple of years")
@@ -781,10 +765,6 @@ def test_ghost_with_affiliations():
         "unstructured": "Kafkas, Ş., Kim, J.-H., McEntyre, J. R., &amp; Larivière, V. (2013). Database Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184.",
     }
     assert subject.relations == [
-        {
-            "id": "https://rogue-scholar.org/api/communities/front_matter",
-            "type": "IsPartOf",
-        },
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
@@ -857,10 +837,6 @@ def test_ghost_with_personal_name_parsing():
         "unstructured": "Ahmed, A., Chouairi, F., &amp; Li, X. (2022). Analysis of Reported Voting Behaviors of US Physicians, 2000-2020. <i>JAMA Network Open</i>, <i>5</i>(1), e2142527.",
     }
     assert subject.relations == [
-        {
-            "id": "https://rogue-scholar.org/api/communities/ideas",
-            "type": "IsPartOf",
-        },
         {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
@@ -930,7 +906,7 @@ def test_post_with_peer_reviewed_version():
             "type": "IsPreviousVersionOf",
         },
         {
-            "id": "https://rogue-scholar.org/api/communities/upstream",
+            "id": "https://doi.org/10.54900/upstream",
             "type": "IsPartOf",
         },
     ]
@@ -954,7 +930,7 @@ def test_post_with_peer_review():
     assert subject.title == "Drinking from the Firehose? Write More and Publish Less"
     assert subject.relations == [
         {
-            "id": "https://rogue-scholar.org/api/communities/upstream",
+            "id": "https://doi.org/10.54900/upstream",
             "type": "IsPartOf",
         },
     ]
@@ -1000,7 +976,7 @@ def test_post_with_contributor_roles():
     assert subject.references is None
     assert subject.relations == [
         {
-            "id": "https://rogue-scholar.org/api/communities/ropensci",
+            "id": "https://doi.org/10.59350/ropensci",
             "type": "IsPartOf",
         },
     ]
@@ -1013,8 +989,8 @@ def test_post_with_contributor_roles():
     assert subject.container == {
         "type": "Blog",
         "title": "rOpenSci - open tools for open science",
-        "identifier": "https://rogue-scholar.org/blogs/ropensci",
-        "identifier_type": "URL",
+        "identifier": "https://doi.org/10.59350/ropensci",
+        "identifier_type": "DOI",
         "platform": "Other",
     }
     assert subject.content.startswith("<p>Our own dev guide")
@@ -1160,7 +1136,7 @@ def test_get_jsonfeed_blog():
         "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date_updated == "2026-07-04T13:32:40Z" and subject.dates == {
+    assert subject.date_updated == "2026-07-15T08:43:38Z" and subject.dates == {
         "created": "2023-01-01T00:00:00Z"
     }
     assert subject.publisher == {

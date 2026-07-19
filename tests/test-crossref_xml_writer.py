@@ -360,7 +360,12 @@ def test_write_crossref_schema_org_upstream_blog():
     string = "https://upstream.force11.org/deep-dive-into-ethics-of-contributor-roles/"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.54900/rf84ag3-98f00rt-0phta"
-
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.54900/9vpfq-4j330",
+            "type": "IsVersionOf",
+        },
+    ]
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -373,6 +378,15 @@ def test_write_crossref_schema_org_upstream_blog():
         "surname": "Hosseini",
         "ORCID": "https://orcid.org/0000-0002-2385-985X",
     }
+    assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.54900/9vpfq-4j330",
+            }
+        },
+    ]
     assert (
         dig(crossref_xml, "titles.0.title")
         == "Deep dive into ethics of Contributor Roles: report of a FORCE11 workshop"
@@ -391,6 +405,12 @@ def test_jsonfeed_upstream_blog():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
     assert subject.type == "BlogPost"
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.54900/upstream",
+            "type": "IsPartOf",
+        },
+    ]
     assert subject.state == "stale"
     assert subject.version == "v1"
 
@@ -408,6 +428,15 @@ def test_jsonfeed_upstream_blog():
         "surname": "Datta",
         "ORCID": "https://orcid.org/0000-0001-9165-2757",
     }
+    assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "inter_work_relation": {
+                "relationship-type": "isPartOf",
+                "identifier-type": "doi",
+                "#text": "10.54900/upstream",
+            }
+        },
+    ]
     assert (
         dig(crossref_xml, "titles.0.title")
         == "Attempts at automating journal subject classification"
@@ -433,6 +462,12 @@ def test_jsonfeed_upstream_blog_archived():
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
     assert subject.type == "BlogPost"
     assert subject.url == "https://rogue-scholar.org/records/thmsh-a1z89"
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.54900/upstream",
+            "type": "IsPartOf",
+        },
+    ]
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -448,6 +483,15 @@ def test_jsonfeed_upstream_blog_archived():
         "surname": "Datta",
         "ORCID": "https://orcid.org/0000-0001-9165-2757",
     }
+    assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "inter_work_relation": {
+                "relationship-type": "isPartOf",
+                "identifier-type": "doi",
+                "#text": "10.54900/upstream",
+            }
+        },
+    ]
     assert (
         dig(crossref_xml, "titles.0.title")
         == "Attempts at automating journal subject classification"
@@ -487,6 +531,12 @@ def test_jsonfeed_with_references():
         "unstructured": "It's impossible to conduct research without software, say 7 out of 10 UK "
         "researchers. Accessed April 13, 2023.",
     }
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.54900/upstream",
+            "type": "IsPartOf",
+        },
+    ]
     assert subject.state == "stale"
     assert subject.version == "v1"
 
@@ -511,6 +561,15 @@ def test_jsonfeed_with_references():
         "given_name": "Daniel S.",
         "surname": "Katz",
     }
+    assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "inter_work_relation": {
+                "relationship-type": "isPartOf",
+                "identifier-type": "doi",
+                "#text": "10.54900/upstream",
+            }
+        },
+    ]
     assert (
         dig(crossref_xml, "titles.0.title") == "The Research Software Alliance (ReSA)"
     )
@@ -543,6 +602,12 @@ def test_jsonfeed_with_doi():
         {"subject": "Open Access Transformation"},
         {"subject": "Open Science"},
     ]
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.59350/wisspub",
+            "type": "IsPartOf",
+        },
+    ]
     assert subject.state == "stale"
     assert subject.version == "v1"
 
@@ -567,6 +632,15 @@ def test_jsonfeed_with_doi():
             },
         },
     }
+    assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "inter_work_relation": {
+                "relationship-type": "isPartOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/wisspub",
+            }
+        },
+    ]
     assert (
         dig(crossref_xml, "titles.0.title")
         == "EU-Mitgliedstaaten betonen die Rolle von wissenschaftsgeleiteten Open-Access-Modellen jenseits von APCs"
@@ -623,6 +697,12 @@ def test_jsonfeed_without_doi():
             "roles": ["Author"],
         },
     ]
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.59350/leidenmadtrics",
+            "type": "IsPartOf",
+        },
+    ]
     assert subject.state == "stale"
     assert subject.version == "v1"
 
@@ -652,6 +732,15 @@ def test_jsonfeed_without_doi():
         "given_name": "Nees Jan",
         "surname": "van Eck",
     }
+    assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "inter_work_relation": {
+                "relationship-type": "isPartOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/leidenmadtrics",
+            }
+        },
+    ]
     assert (
         dig(crossref_xml, "titles.0.title")
         == "An open approach for classifying research publications"
@@ -687,6 +776,20 @@ def test_ghost_with_affiliations():
         },
         "roles": ["Author"],
     }
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.5438/ferw-cwhq",
+            "type": "IsIdenticalTo",
+        },
+        {
+            "id": "https://info.orcid.org/auto-update-has-arrived-orcid-records-move-to-the-next-level/",
+            "type": "IsIdenticalTo",
+        },
+        {
+            "id": "https://portal.issn.org/resource/ISSN/2749-9952",
+            "type": "IsPartOf",
+        },
+    ]
     assert subject.state == "stale"
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -707,6 +810,29 @@ def test_ghost_with_affiliations():
         },
         "ORCID": "https://orcid.org/0000-0003-1419-2405",
     }
+    assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "intra_work_relation": {
+                "relationship-type": "isIdenticalTo",
+                "identifier-type": "doi",
+                "#text": "10.5438/ferw-cwhq",
+            }
+        },
+        {
+            "intra_work_relation": {
+                "relationship-type": "isIdenticalTo",
+                "identifier-type": "uri",
+                "#text": "https://info.orcid.org/auto-update-has-arrived-orcid-records-move-to-the-next-level/",
+            }
+        },
+        {
+            "inter_work_relation": {
+                "relationship-type": "isPartOf",
+                "identifier-type": "issn",
+                "#text": "2749-9952",
+            }
+        },
+    ]
     assert crossref_xml.get("group_title") == "Front Matter"
     assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
@@ -726,6 +852,12 @@ def test_jsonfeed_with_organizational_author():
             "roles": ["Author"],
         }
     ]
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.59350/libscie",
+            "type": "IsPartOf",
+        },
+    ]
     assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -736,6 +868,15 @@ def test_jsonfeed_with_organizational_author():
         "sequence": "first",
         "#text": "Liberate Science",
     }
+    assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "inter_work_relation": {
+                "relationship-type": "isPartOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/libscie",
+            }
+        },
+    ]
     assert dig(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
     assert dig(crossref_xml, "posted_date") == {
         "month": "5",
@@ -763,6 +904,12 @@ def test_jsonfeed_with_archived_content():
         subject.url
         == "https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
     )
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.59350/thor",
+            "type": "IsPartOf",
+        },
+    ]
     assert subject.version == "v1"
 
     # crossref_xml = subject.write(to="crossref_xml")
@@ -804,10 +951,6 @@ def test_jsonfeed_with_relations():
     assert subject.id == "https://doi.org/10.53731/r79v4e1-97aq74v-ag578"
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bc11-cqw1", "type": "IsIdenticalTo"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/front_matter",
-            "type": "IsPartOf",
-        },
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert len(subject.references) == 1
@@ -833,6 +976,22 @@ def test_jsonfeed_with_relations():
     #     "article_title": "D2.1: Artefact, Contributor, And Organisation Relationship Data Schema",
     #     "doi": "10.5281/zenodo.30799",
     # }
+    assert dig(crossref_xml, "program.2.related_item") == [
+        {
+            "intra_work_relation": {
+                "relationship-type": "isIdenticalTo",
+                "identifier-type": "doi",
+                "#text": "10.5438/bc11-cqw1",
+            }
+        },
+        {
+            "inter_work_relation": {
+                "#text": "2749-9952",
+                "identifier-type": "issn",
+                "relationship-type": "isPartOf",
+            },
+        },
+    ]
     assert crossref_xml.get("group_title") == "Front Matter"
     assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
@@ -852,10 +1011,6 @@ def test_jsonfeed_with_relations_and_funding():
     }
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bv9z-dc66", "type": "IsIdenticalTo"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/front_matter",
-            "type": "IsPartOf",
-        },
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.funding_references == [
@@ -886,14 +1041,22 @@ def test_jsonfeed_with_relations_and_funding():
         {"name": "ror", "#text": "https://ror.org/00k4n6c32"},
         {"name": "award_number", "#text": "777523"},
     ]
-    assert len(dig(crossref_xml, "program.2.related_item")) == 3
-    assert dig(crossref_xml, "program.2.related_item.0") == {
-        "intra_work_relation": {
-            "relationship-type": "isIdenticalTo",
-            "identifier-type": "doi",
-            "#text": "10.5438/bv9z-dc66",
-        }
-    }
+    assert dig(crossref_xml, "program.2.related_item") == [
+        {
+            "intra_work_relation": {
+                "relationship-type": "isIdenticalTo",
+                "identifier-type": "doi",
+                "#text": "10.5438/bv9z-dc66",
+            }
+        },
+        {
+            "inter_work_relation": {
+                "#text": "2749-9952",
+                "identifier-type": "issn",
+                "relationship-type": "isPartOf",
+            },
+        },
+    ]
     assert crossref_xml.get("group_title") == "Front Matter"
     assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
@@ -1592,6 +1755,12 @@ def test_post_with_contributor_roles():
     assert subject.id == "https://doi.org/10.59350/510pg-zzf58"
     assert subject.type == "BlogPost"
     assert len(subject.contributors) == 2
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.59350/ropensci",
+            "type": "IsPartOf",
+        },
+    ]
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -1605,6 +1774,15 @@ def test_post_with_contributor_roles():
         "given_name": "Yanina",
         "surname": "Bellini Saibene",
     }
+    assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "inter_work_relation": {
+                "relationship-type": "isPartOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/ropensci",
+            }
+        },
+    ]
 
 
 @pytest.mark.vcr
@@ -1624,6 +1802,12 @@ def test_post_with_translator_role():
         },
         "roles": ["Author"],
     }
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.59350/ropensci",
+            "type": "IsPartOf",
+        },
+    ]
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -1637,6 +1821,15 @@ def test_post_with_translator_role():
         "given_name": "Yanina",
         "surname": "Bellini Saibene",
     }
+    assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "inter_work_relation": {
+                "relationship-type": "isPartOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/ropensci",
+            }
+        },
+    ]
 
 
 @pytest.mark.vcr
@@ -1647,6 +1840,12 @@ def test_post_with_interviewee_roles():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/s8m95-ap410"
     assert subject.type == "BlogPost"
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.59350/ropensci",
+            "type": "IsPartOf",
+        },
+    ]
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -1659,6 +1858,15 @@ def test_post_with_interviewee_roles():
         "given_name": "David",
         "surname": "LeBauer",
     }
+    assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "inter_work_relation": {
+                "relationship-type": "isPartOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/ropensci",
+            }
+        },
+    ]
 
 
 @pytest.mark.vcr
@@ -1669,6 +1877,12 @@ def test_wrong_doi_reference():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/sjrdz-3cm71"
     assert subject.type == "BlogPost"
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.59350/rzepa",
+            "type": "IsPartOf",
+        },
+    ]
     assert subject.references == [
         {
             "unstructured": 'H. Rzepa, "A one-electron bond in methyl-λ1-borane.", 2024.',
@@ -1685,6 +1899,15 @@ def test_wrong_doi_reference():
         "key": "ref1",
         "unstructured_citation": 'H. Rzepa, "A one-electron bond in methyl-λ1-borane.", 2024.',
     }
+    assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "inter_work_relation": {
+                "relationship-type": "isPartOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/rzepa",
+            }
+        },
+    ]
 
 
 @pytest.mark.vcr
@@ -1779,6 +2002,7 @@ def test_write_blog():
     assert subject.id == "https://doi.org/10.53731/front_matter"
     assert subject.type == "Blog"
     assert subject.url == "https://blog.front-matter.de/"
+    assert subject.relations is None
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid

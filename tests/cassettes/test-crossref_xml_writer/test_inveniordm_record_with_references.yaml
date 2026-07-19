@@ -49,8 +49,8 @@ interactions:
         false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
         {"ids": ["093ada45-3a02-4007-b8b6-be28f221e01d", "d79fe364-6d96-40b6-b437-b93ca3493106"],
         "default": "093ada45-3a02-4007-b8b6-be28f221e01d", "entries": [{"id": "093ada45-3a02-4007-b8b6-be28f221e01d",
-        "created": "2025-03-19T18:43:14.713108+00:00", "updated": "2026-07-12T08:14:31.434342+00:00",
-        "links": {}, "revision_id": 1483, "slug": "crossref", "metadata": {"title":
+        "created": "2025-03-19T18:43:14.713108+00:00", "updated": "2026-07-19T07:10:32.910054+00:00",
+        "links": {}, "revision_id": 1751, "slug": "crossref", "metadata": {"title":
         "Crossref Blog", "description": "Recent content in Blog on Crossref", "type":
         {"id": "blog"}, "website": "https://www.crossref.org/blog/"}, "access": {"visibility":
         "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
@@ -267,7 +267,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:51:31 GMT
+      - Sun, 19 Jul 2026 07:12:50 GMT
       Etag:
       - '"37"'
       Link:
@@ -277,7 +277,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '58'
+      - '59'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -295,9 +295,11 @@ interactions:
       X-Ratelimit-Remaining:
       - '498'
       X-Ratelimit-Reset:
-      - '1783846350'
+      - '1784445230'
       X-Xss-Protection:
       - 1; mode=block
+      content-length:
+      - '19916'
     status:
       code: 200
       message: OK

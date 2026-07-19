@@ -126,6 +126,7 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
     if license_ is not None:
         license_ = dict_to_spdx({"url": license_})
     issn = dig(meta, "blog.issn", None)
+    blog_doi = dig(meta, "blog.doi", None)
     blog_url = (
         f"https://rogue-scholar.org/blogs/{meta.get('blog_slug')}"
         if meta.get("blog_slug", None)
@@ -140,8 +141,8 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
         {
             "type": "Blog",
             "title": dig(meta, "blog.title", None),
-            "identifier": issn or blog_url,
-            "identifier_type": "ISSN" if issn else "URL",
+            "identifier": issn or blog_doi or blog_url,
+            "identifier_type": "ISSN" if issn else "DOI" if blog_doi else "URL",
             "platform": platform,
         }
     )
@@ -202,17 +203,24 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
     relations = get_relations(wrap(meta.get("relationships", None)))
     # citing works are represented as IsReferencedBy relations
     relations += get_citations(wrap(meta.get("citations", None)))
-    if meta.get("blog_slug", None):
-        relations.append(
-            {
-                "id": f"https://rogue-scholar.org/api/communities/{meta.get('blog_slug')}",
-                "type": "IsPartOf",
-            }
-        )
     if issn is not None:
         relations.append(
             {
                 "id": issn_as_url(issn),
+                "type": "IsPartOf",
+            }
+        )
+    elif blog_doi is not None:
+        relations.append(
+            {
+                "id": blog_doi,
+                "type": "IsPartOf",
+            }
+        )
+    elif meta.get("blog_slug", None):
+        relations.append(
+            {
+                "id": f"https://rogue-scholar.org/api/communities/{meta.get('blog_slug')}",
                 "type": "IsPartOf",
             }
         )

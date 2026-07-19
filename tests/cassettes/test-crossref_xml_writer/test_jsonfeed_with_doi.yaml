@@ -16,7 +16,7 @@ interactions:
     body:
       string: '{"authors":[{"affiliation":[{"id":"https://ror.org/01hcx6992","name":"Humboldt-Universit\u00e4t
         zu Berlin"}],"contributor_roles":[],"family":"Pampel","given":"Heinz","url":"https://orcid.org/0000-0003-3334-2771"}],"blog":{"authors":null,"community_id":"2010c4da-31b7-4cd7-97cf-c75892ae6902","created":1673827200,"current_feed_url":null,"description":"Gemeinschaftsblog
-        zu wissenschaftlicher Kommunikation im Netz.","favicon":"https://rogue-scholar.org/api/communities/2010c4da-31b7-4cd7-97cf-c75892ae6902/logo","feed_format":"application/atom+xml","feed_url":"https://wisspub.net/feed/atom/","filter":null,"generator":"WordPress.com","home_page_url":"https://wisspub.net","issn":null,"language":"deu","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"wisspub","status":"active","subfield":"1802","title":"wisspub.net","updated":1783172430,"use_api":true},"blog_name":"wisspub.net","blog_slug":"wisspub","content_html":"<p>Die
+        zu wissenschaftlicher Kommunikation im Netz.","doi":"https://doi.org/10.59350/wisspub","favicon":"https://rogue-scholar.org/api/communities/2010c4da-31b7-4cd7-97cf-c75892ae6902/logo","feed_format":"application/atom+xml","feed_url":"https://wisspub.net/feed/atom/","filter":null,"generator":"WordPress.com","home_page_url":"https://wisspub.net","issn":null,"language":"deu","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"wisspub","status":"active","subfield":"1802","title":"wisspub.net","updated":1783172430,"use_api":true},"blog_name":"wisspub.net","blog_slug":"wisspub","content_html":"<p>Die
         EU-Wissenschaftsministerien haben sich auf ihrer <a href=\"https://www.consilium.europa.eu/en/press/press-releases/2023/05/23/council-calls-for-transparent-equitable-and-open-access-to-scholarly-publications/\">heutigen
         Sitzung</a> in Br\u00fcssel unter dem Titel \"Council conclusions on high-quality,
         transparent, open, trustworthy and equitable scholarly publishing\" (<a href=\"https://data.consilium.europa.eu/doc/document/ST-8827-2023-INIT/en/pdf\">PDF
@@ -147,13 +147,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:51:26 GMT
+      - Sun, 19 Jul 2026 07:12:47 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
+      content-length:
+      - '13344'
     status:
       code: 200
       message: OK

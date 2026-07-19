@@ -16,7 +16,7 @@ interactions:
     body:
       string: '{"authors":[{"contributor_roles":[],"family":"Apodaca","given":"Richard
         L.","url":"https://orcid.org/0000-0003-3855-9427"}],"blog":{"authors":null,"community_id":"9eb6ed36-4c18-4be8-8262-f94d91dd01fa","created":1734134400,"current_feed_url":null,"description":"Recent
-        content on Depth-First","favicon":"https://rogue-scholar.org/api/communities/9eb6ed36-4c18-4be8-8262-f94d91dd01fa/logo","feed_format":"application/feed+json","feed_url":"http://localhost:3000/articles.atom","filter":null,"generator":"Other","home_page_url":"https://depth-first.com","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"rapodaca","status":"archived","subfield":"1606","title":"Depth-First","updated":null,"use_api":null},"blog_name":"Depth-First","blog_slug":"rapodaca","content_html":"<p>Scripting
+        content on Depth-First","doi":"https://doi.org/10.59350/rapodaca","favicon":"https://rogue-scholar.org/api/communities/9eb6ed36-4c18-4be8-8262-f94d91dd01fa/logo","feed_format":"application/feed+json","feed_url":"http://localhost:3000/articles.atom","filter":null,"generator":"Other","home_page_url":"https://depth-first.com","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"rapodaca","status":"archived","subfield":"1606","title":"Depth-First","updated":null,"use_api":null},"blog_name":"Depth-First","blog_slug":"rapodaca","content_html":"<p>Scripting
         languages and cheminformatics can be a highly-effective\ncombination. With
         their relaxed syntax, compilation-free execution, and\ninteractive testing
         environments, scripting languages offer fast\ndevelopment iteration cycles.
@@ -99,13 +99,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:16 GMT
+      - Sun, 19 Jul 2026 06:48:31 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
+      content-length:
+      - '9187'
     status:
       code: 200
       message: OK

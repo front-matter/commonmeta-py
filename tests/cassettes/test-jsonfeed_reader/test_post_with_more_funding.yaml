@@ -18,8 +18,8 @@ interactions:
         Library of Science"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"authors":[{"name":"Martin
         Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"community_id":"15a362ea-8138-42b8-917f-1840a92addf8","created":1672531200,"current_feed_url":null,"description":"The
         Front Matter Blog covers the intersection of science and technology since
-        2007.","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
-        Matter","updated":1783171960,"use_api":true},"blog_name":"Front Matter","blog_slug":"front_matter","content_html":"<p>A
+        2007.","doi":"https://doi.org/10.53731/front_matter","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
+        Matter","updated":1784105018,"use_api":true},"blog_name":"Front Matter","blog_slug":"front_matter","content_html":"<p>A
         <a href=\"https://web.archive.org/web/20171029102032/http://datacite.labs.orcid-eu.org/\">new
         service</a> allows researchers to add research datasets \u2013 and other content
         with DataCite DOIs, including all <a href=\"https://web.archive.org/web/20171029102032/http://figshare.com/\">figshare</a>
@@ -66,13 +66,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:16 GMT
+      - Sun, 19 Jul 2026 06:48:31 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
+      content-length:
+      - '4974'
     status:
       code: 200
       message: OK
