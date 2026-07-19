@@ -962,8 +962,8 @@ requires-dist = [
     { name = "citeproc-py", specifier = ">=0.9,<1" },
     { name = "citeproc-py-styles", specifier = ">=0.1.2,<1" },
     { name = "click", specifier = ">=8.1.7,<9" },
-    { name = "commonmeta-rs", marker = "python_full_version >= '3.14' and extra == 'backend'", specifier = ">=0.9.36" },
-    { name = "commonmeta-schema", specifier = "==1.0rc12" },
+    { name = "commonmeta-rs", marker = "python_full_version >= '3.14' and extra == 'backend'", specifier = ">=0.9.41" },
+    { name = "commonmeta-schema", specifier = "==1.0rc14" },
     { name = "datacite", specifier = ">=1.1.1,<2" },
     { name = "dateparser", specifier = ">=1.1.7,<2" },
     { name = "edtf", specifier = ">=5.0.0,<6" },
@@ -1015,21 +1015,21 @@ docs = [
 
 [[package]]
 name = "commonmeta-rs"
-version = "0.9.38"
+version = "0.9.41"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/9d/10/cebb645419920dfcf748cc237a3c2573b3864aa804fd7a9dbfc69346ed3f/commonmeta_rs-0.9.38.tar.gz", hash = "sha256:14c5341b29b94cc22e12aec126638c4695344dc256d8c9692400b34432edea34", size = 746123, upload-time = "2026-07-18T09:15:14.872Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/13/ed/6ba4722c3439ed0a07cf48e26a312e16314a9ce79d4cd40103f77311b2cc/commonmeta_rs-0.9.41.tar.gz", hash = "sha256:17e0cf690144ca428dfe3f6f5d5ddd0f23dcb5aceef22e8fcc16431acba8336b", size = 748902, upload-time = "2026-07-19T16:45:20.933Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5b/0c/243a1e8aefcd7b47402ee5535f68434ee70398d6892ba78bd4ad670855c6/commonmeta_rs-0.9.38-cp314-abi3-macosx_11_0_arm64.whl", hash = "sha256:021667b10b4e406236ca2284c75469f0ccf5cdbc8af27facd36268c4447eb064", size = 13543935, upload-time = "2026-07-18T09:15:07.307Z" },
-    { url = "https://files.pythonhosted.org/packages/52/34/3bca10e9c909743b09a2f2ef79782f8e048421948e63595c8374ad39e3a1/commonmeta_rs-0.9.38-cp314-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:cb3e78b38a56ba6c009726fdee89c88485e8882cdf324e3e667554057f1b146d", size = 15154884, upload-time = "2026-07-18T09:15:12.811Z" },
+    { url = "https://files.pythonhosted.org/packages/86/24/0ca33ecae65360933c57e140cf3c01de75354bf590fc20c114be06796f01/commonmeta_rs-0.9.41-cp314-abi3-macosx_11_0_arm64.whl", hash = "sha256:109bd5105e7cb85f1dcc896c5c8172c7ef00d4bbc3dc1a7bd389ad86ce70aac4", size = 13564450, upload-time = "2026-07-19T16:45:13.297Z" },
+    { url = "https://files.pythonhosted.org/packages/a9/70/ef7b325ab292a93023b2829c786ce53308f6a069a754ca69527e31ffd759/commonmeta_rs-0.9.41-cp314-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2194acc4eb221d35da90aa87f28d086a9d953460bc98a817b732e767ace0197a", size = 15174409, upload-time = "2026-07-19T16:45:18.763Z" },
 ]
 
 [[package]]
 name = "commonmeta-schema"
-version = "1.0rc12"
+version = "1.0rc14"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/d4/18/d7cd0f23535afdab6f074d3e5505af32a615c34b14a1ee363fd98844d9eb/commonmeta_schema-1.0rc12.tar.gz", hash = "sha256:3127ecaf198cac762429416d7ed18143a33c4c8b6ebb5253f7d96d528e58ac49", size = 246642, upload-time = "2026-07-19T09:15:33.708Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/45/fb/9b1f97c5eb09a293b52061e499bc62804a1c22b557ada7c559018beeafcd/commonmeta_schema-1.0rc14.tar.gz", hash = "sha256:ca541a2b7ae1f1438c513647243f3ba35a77b0f551b24793e25417ec1b5e6a31", size = 247964, upload-time = "2026-07-19T16:25:13.183Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/cc/f7/5e479eef6ea15c56fa3e2eb58a012d948f85dc4abc449207b84e3afb2767/commonmeta_schema-1.0rc12-py3-none-any.whl", hash = "sha256:b83f80f0fbffe58ff68c4d4ed68db0273179335c633453737c194f95b9f9633e", size = 369437, upload-time = "2026-07-19T09:15:30.199Z" },
+    { url = "https://files.pythonhosted.org/packages/3a/75/728940060d1d71eda49669928cc3de9dfe8eb9ab7ee77afa82963cadc836/commonmeta_schema-1.0rc14-py3-none-any.whl", hash = "sha256:0245668da6e5e9dd64ac81f8ddad5365f667182897b9144d67a5776b54e64668", size = 382413, upload-time = "2026-07-19T16:25:10.782Z" },
 ]
 
 [[package]]

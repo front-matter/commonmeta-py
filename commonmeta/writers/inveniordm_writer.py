@@ -95,10 +95,22 @@ def write_inveniordm(metadata: Metadata) -> dict:
         }
     )
     references = [to_inveniordm_reference(i) for i in wrap(metadata.references)]
+    # IsReferencedBy relations are citing works: their home is
+    # custom_fields.rs:citations, not related_identifiers (mirrors the reader).
     related_identifiers = [
         to_inveniordm_related_identifier(i)
         for i in wrap(metadata.relations)
-        if i.get("id", None) and i.get("type", None) != "IsPartOf"
+        if i.get("id", None)
+        and i.get("type", None) not in ("IsPartOf", "IsReferencedBy")
+    ]
+    citations = [
+        c
+        for c in (
+            to_inveniordm_citation(i)
+            for i in wrap(metadata.relations)
+            if i.get("type", None) == "IsReferencedBy"
+        )
+        if c is not None
     ]
     funding = unique(
         [
@@ -209,7 +221,14 @@ def write_inveniordm(metadata: Metadata) -> dict:
                     ),
                     "rs:content_html": presence(metadata.content),
                     "rs:image": presence(metadata.image),
-                    "feed:generator": container.get("platform", None),
+                    # rs:generator is a record VocabularyCF ({"id": <platform>});
+                    # feed:generator is a *community* field and invalid on a record.
+                    "rs:generator": (
+                        {"id": container.get("platform")}
+                        if container.get("platform")
+                        else None
+                    ),
+                    "rs:citations": presence(citations),
                 }
             ),
         }
@@ -408,6 +427,16 @@ def to_inveniordm_related_identifier(relation: dict) -> dict | None:
             "relation_type": {"id": relation_type},
         }
     )
+
+
+def to_inveniordm_citation(relation: dict) -> dict | None:
+    """Convert an IsReferencedBy relation to a custom_fields.rs:citations entry
+    (the inverse of the reader's ``get_citations``)."""
+    if normalize_doi(relation.get("id", None)):
+        return {"identifier": doi_from_url(relation.get("id", None)), "scheme": "doi"}
+    if normalize_url(relation.get("id", None)):
+        return {"identifier": relation.get("id", None), "scheme": "url"}
+    return None
 
 
 def to_inveniordm_reference(reference: dict) -> dict | None:

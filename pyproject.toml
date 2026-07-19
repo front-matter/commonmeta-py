@@ -19,7 +19,7 @@ keywords = [
     "inveniordm",
 ]
 dependencies = [
-    "commonmeta-schema==1.0rc12",
+    "commonmeta-schema==1.0rc14",
     "dateparser>=1.1.7,<2",
     "PyYAML>=5.4",
     "beautifulsoup4>=4.11,<5",
@@ -61,7 +61,7 @@ dependencies = [
 # an unmarked pin makes the whole resolution unsatisfiable on 3.9-3.13. Below 3.14
 # the extra resolves to nothing and backend.py's require_backend() raises the clear
 # "needs Python 3.14+" error at call time instead.
-backend = ["commonmeta-rs>=0.9.36 ; python_full_version >= '3.14'"]
+backend = ["commonmeta-rs>=0.9.41 ; python_full_version >= '3.14'"]
 
 [project.urls]
 Homepage = "https://python.commonmeta.org"
@@ -97,9 +97,9 @@ dev = [
 
 [tool.uv]
 default-groups = ["docs", "dev"]
-# commonmeta-schema is currently a prerelease (1.0rc12); it ships the final
+# commonmeta-schema is currently a prerelease (1.0rc14); it ships the final
 # commonmeta_v1.0.json, which is the schema this package targets. "explicit" allows
-# prereleases only for packages pinned to one (commonmeta-schema==1.0rc12); "allow"
+# prereleases only for packages pinned to one (commonmeta-schema==1.0rc14); "allow"
 # is global and let the resolver pick prereleases for every dependency - it was
 # installing lxml 7.0.0a3 in place of the 6.1.1 release.
 prerelease = "explicit"

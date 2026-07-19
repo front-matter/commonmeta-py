@@ -2,6 +2,7 @@
 
 from os import path
 
+import orjson as json
 import pytest
 
 from commonmeta import Metadata, MetadataList
@@ -1135,6 +1136,96 @@ def test_inveniordm_with_relations_and_funding():
 
 
 @pytest.mark.vcr
+def test_jsonfeed_via_inveniordm():
+    """jsonfeed via invenioRDM"""
+    string = "https://api.rogue-scholar.org/posts/10.53731/r294649-6f79289-8cwav"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.53731/r294649-6f79289-8cwav"
+    assert subject.type == "BlogPost"
+    assert len(subject.references) == 2
+    assert subject.references[0] == {
+        "id": "https://doi.org/10.1016/j.ccr.2007.01.016",
+        "unstructured": "Haldar, M., Hancock, J. D., Coffin, C. M., Lessnick, S. L.&amp; Capecchi, "
+        "M. R. (2007). A Conditional Mouse Model of Synovial Sarcoma: Insights "
+        "into a Myogenic Origin. <i>Cancer Cell</i>, <i>11</i>(4), 375–388.",
+    }
+    assert subject.container == {
+        "identifier": "2749-9952",
+        "identifier_type": "ISSN",
+        "platform": "Ghost",
+        "title": "Front Matter",
+        "type": "Blog",
+    }
+    assert subject.relations == [
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+    ]
+    assert subject.version == "v1"
+
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
+    assert dig(inveniordm, "pids.doi.identifier") == "10.53731/r294649-6f79289-8cwav"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert len(dig(inveniordm, "metadata.creators")) == 1
+    assert dig(inveniordm, "metadata.creators.0") == {
+        "affiliations": [
+            {
+                "id": "00f2yqf98",
+                "name": "Hannover Medical School",
+            },
+        ],
+        "person_or_org": {
+            "family_name": "Fenner",
+            "given_name": "Martin",
+            "name": "Fenner, Martin",
+            "type": "personal",
+            "identifiers": [{"identifier": "0000-0003-1419-2405", "scheme": "orcid"}],
+        },
+    }
+    assert (
+        dig(inveniordm, "metadata.title")
+        == "Mouse models of human cancer and the need for more translational research"
+    )
+    assert dig(inveniordm, "metadata.publisher") == "Front Matter"
+    assert dig(inveniordm, "metadata.publication_date") == "2008-07-14"
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "type") == "blog"
+    assert (
+        dig(crossref_xml, "institution.institution_name") == "Front Matter"
+    )  # institution_name is the publisher name
+    assert (
+        crossref_xml.get("group_title") == "Front Matter"
+    )  # group_title is the container title
+    assert len(dig(crossref_xml, "citation_list.citation")) > 1
+    assert dig(crossref_xml, "citation_list.citation.0") == {
+        "doi": "10.1016/j.ccr.2007.01.016",
+        "key": "ref1",
+        "unstructured_citation": "Haldar, M., Hancock, J. D., Coffin, C. M., Lessnick, S. L.&amp; Capecchi, "
+        "M. R. (2007). A Conditional Mouse Model of Synovial Sarcoma: Insights "
+        "into a Myogenic Origin. <i>Cancer Cell</i>, <i>11</i>(4), 375–388.",
+    }
+    assert dig(crossref_xml, "abstract.0.p").startswith(
+        "One of the opening lectures this Saturday of the International Congress of Genetics"
+    )
+    assert dig(crossref_xml, "program.1") == {
+        "name": "relations",
+        "related_item": [
+            {
+                "inter_work_relation": {
+                    "#text": "2749-9952",
+                    "identifier-type": "issn",
+                    "relationship-type": "isPartOf",
+                },
+            },
+        ],
+    }
+
+
+@pytest.mark.vcr
 def test_doi_with_multiple_funding_references():
     "DOI with multiple funding references"
     string = "10.7554/elife.01567"
@@ -1212,8 +1303,8 @@ def test_inveniordm_record_with_references():
     assert subject.type == "BlogPost"
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.container == {
-        "identifier": "https://rogue-scholar.org/communities/crossref",
-        "identifier_type": "URL",
+        "identifier": "https://doi.org/10.64000/crossref",
+        "identifier_type": "DOI",
         "title": "Crossref Blog",
         "type": "Blog",
     }
