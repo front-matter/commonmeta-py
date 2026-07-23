@@ -17,7 +17,7 @@
   },
   "$defs": {
     "entity": {
-      "description": "A single Commonmeta entity: a work, a person, or an organization.",
+      "description": "A single Commonmeta entity: a work, a person, an organization, or a container.",
       "oneOf": [
         {
           "$ref": "#/$defs/work"
@@ -42,6 +42,18 @@
             {
               "required": [
                 "id"
+              ]
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/container"
+            },
+            {
+              "required": [
+                "identifiers"
               ]
             }
           ]
@@ -140,106 +152,7 @@
         },
         "container": {
           "description": "The container of the resource.",
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "identifier": {
-              "description": "The identifier for the container.",
-              "type": "string"
-            },
-            "identifier_type": {
-              "type": "string",
-              "enum": [
-                "ARK",
-                "arXiv",
-                "article_id",
-                "Bibcode",
-                "DOI",
-                "Handle",
-                "ISBN",
-                "ISSN",
-                "OpenAlex",
-                "PMID",
-                "PMCID",
-                "PURL",
-                "RAiD",
-                "SWHID",
-                "URL",
-                "URN",
-                "UUID",
-                "GUID",
-                "Other"
-              ]
-            },
-            "scheme": {
-              "description": "The scheme for identifiers with identifier_type 'Other', e.g. 'LISSN' or 'IGSN'.",
-              "type": "string"
-            },
-            "type": {
-              "description": "The type of the container.",
-              "type": "string",
-              "enum": [
-                "Blog",
-                "Book",
-                "BookSeries",
-                "Journal",
-                "Proceedings",
-                "ProceedingsSeries",
-                "Repository",
-                "DataRepository",
-                "Periodical",
-                "Series",
-                "Other"
-              ]
-            },
-            "title": {
-              "description": "The title of the container.",
-              "type": "string"
-            },
-            "description": {
-              "description": "The description of the container.",
-              "type": "string"
-            },
-            "language": {
-              "$ref": "#/$defs/language"
-            },
-            "license": {
-              "$ref": "#/$defs/license"
-            },
-            "platform": {
-              "description": "The platform of the container.",
-              "type": "string"
-            },
-            "image": {
-              "description": "The image for the container.",
-              "type": "string",
-              "format": "uri"
-            },
-            "first_page": {
-              "description": "The first page of the resource.",
-              "type": "string"
-            },
-            "last_page": {
-              "description": "The last page of the resource.",
-              "type": "string"
-            },
-            "volume": {
-              "description": "The volume of the resource.",
-              "type": "string"
-            },
-            "issue": {
-              "description": "The issue of the resource.",
-              "type": "string"
-            },
-            "location": {
-              "description": "The location of the conference or event.",
-              "type": "string"
-            },
-            "series": {
-              "description": "The series name or acronym for the conference or event.",
-              "type": "string"
-            }
-          }
+            "$ref": "#/$defs/container"
         },
         "content": {
           "description": "The full text content of the resource, e.g. the body of a blog post.",
@@ -767,6 +680,151 @@
         },
         "asserted_by": {
           "$ref": "#/$defs/provider"
+        }
+      }
+    },
+    "container": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "identifiers": {
+          "description": "External identifiers for the container (e.g. its OpenAlex source id, ISSN, DOI, or ISBN).",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "identifier",
+              "identifier_type"
+            ],
+            "properties": {
+              "identifier": {
+                "description": "The identifier for the container.",
+                "type": "string"
+              },
+              "identifier_type": {
+                "description": "Identifier type for a container (journal, repository, blog, etc.).",
+                "type": "string",
+                "enum": [
+                  "DataCite",
+                  "DOI",
+                  "Handle",
+                  "ISBN",
+                  "ISSN",
+                  "OpenAlex",
+                  "PURL",
+                  "re3data",
+                  "URL",
+                  "URN",
+                  "UUID",
+                  "Wikidata",
+                  "Other"
+                ]
+              }
+            }
+          }
+        },
+        "type": {
+          "description": "The type of the container.",
+          "type": "string",
+          "enum": [
+            "Blog",
+            "Book",
+            "BookSeries",
+            "Journal",
+            "Proceedings",
+            "ProceedingsSeries",
+            "Repository",
+            "DataRepository",
+            "Periodical",
+            "Series",
+            "igsnCatalog",
+            "raidRegistry",
+            "Other"
+          ]
+        },
+        "title": {
+          "description": "The name of the container.",
+          "type": "string"
+        },
+        "additional_titles": {
+          "description": "Abbreviated or alternate titles of the container.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "description": "A description of the container.",
+          "type": "string"
+        },
+        "language": {
+          "$ref": "#/$defs/language"
+        },
+        "license": {
+          "$ref": "#/$defs/license"
+        },
+        "platform": {
+          "description": "The platform of the container.",
+          "type": "string"
+        },
+        "image": {
+          "description": "The image for the container.",
+          "type": "string",
+          "format": "uri"
+        },
+        "publisher": {
+          "description": "The publisher or host organization of the container.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "description": "ROR identifier URL of the publisher.",
+              "type": "string"
+            },
+            "name": {
+              "description": "The name of the publisher.",
+              "type": "string"
+            }
+          }
+        },
+        "country": {
+          "description": "ISO 3166-1 alpha-2 country code of the container.",
+          "type": "string"
+        },
+        "first_page": {
+          "description": "The first page of the resource.",
+          "type": "string"
+        },
+        "last_page": {
+          "description": "The last page of the resource.",
+          "type": "string"
+        },
+        "volume": {
+          "description": "The volume of the resource.",
+          "type": "string"
+        },
+        "issue": {
+          "description": "The issue of the resource.",
+          "type": "string"
+        },
+        "location": {
+          "description": "The location of the conference or event.",
+          "type": "string"
+        },
+        "series": {
+          "description": "The series name or acronym for the conference or event.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The homepage URL of the container.",
+          "type": "string",
+          "format": "uri"
+        },
+        "date_updated": {
+          "description": "The date the container record was last updated.",
+          "$ref": "#/$defs/date"
         }
       }
     },
