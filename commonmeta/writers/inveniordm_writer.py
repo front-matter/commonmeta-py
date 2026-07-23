@@ -5,7 +5,6 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-import orjson as json
 from requests.exceptions import RequestException
 
 from commonmeta.readers.inveniordm_reader import search_by_doi, search_by_guid
@@ -29,6 +28,7 @@ from ..constants import (
 )
 from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, normalize_doi
+from ..json import dumps as json_dumps
 from ..utils import (
     FOS_MAPPINGS,
     OPENALEX_TO_FOS_MAPPINGS,
@@ -636,7 +636,7 @@ def push_inveniordm_list(
     if metalist is None:
         return None
     items = [push_inveniordm(item, host, token, **kwargs) for item in metalist.items]
-    return json.dumps(items, option=json.OPT_INDENT_2)
+    return json_dumps(items, option=json.OPT_INDENT_2)  # TODO option
 
 
 def upsert_record(

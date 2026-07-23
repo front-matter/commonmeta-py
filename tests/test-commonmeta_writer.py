@@ -1,10 +1,10 @@
 # pylint: disable=invalid-name
 """Commonmeta writer tests"""
 
+import json
 import re
 from os import path
 
-import orjson as json
 import pytest
 
 from commonmeta import Metadata, MetadataList

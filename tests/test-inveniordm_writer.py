@@ -1,10 +1,10 @@
 # pylint: disable=invalid-name
 """InvenioRDM writer tests"""
 
+import json
 import re
 from unittest.mock import patch
 
-import orjson as json
 import pytest
 
 from commonmeta import Metadata

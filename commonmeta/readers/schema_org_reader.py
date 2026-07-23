@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from datetime import datetime
 
-import orjson as json
 import requests
 from bs4 import BeautifulSoup
 from requests.exceptions import ConnectionError
@@ -32,6 +31,7 @@ from ..date_utils import (
     strip_milliseconds,
 )
 from ..doi_utils import doi_from_url, get_doi_ra, validate_doi
+from ..json import loads as json_loads
 from ..readers.crossref_reader import get_crossref
 from ..readers.datacite_reader import get_datacite
 from ..translators import web_translator
@@ -118,7 +118,7 @@ def get_schema_org(pid: str | None, **kwargs) -> dict:
     # load schema.org metadata. If there are multiple schema.org blocks, load them all,
     # and pick the first one with a supported type
     list = [
-        json.loads(x.text) for x in soup.find_all("script", type="application/ld+json")
+        json_loads(x.text) for x in soup.find_all("script", type="application/ld+json")
     ]
     json_ld = next(
         (i for i in list if i.get("@type", None) in SO_TO_CM_TRANSLATIONS),

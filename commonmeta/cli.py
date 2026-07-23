@@ -6,7 +6,6 @@ import time
 from os import path
 
 import click
-import orjson as json
 
 from commonmeta import Metadata, MetadataList  # __version__
 from commonmeta.api_utils import update_ghost_post_via_api
@@ -17,6 +16,7 @@ from commonmeta.backend import (
     require_backend,
 )
 from commonmeta.doi_utils import decode_doi, encode_doi, validate_prefix
+from commonmeta.json import dumps as json_dumps
 from commonmeta.readers.crossref_reader import get_random_crossref_id
 from commonmeta.readers.datacite_reader import get_random_datacite_id
 from commonmeta.readers.openalex_reader import get_random_openalex_id

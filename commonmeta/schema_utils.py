@@ -6,9 +6,8 @@ from functools import lru_cache
 from os import path
 from typing import Any
 
-import orjson as json
-
 from .base_utils import normalize_xml_dict
+from .json import loads as json_loads
 
 # jsonschema and xmlschema are imported inside the functions that use them, not
 # at module scope: between them they cost ~0.7s of `import commonmeta` (jsonschema
@@ -66,10 +65,10 @@ def _schema_definition(schema: str) -> dict:
     file_path = schema_file_path(schema)
     try:
         with open(file_path, encoding="utf-8") as file:
-            return json.loads(file.read())
+            return json_loads(file.read())
     except FileNotFoundError:
         raise ValueError(f"Schema file not found: {file_path}")
-    except json.JSONDecodeError:
+    except ValueError:
         raise ValueError(f"Invalid JSON in schema file: {file_path}")
 
 
