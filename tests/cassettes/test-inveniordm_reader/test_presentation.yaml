@@ -63,14 +63,16 @@ interactions:
         "size": 13994803, "checksum": "md5:45d8b11d4ef0da78b9db5397d8e0e8d9", "links":
         {"self": "https://zenodo.org/api/records/8173303/files/20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/content"}}],
         "swh": {}, "owners": [{"id": "363883"}], "status": "published", "stats": {"downloads":
-        115, "unique_downloads": 106, "views": 124, "unique_views": 103, "version_downloads":
-        115, "version_unique_downloads": 106, "version_unique_views": 103, "version_views":
-        124}, "state": "done", "submitted": true}'
+        116, "unique_downloads": 107, "views": 126, "unique_views": 105, "version_downloads":
+        116, "version_unique_downloads": 107, "version_unique_views": 105, "version_views":
+        126}, "state": "done", "submitted": true}'
     headers:
       access-control-allow-origin:
       - '*'
       access-control-expose-headers:
       - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+      content-length:
+      - '5218'
       content-security-policy:
       - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
         ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
@@ -78,7 +80,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sun, 12 Jul 2026 08:51:57 GMT
+      - Thu, 23 Jul 2026 06:10:34 GMT
       etag:
       - W/"8"
       link:
@@ -88,7 +90,7 @@ interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '40'
+      - '41'
       server:
       - nginx
       strict-transport-security:
@@ -104,9 +106,9 @@ interactions:
       x-ratelimit-limit:
       - '133'
       x-ratelimit-remaining:
-      - '131'
+      - '130'
       x-ratelimit-reset:
-      - '1783846358'
+      - '1784787076'
       x-source:
       - api
       x-xss-protection:

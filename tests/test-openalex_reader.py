@@ -79,8 +79,7 @@ def test_doi_with_data_citation():
     assert subject.relations is None
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "2050-084X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2050-084X", "identifier_type": "ISSN"}],
         "title": "eLife",
         "type": "Journal",
         "volume": "3",
@@ -167,8 +166,7 @@ def test_journal_article():
     # }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "1932-6203",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1932-6203", "identifier_type": "ISSN"}],
         "title": "PLoS ONE",
         "type": "Journal",
         "issue": "1",
@@ -260,8 +258,7 @@ def test_journal_article_with_funding():
     # }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "1664-462X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1664-462X", "identifier_type": "ISSN"}],
         "title": "Frontiers in Plant Science",
         "type": "Journal",
         "volume": "10",
@@ -315,8 +312,7 @@ def test_journal_article_original_language():
     assert subject.references[-1] == {"id": "https://openalex.org/W2158316475"}
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "0039-906X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0039-906X", "identifier_type": "ISSN"}],
         "title": "Japanese Journal of Physical Fitness and Sports Medicine",
         "type": "Journal",
         "issue": "1",
@@ -376,8 +372,7 @@ def test_journal_article_with_rdf_for_container():
     assert subject.references[-1] == {"id": "https://openalex.org/W7046245459"}
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "0278-0372",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0278-0372", "identifier_type": "ISSN"}],
         "title": "Journal of Crustacean Biology",
         "type": "Journal",
         "issue": "6",
@@ -441,8 +436,7 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.references[-1] == {"id": "https://openalex.org/W4285719527"}
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "0302-9743",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0302-9743", "identifier_type": "ISSN"}],
         "title": "Lecture notes in computer science",
         "type": "BookSeries",
         "first_page": "499",
@@ -756,8 +750,7 @@ def test_doi_with_sici():
     assert subject.funding_references is None
     assert subject.container == {
         "first_page": "2832",
-        "identifier": "0012-9658",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0012-9658", "identifier_type": "ISSN"}],
         "issue": "11",
         "last_page": "2841",
         "title": "Ecology",
@@ -828,8 +821,7 @@ def test_doi_with_orcid():
     assert subject.references[-1] == {"id": "https://openalex.org/W2624159414"}
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "2090-1836",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2090-1836", "identifier_type": "ISSN"}],
         "title": "Pulmonary Medicine",
         "type": "Journal",
         "volume": "2012",
@@ -909,8 +901,7 @@ def test_date_in_future():
     assert subject.relations is None
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "0014-2999",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0014-2999", "identifier_type": "ISSN"}],
         "title": "European Journal of Pharmacology",
         "type": "Journal",
         "volume": "759",
@@ -966,8 +957,7 @@ def test_vor_with_url():
     assert subject.references[-1] == {"id": "https://openalex.org/W4252286580"}
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "0018-067X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0018-067X", "identifier_type": "ISSN"}],
         "title": "Heredity",
         "type": "Journal",
         "volume": "111",
@@ -1205,14 +1195,14 @@ def test_another_book_chapter():
             "family_name": "Jones",
             "affiliations": [
                 {
-                    "identifier": "https://ror.org/02kgve346",
-                    "identifier_type": "ROR",
-                    "name": "NOAA Oceanic and Atmospheric Research",
-                },
-                {
                     "identifier": "https://ror.org/02z5nhe81",
                     "identifier_type": "ROR",
                     "name": "National Oceanic and Atmospheric Administration",
+                },
+                {
+                    "identifier": "https://ror.org/02kgve346",
+                    "identifier_type": "ROR",
+                    "name": "NOAA Oceanic and Atmospheric Research",
                 },
             ],
         },
@@ -1235,8 +1225,7 @@ def test_another_book_chapter():
     assert subject.container == {
         "type": "BookSeries",
         "title": "SpringerBriefs in medical earth sciences",
-        "identifier": "2523-3610",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2523-3610", "identifier_type": "ISSN"}],
         "first_page": "1",
         "last_page": "13",
     }
@@ -1365,8 +1354,7 @@ def test_missing_contributor():
         "last_page": "15",
         "issue": "2",
         "volume": "6",
-        "identifier": "2304-6775",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2304-6775", "identifier_type": "ISSN"}],
     }
     assert subject.subjects == [
         {
@@ -1525,7 +1513,7 @@ def test_proceedings_article():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1145/3448016.3452841"
     assert subject.type == "ProceedingsArticle"
-    assert subject.additional_type == "Preprint"
+    assert subject.additional_type is None
     assert subject.url == "https://doi.org/10.1145/3448016.3452841"
     assert subject.title == "Vector Quotient Filters"
     assert len(subject.contributors) == 6
@@ -1638,8 +1626,7 @@ def test_multipe_titles():
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Journal",
-        "identifier": "0340-2592",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0340-2592", "identifier_type": "ISSN"}],
         "title": "Der Urologe",
         "volume": "46",
         "issue": "7",

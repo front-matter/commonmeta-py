@@ -46,9 +46,9 @@ def test_blog_posting():
             "reference": "DataCite Metadata Working Group, Starr, J., Smaele, M. de ., Ashton, "
             "J., Barton, A., Bradford, T., Ciolek-Figiel, A., Dietiker, S., "
             "Elliot, J., Genat, B., Harzenetter, K., Hirschmann, B., Jakobsson, "
-            "S., Mailloux, J.-Y., Newbold, E., Nielsen, L. H., Yahia, M., &amp; "
+            "S., Mailloux, J.-Y., Newbold, E., Nielsen, L. H., Yahia, M.&amp; "
             "Ziedorn, F. (2016). <i>DataCite Metadata Schema Documentation for the "
-            "Publication and Citation of Research Data v4.0</i>. DataCite e.V.",
+            "Publication and Citation of Research Data v4.0</i>.",
             "asserted_by": "Publisher",
         },
         {
@@ -61,6 +61,7 @@ def test_blog_posting():
     assert subject.container == {
         "type": "Blog",
         "title": "Front Matter",
+        "identifiers": [{"identifier": "2749-9952", "identifier_type": "ISSN"}],
     }
     assert subject.description.startswith(
         "Eating your own dog food is a slang term to describe"
@@ -103,7 +104,14 @@ def test_zenodo():
     assert subject.date_published == "2018-03-14"
     assert subject.publisher == {"name": "Zenodo"}
     assert subject.references is None
-    assert subject.container is None
+    assert subject.container == {
+        "identifiers": [
+            {
+                "identifier": "https://openalex.org/S4306400562",
+                "identifier_type": "OpenAlex",
+            }
+        ],
+    }
     assert subject.funding_references is None
     assert subject.description.startswith("This dataset includes pupil size response")
     assert subject.subjects == [
@@ -152,7 +160,11 @@ def test_pangaea():
     assert subject.date_published == "2014"
     assert subject.publisher == {"name": "PANGAEA"}
     assert subject.references is None
-    assert subject.container is None
+    assert subject.container == {
+        "identifiers": [
+            {"identifier": "pangaea.repository", "identifier_type": "DataCite"}
+        ],
+    }
     assert subject.description.startswith(
         "Few hydrological studies have been made in Greenland"
     )
@@ -206,7 +218,11 @@ def test_dataverse():
     }
     assert subject.publisher == {"name": "Harvard Dataverse"}
     assert subject.references is None
-    assert subject.container is None
+    assert subject.container == {
+        "identifiers": [
+            {"identifier": "gdcc.harvard-dv", "identifier_type": "DataCite"}
+        ],
+    }
     assert subject.description.startswith(
         "Summary of association tests for Nature Genetics"
     )
@@ -390,8 +406,9 @@ def test_yet_another_ghost_post():
     assert subject.container == {
         "type": "Periodical",
         "title": "I.D.E.A.S.",
-        "identifier": "https://www.ideasurg.pub/",
-        "identifier_type": "URL",
+        "identifiers": [
+            {"identifier": "https://www.ideasurg.pub/", "identifier_type": "URL"}
+        ],
     }
     assert subject.description.startswith(
         "I am by no means an expert on the future of academic publishing."
@@ -435,7 +452,9 @@ def test_arxiv():
     )
     assert subject.publisher == {"name": "arXiv"}
     assert subject.references is None
-    assert subject.container is None
+    assert subject.container == {
+        "identifiers": [{"identifier": "arxiv.content", "identifier_type": "DataCite"}],
+    }
     assert subject.description.startswith(
         "In this paper, we analyse the current availability of open citations data in one particular dataset"
     )
@@ -487,8 +506,7 @@ def test_journal_page():
     }
     assert subject.references is None
     assert subject.container == {
-        "identifier": "0567-7920",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0567-7920", "identifier_type": "ISSN"}],
         "title": "Acta Palaeontologica Polonica",
         "type": "Journal",
         "volume": "68",

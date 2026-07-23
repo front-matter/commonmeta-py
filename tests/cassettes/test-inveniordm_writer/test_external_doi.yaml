@@ -16,7 +16,7 @@ interactions:
     body:
       string: '{"authors":[{"affiliation":[{"id":"https://ror.org/05745n787","name":"G\u00f6ttingen
         State and University Library"}],"contributor_roles":[],"family":"Beucke","given":"Daniel","url":"https://orcid.org/0000-0003-4905-1936"}],"blog":{"authors":null,"community_id":"b57b2853-9ea4-48b5-ad88-d0ddb6f11a9d","created":1689897600,"current_feed_url":null,"description":"Forschungsinformationen
-        & Systeme | Elektronisches Publizieren | Kompetenzzentrum Interoperable Metadaten","favicon":"https://rogue-scholar.org/api/communities/b57b2853-9ea4-48b5-ad88-d0ddb6f11a9d/logo","feed_format":"application/atom+xml","feed_url":"https://blog.dini.de/EPub_FIS/feed/atom/","filter":null,"generator":"WordPress","home_page_url":"https://blog.dini.de/EPub_FIS","issn":"2940-1798","language":"deu","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":null,"relative_url":null,"secure":true,"slug":"epub_fis","status":"active","subfield":"1710","title":"Gemeinsamer
+        & Systeme | Elektronisches Publizieren | Kompetenzzentrum Interoperable Metadaten","doi":null,"favicon":"https://rogue-scholar.org/api/communities/b57b2853-9ea4-48b5-ad88-d0ddb6f11a9d/logo","feed_format":"application/atom+xml","feed_url":"https://blog.dini.de/EPub_FIS/feed/atom/","filter":null,"generator":"WordPress","home_page_url":"https://blog.dini.de/EPub_FIS","issn":"2940-1798","language":"deu","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":null,"relative_url":null,"secure":true,"slug":"epub_fis","status":"active","subfield":"1710","title":"Gemeinsamer
         Blog der DINI AGs","updated":1783171942,"use_api":true},"blog_name":"Gemeinsamer
         Blog der DINI AGs","blog_slug":"epub_fis","content_html":"<p>Bei der Einf\u00fchrung
         eines Forschungsinformationssystems (FIS) stellt die rechtliche Seite oftmals
@@ -60,16 +60,16 @@ interactions:
       - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
-      Content-Length:
-      - '1790'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:02 GMT
+      - Thu, 23 Jul 2026 06:10:40 GMT
       Server:
       - gunicorn
       Vary:
       - Accept-Encoding
+      content-length:
+      - '4847'
     status:
       code: 200
       message: OK

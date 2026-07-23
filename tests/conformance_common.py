@@ -155,7 +155,14 @@ def _reader_payload(from_format: str, data: str) -> Any:
     if from_format == "datacite":
         obj = json.loads(data)
         if isinstance(obj, dict) and isinstance(obj.get("data"), dict):
-            return obj["data"].get("attributes", obj)
+            attrs = obj["data"].get("attributes", obj)
+            client = (
+                ((obj["data"].get("relationships") or {}).get("client") or {}).get(
+                    "data"
+                )
+                or {}
+            ).get("id")
+            return {**attrs, "client": client} if client else attrs
         return obj
     return data
 

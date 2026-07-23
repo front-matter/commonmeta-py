@@ -64,14 +64,16 @@ interactions:
         V4.pdf", "size": 130482, "checksum": "md5:8d686fae168ff94e45e59c076d2fb209",
         "links": {"self": "https://zenodo.org/api/records/3871094/files/Open%20Letter%20V4.pdf/content"}}],
         "swh": {}, "owners": [{"id": "103835"}], "status": "published", "stats": {"downloads":
-        105109, "unique_downloads": 96986, "views": 196845, "unique_views": 167986,
-        "version_downloads": 10457, "version_unique_downloads": 9585, "version_unique_views":
-        18690, "version_views": 20916}, "state": "done", "submitted": true}'
+        105157, "unique_downloads": 97034, "views": 196935, "unique_views": 168074,
+        "version_downloads": 10466, "version_unique_downloads": 9594, "version_unique_views":
+        18712, "version_views": 20938}, "state": "done", "submitted": true}'
     headers:
       access-control-allow-origin:
       - '*'
       access-control-expose-headers:
       - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+      content-length:
+      - '4819'
       content-security-policy:
       - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
         ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
@@ -79,7 +81,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sun, 12 Jul 2026 08:50:39 GMT
+      - Thu, 23 Jul 2026 06:09:21 GMT
       etag:
       - W/"5"
       link:
@@ -107,7 +109,7 @@ interactions:
       x-ratelimit-remaining:
       - '130'
       x-ratelimit-reset:
-      - '1783846299'
+      - '1784787021'
       x-source:
       - api
       x-xss-protection:

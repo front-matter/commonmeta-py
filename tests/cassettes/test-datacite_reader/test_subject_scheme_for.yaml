@@ -17,32 +17,34 @@ interactions:
       string: "[\n  {\n    \"DOI\": \"10.6084\",\n    \"RA\": \"DataCite\"\n  }\n]"
     headers:
       CF-RAY:
-      - a19ecef0ded78e59-CDG
-      Cf-Cache-Status:
-      - DYNAMIC
+      - a1f885a16cfd196c-LHR
       Connection:
       - keep-alive
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sun, 12 Jul 2026 08:51:50 GMT
+      - Thu, 23 Jul 2026 06:10:26 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
-      Permissions-Policy:
-      - interest-cohort=(),browsing-topics=()
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=0IW73f2dz8um3L4mRs2yXZvuMRgfsnNoff5vd%2FZ91SEeKmDf09D86tqT5WDlcWNMKXMTFutGNpjzZ2t9XkCA8vKLQ7nbmn%2BltQzF76tVj2kZtef2Ib3yw2T%2FPFEyBnwNXAKqN7Q%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=NGX8HSYkIdx4SpKsxKpIckg9844ZUomjH%2Fx006Vdi7Ec6SbfmmG5zzgZHfeVv3llkCyW3ia5LK0yc4PjReKcJCPneEtHZreD1dkghUVvJYO%2BEY6E%2FQJNzcGJupsxjjSCbERh%2FSI%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Origin
-      - accept-encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '54'
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
+      - accept-encoding
     status:
       code: 200
       message: OK
@@ -86,7 +88,7 @@ interactions:
         allows researchers to publish all of their research outputs in an easily citable,
         sharable and discoverable manner. All file formats can be published, including
         videos and datasets. Optional peer review process. figshare uses creative
-        commons licensing.","language":[],"clientType":"repository","domains":"figshare.com,*.figshare.com,geolsoc.figshare.com,rs.figshare.com,tandf.figshare.com,springernature.figshare.com,books.openmonographs.org,tome.figshare.com,figshare.le.ac.uk,figshare.unimelb.edu.au,uic.figshare.com,indigo.uic.edu,data.dtu.dk,dtu.figshare.com,dataverse.no","re3data":"https://doi.org/10.17616/R3PK5R","opendoar":null,"issn":{},"url":"http://figshare.com/","created":"2016-10-12T13:42:35.000Z","updated":"2026-01-20T10:56:23.000Z","isActive":true},"relationships":{"provider":{"data":{"id":"otjm","type":"providers"}},"consortium":{"data":{"id":"fsco","type":"providers"}},"prefixes":{"data":[{"id":"10.6084","type":"prefixes"}]}}}]}'
+        commons licensing.","language":[],"clientType":"repository","domains":"figshare.com,*.figshare.com,geolsoc.figshare.com,rs.figshare.com,tandf.figshare.com,springernature.figshare.com,books.openmonographs.org,tome.figshare.com,figshare.le.ac.uk,figshare.unimelb.edu.au,uic.figshare.com,indigo.uic.edu,data.dtu.dk,dtu.figshare.com,dataverse.no","re3data":"https://doi.org/10.17616/R3PK5R","opendoar":null,"issn":{},"url":"http://figshare.com/","created":"2016-10-12T13:42:35.000Z","updated":"2026-01-20T10:56:23.000Z","isActive":true},"relationships":{"provider":{"data":{"id":"otjm","type":"providers"}},"consortium":{"data":{"id":"FSCO","type":"providers"}},"prefixes":{"data":[{"id":"10.6084","type":"prefixes"}]}}}]}'
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
@@ -101,7 +103,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sun, 12 Jul 2026 08:51:50 GMT
+      - Thu, 23 Jul 2026 06:10:26 GMT
       Server:
       - nginx/1.24.0 + Phusion Passenger(R) 6.1.2
       Status:
@@ -109,11 +111,13 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-LupoVersion:
-      - 5.72.0
+      - 5.74.0
       X-Powered-By:
       - Phusion Passenger(R) 6.1.2
       cache-control:
       - no-cache
+      content-length:
+      - '8128'
       referrer-policy:
       - strict-origin-when-cross-origin
       vary:
@@ -127,9 +131,9 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-request-id:
-      - 60ef797a-58b2-4701-ad68-028fe3810181
+      - 7bec6822-f9f7-4012-815d-79cbe8929abb
       x-runtime:
-      - '0.035677'
+      - '0.023854'
       x-xss-protection:
       - '0'
     status:

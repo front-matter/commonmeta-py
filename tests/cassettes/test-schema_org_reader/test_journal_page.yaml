@@ -136,19 +136,19 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Sun, 12 Jul 2026 08:52:40 GMT
+      - Thu, 23 Jul 2026 06:11:14 GMT
       Expires:
       - Wed, 28 Jan 1976 11:52:00 GMT
       Keep-Alive:
       - timeout=5, max=100
       Last-Modified:
-      - Sun, 12 Jul 2026 08:52:40 GMT
+      - Thu, 23 Jul 2026 06:11:14 GMT
       Pragma:
       - no-cache
       Server:
       - Apache
       Set-Cookie:
-      - PHPSESSID=ji4kdg4m8krg2pv464k0gflfs0; path=/
+      - PHPSESSID=l8h0i1cku52l6v0d6iu0n5u2p5; path=/
       Transfer-Encoding:
       - chunked
     status:
@@ -172,32 +172,34 @@ interactions:
       string: "[\n  {\n    \"DOI\": \"10.4202\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a19ed02a2ebc3a77-CDG
-      Cf-Cache-Status:
-      - DYNAMIC
+      - a1f886cf39189e72-CDG
       Connection:
       - keep-alive
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sun, 12 Jul 2026 08:52:40 GMT
+      - Thu, 23 Jul 2026 06:11:14 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
-      Permissions-Policy:
-      - interest-cohort=(),browsing-topics=()
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=sBSlvUziQzQ7qRWW6f7FUID9AITdKJGPWKNFdqdXtD1nJlLz9TI8wwaSse%2FwTOPBg8zY%2FLtD5p5p3ZooQeyEFJdikYO2HdM8UClNozw4WaSotZURKk1Ztxdqd9glr7DzBY6b3xQ%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=EgTR4FeujDw6hXyf6iVsOLku%2Babm3kcjrtug%2Fku0qKrbR1oSy4Ur7bAwHYY%2Be1TiQ2z%2F41rlxW0X2fEr8JhGzvI8nR6ilT4NURGzG0BA7Vd%2BfVCzSJKaS8a0u6mKL6KmoVjrKsI%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Origin
-      - accept-encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '54'
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
+      - accept-encoding
     status:
       code: 200
       message: OK
@@ -224,12 +226,10 @@ interactions:
     headers:
       Connection:
       - keep-alive
-      Content-Length:
-      - '861'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:41 GMT
+      - Thu, 23 Jul 2026 06:11:14 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -237,6 +237,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
+      content-length:
+      - '1817'
       permissions-policy:
       - interest-cohort=()
       server:
@@ -244,7 +246,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-api-pool:
-      - polite
+      - polite-single
       x-concurrency-limit:
       - '3'
       x-rate-limit-interval:

@@ -14,28 +14,16 @@ interactions:
     uri: https://api.crossref.org/works?sample=1
   response:
     body:
-      string: '{"status":"ok","message-type":"work-list","message-version":"1.0.0","message":{"facets":{},"total-results":1,"items":[{"indexed":{"date-parts":[[2026,2,6]],"date-time":"2026-02-06T20:32:29Z","timestamp":1770409949331,"version":"3.49.0"},"reference-count":23,"publisher":"Ovid
-        Technologies (Wolters Kluwer Health)","issue":"15","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["NeuroReport"],"published-print":{"date-parts":[[2004,10]]},"DOI":"10.1097\/00001756-200410250-00013","type":"journal-article","created":{"date-parts":[[2004,10,5]],"date-time":"2004-10-05T08:23:22Z","timestamp":1096964602000},"page":"2365-2368","source":"Crossref","is-referenced-by-count":5,"title":["Shifting
-        of cortical somatosensory areas in a man with amelia"],"prefix":"10.1097","volume":"15","author":[{"given":"Sandra","family":"Kamping","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Bernd","family":"L\u00fctkenh\u00f6ner","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Stefan","family":"Knecht","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]}],"member":"276","reference":[{"key":"R1-13-20110423","doi-asserted-by":"crossref","first-page":"591","DOI":"10.1002\/cne.902240408","volume":"224","author":"Merzenich","year":"1984","journal-title":"J
-        Comp Neurol"},{"key":"R2-13-20110423","doi-asserted-by":"crossref","first-page":"1857","DOI":"10.1126\/science.1843843","volume":"252","author":"Pons","year":"1991","journal-title":"Science"},{"key":"R3-13-20110423","doi-asserted-by":"crossref","first-page":"8083","DOI":"10.1523\/JNEUROSCI.15-12-08083.1995","volume":"15","author":"Florence","year":"1995","journal-title":"J
-        Neurosci"},{"key":"R4-13-20110423","doi-asserted-by":"crossref","first-page":"5503","DOI":"10.1523\/JNEUROSCI.17-14-05503.1997","volume":"17","author":"Birbaumer","year":"1997","journal-title":"J
-        Neurosci"},{"key":"R5-13-20110423","doi-asserted-by":"crossref","first-page":"2593","DOI":"10.1097\/00001756-199412000-00047","volume":"5","author":"Elbert","year":"1994","journal-title":"Neuroreport"},{"key":"R6-13-20110423","doi-asserted-by":"crossref","first-page":"701","DOI":"10.1097\/00001756-199402000-00010","volume":"5","author":"Yang","year":"1994","journal-title":"Neuroreport"},{"key":"R7-13-20110423","doi-asserted-by":"crossref","first-page":"1213","DOI":"10.1093\/brain\/119.4.1213","volume":"119","author":"Knecht","year":"1996","journal-title":"Brain"},{"key":"R8-13-20110423","doi-asserted-by":"crossref","first-page":"482","DOI":"10.1038\/375482a0","volume":"375","author":"Flor","year":"1995","journal-title":"Nature"},{"key":"R9-13-20110423","doi-asserted-by":"crossref","first-page":"243","DOI":"10.1016\/0304-3959(83)90097-0","volume":"17","author":"Jensen","year":"1983","journal-title":"Pain"},{"key":"R10-13-20110423","doi-asserted-by":"crossref","first-page":"205","DOI":"10.1007\/s002210050334","volume":"119","author":"Flor","year":"1998","journal-title":"Exp
-        Brain Res"},{"key":"R11-13-20110423","doi-asserted-by":"crossref","first-page":"1095","DOI":"10.1046\/j.1460-9568.1998.00122.x","volume":"10","author":"Montoya","year":"1998","journal-title":"Eur
-        J Neurosci"},{"key":"R12-13-20110423","author":"Adler","year":"2000"},{"key":"R13-13-20110423","doi-asserted-by":"crossref","first-page":"182","DOI":"10.1016\/S1474-4422(02)00074-1","volume":"1","author":"Flor","year":"2002","journal-title":"Lancet
-        Neurol"},{"key":"R14-13-20110423","author":"Hebb","year":"1949"},{"key":"R15-13-20110423","doi-asserted-by":"crossref","first-page":"446","DOI":"10.1038\/332446a0","volume":"332","author":"Calford","year":"1988","journal-title":"Nature"},{"key":"R16-13-20110423","doi-asserted-by":"crossref","first-page":"747","DOI":"10.1097\/00001756-199112000-00004","volume":"2","author":"Garraghty","year":"1991","journal-title":"Neuroreport"},{"key":"R17-13-20110423","doi-asserted-by":"crossref","first-page":"155","DOI":"10.1242\/jeb.153.1.155","volume":"153","author":"Jones","year":"1990","journal-title":"J
-        Exp Biol"},{"key":"R18-13-20110423","doi-asserted-by":"crossref","first-page":"361","DOI":"10.1093\/cercor\/3.5.361-a","volume":"3","author":"Jones","year":"1993","journal-title":"Cerebr
-        Cortex"},{"key":"R19-13-20110423","doi-asserted-by":"crossref","first-page":"2753","DOI":"10.1152\/jn.1997.77.5.2753","volume":"77","author":"Kew","year":"1997","journal-title":"J
-        Neurophysiol"},{"key":"R20-13-20110423","doi-asserted-by":"crossref","first-page":"319","DOI":"10.1002\/(SICI)1096-9861(19960401)367:2<319::AID-CNE12>3.0.CO;2-L","volume":"367","author":"Garraghty","year":"1996","journal-title":"J
-        Comp Neurol"},{"key":"R21-13-20110423","doi-asserted-by":"crossref","first-page":"77","DOI":"10.1097\/00001756-199102000-00003","volume":"2","author":"Kano","year":"1991","journal-title":"Neuroreport"},{"key":"R22-13-20110423","doi-asserted-by":"crossref","first-page":"209","DOI":"10.1016\/S0304-3959(98)00102-X","volume":"77","author":"Knecht","year":"1998","journal-title":"Pain"},{"key":"R23-13-20110423","doi-asserted-by":"crossref","first-page":"305","DOI":"10.1126\/science.270.5234.305","volume":"270","author":"Elbert","year":"1995","journal-title":"Science"}],"container-title":["NeuroReport"],"language":"en","link":[{"URL":"http:\/\/journals.lww.com\/00001756-200410250-00013","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2021,6,26]],"date-time":"2021-06-26T05:43:49Z","timestamp":1624686229000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/journals.lww.com\/00001756-200410250-00013"}},"subtitle":[""],"issued":{"date-parts":[[2004,10]]},"references-count":23,"journal-issue":{"issue":"15"},"URL":"https:\/\/doi.org\/10.1097\/00001756-200410250-00013","ISSN":["0959-4965"],"issn-type":[{"value":"0959-4965","type":"print"}],"published":{"date-parts":[[2004,10]]}}],"items-per-page":20,"query":{"start-index":0,"search-terms":null}}}'
+      string: '{"status":"ok","message-type":"work-list","message-version":"1.0.0","message":{"facets":{},"total-results":1,"items":[{"indexed":{"date-parts":[[2022,3,29]],"date-time":"2022-03-29T14:49:40Z","timestamp":1648565380997},"reference-count":0,"publisher":"Wiley","issue":"5","license":[{"start":{"date-parts":[[2015,9,1]],"date-time":"2015-09-01T00:00:00Z","timestamp":1441065600000},"content-version":"tdm","delay-in-days":13119,"URL":"http:\/\/doi.wiley.com\/10.1002\/tdm_license_1"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["Clin
+        Exp Pharmacol Physiol"],"published-print":{"date-parts":[[1979,10]]},"DOI":"10.1111\/cep.1979.6.issue-5","type":"journal-issue","created":{"date-parts":[[2016,2,24]],"date-time":"2016-02-24T16:01:13Z","timestamp":1456329673000},"source":"Crossref","is-referenced-by-count":0,"prefix":"10.1111","volume":"6","member":"311","container-title":["Clinical
+        and Experimental Pharmacology and Physiology"],"language":"en","link":[{"URL":"http:\/\/api.wiley.com\/onlinelibrary\/tdm\/v1\/articles\/10.1111%2Fcep.1979.6.issue-5","content-type":"unspecified","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2016,2,24]],"date-time":"2016-02-24T16:01:13Z","timestamp":1456329673000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/doi.wiley.com\/10.1111\/cep.1979.6.issue-5"}},"issued":{"date-parts":[[1979,10]]},"references-count":0,"journal-issue":{"issue":"5","published-print":{"date-parts":[[1979,10]]}},"URL":"https:\/\/doi.org\/10.1111\/cep.1979.6.issue-5","ISSN":["0305-1870","1440-1681"],"issn-type":[{"value":"0305-1870","type":"print"},{"value":"1440-1681","type":"electronic"}],"published":{"date-parts":[[1979,10]]}}],"items-per-page":20,"query":{"start-index":0,"search-terms":null}}}'
     headers:
       Connection:
       - keep-alive
-      Content-Length:
-      - '1804'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:51:00 GMT
+      - Thu, 23 Jul 2026 06:09:45 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -43,6 +31,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
+      content-length:
+      - '1805'
       permissions-policy:
       - interest-cohort=()
       server:
@@ -50,13 +40,13 @@ interactions:
       vary:
       - Accept-Encoding
       x-api-pool:
-      - polite
+      - polite-array
       x-concurrency-limit:
       - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '10'
+      - '3'
     status:
       code: 200
       message: OK
@@ -75,300 +65,48 @@ interactions:
     uri: https://api.crossref.org/works?sample=5
   response:
     body:
-      string: '{"status":"ok","message-type":"work-list","message-version":"1.0.0","message":{"facets":{},"total-results":5,"items":[{"indexed":{"date-parts":[[2026,1,7]],"date-time":"2026-01-07T00:13:04Z","timestamp":1767744784607,"version":"3.48.0"},"reference-count":0,"publisher":"Elsevier
-        BV","license":[{"start":{"date-parts":[[2026,3,1]],"date-time":"2026-03-01T00:00:00Z","timestamp":1772323200000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/www.elsevier.com\/tdm\/userlicense\/1.0\/"},{"start":{"date-parts":[[2026,3,1]],"date-time":"2026-03-01T00:00:00Z","timestamp":1772323200000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/www.elsevier.com\/legal\/tdmrep-license"}],"content-domain":{"domain":["elsevier.com","sciencedirect.com"],"crossmark-restriction":true},"short-container-title":["Computers
-        and Geotechnics"],"published-print":{"date-parts":[[2026,3]]},"DOI":"10.1016\/s0266-352x(26)00004-2","type":"journal-article","created":{"date-parts":[[2026,1,6]],"date-time":"2026-01-06T15:47:59Z","timestamp":1767714479000},"page":"107898","update-policy":"https:\/\/doi.org\/10.1016\/elsevier_cm_policy","source":"Crossref","is-referenced-by-count":0,"special_numbering":"C","title":["Editorial
-        Board"],"prefix":"10.1016","volume":"191","member":"78","container-title":["Computers
-        and Geotechnics"],"language":"en","link":[{"URL":"https:\/\/api.elsevier.com\/content\/article\/PII:S0266352X26000042?httpAccept=text\/xml","content-type":"text\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.elsevier.com\/content\/article\/PII:S0266352X26000042?httpAccept=text\/plain","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2026,1,7]],"date-time":"2026-01-07T00:08:42Z","timestamp":1767744522000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/linkinghub.elsevier.com\/retrieve\/pii\/S0266352X26000042"}},"issued":{"date-parts":[[2026,3]]},"references-count":0,"alternative-id":["S0266352X26000042"],"URL":"https:\/\/doi.org\/10.1016\/s0266-352x(26)00004-2","ISSN":["0266-352X"],"issn-type":[{"type":"print","value":"0266-352X"}],"published":{"date-parts":[[2026,3]]},"assertion":[{"value":"Elsevier","name":"publisher","label":"This
-        article is maintained by"},{"value":"Editorial Board","name":"articletitle","label":"Article
-        Title"},{"value":"Computers and Geotechnics","name":"journaltitle","label":"Journal
-        Title"},{"value":"https:\/\/doi.org\/10.1016\/S0266-352X(26)00004-2","name":"articlelink","label":"CrossRef
-        DOI link to publisher maintained version"},{"value":"simple-article","name":"content_type","label":"Content
-        Type"},{"name":"copyright","label":"Copyright"}],"article-number":"107898"},{"indexed":{"date-parts":[[2025,12,31]],"date-time":"2025-12-31T03:06:13Z","timestamp":1767150373409,"version":"build-2238731810"},"update-to":[{"DOI":"10.1016\/j.soilbio.2024.109456","type":"erratum","label":"Erratum","source":"publisher","updated":{"date-parts":[[2024,10,1]],"date-time":"2024-10-01T00:00:00Z","timestamp":1727740800000}}],"reference-count":0,"publisher":"Elsevier
-        BV","license":[{"start":{"date-parts":[[2024,10,1]],"date-time":"2024-10-01T00:00:00Z","timestamp":1727740800000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/www.elsevier.com\/tdm\/userlicense\/1.0\/"},{"start":{"date-parts":[[2024,10,1]],"date-time":"2024-10-01T00:00:00Z","timestamp":1727740800000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/www.elsevier.com\/legal\/tdmrep-license"},{"start":{"date-parts":[[2024,7,11]],"date-time":"2024-07-11T00:00:00Z","timestamp":1720656000000},"content-version":"vor","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by-nc\/4.0\/"}],"content-domain":{"domain":["elsevier.com","sciencedirect.com"],"crossmark-restriction":true},"short-container-title":["Soil
-        Biology and Biochemistry"],"published-print":{"date-parts":[[2024,10]]},"DOI":"10.1016\/j.soilbio.2024.109532","type":"journal-article","created":{"date-parts":[[2024,8,1]],"date-time":"2024-08-01T18:29:35Z","timestamp":1722536975000},"page":"109532","update-policy":"https:\/\/doi.org\/10.1016\/elsevier_cm_policy","source":"Crossref","is-referenced-by-count":0,"special_numbering":"C","title":["Corrigendum
-        to \u201cSpatial and temporal detection of root exudates with a paper-based
-        microfluidic device\u201d [Soil Biol. Biochem. 195 (2024), 109456]"],"prefix":"10.1016","volume":"197","author":[{"given":"Daniel","family":"Patko","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Udara
-        Bimendra","family":"Gunatilake","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Lionel
-        X.","family":"Dupuy","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Lourdes","family":"Basabe-Desmonts","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Fernando","family":"Benito-Lopez","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]}],"member":"78","container-title":["Soil
-        Biology and Biochemistry"],"language":"en","link":[{"URL":"https:\/\/api.elsevier.com\/content\/article\/PII:S0038071724002219?httpAccept=text\/xml","content-type":"text\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.elsevier.com\/content\/article\/PII:S0038071724002219?httpAccept=text\/plain","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2024,8,26]],"date-time":"2024-08-26T21:33:24Z","timestamp":1724708004000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/linkinghub.elsevier.com\/retrieve\/pii\/S0038071724002219"}},"issued":{"date-parts":[[2024,10]]},"references-count":0,"alternative-id":["S0038071724002219"],"URL":"https:\/\/doi.org\/10.1016\/j.soilbio.2024.109532","ISSN":["0038-0717"],"issn-type":[{"value":"0038-0717","type":"print"}],"published":{"date-parts":[[2024,10]]},"assertion":[{"value":"Elsevier","name":"publisher","label":"This
-        article is maintained by"},{"value":"Corrigendum to \u201cSpatial and temporal
-        detection of root exudates with a paper-based microfluidic device\u201d [Soil
-        Biol. Biochem. 195 (2024), 109456]","name":"articletitle","label":"Article
-        Title"},{"value":"Soil Biology and Biochemistry","name":"journaltitle","label":"Journal
-        Title"},{"value":"https:\/\/doi.org\/10.1016\/j.soilbio.2024.109532","name":"articlelink","label":"CrossRef
-        DOI link to publisher maintained version"},{"value":"https:\/\/doi.org\/10.1016\/j.soilbio.2024.109456","name":"associatedlink","label":"CrossRef
-        DOI link to the associated document"},{"value":"simple-article","name":"content_type","label":"Content
-        Type"},{"value":"\u00a9 2024 The Author(s). Published by Elsevier Ltd.","name":"copyright","label":"Copyright"}],"article-number":"109532"},{"indexed":{"date-parts":[[2026,1,13]],"date-time":"2026-01-13T05:40:29Z","timestamp":1768282829539,"version":"3.49.0"},"reference-count":104,"publisher":"Oxford
-        University Press (OUP)","issue":"3","license":[{"start":{"date-parts":[[2000,3,1]],"date-time":"2000-03-01T00:00:00Z","timestamp":951868800000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/academic.oup.com\/journals\/pages\/open_access\/funder_policies\/chorus\/standard_publication_model"}],"content-domain":{"domain":[],"crossmark-restriction":false},"published-print":{"date-parts":[[2000,3,1]]},"abstract":"<jats:title>Abstract<\/jats:title>\n               <jats:sec>\n                  <jats:title>Background<\/jats:title>\n                  <jats:p>Although
-        laparoscopic cholecystectomy (LC) results in less pain than open chole-cystectomy,
-        it is not a pain-free procedure. Many methods of analgesia for pain after
-        laparoscopy have been evaluated.<\/jats:p>\n               <\/jats:sec>\n               <jats:sec>\n                  <jats:title>Methods<\/jats:title>\n                  <jats:p>Forty-two
-        randomized controlled trials assessing interventions to reduce pain after
-        LC are reviewed, as are the mechanisms and nature of pain after this procedure.<\/jats:p>\n               <\/jats:sec>\n               <jats:sec>\n                  <jats:title>Results<\/jats:title>\n                  <jats:p>Non-steroidal
-        anti-inflammatory drugs, wound local anaesthetic, intraperitoneal local anaesthetic,
-        intraperitoneal saline, a gas drain, heated gas, low-pressure gas and nitrous
-        oxide pneumo-peritoneum have been shown to reduce pain after LC. The clinical
-        significance of this pain reduction is questionable.<\/jats:p>\n               <\/jats:sec>\n               <jats:sec>\n                  <jats:title>Conclusion<\/jats:title>\n                  <jats:p>Pain
-        after LC is multifactorial. Although many methods of analgesia produce short-term
-        benefit, this does not equate with earlier discharge or improved postoperative
-        function. However, single trials evaluating low-pressure insufflation, heated
-        gas and multimodal analgesia suggest that clinically relevant benefits can
-        be achieved.<\/jats:p>\n               <\/jats:sec>","DOI":"10.1046\/j.1365-2168.2000.01374.x","type":"journal-article","created":{"date-parts":[[2002,7,26]],"date-time":"2002-07-26T10:33:31Z","timestamp":1027679611000},"page":"273-284","source":"Crossref","is-referenced-by-count":202,"title":["Pain
-        after laparoscopic cholecystectomy"],"prefix":"10.1093","volume":"87","author":[{"given":"V
-        L","family":"Wills","sequence":"first","affiliation":[{"name":"Upper Gastrointestinal
-        Surgical Unit, Level 5, Suite 1, St George Private Medical Centre , South
-        Street, Kogarah, 2217 New South Wales,","place":["Australia"]}],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"D
-        R","family":"Hunt","sequence":"additional","affiliation":[{"name":"Upper Gastrointestinal
-        Surgical Unit, Level 5, Suite 1, St George Private Medical Centre , South
-        Street, Kogarah, 2217 New South Wales,","place":["Australia"]}],"role":[{"role":"author","vocabulary":"crossref"}]}],"member":"286","published-online":{"date-parts":[[2000,3,1]]},"reference":[{"key":"2024093005181379800_bib1","first-page":"533","article-title":"Laparoscopic
-        and minilaparotomy cholecystectomy: a randomized trial comparing postoperative
-        pain and pulmonary function","volume":"115","author":"McMahon","year":"1994","journal-title":"Surgery"},{"key":"2024093005181379800_bib2","doi-asserted-by":"crossref","first-page":"1116","DOI":"10.1016\/0140-6736(92)93148-G","article-title":"Randomised
-        controlled trial of laparoscopic versus mini cholecystectomy. The McGill Gallstone
-        Treatment Group","volume":"304","author":"Barkun","year":"1992","journal-title":"Lancet"},{"key":"2024093005181379800_bib3","doi-asserted-by":"crossref","first-page":"485","DOI":"10.1067\/msy.1998.87552","article-title":"A
-        randomized, prospective, blinded comparison of postoperative pain, metabolic
-        response, and perceived health after laparoscopic and small incision cholecystectomy","volume":"123","author":"Squirrell","year":"1998","journal-title":"Surgery"},{"key":"2024093005181379800_bib4","doi-asserted-by":"crossref","first-page":"135","DOI":"10.1016\/S0140-6736(94)90932-6","article-title":"Laparoscopic
-        versus minilaparotomy cholecystectomy: a randomised trial","volume":"343","author":"McMahon","year":"1994","journal-title":"Lancet"},{"key":"2024093005181379800_bib5","doi-asserted-by":"crossref","first-page":"369","DOI":"10.1093\/bja\/79.3.369","article-title":"Pain
-        after laparoscopy","volume":"79","author":"Alexander","year":"1997","journal-title":"Br
-        J Anaesth"},{"key":"2024093005181379800_bib6","first-page":"385","article-title":"Coelioscopie
-        ambulatoire","volume":"41","author":"Schoeffler","year":"1993","journal-title":"Cah
-        Anesthesiol"},{"key":"2024093005181379800_bib7","doi-asserted-by":"crossref","first-page":"445","DOI":"10.1007\/s004649901011","article-title":"Pain
-        after laparoscopy","volume":"13","author":"Mouton","year":"1999","journal-title":"Surg
-        Endosc"},{"key":"2024093005181379800_bib8","first-page":"881","article-title":"The
-        use of intraoperative topical bupivacaine in the control of postoperative
-        pain following laparoscopic cholecystectomy","volume":"51","author":"Fornani","year":"1996","journal-title":"Minerva
-        Chir"},{"key":"2024093005181379800_bib9","first-page":"679","article-title":"Preoperative
-        flurbiprofen provides pain relief after laparoscopic cholecystectomy","volume":"46","author":"Tanaka","year":"1997","journal-title":"Masui"},{"key":"2024093005181379800_bib10","first-page":"610","article-title":"Analysis
-        of randomized controlled trials in laparoscopic surgery","volume":"84","author":"Slim","year":"1997","journal-title":"Br
-        J Surg"},{"key":"2024093005181379800_bib11","doi-asserted-by":"crossref","first-page":"637","DOI":"10.1001\/jama.1996.03540080059030","article-title":"Improving
-        the quality of reporting of randomized controlled trials: The CONSORT statement","volume":"276","author":"Begg","year":"1996","journal-title":"JAMA"},{"key":"2024093005181379800_bib12","doi-asserted-by":"crossref","first-page":"1066","DOI":"10.1046\/j.1365-2168.1998.00799.x","article-title":"Prospective
-        randomized trial of 5- and 10-mm epigastric ports in laparoscopic cholecystectomy","volume":"85","author":"Golder","year":"1998","journal-title":"Br
-        J Surg"},{"key":"2024093005181379800_bib13","doi-asserted-by":"crossref","first-page":"416","DOI":"10.1097\/00019509-199812000-00003","article-title":"Intraperitoneal
-        normal saline and bupivacaine infusion for reduction of postoperative pain
-        after laparoscopic cholecystectomy","volume":"8","author":"Tsimoyiannis","year":"1998","journal-title":"Surg
-        Laparosc Endosc"},{"key":"2024093005181379800_bib14","doi-asserted-by":"crossref","first-page":"824","DOI":"10.1007\/s002689900477","article-title":"Intraperitoneal
-        normal saline infusion for postoperative pain after laparoscopic cholecystectomy","volume":"22","author":"Tsimoyiannis","year":"1998","journal-title":"World
-        J Surg"},{"key":"2024093005181379800_bib15","doi-asserted-by":"crossref","first-page":"6","DOI":"10.1097\/00019509-199702000-00002","article-title":"Use
-        of subdiaphragmatic bupivacaine instillation to control postoperative pain
-        after laparoscopic surgery","volume":"7","author":"Weber","year":"1997","journal-title":"Surg
-        Laparosc Endosc"},{"key":"2024093005181379800_bib16","doi-asserted-by":"crossref","first-page":"11","DOI":"10.1097\/00000542-199607000-00003","article-title":"Preemptive
-        analgesia: intraperitoneal local anaesthetic in laparoscopic cholecystectomy.
-        A randomized, double-blind, placebo-controlled study","volume":"85","author":"Pasqualucci","year":"1996","journal-title":"Anesthesiology"},{"key":"2024093005181379800_bib17","doi-asserted-by":"crossref","first-page":"152","DOI":"10.1213\/00000539-199407000-00028","article-title":"Residual
-        pneumoperitoneum: a cause of postoperative pain after laparoscopic cholecystectomy","volume":"79","author":"Fredman","year":"1994","journal-title":"Anesth
-        Analg"},{"key":"2024093005181379800_bib18","doi-asserted-by":"crossref","first-page":"576","DOI":"10.1093\/bja\/77.5.576","article-title":"Gasless
-        laparoscopic cholecystectomy: comparison of postoperative recovery with conventional
-        technique","volume":"77","author":"Koivusalo","year":"1996","journal-title":"Br
-        J Anaesth"},{"key":"2024093005181379800_bib19","doi-asserted-by":"crossref","first-page":"393","DOI":"10.1089\/lps.1994.4.393","article-title":"The
-        effects of drains in laparoscopic cholecystectomy","volume":"4","author":"Hawasli","year":"1994","journal-title":"J
-        Laparoendosc Surg"},{"key":"2024093005181379800_bib20","first-page":"907","article-title":"Effect
-        of intramuscular intraoperative pain medication on narcotic usage after laparoscopic
-        cholecystectomy","volume":"62","author":"Lane","year":"1996","journal-title":"Am
-        Surg"},{"key":"2024093005181379800_bib21","doi-asserted-by":"crossref","first-page":"56","DOI":"10.1177\/0310057X9802600108","article-title":"Intravenous
-        tenoxicam for analgesia following laparoscopic cholecystectomy","volume":"26","author":"Munro","year":"1998","journal-title":"Anaesth
-        Intensive Care"},{"key":"2024093005181379800_bib22","first-page":"455","article-title":"Randomized
-        trial of different insufflation pressures for laparoscopic cholecystectomy","volume":"84","author":"Wallace","year":"1997","journal-title":"Br
-        J Surg"},{"key":"2024093005181379800_bib23","doi-asserted-by":"crossref","first-page":"482","DOI":"10.1007\/BF00316685","article-title":"Preincisional
-        local anaesthesia with bupivacaine and pain after laparoscopic cholecystectomy.
-        A double-blind randomized clinical trial","volume":"7","author":"Ure","year":"1993","journal-title":"Surg
-        Endosc"},{"key":"2024093005181379800_bib24","doi-asserted-by":"crossref","first-page":"938","DOI":"10.1002\/bjs.1800830716","article-title":"Randomized
-        comparison of pulmonary function after the \u2018French\u2019 and \u2018American\u2019
-        techniques of laparoscopic cholecystectomy","volume":"83","author":"Kum","year":"1996","journal-title":"Br
-        J Surg"},{"key":"2024093005181379800_bib25","first-page":"26","article-title":"Indomethacin
-        and ketorolac given preoperatively are equally as effective in reducing early
-        postoperative pain after laparoscopic cholecystectomy","volume":"39","author":"Forse","year":"1996","journal-title":"Can
-        J Surg"},{"key":"2024093005181379800_bib26","first-page":"465","article-title":"Effectiveness
-        and safety of combined epidural and general anaesthesia for laparoscopic cholecystectomy","volume":"21","author":"Luchetti","year":"1996","journal-title":"Reg
-        Anesth"},{"key":"2024093005181379800_bib27","doi-asserted-by":"crossref","first-page":"125","DOI":"10.1001\/jama.1994.03520020051014","article-title":"Assessing
-        the quality of randomization from reports of controlled trials published in
-        obstetrics and gynecology journals","volume":"272","author":"Schulz","year":"1994","journal-title":"JAMA"},{"key":"2024093005181379800_bib28","doi-asserted-by":"crossref","first-page":"90","DOI":"10.1007\/BF00316616","article-title":"Pain
-        after laparoscopic cholecystectomy. Intensity and localization of pain and
-        analysis of predictors in preoperative symptoms and intraoperative events","volume":"8","author":"Ure","year":"1994","journal-title":"Surg
-        Endosc"},{"key":"2024093005181379800_bib29","doi-asserted-by":"crossref","first-page":"117","DOI":"10.1016\/0304-3959(86)90228-9","article-title":"The
-        measurement of clinical pain intensity: a comparison of six methods","volume":"27","author":"Jensen","year":"1986","journal-title":"Pain"},{"key":"2024093005181379800_bib30","first-page":"102","article-title":"The
-        visual analog scale in the immediate postoperative period: intrasubject variability
-        and correlation with a numeric scale","volume":"86","author":"DeLoach","year":"1998","journal-title":"Anesth
-        Analg"},{"key":"2024093005181379800_bib31","doi-asserted-by":"crossref","first-page":"258","DOI":"10.1016\/S0002-9610(98)00150-0","article-title":"A
-        prospective randomized trial of intraoperative bupivacaine irrigation for
-        management of shoulder-tip pain following laparoscopy","volume":"176","author":"Cunniffe","year":"1998","journal-title":"Am
-        J Surg"},{"key":"2024093005181379800_bib32","first-page":"437","article-title":"Intraperitoneal
-        bupivacaine for effective pain relief after laparoscopic cholecystectomy","volume":"75","author":"Chundrigar","year":"1993","journal-title":"Ann
-        R Coll Surg Engl"},{"key":"2024093005181379800_bib33","first-page":"36","volume-title":"Pain
-        Medicine. A Comprehensive Review","author":"Valley","year":"1996"},{"key":"2024093005181379800_bib34","doi-asserted-by":"crossref","first-page":"466","DOI":"10.1111\/j.1445-2197.1995.tb01787.x","article-title":"A
-        simple and effective way to reduce postoperative pain after laparoscopic cholecystectomy","volume":"65","author":"Jorgensen","year":"1995","journal-title":"Aust
-        N Z J Surg"},{"key":"2024093005181379800_bib35","doi-asserted-by":"crossref","first-page":"231","DOI":"10.1016\/S0039-6109(05)70381-9","article-title":"Measurement
-        of pain","volume":"79","author":"Katz","year":"1999","journal-title":"Surg
-        Clin North Am"},{"key":"2024093005181379800_bib36","doi-asserted-by":"crossref","first-page":"396","DOI":"10.1016\/0002-9610(91)90606-E","article-title":"Interruption
-        of professional and home activity after laparoscopic cholecystectomy among
-        French and American patients","volume":"161","author":"Vitale","year":"1991","journal-title":"Am
-        J Surg"},{"key":"2024093005181379800_bib37","doi-asserted-by":"crossref","first-page":"958","DOI":"10.1002\/bjs.1800840714","article-title":"Outpatient
-        laparoscopic cholecystectomy","volume":"84","author":"Mjaland","year":"1997","journal-title":"Br
-        J Surg"},{"key":"2024093005181379800_bib38","doi-asserted-by":"crossref","first-page":"487","DOI":"10.1097\/00019509-199712000-00012","article-title":"Outpatient
-        laparoscopic cholecystectomy: safe and cost effective?","volume":"7","author":"Zegarra","year":"1997","journal-title":"Surg
-        Laparosc Endosc"},{"key":"2024093005181379800_bib39","doi-asserted-by":"crossref","first-page":"1362","DOI":"10.1002\/bjs.1800810936","article-title":"Laparoscopic
-        versus open cholecystectomy: hospitalization, sick leave, analgesia and trauma
-        responses","volume":"81","author":"Berggren","year":"1994","journal-title":"Br
-        J Surg"},{"key":"2024093005181379800_bib40","first-page":"303","article-title":"Postoperative
-        pain and nausea after laparoscopic cholecystectomy","volume":"2","author":"Madsen","year":"1992","journal-title":"Surg
-        Laparosc Endosc"},{"key":"2024093005181379800_bib41","first-page":"379","article-title":"Pain
-        after laparoscopic cholecystectomy: characteristics and effect of intraperitoneal
-        bupivacaine","volume":"81","author":"Joris","year":"1995","journal-title":"Anesth
-        Analg"},{"key":"2024093005181379800_bib42","doi-asserted-by":"crossref","first-page":"1099","DOI":"10.1016\/S0001-2092(06)63296-1","article-title":"Recovery
-        from laparoscopic cholecystectomy procedures","volume":"63","author":"Cason","year":"1996","journal-title":"AORN
-        J"},{"key":"2024093005181379800_bib43","doi-asserted-by":"crossref","first-page":"550","DOI":"10.1080\/00365529850172151","article-title":"Neuroticism
-        in relation to recovery and persisting pain after laparoscopic cholecystectomy","volume":"33","author":"Jess","year":"1998","journal-title":"Scand
-        J Gastroenterol"},{"key":"2024093005181379800_bib44","doi-asserted-by":"crossref","first-page":"485","DOI":"10.1111\/j.1365-2044.1996.tb07798.x","article-title":"Does
-        post-laparoscopy pain relate to residual carbon dioxide?","volume":"51","author":"Jackson","year":"1996","journal-title":"Anaesthesia"},{"key":"2024093005181379800_bib45","doi-asserted-by":"crossref","first-page":"140","DOI":"10.1097\/00019509-199804000-00013","article-title":"Comparison
-        of N2O and CO2 pneumoperitoneums during laparoscopic cholecystectomy with
-        special reference to postoperative pain","volume":"8","author":"Aitola","year":"1998","journal-title":"Surg
-        Laparosc Endosc"},{"key":"2024093005181379800_bib46","first-page":"10","article-title":"Niederdruck-insufflationstechnik
-        in der laparoskopischen cholezystektomie","volume":"4","author":"Unbehaun","year":"1995","journal-title":"Minimal
-        Invasive Chirurgie"},{"key":"2024093005181379800_bib47","doi-asserted-by":"crossref","first-page":"375","DOI":"10.1097\/00019509-199610000-00008","article-title":"Pain
-        intensity following laparoscopy","volume":"6","author":"Korell","year":"1995","journal-title":"Surg
-        Laparosc Endosc"},{"key":"2024093005181379800_bib48","doi-asserted-by":"crossref","first-page":"106","DOI":"10.1007\/s004649900915","article-title":"A
-        randomized controlled trial assessing the benefit of humidified insufflation
-        gas during laparoscopic surgery","volume":"13","author":"Mouton","year":"1998","journal-title":"Surg
-        Endosc"},{"key":"2024093005181379800_bib49","first-page":"768","article-title":"Effect
-        of fluid instillation on postlaparoscopy pain","volume":"38","author":"Perry","year":"1993","journal-title":"J
-        Reprod Med"},{"key":"2024093005181379800_bib50","doi-asserted-by":"crossref","first-page":"273","DOI":"10.1089\/lap.1998.8.273","article-title":"The
-        effect of CO2 insufflation rate on the postlaparoscopic shoulder pain","volume":"8","author":"Berberoglu","year":"1998","journal-title":"Journal
-        of Laparoendoscopic and Advanced Surgical Techniques Part A"},{"key":"2024093005181379800_bib51","doi-asserted-by":"crossref","first-page":"809","DOI":"10.1007\/s004649900459","article-title":"Duration
-        of postlaparoscopic pneumoperitoneum","volume":"11","author":"Draper","year":"1997","journal-title":"Surg
-        Endosc"},{"key":"2024093005181379800_bib52","first-page":"156","article-title":"Does
-        intraoperative gallbladder perforation influence the early outcome of laparoscopic
-        cholecystectomy?","volume":"1","author":"Soper","year":"1991","journal-title":"Surg
-        Laparosc Endosc"},{"key":"2024093005181379800_bib53","doi-asserted-by":"crossref","first-page":"362","DOI":"10.1213\/00000539-199377020-00026","article-title":"Preemptive
-        analgesia \u2212 treating postoperative pain by preventing the establishment
-        of central sensitization","volume":"77","author":"Woolf","year":"1993","journal-title":"Anesth
-        Analg"},{"key":"2024093005181379800_bib54","doi-asserted-by":"crossref","first-page":"757","DOI":"10.1016\/0950-3528(93)90014-J","article-title":"Physiology
-        of pneumoperitoneum","volume":"7","author":"Callery","year":"1993","journal-title":"Ballieres
-        Clin Gastroenterol"},{"key":"2024093005181379800_bib55","doi-asserted-by":"crossref","first-page":"262","DOI":"10.1111\/j.1471-0528.1987.tb02365.x","article-title":"Pain
-        after laparoscopy related to posture and ring versus clip sterilization","volume":"94","author":"Dobbs","year":"1987","journal-title":"Br
-        J Obstet Gynaecol"},{"key":"2024093005181379800_bib56","doi-asserted-by":"crossref","first-page":"1959","DOI":"10.1016\/S0140-6736(99)01307-0","article-title":"Neuropathic
-        pain: aetiology, symptoms, mechanisms, and management","volume":"353","author":"Woolf","year":"1999","journal-title":"Lancet"},{"key":"2024093005181379800_bib57","first-page":"1718","article-title":"Significance
-        of phrenic nerve block in the anesthetic management of laparoscopic cholecystectomy","volume":"43","author":"Matsui","year":"1994","journal-title":"Masui"},{"key":"2024093005181379800_bib58","first-page":"A0004","volume-title":"Abstracts
-        of the 9th World Congress of Anaesthesiologists","author":"Comyn","year":"1988"},{"key":"2024093005181379800_bib59","doi-asserted-by":"crossref","first-page":"132","DOI":"10.1016\/S0002-9378(96)70385-X","article-title":"Pathophysiologic
-        features of a pneumoperitoneum at laparoscopy: a swine model","volume":"174","author":"Volz","year":"1996","journal-title":"Am
-        J Obstet Gynecol"},{"key":"2024093005181379800_bib60","doi-asserted-by":"crossref","first-page":"129","DOI":"10.1016\/S1074-3804(98)80078-9","article-title":"The
-        effects of duration of CO2 insufflation and irrigation on peritoneal microcirculation
-        assessed by free radical scavengers and total glutathion levels during operative
-        laparoscopy","volume":"5","author":"Taskin","year":"1998","journal-title":"J
-        Am Assoc Gynecol Laparosc"},{"key":"2024093005181379800_bib61","doi-asserted-by":"crossref","first-page":"1060","DOI":"10.1002\/bjs.1800820820","article-title":"Exposure
-        of the peritoneal cavity to air regulates early inflammatory responses to
-        surgery in a murine model","volume":"82","author":"Watson","year":"1995","journal-title":"Br
-        J Surg"},{"key":"2024093005181379800_bib62","first-page":"200","article-title":"Das
-        postlaparoskopische schmerzsyndrom","volume":"65","author":"Pier","year":"1994","journal-title":"Chirurg"},{"key":"2024093005181379800_bib63","first-page":"215","article-title":"Pain
-        mechanisms in laparoscopic surgery","volume":"1","author":"Nyerges","year":"1994","journal-title":"Seminars
-        in Laparoscopic Surgery"},{"key":"2024093005181379800_bib64","doi-asserted-by":"crossref","first-page":"480","DOI":"10.1097\/00019509-199712000-00010","article-title":"Splanchnic
-        mucosal ischemia: an unrecognized consequence of routine pneumoperitoneum","volume":"7","author":"Windsor","year":"1997","journal-title":"Surg
-        Laparosc Endosc"},{"key":"2024093005181379800_bib65","first-page":"732","article-title":"Intraoperative
-        ketorolac has an opioid-sparing effect in women after diagnostic laparoscopy
-        but not after laparoscopic tubal ligation","volume":"82","author":"Green","year":"1996","journal-title":"Anesth
-        Analg"},{"key":"2024093005181379800_bib66","doi-asserted-by":"crossref","first-page":"340","DOI":"10.1097\/00019509-199410000-00003","article-title":"Intramuscular
-        diclofenac sodium for postoperative analgesia after laparoscopic cholecystectomy:
-        a randomised, controlled trial","volume":"4","author":"Wilson","year":"1994","journal-title":"Surg
-        Laparosc Endosc"},{"key":"2024093005181379800_bib67","doi-asserted-by":"crossref","first-page":"1061","DOI":"10.1213\/00000539-199305000-00026","article-title":"Effects
-        of ketolorac on postoperative analgesia and ventilatory function after laparoscopic
-        cholecystectomy","volume":"76","author":"Liu","year":"1993","journal-title":"Anesth
-        Analg"},{"key":"2024093005181379800_bib68","first-page":"44","article-title":"Preoperative
-        multimodal analgesia facilitates recovery after ambulatory laparoscopic cholecystectomy","volume":"82","author":"Michaloliakou","year":"1996","journal-title":"Anesth
-        Analg"},{"key":"2024093005181379800_bib69","doi-asserted-by":"crossref","first-page":"806","DOI":"10.1007\/s001040050275","article-title":"Postoperative
-        analgesia after endoscopic abdominal operations. A randomized double-blind
-        study of perioperative effectiveness of metimazole","volume":"68","author":"Steffen","year":"1997","journal-title":"Chirurg"},{"key":"2024093005181379800_bib70","first-page":"501","article-title":"A
-        comparative study of ketorolac and diclofenac on post-laparoscopic cholecystectomy
-        pain","volume":"12","author":"Fredman","year":"1995","journal-title":"Eur
-        J Anaesthesiol"},{"key":"2024093005181379800_bib71","doi-asserted-by":"crossref","first-page":"886","DOI":"10.1213\/00000539-199710000-00032","article-title":"Splanchnic
-        and renal deterioration during and after laparoscopic cholecystectomy: a comparison
-        of the carbon dioxide pneumoperitoneum and the abdominal wall lift method","volume":"85","author":"Koivusalo","year":"1997","journal-title":"Anesth
-        Analg"},{"key":"2024093005181379800_bib72","doi-asserted-by":"crossref","first-page":"193","DOI":"10.7326\/0003-4819-126-3-199702010-00003","article-title":"Parenteral
-        ketorolac: the risk for acute renal failure","volume":"126","author":"Feldman","year":"1997","journal-title":"Ann
-        Intern Med"},{"key":"2024093005181379800_bib73","doi-asserted-by":"crossref","first-page":"275","DOI":"10.1016\/S0039-6109(05)70383-2","article-title":"Analgesic
-        agents for the postoperative period. Nonopioids","volume":"79","author":"Power","year":"1999","journal-title":"Surg
-        Clin North Am"},{"key":"2024093005181379800_bib74","doi-asserted-by":"crossref","first-page":"405","DOI":"10.1089\/lps.1994.4.405","article-title":"The
-        effects of intraperitoneal local anesthetic on analgesic requirements and
-        endocrine response after laparoscopic cholecystectomy: a randomized double-blind
-        controlled study","volume":"4","author":"Pasqualucci","year":"1994","journal-title":"J
-        Laparoendosc Surg"},{"key":"2024093005181379800_bib75","doi-asserted-by":"crossref","first-page":"44","DOI":"10.1007\/s004649910011","article-title":"A
-        double-blinded evaluation of intraperitoneal bupivacaine vs saline for the
-        reduction of postoperative pain and nausea after laparoscopic cholecystectomy","volume":"10","author":"Szem","year":"1996","journal-title":"Surg
-        Endosc"},{"key":"2024093005181379800_bib76","doi-asserted-by":"crossref","first-page":"193","DOI":"10.1111\/j.1399-6576.1997.tb04664.x","article-title":"Intraperitoneal
-        bupivacaine for analgesia after laparoscopic cholecystectomy","volume":"41","author":"Mraovic","year":"1997","journal-title":"Acta
-        Anaesthesiol Scand"},{"key":"2024093005181379800_bib77","doi-asserted-by":"crossref","first-page":"263","DOI":"10.1093\/bja\/72.3.263","article-title":"Intraperitoneal
-        local anaesthetics after laparoscopic cholecystectomy: effects on postoperative
-        pain, metabolic responses and lung function","volume":"72","author":"Rademaker","year":"1994","journal-title":"Br
-        J Anaesth"},{"key":"2024093005181379800_bib78","doi-asserted-by":"crossref","first-page":"195","DOI":"10.1111\/j.1399-6576.1995.tb04042.x","article-title":"Effect
-        of intraperitoneal bupivacaine on pain after laparoscopic cholecystectomy","volume":"39","author":"Scheinin","year":"1995","journal-title":"Acta
-        Anaesthesiol Scand"},{"key":"2024093005181379800_bib79","doi-asserted-by":"crossref","first-page":"128","DOI":"10.1016\/0750-7658(96)85033-7","article-title":"Analgesia
-        after laparoscopic cholecystectomy by intraperitoneal administration of bupivacaine","volume":"15","author":"Fuhrer","year":"1996","journal-title":"Ann
-        Fr Anesth Reanim"},{"key":"2024093005181379800_bib80","doi-asserted-by":"crossref","first-page":"634","DOI":"10.1097\/00000542-199503000-00004","article-title":"Intraperitoneal
-        versus interpleural morphine or bupivacaine for pain after laparoscopic cholecystectomy","volume":"82","author":"Schulte-Steinberg","year":"1995","journal-title":"Anesthesiology"},{"key":"2024093005181379800_bib81","doi-asserted-by":"crossref","first-page":"1569","DOI":"10.1016\/0140-6736(91)92384-E","article-title":"Intraperitoneal
-        local anaesthetic for shoulder pain after day-case laparoscopy","volume":"338","author":"Narchi","year":"1991","journal-title":"Lancet"},{"key":"2024093005181379800_bib82","first-page":"A26","article-title":"Subphrenic
-        catheter for postoperative analgesia after laparoscopic cholecystectomy","volume":"79","author":"Goegler","year":"1993","journal-title":"Anesthesiolgy"},{"key":"2024093005181379800_bib83","doi-asserted-by":"crossref","first-page":"406","DOI":"10.1093\/bja\/80.3.406-a","article-title":"Pain
-        after laparoscopic cholecystectomy","volume":"80","author":"Mraovic","year":"1998","journal-title":"Br
-        J Anaesth"},{"key":"2024093005181379800_bib84","doi-asserted-by":"crossref","first-page":"191","DOI":"10.1111\/j.1399-6576.1997.tb04663.x","article-title":"Pain
-        after laparoscopic cholecystectomy. Do we do our best?","volume":"41","author":"Lindgren","year":"1997","journal-title":"Acta
-        Anaesthesiol Scand"},{"key":"2024093005181379800_bib85","first-page":"1223","article-title":"Randomized
-        trial of periportal peritoneal bupivacaine for pain relief after laparoscopic
-        cholecystectomy","volume":"83","author":"Alexander","year":"1996","journal-title":"Br
-        J Surg"},{"key":"2024093005181379800_bib86","doi-asserted-by":"crossref","first-page":"362","DOI":"10.1097\/00019509-199610000-00005","article-title":"The
-        effect and timing of local anesthesia in laparoscopic cholecystectomy","volume":"6","author":"Sarac","year":"1996","journal-title":"Surg
-        Laparosc Endosc"},{"key":"2024093005181379800_bib87","doi-asserted-by":"crossref","first-page":"267","DOI":"10.1111\/j.1471-0528.1987.tb02366.x","article-title":"Abdominal
-        pain after laparoscopy: the value of a gas drain","volume":"94","author":"Alexander","year":"1987","journal-title":"Br
-        J Obstet Gynaecol"},{"key":"2024093005181379800_bib88","doi-asserted-by":"crossref","first-page":"367","DOI":"10.1111\/j.1471-0528.1984.tb05925.x","article-title":"The
-        recovery of gases insufflated at laparoscopy","volume":"91","author":"Chamberlain","year":"1984","journal-title":"Br
-        J Obstet Gynaecol"},{"key":"2024093005181379800_bib89","doi-asserted-by":"crossref","first-page":"149","DOI":"10.1016\/S1074-3804(98)80081-9","article-title":"A
-        randomized, prospective comparison of pain after gasless laparoscopy and traditional
-        laparoscopy","volume":"5","author":"Guido","year":"1998","journal-title":"J
-        Am Assoc Gynecol Laparosc"},{"key":"2024093005181379800_bib90","first-page":"255","article-title":"Laparoscopy.
-        Gasless vs CO2 pneumoperitoneum","volume":"42","author":"Johnson","year":"1997","journal-title":"J
-        Reprod Med"},{"key":"2024093005181379800_bib91","doi-asserted-by":"crossref","first-page":"501","DOI":"10.1007\/BF00206835","article-title":"Nitrous
-        oxide pneumoperitoneum revisited. Is there a risk of combustion?","volume":"9","author":"Hunter","year":"1995","journal-title":"Surg
-        Endosc"},{"key":"2024093005181379800_bib92","doi-asserted-by":"crossref","first-page":"453","DOI":"10.1016\/S0016-5085(82)80393-4","article-title":"Comparison
-        of CO2- and N2O-induced discomfort during peritoneoscopy under local anesthesia","volume":"82","author":"Sharp","year":"1982","journal-title":"Gastroenterology"},{"key":"2024093005181379800_bib93","doi-asserted-by":"crossref","first-page":"173","DOI":"10.1016\/S0016-5107(82)73045-7","article-title":"The
-        influence of carbon dioxide and nitrous oxide on pain during laparoscopy:
-        a double-blind, controlled trial","volume":"28","author":"Minoli","year":"1982","journal-title":"Gastrointestinal
-        Endoscopy"},{"key":"2024093005181379800_bib94","doi-asserted-by":"crossref","first-page":"272","DOI":"10.1001\/archsurg.1997.01430270058012","article-title":"Effects
-        of pneumoperitoneum with carbon dioxide, argon, or helium on hemodynamic and
-        respiratory function","volume":"132","author":"Junghans","year":"1997","journal-title":"Arch
-        Surg"},{"key":"2024093005181379800_bib95","doi-asserted-by":"crossref","first-page":"38","DOI":"10.1016\/S0016-5107(96)70258-4","article-title":"Prospective
-        comparson of helium versus carbon dioxide pneumoperitoneum","volume":"43","author":"Neuberger","year":"1996","journal-title":"Gastrointest
-        Endosc"},{"key":"2024093005181379800_bib96","doi-asserted-by":"crossref","first-page":"735","DOI":"10.1046\/j.1365-2168.1998.00769.x","article-title":"Port-site
-        metastases following laparoscopic surgery","volume":"85","author":"Neuhaus","year":"1998","journal-title":"Br
-        J Surg"},{"key":"2024093005181379800_bib97","doi-asserted-by":"crossref","first-page":"300","DOI":"10.1055\/s-2007-1022844","article-title":"Pain
-        reduction after pelvi\/-laparoscopic interventions by insufflation of CO2
-        gas at body temperature (Flow-Therme)","volume":"54","author":"Semm","year":"1994","journal-title":"Geburtshilfe
-        Frauenheilkd"},{"key":"2024093005181379800_bib98","doi-asserted-by":"crossref","first-page":"153","DOI":"10.1097\/00019509-199704000-00018","article-title":"Laparoscopic
-        hypothermia: heat loss from insufflation gas flow","volume":"7","author":"Huntington","year":"1997","journal-title":"Surg
-        Laparosc Endosc"},{"key":"2024093005181379800_bib99","doi-asserted-by":"crossref","first-page":"101","DOI":"10.1007\/s004649900914","article-title":"Humidified
-        gas prevents hypothermia induced by laparoscopic insufflation: a randomized
-        controlled study in a pig model","volume":"13","author":"Bessell","year":"1999","journal-title":"Surg
-        Endosc"},{"key":"2024093005181379800_bib100","doi-asserted-by":"crossref","first-page":"1126","DOI":"10.1007\/s004649900798","article-title":"Effect
-        of temperature of insufflated CO2 during and after prolonged laparoscopic
-        surgery","volume":"12","author":"Backlund","year":"1998","journal-title":"Surg
-        Endosc"},{"key":"2024093005181379800_bib101","doi-asserted-by":"crossref","first-page":"623","DOI":"10.1080\/110241598750005732","article-title":"Microlaparoscopic
-        cholecystectomy \u2212 the first 20 cases: is it an alternative to conventional
-        LC?","volume":"164","author":"Watanabe","year":"1997","journal-title":"Eur
-        J Surg"},{"key":"2024093005181379800_bib102","doi-asserted-by":"crossref","first-page":"342","DOI":"10.1097\/00003643-199805000-00017","article-title":"Efficacy
-        of thoracic epidural analgesia following laparoscopic cholecystectomy","volume":"15","author":"Fujii","year":"1998","journal-title":"Eur
-        J Anaesthesiol"},{"key":"2024093005181379800_bib103","doi-asserted-by":"crossref","first-page":"106","DOI":"10.1111\/j.1399-6576.1998.tb05089.x","article-title":"Desflurane
-        versus propofol maintenance for outpatient laparoscopic cholecystectomy","volume":"42","author":"Raeder","year":"1998","journal-title":"Acta
-        Anaesthesiol Scand"},{"key":"2024093005181379800_bib104","doi-asserted-by":"crossref","first-page":"573","DOI":"10.1007\/s001010050095","article-title":"Comparative
-        study of the recovery phase. Laparoscopic cholecystectomy following isoflurane,
-        methohexital and propofol anaesthesia","volume":"43","author":"Blobner","year":"1994","journal-title":"Anaesthesist"}],"container-title":["Journal
-        of British Surgery"],"language":"en","link":[{"URL":"https:\/\/api.wiley.com\/onlinelibrary\/tdm\/v1\/articles\/10.1046%2Fj.1365-2168.2000.01374.x","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.wiley.com\/onlinelibrary\/tdm\/v1\/articles\/10.1046%2Fj.1365-2168.2000.01374.x","content-type":"unspecified","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/academic.oup.com\/bjs\/article-pdf\/87\/3\/273\/59438505\/bjs542.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"syndication"},{"URL":"https:\/\/academic.oup.com\/bjs\/article-pdf\/87\/3\/273\/59438505\/bjs542.pdf","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2024,9,30]],"date-time":"2024-09-30T05:19:05Z","timestamp":1727673545000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/academic.oup.com\/bjs\/article\/87\/3\/273\/6156441"}},"issued":{"date-parts":[[2000,3,1]]},"references-count":104,"journal-issue":{"issue":"3","published-online":{"date-parts":[[2000,3,1]]},"published-print":{"date-parts":[[2000,3,1]]}},"URL":"https:\/\/doi.org\/10.1046\/j.1365-2168.2000.01374.x","ISSN":["0007-1323","1365-2168"],"issn-type":[{"value":"0007-1323","type":"print"},{"value":"1365-2168","type":"electronic"}],"published-other":{"date-parts":[[2000,3]]},"published":{"date-parts":[[2000,3,1]]}},{"indexed":{"date-parts":[[2022,4,4]],"date-time":"2022-04-04T11:43:36Z","timestamp":1649072616313},"reference-count":0,"publisher":"EDP
-        Sciences","issue":"3","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["Prat.
-        Ind. M\u00e9c."],"published-print":{"date-parts":[[1939,6]]},"DOI":"10.1051\/mattech\/193922030098","type":"journal-article","created":{"date-parts":[[2017,6,9]],"date-time":"2017-06-09T08:49:38Z","timestamp":1496998178000},"page":"98-98","source":"Crossref","is-referenced-by-count":0,"title":["Emploi
-        des fibres de verre comme mati\u00e8re isolante"],"prefix":"10.1051","volume":"22","member":"250","published-online":{"date-parts":[[2017,6,12]]},"container-title":["La
-        Pratique des Industries M\u00e9caniques"],"link":[{"URL":"http:\/\/www.mattech-journal.org\/10.1051\/mattech\/193922030098\/pdf","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2017,6,9]],"date-time":"2017-06-09T08:49:38Z","timestamp":1496998178000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/www.mattech-journal.org\/10.1051\/mattech\/193922030098"}},"issued":{"date-parts":[[1939,6]]},"references-count":0,"journal-issue":{"issue":"3"},"alternative-id":["mattech19392203p98"],"URL":"https:\/\/doi.org\/10.1051\/mattech\/193922030098","ISSN":["0399-1113"],"issn-type":[{"value":"0399-1113","type":"print"}],"published":{"date-parts":[[1939,6]]}},{"indexed":{"date-parts":[[2026,2,27]],"date-time":"2026-02-27T20:08:29Z","timestamp":1772222909197,"version":"3.50.1"},"reference-count":0,"publisher":"Public
-        Library of Science (PLoS)","content-domain":{"domain":[],"crossmark-restriction":false},"DOI":"10.1371\/journal.pone.0323007.g002","type":"component","created":{"date-parts":[[2025,5,7]],"date-time":"2025-05-07T13:35:21Z","timestamp":1746624921000},"source":"Crossref","is-referenced-by-count":0,"prefix":"10.1371","member":"340","deposited":{"date-parts":[[2025,5,7]],"date-time":"2025-05-07T13:35:22Z","timestamp":1746624922000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/dx.plos.org\/10.1371\/journal.pone.0323007.g002"}},"issued":{"date-parts":[[null]]},"references-count":0,"URL":"https:\/\/doi.org\/10.1371\/journal.pone.0323007.g002","relation":{"is-component-of":[{"id-type":"doi","id":"10.1371\/journal.pone.0323007","asserted-by":"object"}]}}],"items-per-page":20,"query":{"start-index":0,"search-terms":null}}}'
+      string: '{"status":"ok","message-type":"work-list","message-version":"1.0.0","message":{"facets":{},"total-results":5,"items":[{"indexed":{"date-parts":[[2025,2,21]],"date-time":"2025-02-21T16:49:31Z","timestamp":1740156571549,"version":"3.37.3"},"reference-count":15,"publisher":"Informa
+        UK Limited","issue":"1","license":[{"start":{"date-parts":[[2017,12,14]],"date-time":"2017-12-14T00:00:00Z","timestamp":1513209600000},"content-version":"vor","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/4.0\/"}],"content-domain":{"domain":["www.tandfonline.com"],"crossmark-restriction":true},"short-container-title":["Communicative
+        &amp; Integrative Biology"],"published-print":{"date-parts":[[2018,1,2]]},"DOI":"10.1080\/19420889.2017.1395120","type":"journal-article","created":{"date-parts":[[2017,11,9]],"date-time":"2017-11-09T16:20:10Z","timestamp":1510244410000},"page":"e1395120","update-policy":"https:\/\/doi.org\/10.1080\/tandf_crossmark_01","source":"Crossref","is-referenced-by-count":0,"title":["The
+        dire side of autophagy in aging: Lessons from <i>C. elegans<\/i>"],"prefix":"10.1080","volume":"11","author":[{"given":"Rebeca","family":"Medina","sequence":"first","affiliation":[{"name":"Laboratory
+        of Molecular Epigenetics, Institute of Molecular Biology (IMB), Mainz, Germany"}],"role":[{"role":"author","vocabulary":"crossref"}]},{"ORCID":"https:\/\/orcid.org\/0000-0002-7711-0350","authenticated-orcid":false,"given":"Holger","family":"Richly","sequence":"additional","affiliation":[{"name":"Laboratory
+        of Molecular Epigenetics, Institute of Molecular Biology (IMB), Mainz, Germany"}],"role":[{"role":"author","vocabulary":"crossref"}]}],"member":"301","published-online":{"date-parts":[[2017,12,14]]},"reference":[{"key":"cit0001","doi-asserted-by":"publisher","DOI":"10.4161\/auto.1.3.2017"},{"key":"cit0002","doi-asserted-by":"publisher","DOI":"10.1016\/j.tig.2008.10.002"},{"key":"cit0003","doi-asserted-by":"publisher","DOI":"10.1146\/annurev-biochem-061516-044859"},{"key":"cit0004","doi-asserted-by":"publisher","DOI":"10.1038\/80384"},{"key":"cit0005","doi-asserted-by":"publisher","DOI":"10.1093\/hmg\/11.22.2689"},{"key":"cit0006","doi-asserted-by":"publisher","DOI":"10.1101\/gad.301648.117"},{"key":"cit0007","doi-asserted-by":"publisher","DOI":"10.1016\/j.cell.2017.04.003"},{"key":"cit0008","doi-asserted-by":"publisher","DOI":"10.1016\/j.devcel.2015.02.002"},{"key":"cit0009","doi-asserted-by":"publisher","DOI":"10.1016\/j.devcel.2017.02.016"},{"key":"cit0010","doi-asserted-by":"publisher","DOI":"10.1242\/jcs.093849"},{"key":"cit0011","doi-asserted-by":"publisher","DOI":"10.15252\/embj.201488104"},{"key":"cit0012","doi-asserted-by":"publisher","DOI":"10.1038\/nature21362"},{"key":"cit0013","doi-asserted-by":"publisher","DOI":"10.1186\/2046-2395-1-6"},{"key":"cit0014","first-page":"143","volume":"3","author":"Hou
+        NS","year":"2012","journal-title":"Aging Front Physiol"},{"key":"cit0015","doi-asserted-by":"publisher","DOI":"10.1038\/nrn3380"}],"container-title":["Communicative
+        &amp; Integrative Biology"],"language":"en","link":[{"URL":"https:\/\/tandfonline.com\/doi\/pdf\/10.1080\/19420889.2017.1395120","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/www.tandfonline.com\/doi\/pdf\/10.1080\/19420889.2017.1395120","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2020,8,16]],"date-time":"2020-08-16T04:00:51Z","timestamp":1597550451000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.tandfonline.com\/doi\/full\/10.1080\/19420889.2017.1395120"}},"issued":{"date-parts":[[2017,12,14]]},"references-count":15,"journal-issue":{"issue":"1","published-print":{"date-parts":[[2018,1,2]]}},"alternative-id":["10.1080\/19420889.2017.1395120"],"URL":"https:\/\/doi.org\/10.1080\/19420889.2017.1395120","ISSN":["1942-0889"],"issn-type":[{"type":"electronic","value":"1942-0889"}],"published":{"date-parts":[[2017,12,14]]},"assertion":[{"value":"The
+        publishing and review policy for this title is described in its Aims & Scope.","order":1,"name":"peerreview_statement","label":"Peer
+        Review Statement"},{"value":"http:\/\/www.tandfonline.com\/action\/journalInformation?show=aimsScope&journalCode=kcib20","URL":"http:\/\/www.tandfonline.com\/action\/journalInformation?show=aimsScope&journalCode=kcib20","order":2,"name":"aims_and_scope_url","label":"Aim
+        & Scope"},{"value":"2017-10-13","order":0,"name":"received","label":"Received","group":{"name":"publication_history","label":"Publication
+        History"}},{"value":"2017-10-17","order":2,"name":"accepted","label":"Accepted","group":{"name":"publication_history","label":"Publication
+        History"}},{"value":"2017-12-14","order":3,"name":"published","label":"Published","group":{"name":"publication_history","label":"Publication
+        History"}}]},{"indexed":{"date-parts":[[2022,4,3]],"date-time":"2022-04-03T22:13:39Z","timestamp":1649024019890},"reference-count":0,"publisher":"Elsevier
+        BV","issue":"6","license":[{"start":{"date-parts":[[1984,6,1]],"date-time":"1984-06-01T00:00:00Z","timestamp":454896000000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/www.elsevier.com\/tdm\/userlicense\/1.0\/"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["Pharmacology
+        Biochemistry and Behavior"],"published-print":{"date-parts":[[1984,6]]},"DOI":"10.1016\/0091-3057(84)90081-9","type":"journal-article","created":{"date-parts":[[2005,12,13]],"date-time":"2005-12-13T02:45:49Z","timestamp":1134441949000},"page":"994","source":"Crossref","is-referenced-by-count":0,"title":["Trichloroethylene:
+        Possible opioid involvement"],"prefix":"10.1016","volume":"20","member":"78","container-title":["Pharmacology
+        Biochemistry and Behavior"],"language":"en","link":[{"URL":"https:\/\/api.elsevier.com\/content\/article\/PII:0091305784900819?httpAccept=text\/xml","content-type":"text\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.elsevier.com\/content\/article\/PII:0091305784900819?httpAccept=text\/plain","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2019,1,19]],"date-time":"2019-01-19T10:52:59Z","timestamp":1547895179000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/linkinghub.elsevier.com\/retrieve\/pii\/0091305784900819"}},"issued":{"date-parts":[[1984,6]]},"references-count":0,"journal-issue":{"issue":"6","published-print":{"date-parts":[[1984,6]]}},"alternative-id":["0091305784900819"],"URL":"https:\/\/doi.org\/10.1016\/0091-3057(84)90081-9","ISSN":["0091-3057"],"issn-type":[{"value":"0091-3057","type":"print"}],"published":{"date-parts":[[1984,6]]}},{"indexed":{"date-parts":[[2024,5,20]],"date-time":"2024-05-20T13:40:26Z","timestamp":1716212426823},"reference-count":0,"publisher":"American
+        Psychological Association (APA)","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["Emotion"],"published-print":{"date-parts":[[2024]]},"DOI":"10.1037\/emo0001311.supp","type":"journal-article","created":{"date-parts":[[2023,11,13]],"date-time":"2023-11-13T15:10:37Z","timestamp":1699888237000},"source":"Crossref","is-referenced-by-count":0,"title":["Supplemental
+        Material for Examining Situational Differences in Momentary Emotion Differentiation
+        and Emotional Clarity in Everyday Life"],"prefix":"10.1037","member":"15","published-online":{"date-parts":[[2023,11,16]]},"container-title":["Emotion"],"language":"en","deposited":{"date-parts":[[2024,5,20]],"date-time":"2024-05-20T13:01:14Z","timestamp":1716210074000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/supp.apa.org\/psycarticles\/supplemental\/emo0001311\/emo0001311_supp.html"}},"issued":{"date-parts":[[2023,11,16]]},"references-count":0,"URL":"https:\/\/doi.org\/10.1037\/emo0001311.supp","ISSN":["1528-3542","1931-1516"],"issn-type":[{"value":"1528-3542","type":"print"},{"value":"1931-1516","type":"electronic"}],"published":{"date-parts":[[2023,11,16]]}},{"indexed":{"date-parts":[[2024,9,4]],"date-time":"2024-09-04T09:43:15Z","timestamp":1725442995582},"reference-count":11,"publisher":"IEEE","content-domain":{"domain":[],"crossmark-restriction":false},"published-print":{"date-parts":[[2012,6]]},"DOI":"10.1109\/icc.2012.6364122","type":"proceedings-article","created":{"date-parts":[[2012,12,4]],"date-time":"2012-12-04T05:17:44Z","timestamp":1354598264000},"page":"2070-2074","source":"Crossref","is-referenced-by-count":0,"title":["Memory
+        and complexity analysis of on-the-fly coding schemes for multimedia multicast
+        communications"],"prefix":"10.1109","author":[{"given":"Guillaume","family":"Smith","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Emmanuel","family":"Lochin","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Jerome","family":"Lacan","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Roksana","family":"Boreli","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]}],"member":"263","reference":[{"key":"3","doi-asserted-by":"publisher","DOI":"10.1109\/TMM.2011.2126564"},{"key":"2","doi-asserted-by":"publisher","DOI":"10.1109\/ISIT.2008.4595268"},{"key":"10","doi-asserted-by":"publisher","DOI":"10.1109\/INFCOM.2009.5061931"},{"key":"1","doi-asserted-by":"publisher","DOI":"10.1109\/TIT.2004.834844"},{"key":"7","doi-asserted-by":"publisher","DOI":"10.1109\/ISIT.2010.5513350"},{"key":"6","doi-asserted-by":"publisher","DOI":"10.1109\/PRDC.2001.992706"},{"key":"5","doi-asserted-by":"publisher","DOI":"10.1145\/263876.263881"},{"key":"4","article-title":"Low-density
+        parity-check codes","author":"gallager","year":"1963","journal-title":"IEEE
+        Trans on Information Theory"},{"key":"9","doi-asserted-by":"publisher","DOI":"10.1109\/TIT.2006.874390"},{"key":"8","doi-asserted-by":"publisher","DOI":"10.1109\/SFCS.2002.1181950"},{"key":"11","doi-asserted-by":"publisher","DOI":"10.1109\/GLOCOM.2009.5426098"}],"event":{"name":"IEEE
+        International Conference on Communications (ICC 2012)","start":{"date-parts":[[2012,6,10]]},"location":"Ottawa,
+        ON","end":{"date-parts":[[2012,6,15]]}},"container-title":["2012 IEEE International
+        Conference on Communications (ICC)"],"link":[{"URL":"http:\/\/xplorestaging.ieee.org\/ielx5\/6350935\/6363631\/06364122.pdf?arnumber=6364122","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2017,3,21]],"date-time":"2017-03-21T21:31:56Z","timestamp":1490131916000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/ieeexplore.ieee.org\/document\/6364122\/"}},"issued":{"date-parts":[[2012,6]]},"references-count":11,"URL":"https:\/\/doi.org\/10.1109\/icc.2012.6364122","published":{"date-parts":[[2012,6]]}},{"indexed":{"date-parts":[[2022,3,31]],"date-time":"2022-03-31T20:45:57Z","timestamp":1648759557822},"publisher-location":"Paris,
+        France","reference-count":0,"publisher":"Atlantis Press","content-domain":{"domain":[],"crossmark-restriction":false},"DOI":"10.2991\/icismme-15.2015.92","type":"proceedings-article","created":{"date-parts":[[2015,5,26]],"date-time":"2015-05-26T09:51:46Z","timestamp":1432633906000},"source":"Crossref","is-referenced-by-count":0,"title":["The
+        Element Disturbed Equation of Dissimilar Material for The Analysis of Duality
+        Disturbance"],"prefix":"10.2991","author":[{"given":"Shoulong","family":"Zhang","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Liugang","family":"Du","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Yanbin","family":"Huang","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Guangwu","family":"Zhang","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Jinhe","family":"Gao","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Weiling","family":"Huang","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Xiang","family":"Tao","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]}],"member":"1574","published-online":{"date-parts":[[2015]]},"event":{"name":"First
+        International Conference on Information Sciences, Machinery, Materials and
+        Energy","location":"Chongqing, China","acronym":"icismme-15","start":{"date-parts":[[2015,4,11]]},"end":{"date-parts":[[2015,4,13]]}},"container-title":["Advances
+        in Intelligent Systems Research","Proceedings of the First International Conference
+        on Information Sciences, Machinery, Materials and Energy"],"deposited":{"date-parts":[[2021,6,15]],"date-time":"2021-06-15T13:17:31Z","timestamp":1623763051000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.atlantis-press.com\/article\/21021"}},"subtitle":[""],"issued":{"date-parts":[[2015]]},"references-count":0,"alternative-id":["21021"],"URL":"https:\/\/doi.org\/10.2991\/icismme-15.2015.92","ISSN":["1951-6851"],"issn-type":[{"value":"1951-6851","type":"electronic"}],"published":{"date-parts":[[2015]]}}],"items-per-page":20,"query":{"start-index":0,"search-terms":null}}}'
     headers:
       Connection:
       - keep-alive
-      Content-Length:
-      - '10185'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:51:01 GMT
+      - Thu, 23 Jul 2026 06:09:46 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -376,6 +114,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
+      content-length:
+      - '13398'
       permissions-policy:
       - interest-cohort=()
       server:
@@ -383,13 +123,13 @@ interactions:
       vary:
       - Accept-Encoding
       x-api-pool:
-      - polite
+      - polite-array
       x-concurrency-limit:
       - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '10'
+      - '3'
     status:
       code: 200
       message: OK

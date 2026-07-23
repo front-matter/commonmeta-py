@@ -88,8 +88,7 @@ def test_doi_with_data_citation():
         },
     ]
     assert subject.container == {
-        "identifier": "2050-084X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2050-084X", "identifier_type": "ISSN"}],
         "title": "eLife",
         "type": "Journal",
         "volume": "3",
@@ -153,8 +152,7 @@ def test_journal_article():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "1932-6203",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1932-6203", "identifier_type": "ISSN"}],
         "title": "PLoS ONE",
         "type": "Journal",
         "issue": "1",
@@ -216,8 +214,7 @@ def test_journal_article_with_funding():
         }
     ]
     assert subject.container == {
-        "identifier": "1664-462X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1664-462X", "identifier_type": "ISSN"}],
         "title": "Frontiers in Plant Science",
         "type": "Journal",
         "volume": "10",
@@ -257,8 +254,7 @@ def test_journal_article_original_language():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "1881-4751",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1881-4751", "identifier_type": "ISSN"}],
         "title": "Japanese Journal of Physical Fitness and Sports Medicine",
         "type": "Journal",
         "issue": "1",
@@ -310,8 +306,7 @@ def test_journal_article_with_rdf_for_container():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "1937-240X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1937-240X", "identifier_type": "ISSN"}],
         "title": "Journal of Crustacean Biology",
         "type": "Journal",
         "issue": "6",
@@ -352,8 +347,7 @@ def test_book_chapter_with_rdf_for_container():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "1611-3349",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1611-3349", "identifier_type": "ISSN"}],
         "title": "Lecture Notes in Computer Science",
         "type": "Book",
         "first_page": "499",
@@ -460,10 +454,12 @@ def test_blog_post():
         "asserted_by": "Publisher",
     }
     assert subject.relations == [
-        {"type": "IsVersionOf", "id": "https://doi.org/10.53731/q5ges-cp507"}
+        {"type": "IsVersionOf", "id": "https://doi.org/10.53731/q5ges-cp507"},
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.funding_references is None
     assert subject.container == {
+        "identifiers": [{"identifier": "2749-9952", "identifier_type": "ISSN"}],
         "title": "Front Matter",
         "type": "Blog",
     }
@@ -603,8 +599,7 @@ def test_doi_with_sici():
     assert subject.funding_references is None
     assert subject.container == {
         "first_page": "2832",
-        "identifier": "0012-9658",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0012-9658", "identifier_type": "ISSN"}],
         "issue": "11",
         "last_page": "2841",
         "title": "Ecology",
@@ -665,8 +660,7 @@ def test_doi_with_orcid():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "2090-1844",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2090-1844", "identifier_type": "ISSN"}],
         "title": "Pulmonary Medicine",
         "type": "Journal",
         "volume": "2012",
@@ -732,8 +726,7 @@ def test_date_in_future():
         {"funder_name": "NIH", "award_number": "T32 OD011089"},
     ]
     assert subject.container == {
-        "identifier": "0014-2999",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0014-2999", "identifier_type": "ISSN"}],
         "title": "European Journal of Pharmacology",
         "type": "Journal",
         "volume": "759",
@@ -788,8 +781,7 @@ def test_vor_with_url():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "1365-2540",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1365-2540", "identifier_type": "ISSN"}],
         "title": "Heredity",
         "type": "Journal",
         "volume": "111",
@@ -957,8 +949,7 @@ def test_book_chapter():
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Book",
-        "identifier": "9783662463703",
-        "identifier_type": "ISBN",
+        "identifiers": [{"identifier": "9783662463703", "identifier_type": "ISBN"}],
         "title": "Shoulder Stiffness",
         "first_page": "155",
         "last_page": "158",
@@ -997,8 +988,7 @@ def test_another_book_chapter():
     assert subject.container == {
         "type": "Book",
         "title": "SpringerBriefs in Medical Earth Sciences",
-        "identifier": "2523-3629",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2523-3629", "identifier_type": "ISSN"}],
         "first_page": "1",
         "last_page": "13",
     }
@@ -1042,8 +1032,7 @@ def test_yet_another_book_chapter():
     assert subject.container == {
         "type": "Book",
         "title": "Graph-Based Methods in Computer Vision",
-        "identifier": "9781466618923",
-        "identifier_type": "ISBN",
+        "identifiers": [{"identifier": "9781466618923", "identifier_type": "ISBN"}],
         "first_page": "72",
         "last_page": "94",
     }
@@ -1100,8 +1089,7 @@ def test_missing_contributor():
         "first_page": "15",
         "issue": "2",
         "volume": "6",
-        "identifier": "2304-6775",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2304-6775", "identifier_type": "ISSN"}],
     }
     assert subject.subjects is None
     assert subject.language == "en"
@@ -1201,8 +1189,7 @@ def test_book():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "9781108348843",
-        "identifier_type": "ISBN",
+        "identifiers": [{"identifier": "9781108348843", "identifier_type": "ISBN"}],
         "type": "BookSeries",
     }
     assert subject.subjects is None
@@ -1325,8 +1312,7 @@ def test_multipe_titles():
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Journal",
-        "identifier": "1433-0563",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1433-0563", "identifier_type": "ISSN"}],
         "title": "Der Urologe",
         "volume": "46",
         "issue": "7",

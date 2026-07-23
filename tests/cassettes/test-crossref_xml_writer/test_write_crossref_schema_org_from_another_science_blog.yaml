@@ -195,7 +195,7 @@ interactions:
       Accept-Ranges:
       - bytes
       Age:
-      - '1'
+      - '0'
       Cache-Control:
       - public,max-age=0,must-revalidate
       Cache-Status:
@@ -203,7 +203,7 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Sun, 19 Jul 2026 07:12:45 GMT
+      - Thu, 23 Jul 2026 06:10:06 GMT
       Etag:
       - '"cd53986a50d6f0ce9a9981b872b83e99-ssl-df"'
       Server:
@@ -215,7 +215,7 @@ interactions:
       Vary:
       - Accept-Encoding
       X-Nf-Request-Id:
-      - 01KXWKGQ9TKVVZSVNR3QJE3QEW
+      - 01KY6SGWS6RANZ6NJRMWYE4A7V
       content-length:
       - '17399'
     status:
@@ -239,17 +239,17 @@ interactions:
       string: "[\n  {\n    \"DOI\": \"10.57099\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a1d7eb6b7ceba580-LHR
+      - a1f88527ab8bd10f-CDG
       Connection:
       - keep-alive
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sun, 19 Jul 2026 07:12:45 GMT
+      - Thu, 23 Jul 2026 06:10:06 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=0zYi0zIH50gJXR3rRx9fszvZzoihsXu%2FOQuY1%2Fael8jjZ%2BIXsETj0Mcd6Kmw3brDvIjJELHFytMRc0UnZbH4S5%2B3FA%2BcYZAgJyglDp61izWlEgtH%2F%2BOxoHxvtx7ad6KGR025LLU%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=tLATK5PtLXJvcJcB1KiLrLFqfHtdTMIVG4EXiX3UogoHuzk54AKGMgUx74J3%2FYiVYCOO%2B7T6eY9Ef5sQ6Z6GYdZMSzfTri%2BScm7kMZX9cWSmMcoF924p3r8oyHjKOh9r%2FGuVE74%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -298,7 +298,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 19 Jul 2026 07:12:45 GMT
+      - Thu, 23 Jul 2026 06:10:07 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -315,7 +315,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-api-pool:
-      - polite
+      - polite-single
       x-concurrency-limit:
       - '3'
       x-rate-limit-interval:

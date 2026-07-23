@@ -16,7 +16,7 @@ interactions:
     body:
       string: '{"authors":[{"affiliation":[{"id":"https://ror.org/05bp8ka05","name":"Metadata
         Game Changers"}],"contributor_roles":[],"family":"Habermann","given":"Ted","url":"https://orcid.org/0000-0003-3585-6733"},{"contributor_roles":[],"family":"Jones","given":"Jamaica","url":"https://orcid.org/0000-0002-1969-2508"},{"contributor_roles":[],"family":"Ratner","given":"Howard","url":"https://orcid.org/0000-0002-2123-6317"},{"contributor_roles":[],"family":"Packer","given":"Tara","url":"https://orcid.org/0009-0009-0223-2917"}],"blog":{"authors":null,"community_id":"b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b","created":1673568000,"current_feed_url":"https://upstream.force11.org/atom/","description":"The
-        community blog for all things Open Research.","doi":"https://doi.org/10.54900/upstream","favicon":"https://rogue-scholar.org/api/communities/b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b/logo","feed_format":"application/atom+xml","feed_url":"https://upstream.force11.org/atom-complete/","filter":null,"generator":"Ghost","home_page_url":"https://upstream.force11.org","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.54900","relative_url":null,"secure":true,"slug":"upstream","status":"active","subfield":"1802","title":"Upstream","updated":1783172415,"use_api":true},"blog_name":"Upstream","blog_slug":"upstream","content_html":"<h2
+        community blog for all things Open Research.","doi":"https://doi.org/10.54900/upstream","favicon":"https://rogue-scholar.org/api/communities/b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b/logo","feed_format":"application/atom+xml","feed_url":"https://upstream.force11.org/atom-complete/","filter":null,"generator":"Ghost","home_page_url":"https://upstream.force11.org","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.54900","relative_url":null,"secure":true,"slug":"upstream","status":"active","subfield":"1802","title":"Upstream","updated":1784622677,"use_api":true},"blog_name":"Upstream","blog_slug":"upstream","content_html":"<h2
         id=\"introduction\">Introduction</h2><p>A recent <a href=\"https://metadatagamechangers.com/blog/2023/9/20/informate-metadata-game-changers-and-chorus-collaborate-to-make-the-invisible-visible\">blog
         post</a> described a new partnership between Metadata Game Changers and <a
         href=\"https://www.chorusaccess.org/\">CHORUS</a> aimed at understanding how
@@ -1430,15 +1430,15 @@ interactions:
         used in research funded by USGS.","src":"https://upstream.force11.org/content/images/2023/11/USGSRepositories.png"},{"alt":"Figure
         5. Connections between datasets (pink) and repositories (blue) for datasets
         used in research funded by NSF.","src":"https://upstream.force11.org/content/images/2023/11/NSFRepositories.png"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1701734400,"reference":[{"id":"https://doi.org/10.5281/zenodo.8284206","unstructured":"Plankyt\u0117,
-        V., Macneil, R., &amp; Chen, X. (2023). <i>Guiding principles for implementing
-        persistent identification and metadata features on research tools to boost
-        interoperability of research data and support sample management workflows</i>.
-        Zenodo."}],"rid":"ayh5h-4ea52","summary":"Introduction A recent blog post
-        described a new partnership between Metadata Game Changers and CHORUS aimed
-        at understanding how CHORUS data can help federal agencies, other funders,
-        and other users access and use information from the global research infrastructure
-        to measure this infrastructure and understand connections between research
-        objects.","tags":["Original Research"],"title":"INFORMATE: Where Are the Data?","updated_at":1781020111,"url":"https://upstream.force11.org/informate-where-are-the-data/","version":"v1"}
+        V., Macneil, R., & Chen, X. (2023). Guiding principles for implementing persistent
+        identification and metadata features on research tools to boost interoperability
+        of research data and support sample management workflows. https://doi.org/10.5281/ZENODO.8284206"}],"rid":"ayh5h-4ea52","summary":"Introduction
+        A recent blog post described a new partnership between Metadata Game Changers
+        and CHORUS aimed at understanding how CHORUS data can help federal agencies,
+        other funders, and other users access and use information from the global
+        research infrastructure to measure this infrastructure and understand connections
+        between research objects.","tags":["Original Research"],"title":"INFORMATE:
+        Where Are the Data?","updated_at":1784487877,"url":"https://upstream.force11.org/informate-where-are-the-data/","version":"v1"}
 
         '
     headers:
@@ -1449,7 +1449,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 19 Jul 2026 06:48:31 GMT
+      - Thu, 23 Jul 2026 06:10:45 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
@@ -1457,7 +1457,7 @@ interactions:
       Vary:
       - Accept-Encoding
       content-length:
-      - '168249'
+      - '168269'
     status:
       code: 200
       message: OK

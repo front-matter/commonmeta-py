@@ -17,32 +17,34 @@ interactions:
       string: "[\n  {\n    \"DOI\": \"10.5281\",\n    \"RA\": \"DataCite\"\n  }\n]"
     headers:
       CF-RAY:
-      - a19eceeb999b154c-CDG
-      Cf-Cache-Status:
-      - DYNAMIC
+      - a1f8859a68a902de-CDG
       Connection:
       - keep-alive
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sun, 12 Jul 2026 08:51:49 GMT
+      - Thu, 23 Jul 2026 06:10:25 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
-      Permissions-Policy:
-      - interest-cohort=(),browsing-topics=()
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=tuG497h032Eksd%2B9tvDFesO%2F6XGBH4Qs3vwUIPDW%2FCzL7xmTiI%2BFzpiuqd7p0jTxF5Cgn8sTR5xxXJD5b%2FgywHlQHH3FykbTZM2Yu4zX4v%2B0%2BJXvnk561ue6YhFhjK3jk2CGI6E%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=0YmSQnjtwI2AkLIVLh6ZTDlvr5%2FGb%2FctLNcutYNuax1wkhtDz0qujd8%2B4upAAwp06hgW2atojEICLqEdQaHtDc0RXM8EtiS4HlkMXaamDeRoAXvJ5TZoyrTgfy%2FvAeUELzgHBp4%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Origin
-      - accept-encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '54'
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
+      - accept-encoding
     status:
       code: 200
       message: OK
@@ -105,7 +107,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sun, 12 Jul 2026 08:51:49 GMT
+      - Thu, 23 Jul 2026 06:10:25 GMT
       Server:
       - nginx/1.24.0 + Phusion Passenger(R) 6.1.2
       Status:
@@ -113,11 +115,13 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-LupoVersion:
-      - 5.72.0
+      - 5.74.0
       X-Powered-By:
       - Phusion Passenger(R) 6.1.2
       cache-control:
       - no-cache
+      content-length:
+      - '8507'
       referrer-policy:
       - strict-origin-when-cross-origin
       vary:
@@ -131,9 +135,9 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-request-id:
-      - cb56f44e-508c-43ff-a393-bda4aecd396d
+      - 8fef80d2-a86d-4bb4-a3cd-3c307396ab99
       x-runtime:
-      - '0.032514'
+      - '0.023968'
       x-xss-protection:
       - '0'
     status:

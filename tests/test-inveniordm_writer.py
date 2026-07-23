@@ -450,12 +450,15 @@ def test_from_jsonfeed_dates():
                 "id": "issued",
             },
         },
-        {"date": "2025-12-05T23:28:54Z", "type": {"id": "updated"}},
+        {"date": "2026-07-20T07:47:23Z", "type": {"id": "updated"}},
     ]
     assert dig(inveniordm, "custom_fields.rs:content_html").startswith(
         "<p>I was lucky enough to have Phil Mannion as one of the peer-reviewers"
     )
-    assert dig(inveniordm, "custom_fields.rs:image") is None
+    assert (
+        dig(inveniordm, "custom_fields.rs:image")
+        == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
+    )
 
 
 @pytest.mark.vcr
@@ -611,7 +614,7 @@ def test_from_jsonfeed_unstructured_references():
     assert len(references) == 7
     assert references[0] == {
         "identifier": "10.1128/iai.05661-11",
-        "reference": "Fang, F. C., Casadevall, A., &amp; Morrison, R. P. (2011). Retracted Science and the Retraction Index. <i>Infection and Immunity</i>, <i>79</i>(10), 3855–3859.",
+        "reference": "Fang, F. C., Casadevall, A.&amp; Morrison, R. P. (2011). Retracted Science and the Retraction Index. <i>Infection and Immunity</i>, <i>79</i>(10), 3855–3859.",
         "scheme": "doi",
     }
 

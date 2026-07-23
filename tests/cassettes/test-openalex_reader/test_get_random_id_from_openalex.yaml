@@ -14,184 +14,55 @@ interactions:
     uri: https://api.openalex.org/works?sample=1
   response:
     body:
-      string: '{"meta": {"count": 1, "db_response_time_ms": 99, "page": 1, "per_page":
+      string: '{"meta": {"count": 1, "db_response_time_ms": 107, "page": 1, "per_page":
         25, "groups_count": null, "x_query": {"oql": "works sample 1", "oqo": {"get_rows":
         "works", "sample": 1}, "url": "/works?sample=1"}, "cost_usd": 0.0001}, "results":
-        [{"id": "https://openalex.org/W4205378101", "doi": "https://doi.org/10.17640/kswst.2021.29.5.31",
-        "title": "Online Adenosine Triphosphate Measurement for Monitoring the Mcrobial
-        Viability in Drinking Water", "display_name": "Online Adenosine Triphosphate
-        Measurement for Monitoring the Mcrobial Viability in Drinking Water", "relevance_score":
-        0.99999994, "publication_year": 2021, "publication_date": "2021-10-31", "ids":
-        {"openalex": "https://openalex.org/W4205378101", "doi": "https://doi.org/10.17640/kswst.2021.29.5.31"},
-        "language": "en", "primary_location": {"id": "doi:10.17640/kswst.2021.29.5.31",
-        "is_oa": false, "landing_page_url": "https://doi.org/10.17640/kswst.2021.29.5.31",
-        "pdf_url": null, "source": {"id": "https://openalex.org/S2764420701", "display_name":
-        "Journal of Korean Society of Water Science and Technology", "issn_l": "1225-7192",
-        "issn": ["1225-7192", "2289-0076"], "is_oa": false, "is_in_doaj": false, "is_core":
-        false, "host_organization": null, "host_organization_name": null, "host_organization_lineage":
-        [], "host_organization_lineage_names": [], "type": "journal"}, "license":
-        null, "license_id": null, "version": "publishedVersion", "is_accepted": true,
-        "is_published": true, "raw_source_name": "Journal of Korean Society of Water
-        Science and Technology", "raw_type": "journal-article"}, "type": "article",
-        "indexed_in": ["crossref"], "open_access": {"is_oa": false, "oa_status": "closed",
-        "oa_url": null, "any_repository_has_fulltext": false}, "authorships": [{"author_position":
-        "first", "author": {"id": "https://openalex.org/A5087267609", "display_name":
-        "Sookhyun Nam", "orcid": null}, "institutions": [], "countries": [], "is_corresponding":
-        false, "raw_author_name": "Sookhyun Nam", "raw_affiliation_strings": [], "raw_orcid":
-        null, "affiliations": []}, {"author_position": "middle", "author": {"id":
-        "https://openalex.org/A5001007644", "display_name": "Tae-Mun Hwang", "orcid":
-        "https://orcid.org/0000-0002-0532-1394"}, "institutions": [], "countries":
-        [], "is_corresponding": false, "raw_author_name": "Tae-Mun Hwang", "raw_affiliation_strings":
-        [], "raw_orcid": null, "affiliations": []}, {"author_position": "middle",
-        "author": {"id": "https://openalex.org/A5110694154", "display_name": "Eunju
-        Kim", "orcid": null}, "institutions": [], "countries": [], "is_corresponding":
-        false, "raw_author_name": "Eunju Kim", "raw_affiliation_strings": [], "raw_orcid":
-        null, "affiliations": []}, {"author_position": "middle", "author": {"id":
-        "https://openalex.org/A5071078072", "display_name": "Jooseok An", "orcid":
-        null}, "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
-        "Jooseok An", "raw_affiliation_strings": [], "raw_orcid": null, "affiliations":
-        []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5090234601",
-        "display_name": "Jae-Wuk Koo", "orcid": null}, "institutions": [], "countries":
-        [], "is_corresponding": false, "raw_author_name": "Jae-Wuk Koo", "raw_affiliation_strings":
-        [], "raw_orcid": null, "affiliations": []}, {"author_position": "last", "author":
-        {"id": "https://openalex.org/A5044935449", "display_name": "Joowun Lee", "orcid":
-        null}, "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
-        "Joowun Lee", "raw_affiliation_strings": [], "raw_orcid": null, "affiliations":
-        []}], "institutions": [], "countries_distinct_count": 0, "institutions_distinct_count":
-        0, "corresponding_author_ids": [], "corresponding_institution_ids": [], "apc_list":
-        null, "apc_paid": null, "fwci": 0.0, "has_fulltext": false, "cited_by_count":
-        0, "citation_normalized_percentile": {"value": 0.19307537, "is_in_top_1_percent":
-        false, "is_in_top_10_percent": false}, "cited_by_percentile_year": null, "biblio":
-        {"volume": "29", "issue": "5", "first_page": "31", "last_page": "38"}, "is_retracted":
-        false, "is_paratext": false, "is_xpac": false, "primary_topic": {"id": "https://openalex.org/T12697",
-        "display_name": "Water Quality Monitoring Technologies", "score": 0.9966999888420105,
-        "subfield": {"id": "https://openalex.org/subfields/2312", "display_name":
-        "Water Science and Technology"}, "field": {"id": "https://openalex.org/fields/23",
-        "display_name": "Environmental Science"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}, "topics": [{"id": "https://openalex.org/T12697",
-        "display_name": "Water Quality Monitoring Technologies", "score": 0.9966999888420105,
-        "subfield": {"id": "https://openalex.org/subfields/2312", "display_name":
-        "Water Science and Technology"}, "field": {"id": "https://openalex.org/fields/23",
-        "display_name": "Environmental Science"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}, {"id": "https://openalex.org/T11393",
-        "display_name": "Biosensors and Analytical Detection", "score": 0.9879999756813049,
-        "subfield": {"id": "https://openalex.org/subfields/2204", "display_name":
-        "Biomedical Engineering"}, "field": {"id": "https://openalex.org/fields/22",
-        "display_name": "Engineering"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}, {"id": "https://openalex.org/T14189",
-        "display_name": "Intravenous Infusion Technology and Safety", "score": 0.9797000288963318,
-        "subfield": {"id": "https://openalex.org/subfields/2204", "display_name":
-        "Biomedical Engineering"}, "field": {"id": "https://openalex.org/fields/22",
-        "display_name": "Engineering"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/tap-water",
-        "display_name": "Tap water", "score": 0.7621748447418213}, {"id": "https://openalex.org/keywords/adenosine-triphosphate",
-        "display_name": "Adenosine triphosphate", "score": 0.71938556432724}, {"id":
-        "https://openalex.org/keywords/contamination", "display_name": "Contamination",
-        "score": 0.6792646646499634}, {"id": "https://openalex.org/keywords/water-quality",
-        "display_name": "Water quality", "score": 0.6622493267059326}, {"id": "https://openalex.org/keywords/environmental-science",
-        "display_name": "Environmental science", "score": 0.5390076041221619}, {"id":
-        "https://openalex.org/keywords/water-activity", "display_name": "Water activity",
-        "score": 0.4442009925842285}, {"id": "https://openalex.org/keywords/surface-water",
-        "display_name": "Surface water", "score": 0.4403754770755768}, {"id": "https://openalex.org/keywords/microorganism",
-        "display_name": "Microorganism", "score": 0.43473899364471436}, {"id": "https://openalex.org/keywords/environmental-chemistry",
-        "display_name": "Environmental chemistry", "score": 0.32008904218673706},
-        {"id": "https://openalex.org/keywords/chemistry", "display_name": "Chemistry",
-        "score": 0.31118476390838623}, {"id": "https://openalex.org/keywords/environmental-engineering",
-        "display_name": "Environmental engineering", "score": 0.23250341415405273},
-        {"id": "https://openalex.org/keywords/water-content", "display_name": "Water
-        content", "score": 0.1889629065990448}, {"id": "https://openalex.org/keywords/bacteria",
-        "display_name": "Bacteria", "score": 0.1571732461452484}, {"id": "https://openalex.org/keywords/biology",
-        "display_name": "Biology", "score": 0.12302568554878235}, {"id": "https://openalex.org/keywords/biochemistry",
-        "display_name": "Biochemistry", "score": 0.12018576264381409}, {"id": "https://openalex.org/keywords/engineering",
-        "display_name": "Engineering", "score": 0.11057424545288086}, {"id": "https://openalex.org/keywords/ecology",
-        "display_name": "Ecology", "score": 0.10558280348777771}], "concepts": [{"id":
-        "https://openalex.org/C17538187", "wikidata": "https://www.wikidata.org/wiki/Q506004",
-        "display_name": "Tap water", "level": 2, "score": 0.7621748447418213}, {"id":
-        "https://openalex.org/C2779564974", "wikidata": "https://www.wikidata.org/wiki/Q80863",
-        "display_name": "Adenosine triphosphate", "level": 2, "score": 0.71938556432724},
-        {"id": "https://openalex.org/C112570922", "wikidata": "https://www.wikidata.org/wiki/Q60528603",
-        "display_name": "Contamination", "level": 2, "score": 0.6792646646499634},
-        {"id": "https://openalex.org/C2780797713", "wikidata": "https://www.wikidata.org/wiki/Q625376",
-        "display_name": "Water quality", "level": 2, "score": 0.6622493267059326},
-        {"id": "https://openalex.org/C39432304", "wikidata": "https://www.wikidata.org/wiki/Q188847",
-        "display_name": "Environmental science", "level": 0, "score": 0.5390076041221619},
-        {"id": "https://openalex.org/C64248961", "wikidata": "https://www.wikidata.org/wiki/Q791576",
-        "display_name": "Water activity", "level": 3, "score": 0.4442009925842285},
-        {"id": "https://openalex.org/C8625798", "wikidata": "https://www.wikidata.org/wiki/Q752112",
-        "display_name": "Surface water", "level": 2, "score": 0.4403754770755768},
-        {"id": "https://openalex.org/C175605896", "wikidata": "https://www.wikidata.org/wiki/Q39833",
-        "display_name": "Microorganism", "level": 3, "score": 0.43473899364471436},
-        {"id": "https://openalex.org/C107872376", "wikidata": "https://www.wikidata.org/wiki/Q321355",
-        "display_name": "Environmental chemistry", "level": 1, "score": 0.32008904218673706},
-        {"id": "https://openalex.org/C185592680", "wikidata": "https://www.wikidata.org/wiki/Q2329",
-        "display_name": "Chemistry", "level": 0, "score": 0.31118476390838623}, {"id":
-        "https://openalex.org/C87717796", "wikidata": "https://www.wikidata.org/wiki/Q146326",
-        "display_name": "Environmental engineering", "level": 1, "score": 0.23250341415405273},
-        {"id": "https://openalex.org/C24939127", "wikidata": "https://www.wikidata.org/wiki/Q373499",
-        "display_name": "Water content", "level": 2, "score": 0.1889629065990448},
-        {"id": "https://openalex.org/C523546767", "wikidata": "https://www.wikidata.org/wiki/Q10876",
-        "display_name": "Bacteria", "level": 2, "score": 0.1571732461452484}, {"id":
-        "https://openalex.org/C86803240", "wikidata": "https://www.wikidata.org/wiki/Q420",
-        "display_name": "Biology", "level": 0, "score": 0.12302568554878235}, {"id":
-        "https://openalex.org/C55493867", "wikidata": "https://www.wikidata.org/wiki/Q7094",
-        "display_name": "Biochemistry", "level": 1, "score": 0.12018576264381409},
-        {"id": "https://openalex.org/C127413603", "wikidata": "https://www.wikidata.org/wiki/Q11023",
-        "display_name": "Engineering", "level": 0, "score": 0.11057424545288086},
-        {"id": "https://openalex.org/C18903297", "wikidata": "https://www.wikidata.org/wiki/Q7150",
-        "display_name": "Ecology", "level": 1, "score": 0.10558280348777771}, {"id":
-        "https://openalex.org/C54355233", "wikidata": "https://www.wikidata.org/wiki/Q7162",
-        "display_name": "Genetics", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C187320778",
-        "wikidata": "https://www.wikidata.org/wiki/Q1349130", "display_name": "Geotechnical
-        engineering", "level": 1, "score": 0.0}], "mesh": [], "locations_count": 1,
-        "locations": [{"id": "doi:10.17640/kswst.2021.29.5.31", "is_oa": false, "landing_page_url":
-        "https://doi.org/10.17640/kswst.2021.29.5.31", "pdf_url": null, "source":
-        {"id": "https://openalex.org/S2764420701", "display_name": "Journal of Korean
-        Society of Water Science and Technology", "issn_l": "1225-7192", "issn": ["1225-7192",
-        "2289-0076"], "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
-        null, "host_organization_name": null, "host_organization_lineage": [], "host_organization_lineage_names":
-        [], "type": "journal"}, "license": null, "license_id": null, "version": "publishedVersion",
-        "is_accepted": true, "is_published": true, "raw_source_name": "Journal of
-        Korean Society of Water Science and Technology", "raw_type": "journal-article"}],
-        "best_oa_location": null, "sustainable_development_goals": [{"id": "https://metadata.un.org/sdg/6",
-        "score": 0.8700000047683716, "display_name": "Clean water and sanitation"}],
-        "awards": [], "funders": [], "has_content": {"pdf": false, "grobid_xml": false},
-        "content_urls": null, "referenced_works_count": 0, "referenced_works": [],
-        "related_works": ["https://openalex.org/W9328998", "https://openalex.org/W4998186",
-        "https://openalex.org/W636407", "https://openalex.org/W512522", "https://openalex.org/W8171528",
-        "https://openalex.org/W1239000", "https://openalex.org/W2517052", "https://openalex.org/W8095499",
-        "https://openalex.org/W8211270", "https://openalex.org/W6308042"], "abstract_inverted_index":
-        {"The": [0, 58, 74], "evaluation": [1], "of": [2, 38, 77, 87, 104, 176, 189,
-        196], "microbial": [3, 55, 127, 151, 187, 198], "contamination": [4, 199],
-        "in": [5, 52, 61, 106, 129, 142, 161, 180, 184], "drinking": [6, 130, 190],
-        "water": [7, 29, 63, 66, 80, 107, 120, 191], "is": [8, 108], "a": [9, 20],
-        "major": [10], "concern": [11], "worldwide.": [12], "Adenosine": [13], "triphosphate":
-        [14], "(ATP)": [15], "monitoring": [16, 56, 125, 152, 175], "can": [17], "serve":
-        [18], "as": [19, 205, 207], "complement": [21], "to": [22, 51, 117, 122, 202],
-        "the": [23, 78, 88, 92, 102, 110, 118, 124, 162, 170, 177, 186, 194], "HPC":
-        [24], "method": [25], "currently": [26], "used": [27], "for": [28, 126], "quality":
-        [30], "tests": [31], "because": [32], "it": [33, 204], "offers": [34], "rapid":
-        [35, 54], "measurement,": [36], "ease": [37], "use,": [39], "and": [40, 64,
-        97, 147, 156, 165, 172, 201], "activity": [41], "against": [42], "microorganisms.":
-        [43], "In": [44], "this": [45], "study,": [46], "we": [47], "proposed": [48],
-        "an": [49, 70, 148], "alternative": [50], "situ": [53], "methods.": [57],
-        "ATP": [59, 72, 75, 98, 111, 138, 163, 178], "levels": [60], "tap": [62, 89],
-        "surface-treated": [65, 79], "were": [67], "monitored": [68], "using": [69],
-        "online": [71, 137, 174], "analyzer.": [73], "level": [76, 179], "was": [81,
-        140, 154], "three": [82], "times": [83], "higher": [84], "than": [85], "that":
-        [86, 100], "water.": [90, 131, 181], "Furthermore,": [91], "correlation":
-        [93], "between": [94], "E.": [95, 134], "coli": [96, 135], "confirmed": [99],
-        "if": [101], "number": [103], "microorganisms": [105], "small,": [109], "data":
-        [112, 139], "must": [113], "be": [114], "obtained": [115], "according": [116],
-        "target": [119], "characteristics": [121], "enable": [123], "viability": [128],
-        "For": [132], "effective": [133], "monitoring,": [136], "stored": [141], "its":
-        [143, 197], "own": [144], "server": [145], "database": [146], "internet-of-things":
-        [149], "(IoT)-based": [150], "system": [153], "established": [155], "successfully":
-        [157], "applied.": [158], "Recent": [159], "advances": [160], "technology":
-        [164, 167], "IoT": [166], "have": [168], "enabled": [169], "quick": [171],
-        "accurate": [173], "This": [182], "helps": [183], "maintaining": [185], "stability":
-        [188], "by": [192], "detecting": [193], "signs": [195], "early": [200], "process":
-        [203], "quickly": [206], "possible.": [208]}, "counts_by_year": [], "updated_date":
-        "2026-07-07T06:14:10.401900", "created_date": "2025-10-10T00:00:00"}], "group_by":
+        [{"id": "https://openalex.org/W7152634373", "doi": "https://doi.org/10.3535/jf0-6x9-kpw",
+        "title": "Riccardia latifrons (Lindb.) Lindb.", "display_name": "Riccardia
+        latifrons (Lindb.) Lindb.", "relevance_score": 0.99999994, "publication_year":
+        2026, "publication_date": "2026-04-01", "ids": {"openalex": "https://openalex.org/W7152634373",
+        "doi": "https://doi.org/10.3535/jf0-6x9-kpw"}, "language": null, "primary_location":
+        {"id": "doi:10.3535/jf0-6x9-kpw", "is_oa": true, "landing_page_url": "https://doi.org/10.3535/jf0-6x9-kpw",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S7407053449", "display_name":
+        "DiSSCo", "issn_l": null, "issn": [], "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": null, "host_organization_name": null,
+        "host_organization_lineage": [], "host_organization_lineage_names": [], "type":
+        "repository"}, "license": "public-domain", "license_id": "https://openalex.org/licenses/public-domain",
+        "version": null, "is_accepted": false, "is_published": false, "raw_source_name":
+        null, "raw_type": "Dataset"}, "type": "dataset", "indexed_in": ["datacite"],
+        "open_access": {"is_oa": true, "oa_status": "green", "oa_url": "https://doi.org/10.3535/jf0-6x9-kpw",
+        "any_repository_has_fulltext": true}, "authorships": [{"author_position":
+        "first", "author": {"id": "https://openalex.org/A5133259833", "display_name":
+        "University of Gothenburg", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": true, "raw_author_name": "University of Gothenburg",
+        "raw_affiliation_strings": [], "raw_orcid": null, "affiliations": []}], "institutions":
+        [], "countries_distinct_count": 0, "institutions_distinct_count": 0, "corresponding_author_ids":
+        ["https://openalex.org/A5133259833"], "corresponding_institution_ids": [],
+        "apc_list": null, "apc_paid": null, "fwci": null, "has_fulltext": false, "cited_by_count":
+        0, "citation_normalized_percentile": null, "cited_by_percentile_year": null,
+        "biblio": {"volume": null, "issue": null, "first_page": null, "last_page":
+        null}, "is_retracted": false, "is_paratext": false, "is_xpac": false, "primary_topic":
+        null, "topics": [], "keywords": [], "concepts": [], "mesh": [], "locations_count":
+        1, "locations": [{"id": "doi:10.3535/jf0-6x9-kpw", "is_oa": true, "landing_page_url":
+        "https://doi.org/10.3535/jf0-6x9-kpw", "pdf_url": null, "source": {"id": "https://openalex.org/S7407053449",
+        "display_name": "DiSSCo", "issn_l": null, "issn": [], "is_oa": false, "is_in_doaj":
+        false, "is_core": false, "host_organization": null, "host_organization_name":
+        null, "host_organization_lineage": [], "host_organization_lineage_names":
+        [], "type": "repository"}, "license": "public-domain", "license_id": "https://openalex.org/licenses/public-domain",
+        "version": null, "is_accepted": false, "is_published": null, "raw_source_name":
+        null, "raw_type": "Dataset"}], "best_oa_location": {"id": "doi:10.3535/jf0-6x9-kpw",
+        "is_oa": true, "landing_page_url": "https://doi.org/10.3535/jf0-6x9-kpw",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S7407053449", "display_name":
+        "DiSSCo", "issn_l": null, "issn": [], "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": null, "host_organization_name": null,
+        "host_organization_lineage": [], "host_organization_lineage_names": [], "type":
+        "repository"}, "license": "public-domain", "license_id": "https://openalex.org/licenses/public-domain",
+        "version": null, "is_accepted": false, "is_published": false, "raw_source_name":
+        null, "raw_type": "Dataset"}, "sustainable_development_goals": [], "awards":
+        [], "funders": [], "has_content": {"grobid_xml": false, "pdf": false}, "content_urls":
+        null, "referenced_works_count": 0, "referenced_works": [], "related_works":
+        [], "abstract_inverted_index": null, "counts_by_year": [], "updated_date":
+        "2026-07-01T06:00:48.157686", "created_date": "2026-04-10T00:00:00"}], "group_by":
         []}'
     headers:
       Access-Control-Allow-Headers:
@@ -203,19 +74,19 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - a19ecff7eade3a77-CDG
+      - a1f8868ead9d2de7-CDG
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:33 GMT
+      - Thu, 23 Jul 2026 06:11:04 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=tBV1r%2FNkLf3pGUghjxSFpLF4ilZDI7gZ0o%2FFZ8PAGmU%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1783846352"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=M9EZgU6uQGLKCR6XIFsVDhR%2FpsrRk830AkxOjEm%2Bpl8%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1784787064"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=tBV1r%2FNkLf3pGUghjxSFpLF4ilZDI7gZ0o%2FFZ8PAGmU%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1783846352"
+      - heroku-nel="https://nel.heroku.com/reports?s=M9EZgU6uQGLKCR6XIFsVDhR%2FpsrRk830AkxOjEm%2Bpl8%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1784787064"
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -235,16 +106,18 @@ interactions:
       X-RateLimit-Prepaid-Remaining-USD:
       - '0'
       X-RateLimit-Remaining:
-      - '971'
+      - '973'
       X-RateLimit-Remaining-USD:
-      - '0.0971'
+      - '0.0973'
       X-RateLimit-Reset:
-      - '54447'
+      - '64136'
       access-control-expose-headers:
       - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
         X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,
         X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
         X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
+      content-length:
+      - '4122'
     status:
       code: 200
       message: OK
@@ -263,991 +136,667 @@ interactions:
     uri: https://api.openalex.org/works?sample=5
   response:
     body:
-      string: '{"meta": {"count": 5, "db_response_time_ms": 162, "page": 1, "per_page":
+      string: '{"meta": {"count": 5, "db_response_time_ms": 112, "page": 1, "per_page":
         25, "groups_count": null, "x_query": {"oql": "works sample 5", "oqo": {"get_rows":
         "works", "sample": 5}, "url": "/works?sample=5"}, "cost_usd": 0.0001}, "results":
-        [{"id": "https://openalex.org/W2733762957", "doi": null, "title": "Precambrian
-        crustal evolution and Cretaceous\u2013Palaeogene faulting in West Greenland:
-        Structural analysis of the northern Nagssugtoqidian orogen, West Greenland:
-        an example of complex tectonic patterns in reworked high-grade metamorphic
-        terrains", "display_name": "Precambrian crustal evolution and Cretaceous\u2013Palaeogene
-        faulting in West Greenland: Structural analysis of the northern Nagssugtoqidian
-        orogen, West Greenland: an example of complex tectonic patterns in reworked
-        high-grade metamorphic terrains", "relevance_score": 0.99999994, "publication_year":
-        2006, "publication_date": "2006-12-01", "ids": {"openalex": "https://openalex.org/W2733762957",
-        "mag": "2733762957"}, "language": "en", "primary_location": {"id": "pmh:oai:doaj.org/article:f09aab93af094b5fa9254014f5065e09",
-        "is_oa": true, "landing_page_url": "https://doaj.org/article/f09aab93af094b5fa9254014f5065e09",
-        "pdf_url": null, "source": {"id": "https://openalex.org/S4306401280", "display_name":
-        "DOAJ (DOAJ: Directory of Open Access Journals)", "issn_l": null, "issn":
-        null, "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
-        null, "host_organization_name": null, "host_organization_lineage": [], "host_organization_lineage_names":
-        [], "type": "repository"}, "license": "cc-by-sa", "license_id": "https://openalex.org/licenses/cc-by-sa",
-        "version": "submittedVersion", "is_accepted": false, "is_published": false,
-        "raw_source_name": "Geological Survey of Denmark and Greenland Bulletin, Vol
-        11, Pp 163-178 (2006)", "raw_type": "article"}, "type": "article", "indexed_in":
-        ["doaj"], "open_access": {"is_oa": true, "oa_status": "green", "oa_url": "https://doaj.org/article/f09aab93af094b5fa9254014f5065e09",
-        "any_repository_has_fulltext": true}, "authorships": [{"author_position":
-        "first", "author": {"id": "https://openalex.org/A5066978841", "display_name":
-        "Stanis\u0142aw Mazur", "orcid": "https://orcid.org/0000-0002-6560-1048"},
-        "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
-        "Stanis\u0142aw Mazur", "raw_affiliation_strings": [], "raw_orcid": "https://orcid.org/0000-0002-6560-1048",
-        "affiliations": []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5030383698",
-        "display_name": "Sandra Piazolo", "orcid": null}, "institutions": [], "countries":
-        [], "is_corresponding": false, "raw_author_name": "Sandra Piazolo", "raw_affiliation_strings":
-        [], "raw_orcid": "https://orcid.org/0000-0001-7723-8170", "affiliations":
-        []}, {"author_position": "last", "author": {"id": "https://openalex.org/A5088857089",
-        "display_name": "G.I. Alsop", "orcid": "https://orcid.org/0000-0003-4479-372X"},
-        "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
-        "G.I. Alsop", "raw_affiliation_strings": [], "raw_orcid": null, "affiliations":
-        []}], "institutions": [], "countries_distinct_count": 0, "institutions_distinct_count":
-        3, "corresponding_author_ids": [], "corresponding_institution_ids": [], "apc_list":
-        null, "apc_paid": null, "fwci": 0.0, "has_fulltext": false, "cited_by_count":
-        2, "citation_normalized_percentile": {"value": 0.45103545, "is_in_top_1_percent":
-        false, "is_in_top_10_percent": false}, "cited_by_percentile_year": {"min":
-        90, "max": 94}, "biblio": {"volume": null, "issue": null, "first_page": null,
-        "last_page": null}, "is_retracted": false, "is_paratext": false, "is_xpac":
-        false, "primary_topic": {"id": "https://openalex.org/T13193", "display_name":
-        "Geological Studies and Exploration", "score": 0.9994999766349792, "subfield":
-        {"id": "https://openalex.org/subfields/1907", "display_name": "Geology"},
-        "field": {"id": "https://openalex.org/fields/19", "display_name": "Earth and
-        Planetary Sciences"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
-        "Physical Sciences"}}, "topics": [{"id": "https://openalex.org/T13193", "display_name":
-        "Geological Studies and Exploration", "score": 0.9994999766349792, "subfield":
-        {"id": "https://openalex.org/subfields/1907", "display_name": "Geology"},
-        "field": {"id": "https://openalex.org/fields/19", "display_name": "Earth and
-        Planetary Sciences"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
-        "Physical Sciences"}}, {"id": "https://openalex.org/T10399", "display_name":
-        "Hydrocarbon exploration and reservoir analysis", "score": 0.9965000152587891,
-        "subfield": {"id": "https://openalex.org/subfields/2211", "display_name":
-        "Mechanics of Materials"}, "field": {"id": "https://openalex.org/fields/22",
-        "display_name": "Engineering"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}, {"id": "https://openalex.org/T10001",
-        "display_name": "Geological and Geochemical Analysis", "score": 0.9962999820709229,
-        "subfield": {"id": "https://openalex.org/subfields/1908", "display_name":
-        "Geophysics"}, "field": {"id": "https://openalex.org/fields/19", "display_name":
-        "Earth and Planetary Sciences"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/geology",
-        "display_name": "Geology", "score": 0.8696668148040771}, {"id": "https://openalex.org/keywords/paleogene",
-        "display_name": "Paleogene", "score": 0.8327220678329468}, {"id": "https://openalex.org/keywords/precambrian",
-        "display_name": "Precambrian", "score": 0.7475329637527466}, {"id": "https://openalex.org/keywords/tectonics",
-        "display_name": "Tectonics", "score": 0.6599335670471191}, {"id": "https://openalex.org/keywords/paleontology",
-        "display_name": "Paleontology", "score": 0.6248094439506531}, {"id": "https://openalex.org/keywords/cretaceous",
-        "display_name": "Cretaceous", "score": 0.6048393845558167}, {"id": "https://openalex.org/keywords/metamorphic-rock",
-        "display_name": "Metamorphic rock", "score": 0.5119763612747192}, {"id": "https://openalex.org/keywords/seismology",
-        "display_name": "Seismology", "score": 0.3643328547477722}], "concepts": [{"id":
-        "https://openalex.org/C127313418", "wikidata": "https://www.wikidata.org/wiki/Q1069",
-        "display_name": "Geology", "level": 0, "score": 0.8696668148040771}, {"id":
-        "https://openalex.org/C204330871", "wikidata": "https://www.wikidata.org/wiki/Q55810",
-        "display_name": "Paleogene", "level": 3, "score": 0.8327220678329468}, {"id":
-        "https://openalex.org/C173776410", "wikidata": "https://www.wikidata.org/wiki/Q103910",
-        "display_name": "Precambrian", "level": 2, "score": 0.7475329637527466}, {"id":
-        "https://openalex.org/C77928131", "wikidata": "https://www.wikidata.org/wiki/Q193343",
-        "display_name": "Tectonics", "level": 2, "score": 0.6599335670471191}, {"id":
-        "https://openalex.org/C151730666", "wikidata": "https://www.wikidata.org/wiki/Q7205",
-        "display_name": "Paleontology", "level": 1, "score": 0.6248094439506531},
-        {"id": "https://openalex.org/C12294951", "wikidata": "https://www.wikidata.org/wiki/Q44626",
-        "display_name": "Cretaceous", "level": 2, "score": 0.6048393845558167}, {"id":
-        "https://openalex.org/C26687426", "wikidata": "https://www.wikidata.org/wiki/Q47069",
-        "display_name": "Metamorphic rock", "level": 2, "score": 0.5119763612747192},
-        {"id": "https://openalex.org/C165205528", "wikidata": "https://www.wikidata.org/wiki/Q83371",
-        "display_name": "Seismology", "level": 1, "score": 0.3643328547477722}], "mesh":
-        [], "locations_count": 1, "locations": [{"id": "pmh:oai:doaj.org/article:f09aab93af094b5fa9254014f5065e09",
-        "is_oa": true, "landing_page_url": "https://doaj.org/article/f09aab93af094b5fa9254014f5065e09",
-        "pdf_url": null, "source": {"id": "https://openalex.org/S4306401280", "display_name":
-        "DOAJ (DOAJ: Directory of Open Access Journals)", "issn_l": null, "issn":
-        null, "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
-        null, "host_organization_name": null, "host_organization_lineage": [], "host_organization_lineage_names":
-        [], "type": "repository"}, "license": "cc-by-sa", "license_id": "https://openalex.org/licenses/cc-by-sa",
-        "version": "submittedVersion", "is_accepted": false, "is_published": false,
-        "raw_source_name": "Geological Survey of Denmark and Greenland Bulletin, Vol
-        11, Pp 163-178 (2006)", "raw_type": "article"}], "best_oa_location": {"id":
-        "pmh:oai:doaj.org/article:f09aab93af094b5fa9254014f5065e09", "is_oa": true,
-        "landing_page_url": "https://doaj.org/article/f09aab93af094b5fa9254014f5065e09",
-        "pdf_url": null, "source": {"id": "https://openalex.org/S4306401280", "display_name":
-        "DOAJ (DOAJ: Directory of Open Access Journals)", "issn_l": null, "issn":
-        null, "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
-        null, "host_organization_name": null, "host_organization_lineage": [], "host_organization_lineage_names":
-        [], "type": "repository"}, "license": "cc-by-sa", "license_id": "https://openalex.org/licenses/cc-by-sa",
-        "version": "submittedVersion", "is_accepted": false, "is_published": false,
-        "raw_source_name": "Geological Survey of Denmark and Greenland Bulletin, Vol
-        11, Pp 163-178 (2006)", "raw_type": "article"}, "sustainable_development_goals":
-        [{"id": "https://metadata.un.org/sdg/14", "display_name": "Life below water",
-        "score": 0.4300000071525574}], "awards": [], "funders": [], "has_content":
-        {"grobid_xml": false, "pdf": false}, "content_urls": null, "referenced_works_count":
-        0, "referenced_works": [], "related_works": ["https://openalex.org/W2074275413",
-        "https://openalex.org/W2024130253", "https://openalex.org/W2323220392", "https://openalex.org/W617675041",
-        "https://openalex.org/W4248728756", "https://openalex.org/W2026919630", "https://openalex.org/W4404505574",
-        "https://openalex.org/W2509555896", "https://openalex.org/W2001842327", "https://openalex.org/W3138273173"],
-        "abstract_inverted_index": {"Structural": [0], "analysis": [1], "of": [2,
-        8, 23, 28, 54, 60, 116, 123, 140, 145, 181, 192, 216, 235, 275, 316, 328,
-        338, 354, 415], "the": [3, 9, 19, 39, 46, 85, 98, 107, 114, 120, 124, 128,
-        130, 136, 152, 179, 193, 243, 252, 276, 282, 299, 311, 323, 333, 339, 343,
-        383, 392, 416], "deeply": [4], "eroded": [5], "northern": [6, 221, 300, 384],
-        "flank": [7], "Palaeoproterozoic": [10, 393], "Nagssugtoqidian": [11, 374],
-        "orogen": [12], "shows": [13, 314], "marked": [14], "regional": [15, 70, 108],
-        "variations": [16], "in": [17, 56, 113, 164, 178, 251, 326], "both": [18],
-        "orientation": [20], "and": [21, 45, 64, 93, 210, 219, 232, 254, 287, 335,
-        345, 367, 410], "type": [22], "fabrics,": [24], "as": [25, 412], "is": [26,
-        148], "characteristic": [27], "Precambrian": [29], "high-grade": [30], "terrains":
-        [31], "subjected": [32], "to": [33, 75, 81, 171, 183, 190, 213, 350], "polyphase":
-        [34], "deformation.": [35], "Here": [36], "we": [37], "investigate": [38],
-        "relationship": [40], "between": [41, 247], "strain,": [42], "metamorphic":
-        [43], "grade,": [44], "resulting": [47], "structural": [48, 187, 262, 336],
-        "patterns.": [49], "The": [50, 69, 186, 260, 373, 395], "study": [51, 125,
-        194, 417], "area": [52, 195], "south": [53, 253, 414], "Aasiaat": [55], "West":
-        [57], "Greenland": [58], "consists": [59], "amphibolite-": [61], "togranulite-gradeArchaean":
-        [62], "orthogneisses": [63], "relatively": [65], "thin": [66], "supracrustal":
-        [67], "units.": [68], "foliation": [71], "displays": [72], "a": [73, 168,
-        197, 211, 220, 292, 303, 355, 360], "WSW\u2013ENE": [74, 92], "SW\u2013NE":
-        [76], "strike": [77, 139], "associated": [78, 150], "with": [79, 106, 151,
-        242], "steep": [80], "moderate": [82, 182, 212], "dips": [83], "towards":
-        [84, 97, 382], "WNW": [86], "or": [87, 158, 175, 204, 227, 371], "SSE.": [88],
-        "Lineation": [89], "trends": [90], "are": [91, 103], "generally": [94, 137],
-        "plunge": [95, 115, 132], "gently": [96], "WSW.": [99], "Mesoscopic": [100],
-        "fold": [101], "hinges": [102], "usually": [104], "colinear": [105], "lineation.":
-        [109], "A": [110], "systematic": [111], "change": [112], "lineations": [117],
-        "occurs": [118], "across": [119, 379], "south-western": [121], "part": [122],
-        "area.": [126, 418], "Towards": [127], "south,": [129], "lineation": [131,
-        146, 217, 236], "progressively": [133], "increases,": [134], "despite": [135],
-        "uniform": [138], "foliation.": [141], "This": [142, 238], "southward": [143],
-        "increase": [144], "pitch": [147], "typically": [149], "transition": [153],
-        "from": [154], "L": [155, 159, 174, 207, 224, 228], ">": [156, 173, 206, 225],
-        "S": [157, 161, 172, 176, 203, 205, 226, 230], "=": [160, 229], "shape": [162,
-        208], "fabrics": [163, 177, 209, 231], "rocks": [165, 250, 257], "characterised":
-        [166, 201], "by": [167, 202, 267, 307, 359, 408], "low": [169, 233], "pitch,":
-        [170, 218], "zone": [180, 305, 362, 381], "high": [184, 214], "pitch.": [185,
-        237], "patterns": [188], "point": [189], "subdivision": [191, 239], "into":
-        [196, 281], "southern": [198, 312], "domain": [199, 222, 301, 313, 386], "mostly":
-        [200, 317], "angle": [215], "showing": [223], "angles": [234], "corresponds":
-        [240], "well": [241], "map": [244], "scale": [245], "boundary": [246], "granulite":
-        [248, 279, 344], "facies": [249, 256, 347], "amphibolite": [255, 285, 385],
-        "farther": [258], "north.": [259], "observed": [261], "pattern": [263], "may":
-        [264], "be": [265], "explained": [266], "two": [268, 340], "alternative":
-        [269], "tectonic": [270, 341], "models:": [271], "(1)": [272], "northward":
-        [273], "indentation": [274, 370, 402], "previously": [277], "cooled": [278],
-        "block": [280], "rheologically": [283], "weaker": [284], "domain,": [286],
-        "(2)": [288], "strain": [289], "partitioning": [290], "within": [291], "mid-crustal":
-        [293], "transpression": [294], "zone.": [295], "In": [296], "model": [297,
-        325], "2": [298], "represents": [302], "localised": [304], "dominated": [306],
-        "strike-slip": [308, 404], "kinematics,": [309], "whereas": [310], "evidence":
-        [315], "coaxial": [318], "shortening.": [319], "Recent": [320], "geochronology":
-        [321], "supports": [322], "indentator": [324], "spite": [327], "limited":
-        [329], "available": [330], "data.": [331], "Despite": [332], "details": [334],
-        "complexities": [337], "models,": [342], "amphibolites": [346], "domains":
-        [348], "seem": [349], "form": [351], "autochthonous": [352], "segments": [353],
-        "crustal": [356], "section": [357], "linked": [358], "transitional": [361],
-        "that": [363, 387], "was": [364, 376, 398], "only": [365], "reactivated":
-        [366], "reworked": [368], "during": [369, 391], "transpression.": [372], "compression":
-        [375], "effectively": [377], "transferred": [378], "this": [380], "suffered":
-        [388], "penetrative": [389], "deformation": [390], "event.": [394], "N\u2013S":
-        [396], "shortening": [397], "accommodated": [399], "through": [400], "folding,":
-        [401], "and/or": [403], "displacements,": [405], "rather": [406], "than":
-        [407], "thrusting": [409], "folding": [411], "seen": [413]}, "counts_by_year":
-        [{"year": 2012, "cited_by_count": 1}], "updated_date": "2026-06-11T09:08:48.828518",
-        "created_date": "2025-10-10T00:00:00"}, {"id": "https://openalex.org/W2500751108",
-        "doi": "https://doi.org/10.1016/b978-075066740-1/50007-7", "title": "Brushless
-        motors and controllers", "display_name": "Brushless motors and controllers",
-        "relevance_score": 0.99999994, "publication_year": 2005, "publication_date":
-        "2005-01-01", "ids": {"openalex": "https://openalex.org/W2500751108", "doi":
-        "https://doi.org/10.1016/b978-075066740-1/50007-7", "mag": "2500751108"},
-        "language": "en", "primary_location": {"id": "doi:10.1016/b978-075066740-1/50007-7",
-        "is_oa": false, "landing_page_url": "https://doi.org/10.1016/b978-075066740-1/50007-7",
-        "pdf_url": null, "source": {"id": "https://openalex.org/S4306463230", "display_name":
-        "Elsevier eBooks", "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj":
-        false, "is_core": false, "host_organization": "https://openalex.org/P4310320990",
-        "host_organization_name": "Elsevier BV", "host_organization_lineage": ["https://openalex.org/P4310320990"],
-        "host_organization_lineage_names": ["Elsevier BV"], "type": "ebook platform"},
-        "license": null, "license_id": null, "version": "publishedVersion", "is_accepted":
-        true, "is_published": true, "raw_source_name": "Electric Drives and Electromechanical
-        Systems", "raw_type": "book-chapter"}, "type": "book-chapter", "indexed_in":
-        ["crossref"], "open_access": {"is_oa": false, "oa_status": "closed", "oa_url":
-        null, "any_repository_has_fulltext": false}, "authorships": [{"author_position":
-        "first", "author": {"id": "https://openalex.org/A5113830662", "display_name":
-        "Richard Crowder", "orcid": null}, "institutions": [], "countries": [], "is_corresponding":
-        true, "raw_author_name": "Richard Crowder", "raw_affiliation_strings": [],
-        "raw_orcid": null, "affiliations": []}], "institutions": [], "countries_distinct_count":
-        0, "institutions_distinct_count": 1, "corresponding_author_ids": ["https://openalex.org/A5113830662"],
-        "corresponding_institution_ids": [], "apc_list": null, "apc_paid": null, "fwci":
-        0.0, "has_fulltext": false, "cited_by_count": 0, "citation_normalized_percentile":
-        {"value": 0.19389665, "is_in_top_1_percent": false, "is_in_top_10_percent":
-        false}, "cited_by_percentile_year": null, "biblio": {"volume": null, "issue":
-        null, "first_page": "169", "last_page": "189"}, "is_retracted": false, "is_paratext":
-        false, "is_xpac": false, "primary_topic": {"id": "https://openalex.org/T10278",
-        "display_name": "Electric Motor Design and Analysis", "score": 0.9987999796867371,
-        "subfield": {"id": "https://openalex.org/subfields/2208", "display_name":
-        "Electrical and Electronic Engineering"}, "field": {"id": "https://openalex.org/fields/22",
-        "display_name": "Engineering"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}, "topics": [{"id": "https://openalex.org/T10278",
-        "display_name": "Electric Motor Design and Analysis", "score": 0.9987999796867371,
-        "subfield": {"id": "https://openalex.org/subfields/2208", "display_name":
-        "Electrical and Electronic Engineering"}, "field": {"id": "https://openalex.org/fields/22",
-        "display_name": "Engineering"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}, {"id": "https://openalex.org/T10504",
-        "display_name": "Sensorless Control of Electric Motors", "score": 0.9951000213623047,
-        "subfield": {"id": "https://openalex.org/subfields/2208", "display_name":
-        "Electrical and Electronic Engineering"}, "field": {"id": "https://openalex.org/fields/22",
-        "display_name": "Engineering"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}, {"id": "https://openalex.org/T11602",
-        "display_name": "Magnetic Bearings and Levitation Dynamics", "score": 0.9702000021934509,
-        "subfield": {"id": "https://openalex.org/subfields/2207", "display_name":
-        "Control and Systems Engineering"}, "field": {"id": "https://openalex.org/fields/22",
-        "display_name": "Engineering"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/control-engineering",
-        "display_name": "Control engineering", "score": 0.49716976284980774}, {"id":
-        "https://openalex.org/keywords/control-theory", "display_name": "Control theory
-        (sociology)", "score": 0.44582733511924744}, {"id": "https://openalex.org/keywords/computer-science",
-        "display_name": "Computer science", "score": 0.4244837462902069}, {"id": "https://openalex.org/keywords/engineering",
-        "display_name": "Engineering", "score": 0.26523298025131226}, {"id": "https://openalex.org/keywords/artificial-intelligence",
-        "display_name": "Artificial intelligence", "score": 0.13425105810165405},
-        {"id": "https://openalex.org/keywords/control", "display_name": "Control (management)",
-        "score": 0.07793387770652771}], "concepts": [{"id": "https://openalex.org/C133731056",
-        "wikidata": "https://www.wikidata.org/wiki/Q4917288", "display_name": "Control
-        engineering", "level": 1, "score": 0.49716976284980774}, {"id": "https://openalex.org/C47446073",
-        "wikidata": "https://www.wikidata.org/wiki/Q5165890", "display_name": "Control
-        theory (sociology)", "level": 3, "score": 0.44582733511924744}, {"id": "https://openalex.org/C41008148",
-        "wikidata": "https://www.wikidata.org/wiki/Q21198", "display_name": "Computer
-        science", "level": 0, "score": 0.4244837462902069}, {"id": "https://openalex.org/C127413603",
-        "wikidata": "https://www.wikidata.org/wiki/Q11023", "display_name": "Engineering",
-        "level": 0, "score": 0.26523298025131226}, {"id": "https://openalex.org/C154945302",
-        "wikidata": "https://www.wikidata.org/wiki/Q11660", "display_name": "Artificial
-        intelligence", "level": 1, "score": 0.13425105810165405}, {"id": "https://openalex.org/C2775924081",
-        "wikidata": "https://www.wikidata.org/wiki/Q55608371", "display_name": "Control
-        (management)", "level": 2, "score": 0.07793387770652771}], "mesh": [], "locations_count":
-        1, "locations": [{"id": "doi:10.1016/b978-075066740-1/50007-7", "is_oa": false,
-        "landing_page_url": "https://doi.org/10.1016/b978-075066740-1/50007-7", "pdf_url":
-        null, "source": {"id": "https://openalex.org/S4306463230", "display_name":
-        "Elsevier eBooks", "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj":
-        false, "is_core": false, "host_organization": "https://openalex.org/P4310320990",
-        "host_organization_name": "Elsevier BV", "host_organization_lineage": ["https://openalex.org/P4310320990"],
-        "host_organization_lineage_names": ["Elsevier BV"], "type": "ebook platform"},
-        "license": null, "license_id": null, "version": "publishedVersion", "is_accepted":
-        true, "is_published": true, "raw_source_name": "Electric Drives and Electromechanical
-        Systems", "raw_type": "book-chapter"}], "best_oa_location": null, "sustainable_development_goals":
-        [{"id": "https://metadata.un.org/sdg/7", "display_name": "Affordable and clean
-        energy", "score": 0.8399999737739563}], "awards": [], "funders": [], "has_content":
-        {"grobid_xml": false, "pdf": false}, "content_urls": null, "referenced_works_count":
-        0, "referenced_works": [], "related_works": ["https://openalex.org/W2899084033",
-        "https://openalex.org/W2748952813", "https://openalex.org/W2390279801", "https://openalex.org/W2358668433",
-        "https://openalex.org/W2376932109", "https://openalex.org/W2001405890", "https://openalex.org/W2382290278",
-        "https://openalex.org/W2350741829", "https://openalex.org/W2130043461", "https://openalex.org/W2530322880"],
-        "abstract_inverted_index": null, "counts_by_year": [], "updated_date": "2026-06-15T08:34:33.830935",
-        "created_date": "2025-10-10T00:00:00"}, {"id": "https://openalex.org/W2510834177",
-        "doi": "https://doi.org/10.15368/theses.2016.84", "title": "REARING TEMPERATURE
-        AFFECTS THE EXPRESSION OF PROTEINS IN THE ADHESIVE OF THE STRIPED ACORN BARNACLE,
-        BALANUS AMPHITRITE", "display_name": "REARING TEMPERATURE AFFECTS THE EXPRESSION
-        OF PROTEINS IN THE ADHESIVE OF THE STRIPED ACORN BARNACLE, BALANUS AMPHITRITE",
-        "relevance_score": 0.99999994, "publication_year": 2016, "publication_date":
-        "2016-06-01", "ids": {"openalex": "https://openalex.org/W2510834177", "doi":
-        "https://doi.org/10.15368/theses.2016.84", "mag": "2510834177"}, "language":
-        "en", "primary_location": {"id": "doi:10.15368/theses.2016.84", "is_oa": true,
-        "landing_page_url": "https://doi.org/10.15368/theses.2016.84", "pdf_url":
-        "https://digitalcommons.calpoly.edu/cgi/viewcontent.cgi?article=2822&context=theses",
-        "source": null, "license": null, "license_id": null, "version": "publishedVersion",
-        "is_accepted": true, "is_published": true, "raw_source_name": "California
-        Polytechnic State University", "raw_type": "dissertation"}, "type": "dissertation",
-        "indexed_in": ["crossref"], "open_access": {"is_oa": true, "oa_status": "gold",
-        "oa_url": "https://digitalcommons.calpoly.edu/cgi/viewcontent.cgi?article=2822&context=theses",
-        "any_repository_has_fulltext": null}, "authorships": [{"author_position":
-        "first", "author": {"id": "https://openalex.org/A5028047535", "display_name":
-        "Melissa J. Daugherty", "orcid": null}, "institutions": [{"id": "https://openalex.org/I149919469",
-        "display_name": "California Polytechnic State University", "ror": "https://ror.org/001gpfp45",
-        "country_code": "US", "type": "education", "lineage": ["https://openalex.org/I149919469"]}],
-        "countries": ["US"], "is_corresponding": true, "raw_author_name": "Melissa
-        J. Daugherty", "raw_affiliation_strings": ["California Polytechnic State University
-        - San Luis Obispo"], "affiliations": [{"raw_affiliation_string": "California
-        Polytechnic State University - San Luis Obispo", "institution_ids": ["https://openalex.org/I149919469"]}]}],
-        "institutions": [], "countries_distinct_count": 1, "institutions_distinct_count":
-        1, "corresponding_author_ids": ["https://openalex.org/A5028047535"], "corresponding_institution_ids":
-        ["https://openalex.org/I149919469"], "apc_list": null, "apc_paid": null, "fwci":
-        null, "has_fulltext": true, "cited_by_count": 0, "citation_normalized_percentile":
-        null, "cited_by_percentile_year": null, "biblio": {"volume": null, "issue":
-        null, "first_page": null, "last_page": null}, "is_retracted": false, "is_paratext":
-        false, "is_xpac": false, "primary_topic": {"id": "https://openalex.org/T12071",
-        "display_name": "Marine Biology and Environmental Chemistry", "score": 1.0,
-        "subfield": {"id": "https://openalex.org/subfields/2212", "display_name":
-        "Ocean Engineering"}, "field": {"id": "https://openalex.org/fields/22", "display_name":
-        "Engineering"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
-        "Physical Sciences"}}, "topics": [{"id": "https://openalex.org/T12071", "display_name":
-        "Marine Biology and Environmental Chemistry", "score": 1.0, "subfield": {"id":
-        "https://openalex.org/subfields/2212", "display_name": "Ocean Engineering"},
-        "field": {"id": "https://openalex.org/fields/22", "display_name": "Engineering"},
-        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
-        Sciences"}}, {"id": "https://openalex.org/T10859", "display_name": "Polymer
-        Surface Interaction Studies", "score": 0.9926999807357788, "subfield": {"id":
-        "https://openalex.org/subfields/2508", "display_name": "Surfaces, Coatings
-        and Films"}, "field": {"id": "https://openalex.org/fields/25", "display_name":
-        "Materials Science"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
-        "Physical Sciences"}}, {"id": "https://openalex.org/T10447", "display_name":
-        "Environmental Toxicology and Ecotoxicology", "score": 0.9900000095367432,
-        "subfield": {"id": "https://openalex.org/subfields/2307", "display_name":
-        "Health, Toxicology and Mutagenesis"}, "field": {"id": "https://openalex.org/fields/23",
-        "display_name": "Environmental Science"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/balanus",
-        "display_name": "Balanus", "score": 0.9381420612335205}, {"id": "https://openalex.org/keywords/barnacle",
-        "display_name": "Barnacle", "score": 0.9010610580444336}, {"id": "https://openalex.org/keywords/adhesive",
-        "display_name": "Adhesive", "score": 0.7950003147125244}, {"id": "https://openalex.org/keywords/biofouling",
-        "display_name": "Biofouling", "score": 0.4692186117172241}, {"id": "https://openalex.org/keywords/chemistry",
-        "display_name": "Chemistry", "score": 0.4249754250049591}, {"id": "https://openalex.org/keywords/biology",
-        "display_name": "Biology", "score": 0.39686936140060425}, {"id": "https://openalex.org/keywords/biophysics",
-        "display_name": "Biophysics", "score": 0.3894658088684082}, {"id": "https://openalex.org/keywords/chromatography",
-        "display_name": "Chromatography", "score": 0.3368947505950928}, {"id": "https://openalex.org/keywords/chemical-engineering",
-        "display_name": "Chemical engineering", "score": 0.3257957696914673}, {"id":
-        "https://openalex.org/keywords/ecology", "display_name": "Ecology", "score":
-        0.27873682975769043}, {"id": "https://openalex.org/keywords/biochemistry",
-        "display_name": "Biochemistry", "score": 0.2627952992916107}, {"id": "https://openalex.org/keywords/crustacean",
-        "display_name": "Crustacean", "score": 0.1639474332332611}, {"id": "https://openalex.org/keywords/membrane",
-        "display_name": "Membrane", "score": 0.12841352820396423}, {"id": "https://openalex.org/keywords/organic-chemistry",
-        "display_name": "Organic chemistry", "score": 0.10947108268737793}], "concepts":
-        [{"id": "https://openalex.org/C2778806186", "wikidata": "https://www.wikidata.org/wiki/Q2336729",
-        "display_name": "Balanus", "level": 3, "score": 0.9381420612335205}, {"id":
-        "https://openalex.org/C2777857640", "wikidata": "https://www.wikidata.org/wiki/Q220457",
-        "display_name": "Barnacle", "level": 3, "score": 0.9010610580444336}, {"id":
-        "https://openalex.org/C68928338", "wikidata": "https://www.wikidata.org/wiki/Q131790",
-        "display_name": "Adhesive", "level": 3, "score": 0.7950003147125244}, {"id":
-        "https://openalex.org/C6047279", "wikidata": "https://www.wikidata.org/wiki/Q1439821",
-        "display_name": "Biofouling", "level": 3, "score": 0.4692186117172241}, {"id":
-        "https://openalex.org/C185592680", "wikidata": "https://www.wikidata.org/wiki/Q2329",
-        "display_name": "Chemistry", "level": 0, "score": 0.4249754250049591}, {"id":
-        "https://openalex.org/C86803240", "wikidata": "https://www.wikidata.org/wiki/Q420",
-        "display_name": "Biology", "level": 0, "score": 0.39686936140060425}, {"id":
-        "https://openalex.org/C12554922", "wikidata": "https://www.wikidata.org/wiki/Q7100",
-        "display_name": "Biophysics", "level": 1, "score": 0.3894658088684082}, {"id":
-        "https://openalex.org/C43617362", "wikidata": "https://www.wikidata.org/wiki/Q170050",
-        "display_name": "Chromatography", "level": 1, "score": 0.3368947505950928},
-        {"id": "https://openalex.org/C42360764", "wikidata": "https://www.wikidata.org/wiki/Q83588",
-        "display_name": "Chemical engineering", "level": 1, "score": 0.3257957696914673},
-        {"id": "https://openalex.org/C18903297", "wikidata": "https://www.wikidata.org/wiki/Q7150",
-        "display_name": "Ecology", "level": 1, "score": 0.27873682975769043}, {"id":
-        "https://openalex.org/C55493867", "wikidata": "https://www.wikidata.org/wiki/Q7094",
-        "display_name": "Biochemistry", "level": 1, "score": 0.2627952992916107},
-        {"id": "https://openalex.org/C84766238", "wikidata": "https://www.wikidata.org/wiki/Q25364",
-        "display_name": "Crustacean", "level": 2, "score": 0.1639474332332611}, {"id":
-        "https://openalex.org/C41625074", "wikidata": "https://www.wikidata.org/wiki/Q176088",
-        "display_name": "Membrane", "level": 2, "score": 0.12841352820396423}, {"id":
-        "https://openalex.org/C178790620", "wikidata": "https://www.wikidata.org/wiki/Q11351",
-        "display_name": "Organic chemistry", "level": 1, "score": 0.10947108268737793},
-        {"id": "https://openalex.org/C127413603", "wikidata": "https://www.wikidata.org/wiki/Q11023",
-        "display_name": "Engineering", "level": 0, "score": 0.0}, {"id": "https://openalex.org/C2779227376",
-        "wikidata": "https://www.wikidata.org/wiki/Q6505497", "display_name": "Layer
-        (electronics)", "level": 2, "score": 0.0}], "mesh": [], "locations_count":
-        2, "locations": [{"id": "doi:10.15368/theses.2016.84", "is_oa": true, "landing_page_url":
-        "https://doi.org/10.15368/theses.2016.84", "pdf_url": "https://digitalcommons.calpoly.edu/cgi/viewcontent.cgi?article=2822&context=theses",
-        "source": null, "license": null, "license_id": null, "version": "publishedVersion",
-        "is_accepted": true, "is_published": true, "raw_source_name": "California
-        Polytechnic State University", "raw_type": "dissertation"}, {"id": "pmh:oai:digitalcommons.calpoly.edu:theses-2822",
-        "is_oa": false, "landing_page_url": "https://digitalcommons.calpoly.edu/theses/1616",
-        "pdf_url": null, "source": {"id": "https://openalex.org/S4377196328", "display_name":
-        "DigitalCommons - CalPoly (California State Polytechnic University)", "issn_l":
-        null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core": false,
-        "host_organization": "https://openalex.org/I98947143", "host_organization_name":
-        "California State Polytechnic University", "host_organization_lineage": ["https://openalex.org/I98947143"],
-        "host_organization_lineage_names": [], "type": "repository"}, "license": null,
-        "license_id": null, "version": "submittedVersion", "is_accepted": false, "is_published":
-        false, "raw_source_name": "Master''s Theses", "raw_type": "text"}], "best_oa_location":
-        {"id": "doi:10.15368/theses.2016.84", "is_oa": true, "landing_page_url": "https://doi.org/10.15368/theses.2016.84",
-        "pdf_url": "https://digitalcommons.calpoly.edu/cgi/viewcontent.cgi?article=2822&context=theses",
-        "source": null, "license": null, "license_id": null, "version": "publishedVersion",
-        "is_accepted": true, "is_published": true, "raw_source_name": "California
-        Polytechnic State University", "raw_type": "dissertation"}, "sustainable_development_goals":
-        [], "awards": [], "funders": [{"id": "https://openalex.org/F4320332167", "display_name":
-        "Directorate for Biological Sciences", "ror": "https://ror.org/001xhss06"}],
-        "has_content": {"grobid_xml": true, "pdf": true}, "content_urls": {"pdf":
-        "https://content.openalex.org/works/W2510834177.pdf", "grobid_xml": "https://content.openalex.org/works/W2510834177.grobid-xml"},
-        "referenced_works_count": 60, "referenced_works": ["https://openalex.org/W48011754",
-        "https://openalex.org/W133258299", "https://openalex.org/W179972442", "https://openalex.org/W576710844",
-        "https://openalex.org/W970042415", "https://openalex.org/W1658133465", "https://openalex.org/W1833505573",
-        "https://openalex.org/W1900116913", "https://openalex.org/W1932669647", "https://openalex.org/W1963833223",
-        "https://openalex.org/W1966456138", "https://openalex.org/W1966461435", "https://openalex.org/W1973194942",
-        "https://openalex.org/W1978302939", "https://openalex.org/W1979381893", "https://openalex.org/W1986865303",
-        "https://openalex.org/W1990379766", "https://openalex.org/W1990852843", "https://openalex.org/W1995137699",
-        "https://openalex.org/W1997193779", "https://openalex.org/W1998165937", "https://openalex.org/W2000083733",
-        "https://openalex.org/W2001711962", "https://openalex.org/W2003117673", "https://openalex.org/W2004696616",
-        "https://openalex.org/W2008116730", "https://openalex.org/W2009393104", "https://openalex.org/W2009739740",
-        "https://openalex.org/W2010226471", "https://openalex.org/W2015171669", "https://openalex.org/W2020280958",
-        "https://openalex.org/W2029874877", "https://openalex.org/W2037114064", "https://openalex.org/W2045577582",
-        "https://openalex.org/W2048333869", "https://openalex.org/W2060597445", "https://openalex.org/W2061273329",
-        "https://openalex.org/W2064121925", "https://openalex.org/W2064701092", "https://openalex.org/W2067262916",
-        "https://openalex.org/W2070682210", "https://openalex.org/W2076401306", "https://openalex.org/W2079063422",
-        "https://openalex.org/W2085369674", "https://openalex.org/W2092809755", "https://openalex.org/W2102402497",
-        "https://openalex.org/W2113621660", "https://openalex.org/W2115454462", "https://openalex.org/W2144543617",
-        "https://openalex.org/W2146119259", "https://openalex.org/W2162848186", "https://openalex.org/W2166742043",
-        "https://openalex.org/W2316066758", "https://openalex.org/W2478071186", "https://openalex.org/W3120719895",
-        "https://openalex.org/W4234958512", "https://openalex.org/W4251087974", "https://openalex.org/W6610201301",
-        "https://openalex.org/W6625036390", "https://openalex.org/W6653338924"], "related_works":
-        ["https://openalex.org/W2295791697", "https://openalex.org/W3196076884", "https://openalex.org/W2332189442",
-        "https://openalex.org/W2908675385", "https://openalex.org/W2276765410", "https://openalex.org/W4242827191",
-        "https://openalex.org/W2491972054", "https://openalex.org/W2946985544", "https://openalex.org/W2088676748",
-        "https://openalex.org/W2333903159"], "abstract_inverted_index": {"Barnacles":
-        [0], "are": [1, 191], "dominant": [2], "hard\u2013fouling": [3], "organisms":
-        [4], "in": [5, 50, 80, 90, 124, 164, 184, 213], "marine": [6], "waters.":
-        [7], "They": [8], "attach": [9], "to": [10, 45, 78, 106, 207], "substrates":
-        [11], "by": [12, 32, 102], "secreting": [13], "a": [14, 103, 195], "complex":
-        [15], "proteinaceous": [16], "adhesive.": [17, 94], "Understanding": [18],
-        "the": [19, 91, 96, 119, 125, 130, 135, 185, 198, 208], "chemical": [20],
-        "composition": [21], "of": [22, 93, 121, 187, 201, 210], "this": [23, 73],
-        "multi\u2013protein": [24], "underwater": [25], "adhesive": [26, 126, 142,
-        203], "and": [27, 62, 111, 148, 172, 174], "how": [28], "it": [29], "is":
-        [30, 39, 75], "affected": [31], "environmental": [33], "variables,": [34],
-        "such": [35, 83], "as": [36, 84], "oceanic": [37], "temperatures,": [38],
-        "critical": [40, 58], "for": [41, 134], "developing": [42], "nontoxic": [43],
-        "solutions": [44], "control": [46], "biofouling.": [47], "Previous": [48],
-        "experiments": [49], "our": [51, 158], "lab": [52], "revealed": [53], "an":
-        [54], "inverse": [55], "relationship": [56], "between": [57], "removal": [59],
-        "stress": [60], "(CRS)": [61], "temperatures": [63, 170], "at": [64, 167],
-        "which": [65], "barnacles": [66], "were": [67], "reared.": [68], "Further":
-        [69], "investigations": [70], "showed": [71], "that": [72, 115, 179, 197],
-        "correlation": [74], "not": [76], "attributed": [77], "differences": [79,
-        163], "physical": [81], "properties": [82], "barnacle": [85, 141, 202], "size":
-        [86], "or": [87], "short\u2013term": [88], "changes": [89], "viscosity": [92],
-        "Therefore,": [95], "observed": [97], "effects": [98], "may": [99, 180, 204],
-        "be": [100, 205], "influenced": [101], "physiological": [104], "response":
-        [105], "temperature": [107, 117, 136], "during": [108], "initial": [109],
-        "growth": [110], "development.": [112], "We": [113], "hypothesized": [114],
-        "rearing": [116], "affects": [118], "expression": [120, 166], "proteins":
-        [122, 178], "found": [123], "matrix.": [127], "To": [128], "elucidate": [129],
-        "underlying": [131], "mechanisms": [132], "responsible": [133], "effect,":
-        [137], "we": [138, 160], "analyzed": [139], "uncured": [140], "using": [143],
-        "two-dimensional": [144], "gel": [145], "electrophoresis": [146], "(2DGE)":
-        [147], "matrix-assisted": [149], "laser": [150], "desorption/ionization-tandem":
-        [151], "time-of-flight": [152], "(MALDI-TOF/TOF)": [153], "mass": [154], "spectrometry":
-        [155], "(MS).": [156], "In": [157], "analysis,": [159], "1)": [161], "detected":
-        [162], "protein": [165], "two": [168], "experimental": [169], "(15\u00b0C":
-        [171], "25\u00b0C)": [173], "2)": [175], "identified": [176], "several": [177],
-        "serve": [181], "functional": [182], "roles": [183], "process": [186, 200,
-        209], "adhesion.": [188], "Our": [189], "data": [190], "also": [192], "consistent":
-        [193], "with": [194], "model": [196], "curing": [199], "analogous": [206],
-        "wound": [211], "healing": [212], "animals.": [214]}, "counts_by_year": [],
-        "updated_date": "2026-03-25T13:04:00.132906", "created_date": "2025-10-10T00:00:00"},
-        {"id": "https://openalex.org/W4386021005", "doi": "https://doi.org/10.1101/2023.08.17.23294220",
-        "title": "Adjusting for the progressive digitization of health records: working
-        examples on a multi-hospital clinical data warehouse", "display_name": "Adjusting
-        for the progressive digitization of health records: working examples on a
-        multi-hospital clinical data warehouse", "relevance_score": 0.99999994, "publication_year":
-        2023, "publication_date": "2023-08-21", "ids": {"openalex": "https://openalex.org/W4386021005",
-        "doi": "https://doi.org/10.1101/2023.08.17.23294220"}, "language": "en", "primary_location":
-        {"id": "doi:10.1101/2023.08.17.23294220", "is_oa": true, "landing_page_url":
-        "https://doi.org/10.1101/2023.08.17.23294220", "pdf_url": "https://www.medrxiv.org/content/medrxiv/early/2023/08/21/2023.08.17.23294220.full.pdf",
-        "source": {"id": "https://openalex.org/S3005729997", "display_name": "medRxiv",
-        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
-        true, "host_organization": null, "host_organization_name": null, "host_organization_lineage":
-        ["https://openalex.org/P4310315909"], "host_organization_lineage_names": ["Cold
-        Spring Harbor Laboratory Press"], "type": "repository"}, "license": "cc-by",
-        "license_id": "https://openalex.org/licenses/cc-by", "version": "acceptedVersion",
-        "is_accepted": true, "is_published": false, "raw_source_name": "medRxiv",
-        "raw_type": "posted-content"}, "type": "preprint", "indexed_in": ["crossref"],
-        "open_access": {"is_oa": true, "oa_status": "green", "oa_url": "https://www.medrxiv.org/content/medrxiv/early/2023/08/21/2023.08.17.23294220.full.pdf",
-        "any_repository_has_fulltext": true}, "authorships": [{"author_position":
-        "first", "author": {"id": "https://openalex.org/A5092806656", "display_name":
-        "Adam Remaki", "orcid": "https://orcid.org/0000-0002-8902-8207"}, "institutions":
-        [{"id": "https://openalex.org/I4210097159", "display_name": "Assistance Publique
-        \u2013 H\u00f4pitaux de Paris", "ror": "https://ror.org/00pg5jh14", "country_code":
-        "FR", "type": "healthcare", "lineage": ["https://openalex.org/I4210097159"]}],
-        "countries": ["FR"], "is_corresponding": true, "raw_author_name": "Adam Remaki",
-        "raw_affiliation_strings": ["Innovation and Data unit, IT Department, Assistance
-        Publique-H\u00f4pitaux de Paris, Paris, \u00cele-de-France, France"], "raw_orcid":
-        "https://orcid.org/0000-0002-8902-8207", "affiliations": [{"raw_affiliation_string":
-        "Innovation and Data unit, IT Department, Assistance Publique-H\u00f4pitaux
-        de Paris, Paris, \u00cele-de-France, France", "institution_ids": ["https://openalex.org/I4210097159"]}]},
-        {"author_position": "middle", "author": {"id": "https://openalex.org/A5062646793",
-        "display_name": "Beno\u00eet Playe", "orcid": "https://orcid.org/0000-0003-3836-2683"},
-        "institutions": [{"id": "https://openalex.org/I4210097159", "display_name":
-        "Assistance Publique \u2013 H\u00f4pitaux de Paris", "ror": "https://ror.org/00pg5jh14",
-        "country_code": "FR", "type": "healthcare", "lineage": ["https://openalex.org/I4210097159"]}],
-        "countries": ["FR"], "is_corresponding": false, "raw_author_name": "Beno\u00eet
-        Playe", "raw_affiliation_strings": ["Innovation and Data unit, IT Department,
-        Assistance Publique-H\u00f4pitaux de Paris, Paris, \u00cele-de-France, France"],
-        "raw_orcid": null, "affiliations": [{"raw_affiliation_string": "Innovation
-        and Data unit, IT Department, Assistance Publique-H\u00f4pitaux de Paris,
-        Paris, \u00cele-de-France, France", "institution_ids": ["https://openalex.org/I4210097159"]}]},
-        {"author_position": "middle", "author": {"id": "https://openalex.org/A5102799252",
-        "display_name": "Paul Bernard", "orcid": "https://orcid.org/0000-0003-2649-1584"},
-        "institutions": [{"id": "https://openalex.org/I4210097159", "display_name":
-        "Assistance Publique \u2013 H\u00f4pitaux de Paris", "ror": "https://ror.org/00pg5jh14",
-        "country_code": "FR", "type": "healthcare", "lineage": ["https://openalex.org/I4210097159"]}],
-        "countries": ["FR"], "is_corresponding": false, "raw_author_name": "Paul Bernard",
-        "raw_affiliation_strings": ["Innovation and Data unit, IT Department, Assistance
-        Publique-H\u00f4pitaux de Paris, Paris, \u00cele-de-France, France"], "raw_orcid":
-        null, "affiliations": [{"raw_affiliation_string": "Innovation and Data unit,
-        IT Department, Assistance Publique-H\u00f4pitaux de Paris, Paris, \u00cele-de-France,
-        France", "institution_ids": ["https://openalex.org/I4210097159"]}]}, {"author_position":
-        "middle", "author": {"id": "https://openalex.org/A5092806657", "display_name":
-        "Simon Vittoz", "orcid": null}, "institutions": [{"id": "https://openalex.org/I4210097159",
-        "display_name": "Assistance Publique \u2013 H\u00f4pitaux de Paris", "ror":
-        "https://ror.org/00pg5jh14", "country_code": "FR", "type": "healthcare", "lineage":
-        ["https://openalex.org/I4210097159"]}], "countries": ["FR"], "is_corresponding":
-        false, "raw_author_name": "Simon Vittoz", "raw_affiliation_strings": ["Innovation
-        and Data unit, IT Department, Assistance Publique-H\u00f4pitaux de Paris,
-        Paris, \u00cele-de-France, France"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
-        "Innovation and Data unit, IT Department, Assistance Publique-H\u00f4pitaux
-        de Paris, Paris, \u00cele-de-France, France", "institution_ids": ["https://openalex.org/I4210097159"]}]},
-        {"author_position": "middle", "author": {"id": "https://openalex.org/A5045484943",
-        "display_name": "Matthieu Doutreligne", "orcid": "https://orcid.org/0000-0001-8072-9966"},
-        "institutions": [{"id": "https://openalex.org/I4210092716", "display_name":
-        "Sant\u00e9 Publique France", "ror": "https://ror.org/00dfw9p58", "country_code":
-        "FR", "type": "other", "lineage": ["https://openalex.org/I4210092716"]}, {"id":
-        "https://openalex.org/I4210115519", "display_name": "Centre de Recherche en
-        Informatique", "ror": "https://ror.org/020cdve92", "country_code": "FR", "type":
-        "facility", "lineage": ["https://openalex.org/I190752583", "https://openalex.org/I2746051580",
-        "https://openalex.org/I4210091621", "https://openalex.org/I4210115519", "https://openalex.org/I70768539"]}],
-        "countries": ["FR"], "is_corresponding": false, "raw_author_name": "Matthieu
-        Doutreligne", "raw_affiliation_strings": ["Mission data, Haute Autorit\u00e9
-        de Sant\u00e9, Saint-Denis, France", "Soda, Institut national de recherche
-        en informatique et en automatique, Saclay, \u00cele-de-France, France"], "raw_orcid":
-        "https://orcid.org/0000-0001-8072-9966", "affiliations": [{"raw_affiliation_string":
-        "Mission data, Haute Autorit\u00e9 de Sant\u00e9, Saint-Denis, France", "institution_ids":
-        ["https://openalex.org/I4210092716"]}, {"raw_affiliation_string": "Soda, Institut
-        national de recherche en informatique et en automatique, Saclay, \u00cele-de-France,
-        France", "institution_ids": ["https://openalex.org/I4210115519"]}]}, {"author_position":
-        "middle", "author": {"id": "https://openalex.org/A5042077662", "display_name":
-        "Gilles Chatelier", "orcid": null}, "institutions": [{"id": "https://openalex.org/I204730241",
-        "display_name": "Universit\u00e9 Paris Cit\u00e9", "ror": "https://ror.org/05f82e368",
-        "country_code": "FR", "type": "education", "lineage": ["https://openalex.org/I204730241"]},
-        {"id": "https://openalex.org/I4210097159", "display_name": "Assistance Publique
-        \u2013 H\u00f4pitaux de Paris", "ror": "https://ror.org/00pg5jh14", "country_code":
-        "FR", "type": "healthcare", "lineage": ["https://openalex.org/I4210097159"]}],
-        "countries": ["FR"], "is_corresponding": false, "raw_author_name": "Gilles
-        Chatelier", "raw_affiliation_strings": ["Innovation and Data unit, IT Department,
-        Assistance Publique-H\u00f4pitaux de Paris, Paris, \u00cele-de-France, France",
-        "Universit\u00e9 Paris Cit\u00e9, Paris, \u00cele-de-France, France"], "raw_orcid":
-        null, "affiliations": [{"raw_affiliation_string": "Innovation and Data unit,
-        IT Department, Assistance Publique-H\u00f4pitaux de Paris, Paris, \u00cele-de-France,
-        France", "institution_ids": ["https://openalex.org/I4210097159"]}, {"raw_affiliation_string":
-        "Universit\u00e9 Paris Cit\u00e9, Paris, \u00cele-de-France, France", "institution_ids":
-        ["https://openalex.org/I204730241"]}]}, {"author_position": "middle", "author":
-        {"id": "https://openalex.org/A5018477126", "display_name": "\u00c9tienne Audureau",
-        "orcid": "https://orcid.org/0000-0002-6166-149X"}, "institutions": [{"id":
-        "https://openalex.org/I154526488", "display_name": "Inserm", "ror": "https://ror.org/02vjkv261",
-        "country_code": "FR", "type": "government", "lineage": ["https://openalex.org/I154526488"]},
-        {"id": "https://openalex.org/I197681013", "display_name": "Universit\u00e9
-        Paris-Est Cr\u00e9teil", "ror": "https://ror.org/05ggc9x40", "country_code":
-        "FR", "type": "education", "lineage": ["https://openalex.org/I197681013"]},
-        {"id": "https://openalex.org/I4210097159", "display_name": "Assistance Publique
-        \u2013 H\u00f4pitaux de Paris", "ror": "https://ror.org/00pg5jh14", "country_code":
-        "FR", "type": "healthcare", "lineage": ["https://openalex.org/I4210097159"]},
-        {"id": "https://openalex.org/I4210156254", "display_name": "H\u00f4pital Albert-Chenevier",
-        "ror": "https://ror.org/0511th722", "country_code": "FR", "type": "healthcare",
-        "lineage": ["https://openalex.org/I4210097159", "https://openalex.org/I4210156254"]},
-        {"id": "https://openalex.org/I4210159433", "display_name": "Institut Mondor
-        de Recherche Biom\u00e9dicale", "ror": "https://ror.org/04qe59j94", "country_code":
-        "FR", "type": "facility", "lineage": ["https://openalex.org/I154526488", "https://openalex.org/I17606148",
-        "https://openalex.org/I197681013", "https://openalex.org/I197681013", "https://openalex.org/I4210159433"]}],
-        "countries": ["FR"], "is_corresponding": false, "raw_author_name": "Etienne
-        Audureau", "raw_affiliation_strings": ["Department of Public Health, Assistance
-        Publique-H\u00f4pitaux de Paris, Henri Mondor and Albert Chenevier, IMRB U955
-        INSERM Teaching Hospital, University Paris Est Cr\u00e9teil, Cr\u00e9teil,
-        \u00cele-de-France, France", "Department of Public Health, Assistance Publique-H\u00f4pitaux
-        de Paris, Henri Mondor and Albert Chenevier, IMRB U9 INSERM Teaching Hospital,
-        University Paris Est Cr\u00e9teil, Cr\u00e9teil, \u00cele-de-France, France"],
-        "raw_orcid": "https://orcid.org/0000-0002-6166-149X", "affiliations": [{"raw_affiliation_string":
-        "Department of Public Health, Assistance Publique-H\u00f4pitaux de Paris,
-        Henri Mondor and Albert Chenevier, IMRB U955 INSERM Teaching Hospital, University
-        Paris Est Cr\u00e9teil, Cr\u00e9teil, \u00cele-de-France, France", "institution_ids":
-        ["https://openalex.org/I154526488", "https://openalex.org/I4210159433", "https://openalex.org/I197681013",
-        "https://openalex.org/I4210156254"]}, {"raw_affiliation_string": "Department
-        of Public Health, Assistance Publique-H\u00f4pitaux de Paris, Henri Mondor
-        and Albert Chenevier, IMRB U9 INSERM Teaching Hospital, University Paris Est
-        Cr\u00e9teil, Cr\u00e9teil, \u00cele-de-France, France", "institution_ids":
-        ["https://openalex.org/I154526488", "https://openalex.org/I4210159433", "https://openalex.org/I197681013",
-        "https://openalex.org/I4210097159"]}]}, {"author_position": "middle", "author":
-        {"id": "https://openalex.org/A5077875475", "display_name": "Emmanuelle Kempf",
-        "orcid": "https://orcid.org/0000-0002-9285-1966"}, "institutions": [{"id":
-        "https://openalex.org/I39804081", "display_name": "Sorbonne Universit\u00e9",
-        "ror": "https://ror.org/02en5vm52", "country_code": "FR", "type": "education",
-        "lineage": ["https://openalex.org/I39804081"]}, {"id": "https://openalex.org/I4210130325",
-        "display_name": "H\u00f4pitaux Universitaires Henri-Mondor", "ror": "https://ror.org/033yb0967",
-        "country_code": "FR", "type": "healthcare", "lineage": ["https://openalex.org/I4210097159",
-        "https://openalex.org/I4210130325"]}, {"id": "https://openalex.org/I4210161954",
-        "display_name": "D\u00e9partement d''Informatique", "ror": "https://ror.org/05y6rqs46",
-        "country_code": "FR", "type": "facility", "lineage": ["https://openalex.org/I1294671590",
-        "https://openalex.org/I1294671590", "https://openalex.org/I1326498283", "https://openalex.org/I2746051580",
-        "https://openalex.org/I29607241", "https://openalex.org/I4210159245", "https://openalex.org/I4210161954"]},
-        {"id": "https://openalex.org/I4389425324", "display_name": "Laboratoire d''Informatique
-        M\u00e9dicale et d''Ing\u00e9nierie des Connaissances en e-Sant\u00e9", "ror":
-        "https://ror.org/01jr1v359", "country_code": null, "type": "facility", "lineage":
-        ["https://openalex.org/I154526488", "https://openalex.org/I39804081", "https://openalex.org/I4210091279",
-        "https://openalex.org/I4389425324"]}], "countries": ["FR"], "is_corresponding":
-        false, "raw_author_name": "Emmanuelle Kempf", "raw_affiliation_strings": ["Henri
-        Mondor Hospital Oncology-Radiotherapy Service, Creteil, \u00cele-de-France,
-        France", "Sorbonne Universit\u00e9, LIMICS - Laboratoire d\u2019Informatique
-        M\u00e9dicale et Ing\u00e9nierie des Connaissances en e-Sant\u00e9, Paris,
-        \u00cele-de-France, France", "Sorbonne Universit\u00e9, LIMICS - Laboratoire
-        d''Informatique M\u00e9dicale et Ing\u00e9nierie des Connaissances en e-Sant\u00e9,
-        Paris, \u00cele-de-France, France"], "raw_orcid": "https://orcid.org/0000-0002-9285-1966",
-        "affiliations": [{"raw_affiliation_string": "Henri Mondor Hospital Oncology-Radiotherapy
-        Service, Creteil, \u00cele-de-France, France", "institution_ids": ["https://openalex.org/I4210130325"]},
-        {"raw_affiliation_string": "Sorbonne Universit\u00e9, LIMICS - Laboratoire
-        d\u2019Informatique M\u00e9dicale et Ing\u00e9nierie des Connaissances en
-        e-Sant\u00e9, Paris, \u00cele-de-France, France", "institution_ids": ["https://openalex.org/I39804081",
-        "https://openalex.org/I4210161954", "https://openalex.org/I4389425324"]},
-        {"raw_affiliation_string": "Sorbonne Universit\u00e9, LIMICS - Laboratoire
-        d''Informatique M\u00e9dicale et Ing\u00e9nierie des Connaissances en e-Sant\u00e9,
-        Paris, \u00cele-de-France, France", "institution_ids": ["https://openalex.org/I39804081",
-        "https://openalex.org/I4210161954", "https://openalex.org/I4389425324"]}]},
-        {"author_position": "middle", "author": {"id": "https://openalex.org/A5066493529",
-        "display_name": "Rapha\u00ebl Porcher", "orcid": "https://orcid.org/0000-0002-5277-4679"},
-        "institutions": [{"id": "https://openalex.org/I154526488", "display_name":
-        "Inserm", "ror": "https://ror.org/02vjkv261", "country_code": "FR", "type":
-        "government", "lineage": ["https://openalex.org/I154526488"]}, {"id": "https://openalex.org/I4210097159",
-        "display_name": "Assistance Publique \u2013 H\u00f4pitaux de Paris", "ror":
-        "https://ror.org/00pg5jh14", "country_code": "FR", "type": "healthcare", "lineage":
-        ["https://openalex.org/I4210097159"]}, {"id": "https://openalex.org/I4387154308",
-        "display_name": "Centre de Recherche \u00c9pid\u00e9miologie et Statistique",
-        "ror": "https://ror.org/00t9egj41", "country_code": "FR", "type": "facility",
-        "lineage": ["https://openalex.org/I154526488", "https://openalex.org/I204730241",
-        "https://openalex.org/I4210088668", "https://openalex.org/I4210091279", "https://openalex.org/I4387154308"]}],
-        "countries": ["FR"], "is_corresponding": false, "raw_author_name": "Rapha\u00ebl
-        Porcher", "raw_affiliation_strings": ["Centre d\u2019\u00c9pid\u00e9miologie
-        Clinique, Assistance Publique - Hopitaux de Paris, CRESS, UMR1153, INSERM,
-        INRA, Paris, \u00cele-de-France, France", "Centre d''\u00c9pid\u00e9miologie
-        Clinique, Assistance Publique - Hopitaux de Paris, CRESS, UMR1153, INSERM,
-        INRA, Paris, \u00cele-de-France, France"], "raw_orcid": "https://orcid.org/0000-0002-5277-4679",
-        "affiliations": [{"raw_affiliation_string": "Centre d\u2019\u00c9pid\u00e9miologie
-        Clinique, Assistance Publique - Hopitaux de Paris, CRESS, UMR1153, INSERM,
-        INRA, Paris, \u00cele-de-France, France", "institution_ids": ["https://openalex.org/I154526488",
-        "https://openalex.org/I4387154308", "https://openalex.org/I4210097159"]},
-        {"raw_affiliation_string": "Centre d''\u00c9pid\u00e9miologie Clinique, Assistance
-        Publique - Hopitaux de Paris, CRESS, UMR1153, INSERM, INRA, Paris, \u00cele-de-France,
-        France", "institution_ids": ["https://openalex.org/I154526488", "https://openalex.org/I4387154308",
-        "https://openalex.org/I4210097159"]}]}, {"author_position": "last", "author":
-        {"id": "https://openalex.org/A5059890101", "display_name": "Romain Bey", "orcid":
-        "https://orcid.org/0000-0002-6413-5188"}, "institutions": [{"id": "https://openalex.org/I4210097159",
-        "display_name": "Assistance Publique \u2013 H\u00f4pitaux de Paris", "ror":
-        "https://ror.org/00pg5jh14", "country_code": "FR", "type": "healthcare", "lineage":
-        ["https://openalex.org/I4210097159"]}], "countries": ["FR"], "is_corresponding":
-        false, "raw_author_name": "Romain Bey", "raw_affiliation_strings": ["Innovation
-        and Data unit, IT Department, Assistance Publique-H\u00f4pitaux de Paris,
-        Paris, \u00cele-de-France, France"], "raw_orcid": "https://orcid.org/0000-0002-6413-5188",
-        "affiliations": [{"raw_affiliation_string": "Innovation and Data unit, IT
-        Department, Assistance Publique-H\u00f4pitaux de Paris, Paris, \u00cele-de-France,
-        France", "institution_ids": ["https://openalex.org/I4210097159"]}]}], "institutions":
-        [], "countries_distinct_count": 1, "institutions_distinct_count": 10, "corresponding_author_ids":
-        ["https://openalex.org/A5092806656"], "corresponding_institution_ids": ["https://openalex.org/I4210097159"],
-        "apc_list": null, "apc_paid": null, "fwci": null, "has_fulltext": true, "cited_by_count":
-        3, "citation_normalized_percentile": null, "cited_by_percentile_year": null,
-        "biblio": {"volume": null, "issue": null, "first_page": null, "last_page":
-        null}, "is_retracted": false, "is_paratext": false, "is_xpac": false, "primary_topic":
-        {"id": "https://openalex.org/T13702", "display_name": "Machine Learning in
-        Healthcare", "score": 0.9965000152587891, "subfield": {"id": "https://openalex.org/subfields/1702",
-        "display_name": "Artificial Intelligence"}, "field": {"id": "https://openalex.org/fields/17",
-        "display_name": "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}, "topics": [{"id": "https://openalex.org/T13702",
-        "display_name": "Machine Learning in Healthcare", "score": 0.9965000152587891,
-        "subfield": {"id": "https://openalex.org/subfields/1702", "display_name":
-        "Artificial Intelligence"}, "field": {"id": "https://openalex.org/fields/17",
-        "display_name": "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3",
-        "display_name": "Physical Sciences"}}, {"id": "https://openalex.org/T12246",
-        "display_name": "Chronic Disease Management Strategies", "score": 0.9911999702453613,
-        "subfield": {"id": "https://openalex.org/subfields/2713", "display_name":
-        "Epidemiology"}, "field": {"id": "https://openalex.org/fields/27", "display_name":
-        "Medicine"}, "domain": {"id": "https://openalex.org/domains/4", "display_name":
-        "Health Sciences"}}, {"id": "https://openalex.org/T14400", "display_name":
-        "Medical Coding and Health Information", "score": 0.9889000058174133, "subfield":
-        {"id": "https://openalex.org/subfields/3605", "display_name": "Health Information
-        Management"}, "field": {"id": "https://openalex.org/fields/36", "display_name":
-        "Health Professions"}, "domain": {"id": "https://openalex.org/domains/4",
-        "display_name": "Health Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/digitization",
-        "display_name": "Digitization", "score": 0.817689061164856}, {"id": "https://openalex.org/keywords/missing-data",
-        "display_name": "Missing data", "score": 0.7540640234947205}, {"id": "https://openalex.org/keywords/health-records",
-        "display_name": "Health records", "score": 0.5327273607254028}, {"id": "https://openalex.org/keywords/emergency-department",
-        "display_name": "Emergency department", "score": 0.5320279002189636}, {"id":
-        "https://openalex.org/keywords/medical-record", "display_name": "Medical record",
-        "score": 0.5305906534194946}, {"id": "https://openalex.org/keywords/data-quality",
-        "display_name": "Data quality", "score": 0.5132296085357666}, {"id": "https://openalex.org/keywords/data-warehouse",
-        "display_name": "Data warehouse", "score": 0.500830888748169}, {"id": "https://openalex.org/keywords/computer-science",
-        "display_name": "Computer science", "score": 0.4676228165626526}, {"id": "https://openalex.org/keywords/data-science",
-        "display_name": "Data science", "score": 0.46122294664382935}, {"id": "https://openalex.org/keywords/health-care",
-        "display_name": "Health care", "score": 0.4525522291660309}, {"id": "https://openalex.org/keywords/medicine",
-        "display_name": "Medicine", "score": 0.45044365525245667}, {"id": "https://openalex.org/keywords/biobank",
-        "display_name": "Biobank", "score": 0.43721821904182434}, {"id": "https://openalex.org/keywords/epidemiology",
-        "display_name": "Epidemiology", "score": 0.4298299252986908}, {"id": "https://openalex.org/keywords/quality",
-        "display_name": "Quality (philosophy)", "score": 0.42349040508270264}, {"id":
-        "https://openalex.org/keywords/data-mining", "display_name": "Data mining",
-        "score": 0.3928564786911011}, {"id": "https://openalex.org/keywords/medical-emergency",
-        "display_name": "Medical emergency", "score": 0.3635043501853943}, {"id":
-        "https://openalex.org/keywords/statistics", "display_name": "Statistics",
-        "score": 0.3546089828014374}, {"id": "https://openalex.org/keywords/operations-management",
-        "display_name": "Operations management", "score": 0.30092132091522217}, {"id":
-        "https://openalex.org/keywords/engineering", "display_name": "Engineering",
-        "score": 0.17554563283920288}, {"id": "https://openalex.org/keywords/surgery",
-        "display_name": "Surgery", "score": 0.11843496561050415}, {"id": "https://openalex.org/keywords/nursing",
-        "display_name": "Nursing", "score": 0.11166054010391235}, {"id": "https://openalex.org/keywords/mathematics",
-        "display_name": "Mathematics", "score": 0.11157301068305969}, {"id": "https://openalex.org/keywords/pathology",
-        "display_name": "Pathology", "score": 0.09653273224830627}], "concepts": [{"id":
-        "https://openalex.org/C2779308522", "wikidata": "https://www.wikidata.org/wiki/Q843958",
-        "display_name": "Digitization", "level": 2, "score": 0.817689061164856}, {"id":
-        "https://openalex.org/C9357733", "wikidata": "https://www.wikidata.org/wiki/Q6878417",
-        "display_name": "Missing data", "level": 2, "score": 0.7540640234947205},
-        {"id": "https://openalex.org/C3019952477", "wikidata": "https://www.wikidata.org/wiki/Q1324077",
-        "display_name": "Health records", "level": 3, "score": 0.5327273607254028},
-        {"id": "https://openalex.org/C2780724011", "wikidata": "https://www.wikidata.org/wiki/Q1295316",
-        "display_name": "Emergency department", "level": 2, "score": 0.5320279002189636},
-        {"id": "https://openalex.org/C195910791", "wikidata": "https://www.wikidata.org/wiki/Q1324077",
-        "display_name": "Medical record", "level": 2, "score": 0.5305906534194946},
-        {"id": "https://openalex.org/C24756922", "wikidata": "https://www.wikidata.org/wiki/Q1757694",
-        "display_name": "Data quality", "level": 3, "score": 0.5132296085357666},
-        {"id": "https://openalex.org/C135572916", "wikidata": "https://www.wikidata.org/wiki/Q193351",
-        "display_name": "Data warehouse", "level": 2, "score": 0.500830888748169},
-        {"id": "https://openalex.org/C41008148", "wikidata": "https://www.wikidata.org/wiki/Q21198",
-        "display_name": "Computer science", "level": 0, "score": 0.4676228165626526},
-        {"id": "https://openalex.org/C2522767166", "wikidata": "https://www.wikidata.org/wiki/Q2374463",
-        "display_name": "Data science", "level": 1, "score": 0.46122294664382935},
-        {"id": "https://openalex.org/C160735492", "wikidata": "https://www.wikidata.org/wiki/Q31207",
-        "display_name": "Health care", "level": 2, "score": 0.4525522291660309}, {"id":
-        "https://openalex.org/C71924100", "wikidata": "https://www.wikidata.org/wiki/Q11190",
-        "display_name": "Medicine", "level": 0, "score": 0.45044365525245667}, {"id":
-        "https://openalex.org/C116567970", "wikidata": "https://www.wikidata.org/wiki/Q864217",
-        "display_name": "Biobank", "level": 2, "score": 0.43721821904182434}, {"id":
-        "https://openalex.org/C107130276", "wikidata": "https://www.wikidata.org/wiki/Q133805",
-        "display_name": "Epidemiology", "level": 2, "score": 0.4298299252986908},
-        {"id": "https://openalex.org/C2779530757", "wikidata": "https://www.wikidata.org/wiki/Q1207505",
-        "display_name": "Quality (philosophy)", "level": 2, "score": 0.42349040508270264},
-        {"id": "https://openalex.org/C124101348", "wikidata": "https://www.wikidata.org/wiki/Q172491",
-        "display_name": "Data mining", "level": 1, "score": 0.3928564786911011}, {"id":
-        "https://openalex.org/C545542383", "wikidata": "https://www.wikidata.org/wiki/Q2751242",
-        "display_name": "Medical emergency", "level": 1, "score": 0.3635043501853943},
-        {"id": "https://openalex.org/C105795698", "wikidata": "https://www.wikidata.org/wiki/Q12483",
-        "display_name": "Statistics", "level": 1, "score": 0.3546089828014374}, {"id":
-        "https://openalex.org/C21547014", "wikidata": "https://www.wikidata.org/wiki/Q1423657",
-        "display_name": "Operations management", "level": 1, "score": 0.30092132091522217},
-        {"id": "https://openalex.org/C127413603", "wikidata": "https://www.wikidata.org/wiki/Q11023",
-        "display_name": "Engineering", "level": 0, "score": 0.17554563283920288},
-        {"id": "https://openalex.org/C141071460", "wikidata": "https://www.wikidata.org/wiki/Q40821",
-        "display_name": "Surgery", "level": 1, "score": 0.11843496561050415}, {"id":
-        "https://openalex.org/C159110408", "wikidata": "https://www.wikidata.org/wiki/Q121176",
-        "display_name": "Nursing", "level": 1, "score": 0.11166054010391235}, {"id":
-        "https://openalex.org/C33923547", "wikidata": "https://www.wikidata.org/wiki/Q395",
-        "display_name": "Mathematics", "level": 0, "score": 0.11157301068305969},
-        {"id": "https://openalex.org/C142724271", "wikidata": "https://www.wikidata.org/wiki/Q7208",
-        "display_name": "Pathology", "level": 1, "score": 0.09653273224830627}, {"id":
-        "https://openalex.org/C111472728", "wikidata": "https://www.wikidata.org/wiki/Q9471",
-        "display_name": "Epistemology", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C162324750",
-        "wikidata": "https://www.wikidata.org/wiki/Q8134", "display_name": "Economics",
-        "level": 0, "score": 0.0}, {"id": "https://openalex.org/C176217482", "wikidata":
-        "https://www.wikidata.org/wiki/Q860554", "display_name": "Metric (unit)",
-        "level": 2, "score": 0.0}, {"id": "https://openalex.org/C119857082", "wikidata":
-        "https://www.wikidata.org/wiki/Q2539", "display_name": "Machine learning",
-        "level": 1, "score": 0.0}, {"id": "https://openalex.org/C138885662", "wikidata":
-        "https://www.wikidata.org/wiki/Q5891", "display_name": "Philosophy", "level":
-        0, "score": 0.0}, {"id": "https://openalex.org/C86803240", "wikidata": "https://www.wikidata.org/wiki/Q420",
-        "display_name": "Biology", "level": 0, "score": 0.0}, {"id": "https://openalex.org/C50522688",
-        "wikidata": "https://www.wikidata.org/wiki/Q189833", "display_name": "Economic
-        growth", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C54355233",
-        "wikidata": "https://www.wikidata.org/wiki/Q7162", "display_name": "Genetics",
-        "level": 1, "score": 0.0}, {"id": "https://openalex.org/C31972630", "wikidata":
-        "https://www.wikidata.org/wiki/Q844240", "display_name": "Computer vision",
-        "level": 1, "score": 0.0}], "mesh": [], "locations_count": 2, "locations":
-        [{"id": "doi:10.1101/2023.08.17.23294220", "is_oa": true, "landing_page_url":
-        "https://doi.org/10.1101/2023.08.17.23294220", "pdf_url": "https://www.medrxiv.org/content/medrxiv/early/2023/08/21/2023.08.17.23294220.full.pdf",
-        "source": {"id": "https://openalex.org/S3005729997", "display_name": "medRxiv",
-        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
-        true, "host_organization": null, "host_organization_name": null, "host_organization_lineage":
-        ["https://openalex.org/P4310315909"], "host_organization_lineage_names": ["Cold
-        Spring Harbor Laboratory Press"], "type": "repository"}, "license": "cc-by",
-        "license_id": "https://openalex.org/licenses/cc-by", "version": "acceptedVersion",
-        "is_accepted": true, "is_published": false, "raw_source_name": "medRxiv",
-        "raw_type": "posted-content"}, {"id": "pmh:oai:zenodo.org:8318601", "is_oa":
-        true, "landing_page_url": "https://zenodo.org/record/8318601", "pdf_url":
-        "https://zenodo.org/record/8318601", "source": {"id": "https://openalex.org/S4306400562",
-        "display_name": "Zenodo (CERN European Organization for Nuclear Research)",
-        "issn_l": null, "issn": null, "is_oa": true, "is_in_doaj": false, "is_core":
-        false, "host_organization": "https://openalex.org/I67311998", "host_organization_name":
-        "European Organization for Nuclear Research", "host_organization_lineage":
-        ["https://openalex.org/I67311998"], "host_organization_lineage_names": [],
-        "type": "repository"}, "license": "other-oa", "license_id": "https://openalex.org/licenses/other-oa",
-        "version": "submittedVersion", "is_accepted": false, "is_published": false,
-        "raw_source_name": "", "raw_type": "info:eu-repo/semantics/article"}], "best_oa_location":
-        {"id": "doi:10.1101/2023.08.17.23294220", "is_oa": true, "landing_page_url":
-        "https://doi.org/10.1101/2023.08.17.23294220", "pdf_url": "https://www.medrxiv.org/content/medrxiv/early/2023/08/21/2023.08.17.23294220.full.pdf",
-        "source": {"id": "https://openalex.org/S3005729997", "display_name": "medRxiv",
-        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
-        true, "host_organization": null, "host_organization_name": null, "host_organization_lineage":
-        ["https://openalex.org/P4310315909"], "host_organization_lineage_names": ["Cold
-        Spring Harbor Laboratory Press"], "type": "repository"}, "license": "cc-by",
-        "license_id": "https://openalex.org/licenses/cc-by", "version": "acceptedVersion",
-        "is_accepted": true, "is_published": false, "raw_source_name": "medRxiv",
-        "raw_type": "posted-content"}, "sustainable_development_goals": [{"id": "https://metadata.un.org/sdg/3",
-        "display_name": "Good health and well-being", "score": 0.6899999976158142}],
-        "awards": [], "funders": [], "has_content": {"grobid_xml": false, "pdf": true},
-        "content_urls": {"pdf": "https://content.openalex.org/works/W4386021005.pdf"},
-        "referenced_works_count": 36, "referenced_works": ["https://openalex.org/W1126991912",
-        "https://openalex.org/W1994876586", "https://openalex.org/W2018025378", "https://openalex.org/W2034772224",
-        "https://openalex.org/W2061363465", "https://openalex.org/W2104608657", "https://openalex.org/W2110188749",
-        "https://openalex.org/W2137259690", "https://openalex.org/W2137767404", "https://openalex.org/W2140302476",
-        "https://openalex.org/W2163278718", "https://openalex.org/W2181523240", "https://openalex.org/W2316923772",
-        "https://openalex.org/W2341770358", "https://openalex.org/W2515822248", "https://openalex.org/W2518786827",
-        "https://openalex.org/W2595962374", "https://openalex.org/W2604834158", "https://openalex.org/W2791458756",
-        "https://openalex.org/W2802561155", "https://openalex.org/W2908098188", "https://openalex.org/W2910420059",
-        "https://openalex.org/W2964828987", "https://openalex.org/W3006589096", "https://openalex.org/W3046753020",
-        "https://openalex.org/W3080627676", "https://openalex.org/W3105812826", "https://openalex.org/W3120118518",
-        "https://openalex.org/W3122836130", "https://openalex.org/W3177617320", "https://openalex.org/W3183267169",
-        "https://openalex.org/W3198779240", "https://openalex.org/W3207320674", "https://openalex.org/W3216890624",
-        "https://openalex.org/W4308925501", "https://openalex.org/W4312080280"], "related_works":
-        ["https://openalex.org/W2901826185", "https://openalex.org/W3119296476", "https://openalex.org/W2742521120",
-        "https://openalex.org/W2159392828", "https://openalex.org/W2353586736", "https://openalex.org/W2189235061",
-        "https://openalex.org/W2353590449", "https://openalex.org/W188368245", "https://openalex.org/W2181930696",
-        "https://openalex.org/W69955301"], "abstract_inverted_index": {"A": [0], "bstract":
-        [1], "Objectives": [2], "To": [3, 50], "propose": [4], "a": [5, 33, 42, 99,
-        120, 124, 145, 169], "new": [6, 228], "method": [7, 162], "to": [8, 175, 233],
-        "account": [9, 176], "for": [10, 130, 177], "time-dependent": [11], "data":
-        [12, 55, 67, 209, 218, 240], "missingness": [13, 178], "caused": [14], "by":
-        [15, 114, 180], "the": [16, 23, 38, 65, 70, 77, 85, 93, 105, 160, 181], "increasing":
-        [17], "digitization": [18, 183], "of": [19, 25, 41, 69, 79, 95, 108, 137,
-        184, 215], "health": [20, 45, 185, 222], "records": [21, 223], "in": [22,
-        47, 64], "analysis": [24, 122, 127, 147], "large-scale": [26], "clinical":
-        [27, 66], "data.": [28], "Materials": [29], "and": [30, 59, 61, 111, 139,
-        194, 205, 227], "Methods": [31], "Following": [32], "data-driven": [34, 170],
-        "approach": [35, 171], "we": [36, 53, 81], "modeled": [37], "progressive":
-        [39, 182], "adoption": [40], "common": [43], "electronic": [44], "record":
-        [46], "38": [48], "hospitals.": [49], "this": [51, 96, 151], "end,": [52],
-        "analyzed": [54], "collected": [56], "between": [57], "2013": [58], "2022":
-        [60], "made": [62], "available": [63], "warehouse": [68], "Greater": [71],
-        "Paris": [72], "University": [73], "Hospitals.": [74], "Depending": [75],
-        "on": [76, 190], "category": [78], "data,": [80], "worked": [82], "either":
-        [83, 119, 154], "at": [84], "hospital,": [86], "department": [87, 193], "or":
-        [88, 123, 157], "unit": [89], "level.": [90], "We": [91, 103, 166], "evaluated":
-        [92], "performance": [94], "model": [97], "with": [98, 200], "retrospective":
-        [100], "cohort": [101], "study.": [102], "measured": [104], "temporal": [106,
-        135], "variations": [107, 136], "some": [109], "quality": [110, 138], "epidemiological":
-        [112, 140], "indicators": [113, 141], "successively": [115], "applying": [116],
-        "two": [117], "methods,": [118], "naive": [121, 146], "novel": [125], "complete-source-only":
-        [126, 161], "that": [128, 168, 236], "accounts": [129], "digitization-induced":
-        [131], "missingness.": [132], "Results": [133], "Unrealistic": [134], "were":
-        [142], "observed": [143], "when": [144, 159], "was": [148, 153, 163], "performed,":
-        [149], "but": [150], "effect": [152], "greatly": [155], "reduced": [156],
-        "disappeared": [158], "applied.": [164], "Discussion": [165], "demonstrated":
-        [167], "can": [172], "be": [173, 231], "used": [174], "induced": [179], "records.":
-        [186], "This": [187], "work": [188], "focused": [189], "hospitalization,":
-        [191], "emergency": [192], "intensive": [195], "care": [196], "units": [197],
-        "records,": [198], "along": [199], "diagnostic": [201], "codes,": [202], "discharge":
-        [203], "prescriptions": [204], "consultation": [206], "reports.": [207], "Other":
-        [208], "categories": [210], "may": [211], "require": [212], "specific": [213],
-        "modeling": [214], "their": [216], "associated": [217], "sources.": [219,
-        241], "Conclusions": [220], "Electronic": [221], "are": [224], "constantly":
-        [225], "evolving": [226], "methods": [229], "should": [230], "developed":
-        [232], "debias": [234], "studies": [235], "use": [237], "these": [238], "unstable":
-        [239]}, "counts_by_year": [{"year": 2026, "cited_by_count": 1}, {"year": 2025,
-        "cited_by_count": 1}, {"year": 2024, "cited_by_count": 1}], "updated_date":
-        "2026-05-21T06:26:12.895304", "created_date": "2023-08-22T00:00:00"}, {"id":
-        "https://openalex.org/W578467691", "doi": null, "title": "\u041c\u0435\u0442\u043e\u0434\u0438\u043a\u0430
-        \u043f\u0440\u0438\u043c\u0435\u043d\u0435\u043d\u0438\u044f \u043f\u0438\u043b\u0430\u0442\u0435\u0441\u0430
-        \u043a\u0430\u043a \u0441\u0440\u0435\u0434\u0441\u0442\u0432\u0430 \u043f\u0440\u043e\u0444\u0438\u043b\u0430\u043a\u0442\u0438\u043a\u0438
-        \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u043d\u043e-\u0444\u0443\u043d\u043a\u0446\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445
-        \u043d\u0430\u0440\u0443\u0448\u0435\u043d\u0438\u0439 \u043f\u043e\u0437\u0432\u043e\u043d\u043e\u0447\u043d\u0438\u043a\u0430
-        \u0443 \u0441\u0442\u0443\u0434\u0435\u043d\u0442\u043e\u043a", "display_name":
-        "\u041c\u0435\u0442\u043e\u0434\u0438\u043a\u0430 \u043f\u0440\u0438\u043c\u0435\u043d\u0435\u043d\u0438\u044f
-        \u043f\u0438\u043b\u0430\u0442\u0435\u0441\u0430 \u043a\u0430\u043a \u0441\u0440\u0435\u0434\u0441\u0442\u0432\u0430
-        \u043f\u0440\u043e\u0444\u0438\u043b\u0430\u043a\u0442\u0438\u043a\u0438 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u043d\u043e-\u0444\u0443\u043d\u043a\u0446\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445
-        \u043d\u0430\u0440\u0443\u0448\u0435\u043d\u0438\u0439 \u043f\u043e\u0437\u0432\u043e\u043d\u043e\u0447\u043d\u0438\u043a\u0430
-        \u0443 \u0441\u0442\u0443\u0434\u0435\u043d\u0442\u043e\u043a", "relevance_score":
-        0.99999994, "publication_year": 2008, "publication_date": "2008-01-01", "ids":
-        {"openalex": "https://openalex.org/W578467691", "mag": "578467691"}, "language":
-        "ru", "primary_location": {"id": "mag:578467691", "is_oa": false, "landing_page_url":
-        "https://cyberleninka.ru/article/n/metodika-primeneniya-pilatesa-kak-sredstva-profilaktiki-strukturno-funktsionalnyh-narusheniy-pozvonochnika-u-studentok/pdf",
-        "pdf_url": null, "source": {"id": "https://openalex.org/S4306540496", "display_name":
-        "\u0423\u0447\u0435\u043d\u044b\u0435 \u0437\u0430\u043f\u0438\u0441\u043a\u0438
-        \u0443\u043d\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442\u0430 \u0438\u043c.
-        \u041f.\u0424. \u041b\u0435\u0441\u0433\u0430\u0444\u0442\u0430", "issn_l":
-        null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core": false,
-        "host_organization": null, "host_organization_name": null, "host_organization_lineage":
-        [], "host_organization_lineage_names": [], "type": "journal"}, "license":
-        null, "license_id": null, "version": null, "is_accepted": false, "is_published":
-        false, "raw_source_name": "\u0423\u0447\u0435\u043d\u044b\u0435 \u0437\u0430\u043f\u0438\u0441\u043a\u0438
-        \u0443\u043d\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442\u0430 \u0438\u043c.
-        \u041f.\u0424. \u041b\u0435\u0441\u0433\u0430\u0444\u0442\u0430", "raw_type":
-        null}, "type": "article", "indexed_in": [], "open_access": {"is_oa": false,
-        "oa_status": "closed", "oa_url": null, "any_repository_has_fulltext": false},
-        "authorships": [{"author_position": "first", "author": {"id": "https://openalex.org/A5054360455",
-        "display_name": "\u0421\u0432\u0435\u0442\u043b\u0430\u043d\u0430 \u041a\u0430\u0440\u043f\u043e\u0432\u043d\u0430
-        \u0420\u0443\u043a\u0430\u0432\u0438\u0448\u043d\u0438\u043a\u043e\u0432\u0430",
-        "orcid": null}, "institutions": [], "countries": [], "is_corresponding": true,
-        "raw_author_name": "\u0421\u0432\u0435\u0442\u043b\u0430\u043d\u0430 \u041a\u0430\u0440\u043f\u043e\u0432\u043d\u0430
-        \u0420\u0443\u043a\u0430\u0432\u0438\u0448\u043d\u0438\u043a\u043e\u0432\u0430",
-        "raw_affiliation_strings": [], "affiliations": []}], "institutions": [], "countries_distinct_count":
-        0, "institutions_distinct_count": 1, "corresponding_author_ids": ["https://openalex.org/A5054360455"],
-        "corresponding_institution_ids": [], "apc_list": null, "apc_paid": null, "fwci":
-        0.0, "has_fulltext": false, "cited_by_count": 0, "citation_normalized_percentile":
-        {"value": 0.09767728, "is_in_top_1_percent": false, "is_in_top_10_percent":
-        false}, "cited_by_percentile_year": null, "biblio": {"volume": null, "issue":
-        "10", "first_page": null, "last_page": null}, "is_retracted": false, "is_paratext":
-        false, "is_xpac": false, "primary_topic": {"id": "https://openalex.org/T13189",
-        "display_name": "Physical Education and Training Studies", "score": 0.9977999925613403,
-        "subfield": {"id": "https://openalex.org/subfields/3612", "display_name":
-        "Physical Therapy, Sports Therapy and Rehabilitation"}, "field": {"id": "https://openalex.org/fields/36",
-        "display_name": "Health Professions"}, "domain": {"id": "https://openalex.org/domains/4",
-        "display_name": "Health Sciences"}}, "topics": [{"id": "https://openalex.org/T13189",
-        "display_name": "Physical Education and Training Studies", "score": 0.9977999925613403,
-        "subfield": {"id": "https://openalex.org/subfields/3612", "display_name":
-        "Physical Therapy, Sports Therapy and Rehabilitation"}, "field": {"id": "https://openalex.org/fields/36",
-        "display_name": "Health Professions"}, "domain": {"id": "https://openalex.org/domains/4",
-        "display_name": "Health Sciences"}}, {"id": "https://openalex.org/T13359",
-        "display_name": "Sports Science and Education", "score": 0.9769999980926514,
-        "subfield": {"id": "https://openalex.org/subfields/1207", "display_name":
-        "History and Philosophy of Science"}, "field": {"id": "https://openalex.org/fields/12",
-        "display_name": "Arts and Humanities"}, "domain": {"id": "https://openalex.org/domains/2",
-        "display_name": "Social Sciences"}}, {"id": "https://openalex.org/T13091",
-        "display_name": "Human Health and Disease", "score": 0.9549000263214111, "subfield":
-        {"id": "https://openalex.org/subfields/2735", "display_name": "Pediatrics,
-        Perinatology and Child Health"}, "field": {"id": "https://openalex.org/fields/27",
-        "display_name": "Medicine"}, "domain": {"id": "https://openalex.org/domains/4",
-        "display_name": "Health Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/process",
-        "display_name": "Process (computing)", "score": 0.49417856335639954}, {"id":
+        [{"id": "https://openalex.org/W2600965442", "doi": null, "title": "Patriotism
+        as criterion of changes of transition political process: problems on the way
+        to information society", "display_name": "Patriotism as criterion of changes
+        of transition political process: problems on the way to information society",
+        "relevance_score": 0.99999994, "publication_year": 2015, "publication_date":
+        "2015-01-01", "ids": {"openalex": "https://openalex.org/W2600965442", "mag":
+        "2600965442"}, "language": "en", "primary_location": {"id": "mag:2600965442",
+        "is_oa": false, "landing_page_url": "https://publications.hse.ru/en/articles/149359569",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306538310", "display_name":
+        "\u0411\u0438\u0437\u043d\u0435\u0441. \u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e.
+        \u0412\u043b\u0430\u0441\u0442\u044c", "issn_l": null, "issn": null, "is_oa":
+        false, "is_in_doaj": false, "is_core": false, "host_organization": null, "host_organization_name":
+        null, "host_organization_lineage": [], "host_organization_lineage_names":
+        [], "type": "journal"}, "license": null, "license_id": null, "version": null,
+        "is_accepted": false, "is_published": false, "raw_source_name": "\u0411\u0438\u0437\u043d\u0435\u0441.
+        \u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e. \u0412\u043b\u0430\u0441\u0442\u044c",
+        "raw_type": null}, "type": "article", "indexed_in": [], "open_access": {"is_oa":
+        false, "oa_status": "closed", "oa_url": null, "any_repository_has_fulltext":
+        false}, "authorships": [{"author_position": "first", "author": {"id": "https://openalex.org/A5061498750",
+        "display_name": "\u0411\u0435\u0441\u043f\u0430\u043b\u043e\u0432 \u0414\u043c\u0438\u0442\u0440\u0438\u0439
+        \u041d\u0438\u043a\u043e\u043b\u0430\u0435\u0432\u0438\u0447", "orcid": null},
+        "institutions": [{"id": "https://openalex.org/I118501908", "display_name":
+        "National Research University Higher School of Economics", "ror": "https://ror.org/055f7t516",
+        "country_code": "RU", "type": "education", "lineage": ["https://openalex.org/I118501908"]}],
+        "countries": ["RU"], "is_corresponding": false, "raw_author_name": "\u0411\u0435\u0441\u043f\u0430\u043b\u043e\u0432
+        \u0414\u043c\u0438\u0442\u0440\u0438\u0439 \u041d\u0438\u043a\u043e\u043b\u0430\u0435\u0432\u0438\u0447",
+        "raw_affiliation_strings": ["National research university Higher School of
+        Economics"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "National research university Higher School of Economics", "institution_ids":
+        ["https://openalex.org/I118501908"]}]}, {"author_position": "last", "author":
+        {"id": "https://openalex.org/A5008571861", "display_name": "\u041a\u0430\u0437\u0430\u043a\u043e\u0432
+        \u041c\u0438\u0445\u0430\u0438\u043b \u0410\u043d\u0430\u0442\u043e\u043b\u044c\u0435\u0432\u0438\u0447",
+        "orcid": null}, "institutions": [], "countries": [], "is_corresponding": false,
+        "raw_author_name": "\u041a\u0430\u0437\u0430\u043a\u043e\u0432 \u041c\u0438\u0445\u0430\u0438\u043b
+        \u0410\u043d\u0430\u0442\u043e\u043b\u044c\u0435\u0432\u0438\u0447", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}], "institutions": [], "countries_distinct_count":
+        1, "institutions_distinct_count": 2, "corresponding_author_ids": [], "corresponding_institution_ids":
+        [], "apc_list": null, "apc_paid": null, "fwci": 0.0, "has_fulltext": false,
+        "cited_by_count": 0, "citation_normalized_percentile": {"value": 0.36404785,
+        "is_in_top_1_percent": false, "is_in_top_10_percent": false}, "cited_by_percentile_year":
+        null, "biblio": {"volume": null, "issue": "22", "first_page": "15", "last_page":
+        "27"}, "is_retracted": false, "is_paratext": false, "is_xpac": false, "primary_topic":
+        {"id": "https://openalex.org/T13747", "display_name": "Sociopolitical Dynamics
+        in Russia", "score": 0.6506999731063843, "subfield": {"id": "https://openalex.org/subfields/3312",
+        "display_name": "Sociology and Political Science"}, "field": {"id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, "topics": [{"id": "https://openalex.org/T13747",
+        "display_name": "Sociopolitical Dynamics in Russia", "score": 0.6506999731063843,
+        "subfield": {"id": "https://openalex.org/subfields/3312", "display_name":
+        "Sociology and Political Science"}, "field": {"id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/patriotism",
+        "display_name": "Patriotism", "score": 0.7644903659820557}, {"id": "https://openalex.org/keywords/politics",
+        "display_name": "Politics", "score": 0.7103114724159241}, {"id": "https://openalex.org/keywords/transition",
+        "display_name": "Transition (genetics)", "score": 0.6180375218391418}, {"id":
+        "https://openalex.org/keywords/process", "display_name": "Process (computing)",
+        "score": 0.6118667721748352}, {"id": "https://openalex.org/keywords/political-process",
+        "display_name": "Political process", "score": 0.47578465938568115}, {"id":
+        "https://openalex.org/keywords/political-science", "display_name": "Political
+        science", "score": 0.474382221698761}, {"id": "https://openalex.org/keywords/political-economy",
+        "display_name": "Political economy", "score": 0.38743793964385986}, {"id":
         "https://openalex.org/keywords/computer-science", "display_name": "Computer
-        science", "score": 0.41622117161750793}, {"id": "https://openalex.org/keywords/medical-education",
-        "display_name": "Medical education", "score": 0.3871734142303467}, {"id":
-        "https://openalex.org/keywords/physical-medicine-and-rehabilitation", "display_name":
-        "Physical medicine and rehabilitation", "score": 0.3726896047592163}, {"id":
-        "https://openalex.org/keywords/physical-therapy", "display_name": "Physical
-        therapy", "score": 0.3411281704902649}, {"id": "https://openalex.org/keywords/psychology",
-        "display_name": "Psychology", "score": 0.33772873878479004}, {"id": "https://openalex.org/keywords/medicine",
-        "display_name": "Medicine", "score": 0.29016250371932983}], "concepts": [{"id":
-        "https://openalex.org/C98045186", "wikidata": "https://www.wikidata.org/wiki/Q205663",
-        "display_name": "Process (computing)", "level": 2, "score": 0.49417856335639954},
+        science", "score": 0.36675697565078735}, {"id": "https://openalex.org/keywords/sociology",
+        "display_name": "Sociology", "score": 0.2371034324169159}, {"id": "https://openalex.org/keywords/law",
+        "display_name": "Law", "score": 0.17882785201072693}, {"id": "https://openalex.org/keywords/chemistry",
+        "display_name": "Chemistry", "score": 0.11215606331825256}], "concepts": [{"id":
+        "https://openalex.org/C2776786559", "wikidata": "https://www.wikidata.org/wiki/Q6241",
+        "display_name": "Patriotism", "level": 3, "score": 0.7644903659820557}, {"id":
+        "https://openalex.org/C94625758", "wikidata": "https://www.wikidata.org/wiki/Q7163",
+        "display_name": "Politics", "level": 2, "score": 0.7103114724159241}, {"id":
+        "https://openalex.org/C194232998", "wikidata": "https://www.wikidata.org/wiki/Q1606712",
+        "display_name": "Transition (genetics)", "level": 3, "score": 0.6180375218391418},
+        {"id": "https://openalex.org/C98045186", "wikidata": "https://www.wikidata.org/wiki/Q205663",
+        "display_name": "Process (computing)", "level": 2, "score": 0.6118667721748352},
+        {"id": "https://openalex.org/C2991930696", "wikidata": "https://www.wikidata.org/wiki/Q3534219",
+        "display_name": "Political process", "level": 3, "score": 0.47578465938568115},
+        {"id": "https://openalex.org/C17744445", "wikidata": "https://www.wikidata.org/wiki/Q36442",
+        "display_name": "Political science", "level": 0, "score": 0.474382221698761},
+        {"id": "https://openalex.org/C138921699", "wikidata": "https://www.wikidata.org/wiki/Q47555",
+        "display_name": "Political economy", "level": 1, "score": 0.38743793964385986},
         {"id": "https://openalex.org/C41008148", "wikidata": "https://www.wikidata.org/wiki/Q21198",
-        "display_name": "Computer science", "level": 0, "score": 0.41622117161750793},
-        {"id": "https://openalex.org/C509550671", "wikidata": "https://www.wikidata.org/wiki/Q126945",
-        "display_name": "Medical education", "level": 1, "score": 0.3871734142303467},
-        {"id": "https://openalex.org/C99508421", "wikidata": "https://www.wikidata.org/wiki/Q2678675",
-        "display_name": "Physical medicine and rehabilitation", "level": 1, "score":
-        0.3726896047592163}, {"id": "https://openalex.org/C1862650", "wikidata": "https://www.wikidata.org/wiki/Q186005",
-        "display_name": "Physical therapy", "level": 1, "score": 0.3411281704902649},
-        {"id": "https://openalex.org/C15744967", "wikidata": "https://www.wikidata.org/wiki/Q9418",
-        "display_name": "Psychology", "level": 0, "score": 0.33772873878479004}, {"id":
-        "https://openalex.org/C71924100", "wikidata": "https://www.wikidata.org/wiki/Q11190",
-        "display_name": "Medicine", "level": 0, "score": 0.29016250371932983}, {"id":
-        "https://openalex.org/C111919701", "wikidata": "https://www.wikidata.org/wiki/Q9135",
-        "display_name": "Operating system", "level": 1, "score": 0.0}], "mesh": [],
-        "locations_count": 1, "locations": [{"id": "mag:578467691", "is_oa": false,
-        "landing_page_url": "https://cyberleninka.ru/article/n/metodika-primeneniya-pilatesa-kak-sredstva-profilaktiki-strukturno-funktsionalnyh-narusheniy-pozvonochnika-u-studentok/pdf",
-        "pdf_url": null, "source": {"id": "https://openalex.org/S4306540496", "display_name":
-        "\u0423\u0447\u0435\u043d\u044b\u0435 \u0437\u0430\u043f\u0438\u0441\u043a\u0438
-        \u0443\u043d\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442\u0430 \u0438\u043c.
-        \u041f.\u0424. \u041b\u0435\u0441\u0433\u0430\u0444\u0442\u0430", "issn_l":
-        null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core": false,
-        "host_organization": null, "host_organization_name": null, "host_organization_lineage":
-        [], "host_organization_lineage_names": [], "type": "journal"}, "license":
-        null, "license_id": null, "version": null, "is_accepted": false, "is_published":
-        null, "raw_source_name": "\u0423\u0447\u0435\u043d\u044b\u0435 \u0437\u0430\u043f\u0438\u0441\u043a\u0438
-        \u0443\u043d\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442\u0430 \u0438\u043c.
-        \u041f.\u0424. \u041b\u0435\u0441\u0433\u0430\u0444\u0442\u0430", "raw_type":
-        null}], "best_oa_location": null, "sustainable_development_goals": [{"id":
-        "https://metadata.un.org/sdg/4", "display_name": "Quality Education", "score":
-        0.5699999928474426}], "awards": [], "funders": [], "has_content": {"grobid_xml":
-        false, "pdf": false}, "content_urls": null, "referenced_works_count": 0, "referenced_works":
-        [], "related_works": [], "abstract_inverted_index": {"In": [0], "work": [1],
-        "are": [2, 36, 53], "presented": [3], "results": [4], "of": [5, 12, 15, 20,
-        23, 27, 30, 33, 43, 45, 48, 58, 67], "the": [6, 59], "conducted": [7], "research":
-        [8], "on": [9], "working": [10], "out": [11], "a": [13, 68], "technique":
-        [14], "pilates": [16, 52], "application": [17], "as": [18], "means": [19],
-        "preventive": [21], "maintenance": [22], "structurally": [24, 64], "functional":
-        [25, 65], "infringements": [26, 66], "students''": [28], "backbone": [29,
-        69], "Northwest": [31], "academy": [32], "public": [34], "service": [35],
-        "presented.": [37], "The": [38, 55], "factors": [39], "advancing": [40], "high":
-        [41], "efficiency": [42], "process": [44], "physical": [46], "training": [47],
-        "students": [49], "with": [50], "use": [51], "revealed.": [54], "pedagogical":
-        [56], "estimation": [57], "most": [60], "effective": [61], "exercises": [62],
-        "pilates,": [63], "applied": [70], "to": [71], "correction": [72], "is": [73],
-        "given.": [74]}, "counts_by_year": [], "updated_date": "2025-10-10T17:16:08.811792",
-        "created_date": "2025-10-10T00:00:00"}], "group_by": []}'
+        "display_name": "Computer science", "level": 0, "score": 0.36675697565078735},
+        {"id": "https://openalex.org/C144024400", "wikidata": "https://www.wikidata.org/wiki/Q21201",
+        "display_name": "Sociology", "level": 0, "score": 0.2371034324169159}, {"id":
+        "https://openalex.org/C199539241", "wikidata": "https://www.wikidata.org/wiki/Q7748",
+        "display_name": "Law", "level": 1, "score": 0.17882785201072693}, {"id": "https://openalex.org/C185592680",
+        "wikidata": "https://www.wikidata.org/wiki/Q2329", "display_name": "Chemistry",
+        "level": 0, "score": 0.11215606331825256}, {"id": "https://openalex.org/C111919701",
+        "wikidata": "https://www.wikidata.org/wiki/Q9135", "display_name": "Operating
+        system", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C55493867",
+        "wikidata": "https://www.wikidata.org/wiki/Q7094", "display_name": "Biochemistry",
+        "level": 1, "score": 0.0}, {"id": "https://openalex.org/C104317684", "wikidata":
+        "https://www.wikidata.org/wiki/Q7187", "display_name": "Gene", "level": 2,
+        "score": 0.0}], "mesh": [], "locations_count": 1, "locations": [{"id": "mag:2600965442",
+        "is_oa": false, "landing_page_url": "https://publications.hse.ru/en/articles/149359569",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306538310", "display_name":
+        "\u0411\u0438\u0437\u043d\u0435\u0441. \u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e.
+        \u0412\u043b\u0430\u0441\u0442\u044c", "issn_l": null, "issn": null, "is_oa":
+        false, "is_in_doaj": false, "is_core": false, "host_organization": null, "host_organization_name":
+        null, "host_organization_lineage": [], "host_organization_lineage_names":
+        [], "type": "journal"}, "license": null, "license_id": null, "version": null,
+        "is_accepted": false, "is_published": null, "raw_source_name": "\u0411\u0438\u0437\u043d\u0435\u0441.
+        \u041e\u0431\u0449\u0435\u0441\u0442\u0432\u043e. \u0412\u043b\u0430\u0441\u0442\u044c",
+        "raw_type": null}], "best_oa_location": null, "sustainable_development_goals":
+        [], "awards": [], "funders": [], "has_content": {"grobid_xml": false, "pdf":
+        false}, "content_urls": null, "referenced_works_count": 0, "referenced_works":
+        [], "related_works": ["https://openalex.org/W3176627309", "https://openalex.org/W2384380157",
+        "https://openalex.org/W2365153616", "https://openalex.org/W2377801884", "https://openalex.org/W2497054984",
+        "https://openalex.org/W2906011114", "https://openalex.org/W2371363426", "https://openalex.org/W2530045090",
+        "https://openalex.org/W2768987625", "https://openalex.org/W2385310680", "https://openalex.org/W2374264378",
+        "https://openalex.org/W2358724762", "https://openalex.org/W2351895528", "https://openalex.org/W2351467091",
+        "https://openalex.org/W2381435954", "https://openalex.org/W2359531991", "https://openalex.org/W2348630491",
+        "https://openalex.org/W2315737501", "https://openalex.org/W2369789309", "https://openalex.org/W2904768686"],
+        "abstract_inverted_index": null, "counts_by_year": [], "updated_date": "2026-06-11T09:08:48.828518",
+        "created_date": "2025-10-10T00:00:00"}, {"id": "https://openalex.org/W2042435470",
+        "doi": null, "title": "Survey of Cultural Resources for William Perlman''s
+        Proposed Southern Ute No. 20-1B Well Site, Southern Ute Reservation, Colorado",
+        "display_name": "Survey of Cultural Resources for William Perlman''s Proposed
+        Southern Ute No. 20-1B Well Site, Southern Ute Reservation, Colorado", "relevance_score":
+        0.99999994, "publication_year": 1982, "publication_date": "1982-01-01", "ids":
+        {"openalex": "https://openalex.org/W2042435470", "mag": "2042435470"}, "language":
+        "en", "primary_location": {"id": "mag:2042435470", "is_oa": false, "landing_page_url":
+        "https://core.tdar.org/document/108679/survey-of-cultural-resources-for-william-perlmans-proposed-southern-ute-no-20-1b-well-site-southern-ute-reservation-colorado",
+        "pdf_url": null, "source": null, "license": null, "license_id": null, "version":
+        null, "is_accepted": false, "is_published": false, "raw_source_name": null,
+        "raw_type": null}, "type": "article", "indexed_in": [], "open_access": {"is_oa":
+        false, "oa_status": "closed", "oa_url": null, "any_repository_has_fulltext":
+        false}, "authorships": [{"author_position": "first", "author": {"id": "https://openalex.org/A5019636629",
+        "display_name": "Jamie A. Karlson", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": false, "raw_author_name": "Jamie A. Karlson", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "last", "author":
+        {"id": "https://openalex.org/A5037324256", "display_name": "Robert W. Biggs",
+        "orcid": null}, "institutions": [], "countries": [], "is_corresponding": false,
+        "raw_author_name": "Robert W. Biggs", "raw_affiliation_strings": [], "raw_orcid":
+        null, "affiliations": []}], "institutions": [], "countries_distinct_count":
+        0, "institutions_distinct_count": 2, "corresponding_author_ids": [], "corresponding_institution_ids":
+        [], "apc_list": null, "apc_paid": null, "fwci": 0.0, "has_fulltext": false,
+        "cited_by_count": 0, "citation_normalized_percentile": {"value": 0.28205128,
+        "is_in_top_1_percent": false, "is_in_top_10_percent": false}, "cited_by_percentile_year":
+        null, "biblio": {"volume": null, "issue": null, "first_page": null, "last_page":
+        null}, "is_retracted": false, "is_paratext": false, "is_xpac": false, "primary_topic":
+        {"id": "https://openalex.org/T13939", "display_name": "Archaeology and Natural
+        History", "score": 0.9933000206947327, "subfield": {"id": "https://openalex.org/subfields/3314",
+        "display_name": "Anthropology"}, "field": {"id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, "topics": [{"id": "https://openalex.org/T13939",
+        "display_name": "Archaeology and Natural History", "score": 0.9933000206947327,
+        "subfield": {"id": "https://openalex.org/subfields/3314", "display_name":
+        "Anthropology"}, "field": {"id": "https://openalex.org/fields/33", "display_name":
+        "Social Sciences"}, "domain": {"id": "https://openalex.org/domains/2", "display_name":
+        "Social Sciences"}}, {"id": "https://openalex.org/T12837", "display_name":
+        "American Environmental and Regional History", "score": 0.9711999893188477,
+        "subfield": {"id": "https://openalex.org/subfields/2308", "display_name":
+        "Management, Monitoring, Policy and Law"}, "field": {"id": "https://openalex.org/fields/23",
+        "display_name": "Environmental Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}, {"id": "https://openalex.org/T10087",
+        "display_name": "Archaeology and ancient environmental studies", "score":
+        0.9664999842643738, "subfield": {"id": "https://openalex.org/subfields/1911",
+        "display_name": "Paleontology"}, "field": {"id": "https://openalex.org/fields/19",
+        "display_name": "Earth and Planetary Sciences"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/reservation",
+        "display_name": "Reservation", "score": 0.7099453210830688}, {"id": "https://openalex.org/keywords/geology",
+        "display_name": "Geology", "score": 0.46336907148361206}, {"id": "https://openalex.org/keywords/archaeology",
+        "display_name": "Archaeology", "score": 0.4622170329093933}, {"id": "https://openalex.org/keywords/geography",
+        "display_name": "Geography", "score": 0.33062443137168884}, {"id": "https://openalex.org/keywords/political-science",
+        "display_name": "Political science", "score": 0.11814281344413757}, {"id":
+        "https://openalex.org/keywords/law", "display_name": "Law", "score": 0.07443100214004517}],
+        "concepts": [{"id": "https://openalex.org/C2777632111", "wikidata": "https://www.wikidata.org/wiki/Q1937518",
+        "display_name": "Reservation", "level": 2, "score": 0.7099453210830688}, {"id":
+        "https://openalex.org/C127313418", "wikidata": "https://www.wikidata.org/wiki/Q1069",
+        "display_name": "Geology", "level": 0, "score": 0.46336907148361206}, {"id":
+        "https://openalex.org/C166957645", "wikidata": "https://www.wikidata.org/wiki/Q23498",
+        "display_name": "Archaeology", "level": 1, "score": 0.4622170329093933}, {"id":
+        "https://openalex.org/C205649164", "wikidata": "https://www.wikidata.org/wiki/Q1071",
+        "display_name": "Geography", "level": 0, "score": 0.33062443137168884}, {"id":
+        "https://openalex.org/C17744445", "wikidata": "https://www.wikidata.org/wiki/Q36442",
+        "display_name": "Political science", "level": 0, "score": 0.11814281344413757},
+        {"id": "https://openalex.org/C199539241", "wikidata": "https://www.wikidata.org/wiki/Q7748",
+        "display_name": "Law", "level": 1, "score": 0.07443100214004517}], "mesh":
+        [], "locations_count": 1, "locations": [{"id": "mag:2042435470", "is_oa":
+        false, "landing_page_url": "https://core.tdar.org/document/108679/survey-of-cultural-resources-for-william-perlmans-proposed-southern-ute-no-20-1b-well-site-southern-ute-reservation-colorado",
+        "pdf_url": null, "source": null, "license": null, "license_id": null, "version":
+        null, "is_accepted": false, "is_published": null, "raw_source_name": null,
+        "raw_type": null}], "best_oa_location": null, "sustainable_development_goals":
+        [], "awards": [], "funders": [], "has_content": {"grobid_xml": false, "pdf":
+        false}, "content_urls": null, "referenced_works_count": 0, "referenced_works":
+        [], "related_works": [], "abstract_inverted_index": null, "counts_by_year":
+        [], "updated_date": "2026-06-11T09:08:48.828518", "created_date": "2025-10-10T00:00:00"},
+        {"id": "https://openalex.org/W2497229624", "doi": "https://doi.org/10.5580/1cbc",
+        "title": "Skin Glue Improves Outcome after Excision and Primary Closure of
+        Sacrococcygeal Pilonidal Disease", "display_name": "Skin Glue Improves Outcome
+        after Excision and Primary Closure of Sacrococcygeal Pilonidal Disease", "relevance_score":
+        0.99999994, "publication_year": 2009, "publication_date": "2009-01-01", "ids":
+        {"openalex": "https://openalex.org/W2497229624", "doi": "https://doi.org/10.5580/1cbc",
+        "mag": "2497229624"}, "language": "en", "primary_location": {"id": "doi:10.5580/1cbc",
+        "is_oa": false, "landing_page_url": "http://doi.org/10.5580/1cbc", "pdf_url":
+        null, "source": {"id": "https://openalex.org/S4210232732", "display_name":
+        "The Internet Journal of Surgery", "issn_l": "1528-8242", "issn": ["1528-8242"],
+        "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        null, "host_organization_name": null, "host_organization_lineage": [], "host_organization_lineage_names":
+        [], "type": "journal"}, "license": null, "license_id": null, "version": "publishedVersion",
+        "is_accepted": true, "is_published": true, "raw_source_name": "The Internet
+        Journal of Surgery", "raw_type": "journal-article"}, "type": "article", "indexed_in":
+        ["crossref"], "open_access": {"is_oa": false, "oa_status": "closed", "oa_url":
+        null, "any_repository_has_fulltext": false}, "authorships": [], "institutions":
+        [], "countries_distinct_count": 0, "institutions_distinct_count": 0, "corresponding_author_ids":
+        [], "corresponding_institution_ids": [], "apc_list": null, "apc_paid": null,
+        "fwci": 0.0, "has_fulltext": false, "cited_by_count": 0, "citation_normalized_percentile":
+        {"value": 0.40569974, "is_in_top_1_percent": false, "is_in_top_10_percent":
+        false}, "cited_by_percentile_year": null, "biblio": {"volume": "20", "issue":
+        "1", "first_page": null, "last_page": null}, "is_retracted": false, "is_paratext":
+        false, "is_xpac": false, "primary_topic": {"id": "https://openalex.org/T11865",
+        "display_name": "Anorectal Disease Treatments and Outcomes", "score": 1.0,
+        "subfield": {"id": "https://openalex.org/subfields/2746", "display_name":
+        "Surgery"}, "field": {"id": "https://openalex.org/fields/27", "display_name":
+        "Medicine"}, "domain": {"id": "https://openalex.org/domains/4", "display_name":
+        "Health Sciences"}}, "topics": [{"id": "https://openalex.org/T11865", "display_name":
+        "Anorectal Disease Treatments and Outcomes", "score": 1.0, "subfield": {"id":
+        "https://openalex.org/subfields/2746", "display_name": "Surgery"}, "field":
+        {"id": "https://openalex.org/fields/27", "display_name": "Medicine"}, "domain":
+        {"id": "https://openalex.org/domains/4", "display_name": "Health Sciences"}},
+        {"id": "https://openalex.org/T10335", "display_name": "Colorectal Cancer Surgical
+        Treatments", "score": 0.9811999797821045, "subfield": {"id": "https://openalex.org/subfields/2730",
+        "display_name": "Oncology"}, "field": {"id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"}, "domain": {"id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"}}, {"id": "https://openalex.org/T12333",
+        "display_name": "Abdominal Surgery and Complications", "score": 0.9491000175476074,
+        "subfield": {"id": "https://openalex.org/subfields/2740", "display_name":
+        "Pulmonary and Respiratory Medicine"}, "field": {"id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"}, "domain": {"id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/medicine",
+        "display_name": "Medicine", "score": 0.9873861074447632}, {"id": "https://openalex.org/keywords/pilonidal-disease",
+        "display_name": "Pilonidal disease", "score": 0.9474254846572876}, {"id":
+        "https://openalex.org/keywords/glue", "display_name": "GLUE", "score": 0.7349931001663208},
+        {"id": "https://openalex.org/keywords/surgery", "display_name": "Surgery",
+        "score": 0.5213205218315125}, {"id": "https://openalex.org/keywords/dermatology",
+        "display_name": "Dermatology", "score": 0.4659007489681244}, {"id": "https://openalex.org/keywords/closure",
+        "display_name": "Closure (psychology)", "score": 0.4190611243247986}, {"id":
+        "https://openalex.org/keywords/wound-healing", "display_name": "Wound healing",
+        "score": 0.05528780817985535}], "concepts": [{"id": "https://openalex.org/C71924100",
+        "wikidata": "https://www.wikidata.org/wiki/Q11190", "display_name": "Medicine",
+        "level": 0, "score": 0.9873861074447632}, {"id": "https://openalex.org/C2909496165",
+        "wikidata": "https://www.wikidata.org/wiki/Q961331", "display_name": "Pilonidal
+        disease", "level": 3, "score": 0.9474254846572876}, {"id": "https://openalex.org/C2779937294",
+        "wikidata": "https://www.wikidata.org/wiki/Q5513666", "display_name": "GLUE",
+        "level": 2, "score": 0.7349931001663208}, {"id": "https://openalex.org/C141071460",
+        "wikidata": "https://www.wikidata.org/wiki/Q40821", "display_name": "Surgery",
+        "level": 1, "score": 0.5213205218315125}, {"id": "https://openalex.org/C16005928",
+        "wikidata": "https://www.wikidata.org/wiki/Q171171", "display_name": "Dermatology",
+        "level": 1, "score": 0.4659007489681244}, {"id": "https://openalex.org/C146834321",
+        "wikidata": "https://www.wikidata.org/wiki/Q2979672", "display_name": "Closure
+        (psychology)", "level": 2, "score": 0.4190611243247986}, {"id": "https://openalex.org/C2780269544",
+        "wikidata": "https://www.wikidata.org/wiki/Q1509074", "display_name": "Wound
+        healing", "level": 2, "score": 0.05528780817985535}, {"id": "https://openalex.org/C34447519",
+        "wikidata": "https://www.wikidata.org/wiki/Q179522", "display_name": "Market
+        economy", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C159985019",
+        "wikidata": "https://www.wikidata.org/wiki/Q181790", "display_name": "Composite
+        material", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C192562407",
+        "wikidata": "https://www.wikidata.org/wiki/Q228736", "display_name": "Materials
+        science", "level": 0, "score": 0.0}, {"id": "https://openalex.org/C162324750",
+        "wikidata": "https://www.wikidata.org/wiki/Q8134", "display_name": "Economics",
+        "level": 0, "score": 0.0}], "mesh": [], "locations_count": 1, "locations":
+        [{"id": "doi:10.5580/1cbc", "is_oa": false, "landing_page_url": "http://doi.org/10.5580/1cbc",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4210232732", "display_name":
+        "The Internet Journal of Surgery", "issn_l": "1528-8242", "issn": ["1528-8242"],
+        "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        null, "host_organization_name": null, "host_organization_lineage": [], "host_organization_lineage_names":
+        [], "type": "journal"}, "license": null, "license_id": null, "version": "publishedVersion",
+        "is_accepted": true, "is_published": true, "raw_source_name": "The Internet
+        Journal of Surgery", "raw_type": "journal-article"}], "best_oa_location":
+        null, "sustainable_development_goals": [{"id": "https://metadata.un.org/sdg/3",
+        "display_name": "Good health and well-being", "score": 0.800000011920929}],
+        "awards": [], "funders": [], "has_content": {"grobid_xml": false, "pdf": false},
+        "content_urls": null, "referenced_works_count": 0, "referenced_works": [],
+        "related_works": ["https://openalex.org/W3012160539", "https://openalex.org/W1975401649",
+        "https://openalex.org/W395992967", "https://openalex.org/W2106011737", "https://openalex.org/W2043636062",
+        "https://openalex.org/W2413984366", "https://openalex.org/W2417305669", "https://openalex.org/W2049060086",
+        "https://openalex.org/W2071559112", "https://openalex.org/W2912020900"], "abstract_inverted_index":
+        {"Evaluating": [0], "the": [1, 6], "effect": [2], "of": [3, 16, 44, 152, 161],
+        "Histoacryl": [4, 135], "on": [5], "outcome": [7, 137], "and": [8, 13, 72,
+        86, 112, 128, 141, 144, 154, 158], "recurrence": [9], "rate": [10], "after":
+        [11, 156], "excision": [12, 43, 157], "primary": [14, 56, 159], "closure":
+        [15, 48, 58, 160], "sacrococcygeal": [17, 23, 162], "pilonidal": [18, 24,
+        163], "disease.": [19, 164], "Forty": [20], "patients": [21, 96, 107, 114,
+        130], "with": [22, 46, 55], "sinus": [25, 45], "were": [26], "randomly": [27],
+        "divided": [28], "into": [29], "2": [30, 95], "equal": [31], "groups": [32],
+        "through": [33], "computer": [34], "randomization": [35], "program.": [36],
+        "Group": [37, 51, 99], "I": [38, 71, 85, 111, 127], "was": [39, 53, 66, 81],
+        "operated": [40, 54], "by": [41, 59], "complete": [42], "wound": [47, 57,
+        102], "using": [49], "Histoacryl.": [50], "II": [52], "interrupted": [60],
+        "inverting": [61], "sutures.": [62], "Mean": [63, 78], "operative": [64, 140],
+        "time": [65, 80], "31.5\u2009\u00b1\u20095.6": [67], "minutes": [68, 74],
+        "in": [69, 75, 83, 88, 94, 98, 105, 109, 116, 121, 125, 132], "group": [70,
+        76, 84, 89, 110, 117, 126, 133], "35.9\u2009\u00b1\u20095.1": [73], "II.":
+        [77, 90, 100, 118, 134], "healing": [79, 103, 142], "13.4\u2009\u00b1\u20092.7\u00a0days":
+        [82], "18.0\u2009\u00b1\u20098.9\u00a0days": [87], "Wound": [91], "infection":
+        [92], "occurred": [93, 104, 120], "(10%)": [97], "Delayed": [101], "3": [106,
+        129], "(15%)": [108, 131], "4": [113], "(20%)": [115], "Recurrence": [119],
+        "1": [122], "patient": [123, 146], "(5%)": [124], "improves": [136], "(significantly":
+        [138], "decreases": [139, 150], "times": [143], "increases": [145], "satisfaction":
+        [147], "score,": [148], "insignificantly": [149], "rates": [151], "complications":
+        [153], "recurrence)": [155]}, "counts_by_year": [], "updated_date": "2025-11-06T03:46:38.306776",
+        "created_date": "2025-10-10T00:00:00"}, {"id": "https://openalex.org/W7120675484",
+        "doi": null, "title": "A fun\u00e7\u00e3o ret\u00f3rica da lei para os limites
+        da toler\u00e2ncia", "display_name": "A fun\u00e7\u00e3o ret\u00f3rica da
+        lei para os limites da toler\u00e2ncia", "relevance_score": 0.99999994, "publication_year":
+        2013, "publication_date": "2013-06-10", "ids": {"openalex": "https://openalex.org/W7120675484"},
+        "language": "pt", "primary_location": {"id": "pmh:oai:191.252.194.60:fdv/1168",
+        "is_oa": true, "landing_page_url": "http://ijp.tamu.edu/blog/wp-content/uploads/2016/03/v4i1-",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306402641", "display_name":
+        "LA Referencia (Red Federada de Repositorios Institucionales de Publicaciones
+        Cient\u00edficas)", "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj":
+        false, "is_core": false, "host_organization": "https://openalex.org/I4383465926",
+        "host_organization_name": "LA Referencia", "host_organization_lineage": ["https://openalex.org/I4383465926"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": "other-oa",
+        "license_id": "https://openalex.org/licenses/other-oa", "version": "publishedVersion",
+        "is_accepted": true, "is_published": true, "raw_source_name": "instacron:FDV",
+        "raw_type": "info:eu-repo/semantics/publishedVersion"}, "type": "article",
+        "indexed_in": [], "open_access": {"is_oa": true, "oa_status": "green", "oa_url":
+        "http://ijp.tamu.edu/blog/wp-content/uploads/2016/03/v4i1-", "any_repository_has_fulltext":
+        true}, "authorships": [{"author_position": "first", "author": {"id": "https://openalex.org/A5122438040",
+        "display_name": "Jo\u00e3o Maur\u00edcio Adeodato", "orcid": null}, "institutions":
+        [], "countries": [], "is_corresponding": true, "raw_author_name": "Adeodato,
+        Jo\u00e3o Maur\u00edcio", "raw_affiliation_strings": [], "raw_orcid": null,
+        "affiliations": []}], "institutions": [], "countries_distinct_count": 0, "institutions_distinct_count":
+        0, "corresponding_author_ids": ["https://openalex.org/A5122438040"], "corresponding_institution_ids":
+        [], "apc_list": null, "apc_paid": null, "fwci": 0.0, "has_fulltext": false,
+        "cited_by_count": 0, "citation_normalized_percentile": {"value": 0.89268492,
+        "is_in_top_1_percent": false, "is_in_top_10_percent": false}, "cited_by_percentile_year":
+        null, "biblio": {"volume": null, "issue": null, "first_page": null, "last_page":
+        null}, "is_retracted": false, "is_paratext": false, "is_xpac": false, "primary_topic":
+        {"id": "https://openalex.org/T12148", "display_name": "Brazilian Legal Issues",
+        "score": 0.037700001150369644, "subfield": {"id": "https://openalex.org/subfields/3308",
+        "display_name": "Law"}, "field": {"id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, "topics": [{"id": "https://openalex.org/T12148",
+        "display_name": "Brazilian Legal Issues", "score": 0.037700001150369644, "subfield":
+        {"id": "https://openalex.org/subfields/3308", "display_name": "Law"}, "field":
+        {"id": "https://openalex.org/fields/33", "display_name": "Social Sciences"},
+        "domain": {"id": "https://openalex.org/domains/2", "display_name": "Social
+        Sciences"}}, {"id": "https://openalex.org/T12332", "display_name": "Comparative
+        constitutional jurisprudence studies", "score": 0.035599999129772186, "subfield":
+        {"id": "https://openalex.org/subfields/3320", "display_name": "Political Science
+        and International Relations"}, "field": {"id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, {"id": "https://openalex.org/T13554",
+        "display_name": "Brazilian cultural history and politics", "score": 0.03420000150799751,
+        "subfield": {"id": "https://openalex.org/subfields/3312", "display_name":
+        "Sociology and Political Science"}, "field": {"id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/rhetorical-question",
+        "display_name": "Rhetorical question", "score": 0.6747000217437744}, {"id":
+        "https://openalex.org/keywords/privilege", "display_name": "Privilege (computing)",
+        "score": 0.5575000047683716}, {"id": "https://openalex.org/keywords/ideology",
+        "display_name": "Ideology", "score": 0.5508999824523926}, {"id": "https://openalex.org/keywords/humanism",
+        "display_name": "Humanism", "score": 0.48179998993873596}, {"id": "https://openalex.org/keywords/task",
+        "display_name": "Task (project management)", "score": 0.43209999799728394},
+        {"id": "https://openalex.org/keywords/democracy", "display_name": "Democracy",
+        "score": 0.4302000105381012}, {"id": "https://openalex.org/keywords/order",
+        "display_name": "Order (exchange)", "score": 0.42179998755455017}, {"id":
+        "https://openalex.org/keywords/amnesty", "display_name": "Amnesty", "score":
+        0.42010000348091125}, {"id": "https://openalex.org/keywords/element", "display_name":
+        "Element (criminal law)", "score": 0.35269999504089355}], "concepts": [{"id":
+        "https://openalex.org/C192562157", "wikidata": "https://www.wikidata.org/wiki/Q316694",
+        "display_name": "Rhetorical question", "level": 2, "score": 0.6747000217437744},
+        {"id": "https://openalex.org/C2780138299", "wikidata": "https://www.wikidata.org/wiki/Q3404265",
+        "display_name": "Privilege (computing)", "level": 2, "score": 0.5575000047683716},
+        {"id": "https://openalex.org/C158071213", "wikidata": "https://www.wikidata.org/wiki/Q7257",
+        "display_name": "Ideology", "level": 3, "score": 0.5508999824523926}, {"id":
+        "https://openalex.org/C199539241", "wikidata": "https://www.wikidata.org/wiki/Q7748",
+        "display_name": "Law", "level": 1, "score": 0.5001999735832214}, {"id": "https://openalex.org/C144024400",
+        "wikidata": "https://www.wikidata.org/wiki/Q21201", "display_name": "Sociology",
+        "level": 0, "score": 0.49309998750686646}, {"id": "https://openalex.org/C153606108",
+        "wikidata": "https://www.wikidata.org/wiki/Q46158", "display_name": "Humanism",
+        "level": 2, "score": 0.48179998993873596}, {"id": "https://openalex.org/C190253527",
+        "wikidata": "https://www.wikidata.org/wiki/Q295354", "display_name": "Law
+        and economics", "level": 1, "score": 0.4749000072479248}, {"id": "https://openalex.org/C2780451532",
+        "wikidata": "https://www.wikidata.org/wiki/Q759676", "display_name": "Task
+        (project management)", "level": 2, "score": 0.43209999799728394}, {"id": "https://openalex.org/C555826173",
+        "wikidata": "https://www.wikidata.org/wiki/Q7174", "display_name": "Democracy",
+        "level": 3, "score": 0.4302000105381012}, {"id": "https://openalex.org/C182306322",
+        "wikidata": "https://www.wikidata.org/wiki/Q1779371", "display_name": "Order
+        (exchange)", "level": 2, "score": 0.42179998755455017}, {"id": "https://openalex.org/C2778976748",
+        "wikidata": "https://www.wikidata.org/wiki/Q185943", "display_name": "Amnesty",
+        "level": 3, "score": 0.42010000348091125}, {"id": "https://openalex.org/C17744445",
+        "wikidata": "https://www.wikidata.org/wiki/Q36442", "display_name": "Political
+        science", "level": 0, "score": 0.3962000012397766}, {"id": "https://openalex.org/C111472728",
+        "wikidata": "https://www.wikidata.org/wiki/Q9471", "display_name": "Epistemology",
+        "level": 1, "score": 0.3617999851703644}, {"id": "https://openalex.org/C200288055",
+        "wikidata": "https://www.wikidata.org/wiki/Q2621792", "display_name": "Element
+        (criminal law)", "level": 2, "score": 0.35269999504089355}, {"id": "https://openalex.org/C2775946814",
+        "wikidata": "https://www.wikidata.org/wiki/Q2497143", "display_name": "Legal
+        culture", "level": 2, "score": 0.3098999857902527}, {"id": "https://openalex.org/C2778491294",
+        "wikidata": "https://www.wikidata.org/wiki/Q1339824", "display_name": "Mindset",
+        "level": 2, "score": 0.3052000105381012}, {"id": "https://openalex.org/C122302079",
+        "wikidata": "https://www.wikidata.org/wiki/Q8432", "display_name": "Civilization",
+        "level": 2, "score": 0.2980000078678131}, {"id": "https://openalex.org/C162040827",
+        "wikidata": "https://www.wikidata.org/wiki/Q126842", "display_name": "Philosophy
+        of law", "level": 3, "score": 0.29429998993873596}, {"id": "https://openalex.org/C108650721",
+        "wikidata": "https://www.wikidata.org/wiki/Q1783253", "display_name": "Counterfactual
+        thinking", "level": 2, "score": 0.2922999858856201}, {"id": "https://openalex.org/C2776847301",
+        "wikidata": "https://www.wikidata.org/wiki/Q44918", "display_name": "Rule
+        of law", "level": 3, "score": 0.29030001163482666}, {"id": "https://openalex.org/C2779103253",
+        "wikidata": "https://www.wikidata.org/wiki/Q878070", "display_name": "Duty",
+        "level": 2, "score": 0.28780001401901245}, {"id": "https://openalex.org/C2780791683",
+        "wikidata": "https://www.wikidata.org/wiki/Q846785", "display_name": "Action
+        (physics)", "level": 2, "score": 0.2831000089645386}, {"id": "https://openalex.org/C139621336",
+        "wikidata": "https://www.wikidata.org/wiki/Q3190382", "display_name": "Economic
+        Justice", "level": 2, "score": 0.27390000224113464}, {"id": "https://openalex.org/C2781251061",
+        "wikidata": "https://www.wikidata.org/wiki/Q5416089", "display_name": "Evasion
+        (ethics)", "level": 3, "score": 0.2705000042915344}, {"id": "https://openalex.org/C2778069335",
+        "wikidata": "https://www.wikidata.org/wiki/Q32098", "display_name": "Sanctions",
+        "level": 2, "score": 0.2671000063419342}, {"id": "https://openalex.org/C88548561",
+        "wikidata": "https://www.wikidata.org/wiki/Q347599", "display_name": "sort",
+        "level": 2, "score": 0.26589998602867126}, {"id": "https://openalex.org/C62291451",
+        "wikidata": "https://www.wikidata.org/wiki/Q1762471", "display_name": "Rhetorical
+        device", "level": 3, "score": 0.25780001282691956}, {"id": "https://openalex.org/C95124753",
+        "wikidata": "https://www.wikidata.org/wiki/Q875686", "display_name": "Environmental
+        ethics", "level": 1, "score": 0.25690001249313354}, {"id": "https://openalex.org/C177986884",
+        "wikidata": "https://www.wikidata.org/wiki/Q207892", "display_name": "Public
+        law", "level": 2, "score": 0.25540000200271606}, {"id": "https://openalex.org/C2778680907",
+        "wikidata": "https://www.wikidata.org/wiki/Q1725430", "display_name": "Lawmaking",
+        "level": 3, "score": 0.2535000145435333}], "mesh": [], "locations_count":
+        1, "locations": [{"id": "pmh:oai:191.252.194.60:fdv/1168", "is_oa": true,
+        "landing_page_url": "http://ijp.tamu.edu/blog/wp-content/uploads/2016/03/v4i1-",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306402641", "display_name":
+        "LA Referencia (Red Federada de Repositorios Institucionales de Publicaciones
+        Cient\u00edficas)", "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj":
+        false, "is_core": false, "host_organization": "https://openalex.org/I4383465926",
+        "host_organization_name": "LA Referencia", "host_organization_lineage": ["https://openalex.org/I4383465926"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": "other-oa",
+        "license_id": "https://openalex.org/licenses/other-oa", "version": "publishedVersion",
+        "is_accepted": true, "is_published": true, "raw_source_name": "instacron:FDV",
+        "raw_type": "info:eu-repo/semantics/publishedVersion"}], "best_oa_location":
+        {"id": "pmh:oai:191.252.194.60:fdv/1168", "is_oa": true, "landing_page_url":
+        "http://ijp.tamu.edu/blog/wp-content/uploads/2016/03/v4i1-", "pdf_url": null,
+        "source": {"id": "https://openalex.org/S4306402641", "display_name": "LA Referencia
+        (Red Federada de Repositorios Institucionales de Publicaciones Cient\u00edficas)",
+        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
+        false, "host_organization": "https://openalex.org/I4383465926", "host_organization_name":
+        "LA Referencia", "host_organization_lineage": ["https://openalex.org/I4383465926"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": "other-oa",
+        "license_id": "https://openalex.org/licenses/other-oa", "version": "publishedVersion",
+        "is_accepted": true, "is_published": true, "raw_source_name": "instacron:FDV",
+        "raw_type": "info:eu-repo/semantics/publishedVersion"}, "sustainable_development_goals":
+        [{"id": "https://metadata.un.org/sdg/16", "display_name": "Peace, Justice
+        and strong institutions", "score": 0.7875088453292847}], "awards": [], "funders":
+        [], "has_content": {"grobid_xml": false, "pdf": false}, "content_urls": null,
+        "referenced_works_count": 0, "referenced_works": [], "related_works": [],
+        "abstract_inverted_index": {"Thinking": [0], "of": [1, 8, 32, 52, 72, 82,
+        107, 132, 135, 150, 153, 187], "the": [2, 5, 9, 13, 26, 30, 66, 70, 87, 92,
+        103, 108, 111, 114, 121, 130, 133, 141, 151, 163, 185, 201, 205], "discussions":
+        [3], "about": [4], "legal": [6], "effects": [7], "Brazilian": [10], "Amnesty":
+        [11], "Law,": [12], "thesis": [14], "in": [15, 58, 85, 162, 180], "this":
+        [16, 174], "paper": [17], "is": [18, 65, 74], "that": [19, 68, 204], "positive":
+        [20], "law": [21, 73, 191], "has": [22, 36, 209], "to": [23, 37, 63, 75, 95,
+        101, 113, 169, 177, 195, 211], "coercively": [24], "assure": [25], "basic":
+        [27], "environment": [28], "for": [29], "development": [31], "tolerance.":
+        [33], "So": [34], "it": [35, 47, 198, 212], "stay": [38], "completely": [39],
+        "apart": [40], "from": [41], "religion,": [42], "politics,": [43], "money":
+        [44], "etc.,": [45], "and": [46, 105, 138, 189, 199], "cannot": [48], "privilege":
+        [49], "any": [50], "sort": [51], "moral": [53], "view,": [54], "which": [55,
+        86], "would": [56], "be": [57, 96, 193], "itself": [59], "valid.": [60], "The":
+        [61], "price": [62], "pay": [64], "formalization,": [67], "is:": [69], "task":
+        [71], "guarantee": [76], "an": [77, 147], "arena,": [78], "a": [79, 126],
+        "public": [80], "space": [81], "procedural": [83], "rules": [84], "different":
+        [88], "ideologies": [89], "towards": [90], "how": [91, 120, 173, 190], "world":
+        [93, 208], "ought": [94], "can": [97], "confront": [98], "each": [99], "other":
+        [100], "gain": [102], "minds": [104], "opinions": [106], "people.": [109],
+        "On": [110], "way": [112], "thesis,": [115], "I": [116, 166], "will": [117,
+        145, 167], "first": [118], "show": [119, 170], "sophistical": [122], "movement":
+        [123], "turned": [124], "into": [125], "rhetorical": [127], "philosophy":
+        [128], "through": [129], "incorporation": [131], "ideas": [134], "historicism,":
+        [136], "humanism": [137], "skepticism.": [139], "In": [140], "second": [142],
+        "place,": [143], "there": [144], "come": [146], "historical": [148], "analysis":
+        [149], "idea": [152], "tolerance,": [154], "nearly": [155], "as": [156, 158],
+        "old": [157], "culture": [159], "itself.": [160], "Then,": [161], "same":
+        [164], "line,": [165], "try": [168], "more": [171], "specifically": [172],
+        "evolution": [175], "led": [176], "modern": [178, 206], "rhetoric,": [179],
+        "order": [181], "to,": [182], "finally,": [183], "situate": [184], "paradox":
+        [186], "tolerance": [188], "could": [192], "able": [194], "deal": [196], "with":
+        [197], "overcome": [200], "ethical": [202], "burden": [203], "democratic":
+        [207], "brought": [210]}, "counts_by_year": [], "updated_date": "2026-07-02T06:18:51.028212",
+        "created_date": "2026-01-10T00:00:00"}, {"id": "https://openalex.org/W2117049431",
+        "doi": "https://doi.org/10.1016/j.landusepol.2004.08.009", "title": "ELECTRE
+        III as a support for participatory decision-making on the localisation of
+        waste-treatment plants", "display_name": "ELECTRE III as a support for participatory
+        decision-making on the localisation of waste-treatment plants", "relevance_score":
+        0.99999994, "publication_year": 2004, "publication_date": "2004-12-12", "ids":
+        {"openalex": "https://openalex.org/W2117049431", "doi": "https://doi.org/10.1016/j.landusepol.2004.08.009",
+        "mag": "2117049431"}, "language": "en", "primary_location": {"id": "doi:10.1016/j.landusepol.2004.08.009",
+        "is_oa": false, "landing_page_url": "https://doi.org/10.1016/j.landusepol.2004.08.009",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S80485027", "display_name":
+        "Land Use Policy", "issn_l": "0264-8377", "issn": ["0264-8377", "1873-5754"],
+        "is_oa": false, "is_in_doaj": false, "is_core": true, "host_organization":
+        "https://openalex.org/P4310320990", "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": ["https://openalex.org/P4310320990"], "host_organization_lineage_names":
+        ["Elsevier BV"], "type": "journal"}, "license": null, "license_id": null,
+        "version": "publishedVersion", "is_accepted": true, "is_published": true,
+        "raw_source_name": "Land Use Policy", "raw_type": "journal-article"}, "type":
+        "article", "indexed_in": ["crossref"], "open_access": {"is_oa": false, "oa_status":
+        "closed", "oa_url": null, "any_repository_has_fulltext": false}, "authorships":
+        [{"author_position": "first", "author": {"id": "https://openalex.org/A5082396023",
+        "display_name": "Maria Franca Norese", "orcid": "https://orcid.org/0000-0001-7317-8107"},
+        "institutions": [{"id": "https://openalex.org/I177477856", "display_name":
+        "Politecnico di Torino", "ror": "https://ror.org/00bgk9508", "country_code":
+        "IT", "type": "education", "lineage": ["https://openalex.org/I177477856"]}],
+        "countries": ["IT"], "is_corresponding": true, "raw_author_name": "Maria Franca
+        Norese", "raw_affiliation_strings": ["Dipartimento di Sistemi di Produzione
+        ed Economia dell''Azienda, Politecnico di Torino, Italy"], "raw_orcid": null,
+        "affiliations": [{"raw_affiliation_string": "Dipartimento di Sistemi di Produzione
+        ed Economia dell''Azienda, Politecnico di Torino, Italy", "institution_ids":
+        ["https://openalex.org/I177477856"]}]}], "institutions": [], "countries_distinct_count":
+        1, "institutions_distinct_count": 1, "corresponding_author_ids": ["https://openalex.org/A5082396023"],
+        "corresponding_institution_ids": ["https://openalex.org/I177477856"], "apc_list":
+        {"value": 3680, "currency": "USD", "value_usd": 3520}, "apc_paid": null, "fwci":
+        6.6473, "has_fulltext": false, "cited_by_count": 106, "citation_normalized_percentile":
+        {"value": 0.96151996, "is_in_top_1_percent": false, "is_in_top_10_percent":
+        true}, "cited_by_percentile_year": {"min": 94, "max": 99}, "biblio": {"volume":
+        "23", "issue": "1", "first_page": "76", "last_page": "85"}, "is_retracted":
+        false, "is_paratext": false, "is_xpac": false, "primary_topic": {"id": "https://openalex.org/T13920",
+        "display_name": "Urban Planning and Valuation", "score": 0.9588000178337097,
+        "subfield": {"id": "https://openalex.org/subfields/2308", "display_name":
+        "Management, Monitoring, Policy and Law"}, "field": {"id": "https://openalex.org/fields/23",
+        "display_name": "Environmental Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}, "topics": [{"id": "https://openalex.org/T13920",
+        "display_name": "Urban Planning and Valuation", "score": 0.9588000178337097,
+        "subfield": {"id": "https://openalex.org/subfields/2308", "display_name":
+        "Management, Monitoring, Policy and Law"}, "field": {"id": "https://openalex.org/fields/23",
+        "display_name": "Environmental Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/electre",
+        "display_name": "ELECTRE", "score": 0.9740231037139893}, {"id": "https://openalex.org/keywords/facilitator",
+        "display_name": "Facilitator", "score": 0.7690973281860352}, {"id": "https://openalex.org/keywords/process",
+        "display_name": "Process (computing)", "score": 0.58743816614151}, {"id":
+        "https://openalex.org/keywords/work", "display_name": "Work (physics)", "score":
+        0.5752869844436646}, {"id": "https://openalex.org/keywords/incineration",
+        "display_name": "Incineration", "score": 0.5575349926948547}, {"id": "https://openalex.org/keywords/decision-analysis",
+        "display_name": "Decision analysis", "score": 0.5319177508354187}, {"id":
+        "https://openalex.org/keywords/multiple-criteria-decision-analysis", "display_name":
+        "Multiple-criteria decision analysis", "score": 0.5145127773284912}, {"id":
+        "https://openalex.org/keywords/citizen-journalism", "display_name": "Citizen
+        journalism", "score": 0.5036429762840271}, {"id": "https://openalex.org/keywords/decision-support-system",
+        "display_name": "Decision support system", "score": 0.488841712474823}, {"id":
+        "https://openalex.org/keywords/rank", "display_name": "Rank (graph theory)",
+        "score": 0.45642372965812683}, {"id": "https://openalex.org/keywords/decision-making",
+        "display_name": "Decision-making", "score": 0.42167648673057556}, {"id": "https://openalex.org/keywords/environmental-planning",
+        "display_name": "Environmental planning", "score": 0.3905346393585205}, {"id":
+        "https://openalex.org/keywords/engineering", "display_name": "Engineering",
+        "score": 0.3637009859085083}, {"id": "https://openalex.org/keywords/business",
+        "display_name": "Business", "score": 0.3583131432533264}, {"id": "https://openalex.org/keywords/operations-research",
+        "display_name": "Operations research", "score": 0.3576555848121643}, {"id":
+        "https://openalex.org/keywords/operations-management", "display_name": "Operations
+        management", "score": 0.3119811415672302}, {"id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science", "score": 0.29781925678253174}, {"id":
+        "https://openalex.org/keywords/waste-management", "display_name": "Waste management",
+        "score": 0.2789614200592041}, {"id": "https://openalex.org/keywords/geography",
+        "display_name": "Geography", "score": 0.14595845341682434}, {"id": "https://openalex.org/keywords/political-science",
+        "display_name": "Political science", "score": 0.1160271167755127}, {"id":
+        "https://openalex.org/keywords/economics", "display_name": "Economics", "score":
+        0.09073638916015625}, {"id": "https://openalex.org/keywords/mathematics",
+        "display_name": "Mathematics", "score": 0.08796218037605286}, {"id": "https://openalex.org/keywords/artificial-intelligence",
+        "display_name": "Artificial intelligence", "score": 0.07247614860534668}],
+        "concepts": [{"id": "https://openalex.org/C47431972", "wikidata": "https://www.wikidata.org/wiki/Q3045948",
+        "display_name": "ELECTRE", "level": 3, "score": 0.9740231037139893}, {"id":
+        "https://openalex.org/C2776831358", "wikidata": "https://www.wikidata.org/wiki/Q1150166",
+        "display_name": "Facilitator", "level": 2, "score": 0.7690973281860352}, {"id":
+        "https://openalex.org/C98045186", "wikidata": "https://www.wikidata.org/wiki/Q205663",
+        "display_name": "Process (computing)", "level": 2, "score": 0.58743816614151},
+        {"id": "https://openalex.org/C18762648", "wikidata": "https://www.wikidata.org/wiki/Q42213",
+        "display_name": "Work (physics)", "level": 2, "score": 0.5752869844436646},
+        {"id": "https://openalex.org/C130751788", "wikidata": "https://www.wikidata.org/wiki/Q622772",
+        "display_name": "Incineration", "level": 2, "score": 0.5575349926948547},
+        {"id": "https://openalex.org/C186116695", "wikidata": "https://www.wikidata.org/wiki/Q5249226",
+        "display_name": "Decision analysis", "level": 2, "score": 0.5319177508354187},
+        {"id": "https://openalex.org/C11105738", "wikidata": "https://www.wikidata.org/wiki/Q1895805",
+        "display_name": "Multiple-criteria decision analysis", "level": 2, "score":
+        0.5145127773284912}, {"id": "https://openalex.org/C203663800", "wikidata":
+        "https://www.wikidata.org/wiki/Q848979", "display_name": "Citizen journalism",
+        "level": 2, "score": 0.5036429762840271}, {"id": "https://openalex.org/C107327155",
+        "wikidata": "https://www.wikidata.org/wiki/Q330268", "display_name": "Decision
+        support system", "level": 2, "score": 0.488841712474823}, {"id": "https://openalex.org/C164226766",
+        "wikidata": "https://www.wikidata.org/wiki/Q7293202", "display_name": "Rank
+        (graph theory)", "level": 2, "score": 0.45642372965812683}, {"id": "https://openalex.org/C122308676",
+        "wikidata": "https://www.wikidata.org/wiki/Q1331926", "display_name": "Decision-making",
+        "level": 3, "score": 0.42167648673057556}, {"id": "https://openalex.org/C91375879",
+        "wikidata": "https://www.wikidata.org/wiki/Q15473274", "display_name": "Environmental
+        planning", "level": 1, "score": 0.3905346393585205}, {"id": "https://openalex.org/C127413603",
+        "wikidata": "https://www.wikidata.org/wiki/Q11023", "display_name": "Engineering",
+        "level": 0, "score": 0.3637009859085083}, {"id": "https://openalex.org/C144133560",
+        "wikidata": "https://www.wikidata.org/wiki/Q4830453", "display_name": "Business",
+        "level": 0, "score": 0.3583131432533264}, {"id": "https://openalex.org/C42475967",
+        "wikidata": "https://www.wikidata.org/wiki/Q194292", "display_name": "Operations
+        research", "level": 1, "score": 0.3576555848121643}, {"id": "https://openalex.org/C21547014",
+        "wikidata": "https://www.wikidata.org/wiki/Q1423657", "display_name": "Operations
+        management", "level": 1, "score": 0.3119811415672302}, {"id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198", "display_name": "Computer
+        science", "level": 0, "score": 0.29781925678253174}, {"id": "https://openalex.org/C548081761",
+        "wikidata": "https://www.wikidata.org/wiki/Q180388", "display_name": "Waste
+        management", "level": 1, "score": 0.2789614200592041}, {"id": "https://openalex.org/C205649164",
+        "wikidata": "https://www.wikidata.org/wiki/Q1071", "display_name": "Geography",
+        "level": 0, "score": 0.14595845341682434}, {"id": "https://openalex.org/C17744445",
+        "wikidata": "https://www.wikidata.org/wiki/Q36442", "display_name": "Political
+        science", "level": 0, "score": 0.1160271167755127}, {"id": "https://openalex.org/C162324750",
+        "wikidata": "https://www.wikidata.org/wiki/Q8134", "display_name": "Economics",
+        "level": 0, "score": 0.09073638916015625}, {"id": "https://openalex.org/C33923547",
+        "wikidata": "https://www.wikidata.org/wiki/Q395", "display_name": "Mathematics",
+        "level": 0, "score": 0.08796218037605286}, {"id": "https://openalex.org/C154945302",
+        "wikidata": "https://www.wikidata.org/wiki/Q11660", "display_name": "Artificial
+        intelligence", "level": 1, "score": 0.07247614860534668}, {"id": "https://openalex.org/C136764020",
+        "wikidata": "https://www.wikidata.org/wiki/Q466", "display_name": "World Wide
+        Web", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C199539241",
+        "wikidata": "https://www.wikidata.org/wiki/Q7748", "display_name": "Law",
+        "level": 1, "score": 0.0}, {"id": "https://openalex.org/C114614502", "wikidata":
+        "https://www.wikidata.org/wiki/Q76592", "display_name": "Combinatorics", "level":
+        1, "score": 0.0}, {"id": "https://openalex.org/C111919701", "wikidata": "https://www.wikidata.org/wiki/Q9135",
+        "display_name": "Operating system", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C2778813691",
+        "wikidata": "https://www.wikidata.org/wiki/Q1369832", "display_name": "Purchasing",
+        "level": 2, "score": 0.0}, {"id": "https://openalex.org/C78519656", "wikidata":
+        "https://www.wikidata.org/wiki/Q101333", "display_name": "Mechanical engineering",
+        "level": 1, "score": 0.0}, {"id": "https://openalex.org/C144237770", "wikidata":
+        "https://www.wikidata.org/wiki/Q747534", "display_name": "Mathematical economics",
+        "level": 1, "score": 0.0}], "mesh": [], "locations_count": 1, "locations":
+        [{"id": "doi:10.1016/j.landusepol.2004.08.009", "is_oa": false, "landing_page_url":
+        "https://doi.org/10.1016/j.landusepol.2004.08.009", "pdf_url": null, "source":
+        {"id": "https://openalex.org/S80485027", "display_name": "Land Use Policy",
+        "issn_l": "0264-8377", "issn": ["0264-8377", "1873-5754"], "is_oa": false,
+        "is_in_doaj": false, "is_core": true, "host_organization": "https://openalex.org/P4310320990",
+        "host_organization_name": "Elsevier BV", "host_organization_lineage": ["https://openalex.org/P4310320990"],
+        "host_organization_lineage_names": ["Elsevier BV"], "type": "journal"}, "license":
+        null, "license_id": null, "version": "publishedVersion", "is_accepted": true,
+        "is_published": true, "raw_source_name": "Land Use Policy", "raw_type": "journal-article"}],
+        "best_oa_location": null, "sustainable_development_goals": [], "awards": [],
+        "funders": [], "has_content": {"grobid_xml": false, "pdf": false}, "content_urls":
+        null, "referenced_works_count": 34, "referenced_works": ["https://openalex.org/W81428425",
+        "https://openalex.org/W92934897", "https://openalex.org/W184645258", "https://openalex.org/W270664687",
+        "https://openalex.org/W582105637", "https://openalex.org/W607165306", "https://openalex.org/W620072916",
+        "https://openalex.org/W1509866077", "https://openalex.org/W1524464890", "https://openalex.org/W1534584322",
+        "https://openalex.org/W1551741041", "https://openalex.org/W1555030021", "https://openalex.org/W1937458681",
+        "https://openalex.org/W2000016084", "https://openalex.org/W2014626836", "https://openalex.org/W2025125311",
+        "https://openalex.org/W2064769619", "https://openalex.org/W2070884262", "https://openalex.org/W2071811434",
+        "https://openalex.org/W2104942250", "https://openalex.org/W2117763336", "https://openalex.org/W2490132342",
+        "https://openalex.org/W2490892188", "https://openalex.org/W2505402950", "https://openalex.org/W2625662836",
+        "https://openalex.org/W2799012502", "https://openalex.org/W4247395913", "https://openalex.org/W4247474131",
+        "https://openalex.org/W4250934702", "https://openalex.org/W4300880964", "https://openalex.org/W6607410437",
+        "https://openalex.org/W6633653847", "https://openalex.org/W6650585627", "https://openalex.org/W7017531437"],
+        "related_works": ["https://openalex.org/W2759034519", "https://openalex.org/W2765751770",
+        "https://openalex.org/W2143984145", "https://openalex.org/W2799947401", "https://openalex.org/W1989330523",
+        "https://openalex.org/W3210625115", "https://openalex.org/W2097618613", "https://openalex.org/W2147551390",
+        "https://openalex.org/W1996547280", "https://openalex.org/W2554273963"], "abstract_inverted_index":
+        null, "counts_by_year": [{"year": 2024, "cited_by_count": 3}, {"year": 2023,
+        "cited_by_count": 3}, {"year": 2022, "cited_by_count": 12}, {"year": 2021,
+        "cited_by_count": 6}, {"year": 2020, "cited_by_count": 4}, {"year": 2019,
+        "cited_by_count": 2}, {"year": 2018, "cited_by_count": 4}, {"year": 2017,
+        "cited_by_count": 3}, {"year": 2016, "cited_by_count": 10}, {"year": 2015,
+        "cited_by_count": 9}, {"year": 2014, "cited_by_count": 5}, {"year": 2013,
+        "cited_by_count": 9}, {"year": 2012, "cited_by_count": 10}], "updated_date":
+        "2026-07-22T07:51:19.307946", "created_date": "2025-10-10T00:00:00"}], "group_by":
+        []}'
     headers:
       Access-Control-Allow-Headers:
       - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type, X-OpenAlex-UI
@@ -1258,19 +807,19 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - a19ecffbec0cbce8-CDG
+      - a1f886911ee62a37-CDG
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:33 GMT
+      - Thu, 23 Jul 2026 06:11:04 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=9OyQBi3DzUyTzJkBN8MJ66GK1pZKONwYHyOcToYCwzQ%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1783846353"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=M9EZgU6uQGLKCR6XIFsVDhR%2FpsrRk830AkxOjEm%2Bpl8%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1784787064"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=9OyQBi3DzUyTzJkBN8MJ66GK1pZKONwYHyOcToYCwzQ%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1783846353"
+      - heroku-nel="https://nel.heroku.com/reports?s=M9EZgU6uQGLKCR6XIFsVDhR%2FpsrRk830AkxOjEm%2Bpl8%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1784787064"
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -1290,16 +839,18 @@ interactions:
       X-RateLimit-Prepaid-Remaining-USD:
       - '0'
       X-RateLimit-Remaining:
-      - '970'
+      - '972'
       X-RateLimit-Remaining-USD:
-      - '0.097'
+      - '0.0972'
       X-RateLimit-Reset:
-      - '54447'
+      - '64136'
       access-control-expose-headers:
       - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
         X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,
         X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
         X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
+      content-length:
+      - '56418'
     status:
       code: 200
       message: OK

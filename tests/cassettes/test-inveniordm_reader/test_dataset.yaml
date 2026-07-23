@@ -186,14 +186,16 @@ interactions:
         "size": 1073741824, "checksum": "md5:222e3a9b3758c119db0a0e75c8f7d582", "links":
         {"self": "https://zenodo.org/api/records/7834392/files/full_dataset_clean.tsv.gz.part-ab/content"}}],
         "swh": {}, "owners": [{"id": "95208"}], "status": "published", "stats": {"downloads":
-        416625, "unique_downloads": 244164, "views": 368755, "unique_views": 340091,
-        "version_downloads": 77253, "version_unique_downloads": 69195, "version_unique_views":
-        61862, "version_views": 62938}, "state": "done", "submitted": true}'
+        421918, "unique_downloads": 249332, "views": 370176, "unique_views": 341508,
+        "version_downloads": 77392, "version_unique_downloads": 69331, "version_unique_views":
+        62205, "version_views": 63282}, "state": "done", "submitted": true}'
     headers:
       access-control-allow-origin:
       - '*'
       access-control-expose-headers:
       - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+      content-length:
+      - '15203'
       content-security-policy:
       - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
         ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
@@ -201,7 +203,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sun, 12 Jul 2026 08:51:57 GMT
+      - Thu, 23 Jul 2026 06:10:34 GMT
       etag:
       - W/"2"
       link:
@@ -211,7 +213,7 @@ interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '40'
+      - '41'
       server:
       - nginx
       strict-transport-security:
@@ -227,9 +229,9 @@ interactions:
       x-ratelimit-limit:
       - '133'
       x-ratelimit-remaining:
-      - '128'
+      - '127'
       x-ratelimit-reset:
-      - '1783846358'
+      - '1784787076'
       x-source:
       - api
       x-xss-protection:

@@ -58,8 +58,6 @@ interactions:
       - max-age=300
       Connection:
       - keep-alive
-      Content-Length:
-      - '1102'
       Content-Security-Policy:
       - default-src 'none'; style-src 'unsafe-inline'; sandbox
       Content-Type:
@@ -67,11 +65,11 @@ interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       Date:
-      - Sun, 12 Jul 2026 08:50:40 GMT
+      - Thu, 23 Jul 2026 06:09:21 GMT
       ETag:
       - W/"b707311b24cdde980e6f97a7176125c516b02f320216ac8d116815d7b9a04b56"
       Expires:
-      - Sun, 12 Jul 2026 08:55:40 GMT
+      - Thu, 23 Jul 2026 06:14:21 GMT
       Source-Age:
       - '0'
       Strict-Transport-Security:
@@ -87,17 +85,19 @@ interactions:
       X-Content-Type-Options:
       - nosniff
       X-Fastly-Request-ID:
-      - c215171159b1d64bcfc48a483d78c1a171c3a30e
+      - 01056981e8c075add0b35fd4644f2ea48c8ba280
       X-Frame-Options:
       - deny
       X-GitHub-Request-Id:
-      - 8E26:21EFD4:1AEC73E:1EB4E7E:6A53555F
+      - A1E8:281A3F:300981:389B6F:6A61B011
       X-Served-By:
-      - cache-dus1260037-DUS
+      - cache-dus1260024-DUS
       X-Timer:
-      - S1783846240.242292,VS0,VE147
+      - S1784786962.733048,VS0,VE217
       X-XSS-Protection:
       - 1; mode=block
+      content-length:
+      - '2780'
     status:
       code: 200
       message: OK

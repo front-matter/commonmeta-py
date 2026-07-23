@@ -14,7 +14,7 @@ interactions:
     uri: https://api.crossref.org/works?rows=20&filter=prefix%3A10.5555%2Ctype%3Ajournal-article
   response:
     body:
-      string: '{"status":"ok","message-type":"work-list","message-version":"1.0.0","message":{"facets":{},"total-results":1193,"items":[{"indexed":{"date-parts":[[2022,4,5]],"date-time":"2022-04-05T12:48:06Z","timestamp":1649162886468},"reference-count":0,"publisher":"Test
+      string: '{"status":"ok","message-type":"work-list","message-version":"1.0.0","message":{"facets":{},"total-results":1205,"items":[{"indexed":{"date-parts":[[2022,4,5]],"date-time":"2022-04-05T12:48:06Z","timestamp":1649162886468},"reference-count":0,"publisher":"Test
         accounts","issue":"1","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["J.
         of Syst. Eng. Electron."],"published-print":{"date-parts":[[2010,2]]},"DOI":"10.3969\/j.issn.1004-4132.2010.01.020","type":"journal-article","created":{"date-parts":[[2014,8,19]],"date-time":"2014-08-19T16:11:02Z","timestamp":1408464662000},"page":"127-133","source":"Crossref","is-referenced-by-count":5,"title":["Image
         retrieval based on color features integrated with anisotropic directionality"],"prefix":"10.5555","volume":"21","author":[{"given":"Jing","family":"Bai","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Xiaohua","family":"Wang","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Licheng","family":"Jiao","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]}],"member":"7822","container-title":["Journal
@@ -217,12 +217,10 @@ interactions:
     headers:
       Connection:
       - keep-alive
-      Content-Length:
-      - '8612'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:51:02 GMT
+      - Thu, 23 Jul 2026 06:09:47 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -230,6 +228,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
+      content-length:
+      - '44546'
       permissions-policy:
       - interest-cohort=()
       server:
@@ -237,13 +237,13 @@ interactions:
       vary:
       - Accept-Encoding
       x-api-pool:
-      - polite
+      - polite-array
       x-concurrency-limit:
       - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '10'
+      - '3'
     status:
       code: 200
       message: OK

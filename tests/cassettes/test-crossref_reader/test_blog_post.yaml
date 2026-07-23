@@ -17,32 +17,34 @@ interactions:
       string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a19ecd7dcb716f17-CDG
-      Cf-Cache-Status:
-      - DYNAMIC
+      - a1f884644f9dd656-CDG
       Connection:
       - keep-alive
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sun, 12 Jul 2026 08:50:51 GMT
+      - Thu, 23 Jul 2026 06:09:35 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
-      Permissions-Policy:
-      - interest-cohort=(),browsing-topics=()
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=afA6QxKsm%2FwR4BWfA7sOeqRIl48J7%2BgEwp6wewaf56Hfoopu5SbOv3OtKlk20c0cQfpIXYbtCvu7o0Z4bhJrAGCm34YSaEI927KiezakZA6eAvrkbl6RRFA%2BllMTauVk8hly04A%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=6bIP446NkwY3HxTEVsTMh33I5oKPtbQ4lBqejNNmupXKAuV%2FZ3JMqpz60mi0m9NFjUoMRCdFCt4XbFK6DzN7Go4ZIw3wsag3FiDbeD4hB8bXCVN1audbGl3NaC2MCbLZ1Ch3CdU%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Origin
-      - accept-encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '55'
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
+      - accept-encoding
     status:
       code: 200
       message: OK
@@ -62,7 +64,7 @@ interactions:
   response:
     body:
       string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Front
-        Matter"}],"indexed":{"date-parts":[[2026,6,6]],"date-time":"2026-06-06T11:01:04Z","timestamp":1780743664451,"version":"3.54.1"},"posted":{"date-parts":[[2023,10,4]]},"group-title":"Front
+        Matter"}],"indexed":{"date-parts":[[2026,7,19]],"date-time":"2026-07-19T18:01:56Z","timestamp":1784484116206,"version":"3.55.0"},"posted":{"date-parts":[[2023,10,4]]},"group-title":"Front
         Matter","reference-count":3,"publisher":"Front Matter","license":[{"start":{"date-parts":[[2023,10,4]],"date-time":"2023-10-04T00:00:00Z","timestamp":1696377600000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2023,10,4]],"date-time":"2023-10-04T00:00:00Z","timestamp":1696377600000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<jats:p>Newsletters
         have been around forever, but their popularity has significantly increased
         in the past few years, also thanks to platforms such as Ghost, Medium, and
@@ -73,19 +75,17 @@ interactions:
         rise of the (science) newsletter"],"prefix":"10.59350","author":[{"ORCID":"https:\/\/orcid.org\/0000-0003-1419-2405","authenticated-orcid":false,"given":"Martin","family":"Fenner","sequence":"first","affiliation":[],"role":[{"vocabulary":"crossref","role":"author"}]}],"member":"31795","reference":[{"key":"ref1","doi-asserted-by":"publisher","unstructured":"Vidal
         Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding
         angst and uncertainty. <i>Nature<\/i>, <i>620<\/i>(7974), 482\u2013484.","DOI":"10.1038\/d41586-023-02554-0"},{"key":"ref2","doi-asserted-by":"publisher","unstructured":"Bilder,
-        G., Lin, J., &amp; Neylon, C. (2020). <i>The Principles of Open Scholarly
-        Infrastructure<\/i>. The Principles of Open Scholarly Infrastructure.","DOI":"10.24343\/c34w2h"},{"key":"ref3","doi-asserted-by":"publisher","unstructured":"Fenner,
-        M. (2023). The Rogue Scholar weekly newsletter launches on Wednesday. In <i>Front
-        Matter<\/i> (Version v1). Crossref.","DOI":"10.53731\/9cdnt-2k006"}],"container-title":[],"original-title":[],"link":[{"URL":"https:\/\/blog.front-matter.de\/posts\/the-rise-of-the-science-newsletter\/","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.md","content-type":"text\/markdown","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2026,6,6]],"date-time":"2026-06-06T10:27:36Z","timestamp":1780741656000},"score":1,"resource":{"primary":{"URL":"https:\/\/blog.front-matter.de\/posts\/the-rise-of-the-science-newsletter\/"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2023,10,4]]},"references-count":3,"version":{"version":"v1"},"URL":"https:\/\/doi.org\/10.53731\/ybhah-9jy85","relation":{"is-version-of":[{"id-type":"doi","id":"10.53731\/q5ges-cp507","asserted-by":"object"}]},"subject":[],"published":{"date-parts":[[2023,10,4]]},"subtype":"other"}}'
+        G., Lin, J.&amp; Neylon, C. (2020). <i>The Principles of Open Scholarly Infrastructure<\/i>.
+        The Principles of Open Scholarly Infrastructure.","DOI":"10.24343\/c34w2h"},{"key":"ref3","doi-asserted-by":"publisher","unstructured":"Fenner,
+        M. (2023, July 31). The Rogue Scholar weekly newsletter launches on Wednesday.
+        <i>Front Matter<\/i>.","DOI":"10.53731\/9cdnt-2k006"}],"container-title":[],"original-title":[],"link":[{"URL":"https:\/\/blog.front-matter.de\/posts\/the-rise-of-the-science-newsletter\/","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.md","content-type":"text\/markdown","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2026,7,19]],"date-time":"2026-07-19T17:14:27Z","timestamp":1784481267000},"score":1,"resource":{"primary":{"URL":"https:\/\/blog.front-matter.de\/posts\/the-rise-of-the-science-newsletter\/"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2023,10,4]]},"references-count":3,"version":{"version":"v1"},"URL":"https:\/\/doi.org\/10.53731\/ybhah-9jy85","relation":{"is-version-of":[{"id-type":"doi","id":"10.53731\/q5ges-cp507","asserted-by":"subject"},{"id-type":"doi","id":"10.53731\/q5ges-cp507","asserted-by":"object"}],"is-part-of":[{"id-type":"issn","id":"2749-9952","asserted-by":"subject"}]},"subject":[],"published":{"date-parts":[[2023,10,4]]},"subtype":"blog"}}'
     headers:
       Connection:
       - keep-alive
-      Content-Length:
-      - '1537'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:50:51 GMT
+      - Thu, 23 Jul 2026 06:09:35 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -93,6 +93,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
+      content-length:
+      - '4315'
       permissions-policy:
       - interest-cohort=()
       server:
@@ -100,7 +102,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-api-pool:
-      - polite
+      - polite-single
       x-concurrency-limit:
       - '3'
       x-rate-limit-interval:

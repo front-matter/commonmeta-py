@@ -17,32 +17,34 @@ interactions:
       string: "[\n  {\n    \"DOI\": \"10.1007\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a19ecdb43c3b7a62-CDG
-      Cf-Cache-Status:
-      - DYNAMIC
+      - a1f884a05a6094e5-LHR
       Connection:
       - keep-alive
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sun, 12 Jul 2026 08:50:59 GMT
+      - Thu, 23 Jul 2026 06:09:45 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
-      Permissions-Policy:
-      - interest-cohort=(),browsing-topics=()
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=ixj23jrt%2FD%2FkpmNN48hobWWaYYAn3QLwLYQxF45Dh%2F3pEJDXbVJvTz1PAf%2FqvEpOyVPuv7jBI%2BFXFo%2F7Kojtc4TEfipN6Xapv9vJnf0f9%2BoluB%2FC3fwvPTKBa0k0yeCBHKZXiwk%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=H3VdIToCmmAWl0h0cZVFjpfQ0LEJZ%2BPoqxeE5005ZoCdZXS1j8eX8O9dOJfPG75QZmTzYpeyBb9FSumrAXQW7tmiGiOYK6cUs%2BeICcpIa8VVPcoDD7hR%2FmV3DYF1vy3b3%2BdVXL0%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Origin
-      - accept-encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '54'
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
+      - accept-encoding
     status:
       code: 200
       message: OK
@@ -119,12 +121,10 @@ interactions:
     headers:
       Connection:
       - keep-alive
-      Content-Length:
-      - '3177'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:51:00 GMT
+      - Thu, 23 Jul 2026 06:09:45 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -132,6 +132,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
+      content-length:
+      - '9430'
       permissions-policy:
       - interest-cohort=()
       server:
@@ -139,7 +141,7 @@ interactions:
       vary:
       - Accept-Encoding
       x-api-pool:
-      - polite
+      - polite-single
       x-concurrency-limit:
       - '3'
       x-rate-limit-interval:

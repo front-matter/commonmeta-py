@@ -101,14 +101,16 @@ interactions:
         TABLE 1.pdf", "size": 904297, "checksum": "md5:bacd63be97a7f3c58c95cc512c10ddf2",
         "links": {"self": "https://zenodo.org/api/records/8120771/files/AUTOPSY%20REVIEW%20SUPPLEMENTAL%20TABLE%201.pdf/content"}}],
         "swh": {}, "owners": [{"id": "579652"}], "status": "published", "stats": {"downloads":
-        175051, "unique_downloads": 145294, "views": 273694, "unique_views": 203855,
-        "version_downloads": 173763, "version_unique_downloads": 144177, "version_unique_views":
-        202050, "version_views": 271235}, "state": "done", "submitted": true}'
+        175093, "unique_downloads": 145336, "views": 273862, "unique_views": 204008,
+        "version_downloads": 173805, "version_unique_downloads": 144219, "version_unique_views":
+        202203, "version_views": 271403}, "state": "done", "submitted": true}'
     headers:
       access-control-allow-origin:
       - '*'
       access-control-expose-headers:
       - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+      content-length:
+      - '8045'
       content-security-policy:
       - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
         ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
@@ -116,7 +118,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sun, 12 Jul 2026 08:50:39 GMT
+      - Thu, 23 Jul 2026 06:09:21 GMT
       etag:
       - W/"9"
       link:
@@ -144,7 +146,7 @@ interactions:
       x-ratelimit-remaining:
       - '129'
       x-ratelimit-reset:
-      - '1783846299'
+      - '1784787021'
       x-source:
       - api
       x-xss-protection:

@@ -15,7 +15,7 @@ interactions:
   response:
     body:
       string: '{"id": "a9awy-52h48", "created": "2025-06-27T16:11:25.068847+00:00",
-        "updated": "2026-06-07T18:32:19.025395+00:00", "links": {"self": "https://rogue-scholar.org/api/records/a9awy-52h48",
+        "updated": "2026-07-19T17:13:48.034470+00:00", "links": {"self": "https://rogue-scholar.org/api/records/a9awy-52h48",
         "self_html": "https://rogue-scholar.org/records/a9awy-52h48", "preview_html":
         "https://rogue-scholar.org/records/a9awy-52h48?preview=1", "doi": "https://doi.org/10.53731/m7gng-jmm19",
         "self_doi": "https://doi.org/10.53731/m7gng-jmm19", "self_doi_html": "https://rogue-scholar.org/doi/10.53731/m7gng-jmm19",
@@ -44,15 +44,15 @@ interactions:
         "file_modification": "https://rogue-scholar.org/api/records/a9awy-52h48/file-modification",
         "quota_increase": "https://rogue-scholar.org/api/records/a9awy-52h48/quota-increase",
         "requests": "https://rogue-scholar.org/api/records/a9awy-52h48/requests"},
-        "revision_id": 227, "parent": {"id": "dj4cp-2b786", "access": {"owned_by":
+        "revision_id": 229, "parent": {"id": "dj4cp-2b786", "access": {"owned_by":
         {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
         false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
         {"ids": ["15a362ea-8138-42b8-917f-1840a92addf8", "40d93f0d-7c6b-44ee-83e1-971b099c2f54",
         "5e9a020e-21d4-4515-8a70-bb942b08a59d", "d79fe364-6d96-40b6-b437-b93ca3493106",
         "fbc3bd5a-137e-4366-94ae-92a6e9d744e3"], "default": "15a362ea-8138-42b8-917f-1840a92addf8",
         "entries": [{"id": "15a362ea-8138-42b8-917f-1840a92addf8", "created": "2024-08-30T15:03:16.250133+00:00",
-        "updated": "2026-07-19T07:10:57.752092+00:00", "links": {}, "revision_id":
-        2318, "slug": "front_matter", "metadata": {"title": "Front Matter", "description":
+        "updated": "2026-07-23T05:08:34.014461+00:00", "links": {}, "revision_id":
+        2470, "slug": "front_matter", "metadata": {"title": "Front Matter", "description":
         "The Front Matter Blog covers the intersection of science and technology since
         2007.", "type": {"id": "blog"}, "website": "https://blog.front-matter.de/"},
         "access": {"visibility": "public", "members_visibility": "public", "member_policy":
@@ -111,11 +111,11 @@ interactions:
         {"id": "https://openalex.org/subfields/1802", "subject": "Information Systems
         and Management", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?5.2",
         "subject": "Economics and business", "scheme": "FOS"}, {"subject": "Rogue
-        Scholar"}, {"subject": "Open Infrastructure"}], "dates": [{"date": "2025-06-27T17:51:11",
+        Scholar"}, {"subject": "Open Infrastructure"}], "dates": [{"date": "2025-06-27T15:51:11Z",
         "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued",
-        "sv": "Utf\u00e4rdad"}}}, {"date": "2025-06-27T22:03:19", "type": {"id": "updated",
-        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
-        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
+        "sv": "Utf\u00e4rdad"}}}, {"date": "2025-06-27T20:03:19Z", "type": {"id":
+        "updated", "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}],
+        "languages": [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
         "https://doi.org/10.53731/m7gng-jmm19", "scheme": "guid"}, {"identifier":
         "https://blog.front-matter.de/posts/kamal-deploys-inveniordm-starter-to-production/",
         "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
@@ -200,9 +200,10 @@ interactions:
         <a href=\"https://doi.org/10.53731/jxecm-0me48\">https://doi.org/10.53731/jxecm-0me48</a></li><li>Fenner,
         M. (2015, July 29). Thank you PLOS. <em>Front Matter</em>. <a href=\"https://doi.org/10.53731/r294649-6f79289-8cvzn\">https://doi.org/10.53731/r294649-6f79289-8cvzn</a></li></ol>",
         "rs:image": "https://images.unsplash.com/photo-1634638026221-4c1c4cf9f881?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDU1fHxzaGlwJTIwY29udGFpbmVyfGVufDB8fHx8MTc1MTAzNDgzN3ww&ixlib=rb-4.1.0&q=80&w=2000",
-        "rs:featured": false}, "access": {"record": "public", "files": "public", "embargo":
-        {"active": false, "reason": null}, "status": "metadata-only"}, "files": {"enabled":
-        false, "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files":
+        "rs:generator": {"id": "Ghost", "title": {"en": "Ghost"}}, "rs:featured":
+        false}, "access": {"record": "public", "files": "public", "embargo": {"active":
+        false, "reason": null}, "status": "metadata-only"}, "files": {"enabled": false,
+        "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files":
         {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries": {}},
         "status": "published", "deletion_status": {"is_deleted": false, "status":
         "P"}, "stats": {"this_version": {"views": 8, "unique_views": 5, "downloads":
@@ -219,9 +220,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 19 Jul 2026 07:12:54 GMT
+      - Thu, 23 Jul 2026 06:10:16 GMT
       Etag:
-      - '"227"'
+      - '"229"'
       Link:
       - <https://rogue-scholar.org/api/records/a9awy-52h48> ; rel="linkset" ; type="application/linkset+json"
       Permissions-Policy:
@@ -229,7 +230,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '55'
+      - '54'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -247,11 +248,11 @@ interactions:
       X-Ratelimit-Remaining:
       - '497'
       X-Ratelimit-Reset:
-      - '1784445230'
+      - '1784787071'
       X-Xss-Protection:
       - 1; mode=block
       content-length:
-      - '16810'
+      - '16871'
     status:
       code: 200
       message: OK

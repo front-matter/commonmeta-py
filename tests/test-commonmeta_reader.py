@@ -65,8 +65,7 @@ def test_default():
         },
     ]
     assert subject.container == {
-        "identifier": "2050-084X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2050-084X", "identifier_type": "ISSN"}],
         "title": "eLife",
         "type": "Journal",
         "volume": "3",
@@ -137,8 +136,7 @@ def test_string():
   "container": {
     "type": "Journal",
     "title": "eLife",
-    "identifier": "2050-084X",
-    "identifier_type": "ISSN",
+    "identifiers": [{"identifier": "2050-084X", "identifier_type": "ISSN"}],
     "volume": "3"
   },
   "publisher": {
@@ -521,8 +519,7 @@ def test_string():
         },
     ]
     assert subject.container == {
-        "identifier": "2050-084X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2050-084X", "identifier_type": "ISSN"}],
         "title": "eLife",
         "type": "Journal",
         "volume": "3",

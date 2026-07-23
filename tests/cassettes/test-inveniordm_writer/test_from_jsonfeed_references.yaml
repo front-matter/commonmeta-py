@@ -17,8 +17,8 @@ interactions:
       string: '{"authors":[{"affiliation":[{"id":"https://ror.org/04wxnsj81","name":"DataCite"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"authors":[{"name":"Martin
         Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"community_id":"15a362ea-8138-42b8-917f-1840a92addf8","created":1672531200,"current_feed_url":null,"description":"The
         Front Matter Blog covers the intersection of science and technology since
-        2007.","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
-        Matter","updated":1783171960,"use_api":true},"blog_name":"Front Matter","blog_slug":"front_matter","content_html":"<p>One
+        2007.","doi":"https://doi.org/10.53731/front_matter","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
+        Matter","updated":1784105018,"use_api":true},"blog_name":"Front Matter","blog_slug":"front_matter","content_html":"<p>One
         of the first tasks for DataCite in the European Commission-funded <a href=\"http://project-thor.eu/\">THOR
         project</a>, which started in June, was to contribute to a comparison of the
         ORCID and DataCite metadata standards. Together with ORCID, CERN, the British
@@ -115,12 +115,12 @@ interactions:
         Organisation Relationship Data Schema</em>. Zenodo; 2015. doi:<a href=\"https://doi.org/10.5281/ZENODO.30799\">10.5281/ZENODO.30799</a></li></ol>","doi":"https://doi.org/10.53731/r79v4e1-97aq74v-ag578","funding_references":[{"awardNumber":"654039","awardUri":"https://doi.org/10.3030/654039","funderIdentifier":"https://ror.org/00k4n6c32","funderIdentifierType":"ROR","funderName":"European
         Commission"}],"guid":"https://doi.org/10.53731/r79v4e1-97aq74v-ag578","image":"https://storage.ghost.io/c/c5/33/c533c955-b5f3-4ff1-ae2d-6b52a212e602/content/images/2023/09/cat_and_dog-1.png","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1442534400,"reference":[{"id":"https://doi.org/10.5281/zenodo.30799","unstructured":"Fenner,
         M., Demeranville, T., Kotarski, R., Vision, T., Rueda, L., Dasler, R., Haak,
-        L., &amp; Cruse, P. (2015). <i>D2.1: Artefact, Contributor, And Organisation
+        L.&amp; Cruse, P. (2015). <i>D2.1: Artefact, Contributor, And Organisation
         Relationship Data Schema</i>. Zenodo."}],"relationships":[{"type":"IsIdenticalTo","url":"https://doi.org/10.5438/bc11-cqw1"}],"rid":"trhz1-s0336","summary":"One
         of the first tasks for DataCite in the European Commission-funded THOR project,
         which started in June, was to contribute to a comparison of the ORCID and
         DataCite metadata standards.","tags":["Metadata"],"title":"Differences between
-        ORCID and DataCite Metadata","updated_at":1780744029,"url":"https://blog.front-matter.de/posts/differences-between-orcid-and-datacite-metadata/","version":"v1"}
+        ORCID and DataCite Metadata","updated_at":1784481238,"url":"https://blog.front-matter.de/posts/differences-between-orcid-and-datacite-metadata/","version":"v1"}
 
         '
     headers:
@@ -131,13 +131,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:01 GMT
+      - Thu, 23 Jul 2026 06:10:39 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
+      content-length:
+      - '10266'
     status:
       code: 200
       message: OK

@@ -17,7 +17,7 @@ interactions:
       string: '{"authors":[{"affiliation":[{"id":"https://ror.org/052gg0110","name":"University
         of Oxford"}],"contributor_roles":[],"family":"Shotton","given":"David M.","url":"https://orcid.org/0000-0001-5506-523X"}],"blog":{"authors":[{"name":"OpenCitations
         Team"}],"community_id":"c8efeda5-cd52-472d-9537-6915b9c62e34","created":1681862400,"current_feed_url":null,"description":"The
-        blog of the OpenCitations Infrastructure","favicon":"https://rogue-scholar.org/api/communities/c8efeda5-cd52-472d-9537-6915b9c62e34/logo","feed_format":"application/atom+xml","feed_url":"https://opencitations.hypotheses.org/feed/atom/","filter":null,"generator":"WordPress","home_page_url":"https://opencitations.hypotheses.org","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"opencitations","status":"active","subfield":"1802","title":"OpenCitations
+        blog of the OpenCitations Infrastructure","doi":"https://doi.org/10.59350/opencitations","favicon":"https://rogue-scholar.org/api/communities/c8efeda5-cd52-472d-9537-6915b9c62e34/logo","feed_format":"application/atom+xml","feed_url":"https://opencitations.hypotheses.org/feed/atom/","filter":null,"generator":"WordPress","home_page_url":"https://opencitations.hypotheses.org","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"opencitations","status":"active","subfield":"1802","title":"OpenCitations
         blog","updated":1783172067,"use_api":true},"blog_name":"OpenCitations blog","blog_slug":"opencitations","content_html":"<p>Egon
         Willighagen, at Uppsala University, has pioneered the use of object properties
         from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
@@ -87,13 +87,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:01 GMT
+      - Thu, 23 Jul 2026 06:10:39 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
+      content-length:
+      - '7241'
     status:
       code: 200
       message: OK

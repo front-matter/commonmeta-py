@@ -15,7 +15,7 @@ interactions:
   response:
     body:
       string: '{"authors":[{"affiliation":[{"id":"https://ror.org/04fa4r544","name":"ORCID"}],"contributor_roles":[],"family":"Duine","given":"Maaike","url":"https://orcid.org/0000-0003-3412-7192"}],"blog":{"authors":null,"community_id":"9e52146d-52b4-4733-9b05-1b23091c3835","created":1695254400,"current_feed_url":null,"description":"Technical
-        and Human infrastructure for Open Research.","favicon":"https://rogue-scholar.org/api/communities/9e52146d-52b4-4733-9b05-1b23091c3835/logo","feed_format":"application/feed+json","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"generator":"Other","home_page_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"thor","status":"archived","subfield":"1802","title":"Project
+        and Human infrastructure for Open Research.","doi":"https://doi.org/10.59350/thor","favicon":"https://rogue-scholar.org/api/communities/9e52146d-52b4-4733-9b05-1b23091c3835/logo","feed_format":"application/feed+json","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"generator":"Other","home_page_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"thor","status":"archived","subfield":"1802","title":"Project
         THOR","updated":null,"use_api":true},"blog_name":"Project THOR","blog_slug":"thor","doi":"https://doi.org/10.59350/hnegw-6rx17","guid":"http://project-thor.eu/?p=1644","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1507766400,"rid":"y3sy6-27n54","summary":"Come
         and join us at the Universit\u00e0 degli Studi di Roma \"La Sapienza\" in
         Rome, Italy, on November 15th 2017 to learn about how we have advanced the
@@ -30,16 +30,16 @@ interactions:
       - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
-      Content-Length:
-      - '938'
       Content-Type:
       - application/json
       Date:
-      - Sun, 12 Jul 2026 08:52:01 GMT
+      - Thu, 23 Jul 2026 06:10:38 GMT
       Server:
       - gunicorn
       Vary:
       - Accept-Encoding
+      content-length:
+      - '1809'
     status:
       code: 200
       message: OK

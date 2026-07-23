@@ -49,7 +49,9 @@ def test_dataset():
         "available": "2011-02-01T17:22:41Z",
     }
     assert subject.references is None
-    assert subject.container is None
+    assert subject.container == {
+        "identifiers": [{"identifier": "dryad.dryad", "identifier_type": "DataCite"}],
+    }
     assert subject.description.startswith(
         "Plasmodium falciparum is the major human malaria agent responsible"
     )
@@ -103,7 +105,9 @@ def test_blog_posting():
         "id": "https://doi.org/10.5438/k1gw-y723",
         "type": "Document",
     }
-    assert subject.container is None
+    assert subject.container == {
+        "identifiers": [{"identifier": "datacite.blog", "identifier_type": "DataCite"}],
+    }
     assert subject.description.startswith(
         "At the end of 2022, we conducted our annual member survey"
     )
@@ -151,8 +155,12 @@ def test_date():
     }
     assert subject.references is None
     assert subject.container == {
-        "identifier": "10.4230/LIPIcs.TQC.2013",
-        "identifier_type": "DOI",
+        "identifiers": [
+            {
+                "identifier": "https://doi.org/10.4230/lipics.tqc.2013",
+                "identifier_type": "DOI",
+            }
+        ],
         "type": "Series",
         "title": "LIPIcs, Volume 22, TQC 2013",
         "volume": "22",
@@ -282,7 +290,14 @@ def test_multiple_identifiers():
     assert subject.date_published == "2016-03-27"
     assert subject.publisher == {"name": "Zenodo"}
     assert subject.references is None
-    assert subject.container is None
+    assert subject.container == {
+        "identifiers": [
+            {
+                "identifier": "https://openalex.org/S4306400562",
+                "identifier_type": "OpenAlex",
+            }
+        ],
+    }
     assert subject.description.startswith(
         "This tools are used to analyse the data produced"
     )
@@ -342,7 +357,9 @@ def test_is_identical():
     )
     assert subject.publisher == {"name": "figshare"}
     assert subject.references is None
-    assert subject.container is None
+    assert subject.container == {
+        "identifiers": [{"identifier": "figshare.ars", "identifier_type": "DataCite"}],
+    }
     assert subject.description.startswith(
         "<b>RAIN: RNA–protein Association and Interaction Networks</b>"
     )

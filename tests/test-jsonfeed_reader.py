@@ -52,7 +52,7 @@ def test_wordpress_with_references():
 
     assert (
         subject.date_published == "2023-06-09T00:00:00Z"
-        and subject.date_updated == "2025-12-05T01:36:30Z"
+        and subject.date_updated == "2026-07-20T06:59:13Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -63,6 +63,7 @@ def test_wordpress_with_references():
     }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/3033-3695", "type": "IsPartOf"},
+        {"id": "https://rogue-scholar.org/api/communities/svpow", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
         {"identifier": "https://svpow.com/?p=20992", "identifier_type": "GUID"},
@@ -70,8 +71,7 @@ def test_wordpress_with_references():
     assert subject.container == {
         "type": "Blog",
         "title": "Sauropod Vertebra Picture of the Week",
-        "identifier": "3033-3695",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "3033-3695", "identifier_type": "ISSN"}],
         "platform": "WordPress.com",
     }
     assert subject.description.startswith(
@@ -93,7 +93,10 @@ def test_wordpress_with_references():
     assert subject.content.startswith(
         '<div data-shortcode="caption" id="attachment_21038"'
     )
-    assert subject.image is None
+    assert (
+        subject.image
+        == "https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480"
+    )
     assert subject.version == "v1"
     assert subject.state == "stale"
 
@@ -135,7 +138,7 @@ def test_post_with_relationships():
 
     assert (
         subject.date_published == "2019-03-28T00:00:00Z"
-        and subject.date_updated == "2026-06-06T10:34:07Z"
+        and subject.date_updated == "2026-07-19T17:31:26Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -143,7 +146,7 @@ def test_post_with_relationships():
     assert len(subject.references) == 5
     assert subject.references[0] == {
         "id": "https://doi.org/10.5438/s6d3-k860",
-        "unstructured": "Dasler, R., &amp; Cousijn, H. (2018). Are your data being used? Event Data has the answer!. In <i>DataCite Blog</i> (1.0). DataCite.",
+        "unstructured": "Dasler, R.&amp; Cousijn, H. (2018, October 8). Are your data being used? Event Data has the answer!. <i>DataCite Blog</i>.",
     }
     assert subject.funding_references == [
         {
@@ -160,6 +163,10 @@ def test_post_with_relationships():
         },
         {"id": "https://doi.org/10.5438/jwvf-8a66", "type": "IsIdenticalTo"},
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
     ]
     assert subject.identifiers == [
         {
@@ -170,8 +177,7 @@ def test_post_with_relationships():
     assert subject.container == {
         "type": "Blog",
         "title": "Front Matter",
-        "identifier": "2749-9952",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2749-9952", "identifier_type": "ISSN"}],
         "platform": "Ghost",
     }
     assert subject.content.startswith(
@@ -246,8 +252,9 @@ def test_post_with_citations():
     #     },
     # ]
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/opencitations", "type": "IsPartOf"},
         {
-            "id": "https://doi.org/10.59350/opencitations",
+            "id": "https://rogue-scholar.org/api/communities/opencitations",
             "type": "IsPartOf",
         },
     ]
@@ -260,8 +267,12 @@ def test_post_with_citations():
     assert subject.container == {
         "type": "Blog",
         "title": "OpenCitations blog",
-        "identifier": "https://doi.org/10.59350/opencitations",
-        "identifier_type": "DOI",
+        "identifiers": [
+            {
+                "identifier": "https://doi.org/10.59350/opencitations",
+                "identifier_type": "DOI",
+            }
+        ],
         "platform": "WordPress",
     }
     assert subject.content.startswith(
@@ -338,7 +349,7 @@ def test_post_with_relationships_as_doi():
 
     assert (
         subject.date_published == "2019-03-28T00:00:00Z"
-        and subject.date_updated == "2026-06-06T10:34:07Z"
+        and subject.date_updated == "2026-07-19T17:31:26Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -359,6 +370,10 @@ def test_post_with_relationships_as_doi():
         },
         {"id": "https://doi.org/10.5438/jwvf-8a66", "type": "IsIdenticalTo"},
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
     ]
     assert subject.identifiers == [
         {
@@ -369,8 +384,7 @@ def test_post_with_relationships_as_doi():
     assert subject.container == {
         "type": "Blog",
         "title": "Front Matter",
-        "identifier": "2749-9952",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2749-9952", "identifier_type": "ISSN"}],
         "platform": "Ghost",
     }
     assert subject.provider == "Crossref"
@@ -412,7 +426,7 @@ def test_post_with_funding():
 
     assert (
         subject.date_published == "2023-12-05T00:00:00Z"
-        and subject.date_updated == "2026-06-09T15:48:31Z"
+        and subject.date_updated == "2026-07-19T19:04:37Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -420,14 +434,19 @@ def test_post_with_funding():
     assert subject.references == [
         {
             "id": "https://doi.org/10.5281/zenodo.8284206",
-            "unstructured": "Plankytė, V., Macneil, R., &amp; Chen, X. (2023). <i>Guiding "
+            "unstructured": "Plankytė, V., Macneil, R., & Chen, X. (2023). Guiding "
             "principles for implementing persistent identification and metadata "
             "features on research tools to boost interoperability of research data "
-            "and support sample management workflows</i>. Zenodo.",
+            "and support sample management workflows. "
+            "https://doi.org/10.5281/ZENODO.8284206",
         }
     ]
     assert subject.relations == [
-        {"id": "https://doi.org/10.54900/upstream", "type": "IsPartOf"}
+        {"id": "https://doi.org/10.54900/upstream", "type": "IsPartOf"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/upstream",
+            "type": "IsPartOf",
+        },
     ]
     assert subject.identifiers == [
         {
@@ -447,8 +466,12 @@ def test_post_with_funding():
         "type": "Blog",
         "title": "Upstream",
         "platform": "Ghost",
-        "identifier": "https://doi.org/10.54900/upstream",
-        "identifier_type": "DOI",
+        "identifiers": [
+            {
+                "identifier": "https://doi.org/10.54900/upstream",
+                "identifier_type": "DOI",
+            }
+        ],
     }
     assert subject.content.startswith(
         '<h2 id="introduction">Introduction</h2><p>A recent'
@@ -475,6 +498,10 @@ def test_post_with_more_funding():
     assert subject.references is None
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
     ]
     assert subject.identifiers == [
         {
@@ -493,8 +520,7 @@ def test_post_with_more_funding():
     assert subject.container == {
         "type": "Blog",
         "title": "Front Matter",
-        "identifier": "2749-9952",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2749-9952", "identifier_type": "ISSN"}],
         "platform": "Ghost",
     }
 
@@ -563,8 +589,12 @@ def test_post_with_funding_ror():
     assert subject.container == {
         "type": "Blog",
         "title": "Blog - Metadata Game Changers",
-        "identifier": "https://rogue-scholar.org/blogs/metadatagamechangers",
-        "identifier_type": "URL",
+        "identifiers": [
+            {
+                "identifier": "https://rogue-scholar.org/blogs/metadatagamechangers",
+                "identifier_type": "URL",
+            }
+        ],
         "platform": "Squarespace",
     }
     assert subject.content.startswith(
@@ -590,10 +620,11 @@ def test_post_with_even_more_funding():
     )
     assert subject.references is None
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/chem_bla_ics", "type": "IsPartOf"},
         {
-            "id": "https://doi.org/10.59350/chem_bla_ics",
+            "id": "https://rogue-scholar.org/api/communities/chem_bla_ics",
             "type": "IsPartOf",
-        }
+        },
     ]
     assert subject.identifiers == [
         {
@@ -613,8 +644,12 @@ def test_post_with_even_more_funding():
     assert subject.container == {
         "type": "Blog",
         "title": "chem-bla-ics",
-        "identifier": "https://doi.org/10.59350/chem_bla_ics",
-        "identifier_type": "DOI",
+        "identifiers": [
+            {
+                "identifier": "https://doi.org/10.59350/chem_bla_ics",
+                "identifier_type": "DOI",
+            }
+        ],
         "platform": "Jekyll",
     }
 
@@ -655,7 +690,11 @@ def test_ghost_with_institutional_author():
     }
     assert subject.references is None
     assert subject.relations == [
-        {"id": "https://doi.org/10.59350/oa_works", "type": "IsPartOf"}
+        {"id": "https://doi.org/10.59350/oa_works", "type": "IsPartOf"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/oa_works",
+            "type": "IsPartOf",
+        },
     ]
     assert subject.identifiers == [
         {"identifier": "63cef642602205003d6f50fb", "identifier_type": "GUID"},
@@ -689,8 +728,12 @@ def test_ghost_with_institutional_author():
     assert subject.container == {
         "type": "Blog",
         "title": "OA.Works Blog",
-        "identifier": "https://doi.org/10.59350/oa_works",
-        "identifier_type": "DOI",
+        "identifiers": [
+            {
+                "identifier": "https://doi.org/10.59350/oa_works",
+                "identifier_type": "DOI",
+            }
+        ],
         "platform": "Ghost",
     }
     assert subject.description.startswith("After a couple of years")
@@ -754,7 +797,7 @@ def test_ghost_with_affiliations():
 
     assert (
         subject.date_published == "2013-07-02T00:00:00Z"
-        and subject.date_updated == "2026-06-06T11:23:07Z"
+        and subject.date_updated == "2026-07-19T18:14:27Z"
     )
     assert subject.publisher == {
         "name": "Front Matter",
@@ -762,10 +805,14 @@ def test_ghost_with_affiliations():
     assert len(subject.references) == 1
     assert subject.references[0] == {
         "id": "https://doi.org/10.1371/journal.pone.0063184",
-        "unstructured": "Kafkas, Ş., Kim, J.-H., McEntyre, J. R., &amp; Larivière, V. (2013). Database Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184.",
+        "unstructured": "Kafkas, Ş., Kim, J.-H., McEntyre, J. R.&amp; Larivière, V. (2013). Database Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184.",
     }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
     ]
     assert subject.identifiers == [
         {
@@ -776,8 +823,7 @@ def test_ghost_with_affiliations():
     assert subject.container == {
         "type": "Blog",
         "title": "Front Matter",
-        "identifier": "2749-9952",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2749-9952", "identifier_type": "ISSN"}],
         "platform": "Ghost",
     }
     assert subject.description.startswith(
@@ -838,6 +884,7 @@ def test_ghost_with_personal_name_parsing():
     }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"},
+        {"id": "https://rogue-scholar.org/api/communities/ideas", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
         {
@@ -846,8 +893,7 @@ def test_ghost_with_personal_name_parsing():
         },
     ]
     assert subject.container == {
-        "identifier": "2993-1150",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2993-1150", "identifier_type": "ISSN"}],
         "platform": "Ghost",
         "title": "I.D.E.A.S.",
         "type": "Blog",
@@ -901,12 +947,10 @@ def test_post_with_peer_reviewed_version():
     assert subject.type == "BlogPost"
     assert subject.title == "Large Language Publishing"
     assert subject.relations == [
+        {"id": "https://doi.org/10.18357/kula.291", "type": "IsPreviousVersionOf"},
+        {"id": "https://doi.org/10.54900/upstream", "type": "IsPartOf"},
         {
-            "id": "https://doi.org/10.18357/kula.291",
-            "type": "IsPreviousVersionOf",
-        },
-        {
-            "id": "https://doi.org/10.54900/upstream",
+            "id": "https://rogue-scholar.org/api/communities/upstream",
             "type": "IsPartOf",
         },
     ]
@@ -929,8 +973,9 @@ def test_post_with_peer_review():
     assert subject.type == "BlogPost"
     assert subject.title == "Drinking from the Firehose? Write More and Publish Less"
     assert subject.relations == [
+        {"id": "https://doi.org/10.54900/upstream", "type": "IsPartOf"},
         {
-            "id": "https://doi.org/10.54900/upstream",
+            "id": "https://rogue-scholar.org/api/communities/upstream",
             "type": "IsPartOf",
         },
     ]
@@ -975,8 +1020,9 @@ def test_post_with_contributor_roles():
     }
     assert subject.references is None
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/ropensci", "type": "IsPartOf"},
         {
-            "id": "https://doi.org/10.59350/ropensci",
+            "id": "https://rogue-scholar.org/api/communities/ropensci",
             "type": "IsPartOf",
         },
     ]
@@ -989,8 +1035,12 @@ def test_post_with_contributor_roles():
     assert subject.container == {
         "type": "Blog",
         "title": "rOpenSci - open tools for open science",
-        "identifier": "https://doi.org/10.59350/ropensci",
-        "identifier_type": "DOI",
+        "identifiers": [
+            {
+                "identifier": "https://doi.org/10.59350/ropensci",
+                "identifier_type": "DOI",
+            }
+        ],
         "platform": "Other",
     }
     assert subject.content.startswith("<p>Our own dev guide")
@@ -1146,3 +1196,60 @@ def test_get_jsonfeed_blog():
         {"id": "https://openalex.org/subfields/1710", "subject": "Information Systems"},
     ]
     assert subject.language == "en"
+
+
+def test_blog_with_doi_keeps_community_relation():
+    """A blog with a DOI must still emit the community IsPartOf relation.
+
+    ``push_inveniordm`` assigns the blog community from the
+    ``.../api/communities/<slug>`` IsPartOf relation and then removes it. When
+    the blog-DOI IsPartOf was an ``elif`` of the community branch, records from
+    blogs with a DOI lost community membership (regression in 0.265).
+    """
+    from commonmeta.readers.jsonfeed_reader import read_jsonfeed
+
+    meta = {
+        "id": "https://orion-dbs.community/blog/posts/x",
+        "doi": "https://doi.org/10.59350/pdkx9-j2b63",
+        "url": "https://orion-dbs.community/blog/posts/x",
+        "title": "t",
+        "published_at": 1700000000,
+        "blog_slug": "orion",
+        "blog": {
+            "doi": "https://doi.org/10.59350/orion",
+            "slug": "orion",
+            "title": "ORION-DBs",
+            "prefix": "10.59350",
+        },
+    }
+    relations = read_jsonfeed(meta).get("relations")
+    # Bibliographic IsPartOf → the blog DOI.
+    assert {
+        "id": "https://doi.org/10.59350/orion",
+        "type": "IsPartOf",
+    } in relations
+    # Community IsPartOf → consumed by push_inveniordm for membership.
+    assert {
+        "id": "https://rogue-scholar.org/api/communities/orion",
+        "type": "IsPartOf",
+    } in relations
+
+
+def test_blog_without_doi_keeps_community_relation():
+    """A blog without an ISSN or DOI still emits the community IsPartOf."""
+    from commonmeta.readers.jsonfeed_reader import read_jsonfeed
+
+    meta = {
+        "id": "https://example.com/blog/posts/y",
+        "doi": "https://doi.org/10.59350/aaaaa-bbbbb",
+        "url": "https://example.com/blog/posts/y",
+        "title": "t",
+        "published_at": 1700000000,
+        "blog_slug": "example",
+        "blog": {"slug": "example", "title": "Example", "prefix": "10.59350"},
+    }
+    relations = read_jsonfeed(meta).get("relations")
+    assert {
+        "id": "https://rogue-scholar.org/api/communities/example",
+        "type": "IsPartOf",
+    } in relations

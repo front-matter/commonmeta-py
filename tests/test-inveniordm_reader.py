@@ -60,8 +60,12 @@ def test_software():
         {"subject": "research software"},
     ]
     assert subject.container == {
-        "identifier": "https://www.re3data.org/repository/r3d100010468",
-        "identifier_type": "URL",
+        "identifiers": [
+            {
+                "identifier": "https://www.re3data.org/repository/r3d100010468",
+                "identifier_type": "re3data",
+            }
+        ],
         "type": "Repository",
         "title": "Zenodo",
     }
@@ -122,8 +126,12 @@ def test_presentation():
     )
     assert subject.subjects is None
     assert subject.container == {
-        "identifier": "https://www.re3data.org/repository/r3d100010468",
-        "identifier_type": "URL",
+        "identifiers": [
+            {
+                "identifier": "https://www.re3data.org/repository/r3d100010468",
+                "identifier_type": "re3data",
+            }
+        ],
         "type": "Repository",
         "title": "Zenodo",
     }
@@ -191,8 +199,12 @@ def test_publication():
         {"subject": "zoonosis"},
     ]
     assert subject.container == {
-        "identifier": "https://www.re3data.org/repository/r3d100010468",
-        "identifier_type": "URL",
+        "identifiers": [
+            {
+                "identifier": "https://www.re3data.org/repository/r3d100010468",
+                "identifier_type": "re3data",
+            }
+        ],
         "type": "Repository",
         "title": "Zenodo",
     }
@@ -259,8 +271,12 @@ def test_publication_with_url():
         {"subject": "zoonosis"},
     ]
     assert subject.container == {
-        "identifier": "https://www.re3data.org/repository/r3d100010468",
-        "identifier_type": "URL",
+        "identifiers": [
+            {
+                "identifier": "https://www.re3data.org/repository/r3d100010468",
+                "identifier_type": "re3data",
+            }
+        ],
         "type": "Repository",
         "title": "Zenodo",
     }
@@ -322,8 +338,12 @@ def test_dataset():
         {"subject": "covid19"},
     ]
     assert subject.container == {
-        "identifier": "https://www.re3data.org/repository/r3d100010468",
-        "identifier_type": "URL",
+        "identifiers": [
+            {
+                "identifier": "https://www.re3data.org/repository/r3d100010468",
+                "identifier_type": "re3data",
+            }
+        ],
         "type": "DataRepository",
         "title": "Zenodo",
     }
@@ -382,8 +402,9 @@ def test_rogue_scholar():
     assert subject.container == {
         "type": "Blog",
         "title": "Aaron Tay's Musings about Librarianship",
-        "identifier": "https://doi.org/10.59350/musings",
-        "identifier_type": "DOI",
+        "identifiers": [
+            {"identifier": "https://doi.org/10.59350/musings", "identifier_type": "DOI"}
+        ],
     }
     assert subject.subjects == [
         {
@@ -438,8 +459,9 @@ def test_rogue_scholar_with_citations():
     assert subject.container == {
         "type": "Blog",
         "title": "Open Access News",
-        "identifier": "https://doi.org/10.63485/oan",
-        "identifier_type": "DOI",
+        "identifiers": [
+            {"identifier": "https://doi.org/10.63485/oan", "identifier_type": "DOI"}
+        ],
         "platform": "Blogger",
     }
     assert subject.subjects == [
@@ -484,7 +506,7 @@ def test_rogue_scholar_with_parent_doi():
         "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date_published == "2025-10-18T15:34:59"
+    assert subject.date_published == "2025-10-18T13:34:59Z"
     # assert subject.relations == [
     #     {"id": "https://doi.org/10.59350/t3d89-8jj38", "type": "IsVersionOf"}
     # ]
@@ -497,8 +519,8 @@ def test_rogue_scholar_with_parent_doi():
     assert subject.container == {
         "type": "Blog",
         "title": "Sauropod Vertebra Picture of the Week",
-        "identifier": "3033-3695",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "3033-3695", "identifier_type": "ISSN"}],
+        "platform": "WordPress.com",
     }
     assert subject.subjects == [
         {

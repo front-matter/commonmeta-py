@@ -80,8 +80,7 @@ def test_doi_with_data_citation():
         {"id": "https://doi.org/10.5061/dryad.b835k", "type": "IsSupplementedBy"},
     ]
     assert subject.container == {
-        "identifier": "2050-084X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2050-084X", "identifier_type": "ISSN"}],
         "title": "eLife",
         "type": "Journal",
         "volume": "3",
@@ -140,8 +139,7 @@ def test_journal_article():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "1932-6203",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1932-6203", "identifier_type": "ISSN"}],
         "title": "PLoS ONE",
         "type": "Journal",
         "issue": "1",
@@ -203,8 +201,7 @@ def test_journal_article_with_funding():
         }
     ]
     assert subject.container == {
-        "identifier": "1664-462X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1664-462X", "identifier_type": "ISSN"}],
         "title": "Frontiers in Plant Science",
         "type": "Journal",
         "volume": "10",
@@ -253,8 +250,7 @@ def test_journal_article_original_language():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "1881-4751",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1881-4751", "identifier_type": "ISSN"}],
         "title": "Japanese Journal of Physical Fitness and Sports Medicine",
         "type": "Journal",
         "issue": "1",
@@ -308,8 +304,7 @@ def test_journal_article_with_rdf_for_container():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "1937-240X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1937-240X", "identifier_type": "ISSN"}],
         "title": "Journal of Crustacean Biology",
         "type": "Journal",
         "issue": "6",
@@ -352,8 +347,7 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Book",
-        "identifier": "1611-3349",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1611-3349", "identifier_type": "ISSN"}],
         "title": "Lecture Notes in Computer Science",
         "first_page": "499",
         "last_page": "508",
@@ -539,8 +533,7 @@ def test_doi_with_sici():
     assert subject.funding_references is None
     assert subject.container == {
         "first_page": "2832",
-        "identifier": "0012-9658",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0012-9658", "identifier_type": "ISSN"}],
         "issue": "11",
         "last_page": "2841",
         "title": "Ecology",
@@ -609,8 +602,7 @@ def test_doi_with_orcid():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "2090-1844",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2090-1844", "identifier_type": "ISSN"}],
         "title": "Pulmonary Medicine",
         "type": "Journal",
         "volume": "2012",
@@ -696,8 +688,7 @@ def test_date_in_future():
         },
     ]
     assert subject.container == {
-        "identifier": "0014-2999",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0014-2999", "identifier_type": "ISSN"}],
         "title": "European Journal of Pharmacology",
         "type": "Journal",
         "volume": "759",
@@ -753,8 +744,7 @@ def test_vor_with_url():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "1365-2540",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "1365-2540", "identifier_type": "ISSN"}],
         "title": "Heredity",
         "type": "Journal",
         "volume": "111",
@@ -951,8 +941,7 @@ def test_another_book_chapter():
     assert subject.container == {
         "type": "Book",
         "title": "SpringerBriefs in Medical Earth Sciences",
-        "identifier": "2523-3629",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2523-3629", "identifier_type": "ISSN"}],
         "first_page": "1",
         "last_page": "13",
     }
@@ -1063,8 +1052,7 @@ def test_missing_contributor():
         "first_page": "15",
         "issue": "2",
         "volume": "6",
-        "identifier": "2304-6775",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2304-6775", "identifier_type": "ISSN"}],
     }
     assert subject.subjects is None
     assert subject.language == "en"
@@ -1171,8 +1159,7 @@ def test_proceedings_article():
     ]
     assert subject.container == {
         "type": "Proceedings",
-        "identifier": "9781450383431",
-        "identifier_type": "ISBN",
+        "identifiers": [{"identifier": "9781450383431", "identifier_type": "ISBN"}],
         "title": "Proceedings of the 2021 International Conference on Management of Data",
         "first_page": "1386",
         "last_page": "1399",

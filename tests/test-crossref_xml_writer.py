@@ -407,8 +407,9 @@ def test_jsonfeed_upstream_blog():
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
     assert subject.type == "BlogPost"
     assert subject.relations == [
+        {"id": "https://doi.org/10.54900/upstream", "type": "IsPartOf"},
         {
-            "id": "https://doi.org/10.54900/upstream",
+            "id": "https://rogue-scholar.org/api/communities/upstream",
             "type": "IsPartOf",
         },
     ]
@@ -464,8 +465,9 @@ def test_jsonfeed_upstream_blog_archived():
     assert subject.type == "BlogPost"
     assert subject.url == "https://rogue-scholar.org/records/thmsh-a1z89"
     assert subject.relations == [
+        {"id": "https://doi.org/10.54900/upstream", "type": "IsPartOf"},
         {
-            "id": "https://doi.org/10.54900/upstream",
+            "id": "https://rogue-scholar.org/api/communities/upstream",
             "type": "IsPartOf",
         },
     ]
@@ -533,8 +535,9 @@ def test_jsonfeed_with_references():
         "researchers. Accessed April 13, 2023.",
     }
     assert subject.relations == [
+        {"id": "https://doi.org/10.54900/upstream", "type": "IsPartOf"},
         {
-            "id": "https://doi.org/10.54900/upstream",
+            "id": "https://rogue-scholar.org/api/communities/upstream",
             "type": "IsPartOf",
         },
     ]
@@ -604,10 +607,8 @@ def test_jsonfeed_with_doi():
         {"subject": "Open Science"},
     ]
     assert subject.relations == [
-        {
-            "id": "https://doi.org/10.59350/wisspub",
-            "type": "IsPartOf",
-        },
+        {"id": "https://doi.org/10.59350/wisspub", "type": "IsPartOf"},
+        {"id": "https://rogue-scholar.org/api/communities/wisspub", "type": "IsPartOf"},
     ]
     assert subject.state == "stale"
     assert subject.version == "v1"
@@ -699,8 +700,9 @@ def test_jsonfeed_without_doi():
         },
     ]
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/leidenmadtrics", "type": "IsPartOf"},
         {
-            "id": "https://doi.org/10.59350/leidenmadtrics",
+            "id": "https://rogue-scholar.org/api/communities/leidenmadtrics",
             "type": "IsPartOf",
         },
     ]
@@ -778,16 +780,14 @@ def test_ghost_with_affiliations():
         "roles": ["Author"],
     }
     assert subject.relations == [
-        {
-            "id": "https://doi.org/10.5438/ferw-cwhq",
-            "type": "IsIdenticalTo",
-        },
+        {"id": "https://doi.org/10.5438/ferw-cwhq", "type": "IsIdenticalTo"},
         {
             "id": "https://info.orcid.org/auto-update-has-arrived-orcid-records-move-to-the-next-level/",
             "type": "IsIdenticalTo",
         },
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
         {
-            "id": "https://portal.issn.org/resource/ISSN/2749-9952",
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
             "type": "IsPartOf",
         },
     ]
@@ -854,10 +854,8 @@ def test_jsonfeed_with_organizational_author():
         }
     ]
     assert subject.relations == [
-        {
-            "id": "https://doi.org/10.59350/libscie",
-            "type": "IsPartOf",
-        },
+        {"id": "https://doi.org/10.59350/libscie", "type": "IsPartOf"},
+        {"id": "https://rogue-scholar.org/api/communities/libscie", "type": "IsPartOf"},
     ]
     assert subject.version == "v1"
 
@@ -906,10 +904,8 @@ def test_jsonfeed_with_archived_content():
         == "https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
     )
     assert subject.relations == [
-        {
-            "id": "https://doi.org/10.59350/thor",
-            "type": "IsPartOf",
-        },
+        {"id": "https://doi.org/10.59350/thor", "type": "IsPartOf"},
+        {"id": "https://rogue-scholar.org/api/communities/thor", "type": "IsPartOf"},
     ]
     assert subject.version == "v1"
 
@@ -953,6 +949,10 @@ def test_jsonfeed_with_relations():
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bc11-cqw1", "type": "IsIdenticalTo"},
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
     ]
     assert len(subject.references) == 1
     # assert subject.references[0] == {
@@ -987,10 +987,10 @@ def test_jsonfeed_with_relations():
         },
         {
             "inter_work_relation": {
-                "#text": "2749-9952",
-                "identifier-type": "issn",
                 "relationship-type": "isPartOf",
-            },
+                "identifier-type": "issn",
+                "#text": "2749-9952",
+            }
         },
     ]
     assert crossref_xml.get("group_title") == "Front Matter"
@@ -1008,11 +1008,15 @@ def test_jsonfeed_with_relations_and_funding():
     assert subject.references[0] == {
         "id": "https://doi.org/10.14454/3bpw-w381",
         "unstructured": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance "
-        "Indicators (KPIs)</i> (1.1.0). DataCite.",
+        "Indicators (KPIs)</i> (Version 1.1.0). DataCite.",
     }
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bv9z-dc66", "type": "IsIdenticalTo"},
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
     ]
     assert subject.funding_references == [
         {
@@ -1033,7 +1037,7 @@ def test_jsonfeed_with_relations_and_funding():
         "key": "ref1",
         "doi": "10.14454/3bpw-w381",
         "unstructured_citation": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance "
-        "Indicators (KPIs)</i> (1.1.0). DataCite.",
+        "Indicators (KPIs)</i> (Version 1.1.0). DataCite.",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "The connections between scholarly resources generated by persistent identifiers (PIDs) and associated metadata form a graph"
@@ -1052,10 +1056,10 @@ def test_jsonfeed_with_relations_and_funding():
         },
         {
             "inter_work_relation": {
-                "#text": "2749-9952",
-                "identifier-type": "issn",
                 "relationship-type": "isPartOf",
-            },
+                "identifier-type": "issn",
+                "#text": "2749-9952",
+            }
         },
     ]
     assert crossref_xml.get("group_title") == "Front Matter"
@@ -1073,7 +1077,7 @@ def test_inveniordm_with_relations_and_funding():
     assert subject.references[0] == {
         "id": "https://doi.org/10.14454/3bpw-w381",
         "unstructured": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance "
-        "Indicators (KPIs)</i> (1.1.0). DataCite.",
+        "Indicators (KPIs)</i> (Version 1.1.0). DataCite.",
     }
     assert subject.funding_references == [
         {
@@ -1094,7 +1098,7 @@ def test_inveniordm_with_relations_and_funding():
         "key": "ref1",
         "doi": "10.14454/3bpw-w381",
         "unstructured_citation": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance "
-        "Indicators (KPIs)</i> (1.1.0). DataCite.",
+        "Indicators (KPIs)</i> (Version 1.1.0). DataCite.",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "The connections between scholarly resources generated by persistent identifiers (PIDs) and associated metadata form a graph"
@@ -1145,19 +1149,22 @@ def test_jsonfeed_via_inveniordm():
     assert len(subject.references) == 2
     assert subject.references[0] == {
         "id": "https://doi.org/10.1016/j.ccr.2007.01.016",
-        "unstructured": "Haldar, M., Hancock, J. D., Coffin, C. M., Lessnick, S. L.&amp; Capecchi, "
+        "unstructured": "Haldar, M., Hancock, J. D., Coffin, C. M., Lessnick, S. L., & Capecchi, "
         "M. R. (2007). A Conditional Mouse Model of Synovial Sarcoma: Insights "
-        "into a Myogenic Origin. <i>Cancer Cell</i>, <i>11</i>(4), 375–388.",
+        "into a Myogenic Origin. Cancer Cell, 11(4), 375–388.",
     }
     assert subject.container == {
-        "identifier": "2749-9952",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2749-9952", "identifier_type": "ISSN"}],
         "platform": "Ghost",
         "title": "Front Matter",
         "type": "Blog",
     }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
     ]
     assert subject.version == "v1"
 
@@ -1204,9 +1211,9 @@ def test_jsonfeed_via_inveniordm():
     assert dig(crossref_xml, "citation_list.citation.0") == {
         "doi": "10.1016/j.ccr.2007.01.016",
         "key": "ref1",
-        "unstructured_citation": "Haldar, M., Hancock, J. D., Coffin, C. M., Lessnick, S. L.&amp; Capecchi, "
+        "unstructured_citation": "Haldar, M., Hancock, J. D., Coffin, C. M., Lessnick, S. L., & Capecchi, "
         "M. R. (2007). A Conditional Mouse Model of Synovial Sarcoma: Insights "
-        "into a Myogenic Origin. <i>Cancer Cell</i>, <i>11</i>(4), 375–388.",
+        "into a Myogenic Origin. Cancer Cell, 11(4), 375–388.",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "One of the opening lectures this Saturday of the International Congress of Genetics"
@@ -1303,10 +1310,15 @@ def test_inveniordm_record_with_references():
     assert subject.type == "BlogPost"
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.container == {
-        "identifier": "https://doi.org/10.64000/crossref",
-        "identifier_type": "DOI",
+        "identifiers": [
+            {
+                "identifier": "https://doi.org/10.64000/crossref",
+                "identifier_type": "DOI",
+            }
+        ],
         "title": "Crossref Blog",
         "type": "Blog",
+        "platform": "Hugo",
     }
     assert len(subject.references) == 2
     assert subject.references[0] == {
@@ -1316,7 +1328,7 @@ def test_inveniordm_record_with_references():
     }
     assert subject.references[1] == {
         "id": "https://doi.org/10.64000/4s2ee-wkr84",
-        "unstructured": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025, April 8). The programs approach: our experiences during the first quarter of 2025. <i>Crossref Blog</i>.",
+        "unstructured": "Bowman, S., Cousijn, H., Rittman, M.&amp; Stoll, L. (2025, April 8). The programs approach: our experiences during the first quarter of 2025. <i>Crossref Blog</i>.",
     }
     assert subject.state == "findable"
 
@@ -1332,7 +1344,7 @@ def test_inveniordm_record_with_references():
     assert dig(crossref_xml, "citation_list.citation.1") == {
         "doi": "10.64000/4s2ee-wkr84",
         "key": "ref2",
-        "unstructured_citation": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025, April 8). The programs approach: our experiences during the first quarter of 2025. <i>Crossref Blog</i>.",
+        "unstructured_citation": "Bowman, S., Cousijn, H., Rittman, M.&amp; Stoll, L. (2025, April 8). The programs approach: our experiences during the first quarter of 2025. <i>Crossref Blog</i>.",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "TLDR: We've successfully moved the main Crossref systems to the cloud!"
@@ -1847,8 +1859,9 @@ def test_post_with_contributor_roles():
     assert subject.type == "BlogPost"
     assert len(subject.contributors) == 2
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/ropensci", "type": "IsPartOf"},
         {
-            "id": "https://doi.org/10.59350/ropensci",
+            "id": "https://rogue-scholar.org/api/communities/ropensci",
             "type": "IsPartOf",
         },
     ]
@@ -1894,8 +1907,9 @@ def test_post_with_translator_role():
         "roles": ["Author"],
     }
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/ropensci", "type": "IsPartOf"},
         {
-            "id": "https://doi.org/10.59350/ropensci",
+            "id": "https://rogue-scholar.org/api/communities/ropensci",
             "type": "IsPartOf",
         },
     ]
@@ -1932,8 +1946,9 @@ def test_post_with_interviewee_roles():
     assert subject.id == "https://doi.org/10.59350/s8m95-ap410"
     assert subject.type == "BlogPost"
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/ropensci", "type": "IsPartOf"},
         {
-            "id": "https://doi.org/10.59350/ropensci",
+            "id": "https://rogue-scholar.org/api/communities/ropensci",
             "type": "IsPartOf",
         },
     ]
@@ -1969,10 +1984,8 @@ def test_wrong_doi_reference():
     assert subject.id == "https://doi.org/10.59350/sjrdz-3cm71"
     assert subject.type == "BlogPost"
     assert subject.relations == [
-        {
-            "id": "https://doi.org/10.59350/rzepa",
-            "type": "IsPartOf",
-        },
+        {"id": "https://doi.org/10.59350/rzepa", "type": "IsPartOf"},
+        {"id": "https://rogue-scholar.org/api/communities/rzepa", "type": "IsPartOf"},
     ]
     assert subject.references == [
         {

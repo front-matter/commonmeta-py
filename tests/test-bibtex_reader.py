@@ -40,8 +40,7 @@ def test_journal_article():
     assert subject.container == {
         "type": "Journal",
         "title": "eLife",
-        "identifier": "2050-084X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "2050-084X", "identifier_type": "ISSN"}],
         "volume": "3",
     }
     assert subject.identifiers == [
@@ -72,8 +71,7 @@ def test_dissertation():
     assert subject.publisher == {"name": "Technische Universiteit Eindhoven"}
     assert subject.container == {
         "type": "Periodical",
-        "identifier": "978-90-386-4503-2",
-        "identifier_type": "ISBN",
+        "identifiers": [{"identifier": "978-90-386-4503-2", "identifier_type": "ISBN"}],
     }
     assert subject.language == "en"
     assert subject.identifiers is None
@@ -106,8 +104,7 @@ def test_inline_journal_article():
     assert subject.container == {
         "type": "Journal",
         "title": "Biochemical and Biophysical Research Communications",
-        "identifier": "0006-291X",
-        "identifier_type": "ISSN",
+        "identifiers": [{"identifier": "0006-291X", "identifier_type": "ISSN"}],
         "volume": "347",
         "issue": "3",
         "first_page": "747",
@@ -132,8 +129,7 @@ def test_book_chapter():
     assert subject.container == {
         "type": "Book",
         "title": "Handbook of Artificial Intelligence",
-        "identifier": "978-0-12-345678-9",
-        "identifier_type": "ISBN",
+        "identifiers": [{"identifier": "978-0-12-345678-9", "identifier_type": "ISBN"}],
         "first_page": "101",
         "last_page": "130",
     }

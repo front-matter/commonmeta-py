@@ -24,8 +24,8 @@ def test_commonmeta_schema_validation_fixture_matrix(name, should_validate):
     result = json_schema_errors(doc, "commonmeta")
 
     if should_validate:
-        assert result is None, (
-            f"schema validation unexpectedly failed for {name}: {result}"
-        )
+        assert (
+            result is None
+        ), f"schema validation unexpectedly failed for {name}: {result}"
     else:
         assert result is not None, f"schema validation unexpectedly passed for {name}"

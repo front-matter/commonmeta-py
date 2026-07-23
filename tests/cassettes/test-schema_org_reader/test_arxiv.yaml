@@ -518,19 +518,19 @@ interactions:
       Accept-Ranges:
       - bytes
       Age:
-      - '102269'
+      - '1042982'
       Connection:
       - keep-alive
       Content-Length:
       - '41448'
       Date:
-      - Sun, 12 Jul 2026 08:52:39 GMT
+      - Thu, 23 Jul 2026 06:11:13 GMT
       X-Cache:
       - MISS, HIT, MISS
       X-Served-By:
-      - cache-lga21989-LGA, cache-lga21989-LGA, cache-lga21944-LGA, cache-dus1260022-DUS
+      - cache-lga21989-LGA, cache-lga21989-LGA, cache-lga21944-LGA, cache-dus1260034-DUS
       X-Timer:
-      - S1783846360.688605,VS0,VE83
+      - S1784787073.011342,VS0,VE82
       cache-control:
       - max-age=3600
       content-security-policy:
@@ -568,32 +568,34 @@ interactions:
       string: "[\n  {\n    \"DOI\": \"10.48550\",\n    \"RA\": \"DataCite\"\n  }\n]"
     headers:
       CF-RAY:
-      - a19ed0254a30d107-CDG
-      Cf-Cache-Status:
-      - DYNAMIC
+      - a1f886c7a8f0d156-CDG
       Connection:
       - keep-alive
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sun, 12 Jul 2026 08:52:39 GMT
+      - Thu, 23 Jul 2026 06:11:13 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
-      Permissions-Policy:
-      - interest-cohort=(),browsing-topics=()
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=EwJGmLclW%2BmMeL9252h4GeejVqK%2FgG3qtBNzOooCfWzkubaIxhNcsXSmZRmlaDh359LW1Zng1liy6VFR854vMN9QyLefl80xGTCg3ynqTOAv%2FDO8iJXb9dzdnUh6tFXn%2BedWg6o%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=ARfqEbVOB6MAN%2Fl8et%2FnDc%2B%2FsloPRdx7rxiVfzCCyGOlDpXdpYEh7akjjRAFdA0quUcXo0ANJJoZZt6hBbPGB1diqgHVf%2BpuHpsScXW7GMQkuVMqyTH%2FF7UpfL8%2FqLjZpKqqfdY%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      Vary:
-      - Origin
-      - accept-encoding
       alt-svc:
       - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      content-length:
+      - '55'
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
+      - accept-encoding
     status:
       code: 200
       message: OK
@@ -647,7 +649,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sun, 12 Jul 2026 08:52:40 GMT
+      - Thu, 23 Jul 2026 06:11:13 GMT
       Server:
       - nginx/1.24.0 + Phusion Passenger(R) 6.1.2
       Status:
@@ -655,11 +657,13 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-LupoVersion:
-      - 5.72.0
+      - 5.74.0
       X-Powered-By:
       - Phusion Passenger(R) 6.1.2
       cache-control:
       - no-cache
+      content-length:
+      - '8553'
       referrer-policy:
       - strict-origin-when-cross-origin
       vary:
@@ -673,9 +677,9 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-request-id:
-      - 75f3afc6-1ff8-4959-9fbd-d628489e23c7
+      - 56c2dd1a-14b9-43fa-aaff-a4c289e4913c
       x-runtime:
-      - '0.027449'
+      - '0.023314'
       x-xss-protection:
       - '0'
     status:
