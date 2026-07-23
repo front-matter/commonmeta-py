@@ -1268,9 +1268,11 @@ def to_schema_org_creators(elements: list) -> list:
             out.append(
                 compact(
                     {
-                        "@id": a.get("identifier", None)
-                        if a.get("identifier_type", None) == "ROR"
-                        else None,
+                        "@id": (
+                            a.get("identifier", None)
+                            if a.get("identifier_type", None) == "ROR"
+                            else None
+                        ),
                         "@type": "Organization",
                         "name": a.get("name", None),
                     }
@@ -1803,6 +1805,13 @@ def find_entity_type(meta: dict) -> str:
         return "work"
 
     _id = meta.get("id", None)
+    # A container has no `id` and is keyed by `identifiers` (rc16+); it is the
+    # only id-less entity. Checked first so a container's `type` (e.g. "Journal")
+    # is not read as a work type.
+    if not (isinstance(_id, str) and _id) and isinstance(
+        meta.get("identifiers", None), list
+    ):
+        return "container"
     if validate_orcid(_id):
         return "person"
     if validate_ror(_id):

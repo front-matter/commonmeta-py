@@ -11,6 +11,7 @@ from ..api_utils import COMMONMETA_USER_AGENT
 from ..author_utils import get_authors
 from ..base_utils import (
     compact,
+    container_identifiers,
     dig,
     first,
     flatten,
@@ -426,8 +427,9 @@ def get_container(meta: dict, issn: str | None) -> dict:
     return compact(
         {
             "type": container_type,
-            "identifier": issn or isbn,
-            "identifier_type": "ISSN" if issn else "ISBN" if isbn else None,
+            "identifiers": container_identifiers(
+                issn or isbn, "ISSN" if issn else "ISBN" if isbn else None
+            ),
             "title": container_title,
             "volume": volume,
             "issue": issue,

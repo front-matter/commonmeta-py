@@ -7,7 +7,7 @@ from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import convert_to_unicode
 
 from ..author_utils import get_authors
-from ..base_utils import compact, presence
+from ..base_utils import compact, container_identifiers, presence
 from ..constants import BIB_TO_CM_TRANSLATIONS, Commonmeta
 from ..doi_utils import normalize_doi
 from ..utils import dict_to_spdx, get_language, normalize_url
@@ -209,8 +209,7 @@ def _entry_to_commonmeta(entry: dict, **kwargs) -> Commonmeta:
             {
                 "type": _CONTAINER_TYPE.get(entry_type, "Periodical"),
                 "title": container_title,
-                "identifier": identifier,
-                "identifier_type": identifier_type,
+                "identifiers": container_identifiers(identifier, identifier_type),
                 "volume": volume,
                 "issue": issue,
                 "first_page": first_page,

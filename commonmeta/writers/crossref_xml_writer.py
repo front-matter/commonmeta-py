@@ -18,7 +18,15 @@ from marshmallow import Schema, fields
 from requests.exceptions import RequestException
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
-from ..base_utils import compact, dig, get_crossref_xml_head, parse_xml, presence, wrap
+from ..base_utils import (
+    compact,
+    container_identifier,
+    dig,
+    get_crossref_xml_head,
+    parse_xml,
+    presence,
+    wrap,
+)
 from ..constants import CM_TO_CR_CONTRIBUTOR_ROLES, CM_TO_CR_CREDIT_ROLES
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
 from ..utils import validate_url
@@ -851,7 +859,8 @@ def get_proceedings_metadata(obj) -> dict | None:
         "publication_date": get_publication_date(obj, media_type="online"),
     }
     # Crossref requires either <isbn> or <noisbn> in proceedings_metadata.
-    if dig(obj, "container.identifier_type") == "ISBN":
+    _, cid_type = container_identifier(dig(obj, "container"))
+    if cid_type == "ISBN":
         proceedings_metadata["isbn"] = get_isbn(obj)
     else:
         proceedings_metadata["noisbn"] = {"@reason": "simple_series"}
@@ -1269,6 +1278,12 @@ def get_relations(obj) -> Dict | None:
         if relation_id is None:
             return None
 
+        # InvenioRDM community relations (…/api/communities/…) are only used by
+        # the InvenioRDM writer to add records to communities; they are not
+        # emitted as related works in Crossref XML.
+        if "/api/communities/" in relation_id:
+            return None
+
         f = furl(relation_id)
         if validate_doi(relation_id):
             identifier_type = "doi"
@@ -1357,12 +1372,10 @@ def get_doi_data(obj) -> dict | None:
 
 def get_isbn(obj, media_type: str | None = None) -> list[dict] | None:
     """get isbn. Returns array of objects with #text and @media_type."""
-    if (
-        dig(obj, "container.identifier_type") != "ISBN"
-        or dig(obj, "container.identifier") is None
-    ):
+    cid, cid_type = container_identifier(dig(obj, "container"))
+    if cid_type != "ISBN" or cid is None:
         return None
-    isbn = dig(obj, "container.identifier")
+    isbn = cid
     normalized_isbn = normalize_isbn_crossref(isbn)
     if normalized_isbn is None:
         return None
@@ -1408,8 +1421,9 @@ def normalize_isbn_crossref(isbn: str) -> str | None:
 
 def get_issn(obj):
     """get issn"""
-    if dig(obj, "container.identifier_type") == "ISSN":
-        return dig(obj, "container.identifier")
+    cid, cid_type = container_identifier(dig(obj, "container"))
+    if cid_type == "ISSN":
+        return cid
 
     for identifier in wrap(dig(obj, "identifiers")):
         if identifier.get("identifier_type") == "ISSN":

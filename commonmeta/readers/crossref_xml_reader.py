@@ -7,6 +7,8 @@ import requests
 from ..author_utils import get_authors
 from ..base_utils import (
     compact,
+    container_identifier,
+    container_identifiers,
     dig,
     first,
     parse_attributes,
@@ -615,12 +617,9 @@ def resolve_relation_id(text: str, id_type: str | None) -> str | None:
 def crossref_relations(container: dict | None, programs: list) -> list:
     """Get relations: an ISSN IsPartOf plus any rel:program related items."""
     out: list = []
-    if (
-        container
-        and container.get("identifier_type", None) == "ISSN"
-        and container.get("identifier", None)
-    ):
-        url = issn_as_url(container["identifier"])
+    cid, cid_type = container_identifier(container)
+    if cid and cid_type == "ISSN":
+        url = issn_as_url(cid)
         if url:
             out.append({"id": url, "type": "IsPartOf"})
     # the relations program (rel:program) carries the related_item elements
@@ -693,8 +692,9 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
     return compact(
         {
             "type": CR_TO_CM_CONTAINER_TRANSLATIONS.get(container_type, None),
-            "identifier": issn or isbn,
-            "identifier_type": "ISSN" if issn else "ISBN" if isbn else None,
+            "identifiers": container_identifiers(
+                issn or isbn, "ISSN" if issn else "ISBN" if isbn else None
+            ),
             "title": container_title,
             "volume": volume,
             "issue": issue,
@@ -728,7 +728,10 @@ def crossref_funding(programs: list) -> list:
         return []
     references: list = []
     for fundgroup in wrap(program.get("assertion", None)):
-        if not isinstance(fundgroup, dict) or fundgroup.get("name", None) != "fundgroup":
+        if (
+            not isinstance(fundgroup, dict)
+            or fundgroup.get("name", None) != "fundgroup"
+        ):
             continue
         assertions = wrap(fundgroup.get("assertion", None))
         award_numbers = [
@@ -739,7 +742,10 @@ def crossref_funding(programs: list) -> list:
         funder_name = None
         funder_id = None
         for assertion in assertions:
-            if not isinstance(assertion, dict) or assertion.get("name") != "funder_name":
+            if (
+                not isinstance(assertion, dict)
+                or assertion.get("name") != "funder_name"
+            ):
                 continue
             funder_name = (assertion.get("#text", None) or "").strip()
             for child in wrap(assertion.get("assertion", None)):
@@ -771,11 +777,7 @@ def crossref_license(programs: list) -> dict | None:
     deposit it without the ``AccessIndicators`` name attribute.
     """
     program = next(
-        (
-            p
-            for p in programs
-            if isinstance(p, dict) and p.get("license_ref", None)
-        ),
+        (p for p in programs if isinstance(p, dict) and p.get("license_ref", None)),
         None,
     )
     if not program:

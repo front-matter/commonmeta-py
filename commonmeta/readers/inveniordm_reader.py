@@ -9,7 +9,16 @@ from requests.exceptions import RequestException
 
 from ..api_utils import http
 from ..author_utils import get_authors
-from ..base_utils import compact, dig, omit, presence, sanitize, scrub, wrap
+from ..base_utils import (
+    compact,
+    container_identifiers,
+    dig,
+    omit,
+    presence,
+    sanitize,
+    scrub,
+    wrap,
+)
 from ..constants import (
     COMMONMETA_RELATION_TYPES,
     INVENIORDM_TO_CM_TRANSLATIONS,
@@ -162,8 +171,9 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     if furl(url).host == "zenodo.org":
         container = compact(
             {
-                "identifier": "https://www.re3data.org/repository/r3d100010468",
-                "identifier_type": "URL",
+                "identifiers": container_identifiers(
+                    "https://www.re3data.org/repository/r3d100010468", "re3data"
+                ),
                 "type": "DataRepository" if _type == "Dataset" else "Repository",
                 "title": "Zenodo",
             }
@@ -181,8 +191,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             {
                 "type": "Blog",
                 "title": dig(meta, "custom_fields.journal:journal.title"),
-                "identifier": identifier,
-                "identifier_type": identifier_type,
+                "identifiers": container_identifiers(identifier, identifier_type),
                 "platform": get_generator_platform(
                     dig(meta, "custom_fields.rs:generator", None)
                 ),
@@ -198,8 +207,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                 {
                     "type": "Periodical",
                     "title": container.get("title", None),
-                    "identifier": issn if issn else None,
-                    "identifier_type": "ISSN" if issn else None,
+                    "identifiers": container_identifiers(issn, "ISSN"),
                     "platform": get_generator_platform(
                         dig(meta, "custom_fields.rs:generator", None)
                     ),

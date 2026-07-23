@@ -13,6 +13,7 @@ from commonmeta.readers.inveniordm_reader import search_by_doi, search_by_guid
 from ..api_utils import http
 from ..base_utils import (
     compact,
+    container_identifier,
     dig,
     first,
     presence,
@@ -126,11 +127,8 @@ def write_inveniordm(metadata: Metadata) -> dict:
         and container.get("type") in ["Journal", "Periodical", "Blog"]
         else None
     )
-    issn = (
-        container.get("identifier", None)
-        if container.get("identifier_type", None) == "ISSN"
-        else None
-    )
+    cid, cid_type = container_identifier(container)
+    issn = cid if cid_type == "ISSN" else None
     volume = container.get("volume", None)
     issue = container.get("issue", None)
     pages = pages_as_string(container)

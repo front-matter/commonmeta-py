@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ..base_utils import compact, parse_attributes, wrap
+from ..base_utils import compact, container_identifier, parse_attributes, wrap
 from ..constants import CM_TO_SO_TRANSLATIONS
 from ..utils import get_language, github_as_repo_url, to_schema_org_creators
 
@@ -23,10 +23,12 @@ def write_schema_org(metadata: Metadata) -> dict:
                     "contentUrl": file.get("url"),
                     "encodingFormat": file.get("mime_type", None),
                     "name": file.get("key", None),
-                    "sha256": file["checksum"]
-                    if file.get("checksum", None)
-                    and file["checksum"].startswith("sha256")
-                    else None,
+                    "sha256": (
+                        file["checksum"]
+                        if file.get("checksum", None)
+                        and file["checksum"].startswith("sha256")
+                        else None
+                    ),
                     "size": file.get("size", None),
                 }
             )
@@ -40,10 +42,12 @@ def write_schema_org(metadata: Metadata) -> dict:
                     "contentUrl": file.get("url"),
                     "encodingFormat": file.get("mime_type", None),
                     "name": file.get("key", None),
-                    "sha256": file["checksum"]
-                    if file.get("checksum", None)
-                    and file["checksum"].startswith("sha256")
-                    else None,
+                    "sha256": (
+                        file["checksum"]
+                        if file.get("checksum", None)
+                        and file["checksum"].startswith("sha256")
+                        else None
+                    ),
                     "size": file.get("size", None),
                 }
             )
@@ -51,12 +55,11 @@ def write_schema_org(metadata: Metadata) -> dict:
         ]
     else:
         media_objects = None
+    cid, cid_type = container_identifier(container)
     if metadata.type == "Dataset" and container is not None:
         data_catalog = compact(
             {
-                "@id": container.get("identifier", None)
-                if container.get("identifier_type", None) in ("DOI", "URL")
-                else None,
+                "@id": cid if cid_type in ("DOI", "URL") else None,
                 "@type": "DataCatalog",
                 "name": container.get("title", None),
             }
@@ -66,14 +69,10 @@ def write_schema_org(metadata: Metadata) -> dict:
         is_journal = container.get("type", None) == "Journal"
         periodical = compact(
             {
-                "@id": container.get("identifier", None)
-                if container.get("identifier_type", None) == "DOI"
-                else None,
+                "@id": cid if cid_type == "DOI" else None,
                 "@type": "Periodical" if is_journal else None,
                 "additionalType": None if is_journal else container.get("type", None),
-                "issn": container.get("identifier", None)
-                if container.get("identifier_type", None) == "ISSN"
-                else None,
+                "issn": cid if cid_type == "ISSN" else None,
                 "name": container.get("title", None),
             }
         )
@@ -133,12 +132,14 @@ def write_schema_org(metadata: Metadata) -> dict:
             "distribution": media_objects if metadata.type == "Dataset" else None,
             "encoding": media_objects if metadata.type != "Dataset" else None,
             "codeRepository": code_repository,
-            "publisher": {
-                "@type": "Organization",
-                "name": metadata.publisher.get("name", None),
-            }
-            if metadata.publisher
-            else None,
+            "publisher": (
+                {
+                    "@type": "Organization",
+                    "name": metadata.publisher.get("name", None),
+                }
+                if metadata.publisher
+                else None
+            ),
             "provider": {"@type": "Organization", "name": metadata.provider or ""},
         }
     )

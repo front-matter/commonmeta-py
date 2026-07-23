@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from ..author_utils import get_authors
-from ..base_utils import compact, presence, sanitize, wrap
+from ..base_utils import compact, container_identifiers, presence, sanitize, wrap
 from ..constants import (
     CSL_TO_CM_TRANSLATIONS,
     Commonmeta,
@@ -29,6 +29,7 @@ _CSL_CONTAINER_TYPES = {
     "Proceedings": "Proceedings",
     "BookChapter": "Book",
     "Book": "Book",
+    "BlogPost": "Blog",
     "Dataset": "DataRepository",
 }
 
@@ -61,7 +62,7 @@ def read_csl(data: dict | None, **kwargs) -> Commonmeta:
     license_url = meta.get("license", None) or meta.get("copyright", None)
     license_ = dict_to_spdx({"url": license_url}) if license_url else None
 
-    pages = meta.get("page", "").split("-")
+    pages = (meta.get("page") or "").split("-")
     publisher = meta.get("publisher", None)
     if isinstance(publisher, str):
         publisher = {"name": publisher}
@@ -78,11 +79,10 @@ def read_csl(data: dict | None, **kwargs) -> Commonmeta:
         {
             "type": _CSL_CONTAINER_TYPES.get(_type, None),
             "title": meta.get("container-title", None),
-            "identifier": issn,
-            "identifier_type": "ISSN" if meta.get("ISSN", None) else None,
+            "identifiers": container_identifiers(issn, "ISSN"),
             "volume": meta.get("volume", None),
             "issue": meta.get("issue", None),
-            "first_page": pages[0],
+            "first_page": pages[0] or None,
             "last_page": pages[1] if len(pages) > 1 else None,
         }
     )

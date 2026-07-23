@@ -9,6 +9,7 @@ import requests
 from ..author_utils import get_authors
 from ..base_utils import (
     compact,
+    container_identifiers,
     dig,
     first,
     omit,
@@ -291,8 +292,7 @@ def get_container(related_items: list) -> dict | None:
     return compact(
         {
             "type": item.get("relatedItemType", None),
-            "identifier": identifier,
-            "identifier_type": identifier_type,
+            "identifiers": container_identifiers(identifier, identifier_type),
             "title": dig(item, "titles.title"),
             "volume": item.get("volume", None),
             "issue": item.get("issue", None),

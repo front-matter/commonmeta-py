@@ -8,7 +8,7 @@ import requests
 from requests.exceptions import ReadTimeout
 
 from ..author_utils import get_authors
-from ..base_utils import compact, dig, presence, wrap
+from ..base_utils import compact, container_identifiers, dig, presence, wrap
 from ..constants import (
     CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     CSL_TO_CM_TRANSLATIONS,
@@ -34,6 +34,12 @@ from ..utils import (
     normalize_url,
 )
 
+# DataCite client id → OpenAlex source id, for the container a work inherits from
+# its registering client (rc25). Mirrors commonmeta-rs' DATACITE_OPENALEX_SOURCES.
+DATACITE_CLIENT_TO_OPENALEX_SOURCES = {
+    "cern.zenodo": "https://openalex.org/S4306400562",
+}
+
 
 def get_datacite(pid: str | None, **kwargs) -> dict:
     """get_datacite"""
@@ -45,7 +51,14 @@ def get_datacite(pid: str | None, **kwargs) -> dict:
         response = requests.get(url, timeout=10, **kwargs)
         if response.status_code != 200:
             return {"state": "not_found"}
-        return {**dig(response.json(), "data.attributes", {}), "via": "datacite"}
+        body = response.json()
+        # Carry the registering DataCite client id (from relationships, outside
+        # attributes) alongside the attributes: rc25 uses it as the container.
+        return {
+            **dig(body, "data.attributes", {}),
+            "client": dig(body, "data.relationships.client.data.id", None),
+            "via": "datacite",
+        }
     except ReadTimeout:
         return {"state": "timeout"}
 
@@ -113,10 +126,45 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         wrap(meta.get("dates", None)), meta.get("publicationYear", None)
     )
     container = get_container(meta.get("container", None))
+    # rc25: the container identifier is an IsPartOf DOI (e.g. a proceedings or
+    # book the work is part of), else the registering DataCite client (a
+    # repository) — mapped to an OpenAlex source when known, else kept as a
+    # DataCite identifier. The attributes.container identifier itself is never
+    # used; only its title/type/volume/pages carry over.
+    part_of_doi = next(
+        (
+            doi
+            for r in wrap(meta.get("relatedIdentifiers", None))
+            if r.get("relationType") == "IsPartOf"
+            and (r.get("relatedIdentifierType") or "").upper() == "DOI"
+            and (doi := normalize_doi(r.get("relatedIdentifier")))
+        ),
+        None,
+    )
+    if part_of_doi:
+        container_id, container_id_type = part_of_doi, "DOI"
+    else:
+        client_id = meta.get("client", None)
+        openalex = (
+            DATACITE_CLIENT_TO_OPENALEX_SOURCES.get(client_id) if client_id else None
+        )
+        if openalex:
+            container_id, container_id_type = openalex, "OpenAlex"
+        elif client_id:
+            container_id, container_id_type = client_id, "DataCite"
+        else:
+            container_id, container_id_type = None, None
+    if container_id:
+        container = {
+            **(container or {}),
+            "identifiers": container_identifiers(container_id, container_id_type),
+        }
     if _type == "BlogPost":
-        # a blog post has no additional_type and its container is a Blog
+        # a blog post has no additional_type; a *named* container (with a title)
+        # is a Blog. A bare identifier-only container (an IsPartOf DOI or the
+        # registering client) carries no type.
         additional_type = None
-        if container:
+        if container and container.get("title"):
             container = {**container, "type": "Blog"}
     license_ = meta.get("rightsList", [])
     if len(license_) > 0:
@@ -132,6 +180,9 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None))
     )
     relations = get_relations(wrap(meta.get("relatedIdentifiers", None)))
+    # the IsPartOf DOI promoted to the container is not duplicated as a relation.
+    if part_of_doi:
+        relations = [r for r in relations if r.get("id") != part_of_doi]
     description, additional_descriptions = get_descriptions(
         wrap(meta.get("descriptions", None))
     )
@@ -290,9 +341,15 @@ def get_relations(relations: list) -> list:
     def map_relation(relation) -> dict | None:
         """map_relation"""
         related = relation.get("relatedIdentifier", None)
-        # only DOI/URL identifiers are kept as relations; others (ISBN, ISSN,
-        # ...) don't normalize to a resolvable id and are dropped.
-        identifier = normalize_doi(related) or normalize_url(related)
+        id_type = (relation.get("relatedIdentifierType") or "").upper()
+        # ISBNs are expanded to a urn:isbn: URN so they aren't dropped; ISSNs
+        # (the periodical, already captured by the container) and anything else
+        # that doesn't normalize to a resolvable id are dropped.
+        if id_type == "ISBN":
+            isbn = "".join(c for c in (related or "") if c.isalnum())
+            identifier = f"urn:isbn:{isbn}" if isbn else None
+        else:
+            identifier = normalize_doi(related) or normalize_url(related)
         if identifier is None:
             return None
         relation_type = relation.get("relationType", None)
@@ -492,17 +549,13 @@ def get_container(container: dict | None) -> dict | None:
         else None
     )
 
-    container_identifier = container.get("identifier", None)
-    # EISSN and PISSN are subtypes of ISSN; normalize to the schema's "ISSN".
-    identifier_type = container.get("identifierType", None)
-    if identifier_type in ("EISSN", "PISSN"):
-        identifier_type = "ISSN"
+    # rc25: the attributes.container identifier is never used; the container
+    # identifier is set from an IsPartOf DOI or the DataCite client in the
+    # caller. Only the title/type/volume/pages carry over here.
     return compact(
         {
             "type": _type,
             "title": container.get("title", None),
-            "identifier": container_identifier,
-            "identifier_type": identifier_type,
             "volume": container.get("volume", None),
             "issue": container.get("issue", None),
             "first_page": container.get("firstPage", None),

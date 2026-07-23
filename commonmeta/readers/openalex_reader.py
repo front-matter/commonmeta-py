@@ -6,7 +6,15 @@ from requests.exceptions import ConnectionError, ReadTimeout
 
 from ..api_utils import COMMONMETA_USER_AGENT, http
 from ..author_utils import get_authors
-from ..base_utils import compact, dig, presence, sanitize, unique, wrap
+from ..base_utils import (
+    compact,
+    container_identifiers,
+    dig,
+    presence,
+    sanitize,
+    unique,
+    wrap,
+)
 from ..constants import (
     CR_TO_CM_TRANSLATIONS,
     OA_TO_CM_CONTAINER_TRANLATIONS,
@@ -287,8 +295,7 @@ def get_container(meta: dict) -> dict | None:
     return compact(
         {
             "type": container_type,
-            "identifier": issn,
-            "identifier_type": "ISSN" if issn else None,
+            "identifiers": container_identifiers(issn, "ISSN"),
             "title": container_title,
             "volume": dig(meta, "biblio.volume"),
             "issue": dig(meta, "biblio.issue"),

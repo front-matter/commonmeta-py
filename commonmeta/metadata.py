@@ -270,6 +270,29 @@ class Metadata:
             "relations",
             "asserted_by",
         ),
+        # A container entity (rc16+): a journal, blog, repository, etc. keyed by
+        # its identifiers rather than an id. No `id`; additionalProperties: false.
+        "container": (
+            "identifiers",
+            "type",
+            "title",
+            "additional_titles",
+            "description",
+            "language",
+            "license",
+            "platform",
+            "image",
+            "publisher",
+            "country",
+            "first_page",
+            "last_page",
+            "volume",
+            "issue",
+            "location",
+            "series",
+            "url",
+            "date_updated",
+        ),
     }
 
     def _read_entity(self, meta: dict, **kwargs) -> None:

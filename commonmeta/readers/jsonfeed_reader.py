@@ -7,6 +7,8 @@ from furl import furl
 
 from ..author_utils import get_authors
 from ..base_utils import (
+    container_identifier,
+    container_identifiers,
     dig,
     first,
     flatten,
@@ -141,18 +143,18 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
         {
             "type": "Blog",
             "title": dig(meta, "blog.title", None),
-            "identifier": issn or blog_doi or blog_url,
-            "identifier_type": "ISSN" if issn else "DOI" if blog_doi else "URL",
+            "identifiers": container_identifiers(
+                issn or blog_doi or blog_url,
+                "ISSN" if issn else "DOI" if blog_doi else "URL",
+            ),
             "platform": platform,
         }
     )
+    cid, cid_type = container_identifier(container)
     publisher = (
         {"name": "Front Matter"}
         if is_rogue_scholar_doi(_id)
-        or (
-            container.get("identifier_type", None) == "URL"
-            and furl(container.get("identifier", None)).host == "rogue-scholar.org"
-        )
+        or (cid_type == "URL" and furl(cid).host == "rogue-scholar.org")
         else None
     )
 
@@ -203,6 +205,7 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
     relations = get_relations(wrap(meta.get("relationships", None)))
     # citing works are represented as IsReferencedBy relations
     relations += get_citations(wrap(meta.get("citations", None)))
+    # Bibliographic IsPartOf: the blog's ISSN, else its registered DOI.
     if issn is not None:
         relations.append(
             {
@@ -217,7 +220,11 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
                 "type": "IsPartOf",
             }
         )
-    elif meta.get("blog_slug", None):
+    # Community IsPartOf: a transient signal that push_inveniordm consumes to
+    # assign the blog community (and then removes). It must be emitted
+    # regardless of the blog's ISSN/DOI — making it an `elif` of the branches
+    # above dropped community membership for records from blogs with a DOI.
+    if meta.get("blog_slug", None):
         relations.append(
             {
                 "id": f"https://rogue-scholar.org/api/communities/{meta.get('blog_slug')}",
