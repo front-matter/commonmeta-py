@@ -226,45 +226,6 @@ def compact(obj: dict | None) -> dict:
     return {k: v for k, v in obj.items() if v is not None}
 
 
-def container_identifiers(
-    identifier: str | None,
-    identifier_type: str | None = None,
-    scheme: str | None = None,
-) -> list[dict] | None:
-    """Wrap a single container identifier as the v1.0 ``identifiers`` array.
-
-    Returns ``None`` when there is no identifier, so ``compact`` drops the
-    field. This is the write side of the container identifier representation:
-    the schema keys a container by an ``identifiers`` array, and readers build
-    it through this helper.
-    """
-    if not identifier:
-        return None
-    return [
-        compact(
-            {
-                "identifier": identifier,
-                "identifier_type": identifier_type,
-                "scheme": scheme,
-            }
-        )
-    ]
-
-
-def container_identifier(container: dict | None) -> tuple[str | None, str | None]:
-    """Return the first ``(identifier, identifier_type)`` of a v1.0 container.
-
-    The read side of the container identifier representation, for writers and
-    for readers inspecting a container they just built.
-    """
-    if not container:
-        return None, None
-    first = next(iter(container.get("identifiers", None) or []), None)
-    if isinstance(first, dict):
-        return first.get("identifier", None), first.get("identifier_type", None)
-    return None, None
-
-
 def normalize_xml_dict(obj: Any) -> Any:
     """Normalize xmltodict-style dicts for JSON schema validation.
 

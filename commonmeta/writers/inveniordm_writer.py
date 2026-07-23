@@ -13,7 +13,6 @@ from commonmeta.readers.inveniordm_reader import search_by_doi, search_by_guid
 from ..api_utils import http
 from ..base_utils import (
     compact,
-    container_identifier,
     dig,
     first,
     presence,
@@ -127,8 +126,11 @@ def write_inveniordm(metadata: Metadata) -> dict:
         and container.get("type") in ["Journal", "Periodical", "Blog"]
         else None
     )
-    cid, cid_type = container_identifier(container)
+    cid = dig(container, "identifiers.0.identifier")
+    cid_type = dig(container, "identifiers.0.identifier_type")
     issn = cid if cid_type == "ISSN" else None
+    # A journal identified by a DOI (rather than an ISSN)
+    journal_doi = cid if cid_type == "DOI" else None
     volume = container.get("volume", None)
     issue = container.get("issue", None)
     pages = pages_as_string(container)
@@ -217,6 +219,7 @@ def write_inveniordm(metadata: Metadata) -> dict:
                             "pages": pages,
                         }
                     ),
+                    "rs:doi": journal_doi,
                     "rs:content_html": presence(metadata.content),
                     "rs:image": presence(metadata.image),
                     # rs:generator is a record VocabularyCF ({"id": <platform>});

@@ -8,7 +8,7 @@ import requests
 from requests.exceptions import ReadTimeout
 
 from ..author_utils import get_authors
-from ..base_utils import compact, container_identifiers, dig, presence, wrap
+from ..base_utils import compact, dig, presence, wrap
 from ..constants import (
     CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     CSL_TO_CM_TRANSLATIONS,
@@ -157,7 +157,11 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     if container_id:
         container = {
             **(container or {}),
-            "identifiers": container_identifiers(container_id, container_id_type),
+            "identifiers": (
+                [{"identifier": container_id, "identifier_type": container_id_type}]
+                if container_id
+                else None
+            ),
         }
     if _type == "BlogPost":
         # a blog post has no additional_type; a *named* container (with a title)

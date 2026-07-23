@@ -11,7 +11,6 @@ from ..api_utils import http
 from ..author_utils import get_authors
 from ..base_utils import (
     compact,
-    container_identifiers,
     dig,
     omit,
     presence,
@@ -30,7 +29,6 @@ from ..utils import (
     dict_to_spdx,
     from_inveniordm,
     get_language,
-    issn_as_url,
     normalize_doi,
     normalize_ror,
     normalize_url,
@@ -59,24 +57,6 @@ def get_journal_pages(meta) -> dict:
             "last_page": last_page,
         }
     )
-
-
-def get_rogue_scholar_blog(meta) -> tuple:
-    """Blog ISSN, DOI (URL), and community URL for a Rogue Scholar record.
-
-    A blog's persistent identifiers live on the embedded community entry
-    (``parent.communities.entries[0].custom_fields`` → ``rs:issn``/``rs:doi``),
-    not on the record itself; ``journal:journal`` only carries the title. Recover
-    them so the container identifier and the blog ``IsPartOf`` relation match the
-    jsonfeed reader (ISSN → DOI → community URL)."""
-    entry = dig(meta, "parent.communities.entries.0") or {}
-    slug = entry.get("slug", None)
-    issn = dig(entry, "custom_fields.rs:issn") or dig(
-        meta, "custom_fields.journal:journal.issn"
-    )
-    doi = dig(entry, "custom_fields.rs:doi")
-    community_url = f"https://rogue-scholar.org/communities/{slug}" if slug else None
-    return issn, doi, community_url
 
 
 def get_generator_platform(generator) -> str | None:
@@ -168,30 +148,36 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         ),
         None,
     ) or strip_milliseconds(meta.get("updated", None))
+
+    # optional container metadata
+    issn = dig(meta, "custom_fields.journal:journal.issn")
+    journal_doi = dig(meta, "custom_fields.rs:doi")
+    identifier = issn or journal_doi or None
+    identifier_type = (
+        ("ISSN" if issn else "DOI" if journal_doi else None) if identifier else None
+    )
+
     if furl(url).host == "zenodo.org":
         container = compact(
             {
-                "identifiers": container_identifiers(
-                    "https://www.re3data.org/repository/r3d100010468", "re3data"
-                ),
-                "type": "DataRepository" if _type == "Dataset" else "Repository",
+                "identifiers": [
+                    {"identifier": "cern.zenodo", "identifier_type": "DataCite"},
+                ],
+                "type": "Repository",
                 "title": "Zenodo",
             }
         )
         publisher = {"name": "Zenodo"}
     elif is_rogue_scholar_doi(_id):
-        blog_issn, blog_doi, community_url = get_rogue_scholar_blog(meta)
-        if blog_issn:
-            identifier, identifier_type = blog_issn, "ISSN"
-        elif blog_doi:
-            identifier, identifier_type = doi_as_url(blog_doi), "DOI"
-        else:
-            identifier, identifier_type = community_url, "URL"
         container = compact(
             {
                 "type": "Blog",
                 "title": dig(meta, "custom_fields.journal:journal.title"),
-                "identifiers": container_identifiers(identifier, identifier_type),
+                "identifiers": (
+                    [{"identifier": identifier, "identifier_type": identifier_type}]
+                    if identifier
+                    else None
+                ),
                 "platform": get_generator_platform(
                     dig(meta, "custom_fields.rs:generator", None)
                 ),
@@ -199,21 +185,19 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             }
         )
         publisher = {"name": "Front Matter"}
-    else:
-        container = dig(meta, "custom_fields.journal:journal")
-        if container:
-            issn = dig(meta, "custom_fields.journal:journal.issn")
-            container = compact(
-                {
-                    "type": "Periodical",
-                    "title": container.get("title", None),
-                    "identifiers": container_identifiers(issn, "ISSN"),
-                    "platform": get_generator_platform(
-                        dig(meta, "custom_fields.rs:generator", None)
-                    ),
-                    **get_journal_pages(meta),
-                }
-            )
+    elif dig(meta, "custom_fields.journal:journal"):
+        container = compact(
+            {
+                "type": "Journal",
+                "title": dig(meta, "custom_fields.journal:journal.title"),
+                "identifiers": (
+                    [{"identifier": identifier, "identifier_type": identifier_type}]
+                    if identifier
+                    else None
+                ),
+                **get_journal_pages(meta),
+            }
+        )
     description, additional_descriptions = get_descriptions(
         [
             dig(meta, "metadata.description"),
@@ -292,18 +276,6 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                 "type": "IsVersionOf",
             }
         )
-
-    # Blog IsPartOf (Rogue Scholar): ISSN, else the blog DOI, else the community
-    # URL — mirrors the jsonfeed reader so both pipeline paths yield the same
-    # blog linkage in the eventual Crossref deposit.
-    if is_rogue_scholar_doi(_id):
-        blog_issn, blog_doi, community_url = get_rogue_scholar_blog(meta)
-        if blog_issn:
-            relations.append({"id": issn_as_url(blog_issn), "type": "IsPartOf"})
-        elif blog_doi:
-            relations.append({"id": doi_as_url(blog_doi), "type": "IsPartOf"})
-        elif community_url:
-            relations.append({"id": community_url, "type": "IsPartOf"})
 
     funding_references = get_funding_references(wrap(dig(meta, "metadata.funding")))
     version = dig(meta, "metadata.version")

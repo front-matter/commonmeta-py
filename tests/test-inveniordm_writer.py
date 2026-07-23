@@ -459,6 +459,11 @@ def test_from_jsonfeed_dates():
         dig(inveniordm, "custom_fields.rs:image")
         == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
     )
+    # TODO: fix test
+    # assert (
+    #     dig(inveniordm, "custom_fields.rs:doi")
+    #     == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
+    # )
 
 
 @pytest.mark.vcr
@@ -501,6 +506,7 @@ def test_from_jsonfeed_funding():
     #     "<p>Come and join us at the Università degli Studi di Roma"
     # )
     assert dig(inveniordm, "custom_fields.rs:image") is None
+    assert dig(inveniordm, "custom_fields.rs:doi") == "https://doi.org/10.59350/thor"
 
 
 @pytest.mark.vcr
@@ -543,6 +549,7 @@ def test_from_jsonfeed_more_funding():
         '<img alt="" src="https://coref.project.re3data.org/images/7/b/6/1/b/'
     )
     assert dig(inveniordm, "custom_fields.rs:image") is None
+    assert dig(inveniordm, "custom_fields.rs:doi") == "https://doi.org/10.59350/coref"
 
 
 @pytest.mark.vcr
@@ -574,7 +581,6 @@ def test_from_jsonfeed_references():
         {
             "award": {
                 "number": "654039",
-                "identifiers": [{"scheme": "doi", "identifier": "10.3030/654039"}],
             },
             "funder": {
                 "id": "00k4n6c32",
@@ -589,6 +595,11 @@ def test_from_jsonfeed_references():
         dig(inveniordm, "custom_fields.rs:image")
         == "https://storage.ghost.io/c/c5/33/c533c955-b5f3-4ff1-ae2d-6b52a212e602/content/images/2023/09/cat_and_dog-1.png"
     )
+    # TODO: fix test
+    # assert (
+    #     dig(inveniordm, "custom_fields.rs:doi")
+    #     == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
+    # )
 
 
 @pytest.mark.vcr

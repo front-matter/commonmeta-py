@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ..base_utils import compact, container_identifier, first, presence, scrub, wrap
+from ..base_utils import compact, dig, first, presence, scrub, wrap
 from ..constants import (
     CM_TO_BIB_TRANSLATIONS,
     CM_TO_CR_TRANSLATIONS,
@@ -228,7 +228,8 @@ def to_datacite_container(container: dict | None) -> dict | None:
     """Convert a v1.0 container to a DataCite container."""
     if not container:
         return None
-    cid, cid_type = container_identifier(container)
+    cid = dig(container, "identifiers.0.identifier")
+    cid_type = dig(container, "identifiers.0.identifier_type")
     return compact(
         {
             "type": container.get("type", None),

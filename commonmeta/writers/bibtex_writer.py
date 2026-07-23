@@ -9,7 +9,7 @@ from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.customization import page_double_hyphen
 
 from ..author_utils import authors_as_string
-from ..base_utils import compact, container_identifier
+from ..base_utils import compact, dig
 from ..constants import CM_TO_BIB_TRANSLATIONS
 from ..date_utils import MONTH_SHORT_NAMES, get_iso8601_date, get_month_from_date
 from ..doi_utils import doi_from_url
@@ -65,7 +65,8 @@ def write_bibtex_item(metadata: Metadata) -> dict:
         if _type == "phdthesis" and metadata.publisher
         else None
     )
-    cid, cid_type = container_identifier(container)
+    cid = dig(container, "identifiers.0.identifier")
+    cid_type = dig(container, "identifiers.0.identifier_type")
     issn = cid if cid_type == "ISSN" else None
     isbn = cid if cid_type == "ISBN" else None
     issue = container.get("issue", None)

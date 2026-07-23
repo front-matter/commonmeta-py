@@ -7,8 +7,6 @@ from furl import furl
 
 from ..author_utils import get_authors
 from ..base_utils import (
-    container_identifier,
-    container_identifiers,
     dig,
     first,
     flatten,
@@ -143,14 +141,23 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
         {
             "type": "Blog",
             "title": dig(meta, "blog.title", None),
-            "identifiers": container_identifiers(
-                issn or blog_doi or blog_url,
-                "ISSN" if issn else "DOI" if blog_doi else "URL",
+            "identifiers": (
+                [
+                    {
+                        "identifier": issn or blog_doi or blog_url,
+                        "identifier_type": (
+                            "ISSN" if issn else "DOI" if blog_doi else "URL"
+                        ),
+                    }
+                ]
+                if issn or blog_doi or blog_url
+                else None
             ),
             "platform": platform,
         }
     )
-    cid, cid_type = container_identifier(container)
+    cid = dig(container, "identifiers.0.identifier")
+    cid_type = dig(container, "identifiers.0.identifier_type")
     publisher = (
         {"name": "Front Matter"}
         if is_rogue_scholar_doi(_id)

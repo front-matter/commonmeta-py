@@ -7,8 +7,6 @@ import requests
 from ..author_utils import get_authors
 from ..base_utils import (
     compact,
-    container_identifier,
-    container_identifiers,
     dig,
     first,
     parse_attributes,
@@ -617,7 +615,8 @@ def resolve_relation_id(text: str, id_type: str | None) -> str | None:
 def crossref_relations(container: dict | None, programs: list) -> list:
     """Get relations: an ISSN IsPartOf plus any rel:program related items."""
     out: list = []
-    cid, cid_type = container_identifier(container)
+    cid = dig(container, "identifiers.0.identifier")
+    cid_type = dig(container, "identifiers.0.identifier_type")
     if cid and cid_type == "ISSN":
         url = issn_as_url(cid)
         if url:
@@ -692,8 +691,15 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
     return compact(
         {
             "type": CR_TO_CM_CONTAINER_TRANSLATIONS.get(container_type, None),
-            "identifiers": container_identifiers(
-                issn or isbn, "ISSN" if issn else "ISBN" if isbn else None
+            "identifiers": (
+                [
+                    {
+                        "identifier": issn or isbn,
+                        "identifier_type": "ISSN" if issn else "ISBN",
+                    }
+                ]
+                if issn or isbn
+                else None
             ),
             "title": container_title,
             "volume": volume,

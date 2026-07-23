@@ -60,12 +60,7 @@ def test_software():
         {"subject": "research software"},
     ]
     assert subject.container == {
-        "identifiers": [
-            {
-                "identifier": "https://www.re3data.org/repository/r3d100010468",
-                "identifier_type": "re3data",
-            }
-        ],
+        "identifiers": [{"identifier": "cern.zenodo", "identifier_type": "DataCite"}],
         "type": "Repository",
         "title": "Zenodo",
     }
@@ -126,12 +121,7 @@ def test_presentation():
     )
     assert subject.subjects is None
     assert subject.container == {
-        "identifiers": [
-            {
-                "identifier": "https://www.re3data.org/repository/r3d100010468",
-                "identifier_type": "re3data",
-            }
-        ],
+        "identifiers": [{"identifier": "cern.zenodo", "identifier_type": "DataCite"}],
         "type": "Repository",
         "title": "Zenodo",
     }
@@ -199,12 +189,7 @@ def test_publication():
         {"subject": "zoonosis"},
     ]
     assert subject.container == {
-        "identifiers": [
-            {
-                "identifier": "https://www.re3data.org/repository/r3d100010468",
-                "identifier_type": "re3data",
-            }
-        ],
+        "identifiers": [{"identifier": "cern.zenodo", "identifier_type": "DataCite"}],
         "type": "Repository",
         "title": "Zenodo",
     }
@@ -271,12 +256,7 @@ def test_publication_with_url():
         {"subject": "zoonosis"},
     ]
     assert subject.container == {
-        "identifiers": [
-            {
-                "identifier": "https://www.re3data.org/repository/r3d100010468",
-                "identifier_type": "re3data",
-            }
-        ],
+        "identifiers": [{"identifier": "cern.zenodo", "identifier_type": "DataCite"}],
         "type": "Repository",
         "title": "Zenodo",
     }
@@ -338,13 +318,8 @@ def test_dataset():
         {"subject": "covid19"},
     ]
     assert subject.container == {
-        "identifiers": [
-            {
-                "identifier": "https://www.re3data.org/repository/r3d100010468",
-                "identifier_type": "re3data",
-            }
-        ],
-        "type": "DataRepository",
+        "identifiers": [{"identifier": "cern.zenodo", "identifier_type": "DataCite"}],
+        "type": "Repository",
         "title": "Zenodo",
     }
     assert subject.language == "en"
@@ -392,7 +367,6 @@ def test_rogue_scholar():
     assert subject.date_published == "2025-09-27T08:53:26"
     assert subject.relations == [
         {"id": "https://doi.org/10.59350/sfw0f-2fe65", "type": "IsVersionOf"},
-        {"id": "https://doi.org/10.59350/musings", "type": "IsPartOf"},
     ]
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.funding_references is None
@@ -450,7 +424,6 @@ def test_rogue_scholar_with_citations():
         {"id": "https://doi.org/10.59350/4q8j1-1ap35", "type": "IsReferencedBy"},
         {"id": "https://doi.org/10.59350/jtzzf-jfz50", "type": "IsReferencedBy"},
         {"id": "https://doi.org/10.63485/enjv5-xh191", "type": "IsVersionOf"},
-        {"id": "https://doi.org/10.63485/oan", "type": "IsPartOf"},
     ]
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.funding_references is None

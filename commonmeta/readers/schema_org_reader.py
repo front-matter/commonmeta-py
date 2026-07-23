@@ -12,7 +12,6 @@ from requests.exceptions import ConnectionError
 from ..author_utils import get_authors
 from ..base_utils import (
     compact,
-    container_identifiers,
     dig,
     first,
     parse_attributes,
@@ -234,7 +233,11 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
             {
                 "type": "DataRepository",
                 "title": _title,
-                "identifiers": container_identifiers(container_url, "URL"),
+                "identifiers": (
+                    [{"identifier": container_url, "identifier_type": "URL"}]
+                    if container_url
+                    else None
+                ),
                 "volume": meta.get("volumeNumber", None),
                 "issue": meta.get("issueNumber", None),
                 "first_page": meta.get("pageStart", None),
@@ -249,9 +252,15 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
             {
                 "type": container_type,
                 "title": dig(meta, "isPartOf.name"),
-                "identifiers": container_identifiers(
-                    issn if issn is not None else container_url,
-                    "ISSN" if issn is not None else "URL",
+                "identifiers": (
+                    [
+                        {
+                            "identifier": issn if issn is not None else container_url,
+                            "identifier_type": "ISSN" if issn is not None else "URL",
+                        }
+                    ]
+                    if (issn is not None or container_url)
+                    else None
                 ),
             }
         )

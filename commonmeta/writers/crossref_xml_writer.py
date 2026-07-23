@@ -20,7 +20,6 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 from ..base_utils import (
     compact,
-    container_identifier,
     dig,
     get_crossref_xml_head,
     parse_xml,
@@ -859,7 +858,7 @@ def get_proceedings_metadata(obj) -> dict | None:
         "publication_date": get_publication_date(obj, media_type="online"),
     }
     # Crossref requires either <isbn> or <noisbn> in proceedings_metadata.
-    _, cid_type = container_identifier(dig(obj, "container"))
+    cid_type = dig(obj, "container.identifiers.0.identifier_type")
     if cid_type == "ISBN":
         proceedings_metadata["isbn"] = get_isbn(obj)
     else:
@@ -1372,7 +1371,8 @@ def get_doi_data(obj) -> dict | None:
 
 def get_isbn(obj, media_type: str | None = None) -> list[dict] | None:
     """get isbn. Returns array of objects with #text and @media_type."""
-    cid, cid_type = container_identifier(dig(obj, "container"))
+    cid = dig(obj, "container.identifiers.0.identifier")
+    cid_type = dig(obj, "container.identifiers.0.identifier_type")
     if cid_type != "ISBN" or cid is None:
         return None
     isbn = cid
@@ -1421,7 +1421,8 @@ def normalize_isbn_crossref(isbn: str) -> str | None:
 
 def get_issn(obj):
     """get issn"""
-    cid, cid_type = container_identifier(dig(obj, "container"))
+    cid = dig(obj, "container.identifiers.0.identifier")
+    cid_type = dig(obj, "container.identifiers.0.identifier_type")
     if cid_type == "ISSN":
         return cid
 

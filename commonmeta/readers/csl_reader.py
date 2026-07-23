@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from ..author_utils import get_authors
-from ..base_utils import compact, container_identifiers, presence, sanitize, wrap
+from ..base_utils import compact, presence, sanitize, wrap
 from ..constants import (
     CSL_TO_CM_TRANSLATIONS,
     Commonmeta,
@@ -79,7 +79,9 @@ def read_csl(data: dict | None, **kwargs) -> Commonmeta:
         {
             "type": _CSL_CONTAINER_TYPES.get(_type, None),
             "title": meta.get("container-title", None),
-            "identifiers": container_identifiers(issn, "ISSN"),
+            "identifiers": (
+                [{"identifier": issn, "identifier_type": "ISSN"}] if issn else None
+            ),
             "volume": meta.get("volume", None),
             "issue": meta.get("issue", None),
             "first_page": pages[0] or None,
