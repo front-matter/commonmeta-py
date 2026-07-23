@@ -51,12 +51,14 @@ def write_orcid(metadata: Metadata | None) -> dict | None:
     )
     return compact(
         {
-            "orcid-identifier": {
-                "uri": f"https://orcid.org/{orcid}",
-                "path": orcid,
-            }
-            if orcid
-            else None,
+            "orcid-identifier": (
+                {
+                    "uri": f"https://orcid.org/{orcid}",
+                    "path": orcid,
+                }
+                if orcid
+                else None
+            ),
             "person": presence(person),
             "activities-summary": presence(format_activities(metadata)),
         }
@@ -86,12 +88,12 @@ def format_activities(metadata: Metadata) -> dict:
 
     return compact(
         {
-            "employments": groups(employments, "employment-summary")
-            if employments
-            else None,
-            "educations": groups(educations, "education-summary")
-            if educations
-            else None,
+            "employments": (
+                groups(employments, "employment-summary") if employments else None
+            ),
+            "educations": (
+                groups(educations, "education-summary") if educations else None
+            ),
         }
     )
 

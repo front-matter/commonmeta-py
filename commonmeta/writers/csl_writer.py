@@ -50,15 +50,21 @@ def write_csl_item(metadata: Metadata) -> dict | None:
             "language": metadata.language,
             "author": author,
             # "contributor": to_csl(wrap(metadata.contributors)),
-            "issued": get_date_parts(metadata.date_published)
-            if metadata.date_published
-            else None,
-            "submitted": get_date_parts(dates.get("submitted"))
-            if dates.get("submitted", None)
-            else None,
-            "accessed": get_date_parts(dates.get("accessed"))
-            if dates.get("accessed", None)
-            else None,
+            "issued": (
+                get_date_parts(metadata.date_published)
+                if metadata.date_published
+                else None
+            ),
+            "submitted": (
+                get_date_parts(dates.get("submitted"))
+                if dates.get("submitted", None)
+                else None
+            ),
+            "accessed": (
+                get_date_parts(dates.get("accessed"))
+                if dates.get("accessed", None)
+                else None
+            ),
             "abstract": metadata.description,
             "container-title": container.get("title", None),
             "volume": container.get("volume", None),
