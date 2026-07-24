@@ -32,6 +32,7 @@ from ..doi_utils import doi_from_url, is_rogue_scholar_doi, normalize_doi
 from ..utils import (
     FOS_MAPPINGS,
     OPENALEX_TO_FOS_MAPPINGS,
+    get_identifier,
     get_language,
     id_from_url,
     normalize_url,
@@ -126,11 +127,9 @@ def write_inveniordm(metadata: Metadata) -> dict:
         and container.get("type") in ["Journal", "Periodical", "Blog"]
         else None
     )
-    cid = dig(container, "identifiers.0.identifier")
-    cid_type = dig(container, "identifiers.0.identifier_type")
-    issn = cid if cid_type == "ISSN" else None
+    issn = get_identifier(container, "ISSN")
     # A journal identified by a DOI (rather than an ISSN)
-    journal_doi = cid if cid_type == "DOI" else None
+    journal_doi = get_identifier(container, "DOI")
     volume = container.get("volume", None)
     issue = container.get("issue", None)
     pages = pages_as_string(container)

@@ -29,6 +29,7 @@ from ..utils import (
     dict_to_spdx,
     doi_from_url,
     from_crossref_xml,
+    get_identifier,
     issn_as_url,
     normalize_cc_url,
     normalize_issn,
@@ -615,10 +616,9 @@ def resolve_relation_id(text: str, id_type: str | None) -> str | None:
 def crossref_relations(container: dict | None, programs: list) -> list:
     """Get relations: an ISSN IsPartOf plus any rel:program related items."""
     out: list = []
-    cid = dig(container, "identifiers.0.identifier")
-    cid_type = dig(container, "identifiers.0.identifier_type")
-    if cid and cid_type == "ISSN":
-        url = issn_as_url(cid)
+    issn = get_identifier(container, "ISSN")
+    if issn:
+        url = issn_as_url(issn)
         if url:
             out.append({"id": url, "type": "IsPartOf"})
     # the relations program (rel:program) carries the related_item elements

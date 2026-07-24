@@ -4,9 +4,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ..base_utils import compact, dig, parse_attributes, wrap
+from ..base_utils import compact, parse_attributes, wrap
 from ..constants import CM_TO_SO_TRANSLATIONS
-from ..utils import get_language, github_as_repo_url, to_schema_org_creators
+from ..utils import (
+    get_identifier,
+    get_language,
+    github_as_repo_url,
+    to_schema_org_creators,
+)
 
 if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
@@ -55,12 +60,11 @@ def write_schema_org(metadata: Metadata) -> dict:
         ]
     else:
         media_objects = None
-    cid = dig(container, "identifiers.0.identifier")
-    cid_type = dig(container, "identifiers.0.identifier_type")
     if metadata.type == "Dataset" and container is not None:
         data_catalog = compact(
             {
-                "@id": cid if cid_type in ("DOI", "URL") else None,
+                "@id": get_identifier(container, "DOI")
+                or get_identifier(container, "URL"),
                 "@type": "DataCatalog",
                 "name": container.get("title", None),
             }
@@ -70,10 +74,10 @@ def write_schema_org(metadata: Metadata) -> dict:
         is_journal = container.get("type", None) == "Journal"
         periodical = compact(
             {
-                "@id": cid if cid_type == "DOI" else None,
+                "@id": get_identifier(container, "DOI"),
                 "@type": "Periodical" if is_journal else None,
                 "additionalType": None if is_journal else container.get("type", None),
-                "issn": cid if cid_type == "ISSN" else None,
+                "issn": get_identifier(container, "ISSN"),
                 "name": container.get("title", None),
             }
         )

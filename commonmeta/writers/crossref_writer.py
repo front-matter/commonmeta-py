@@ -4,8 +4,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
-from ..base_utils import compact, dig, wrap
+from ..base_utils import compact, wrap
 from ..doi_utils import doi_from_url
+from ..utils import get_identifier
 
 if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
@@ -213,9 +214,7 @@ def _to_cr_work(metadata: Metadata) -> dict:
     # Container
     container = metadata.container or {}
     container_title_str = container.get("title", "")
-    cid = dig(container, "identifiers.0.identifier")
-    cid_type = dig(container, "identifiers.0.identifier_type")
-    issn = cid if cid_type == "ISSN" else None
+    issn = get_identifier(container, "ISSN")
     volume = container.get("volume") or None
     issue = container.get("issue") or None
     first_page = container.get("first_page", "")

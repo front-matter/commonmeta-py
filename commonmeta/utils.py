@@ -1726,6 +1726,17 @@ def github_as_cff_url(url: str) -> str | None:
     return None
 
 
+def get_identifier(container: dict | None, identifier_type: str | None) -> str | None:
+    """Return the ``identifier`` of the given ``identifier_type`` from a
+    container's ``identifiers`` array, else None."""
+    if container is None or identifier_type is None:
+        return None
+    for identifier in dig(container, "identifiers") or []:
+        if identifier.get("identifier_type") == identifier_type:
+            return identifier.get("identifier")
+    return None
+
+
 def pages_as_string(container: dict | None, page_range_separator="-") -> str | None:
     """Parse pages for BibTeX"""
     if container is None:
