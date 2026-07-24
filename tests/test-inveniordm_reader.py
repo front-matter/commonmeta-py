@@ -334,6 +334,101 @@ def test_dataset():
 
 
 @pytest.mark.vcr
+def test_repository_caltech_data():
+    """CaltechDATA repository."""
+    string = "https://data.caltech.edu/api/records/kfkqj-q6557"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.22002/d1.2103"
+    assert subject.type == "Dataset"
+    assert subject.url == "https://data.caltech.edu/records/kfkqj-q6557"
+    assert subject.title == "Montage cryo-ET of the thin edge of a HeLa cell, dataset 3"
+    assert len(subject.contributors) == 4
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "person": {
+            "id": "https://orcid.org/0000-0002-5940-3897",
+            "given_name": "Ariana",
+            "family_name": "Peck",
+        },
+        "roles": ["Author"],
+    }
+    assert subject.publisher == {"name": "CaltechDATA"}
+    assert subject.container == {"type": "Repository"}
+    assert subject.date_published == "2021-09-03"
+    assert subject.language == "en"
+    assert subject.version == "1.0"
+    assert subject.subjects == [{"subject": "cryo-electron microscopy"}]
+    assert subject.identifiers == [
+        {"identifier": "2103", "identifier_type": "Other"},
+        {"identifier": "kfkqj-q6557", "identifier_type": "Other", "scheme": "RID"},
+    ]
+    assert subject.description.startswith(
+        "Montage tomography dataset collected from the thin edge of a"
+    )
+    assert subject.license == {
+        "id": "CC-BY-NC-4.0",
+        "title": "Creative Commons Attribution Non Commercial 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+    }
+    # TODO: fix
+    # assert len(subject.files) == 24
+    # assert subject.files[0] == {}
+
+
+@pytest.mark.vcr
+def test_repository_hcommons():
+    """Humanities Commons repository.
+
+    Carries a journal:journal custom field, so it gets a Journal container.
+    """
+    string = "https://works.hcommons.org/api/records/zqk4g-vqe13"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.17613/mj85-wt48"
+    assert subject.type == "Other"
+    assert subject.url == "https://works.hcommons.org/records/zqk4g-vqe13"
+    assert (
+        subject.title
+        == "HUMSS AS THE CHOSEN STRAND AND ITS INFLUENCE ON THE STUDENTS' COMMUNICATION SKILLS"
+    )
+    assert len(subject.contributors) == 7
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "person": {"given_name": "Rey J.", "family_name": "Acebes"},
+        "roles": ["Author"],
+    }
+    assert subject.publisher == {"name": "ICCE"}
+    assert subject.container == {
+        "type": "Journal",
+        "title": "Ignatian International Journal for Multidisciplinary Research",
+        "identifiers": [{"identifier": "2984 9942", "identifier_type": "ISSN"}],
+        "volume": "2",
+        "issue": "4",
+        "first_page": "884",
+        "last_page": "896",
+    }
+    assert subject.license == {
+        "id": "CC-BY-NC-4.0",
+        "title": "Creative Commons Attribution Non Commercial 4.0 International",
+        "url": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+    }
+    assert subject.date_published == "2024-04"
+    assert subject.relations == [
+        {"id": "https://doi.org/10.17613/pr2mp-r3k02", "type": "IsVersionOf"},
+    ]
+    assert subject.identifiers == [
+        {"identifier": "hc:65199", "identifier_type": "Other"},
+        {"identifier": "1000360-83603", "identifier_type": "Other"},
+        {"identifier": "10.5281/zenodo.10984470", "identifier_type": "DOI"},
+        {"identifier": "zqk4g-vqe13", "identifier_type": "Other", "scheme": "RID"},
+    ]
+    assert subject.description.startswith(
+        "The importance of communication skills cannot be disregarded"
+    )
+
+
+@pytest.mark.vcr
 def test_rogue_scholar():
     """Rogue Scholar"""
     string = "https://rogue-scholar.org/api/records/pevm6-kx104"

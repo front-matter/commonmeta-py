@@ -1,0 +1,219 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://works.hcommons.org/api/records/zqk4g-vqe13
+  response:
+    body:
+      string: '{"id": "zqk4g-vqe13", "created": "2024-04-17T08:33:35+00:00", "updated":
+        "2025-10-13T23:54:30.900626+00:00", "links": {"self": "https://works.hcommons.org/api/records/zqk4g-vqe13",
+        "self_html": "https://works.hcommons.org/records/zqk4g-vqe13", "self_doi":
+        "https://works.hcommons.org/doi/10.17613/mj85-wt48", "doi": "https://doi.org/10.17613/mj85-wt48",
+        "parent": "https://works.hcommons.org/api/records/pr2mp-r3k02", "parent_html":
+        "https://works.hcommons.org/records/pr2mp-r3k02", "parent_doi": "https://works.hcommons.org/doi/10.17613/pr2mp-r3k02",
+        "self_iiif_manifest": "https://works.hcommons.org/api/iiif/record:zqk4g-vqe13/manifest",
+        "self_iiif_sequence": "https://works.hcommons.org/api/iiif/record:zqk4g-vqe13/sequence/default",
+        "files": "https://works.hcommons.org/api/records/zqk4g-vqe13/files", "media_files":
+        "https://works.hcommons.org/api/records/zqk4g-vqe13/media-files", "archive":
+        "https://works.hcommons.org/api/records/zqk4g-vqe13/files-archive", "archive_media":
+        "https://works.hcommons.org/api/records/zqk4g-vqe13/media-files-archive",
+        "latest": "https://works.hcommons.org/api/records/zqk4g-vqe13/versions/latest",
+        "latest_html": "https://works.hcommons.org/records/zqk4g-vqe13/latest", "draft":
+        "https://works.hcommons.org/api/records/zqk4g-vqe13/draft", "versions": "https://works.hcommons.org/api/records/zqk4g-vqe13/versions",
+        "access_links": "https://works.hcommons.org/api/records/zqk4g-vqe13/access/links",
+        "access_grants": "https://works.hcommons.org/api/records/zqk4g-vqe13/access/grants",
+        "access_users": "https://works.hcommons.org/api/records/zqk4g-vqe13/access/users",
+        "access_groups": "https://works.hcommons.org/api/records/zqk4g-vqe13/access/groups",
+        "access_request": "https://works.hcommons.org/api/records/zqk4g-vqe13/access/request",
+        "access": "https://works.hcommons.org/api/records/zqk4g-vqe13/access", "reserve_doi":
+        "https://works.hcommons.org/api/records/zqk4g-vqe13/draft/pids/doi", "communities":
+        "https://works.hcommons.org/api/records/zqk4g-vqe13/communities", "communities-suggestions":
+        "https://works.hcommons.org/api/records/zqk4g-vqe13/communities-suggestions",
+        "requests": "https://works.hcommons.org/api/records/zqk4g-vqe13/requests"},
+        "revision_id": 11, "parent": {"id": "pr2mp-r3k02", "access": {"owned_by":
+        {"user": "2981"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["6bde785e-9aa1-47c1-bba4-5ea3e1a8eff6", "d6bab10e-a9e0-4ec4-be5e-c4e782645a3a"],
+        "default": "d6bab10e-a9e0-4ec4-be5e-c4e782645a3a", "entries": [{"id": "6bde785e-9aa1-47c1-bba4-5ea3e1a8eff6",
+        "created": "2023-10-31T00:00:00+00:00", "updated": "2025-12-09T22:43:51.951514+00:00",
+        "links": {}, "revision_id": 13, "slug": "ignatian-international-journal-for-multidisciplinary-research",
+        "metadata": {"title": "Ignatian International Journal for Multidisciplinary
+        Research", "description": "A collection managed by Ignatian International
+        Journal for Multidisciplinary Research, a Knowledge Commons group", "page":
+        "This is a collection of works curated by Ignatian International Journal for
+        Multidisciplinary Research, a Knowledge Commons group", "website": "http://www.icceph.com/research/",
+        "organizations": [{"name": "Ignatian International Journal for Multidisciplinary
+        Research"}, {"name": "Knowledge Commons"}]}, "access": {"visibility": "public",
+        "members_visibility": "public", "member_policy": "closed", "record_policy":
+        "closed", "review_policy": "closed"}, "custom_fields": {"stats:dashboard_enabled":
+        true, "kcr:commons_instance": "knowledgeCommons", "kcr:commons_group_id":
+        "1004282", "kcr:commons_group_name": "Ignatian International Journal for Multidisciplinary
+        Research", "kcr:commons_group_description": "A group of authors and their
+        studies published in Ignatian International Journal for Multidisciplinary
+        Research", "kcr:commons_group_visibility": "public", "kcr:commons_search_recid":
+        "-Fo-y5ABMnYJeQxDNrxs"}, "deletion_status": {"is_deleted": false, "status":
+        "P"}, "children": {"allow": false}}, {"id": "d6bab10e-a9e0-4ec4-be5e-c4e782645a3a",
+        "created": "2024-07-18T01:02:05.407959+00:00", "updated": "2025-12-09T22:43:50.501014+00:00",
+        "links": {}, "revision_id": 17, "slug": "kcommons", "metadata": {"title":
+        "Knowledge Commons", "description": "A collection representing Knowledge Commons",
+        "curation_policy": "", "type": {"id": "commons"}, "website": "https://hcommons.org",
+        "organizations": [{"name": "Knowledge Commons"}]}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "closed", "record_policy":
+        "closed", "review_policy": "open"}, "custom_fields": {"stats:dashboard_enabled":
+        true, "kcr:commons_search_recid": "paFcw5ABkh27HjOZUN98"}, "deletion_status":
+        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}]}, "pids":
+        {"doi": {"identifier": "10.17613/pr2mp-r3k02", "provider": "datacite", "client":
+        "datacite"}}}, "versions": {"is_latest": true, "index": 1}, "is_published":
+        true, "is_draft": false, "pids": {"doi": {"identifier": "10.17613/mj85-wt48",
+        "provider": "datacite", "client": "datacite"}, "oai": {"identifier": "oai:invenio-dev.hcommons-staging.org:zqk4g-vqe13",
+        "provider": "oai"}}, "metadata": {"resource_type": {"id": "textDocument-journalArticle",
+        "title": {"de": "Zeitschriftenartikel", "en": "Journal article"}}, "creators":
+        [{"person_or_org": {"type": "personal", "name": "Acebes, Rey J.", "given_name":
+        "Rey J.", "family_name": "Acebes"}, "role": {"id": "author", "title": {"en":
+        "Author"}}}, {"person_or_org": {"type": "personal", "name": "Luzung, Marc
+        Adrian C.", "given_name": "Marc Adrian C.", "family_name": "Luzung"}, "role":
+        {"id": "author", "title": {"en": "Author"}}}, {"person_or_org": {"type": "personal",
+        "name": "Marcaida, John Louise M.", "given_name": "John Louise M.", "family_name":
+        "Marcaida"}, "role": {"id": "author", "title": {"en": "Author"}}}, {"person_or_org":
+        {"type": "personal", "name": "Miranda, Allan Ronald Y.", "given_name": "Allan
+        Ronald Y.", "family_name": "Miranda"}, "role": {"id": "author", "title": {"en":
+        "Author"}}}, {"person_or_org": {"type": "personal", "name": "Pabustan, Kazee
+        V.", "given_name": "Kazee V.", "family_name": "Pabustan"}, "role": {"id":
+        "author", "title": {"en": "Author"}}}, {"person_or_org": {"type": "personal",
+        "name": "Pingul, Chynna T.", "given_name": "Chynna T.", "family_name": "Pingul"},
+        "role": {"id": "author", "title": {"en": "Author"}}}, {"person_or_org": {"type":
+        "personal", "name": "Sunga, Shyrenz Joy P.", "given_name": "Shyrenz Joy P.",
+        "family_name": "Sunga"}, "role": {"id": "author", "title": {"en": "Author"}}}],
+        "title": "HUMSS AS THE CHOSEN STRAND AND ITS INFLUENCE ON THE STUDENTS'' COMMUNICATION
+        SKILLS", "publisher": "ICCE", "publication_date": "2024", "dates": [{"date":
+        "2024-04", "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht",
+        "en": "Issued", "sv": "Utf\u00e4rdad"}}, "description": "Publication date"}],
+        "languages": [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
+        "hc:65199", "scheme": "hclegacy-pid"}, {"identifier": "1000360-83603", "scheme":
+        "hclegacy-record-id"}, {"identifier": "10.5281/zenodo.10984470", "scheme":
+        "doi"}], "rights": [{"id": "cc-by-nc-4.0", "title": {"en": "Creative Commons
+        Attribution Non Commercial 4.0 International"}, "description": {"en": "Allows
+        re-distribution and re-use of a licensed work on the condition that the creator
+        is appropriately credited and that the re-use is not for commercial purposes."},
+        "icon": "cc-by-nc-icon", "props": {"url": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+        "scheme": "spdx"}}], "description": "The importance of communication skills
+        cannot be disregarded, especially today where communication plays a crucial
+        part in our daily lives. Furthermore, poor communication skills may lead to
+        the inability to maintain professional and personal relationships. With, this
+        study aims to investigate and determine whether there is a statistically significant
+        correlation between students majoring in the humanities and social sciences
+        and their level of proficiency in social academic communication skills. This
+        correlational study is delimited to thirty (30) students under Humanities
+        and Social Sciences strand at a higher educational institution residing at
+        the City of San Fernando, Pampanga, Philippines. The researchers of this study
+        have utilized random sampling technique in selecting the respondents. The
+        data of the assessment and survey questionnaires gathered from the respondents
+        were evaluated using descriptive statistics. It is revealed through this study
+        that there is a positive inclination among students for active participation
+        in various group discussions, emphasizing the significance of collaborative
+        learning experiences. Students perceive the connection between communication
+        skills and success within their respective academic strands, indicating the
+        perceived impact of effective communication on academic achievement. Additionally,
+        it is recommended for some humanities and social sciences students to consider
+        interpersonal interaction. This recommendation may lead to the improvement
+        of knowledge, attending extracurricular performances, understanding textbooks,
+        and using qualitative techniques such as interviewing to understand students''
+        experiences and barriers to communication."}, "custom_fields": {"journal:journal":
+        {"title": "Ignatian International Journal for Multidisciplinary Research",
+        "issue": "4", "volume": "2", "pages": "884-896", "issn": "2984 9942"}, "kcr:commons_domain":
+        "hcommons.org", "kcr:submitter_email": "research@ignatianph.com", "kcr:submitter_username":
+        "ignatian", "kcr:commons_search_recid": "obr5I5MBBD81R6G3uqwb", "kcr:commons_search_updated":
+        "2024-11-13T05:23:09.255031+00:00", "kcr:notes": "APA citation:\n\nPabustan,
+        K. V., Sunga, S. J. P., Pingul, C. T., Miranda, A. R. Y., Marcaida, J. L.
+        M., Luzung, M. A. C., & Acebes, R. J. (2024). HUMSS AS THE CHOSEN STRAND AND
+        ITS INFLUENCE ON THE STUDENTS'' COMMUNICATION SKILLS. Ignatian International
+        Journal for Multidisciplinary Research, 2(4), 884\u2013896. https://doi.org/10.5281/zenodo.10984470",
+        "kcr:user_defined_tags": ["Communication", "Senior High School", "Communication
+        Skills", "Socio-Academic Skills"], "hclegacy:collection": "hccollection:1",
+        "hclegacy:file_location": "/srv/www/commons/current/web/app/uploads/humcore/2024/04/o_1hrlirp47g9a110egpl1gr2hlh7.pdf.humss-as-the-chosen-strand-and-its-influence-on-the-students-communication-skills.pdf",
+        "hclegacy:file_pid": "hc:65200", "hclegacy:previously_published": "published",
+        "hclegacy:record_change_date": "2024-04-17T08:33:35Z", "hclegacy:record_creation_date":
+        "2024-04-17T08:33:35Z", "hclegacy:submitter_org_memberships": ["hc"], "hclegacy:submitter_affiliation":
+        "Ignatian International Journal for Multidisciplinary Research", "hclegacy:submitter_id":
+        "1055069", "hclegacy:total_views": 1, "hclegacy:total_downloads": 1, "hclegacy:groups_for_deposit":
+        [{"group_name": "Ignatian International Journal for Multidisciplinary Research",
+        "group_identifier": "1004282"}]}, "access": {"record": "public", "files":
+        "public", "embargo": {"active": false, "reason": null}, "status": "open"},
+        "files": {"enabled": true, "order": [], "count": 1, "total_bytes": 230574,
+        "entries": {"humss-as-the-chosen-strand-and-its-influence-on-the-students-communication-skills.pdf":
+        {"id": "7b08cb9b-1f77-4fb1-bb2c-e6afbdefbba2", "checksum": "md5:8bc0308e2dddf227e79c3e5889b46e49",
+        "ext": "pdf", "size": 230574, "mimetype": "application/pdf", "storage_class":
+        "L", "key": "humss-as-the-chosen-strand-and-its-influence-on-the-students-communication-skills.pdf",
+        "metadata": {}, "access": {"hidden": false}, "links": {"self": "https://works.hcommons.org/api/records/zqk4g-vqe13/files/humss-as-the-chosen-strand-and-its-influence-on-the-students-communication-skills.pdf",
+        "content": "https://works.hcommons.org/api/records/zqk4g-vqe13/files/humss-as-the-chosen-strand-and-its-influence-on-the-students-communication-skills.pdf/content",
+        "iiif_canvas": "https://works.hcommons.org/api/iiif/record:zqk4g-vqe13/canvas/humss-as-the-chosen-strand-and-its-influence-on-the-students-communication-skills.pdf",
+        "iiif_base": "https://works.hcommons.org/api/iiif/record:zqk4g-vqe13:humss-as-the-chosen-strand-and-its-influence-on-the-students-communication-skills.pdf",
+        "iiif_info": "https://works.hcommons.org/api/iiif/record:zqk4g-vqe13:humss-as-the-chosen-strand-and-its-influence-on-the-students-communication-skills.pdf/info.json",
+        "iiif_api": "https://works.hcommons.org/api/iiif/record:zqk4g-vqe13:humss-as-the-chosen-strand-and-its-influence-on-the-students-communication-skills.pdf/full/full/0/default.png"}}}},
+        "media_files": {"enabled": false, "order": [], "count": 0, "total_bytes":
+        0, "entries": {}}, "status": "published", "deletion_status": {"is_deleted":
+        false, "status": "P"}, "stats": {"this_version": {"views": 34496, "unique_views":
+        25187, "downloads": 21348, "unique_downloads": 15201, "data_volume": 4922293752.0},
+        "all_versions": {"views": 34496, "unique_views": 25187, "downloads": 21348,
+        "unique_downloads": 15201, "data_volume": 4922293752.0}}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' ''unsafe-inline'' fonts.googleapis.com https://khan.github.io/tota11y/dist/tota11y.min.js
+        blob: None vpc-kcworks-prod-search-canodx6j7on7lncxcp4allkq5e.us-east-1.es.amazonaws.com
+        hcommons.org *.hcommons.org works.hcommons.org works.kcommons.org *.hcommons.org
+        *.kcommons.org host.docker.internal https://s3.amazonaws.com/knowledge-commons-works/
+        https://www.google-analytics.com/g/; img-src ''self'' data: blob: None vpc-kcworks-prod-search-canodx6j7on7lncxcp4allkq5e.us-east-1.es.amazonaws.com
+        hcommons.org *.hcommons.org works.hcommons.org works.kcommons.org *.hcommons.org
+        *.kcommons.org host.docker.internal https://s3.amazonaws.com/knowledge-commons-works/;
+        script-src-elem ''self'' hcommons.org *.hcommons.org works.hcommons.org works.kcommons.org
+        *.hcommons.org *.kcommons.org host.docker.internal www.googletagmanager.com
+        ''unsafe-inline''; font-src ''self'' data: fonts.gstatic.com'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 24 Jul 2026 10:58:25 GMT
+      ETag:
+      - W/"11"
+      Link:
+      - <https://works.hcommons.org/api/records/zqk4g-vqe13> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '60'
+      Server:
+      - nginx/1.27.4
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-RateLimit-Limit:
+      - '200'
+      X-RateLimit-Remaining:
+      - '199'
+      X-RateLimit-Reset:
+      - '1784890766'
+      X-Request-ID:
+      - ebbff1b61b11750aca4641f92b0daf4d
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
