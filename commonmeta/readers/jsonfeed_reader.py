@@ -36,6 +36,7 @@ from ..utils import (
     compact,
     dict_to_spdx,
     from_jsonfeed,
+    get_identifier,
     issn_as_url,
     normalize_url,
     validate_ror,
@@ -156,12 +157,11 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
             "platform": platform,
         }
     )
-    cid = dig(container, "identifiers.0.identifier")
-    cid_type = dig(container, "identifiers.0.identifier_type")
+    community_url = get_identifier(container, "URL")
     publisher = (
         {"name": "Front Matter"}
         if is_rogue_scholar_doi(_id)
-        or (cid_type == "URL" and furl(cid).host == "rogue-scholar.org")
+        or (community_url and furl(community_url).host == "rogue-scholar.org")
         else None
     )
 

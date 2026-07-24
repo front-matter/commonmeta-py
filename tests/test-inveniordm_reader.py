@@ -367,6 +367,7 @@ def test_rogue_scholar():
     assert subject.date_published == "2025-09-27T08:53:26"
     assert subject.relations == [
         {"id": "https://doi.org/10.59350/sfw0f-2fe65", "type": "IsVersionOf"},
+        {"id": "https://doi.org/10.59350/musings", "type": "IsPartOf"},
     ]
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.funding_references is None
@@ -424,6 +425,7 @@ def test_rogue_scholar_with_citations():
         {"id": "https://doi.org/10.59350/4q8j1-1ap35", "type": "IsReferencedBy"},
         {"id": "https://doi.org/10.59350/jtzzf-jfz50", "type": "IsReferencedBy"},
         {"id": "https://doi.org/10.63485/enjv5-xh191", "type": "IsVersionOf"},
+        {"id": "https://doi.org/10.63485/oan", "type": "IsPartOf"},
     ]
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.funding_references is None

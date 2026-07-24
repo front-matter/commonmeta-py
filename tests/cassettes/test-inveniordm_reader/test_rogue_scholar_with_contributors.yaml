@@ -50,8 +50,8 @@ interactions:
         {"ids": ["19c501a7-647b-4a11-9f5e-cf400817cce3", "5c72edc3-b568-4c9c-9ca9-bda160e39eec",
         "d79fe364-6d96-40b6-b437-b93ca3493106", "f5585376-cf4d-4ba8-b423-16834e1f708f"],
         "default": "19c501a7-647b-4a11-9f5e-cf400817cce3", "entries": [{"id": "19c501a7-647b-4a11-9f5e-cf400817cce3",
-        "created": "2024-10-05T18:45:09.152768+00:00", "updated": "2026-07-23T05:10:06.639310+00:00",
-        "links": {}, "revision_id": 2315, "slug": "ropensci", "metadata": {"title":
+        "created": "2024-10-05T18:45:09.152768+00:00", "updated": "2026-07-24T06:05:31.692064+00:00",
+        "links": {}, "revision_id": 2350, "slug": "ropensci", "metadata": {"title":
         "rOpenSci - open tools for open science", "description": "Open Tools and R
         Packages for Open Science", "type": {"id": "blog"}, "website": "https://ropensci.org/blog"},
         "access": {"visibility": "public", "members_visibility": "public", "member_policy":
@@ -184,7 +184,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2026 06:10:35 GMT
+      - Fri, 24 Jul 2026 06:58:14 GMT
       Etag:
       - '"53"'
       Link:
@@ -194,7 +194,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '35'
+      - '60'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -210,13 +210,11 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '490'
+      - '495'
       X-Ratelimit-Reset:
-      - '1784787071'
+      - '1784876355'
       X-Xss-Protection:
       - 1; mode=block
-      content-length:
-      - '13807'
     status:
       code: 200
       message: OK

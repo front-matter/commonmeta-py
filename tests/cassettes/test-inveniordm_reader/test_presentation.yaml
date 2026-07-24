@@ -71,8 +71,6 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
-      content-length:
-      - '5218'
       content-security-policy:
       - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
         ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
@@ -80,7 +78,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Thu, 23 Jul 2026 06:10:34 GMT
+      - Fri, 24 Jul 2026 06:58:12 GMT
       etag:
       - W/"8"
       link:
@@ -90,7 +88,7 @@ interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '41'
+      - '60'
       server:
       - nginx
       strict-transport-security:
@@ -106,9 +104,9 @@ interactions:
       x-ratelimit-limit:
       - '133'
       x-ratelimit-remaining:
-      - '130'
+      - '132'
       x-ratelimit-reset:
-      - '1784787076'
+      - '1784876353'
       x-source:
       - api
       x-xss-protection:

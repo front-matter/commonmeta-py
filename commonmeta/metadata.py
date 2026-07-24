@@ -41,6 +41,7 @@ from .readers.datacite_xml_reader import read_datacite_xml
 from .readers.inveniordm_reader import (
     get_inveniordm,
     read_inveniordm,
+    read_inveniordm_parent,
 )
 from .readers.jsonfeed_reader import get_jsonfeed, read_jsonfeed
 from .readers.openalex_reader import (
@@ -144,6 +145,13 @@ class Metadata:
             data = string
         else:
             raise ValueError("No valid input found")
+
+        # InvenioRDM parent metadata (community DOI/ISSN, concept DOI/id) is not
+        # read by read_inveniordm; resolve it here from the chain object (record
+        # + parent) or the record itself and pass it through as kwargs.
+        if self.via == "inveniordm":
+            source = string if is_chain_object(string) else data
+            kwargs = {**read_inveniordm_parent(source), **kwargs}
 
         meta = self.read_metadata(data=data, **kwargs)
 

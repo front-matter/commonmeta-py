@@ -27,8 +27,8 @@ from ..base_utils import (
     wrap,
 )
 from ..constants import CM_TO_CR_CONTRIBUTOR_ROLES, CM_TO_CR_CREDIT_ROLES
-from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
-from ..utils import validate_url
+from ..doi_utils import doi_as_url, doi_from_url, is_rogue_scholar_doi, validate_doi
+from ..utils import get_identifier, issn_as_url, validate_url
 from .inveniordm_writer import push_inveniordm
 
 if TYPE_CHECKING:
@@ -858,9 +858,9 @@ def get_proceedings_metadata(obj) -> dict | None:
         "publication_date": get_publication_date(obj, media_type="online"),
     }
     # Crossref requires either <isbn> or <noisbn> in proceedings_metadata.
-    cid_type = dig(obj, "container.identifiers.0.identifier_type")
-    if cid_type == "ISBN":
-        proceedings_metadata["isbn"] = get_isbn(obj)
+    isbn = get_isbn(obj)
+    if isbn:
+        proceedings_metadata["isbn"] = isbn
     else:
         proceedings_metadata["noisbn"] = {"@reason": "simple_series"}
     return compact(proceedings_metadata)
@@ -1242,7 +1242,22 @@ def get_funding_references(obj) -> dict | None:
 
 def get_relations(obj) -> Dict | None:
     """get relations"""
-    if len(wrap(dig(obj, "relations"))) == 0:
+    relations = list(wrap(dig(obj, "relations")))
+    # For some types there is no place for the container identifier, so we use an IsPartOf relation
+    if dig(obj, "type") in ["Preprint", "BlogPost", "Poster", "Presentation", "Review"]:
+        identifier_dict = dig(obj, "container.identifiers.0", None) or {}
+        identifier = identifier_dict.get("identifier", None)
+        identifier_type = identifier_dict.get("identifier_type", None)
+        id = None
+        if identifier and identifier_type == "ISSN":
+            id = issn_as_url(identifier)
+        elif identifier and identifier_type == "DOI":
+            id = doi_as_url(identifier)
+        relation = {"id": id, "type": "IsPartOf"}
+        if id and relation not in relations:
+            relations.append(relation)
+
+    if len(relations) == 0:
         return None
 
     def format_relation(relation):
@@ -1287,7 +1302,13 @@ def get_relations(obj) -> Dict | None:
         if validate_doi(relation_id):
             identifier_type = "doi"
             _id = doi_from_url(relation_id)
-        elif f.host == "portal.issn.org" and obj.type in ["Preprint", "BlogPost"]:
+        elif f.host == "portal.issn.org" and obj.type in [
+            "Preprint",
+            "BlogPost",
+            "Poster",
+            "Presentation",
+            "Review",
+        ]:
             identifier_type = "issn"
             _id = f.path.segments[-1] if f.path.segments else None
         elif validate_url(relation_id) == "URL":
@@ -1309,9 +1330,7 @@ def get_relations(obj) -> Dict | None:
         }
 
     related_items = [
-        format_relation(i)
-        for i in dig(obj, "relations")
-        if format_relation(i) is not None
+        format_relation(i) for i in relations if format_relation(i) is not None
     ]
 
     if not related_items:
@@ -1371,11 +1390,9 @@ def get_doi_data(obj) -> dict | None:
 
 def get_isbn(obj, media_type: str | None = None) -> list[dict] | None:
     """get isbn. Returns array of objects with #text and @media_type."""
-    cid = dig(obj, "container.identifiers.0.identifier")
-    cid_type = dig(obj, "container.identifiers.0.identifier_type")
-    if cid_type != "ISBN" or cid is None:
+    isbn = get_identifier(dig(obj, "container"), "ISBN")
+    if isbn is None:
         return None
-    isbn = cid
     normalized_isbn = normalize_isbn_crossref(isbn)
     if normalized_isbn is None:
         return None
@@ -1420,17 +1437,8 @@ def normalize_isbn_crossref(isbn: str) -> str | None:
 
 
 def get_issn(obj):
-    """get issn"""
-    cid = dig(obj, "container.identifiers.0.identifier")
-    cid_type = dig(obj, "container.identifiers.0.identifier_type")
-    if cid_type == "ISSN":
-        return cid
-
-    for identifier in wrap(dig(obj, "identifiers")):
-        if identifier.get("identifier_type") == "ISSN":
-            return identifier.get("identifier")
-
-    return None
+    """get issn: the container ISSN, else a top-level ISSN identifier."""
+    return get_identifier(dig(obj, "container"), "ISSN") or get_identifier(obj, "ISSN")
 
 
 class CrossrefXMLClient:

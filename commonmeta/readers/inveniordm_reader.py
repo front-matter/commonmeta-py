@@ -29,6 +29,7 @@ from ..utils import (
     dict_to_spdx,
     from_inveniordm,
     get_language,
+    issn_as_url,
     normalize_doi,
     normalize_ror,
     normalize_url,
@@ -77,6 +78,30 @@ def get_inveniordm(pid: str, **kwargs) -> dict:
     if response.status_code != 200:
         return {"state": "not_found"}
     return response.json()
+
+
+def read_inveniordm_parent(record) -> dict:
+    """Read optional parent metadata from an InvenioRDM ``record``.
+
+    ``record`` may be a plain dict, a Record model, or a ``ChainObject``
+    (record + parent); ``dig`` handles all three. This is called by the caller
+    of :func:`read_inveniordm` (e.g. ``Metadata`` for a chain object) and the
+    result is passed through as kwargs — ``read_inveniordm`` itself never reads
+    the ``parent`` object, only the caller does.
+
+    - ``community_issn`` / ``community_doi``: the blog ISSN/DOI registered on the
+      community via the communities UI (preferred over the record-level fields).
+    - ``concept_doi`` / ``concept_id``: the parent/concept record used to build
+      version relationships.
+    """
+    parent = dig(record, "parent") or {}
+    community_fields = dig(parent, "communities.entries.0.custom_fields") or {}
+    return {
+        "community_issn": community_fields.get("rs:issn"),
+        "community_doi": community_fields.get("rs:doi"),
+        "concept_doi": dig(parent, "pids.doi.identifier"),
+        "concept_id": parent.get("id"),
+    }
 
 
 def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
@@ -149,9 +174,14 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         None,
     ) or strip_milliseconds(meta.get("updated", None))
 
-    # optional container metadata
-    issn = dig(meta, "custom_fields.journal:journal.issn")
-    journal_doi = dig(meta, "custom_fields.rs:doi")
+    # optional container metadata. The community DOI/ISSN is resolved by the
+    # caller with read_inveniordm_parent() and passed through kwargs (preferred);
+    # it is not always available, so fall back to the record-level custom_fields
+    # written by the inveniordm writer.
+    issn = kwargs.get("community_issn") or dig(
+        meta, "custom_fields.journal:journal.issn"
+    )
+    journal_doi = kwargs.get("community_doi") or dig(meta, "custom_fields.rs:doi")
     identifier = issn or journal_doi or None
     identifier_type = (
         ("ISSN" if issn else "DOI" if journal_doi else None) if identifier else None
@@ -198,6 +228,17 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                 **get_journal_pages(meta),
             }
         )
+    else:
+        container = compact(
+            {
+                "type": "Repository",
+                "identifiers": (
+                    [{"identifier": identifier, "identifier_type": identifier_type}]
+                    if identifier
+                    else None
+                ),
+            }
+        )
     description, additional_descriptions = get_descriptions(
         [
             dig(meta, "metadata.description"),
@@ -234,7 +275,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     relations += get_citations(wrap(dig(meta, "custom_fields.rs:citations")))
 
     explicit_parent_doi = kwargs.get("parent_doi", None)
-    nested_parent_doi = dig(meta, "parent.pids.doi.identifier")
+    nested_parent_doi = kwargs.get("concept_doi")
     own_doi = doi_as_url(meta.get("doi", None)) or doi_as_url(
         dig(meta, "pids.doi.identifier")
     )
@@ -269,13 +310,20 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                 "type": "IsVersionOf",
             }
         )
-    elif validate_prefix(_id) == "10.59350" and dig(meta, "parent.id"):
+    elif validate_prefix(_id) == "10.59350" and kwargs.get("concept_id"):
         relations.append(
             {
-                "id": doi_as_url(f"10.59350/{dig(meta, 'parent.id')}"),
+                "id": doi_as_url(f"10.59350/{kwargs.get('concept_id')}"),
                 "type": "IsVersionOf",
             }
         )
+
+    # Bibliographic IsPartOf: the blog's ISSN, else its registered DOI.
+    if is_rogue_scholar_doi(_id):
+        if issn is not None:
+            relations.append({"id": issn_as_url(issn), "type": "IsPartOf"})
+        elif journal_doi is not None:
+            relations.append({"id": journal_doi, "type": "IsPartOf"})
 
     funding_references = get_funding_references(wrap(dig(meta, "metadata.funding")))
     version = dig(meta, "metadata.version")
