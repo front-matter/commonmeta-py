@@ -258,7 +258,11 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             {"identifier": rid, "identifier_type": "Other", "scheme": "RID"}
         )
     language = dig(meta, "metadata.language") or dig(meta, "metadata.languages.0.id")
-    license_ = dig(meta, "metadata.rights.0.id") or dig(meta, "metadata.license.id")
+    license_ = (
+        dig(meta, "metadata.rights.0.id")
+        or dig(meta, "metadata.rights.0.title.en")
+        or dig(meta, "metadata.license.id")
+    )
     if license_:
         license_ = dict_to_spdx({"id": license_})
     subjects = get_subjects(
@@ -579,7 +583,10 @@ def format_identifier(identifier: dict) -> dict | None:
     elif scheme == "guid":
         identifier_type = "GUID"
     else:
-        identifier_type = None
+        # Unrecognized schemes (e.g. oai, hclegacy-pid) map to the "Other"
+        # catch-all; identifier_type is required by the schema, so emitting
+        # None here makes the record invalid.
+        identifier_type = "Other"
     return {
         "identifier": identifier.get("identifier"),
         "identifier_type": identifier_type,
