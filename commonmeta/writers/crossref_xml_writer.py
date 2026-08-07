@@ -621,9 +621,12 @@ def write_crossref_xml(metadata: Metadata) -> dict:
     # Convert metadata to Crossref XML structure (raises CrossrefError on failure)
     data = convert_crossref_xml(metadata)
 
-    # Check for existing validation errors early
-    if metadata.write_errors is not None:
-        raise CrossrefError(f"Validation errors in metadata: {metadata.write_errors}")
+    # Refuse to deposit a record that failed to validate when it was read.
+    # This gates on errors, not write_errors: write_errors is the outcome of
+    # the current Metadata.write() call, which resets it before dispatching
+    # here, so it is always None at this point.
+    if metadata.errors is not None:
+        raise CrossrefError(f"Validation errors in metadata: {metadata.errors}")
 
     # Use the marshmallow schema to dump the data
     schema = CrossrefXMLSchema()

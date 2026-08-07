@@ -2078,12 +2078,12 @@ def test_error_missing_doi():
     assert "DOI or URL missing for Crossref XML" in str(exc_info.value)
 
 
-def test_error_metadata_with_write_errors():
-    """Test error handling for metadata with existing write_errors"""
+def test_error_metadata_with_read_errors():
+    """Test error handling for metadata that failed to validate when read"""
     with pytest.raises(CrossrefError) as exc_info:
         string = "https://doi.org/10.1371/journal.pone.0000030"
         subject = Metadata(string)
-        subject.write_errors = "Some validation error"  # Set BEFORE calling write()
+        subject.errors = "Some validation error"  # Set BEFORE calling write()
         subject.write(to="crossref_xml")
 
     assert "Validation errors in metadata: Some validation error" in str(exc_info.value)

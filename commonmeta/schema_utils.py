@@ -126,10 +126,10 @@ def json_schema_errors(
     if schema == "crossref_xml":
         instance = normalize_xml_dict(instance)
 
-    # The commonmeta v1.0 schema validates an array of entities.
-    # Wrap a single-record dict in a list so it passes the top-level
+    # The commonmeta v1.0 and CSL-JSON schemas both validate an array of
+    # entities. Wrap a single-record dict in a list so it passes the top-level
     # "type": "array" check.
-    if schema == "commonmeta" and isinstance(instance, dict):
+    if schema in ("commonmeta", "csl") and isinstance(instance, dict):
         instance = [instance]
 
     validator = _json_validator(schema)

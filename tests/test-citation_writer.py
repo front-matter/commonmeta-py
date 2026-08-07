@@ -142,3 +142,29 @@ def test_epijats_reference():
         subject.write(to="citation").decode("utf-8")
         == "Daniel, S., Venkateswaran, C., Hutchinson, A.&amp; Johnson, M. (2021). 'I don't talk about my distress to others; I feel that I have to suffer my problems...' voices of indian women with breast cancer: a qualitative interview study. In <i>Support Care Cancer</i> (Vol. 29, Issue 5, pp. 2591–2600)."
     )
+
+
+def test_crossref2_json():
+    """crossref2.json"""
+    string = path.join(path.dirname(__file__), "fixtures", "crossref2.json")
+    subject = Metadata(string, via="crossref")
+    print(subject.errors)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.1234/example.2024.001"
+    assert subject.type == "JournalArticle"
+    assert (
+        subject.write(to="citation", style="apa").decode("utf-8")
+        == "Smith, A.&amp; Johnson, B. (2024). Effects of Climate Change on Marine Ecosystems. <i>Journal of Environmental Science</i>, <i>42</i>(3), 123–145. https://doi.org/10.1234/example.2024.001"
+    )
+    assert (
+        subject.write(to="citation", style="chicago-author-date").decode("utf-8")
+        == "Smith, A.and B. Johnson. 2024. “Effects of Climate Change on Marine Ecosystems”. <i>Journal of Environmental Science</i> 42 (3): 123–45. https://doi.org/10.1234/example.2024.001."
+    )
+    assert (
+        subject.write(to="citation", style="ieee").decode("utf-8")
+        == "[1]A. Smith and B. Johnson, “Effects of Climate Change on Marine Ecosystems”, <i>Journal of Environmental Science</i>, vol. 42, no. 3, pp. 123–145, Jun. 2024, doi: 10.1234/example.2024.001."
+    )
+    assert (
+        subject.write(to="citation", style="vancouver-nlm").decode("utf-8")
+        == "1.Smith A, Johnson B. Effects of Climate Change on Marine Ecosystems. Journal of Environmental Science. 2024Jun15;42(3):123–45. doi:10.1234/example.2024.001"
+    )

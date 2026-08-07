@@ -83,6 +83,10 @@ from .writers.ris_writer import write_ris, write_ris_list
 from .writers.ror_writer import write_ror
 from .writers.schema_org_writer import write_schema_org, write_schema_org_list
 
+# States where there is no resolved resource to validate, so the record is
+# neither valid nor a schema error.
+UNRESOLVED_STATES = ("not_found", "forbidden", "bad_request", "timeout")
+
 
 # pylint: disable=R0902
 class Metadata:
@@ -229,15 +233,21 @@ class Metadata:
         # surface. MetadataList passes it for bulk conversion; see _validate.
         self.errors = meta.get("errors", None) or (
             json_schema_errors(write_commonmeta(self) or {})
-            if self._validate
-            and meta.get("state", None)
-            not in ["not_found", "forbidden", "bad_request", "timeout"]
+            if self._validate and meta.get("state", None) not in UNRESOLVED_STATES
             else None
         )
         self.write_errors = None
+        self._set_validity()
+
+    def _set_validity(self) -> None:
+        """Recompute is_valid from the current read and write errors.
+
+        Called after every validation rather than latching is_valid to False,
+        so a failed write doesn't mark the record invalid for the rest of its
+        life; write_errors always describes the most recent write.
+        """
         self.is_valid = (
-            meta.get("state", None)
-            not in ["not_found", "forbidden", "bad_request", "timeout"]
+            getattr(self, "state", None) not in UNRESOLVED_STATES
             and self.errors is None
             and self.write_errors is None
         )
@@ -318,16 +328,11 @@ class Metadata:
         # same reason as the work branch above: one validation per record.
         self.errors = meta.get("errors", None) or (
             json_schema_errors(write_commonmeta(self) or {})
-            if self._validate
-            and state not in ["not_found", "forbidden", "bad_request", "timeout"]
+            if self._validate and state not in UNRESOLVED_STATES
             else None
         )
         self.write_errors = None
-        self.is_valid = (
-            state not in ["not_found", "forbidden", "bad_request", "timeout"]
-            and self.errors is None
-            and self.write_errors is None
-        )
+        self._set_validity()
 
     def get_metadata(self, pid, string) -> dict:
         """Get metadata from various sources based on pid or string input."""
@@ -519,6 +524,12 @@ class Metadata:
 
     def write(self, to: str = "commonmeta", **kwargs) -> bytes | None:
         """convert metadata list into different formats"""
+        # write_errors describes this call only. Writers gate on it
+        # (write_csl_item, write_citation_item) and write() is re-entrant -
+        # write(to="citation") calls write(to="csl") internally - so without a
+        # reset the first failing write would silently turn every later write
+        # on this record into an error string.
+        self.write_errors = None
         # JSON-based output formats
         if to in [
             "commonmeta",
@@ -551,8 +562,7 @@ class Metadata:
             # record itself doesn't have.
             if to not in ("crossref", "commonmeta", "ror", "orcid"):
                 self.write_errors = json_schema_errors(output, schema=to)
-                if self.write_errors is not None:
-                    self.is_valid = False
+                self._set_validity()
             if output is None:
                 return b"{}"
             return json.dumps(output)
