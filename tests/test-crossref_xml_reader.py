@@ -779,7 +779,7 @@ def test_dataset():
     assert subject.license is None
     assert subject.dates is None
     assert subject.date_published.startswith("2006-01")
-    assert subject.date_updated.startswith("2025-05")
+    assert subject.date_updated.startswith("2026-08")
     assert subject.publisher == {
         "name": "Worldwide Protein Data Bank",
     }
