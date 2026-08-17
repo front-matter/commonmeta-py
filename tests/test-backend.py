@@ -5,6 +5,9 @@ tests that need the extra skip when it isn't installed, so the suite stays green
 on a plain `pip install commonmeta-py` and on Python 3.9.
 """
 
+import json
+import os
+
 import pytest
 
 from commonmeta.backend import (
@@ -283,3 +286,122 @@ def test_orcid_reads_from_people_table_offline(monkeypatch, tmp_path):
     assert subject.entity_type == "person"
     assert subject.id == orcid_url
     assert subject.name == "Cameron Neylon"
+
+
+# ── The cache store: read after the main store, written after a fetch ─────────
+
+
+def test_resolve_cache_db_path_precedence(monkeypatch, tmp_path):
+    """Explicit path, then CACHE_DB, then the per-user data directory."""
+    from commonmeta.backend import resolve_cache_db_path
+
+    monkeypatch.setenv("CACHE_DB", str(tmp_path / "from-env.sqlite3"))
+    assert resolve_cache_db_path(str(tmp_path / "explicit.sqlite3")).endswith(
+        "explicit.sqlite3"
+    )
+    assert resolve_cache_db_path().endswith("from-env.sqlite3")
+
+    monkeypatch.delenv("CACHE_DB")
+    assert resolve_cache_db_path().endswith("commonmeta/cache.sqlite3")
+
+
+_CROSSREF_MESSAGE = {
+    "DOI": "10.5555/cached",
+    "type": "journal-article",
+    "title": ["A Cached Article"],
+    "author": [{"given": "Josiah", "family": "Carberry"}],
+    "via": "crossref",
+}
+
+
+@needs_backend
+def test_read_falls_back_to_the_cache_store(monkeypatch, tmp_path):
+    """A pid missing from the main store is served from the cache."""
+    from commonmeta import Metadata
+
+    cache = str(tmp_path / "cache.sqlite3")
+    require_backend().upsert_pid_records(
+        [("10.5555/cached", 1, json.dumps(_CROSSREF_MESSAGE))], cache
+    )
+    monkeypatch.setenv("COMMONMETA_DB", str(tmp_path / "absent.sqlite3"))
+    monkeypatch.setenv("CACHE_DB", cache)
+
+    subject = Metadata("https://doi.org/10.5555/cached", no_network=True)
+
+    assert subject.via == "commonmeta"
+    assert subject.title == "A Cached Article"
+
+
+@needs_backend
+def test_fetch_is_written_to_the_cache_store(monkeypatch, tmp_path):
+    """What had to be fetched is cached, so the next read is local."""
+    import commonmeta.metadata as metadata_module
+    from commonmeta import Metadata
+
+    cache = str(tmp_path / "cache.sqlite3")
+    monkeypatch.setenv("COMMONMETA_DB", str(tmp_path / "absent.sqlite3"))
+    monkeypatch.setenv("CACHE_DB", cache)
+    monkeypatch.setattr(
+        metadata_module, "get_crossref", lambda pid, **kwargs: dict(_CROSSREF_MESSAGE)
+    )
+
+    fetched = Metadata("https://doi.org/10.5555/cached")
+    assert fetched.title == "A Cached Article"
+
+    # the second read needs neither the network nor the patched fetcher
+    monkeypatch.setattr(
+        metadata_module,
+        "get_crossref",
+        lambda pid, **kwargs: pytest.fail("fetched again instead of reading the cache"),
+    )
+    assert Metadata("https://doi.org/10.5555/cached", no_network=True).via == "commonmeta"
+
+
+@needs_backend
+def test_orcid_fetch_is_cached_as_xml(monkeypatch, tmp_path):
+    """ORCID is fetched and cached as the record XML the store keeps."""
+    from conformance_common import fixture_path, read_text
+
+    import commonmeta.metadata as metadata_module
+    from commonmeta import Metadata
+
+    orcid = "0000-0002-0068-716X"
+    xml = read_text(fixture_path("orcid_xml", f"{orcid}.xml"))
+    cache = str(tmp_path / "cache.sqlite3")
+    monkeypatch.setenv("COMMONMETA_DB", str(tmp_path / "absent.sqlite3"))
+    monkeypatch.setenv("CACHE_DB", cache)
+    monkeypatch.setattr(metadata_module, "get_orcid_xml", lambda pid, **kwargs: xml)
+
+    subject = Metadata(f"https://orcid.org/{orcid}")
+    assert subject.entity_type == "person"
+    assert subject.family_name == "Neylon"
+    # affiliations are why the XML reader is used rather than the person JSON
+    assert subject.affiliations
+
+    # cached as XML under the ORCID source id, so the store reads it back
+    stored = require_backend().read_person_commonmeta_sqlite(orcid, cache)
+    assert json.loads(stored)[0]["family_name"] == "Neylon"
+
+    monkeypatch.setattr(
+        metadata_module,
+        "get_orcid_xml",
+        lambda pid, **kwargs: pytest.fail("fetched again instead of reading the cache"),
+    )
+    assert Metadata(f"https://orcid.org/{orcid}", no_network=True).family_name == "Neylon"
+
+
+@needs_backend
+def test_an_unwritable_cache_does_not_fail_the_read(monkeypatch, tmp_path):
+    """The cache is an accelerator: a write it cannot do is not an error."""
+    import commonmeta.metadata as metadata_module
+    from commonmeta import Metadata
+
+    monkeypatch.setenv("COMMONMETA_DB", str(tmp_path / "absent.sqlite3"))
+    monkeypatch.setenv("CACHE_DB", str(tmp_path / "no-such-directory" / "cache.sqlite3"))
+    monkeypatch.setattr(
+        metadata_module, "get_crossref", lambda pid, **kwargs: dict(_CROSSREF_MESSAGE)
+    )
+
+    subject = Metadata("https://doi.org/10.5555/cached")
+
+    assert subject.title == "A Cached Article"

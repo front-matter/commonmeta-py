@@ -28,6 +28,13 @@ from .schema_utils import COMMONMETA_SCHEMA_URI
 # and ORCID persons, so reads can be served from it offline.
 DB_PATH_ENV = "COMMONMETA_DB"
 
+# Environment override for the cache store, matching commonmeta-rs' CACHE_DB.
+# The store above is a corpus someone imports; the cache is written as records
+# are fetched, so a record that was missing is served locally the next time.
+# Deployments that mount the store read-only have to point this somewhere
+# writable.
+CACHE_DB_PATH_ENV = "CACHE_DB"
+
 # commonmeta-rs builds against the stable ABI from 3.14 on (abi3-py314), so it
 # cannot be installed below that. commonmeta-py itself keeps a 3.9 floor: the
 # library serves InvenioRDM, the backend serves operators running corpus-scale
@@ -103,6 +110,21 @@ def resolve_db_path(explicit: str | None = None) -> str:
     if env:
         return env
     return os.path.join(_data_dir(), "commonmeta.sqlite3")
+
+
+def resolve_cache_db_path(explicit: str | None = None) -> str:
+    """Resolve the local commonmeta cache SQLite database path.
+
+    Precedence, mirroring commonmeta-rs' ``resolve_cache_db_path``: an explicit
+    path, then the ``CACHE_DB`` environment variable, then
+    ``<data_dir>/commonmeta/cache.sqlite3``.
+    """
+    if explicit:
+        return explicit
+    env = os.environ.get(CACHE_DB_PATH_ENV)
+    if env:
+        return env
+    return os.path.join(_data_dir(), "cache.sqlite3")
 
 
 def backend_available() -> bool:

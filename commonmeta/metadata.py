@@ -13,9 +13,11 @@ from .backend import (
     BackendError,
     backend_available,
     require_backend,
+    resolve_cache_db_path,
     resolve_db_path,
 )
 from .base_utils import dig, parse_xml, wrap
+from .doi_utils import doi_from_url
 from .io_utils import write_output
 from .readers.bibtex_reader import read_bibtex
 from .readers.cff_reader import get_cff, read_cff
@@ -48,8 +50,8 @@ from .readers.openalex_reader import (
     get_openalex,
     read_openalex,
 )
-from .readers.orcid_reader import get_orcid, read_orcid
-from .readers.orcid_xml_reader import parse_orcid_xml, read_orcid_xml
+from .readers.orcid_reader import read_orcid
+from .readers.orcid_xml_reader import get_orcid_xml, parse_orcid_xml, read_orcid_xml
 from .readers.ris_reader import read_ris
 from .readers.ror_reader import get_ror, read_ror
 from .readers.schema_org_reader import (
@@ -57,7 +59,14 @@ from .readers.schema_org_reader import (
     read_schema_org,
 )
 from .schema_utils import json_schema_errors, xml_schema_errors
-from .utils import find_entity_type, find_from_format, is_chain_object, normalize_id
+from .utils import (
+    find_entity_type,
+    find_from_format,
+    is_chain_object,
+    normalize_id,
+    validate_orcid,
+    validate_ror,
+)
 from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
 from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
@@ -86,6 +95,12 @@ from .writers.schema_org_writer import write_schema_org, write_schema_org_list
 # States where there is no resolved resource to validate, so the record is
 # neither valid nor a schema error.
 UNRESOLVED_STATES = ("not_found", "forbidden", "bad_request", "timeout")
+
+# Sources a fetched record can be cached as, keyed by the reader that fetched
+# it, with the source ids the transport store uses. Each is cached in the shape
+# the store keeps: JSON for Crossref, DataCite and ROR, and the record XML the
+# API serves for ORCID.
+_CACHE_SOURCE_IDS = {"crossref": 1, "datacite": 2, "ror": 3, "orcid": 4}
 
 
 # pylint: disable=R0902
@@ -349,17 +364,26 @@ class Metadata:
         raise ValueError("No metadata found")
 
     def _read_pid_from_backend(self, pid, via) -> dict[str, Any] | None:
-        """Try the local SQLite store (Rust backend) before any network fetch.
+        """Try the local SQLite stores (Rust backend) before any network fetch.
 
-        Returns a record dict for the matching reader, or ``None`` when the
-        backend or database is unavailable or the record is not stored. DOI/URL
-        inputs come back already converted to commonmeta (``via`` is switched to
-        ``"commonmeta"``); ROR and ORCID come back as their raw upstream JSON,
-        which ``read_ror`` / ``read_orcid`` then convert. Never touches network.
+        The imported store is read first, then the cache written by earlier
+        fetches. Returns a record dict for the matching reader, or ``None`` when
+        the backend and both databases are unavailable or the record is in
+        neither. DOI/URL inputs come back already converted to commonmeta
+        (``via`` is switched to ``"commonmeta"``); ROR and ORCID come back as
+        their raw upstream JSON, which ``read_ror`` / ``read_orcid`` then
+        convert. Never touches network.
         """
         if not backend_available():
             return None
-        db = resolve_db_path()
+        for db in (resolve_db_path(), resolve_cache_db_path()):
+            record = self._read_pid_from_store(pid, via, db)
+            if record is not None:
+                return record
+        return None
+
+    def _read_pid_from_store(self, pid, via, db) -> dict[str, Any] | None:
+        """Read one PID from one SQLite store, or None when it is not there."""
         if not os.path.exists(db):
             return None
         backend = require_backend()
@@ -386,9 +410,10 @@ class Metadata:
     def _get_metadata_from_pid(self, pid, via) -> dict[str, Any]:
         """Helper method to get metadata from a PID.
 
-        Reads from the local SQLite store first when the Rust backend is
+        Reads from the local SQLite stores first when the Rust backend is
         installed and a database exists; only on a miss does it fetch over the
-        network. Under ``no_network`` a miss raises instead of fetching.
+        network, writing what it fetched to the cache store so the next read is
+        local. Under ``no_network`` a miss raises instead of fetching.
         """
         record = self._read_pid_from_backend(pid, via)
         if record is not None:
@@ -406,29 +431,74 @@ class Metadata:
                 "or drop --no-network."
             )
         if via == "schema_org":
-            return get_schema_org(pid)
+            record = get_schema_org(pid)
         elif via == "datacite":
-            return get_datacite(pid)
+            record = get_datacite(pid)
         elif via in ["crossref", "op"]:
-            return get_crossref(pid)
+            record = get_crossref(pid)
         elif via == "crossref_xml":
-            return get_crossref_xml(pid)
+            record = get_crossref_xml(pid)
         elif via == "codemeta":
-            return get_codemeta(pid)
+            record = get_codemeta(pid)
         elif via == "cff":
-            return get_cff(pid)
+            record = get_cff(pid)
         elif via == "jsonfeed":
-            return get_jsonfeed(pid)
+            record = get_jsonfeed(pid)
         elif via == "inveniordm":
-            return get_inveniordm(pid)
+            record = get_inveniordm(pid)
         elif via == "openalex":
-            return get_openalex(pid)
+            record = get_openalex(pid)
         elif via == "ror":
-            return get_ror(pid)
+            record = get_ror(pid)
         elif via == "orcid":
-            return get_orcid(pid)
+            # fetched as the record XML the store keeps, so it can be cached
+            # verbatim, and read by the XML reader that carries affiliations
+            xml = get_orcid_xml(pid)
+            if xml is None:
+                return {"state": "not_found"}
+            self._write_pid_to_cache(pid, via, xml)
+            self.via = "orcid_xml"
+            return parse_orcid_xml(xml) or {"state": "not_found"}
         else:
             return {"pid": pid}
+        self._write_pid_to_cache(pid, via, record)
+        return record
+
+    def _write_pid_to_cache(self, pid, via, record) -> None:
+        """Write a record that had to be fetched to the cache store.
+
+        ``record`` is the payload as the provider served it: a dict for the JSON
+        sources, or the record XML for ORCID, which is the shape the store keeps
+        for each.
+
+        The cache is an accelerator, so anything that makes a write impossible -
+        no backend, a read-only or unwritable path, a provider that returned
+        nothing - leaves it unwritten rather than failing the read. Only the
+        sources the store has a reader for are cached, keyed by the bare PID the
+        transport store uses.
+        """
+        source_id = _CACHE_SOURCE_IDS.get(via)
+        if source_id is None or not record:
+            return
+        if isinstance(record, dict) and record.get("state", None) == "not_found":
+            return
+        if not backend_available():
+            return
+        backend = require_backend()
+        if not hasattr(backend, "upsert_pid_records"):
+            # commonmeta-rs older than 0.9.76 cannot write the transport store
+            return
+        key = doi_from_url(pid) or validate_ror(pid) or validate_orcid(pid) or pid
+        try:
+            if isinstance(record, str):
+                raw = record
+            else:
+                # orjson serializes to bytes; the binding takes payloads as text
+                stripped = {k: v for k, v in record.items() if k != "via"}
+                raw = json.dumps(stripped).decode("utf-8")
+            backend.upsert_pid_records([(key, source_id, raw)], resolve_cache_db_path())
+        except Exception:
+            return
 
     def _get_metadata_from_string(self, string, via) -> dict[str, Any]:
         """Helper method to get metadata from a string."""

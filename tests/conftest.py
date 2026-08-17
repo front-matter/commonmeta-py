@@ -22,6 +22,9 @@ def _isolate_backend_db(monkeypatch, tmp_path):
     fall through to their recorded network behavior.
     """
     monkeypatch.setenv("COMMONMETA_DB", str(tmp_path / "absent.sqlite3"))
+    # The cache store is read on a miss and written after a fetch, so it needs
+    # the same isolation: a developer machine has a populated cache.sqlite3.
+    monkeypatch.setenv("CACHE_DB", str(tmp_path / "absent-cache.sqlite3"))
 
 
 def _drop_encoding_headers(response):

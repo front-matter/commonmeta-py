@@ -10,9 +10,31 @@ carries employments and educations, which become the person's affiliations.
 
 from __future__ import annotations
 
+import requests
+
 from ..base_utils import compact, dig, parse_xml, presence, wrap
 from ..constants import ORCID_TO_CM_AFFILIATION_TYPES, Commonmeta
+from ..utils import validate_orcid
 from .orcid_reader import display_name, format_identifier
+
+
+def get_orcid_xml(pid: str | None, **kwargs) -> str | None:
+    """Fetch an ORCID record by ORCID ID or URL as XML, or None when absent.
+
+    The XML the API serves is what the local SQLite store keeps, so a record
+    fetched this way can be cached verbatim; :func:`parse_orcid_xml` turns it
+    into the dict :func:`read_orcid_xml` reads.
+    """
+    orcid = validate_orcid(pid)
+    if orcid is None:
+        return None
+    url = f"https://pub.orcid.org/v3.0/{orcid}/record"
+    response = requests.get(
+        url, headers={"Accept": "application/xml"}, timeout=10, **kwargs
+    )
+    if response.status_code != 200:
+        return None
+    return response.text
 
 
 def parse_orcid_xml(string: str | bytes | None) -> dict | None:
