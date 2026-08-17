@@ -6,7 +6,6 @@ on a plain `pip install commonmeta-py` and on Python 3.9.
 """
 
 import json
-import os
 
 import pytest
 
@@ -136,12 +135,23 @@ def test_convert_reads_from_local_store_offline(monkeypatch, tmp_path):
 
     db = str(tmp_path / "store.sqlite3")
     doi = "https://doi.org/10.5555/offline-hit"
-    record = {
-        "id": doi,
-        "type": "JournalArticle",
-        "schema_version": COMMONMETA_SCHEMA_URI,
-    }
-    require_backend().write_sqlite([record], db)
+    # the store holds raw provider records; commonmeta is derived on read
+    require_backend().upsert_pid_records(
+        [
+            (
+                "10.5555/offline-hit",
+                1,
+                json.dumps(
+                    {
+                        "DOI": "10.5555/offline-hit",
+                        "type": "journal-article",
+                        "title": ["An Offline Hit"],
+                    }
+                ),
+            )
+        ],
+        db,
+    )
     monkeypatch.setenv("COMMONMETA_DB", db)
 
     subject = Metadata(doi, no_network=True)
@@ -159,8 +169,8 @@ def test_convert_offline_miss_raises(monkeypatch, tmp_path):
     from commonmeta.backend import BackendError
 
     db = str(tmp_path / "store.sqlite3")
-    require_backend().write_sqlite(
-        [{"id": "https://doi.org/10.5555/present", "type": "JournalArticle"}], db
+    require_backend().upsert_pid_records(
+        [("10.5555/present", 1, json.dumps({"DOI": "10.5555/present"}))], db
     )
     monkeypatch.setenv("COMMONMETA_DB", db)
 
@@ -185,10 +195,8 @@ def test_get_doi_ra_uses_prefix_cache(monkeypatch, tmp_path):
     from commonmeta import doi_utils
 
     db = str(tmp_path / "store.sqlite3")
-    # write_sqlite creates the database file so use_cache is enabled
-    require_backend().write_sqlite(
-        [{"id": "https://doi.org/10.5555/seed", "type": "JournalArticle"}], db
-    )
+    # the prefixes cache needs the database file to exist
+    require_backend().open_pid_records_writer(db)
     require_backend().store_doi_ra_sqlite("10.7554/elife.01567", "Crossref", db)
     monkeypatch.setenv("COMMONMETA_DB", db)
 
@@ -205,9 +213,7 @@ def test_get_doi_ra_no_network_miss_returns_none(monkeypatch, tmp_path):
     from commonmeta import doi_utils
 
     db = str(tmp_path / "store.sqlite3")
-    require_backend().write_sqlite(
-        [{"id": "https://doi.org/10.5555/seed", "type": "JournalArticle"}], db
-    )
+    require_backend().open_pid_records_writer(db)
     monkeypatch.setenv("COMMONMETA_DB", db)
 
     def _no_http(*args, **kwargs):
@@ -223,9 +229,7 @@ def test_get_doi_ra_caches_after_fetch(monkeypatch, tmp_path):
     from commonmeta import doi_utils
 
     db = str(tmp_path / "store.sqlite3")
-    require_backend().write_sqlite(
-        [{"id": "https://doi.org/10.5555/seed", "type": "JournalArticle"}], db
-    )
+    require_backend().open_pid_records_writer(db)
     monkeypatch.setenv("COMMONMETA_DB", db)
 
     calls = []
@@ -251,40 +255,28 @@ def test_get_doi_ra_caches_after_fetch(monkeypatch, tmp_path):
 
 
 @needs_backend
-def test_orcid_reads_from_people_table_offline(monkeypatch, tmp_path):
-    """An ORCID in the local people table is served offline via the backend.
+def test_orcid_reads_from_the_store_offline(monkeypatch, tmp_path):
+    """An ORCID in the local store is served offline via the backend.
 
-    convert <orcid> checks the SQLite people table first and only falls back to
-    the ORCID API when the record is absent (and --no-network isn't set).
+    convert <orcid> checks the store first and only falls back to the ORCID API
+    when the record is absent (and --no-network isn't set). ORCID records live
+    in the transport table under source id 4, as the record XML the API serves.
     """
-    import json
-    import sqlite3
-
-    import zstandard
+    from conformance_common import fixture_path, read_text
 
     from commonmeta import Metadata
 
     db = str(tmp_path / "store.sqlite3")
-    orcid_url = "https://orcid.org/0000-0002-0068-716X"
-    person = {
-        "path": "/0000-0002-0068-716X/person",
-        "name": {
-            "given-names": {"value": "Cameron"},
-            "family-name": {"value": "Neylon"},
-        },
-    }
-    blob = zstandard.ZstdCompressor().compress(json.dumps(person).encode())
-    con = sqlite3.connect(db)
-    con.execute("CREATE TABLE people (id TEXT PRIMARY KEY, metadata BLOB)")
-    con.execute("INSERT INTO people (id, metadata) VALUES (?, ?)", (orcid_url, blob))
-    con.commit()
-    con.close()
+    orcid = "0000-0002-0068-716X"
+    require_backend().upsert_pid_records(
+        [(orcid, 4, read_text(fixture_path("orcid_xml", f"{orcid}.xml")))], db
+    )
     monkeypatch.setenv("COMMONMETA_DB", db)
 
-    subject = Metadata("0000-0002-0068-716X", via="orcid", no_network=True)
+    subject = Metadata(orcid, via="orcid", no_network=True)
     assert subject.is_valid
     assert subject.entity_type == "person"
-    assert subject.id == orcid_url
+    assert subject.id == f"https://orcid.org/{orcid}"
     assert subject.name == "Cameron Neylon"
 
 

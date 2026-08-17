@@ -17,8 +17,6 @@ import json
 import pytest
 from conformance_common import fixture_path
 
-from commonmeta.schema_utils import COMMONMETA_SCHEMA_URI
-
 commonmeta_rs = pytest.importorskip("commonmeta_rs")
 
 # argv[0] is the program name (clap's get_matches_from convention).
@@ -74,13 +72,16 @@ def test_run_cli_convert_from_sqlite_offline(monkeypatch, tmp_path, capfd):
     """
     db = str(tmp_path / "store.sqlite3")
     doi = "https://doi.org/10.5555/rs-cli-offline"
-    commonmeta_rs.write_sqlite(
+    # the store holds raw provider records; commonmeta is derived on read
+    commonmeta_rs.upsert_pid_records(
         [
-            {
-                "id": doi,
-                "type": "JournalArticle",
-                "schema_version": COMMONMETA_SCHEMA_URI,
-            }
+            (
+                "10.5555/rs-cli-offline",
+                1,
+                json.dumps(
+                    {"DOI": "10.5555/rs-cli-offline", "type": "journal-article"}
+                ),
+            )
         ],
         db,
     )
