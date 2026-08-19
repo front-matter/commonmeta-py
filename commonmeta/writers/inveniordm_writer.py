@@ -192,7 +192,7 @@ def write_inveniordm(metadata: Metadata) -> dict:
                     "description": metadata.description,
                     "rights": (
                         [{"id": metadata.license.get("id").lower()}]
-                        if metadata.license.get("id", None)
+                        if metadata.license and metadata.license.get("id", None)
                         else None
                     ),
                     "languages": (
