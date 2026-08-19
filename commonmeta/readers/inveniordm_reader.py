@@ -275,8 +275,15 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             wrap(dig(meta, "metadata.related_identifiers"))
         )
     relations = get_relations(wrap(dig(meta, "metadata.related_identifiers")))
-    # citing works are represented as IsReferencedBy relations
-    relations += get_citations(wrap(dig(meta, "custom_fields.rs:citations")))
+    # Citing works are represented as IsReferencedBy relations. The field was
+    # renamed rs:citations -> pidbox:citations; records deposited before the
+    # rename still carry the old name, so read either.
+    relations += get_citations(
+        wrap(
+            dig(meta, "custom_fields.pidbox:citations")
+            or dig(meta, "custom_fields.rs:citations")
+        )
+    )
 
     explicit_parent_doi = kwargs.get("parent_doi", None)
     nested_parent_doi = kwargs.get("concept_doi")
@@ -391,8 +398,9 @@ def get_references(references: list) -> list:
 
 
 def get_citations(citations: list) -> list:
-    """Convert citing works (custom_fields.rs:citations) to IsReferencedBy
-    relations, unifying citations into relations."""
+    """Convert citing works (custom_fields.pidbox:citations, or the legacy
+    rs:citations) to IsReferencedBy relations, unifying citations into
+    relations."""
 
     def get_citation(citation: dict) -> dict | None:
         if not isinstance(citation, dict):

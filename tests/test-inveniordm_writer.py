@@ -646,7 +646,8 @@ def test_from_jsonfeed_citations():
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/dcw3y-7em87"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert dig(inveniordm, "metadata.title") == "Use of CiTO in CiteULike"
-    # citations are now represented as IsReferencedBy relations, not rs:citations
+    # citations are now represented as IsReferencedBy relations, written to
+    # custom_fields.pidbox:citations
     # assert len(citations) == 2
     # assert citations[0] == {
     #     "identifier": "10.1007/s11192-013-1108-3",
@@ -921,3 +922,31 @@ def test_upsert_record_falls_back_to_guid():
     # The existing record id was found via GUID and used for the update path
     assert result["id"] == existing_id
     assert result["status"] == "published"
+
+
+def test_citations_written_to_pidbox_field():
+    """IsReferencedBy relations are written to custom_fields.pidbox:citations."""
+    record = {
+        "id": "fktsh-g4g95",
+        "pids": {"doi": {"identifier": "10.53731/kdqkf-nf052"}},
+        "metadata": {
+            "title": "Test",
+            "publication_date": "2024-01-01",
+            "resource_type": {"id": "blogpost"},
+            "creators": [],
+        },
+        # deposited under the legacy name; the writer emits the new one
+        "custom_fields": {
+            "rs:citations": [{"identifier": "10.59350/4q8j1-1ap35", "scheme": "doi"}]
+        },
+    }
+    subject = Metadata(record, via="inveniordm")
+    output = subject.write(to="inveniordm")
+    assert output is not None
+    inveniordm = json.loads(output)
+    # no license on this record: rights is omitted rather than raising
+    assert dig(inveniordm, "metadata.rights") is None
+    assert dig(inveniordm, "custom_fields.pidbox:citations") == [
+        {"identifier": "10.59350/4q8j1-1ap35", "scheme": "doi"}
+    ]
+    assert dig(inveniordm, "custom_fields.rs:citations") is None

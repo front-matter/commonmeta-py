@@ -812,3 +812,35 @@ def test_version_relation_no_self_reference():
     record = _version_record("10.53731/kdqkf-nf052", "10.53731/kdqkf-nf052")
     subject = Metadata(record, via="inveniordm")
     assert all(r["type"] != "IsVersionOf" for r in (subject.relations or []))
+
+
+def _citations_record(field: str) -> dict:
+    """Minimal InvenioRDM record carrying citations in the given custom field."""
+    record = _version_record("10.53731/kdqkf-nf052", "10.53731/kdqkf-nf052")
+    record["custom_fields"] = {
+        field: [{"identifier": "10.59350/4q8j1-1ap35", "scheme": "doi"}]
+    }
+    return record
+
+
+@pytest.mark.parametrize("field", ["pidbox:citations", "rs:citations"])
+def test_citations_custom_field(field):
+    """Citations are read from pidbox:citations and the legacy rs:citations."""
+    subject = Metadata(_citations_record(field), via="inveniordm")
+    assert {
+        "id": "https://doi.org/10.59350/4q8j1-1ap35",
+        "type": "IsReferencedBy",
+    } in subject.relations
+
+
+def test_citations_prefers_pidbox_over_legacy():
+    """When a record carries both names, pidbox:citations wins."""
+    record = _citations_record("pidbox:citations")
+    record["custom_fields"]["rs:citations"] = [
+        {"identifier": "10.59350/jtzzf-jfz50", "scheme": "doi"}
+    ]
+    subject = Metadata(record, via="inveniordm")
+    citations = [r for r in subject.relations if r["type"] == "IsReferencedBy"]
+    assert citations == [
+        {"id": "https://doi.org/10.59350/4q8j1-1ap35", "type": "IsReferencedBy"}
+    ]

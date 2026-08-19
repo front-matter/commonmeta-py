@@ -97,7 +97,8 @@ def write_inveniordm(metadata: Metadata) -> dict:
     )
     references = [to_inveniordm_reference(i) for i in wrap(metadata.references)]
     # IsReferencedBy relations are citing works: their home is
-    # custom_fields.rs:citations, not related_identifiers (mirrors the reader).
+    # custom_fields.pidbox:citations, not related_identifiers (mirrors the
+    # reader, which also still accepts the legacy rs:citations name).
     related_identifiers = [
         to_inveniordm_related_identifier(i)
         for i in wrap(metadata.relations)
@@ -228,7 +229,7 @@ def write_inveniordm(metadata: Metadata) -> dict:
                         if container.get("platform")
                         else None
                     ),
-                    "rs:citations": presence(citations),
+                    "pidbox:citations": presence(citations),
                 }
             ),
         }
@@ -430,8 +431,8 @@ def to_inveniordm_related_identifier(relation: dict) -> dict | None:
 
 
 def to_inveniordm_citation(relation: dict) -> dict | None:
-    """Convert an IsReferencedBy relation to a custom_fields.rs:citations entry
-    (the inverse of the reader's ``get_citations``)."""
+    """Convert an IsReferencedBy relation to a custom_fields.pidbox:citations
+    entry (the inverse of the reader's ``get_citations``)."""
     if normalize_doi(relation.get("id", None)):
         return {"identifier": doi_from_url(relation.get("id", None)), "scheme": "doi"}
     if normalize_url(relation.get("id", None)):
