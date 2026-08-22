@@ -594,7 +594,7 @@ def test_doi_with_sici():
     assert len(subject.references) == 39
     assert subject.references[-1] == {
         "key": "i0012-9658-87-11-2832-ydenberg1",
-        "reference": "R. C. Ydenberg, 1998 .Behavioral decisions about foraging and predator avoidance .Pages343 -378inR. Dukas, editorCognitive ecology: the evolutionary ecology of information processing and decision making University of Chicago Press, Chicago, Illinois, USA.",
+        "reference": "R. C. Ydenberg, 1998 .Behavioral decisions about foraging and predator avoidance .Pages343 -378\n                      in\n                      R. Dukas, editorCognitive ecology: the evolutionary ecology of information processing and decision making University of Chicago Press, Chicago, Illinois, USA.",
     }
     assert subject.funding_references is None
     assert subject.container == {
