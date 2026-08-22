@@ -47,6 +47,39 @@ if TYPE_CHECKING:
 
 log = logging.getLogger(__name__)
 
+# The fields `write_inveniordm` owns. A record may carry further fields written by
+# another pipeline; those are left alone and ignored when comparing records.
+INVENIORDM_METADATA_FIELDS = frozenset(
+    {
+        "resource_type",
+        "creators",
+        "contributors",
+        "title",
+        "publisher",
+        "publication_date",
+        "dates",
+        "subjects",
+        "description",
+        "rights",
+        "languages",
+        "identifiers",
+        "references",
+        "related_identifiers",
+        "funding",
+        "version",
+    }
+)
+INVENIORDM_CUSTOM_FIELDS = frozenset(
+    {
+        "journal:journal",
+        "rs:doi",
+        "rs:content_html",
+        "rs:image",
+        "rs:generator",
+        "pidbox:citations",
+    }
+)
+
 
 def write_inveniordm(metadata: Metadata) -> dict:
     """Write inveniordm"""
@@ -599,7 +632,13 @@ def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict
                 metadata.relations.pop(community_index)
 
         # upsert record via the InvenioRDM API
-        record = upsert_record(metadata, host, token, record)
+        record = upsert_record(
+            metadata,
+            host,
+            token,
+            record,
+            skip_unchanged=kwargs.get("skip_unchanged", True),
+        )
 
         # optionally add record to InvenioRDM communities
         record = add_record_to_communities(metadata, host, token, record)
@@ -644,6 +683,7 @@ def upsert_record(
     host: str,
     token: str,
     record: dict,
+    skip_unchanged: bool = True,
 ) -> dict:
     """Upsert InvenioRDM record, based on DOI"""
 
@@ -678,11 +718,22 @@ def upsert_record(
         # Update new version
         record = update_draft_record(record, host, token, output)
     elif record.get("id", None) is not None:
+        # Update draft record with new metadata (except PIDs which should not be updated)
+        update_output = {k: v for k, v in output.items() if k != "pids"}
+
+        # Publishing an unchanged record still writes a new revision and moves its
+        # updated timestamp, so leave the record alone when it already matches.
+        if skip_unchanged:
+            published = get_published_record(record["id"], host, token)
+            if published is not None and record_matches(update_output, published):
+                record["created"] = published.get("created", None)
+                record["updated"] = published.get("updated", None)
+                record["status"] = "unchanged"
+                return record
+
         # Create draft record from published record
         record = edit_published_record(record, host, token)
 
-        # Update draft record with new metadata (except PIDs which should not be updated)
-        update_output = {k: v for k, v in output.items() if k != "pids"}
         record = update_draft_record(record, host, token, update_output)
     else:
         # Create draft record for DOI that is external or needs to be registered
@@ -817,6 +868,82 @@ def reserve_doi(record: dict, host: str, token: str) -> dict:
         )
         record["status"] = "error_reserve_doi"
         return record
+
+
+def get_published_record(record_id: str, host: str, token: str) -> dict | None:
+    """Read a published record from InvenioRDM"""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    try:
+        response = http.get(f"https://{host}/api/records/{record_id}", headers=headers)
+        if response.status_code == 429:
+            log.warning(f"Rate limit exceeded while reading record {record_id}")
+            return None
+        response.raise_for_status()
+        return response.json()
+    except RequestException as e:
+        log.error(f"Error reading record {record_id}: {str(e)}", exc_info=True)
+        return None
+
+
+def _first_difference(sent, stored, path: str = "") -> str | None:
+    """Return the path of the first value not already stored, None if all of them are.
+
+    InvenioRDM expands vocabulary entries on read, e.g. `{"id": "eng"}` comes back
+    as `{"id": "eng", "title": {"en": "English"}}`, so a stored dict is allowed to
+    hold more keys than were sent.
+    """
+    if isinstance(sent, dict):
+        if not isinstance(stored, dict):
+            return path
+        for key, value in sent.items():
+            child = f"{path}.{key}" if path else key
+            if key not in stored:
+                return child
+            difference = _first_difference(value, stored[key], child)
+            if difference is not None:
+                return difference
+        return None
+    if isinstance(sent, list):
+        if not isinstance(stored, list) or len(sent) != len(stored):
+            return path
+        for index, (a, b) in enumerate(zip(sent, stored)):
+            difference = _first_difference(a, b, f"{path}[{index}]")
+            if difference is not None:
+                return difference
+        return None
+    return None if sent == stored else path
+
+
+def record_matches(output: dict, published: dict) -> bool:
+    """Check whether a published record already holds the metadata to be written.
+
+    Republishing writes a new revision even when nothing changed, so this decides
+    whether the edit/update/publish cycle can be skipped. Uncertainty resolves to
+    False: writing an unchanged record is wasteful, skipping a changed one is a bug.
+    The field that ruled out a match is logged, since a value normalised server-side
+    would otherwise quietly rule out every record.
+    """
+    record_id = published.get("id", None)
+    for section, owned in (
+        ("metadata", INVENIORDM_METADATA_FIELDS),
+        ("custom_fields", INVENIORDM_CUSTOM_FIELDS),
+    ):
+        sent = output.get(section) or {}
+        stored = published.get(section) or {}
+        # a field that is no longer written but still stored has to be cleared
+        for field in owned:
+            if field not in sent and presence(stored.get(field)) is not None:
+                log.debug(f"Record {record_id} clears {section}.{field}")
+                return False
+
+    difference = _first_difference(output, published)
+    if difference is not None:
+        log.debug(f"Record {record_id} differs at {difference}")
+        return False
+    return True
 
 
 def edit_published_record(record: dict, host: str, token: str) -> dict:

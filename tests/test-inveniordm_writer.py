@@ -9,7 +9,7 @@ import pytest
 
 from commonmeta import Metadata
 from commonmeta.base_utils import dig
-from commonmeta.writers.inveniordm_writer import upsert_record
+from commonmeta.writers.inveniordm_writer import record_matches, upsert_record
 
 
 @pytest.mark.vcr
@@ -895,6 +895,10 @@ def test_upsert_record_falls_back_to_guid():
             return_value=existing_id,
         ) as mock_guid,
         patch(
+            "commonmeta.writers.inveniordm_writer.get_published_record",
+            return_value=None,
+        ),
+        patch(
             "commonmeta.writers.inveniordm_writer.edit_published_record",
             side_effect=lambda r, *a: {**r, "status": "edited"},
         ),
@@ -922,6 +926,165 @@ def test_upsert_record_falls_back_to_guid():
     # The existing record id was found via GUID and used for the update path
     assert result["id"] == existing_id
     assert result["status"] == "published"
+
+
+# The metadata a record is upserted with, and the record InvenioRDM returns for it:
+# vocabulary entries come back expanded, and the record carries server-side fields.
+UPSERT_OUTPUT = {
+    "access": {"record": "public", "files": "public"},
+    "files": {"enabled": False},
+    "metadata": {
+        "resource_type": {"id": "blogpost"},
+        "creators": [{"person_or_org": {"name": "Fenner, Martin", "type": "personal"}}],
+        "title": "Test",
+        "publication_date": "2024-01-01",
+        "languages": [{"id": "eng"}],
+    },
+    "custom_fields": {"rs:content_html": "<p>Test</p>"},
+}
+PUBLISHED_RECORD = {
+    "id": "fktsh-g4g95",
+    "created": "2024-01-01T00:00:00+00:00",
+    "updated": "2024-01-02T00:00:00+00:00",
+    "revision_id": 4,
+    "links": {"self": "https://rogue-scholar.org/api/records/fktsh-g4g95"},
+    "access": {
+        "record": "public",
+        "files": "public",
+        "embargo": {"active": False},
+        "status": "metadata-only",
+    },
+    "files": {"enabled": False, "entries": {}, "count": 0},
+    "metadata": {
+        "resource_type": {"id": "blogpost", "title": {"en": "Blog post"}},
+        "creators": [{"person_or_org": {"name": "Fenner, Martin", "type": "personal"}}],
+        "title": "Test",
+        "publication_date": "2024-01-01",
+        "languages": [{"id": "eng", "title": {"en": "English"}}],
+    },
+    "custom_fields": {"rs:content_html": "<p>Test</p>"},
+}
+
+
+def test_record_matches_an_unchanged_record():
+    "a record holding the same metadata matches, despite expanded vocabularies"
+    assert record_matches(UPSERT_OUTPUT, PUBLISHED_RECORD) is True
+
+
+@pytest.mark.parametrize(
+    "change",
+    [
+        {"metadata": {**UPSERT_OUTPUT["metadata"], "title": "Another title"}},
+        {"custom_fields": {"rs:content_html": "<p>Edited</p>"}},
+        # a field that is newly written
+        {"custom_fields": {**UPSERT_OUTPUT["custom_fields"], "rs:image": "img.png"}},
+        # a field that is no longer written and has to be cleared
+        {"custom_fields": {}},
+    ],
+)
+def test_record_matches_a_changed_record(change):
+    "any change to a field the writer owns is detected"
+    assert record_matches({**UPSERT_OUTPUT, **change}, PUBLISHED_RECORD) is False
+
+
+def test_record_matches_ignores_foreign_fields():
+    "fields written by another pipeline are left alone"
+    published = {
+        **PUBLISHED_RECORD,
+        "custom_fields": {**PUBLISHED_RECORD["custom_fields"], "feed:updated": "2024"},
+    }
+    assert record_matches(UPSERT_OUTPUT, published) is True
+
+
+def test_record_matches_a_longer_list():
+    "an appended list entry is a change, not a superset"
+    published = {
+        **PUBLISHED_RECORD,
+        "metadata": {
+            **PUBLISHED_RECORD["metadata"],
+            "languages": [{"id": "eng"}, {"id": "deu"}],
+        },
+    }
+    assert record_matches(UPSERT_OUTPUT, published) is False
+
+
+@pytest.mark.vcr("test_from_jsonfeed.yaml")
+def test_upsert_record_skips_an_unchanged_record():
+    "an unchanged record is not republished, since that writes a new revision"
+    string = "https://api.rogue-scholar.org/posts/10.59350/dn2mm-m9q51"
+    subject = Metadata(string)
+    assert subject.is_valid
+
+    record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
+    # what the writer is about to send, as InvenioRDM would return it
+    output = json.loads(subject.write(to="inveniordm"))
+    published = {
+        "id": "fktsh-g4g95",
+        "created": "2024-01-01T00:00:00+00:00",
+        "updated": "2024-01-02T00:00:00+00:00",
+        **{k: v for k, v in output.items() if k != "pids"},
+    }
+
+    with (
+        patch(
+            "commonmeta.writers.inveniordm_writer.search_by_doi",
+            return_value="fktsh-g4g95",
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.get_published_record",
+            return_value=published,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.edit_published_record"
+        ) as mock_edit,
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record"
+        ) as mock_update,
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record"
+        ) as mock_publish,
+    ):
+        result = upsert_record(subject, "rogue-scholar.org", "token", record)
+
+    assert result["status"] == "unchanged"
+    assert result["updated"] == "2024-01-02T00:00:00+00:00"
+    mock_edit.assert_not_called()
+    mock_update.assert_not_called()
+    mock_publish.assert_not_called()
+
+
+@pytest.mark.vcr("test_from_jsonfeed.yaml")
+def test_upsert_record_skip_unchanged_can_be_turned_off():
+    "skip_unchanged=False forces the republish of a record that did not change"
+    string = "https://api.rogue-scholar.org/posts/10.59350/dn2mm-m9q51"
+    subject = Metadata(string)
+    record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
+
+    with (
+        patch(
+            "commonmeta.writers.inveniordm_writer.search_by_doi",
+            return_value="fktsh-g4g95",
+        ),
+        patch("commonmeta.writers.inveniordm_writer.get_published_record") as mock_read,
+        patch(
+            "commonmeta.writers.inveniordm_writer.edit_published_record",
+            side_effect=lambda r, *a: {**r, "status": "edited"},
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "updated"},
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "published"},
+        ),
+    ):
+        result = upsert_record(
+            subject, "rogue-scholar.org", "token", record, skip_unchanged=False
+        )
+
+    assert result["status"] == "published"
+    mock_read.assert_not_called()
 
 
 def test_citations_written_to_pidbox_field():
