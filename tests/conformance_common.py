@@ -210,6 +210,22 @@ def reader_pairs(
     return pairs
 
 
+def utils_cases(name: str) -> list[dict]:
+    """Load a shared helper-fixture case list from ``fixtures/utils``.
+
+    These describe helper behaviour (encode_doi, decode_doi) rather than record
+    conversion, so they carry their own expectations instead of pairing an
+    input with a golden commonmeta file.
+    """
+    with open(fixture_path("utils", name), encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def case_id(case: dict) -> str:
+    """Parametrize id for a utils fixture case."""
+    return case.get("id", "case")
+
+
 def writer_pairs(expected_subdir: str, out_ext: str = "json") -> list[tuple[str, str]]:
     """(commonmeta_input_path, expected_output_path) pairs where both exist."""
     pairs = []

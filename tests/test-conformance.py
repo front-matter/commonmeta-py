@@ -14,11 +14,13 @@ commonmeta-rs golden output and xfails (documenting the diff) when it diverges.
 """
 
 import json
+import re
 
 import pytest
 from conformance_common import (
     assert_golden_or_xfail,
     canonical_commonmeta_value,
+    case_id,
     collect_json,
     convert,
     convert_or_xfail,
@@ -27,9 +29,11 @@ from conformance_common import (
     pair_id,
     read_text,
     reader_pairs,
+    utils_cases,
     writer_pairs,
 )
 
+from commonmeta.doi_utils import decode_doi, encode_doi
 from commonmeta.utils import find_entity_type
 from commonmeta.writers.commonmeta_writer import collapse_whitespace
 
@@ -242,6 +246,39 @@ def test_commonmeta_to_bibtex_golden(pair):
     actual = convert_or_xfail("commonmeta", "bibtex", read_text(input_path))
     if actual != expected:
         pytest.xfail("BibTeX output diverges from commonmeta-rs golden")
+
+
+# --- shared helper fixtures (strict) ---
+#
+# fixtures/utils describes encode_doi/decode_doi behaviour rather than record
+# conversion, so unlike the golden matrices these assert outright: the helpers
+# are shared with commonmeta-rs and a divergence is a bug, not a known gap.
+
+
+@pytest.mark.parametrize("case", utils_cases("decode_doi_cases.json"), ids=case_id)
+def test_decode_doi_cases(case):
+    assert decode_doi(case["doi"], checksum=case["checksum"]) == case["expected_number"]
+
+
+@pytest.mark.parametrize("case", utils_cases("encode_doi_cases.json"), ids=case_id)
+def test_encode_doi_cases(case):
+    doi = encode_doi(case["prefix"], case.get("number"), checksum=case["checksum"])
+
+    if "expected_doi" in case:
+        assert doi == case["expected_doi"]
+    if "expected_doi_prefix" in case:
+        assert doi.startswith(case["expected_doi_prefix"])
+    if "expected_suffix_pattern" in case:
+        suffix = doi.rsplit("/", maxsplit=1)[-1]
+        assert re.match(case["expected_suffix_pattern"], suffix), suffix
+
+    # the encoded DOI has to decode back; a random suffix only has to be nonzero
+    expected = case.get("expected_decoded_number")
+    decoded = decode_doi(doi, checksum=case["checksum"])
+    if expected == "nonzero":
+        assert decoded != 0
+    else:
+        assert decoded == expected
 
 
 # --- self-tests for the diff engine (strict) ---
