@@ -81,8 +81,14 @@ INVENIORDM_CUSTOM_FIELDS = frozenset(
 )
 
 
-def write_inveniordm(metadata: Metadata) -> dict:
-    """Write inveniordm"""
+def write_inveniordm(metadata: Metadata, files_enabled: bool = False) -> dict:
+    """Write inveniordm.
+
+    ``files_enabled`` turns on file support for the record. InvenioRDM refuses
+    to publish a record that has files enabled but none uploaded — "Missing
+    uploaded files" — so only pass it when the caller uploads file content
+    against the draft before publishing.
+    """
     if metadata is None or metadata.write_errors is not None:
         return {}
     if is_rogue_scholar_doi(metadata.id, ra="crossref"):
@@ -204,7 +210,7 @@ def write_inveniordm(metadata: Metadata) -> dict:
         {
             "pids": pids,
             "access": {"record": "public", "files": "public"},
-            "files": {"enabled": False},
+            "files": {"enabled": files_enabled},
             "metadata": compact(
                 {
                     "resource_type": {"id": _type},
@@ -583,7 +589,9 @@ def to_files(metadata: Metadata) -> list:
     return [format_file(i) for i in wrap(metadata.files)]
 
 
-def write_inveniordm_list(metalist: MetadataList) -> list | None:
+def write_inveniordm_list(
+    metalist: MetadataList, files_enabled: bool = False
+) -> list | None:
     """Write InvenioRDM list"""
 
     if metalist is None:
@@ -592,13 +600,23 @@ def write_inveniordm_list(metalist: MetadataList) -> list | None:
     def write_item(item) -> dict | None:
         """write inveniordm item for inveniordm list"""
 
-        return write_inveniordm(item)
+        return write_inveniordm(item, files_enabled=files_enabled)
 
     return [write_item(item) for item in metalist.items]
 
 
 def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict:
-    """Push record to InvenioRDM"""
+    """Push record to InvenioRDM.
+
+    Options:
+        previous_doi: the doi this record supersedes.
+        skip_unchanged: do not republish a record whose metadata is unchanged.
+            Defaults to True.
+        files_enabled: create the record with file support. InvenioRDM refuses
+            to publish a record that has files enabled but none uploaded, so
+            pass this only alongside uploading file content against the draft.
+            Defaults to False, which keeps records metadata-only.
+    """
 
     try:
         doi = normalize_doi(metadata.id)
@@ -638,6 +656,7 @@ def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict
             token,
             record,
             skip_unchanged=kwargs.get("skip_unchanged", True),
+            files_enabled=kwargs.get("files_enabled", False),
         )
 
         # optionally add record to InvenioRDM communities
@@ -684,10 +703,11 @@ def upsert_record(
     token: str,
     record: dict,
     skip_unchanged: bool = True,
+    files_enabled: bool = False,
 ) -> dict:
     """Upsert InvenioRDM record, based on DOI"""
 
-    output = write_inveniordm(metadata)
+    output = write_inveniordm(metadata, files_enabled=files_enabled)
 
     # Check if record already exists in InvenioRDM
     record["id"] = search_by_doi(doi_from_url(record.get("doi")), host, token)

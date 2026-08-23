@@ -1113,3 +1113,45 @@ def test_citations_written_to_pidbox_field():
         {"identifier": "10.59350/4q8j1-1ap35", "scheme": "doi"}
     ]
     assert dig(inveniordm, "custom_fields.rs:citations") is None
+
+
+def test_files_enabled_defaults_to_false():
+    """Records stay metadata-only unless a caller asks for files."""
+    from commonmeta.writers.inveniordm_writer import write_inveniordm
+
+    subject = Metadata("10.5281/zenodo.5244404", via="datacite")
+    assert write_inveniordm(subject)["files"] == {"enabled": False}
+
+
+def test_files_enabled_option():
+    """files_enabled turns on file support for the record."""
+    from commonmeta.writers.inveniordm_writer import write_inveniordm
+
+    subject = Metadata("10.5281/zenodo.5244404", via="datacite")
+    assert write_inveniordm(subject, files_enabled=True)["files"] == {"enabled": True}
+
+
+def test_push_inveniordm_forwards_files_enabled():
+    """push_inveniordm passes the option down to upsert_record."""
+    from commonmeta.writers import inveniordm_writer as w
+
+    subject = Metadata("10.5281/zenodo.5244404", via="datacite")
+    with patch.object(w, "upsert_record", return_value={}) as upsert, patch.object(
+        w, "add_record_to_communities", side_effect=lambda m, h, t, r: r
+    ), patch.object(w, "update_external_services", side_effect=lambda m, h, t, r, **k: r):
+        w.push_inveniordm(subject, "example.org", "token", files_enabled=True)
+
+    assert upsert.call_args.kwargs["files_enabled"] is True
+
+
+def test_push_inveniordm_defaults_files_enabled_to_false():
+    """Callers that say nothing keep metadata-only records."""
+    from commonmeta.writers import inveniordm_writer as w
+
+    subject = Metadata("10.5281/zenodo.5244404", via="datacite")
+    with patch.object(w, "upsert_record", return_value={}) as upsert, patch.object(
+        w, "add_record_to_communities", side_effect=lambda m, h, t, r: r
+    ), patch.object(w, "update_external_services", side_effect=lambda m, h, t, r, **k: r):
+        w.push_inveniordm(subject, "example.org", "token")
+
+    assert upsert.call_args.kwargs["files_enabled"] is False
