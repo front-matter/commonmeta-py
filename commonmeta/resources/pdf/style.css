@@ -1,0 +1,376 @@
+@font-face {
+  font-family: Fira Sans;
+  font-weight: 300;
+  src: url("fonts/FiraSans-Light.otf");
+}
+@font-face {
+  font-family: Fira Sans;
+  font-style: italic;
+  font-weight: 300;
+  src: url("fonts/FiraSans-LightItalic.otf");
+}
+@font-face {
+  font-family: Fira Sans;
+  font-weight: 500;
+  src: url("fonts/FiraSans-SemiBold.otf");
+}
+@font-face {
+  font-family: Fira Sans;
+  font-style: italic;
+  font-weight: 500;
+  src: url("fonts/FiraSans-SemiBoldItalic.otf");
+}
+@font-face {
+  font-family: Fira Sans;
+  font-weight: 700;
+  src: url("fonts/FiraSans-Bold.otf");
+}
+
+@page {
+  @top-left {
+    content: string(blog);
+    font-size: 12pt;
+    font-weight: 700;
+    margin-left: 0.2cm;
+    height: 1.2cm;
+    vertical-align: middle;
+  }
+  @bottom-right {
+    content: string(heading) " • Page " counter(page);
+    font-size: 9pt;
+    height: 1.2cm;
+    vertical-align: middle;
+  }
+}
+@page no-chapter {
+  @top-left {
+    background: none;
+  }
+  @bottom-right {
+    content: none;
+  }
+}
+@page chapter {
+  background: #bfdbfe;
+  margin: 0;
+  @top-left {
+    content: none;
+  }
+  @top-right {
+    content: none;
+  }
+}
+
+.header {
+  visibility: hidden;
+  display: inline;
+  margin: 0;
+  string-set: blog content();
+}
+
+html {
+  color: #393939;
+  font-family: Fira Sans;
+  font-size: 11pt;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+h1 {
+  color: #3b82f6;
+  font-size: 27pt;
+  line-height: 1.15;
+  page: no-chapter;
+  width: 100%;
+  string-set: heading content();
+  margin: 0;
+}
+h2,
+h3,
+h4 {
+  color: black;
+  font-weight: 500;
+  padding-bottom: 0;
+  padding-top: 12pt;
+  margin: 0;
+}
+h2,
+.footnote_reference_container_label {
+  margin-bottom: -4pt;
+  line-height: 1.15;
+  color: #3b82f6;
+  font-size: 18pt;
+  font-weight: 500;
+}
+h3 {
+  margin-bottom: -8pt;
+  font-weight: 500;
+  font-size: 14pt;
+}
+h4 {
+  font-weight: 500;
+  font-size: 11pt;
+}
+
+#cover {
+  align-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  height: 297mm;
+}
+#cover address {
+  background: #bfdbfe;
+  flex: 1 50%;
+  margin: 0 -2cm;
+  padding: 1cm 0;
+  white-space: pre-wrap;
+}
+#cover address:first-of-type {
+  padding-left: 3cm;
+}
+#contents {
+  break-before: right;
+  break-after: left;
+  page: no-chapter;
+}
+#contents h2 {
+  font-size: 20pt;
+  font-family: Fira Sans;
+  font-weight: 300;
+  margin-bottom: 3cm;
+}
+#contents h3 {
+  font-weight: 500;
+  margin: 3em 0 1em;
+}
+#contents h3::before {
+  background: #bfdbfe;
+  content: "";
+  display: block;
+  height: 0.08cm;
+  margin-bottom: 0.25cm;
+  width: 2cm;
+}
+#contents ul {
+  list-style: none;
+  padding-left: 0;
+}
+#contents ul li {
+  border-top: 0.25pt solid #c1c1c1;
+  margin: 0.25cm 0;
+  padding-top: 0.25cm;
+}
+#contents ul li::before {
+  color: #bfdbfe;
+  content: "• ";
+  font-size: 40pt;
+  line-height: 16pt;
+  vertical-align: bottom;
+}
+#contents ul li a {
+  color: inherit;
+  text-decoration-line: inherit;
+}
+#contents ul li a::before {
+  content: target-text(attr(href));
+}
+#contents ul li a::after {
+  color: #bfdbfe;
+  content: target-counter(attr(href), page);
+  float: right;
+}
+
+#chapter {
+  align-items: center;
+  display: flex;
+  height: 297mm;
+  justify-content: center;
+  page: chapter;
+}
+
+#typography section {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1cm 0;
+}
+#typography section h4 {
+  border-top: 1pt solid;
+  flex: 1 25%;
+  margin: 0;
+}
+#typography section h4 + * {
+  flex: 1 75%;
+  margin: 0;
+  padding-left: 0.5cm;
+}
+#typography section p {
+  text-align: justify;
+}
+#typography section ul {
+  line-height: 2;
+  list-style: none;
+}
+#typography section#small-caps p {
+  font-variant: small-caps;
+}
+#typography section#ligatures dl {
+  display: flex;
+  flex-wrap: wrap;
+}
+#typography section#ligatures dl dt {
+  font-weight: 300;
+  width: 30%;
+}
+#typography section#ligatures dl dd {
+  flex: 1 70%;
+  margin: 0;
+  padding: 0;
+}
+#typography section#ligatures .none {
+  font-variant-ligatures: none;
+}
+#typography section#ligatures .common {
+  font-variant-ligatures: common-ligatures;
+}
+#typography section#ligatures .discretionary {
+  font-variant-ligatures: discretionary-ligatures;
+}
+#typography section#ligatures .contextual {
+  font-variant-ligatures: contextual;
+}
+#typography section#numbers dl {
+  display: flex;
+  flex-wrap: wrap;
+}
+#typography section#numbers dl dt {
+  font-weight: 300;
+  width: 30%;
+}
+#typography section#numbers dl dd {
+  flex: 1 70%;
+  margin: 0;
+  padding: 0;
+}
+#typography section#numbers #fractions {
+  font-variant-numeric: diagonal-fractions;
+}
+#typography section#numbers #ordinals {
+  font-variant-numeric: ordinal;
+}
+#typography section#numbers #slashed {
+  font-variant-numeric: slashed-zero;
+}
+#typography section#numbers #super {
+  font-variant-position: super;
+}
+#typography section#numbers #sub {
+  font-variant-position: sub;
+}
+#typography section#figures dl {
+  columns: 4;
+}
+#typography section#figures dl dt {
+  font-weight: 300;
+}
+#typography section#figures dl dd {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+#typography section#figures dl dd ul {
+  padding: 0 1em 0 0;
+}
+#typography section#figures #oldstyle {
+  font-variant-numeric: oldstyle-nums;
+}
+#typography section#figures #tabular {
+  font-variant-numeric: tabular-nums;
+}
+#typography section#figures #old-tabular {
+  font-variant-numeric: oldstyle-nums tabular-nums;
+}
+.author,
+.date,
+.identifier {
+  margin: 0;
+}
+.date {
+  padding-top: 12pt;
+}
+.author span {
+  font-weight: 500;
+}
+.rights {
+  break-after: always;
+}
+a,
+.citation a {
+  text-decoration: none;
+  color: #3b82f6;
+}
+figure {
+  img {
+    max-width: 100%;
+  }
+  figcaption {
+    font-size: 9pt;
+  }
+}
+img {
+  max-width: 100%;
+}
+img.feature-image {
+  padding-top: 12pt;
+  max-width: 75%;
+  max-height: 8cm;
+}
+blockquote {
+  margin: 10px 0;
+  border-left: 3px solid #3b82f6;
+  padding-left: 10px;
+  font-style: italic;
+  font-family: Fira Sans;
+  font-weight: 300;
+}
+.copyright {
+  vertical-align: -1px;
+}
+ul {
+  padding: 0 11pt;
+  margin: 6pt;
+}
+ol {
+  padding: 0 11pt;
+  margin: 6pt;
+}
+code,
+pre {
+  @font-face {
+    font-family: Fira Mono;
+    font-weight: 300;
+    src: url("fonts/FiraMono-Regular.otf");
+  }
+}
+code {
+  font-size: 10pt;
+}
+pre {
+  display: block;
+  margin-bottom: 6pt;
+  margin-top: 6pt;
+  white-space: pre;
+}
+sup,
+sub {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+  font-size: 8pt;
+}
+sub {
+  top: 0.4em;
+}
+th,
+td {
+  vertical-align: top;
+}

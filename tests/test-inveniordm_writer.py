@@ -1191,3 +1191,64 @@ def test_push_inveniordm_defaults_write_pdf_to_false():
         w.push_inveniordm(subject, "example.org", "token")
 
     assert upsert.call_args.kwargs["write_pdf"] is False
+
+
+def test_pdf_resources_are_packaged():
+    """The pdf stylesheet and its fonts ship with the package."""
+    from pathlib import Path
+
+    import commonmeta
+
+    pdf_dir = Path(commonmeta.__file__).parent / "resources" / "pdf"
+    assert (pdf_dir / "style.css").is_file()
+
+    fonts = pdf_dir / "fonts"
+    expected = {
+        "FiraMono-Regular.otf",
+        "FiraSans-Bold.otf",
+        "FiraSans-Light.otf",
+        "FiraSans-LightItalic.otf",
+        "FiraSans-SemiBold.otf",
+        "FiraSans-SemiBoldItalic.otf",
+    }
+    assert expected <= {f.name for f in fonts.iterdir()}
+    # Fira Sans is SIL OFL 1.1, which requires the licence to travel with it
+    assert (fonts / "LICENSE").is_file()
+
+
+def test_pdf_stylesheet_font_urls_resolve():
+    """Every @font-face url points at a file that is actually shipped."""
+    import re
+    from pathlib import Path
+
+    import commonmeta
+
+    pdf_dir = Path(commonmeta.__file__).parent / "resources" / "pdf"
+    css = (pdf_dir / "style.css").read_text(encoding="utf-8")
+
+    urls = re.findall(r'src:\s*url\("([^"]+)"\)', css)
+    assert urls, "no @font-face src urls found"
+    for url in urls:
+        assert (pdf_dir / url).is_file(), f"{url} is referenced but not shipped"
+
+
+def test_pdf_stylesheet_has_no_stray_src_declarations():
+    """`src` outside @font-face is ignored by every css engine."""
+    import re
+    from pathlib import Path
+
+    import commonmeta
+
+    css = (
+        Path(commonmeta.__file__).parent / "resources" / "pdf" / "style.css"
+    ).read_text(encoding="utf-8")
+
+    depth_is_font_face = False
+    for line in css.split("\n"):
+        stripped = line.strip()
+        if stripped.startswith("@font-face"):
+            depth_is_font_face = True
+        elif stripped == "}":
+            depth_is_font_face = False
+        elif re.match(r"src:\s*url\(", stripped):
+            assert depth_is_font_face, f"stray src declaration: {stripped}"
