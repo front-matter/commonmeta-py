@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from ..metadata import Metadata
 
 
-def write_ror(metadata: Metadata | None) -> dict | None:
+def write_ror(metadata: Metadata | None, **kwargs) -> dict | None:
     """Write a commonmeta organization as a ROR v2 API record."""
     if metadata is None:
         return None

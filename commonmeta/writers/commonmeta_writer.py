@@ -22,7 +22,7 @@ def collapse_whitespace(text):
     return " ".join(re.split(r"\s+", text, flags=re.UNICODE)).strip()
 
 
-def write_commonmeta(metadata: Metadata | None) -> dict | None:
+def write_commonmeta(metadata: Metadata | None, **kwargs) -> dict | None:
     """Write commonmeta."""
     if metadata is None:
         return None

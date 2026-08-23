@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
 
 
-def write_csl(metadata: Metadata) -> dict | None:
+def write_csl(metadata: Metadata, **kwargs) -> dict | None:
     """Write CSL-JSON"""
     item = write_csl_item(metadata)
     return item

@@ -66,7 +66,7 @@ def _geo_locations_to_datacite(geo_locations: list | None) -> list | None:
     return presence(items)
 
 
-def write_datacite(metadata: Metadata) -> dict | None:
+def write_datacite(metadata: Metadata, **kwargs) -> dict | None:
     """Write datacite. Make sure JSON Schema validates before writing"""
     if metadata.write_errors is not None:
         return {"errors": metadata.write_errors}

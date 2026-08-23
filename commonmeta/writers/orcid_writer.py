@@ -29,7 +29,7 @@ if TYPE_CHECKING:
 _EDUCATION_PREFIX = "Education"
 
 
-def write_orcid(metadata: Metadata | None) -> dict | None:
+def write_orcid(metadata: Metadata | None, **kwargs) -> dict | None:
     """Write a commonmeta person as ORCID record JSON."""
     if metadata is None:
         return None

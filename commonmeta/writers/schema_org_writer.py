@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
 
 
-def write_schema_org(metadata: Metadata) -> dict:
+def write_schema_org(metadata: Metadata, **kwargs) -> dict:
     """Write schema.org"""
     container = metadata.container
     if metadata.type == "Dataset" and metadata.files is not None:

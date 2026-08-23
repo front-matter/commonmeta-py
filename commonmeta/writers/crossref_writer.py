@@ -334,7 +334,7 @@ def _to_cr_work(metadata: Metadata) -> dict:
     return work
 
 
-def write_crossref(metadata: Metadata | None) -> dict | None:
+def write_crossref(metadata: Metadata | None, **kwargs) -> dict | None:
     """Serialize a Metadata record as a Crossref REST API JSON response."""
     if metadata is None:
         return None

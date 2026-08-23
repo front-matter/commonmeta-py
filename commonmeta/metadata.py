@@ -621,7 +621,7 @@ class Metadata:
                 "ror": write_ror,
                 "orcid": write_orcid,
             }
-            output = writer_map[to](self)
+            output = writer_map[to](self, **kwargs)
             # "crossref", "ror" and "orcid" have no bundled JSON schema to
             # validate against. "commonmeta" is skipped because __init__ already
             # validated this record against the commonmeta schema and recorded

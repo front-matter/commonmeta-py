@@ -81,13 +81,15 @@ INVENIORDM_CUSTOM_FIELDS = frozenset(
 )
 
 
-def write_inveniordm(metadata: Metadata, files_enabled: bool = False) -> dict:
+def write_inveniordm(metadata: Metadata, write_pdf: bool = False, **kwargs) -> dict:
     """Write inveniordm.
 
-    ``files_enabled`` turns on file support for the record. InvenioRDM refuses
-    to publish a record that has files enabled but none uploaded — "Missing
-    uploaded files" — so only pass it when the caller uploads file content
-    against the draft before publishing.
+    ``write_pdf`` deposits a pdf rendition of the post as a record file, which
+    means the record is created with files enabled. It is ignored for records
+    with no content: ``rs:content_html`` is what the pdf is rendered from, and
+    InvenioRDM refuses to publish a record that has files enabled but none
+    uploaded ("Missing uploaded files"), so enabling files for a record that
+    cannot produce one would fail the publish.
     """
     if metadata is None or metadata.write_errors is not None:
         return {}
@@ -205,6 +207,11 @@ def write_inveniordm(metadata: Metadata, files_enabled: bool = False) -> dict:
                 seen_ids.add(subject_id)
 
     # files = to_files(metadata)
+
+    # Only enable files when a pdf will actually be produced. metadata.content
+    # is what becomes rs:content_html below, and the pdf is rendered from it;
+    # enabling files for a record that cannot produce one fails the publish.
+    files_enabled = bool(write_pdf and presence(metadata.content))
 
     return compact(
         {
@@ -590,7 +597,7 @@ def to_files(metadata: Metadata) -> list:
 
 
 def write_inveniordm_list(
-    metalist: MetadataList, files_enabled: bool = False
+    metalist: MetadataList, write_pdf: bool = False, **kwargs
 ) -> list | None:
     """Write InvenioRDM list"""
 
@@ -600,7 +607,7 @@ def write_inveniordm_list(
     def write_item(item) -> dict | None:
         """write inveniordm item for inveniordm list"""
 
-        return write_inveniordm(item, files_enabled=files_enabled)
+        return write_inveniordm(item, write_pdf=write_pdf)
 
     return [write_item(item) for item in metalist.items]
 
@@ -612,10 +619,10 @@ def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict
         previous_doi: the doi this record supersedes.
         skip_unchanged: do not republish a record whose metadata is unchanged.
             Defaults to True.
-        files_enabled: create the record with file support. InvenioRDM refuses
-            to publish a record that has files enabled but none uploaded, so
-            pass this only alongside uploading file content against the draft.
-            Defaults to False, which keeps records metadata-only.
+        write_pdf: deposit a pdf rendition of the post as a record file.
+            Ignored for records whose rs:content_html is empty, since that is
+            what the pdf is rendered from. Defaults to False, which keeps
+            records metadata-only.
     """
 
     try:
@@ -656,7 +663,7 @@ def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict
             token,
             record,
             skip_unchanged=kwargs.get("skip_unchanged", True),
-            files_enabled=kwargs.get("files_enabled", False),
+            write_pdf=kwargs.get("write_pdf", False),
         )
 
         # optionally add record to InvenioRDM communities
@@ -703,11 +710,11 @@ def upsert_record(
     token: str,
     record: dict,
     skip_unchanged: bool = True,
-    files_enabled: bool = False,
+    write_pdf: bool = False,
 ) -> dict:
     """Upsert InvenioRDM record, based on DOI"""
 
-    output = write_inveniordm(metadata, files_enabled=files_enabled)
+    output = write_inveniordm(metadata, write_pdf=write_pdf)
 
     # Check if record already exists in InvenioRDM
     record["id"] = search_by_doi(doi_from_url(record.get("doi")), host, token)

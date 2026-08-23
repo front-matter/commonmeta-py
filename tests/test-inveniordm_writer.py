@@ -1115,23 +1115,59 @@ def test_citations_written_to_pidbox_field():
     assert dig(inveniordm, "custom_fields.rs:citations") is None
 
 
-def test_files_enabled_defaults_to_false():
-    """Records stay metadata-only unless a caller asks for files."""
+def test_write_pdf_defaults_to_false():
+    """Records stay metadata-only unless a caller asks for a pdf."""
     from commonmeta.writers.inveniordm_writer import write_inveniordm
 
     subject = Metadata("10.5281/zenodo.5244404", via="datacite")
     assert write_inveniordm(subject)["files"] == {"enabled": False}
 
 
-def test_files_enabled_option():
-    """files_enabled turns on file support for the record."""
+def test_write_pdf_without_content_keeps_files_disabled():
+    """A record with no rs:content_html cannot produce a pdf.
+
+    Enabling files for it would fail the publish with "Missing uploaded files".
+    """
     from commonmeta.writers.inveniordm_writer import write_inveniordm
 
     subject = Metadata("10.5281/zenodo.5244404", via="datacite")
-    assert write_inveniordm(subject, files_enabled=True)["files"] == {"enabled": True}
+    assert not subject.content
+    assert write_inveniordm(subject, write_pdf=True)["files"] == {"enabled": False}
 
 
-def test_push_inveniordm_forwards_files_enabled():
+def test_write_pdf_with_content_enables_files():
+    """Content is what the pdf is rendered from, so files are enabled."""
+    from commonmeta.writers.inveniordm_writer import write_inveniordm
+
+    subject = Metadata("10.5281/zenodo.5244404", via="datacite")
+    subject.content = "<p>Some post content</p>"
+    output = write_inveniordm(subject, write_pdf=True)
+    assert output["files"] == {"enabled": True}
+    assert output["custom_fields"]["rs:content_html"] == "<p>Some post content</p>"
+
+
+def test_write_forwards_kwargs_to_the_writer():
+    """Metadata.write passes options through to the json writers."""
+    import orjson
+
+    subject = Metadata("10.5281/zenodo.5244404", via="datacite")
+    subject.content = "<p>Some post content</p>"
+
+    default = orjson.loads(subject.write(to="inveniordm"))
+    with_pdf = orjson.loads(subject.write(to="inveniordm", write_pdf=True))
+
+    assert default["files"] == {"enabled": False}
+    assert with_pdf["files"] == {"enabled": True}
+
+
+def test_write_ignores_options_meant_for_another_writer():
+    """Every json writer tolerates kwargs it does not use."""
+    subject = Metadata("10.5281/zenodo.5244404", via="datacite")
+    for fmt in ("commonmeta", "datacite", "schema_org", "csl"):
+        assert subject.write(to=fmt, write_pdf=True, style="apa") is not None
+
+
+def test_push_inveniordm_forwards_write_pdf():
     """push_inveniordm passes the option down to upsert_record."""
     from commonmeta.writers import inveniordm_writer as w
 
@@ -1139,12 +1175,12 @@ def test_push_inveniordm_forwards_files_enabled():
     with patch.object(w, "upsert_record", return_value={}) as upsert, patch.object(
         w, "add_record_to_communities", side_effect=lambda m, h, t, r: r
     ), patch.object(w, "update_external_services", side_effect=lambda m, h, t, r, **k: r):
-        w.push_inveniordm(subject, "example.org", "token", files_enabled=True)
+        w.push_inveniordm(subject, "example.org", "token", write_pdf=True)
 
-    assert upsert.call_args.kwargs["files_enabled"] is True
+    assert upsert.call_args.kwargs["write_pdf"] is True
 
 
-def test_push_inveniordm_defaults_files_enabled_to_false():
+def test_push_inveniordm_defaults_write_pdf_to_false():
     """Callers that say nothing keep metadata-only records."""
     from commonmeta.writers import inveniordm_writer as w
 
@@ -1154,4 +1190,4 @@ def test_push_inveniordm_defaults_files_enabled_to_false():
     ), patch.object(w, "update_external_services", side_effect=lambda m, h, t, r, **k: r):
         w.push_inveniordm(subject, "example.org", "token")
 
-    assert upsert.call_args.kwargs["files_enabled"] is False
+    assert upsert.call_args.kwargs["write_pdf"] is False
