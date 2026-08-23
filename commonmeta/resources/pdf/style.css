@@ -25,6 +25,11 @@
   font-weight: 700;
   src: url("fonts/FiraSans-Bold.otf");
 }
+@font-face {
+  font-family: Fira Mono;
+  font-weight: 300;
+  src: url("fonts/FiraMono-Regular.otf");
+}
 
 @page {
   @top-left {
@@ -295,7 +300,10 @@ h4 {
   margin: 0;
 }
 .date {
-  padding-top: 12pt;
+  /* the byline, the date and the doi read as one block: the padding that used
+     to sit here set the date as far from the byline as the headings below are
+     from what precedes them */
+  padding-top: 0;
 }
 .author span {
   font-weight: 500;
@@ -345,11 +353,8 @@ ol {
 }
 code,
 pre {
-  @font-face {
-    font-family: Fira Mono;
-    font-weight: 300;
-    src: url("fonts/FiraMono-Regular.otf");
-  }
+  font-family: Fira Mono;
+  font-weight: 300;
 }
 code {
   font-size: 10pt;
