@@ -39,6 +39,7 @@ from ..constants import (
 )
 from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, normalize_doi
+from ..inveniordm_service import active_backend, system_process
 from ..utils import (
     FOS_MAPPINGS,
     OPENALEX_TO_FOS_MAPPINGS,
@@ -1022,7 +1023,17 @@ def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict
             records metadata-only. The file is uploaded while the record is a
             draft; an already published record only takes one through a new
             version, so for those the upload is logged and skipped.
+        system_process: write through InvenioRDM's service layer as
+            system_identity rather than over HTTP, for code running inside the
+            instance it is writing to. `token` is then unused and may be None.
+            Requires an application context and an InvenioRDM installation;
+            without either, this falls back to HTTP. Defaults to False.
     """
+    if kwargs.get("system_process", False):
+        with system_process():
+            return push_inveniordm(
+                metadata, host, token, **{**kwargs, "system_process": False}
+            )
 
     try:
         doi = normalize_doi(metadata.id)
@@ -1252,6 +1263,9 @@ def update_external_services(
 
 def create_draft_record(record: dict, host: str, token: str, output: dict) -> dict:
     """Create a new draft record in InvenioRDM"""
+    backend = active_backend()
+    if backend is not None:
+        return backend.create_draft_record(record, output)
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
@@ -1296,6 +1310,13 @@ def upload_pdf(metadata: Metadata, host: str, token: str, record: dict) -> dict:
         return record
 
     key = pdf_filename(metadata)
+
+    # Dispatched after rendering, not before: the pdf is built the same way for
+    # either transport, and only the three upload calls differ.
+    backend = active_backend()
+    if backend is not None:
+        return backend.upload_file(record, key, pdf)
+
     url = f"https://{host}/api/records/{record['id']}/draft/files"
     headers = {"Authorization": f"Bearer {token}"}
     try:
@@ -1336,6 +1357,9 @@ def upload_pdf(metadata: Metadata, host: str, token: str, record: dict) -> dict:
 
 def reserve_doi(record: dict, host: str, token: str) -> dict:
     """Reserve a DOI for a draft record."""
+    backend = active_backend()
+    if backend is not None:
+        return backend.reserve_doi(record)
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
@@ -1363,6 +1387,9 @@ def reserve_doi(record: dict, host: str, token: str) -> dict:
 
 def get_published_record(record_id: str, host: str, token: str) -> dict | None:
     """Read a published record from InvenioRDM"""
+    backend = active_backend()
+    if backend is not None:
+        return backend.read_record(record_id)
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
@@ -1439,6 +1466,9 @@ def record_matches(output: dict, published: dict) -> bool:
 
 def edit_published_record(record: dict, host: str, token: str) -> dict:
     """Create a draft from a published record in InvenioRDM"""
+    backend = active_backend()
+    if backend is not None:
+        return backend.edit_published_record(record)
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
@@ -1465,6 +1495,9 @@ def edit_published_record(record: dict, host: str, token: str) -> dict:
 
 def create_new_version(record: dict, host: str, token: str) -> dict:
     """Create a new version of a published record in InvenioRDM"""
+    backend = active_backend()
+    if backend is not None:
+        return backend.create_new_version(record)
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
@@ -1494,6 +1527,9 @@ def update_draft_record(
     record: dict, host: str, token: str, inveniordm_data: dict
 ) -> dict:
     """Update a draft record in InvenioRDM"""
+    backend = active_backend()
+    if backend is not None:
+        return backend.update_draft_record(record, inveniordm_data)
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
@@ -1520,6 +1556,9 @@ def update_draft_record(
 
 def publish_draft_record(record: dict, host: str, token: str) -> dict:
     """Publish a draft record in InvenioRDM"""
+    backend = active_backend()
+    if backend is not None:
+        return backend.publish_draft_record(record)
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
@@ -1554,6 +1593,9 @@ def publish_draft_record(record: dict, host: str, token: str) -> dict:
 
 def get_record_communities(record: dict, host: str, token: str) -> list | None:
     """Get record communities by id"""
+    backend = active_backend()
+    if backend is not None:
+        return backend.get_record_communities(record)
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
@@ -1580,6 +1622,9 @@ def add_record_to_community(
     record: dict, host: str, token: str, community_id: str
 ) -> dict:
     """Add a record to a community"""
+    backend = active_backend()
+    if backend is not None:
+        return backend.add_record_to_community(record, community_id)
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
@@ -1615,6 +1660,9 @@ def add_record_to_community(
 
 def search_by_slug(slug: str, type: str, host: str, token: str) -> str | None:
     """Search for a community by slug in InvenioRDM"""
+    backend = active_backend()
+    if backend is not None:
+        return backend.search_community_by_slug(slug)
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",

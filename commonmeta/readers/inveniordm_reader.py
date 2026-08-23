@@ -25,6 +25,7 @@ from ..constants import (
 )
 from ..date_utils import strip_milliseconds
 from ..doi_utils import doi_as_url, is_rogue_scholar_doi, validate_prefix
+from ..inveniordm_service import active_backend
 from ..utils import (
     dict_to_spdx,
     from_inveniordm,
@@ -628,8 +629,18 @@ def format_identifier(identifier: dict) -> dict | None:
     }
 
 
+def _first_hit_id(results: dict | None) -> str | None:
+    """Return the id of the first hit, for either transport's envelope."""
+    if not results:
+        return None
+    return dig(results, "hits.hits.0.id")
+
+
 def search_by_doi(doi, host, token) -> str | None:
     """Search for a record by DOI in InvenioRDM"""
+    backend = active_backend()
+    if backend is not None:
+        return _first_hit_id(backend.search_records(f"doi:{doi}"))
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
@@ -654,6 +665,11 @@ def search_by_doi(doi, host, token) -> str | None:
 
 def search_by_guid(guid, host, token) -> str | None:
     """Search for a record by GUID in InvenioRDM"""
+    backend = active_backend()
+    if backend is not None:
+        return _first_hit_id(
+            backend.search_records(f'metadata.identifiers.identifier:"{guid}"')
+        )
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
