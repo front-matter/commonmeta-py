@@ -1,7 +1,6 @@
 # pylint: disable=invalid-name
 """Commonmeta writer tests"""
 
-import re
 from os import path
 
 import orjson as json
@@ -141,73 +140,3 @@ def test_write_commonmeta_list():
         commonmeta["title"]
         == "Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT"
     )
-
-
-@pytest.mark.vcr
-def test_write_commonmeta_list_jsonfeed():
-    """write_commonmeta_list jsonfeed"""
-    string = path.join(path.dirname(__file__), "fixtures", "json_feed.json")
-    subject_list = MetadataList(string)
-    assert len(subject_list.items) == 15
-
-    commonmeta_list = subject_list.write()
-    assert commonmeta_list is not None
-    commonmeta_list = json.loads(commonmeta_list)
-    assert isinstance(commonmeta_list, list)
-    assert len(commonmeta_list) == 15
-    commonmeta = commonmeta_list[0]
-    assert commonmeta["id"] == "https://doi.org/10.59350/26ft6-dmv65"
-    assert commonmeta["type"] == "BlogPost"
-    assert (
-        commonmeta["title"]
-        == "Das BUA Open Science Dashboard Projekt: die Entwicklung disziplinspezifischer Open-Science-Indikatoren"
-    )
-
-
-def test_write_commonmeta_missing_doi():
-    """Write commonmeta missing doi"""
-    string = path.join(path.dirname(__file__), "fixtures", "json_feed_item_no_id.json")
-    subject = Metadata(string, via="jsonfeed")
-    assert subject.is_valid
-    assert re.match(r"\A(https://doi\.org/10\.59350/.+)\Z", subject.id)
-
-    commonmeta = subject.write()
-    assert commonmeta is not None
-    commonmeta = json.loads(commonmeta)
-    assert re.match(r"\A(https://doi\.org/10\.59350/.+)\Z", commonmeta["id"])
-    assert commonmeta["url"] == "https://www.ideasurg.pub/residency-visual-abstract"
-    assert commonmeta["type"] == "BlogPost"
-
-
-def test_write_commonmeta_missing_doi_no_prefix():
-    """Write commonmeta missing doi no prefix"""
-    string = path.join(
-        path.dirname(__file__), "fixtures", "json_feed_item_no_prefix.json"
-    )
-    subject = Metadata(string, via="jsonfeed")
-    assert subject.is_valid
-    assert subject.id == "https://www.ideasurg.pub/residency-visual-abstract"
-
-    commonmeta = subject.write()
-    assert commonmeta is not None
-    commonmeta = json.loads(commonmeta)
-    assert commonmeta["id"] == "https://www.ideasurg.pub/residency-visual-abstract"
-    assert commonmeta["url"] == "https://www.ideasurg.pub/residency-visual-abstract"
-    assert commonmeta["type"] == "BlogPost"
-
-
-def test_write_commonmeta_missing_doi_prefix():
-    """Write commonmeta missing doi prefix"""
-    string = path.join(
-        path.dirname(__file__), "fixtures", "json_feed_item_no_prefix.json"
-    )
-    subject = Metadata(string, via="jsonfeed", prefix="10.5555")
-    assert subject.is_valid
-    assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", subject.id)
-
-    commonmeta = subject.write()
-    assert commonmeta is not None
-    commonmeta = json.loads(commonmeta)
-    assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", commonmeta["id"])
-    assert commonmeta["url"] == "https://www.ideasurg.pub/residency-visual-abstract"
-    assert commonmeta["type"] == "BlogPost"

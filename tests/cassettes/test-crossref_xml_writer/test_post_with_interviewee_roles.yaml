@@ -5,22 +5,133 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, zstd
+      - gzip, deflate, br, zstd
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.34.2
     method: GET
-    uri: https://api.rogue-scholar.org/posts/10.59350/s8m95-ap410
+    uri: https://rogue-scholar.org/api/records/ssrar-vhq35
   response:
     body:
-      string: '{"authors":[{"contributor_roles":[],"family":"Bellini","given":"Alejandra"},{"contributor_roles":[],"family":"Black","given":"Chris"},{"contributor_roles":[],"family":"LeBauer","given":"David"},{"contributor_roles":[],"family":"Scott","given":"Eric","url":"https://orcid.org/0000-0002-7430-7879"},{"contributor_roles":[],"family":"Casalla","given":"Lucio"},{"contributor_roles":[],"family":"Dietze","given":"Michael"},{"contributor_roles":[],"family":"Kooper","given":"Rob"},{"contributor_roles":[],"family":"LaZerte","given":"Steffi","url":"https://orcid.org/0000-0002-7690-8360"},{"contributor_roles":[],"family":"Bellini
-        Saibene","given":"Yanina","url":"https://orcid.org/0000-0002-4522-7466"}],"blog":{"authors":[{"name":"The
-        rOpenSci Team"}],"community_id":"19c501a7-647b-4a11-9f5e-cf400817cce3","created":1780876800,"current_feed_url":null,"description":"Open
-        Tools and R Packages for Open Science","doi":"https://doi.org/10.59350/ropensci","favicon":"https://rogue-scholar.org/api/communities/19c501a7-647b-4a11-9f5e-cf400817cce3/logo","feed_format":"application/feed+json","feed_url":"https://ropensci.org/blog/index.json","filter":null,"generator":"Other","home_page_url":"https://ropensci.org/blog","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"ropensci","status":"active","subfield":"1710","title":"rOpenSci
-        - open tools for open science","updated":1783993035,"use_api":null},"blog_name":"rOpenSci
-        - open tools for open science","blog_slug":"ropensci","content_html":"<p>A
-        new post of our interview series <a href=\"https://ropensci.org/tags/r-universe-stars/\">\"Meeting
+      string: '{"id": "ssrar-vhq35", "created": "2024-10-13T18:10:17.874594+00:00",
+        "updated": "2026-08-20T07:01:12.854716+00:00", "links": {"self": "https://rogue-scholar.org/api/records/ssrar-vhq35",
+        "self_html": "https://rogue-scholar.org/records/ssrar-vhq35", "preview_html":
+        "https://rogue-scholar.org/records/ssrar-vhq35?preview=1", "doi": "https://doi.org/10.59350/s8m95-ap410",
+        "self_doi": "https://doi.org/10.59350/s8m95-ap410", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/s8m95-ap410",
+        "reserve_doi": "https://rogue-scholar.org/api/records/ssrar-vhq35/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/g62yr-gxy87", "parent_html":
+        "https://rogue-scholar.org/records/g62yr-gxy87", "parent_doi": "https://doi.org/10.59350/g62yr-gxy87",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/g62yr-gxy87", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:ssrar-vhq35/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:ssrar-vhq35/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/ssrar-vhq35/files", "media_files":
+        "https://rogue-scholar.org/api/records/ssrar-vhq35/media-files", "archive":
+        "https://rogue-scholar.org/api/records/ssrar-vhq35/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/ssrar-vhq35/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/ssrar-vhq35/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/ssrar-vhq35/latest", "versions": "https://rogue-scholar.org/api/records/ssrar-vhq35/versions",
+        "draft": "https://rogue-scholar.org/api/records/ssrar-vhq35/draft", "access_links":
+        "https://rogue-scholar.org/api/records/ssrar-vhq35/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/ssrar-vhq35/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/ssrar-vhq35/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/ssrar-vhq35/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/ssrar-vhq35/access/request", "access":
+        "https://rogue-scholar.org/api/records/ssrar-vhq35/access", "communities":
+        "https://rogue-scholar.org/api/records/ssrar-vhq35/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/ssrar-vhq35/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/ssrar-vhq35/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/ssrar-vhq35/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/ssrar-vhq35/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/ssrar-vhq35/requests"},
+        "revision_id": 57, "parent": {"id": "g62yr-gxy87", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["19c501a7-647b-4a11-9f5e-cf400817cce3", "35d9d673-8f7e-49e3-a39c-b0cea0694d22",
+        "b722ba65-cd93-422f-820e-8d66bdb80a69", "d79fe364-6d96-40b6-b437-b93ca3493106"],
+        "default": "19c501a7-647b-4a11-9f5e-cf400817cce3", "entries": [{"id": "19c501a7-647b-4a11-9f5e-cf400817cce3",
+        "created": "2024-10-05T18:45:09.152768+00:00", "updated": "2026-08-22T09:04:58.342095+00:00",
+        "links": {}, "revision_id": 3832, "slug": "ropensci", "metadata": {"title":
+        "rOpenSci - open tools for open science", "description": "Open Tools and R
+        Packages for Open Science", "type": {"id": "blog"}, "website": "https://ropensci.org/blog"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {"feed:feed_url": "https://ropensci.org/blog/index.json", "feed:created":
+        "2026-06-08", "feed:updated": "2026-08-13T11:29:29+00:00", "feed:feed_format":
+        {"id": "jsonfeed"}, "feed:generator": {"id": "Other"}, "feed:status": {"id":
+        "active"}, "feed:authors": [{"name": "The rOpenSci Team"}], "feed:secure":
+        true, "rs:prefix": {"id": "10.59350"}, "rs:doi": "https://doi.org/10.59350/ropensci",
+        "rs:license": {"id": "cc-by-4.0"}, "rs:language": {"id": "eng"}, "rs:subfield":
+        [{"id": "https://openalex.org/subfields/1710"}]}, "deletion_status": {"is_deleted":
+        false, "status": "P"}, "children": {"allow": true}}, {"id": "35d9d673-8f7e-49e3-a39c-b0cea0694d22",
+        "created": "2024-10-08T13:01:00.657342+00:00", "updated": "2026-01-25T20:38:14.886046+00:00",
+        "links": {}, "revision_id": 14, "slug": "interviews", "metadata": {"title":
+        "Interviews", "description": "Blog posts with interviews.", "type": {"id":
+        "topic"}}, "access": {"visibility": "public", "members_visibility": "public",
+        "member_policy": "open", "record_submission_policy": "open", "review_policy":
+        "open"}, "custom_fields": {}, "deletion_status": {"is_deleted": false, "status":
+        "P"}, "children": {"allow": false}}, {"id": "b722ba65-cd93-422f-820e-8d66bdb80a69",
+        "created": "2024-12-17T22:13:32.183062+00:00", "updated": "2026-01-18T15:11:48.564251+00:00",
+        "links": {}, "revision_id": 13, "slug": "r", "metadata": {"title": "R", "description":
+        "Blog posts about the R programming language.", "type": {"id": "topic"}},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}, {"id": "d79fe364-6d96-40b6-b437-b93ca3493106", "created": "2025-02-10T08:12:28.813373+00:00",
+        "updated": "2025-12-02T20:56:15.845048+00:00", "links": {}, "revision_id":
+        11, "slug": "1710", "metadata": {"title": "Information Systems", "type": {"id":
+        "subject"}, "website": "https://openalex.org/subfields/1710"}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
+        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}]}, "pids":
+        {"doi": {"identifier": "10.59350/g62yr-gxy87", "provider": "crossref", "client":
+        "crossref"}}}, "versions": {"is_latest": true, "index": 1}, "is_published":
+        true, "is_draft": false, "pids": {"doi": {"identifier": "10.59350/s8m95-ap410",
+        "provider": "crossref", "client": "crossref"}, "oai": {"identifier": "oai:invenio-rdm:ssrar-vhq35",
+        "provider": "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost",
+        "title": {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}},
+        "creators": [{"person_or_org": {"type": "personal", "name": "Bellini, Alejandra",
+        "given_name": "Alejandra", "family_name": "Bellini"}}, {"person_or_org": {"type":
+        "personal", "name": "Black, Chris", "given_name": "Chris", "family_name":
+        "Black"}}, {"person_or_org": {"type": "personal", "name": "LeBauer, David",
+        "given_name": "David", "family_name": "LeBauer"}}, {"person_or_org": {"type":
+        "personal", "name": "Scott, Eric", "given_name": "Eric", "family_name": "Scott",
+        "identifiers": [{"identifier": "0000-0002-7430-7879", "scheme": "orcid"}]}},
+        {"person_or_org": {"type": "personal", "name": "Casalla, Lucio", "given_name":
+        "Lucio", "family_name": "Casalla"}}, {"person_or_org": {"type": "personal",
+        "name": "Dietze, Michael", "given_name": "Michael", "family_name": "Dietze"}},
+        {"person_or_org": {"type": "personal", "name": "Kooper, Rob", "given_name":
+        "Rob", "family_name": "Kooper"}}, {"person_or_org": {"type": "personal", "name":
+        "LaZerte, Steffi", "given_name": "Steffi", "family_name": "LaZerte", "identifiers":
+        [{"identifier": "0000-0002-7690-8360", "scheme": "orcid"}]}}, {"person_or_org":
+        {"type": "personal", "name": "Bellini Saibene, Yanina", "given_name": "Yanina",
+        "family_name": "Bellini Saibene", "identifiers": [{"identifier": "0000-0002-4522-7466",
+        "scheme": "orcid"}]}}], "title": "Meeting the Stars of the R-Universe: PEcAn,
+        an Open Source Project to Take Care of the Planet", "publisher": "Front Matter",
+        "publication_date": "2023-06-06", "subjects": [{"id": "https://openalex.org/subfields/1710",
+        "subject": "Information Systems", "scheme": "Subfields"}, {"subject": "Community"},
+        {"subject": "R-universe"}, {"subject": "Interviews"}, {"subject": "R-universe-stars"}],
+        "dates": [{"date": "2023-06-06T00:00:00", "type": {"id": "issued", "title":
+        {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}}, {"date":
+        "2025-09-16T07:31:26", "type": {"id": "updated", "title": {"de": "Aktualisiert",
+        "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id": "eng", "title":
+        {"en": "English"}}], "identifiers": [{"identifier": "edc7a18a-7a30-4d39-b154-4871a8beeccd",
+        "scheme": "uuid"}, {"identifier": "https://doi.org/10.59350/s8m95-ap410",
+        "scheme": "guid"}, {"identifier": "https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/",
+        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
+        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
+        "The Creative Commons Attribution license allows re-distribution and re-use
+        of a licensed work on the condition that the creator is appropriately credited."},
+        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "A new post of our interview series \"Meeting
+        the stars of the R-universe\". We aim to introduce the teams and people behind
+        the development of software and packages many of us use and which are available
+        through the R-Universe. We want to highlight and explore different teams and
+        projects around the world, the work they do, their processes and users. Our
+        third stop is the <strong> United States </strong> to talk with members of
+        the PEcAn project."}, "custom_fields": {"journal:journal": {"title": "rOpenSci
+        - open tools for open science"}, "rs:content_html": "<p>A new post of our
+        interview series <a href=\"https://ropensci.org/tags/r-universe-stars/\">\"Meeting
         the stars of the R-universe\"</a>. We aim to introduce the teams and people
         behind the development of software and packages many of us use and which are
         available through the R-Universe. We want to highlight and explore different
@@ -116,41 +227,60 @@ interactions:
         style=\"position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\">
         <iframe allow=\"fullscreen\" loading=\"eager\" src=\"https://player.vimeo.com/video/829850626?dnt=0\"
         style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\"
-        title=\"Meeting R-Universe Stars - PEcAn project\"> </iframe> </div>","doi":"https://doi.org/10.59350/s8m95-ap410","guid":"https://doi.org/10.59350/s8m95-ap410","images":[{"alt":"Profile
-        photos of David LeBauer, Michael C. Dietze, Rob Kooper, Eric Scott, and Chris
-        Black","src":"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/team.jpg"},{"alt":"A
-        flow diagram showing the standards approach for reducing redundant work when
-        adopting common formats. There are","src":"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/diagram.png"},{"alt":"David
-        LeBauer, Michael C. Dietze, Rob Kooper, Eric Scott, and Chris Black","src":"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/team.jpg"},{"alt":"Conventional
-        and Standards approach to modeling. PEcAn project is an example of the standards
-        approach for modeling.","src":"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/diagram.png"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1686009600,"rid":"ssrar-vhq35","summary":"A
-        new post of our interview series \"Meeting the stars of the R-universe\".
-        We aim to introduce the teams and people behind the development of software
-        and packages many of us use and which are available through the R-Universe.
-        We want to highlight and explore different teams and projects around the world,
-        the work they do, their processes and users. Our third stop is the <strong>
-        United States </strong> to talk with members of the PEcAn project.","tags":["Community","R-universe","Interviews","R-universe-stars"],"title":"Meeting
-        the Stars of the R-Universe: PEcAn, an Open Source Project to Take Care of
-        the Planet","updated_at":1769318386,"url":"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/","version":"v1"}
-
-        '
+        title=\"Meeting R-Universe Stars - PEcAn project\"> </iframe> </div>", "rs:generator":
+        {"id": "Hugo", "title": {"en": "Hugo"}}, "pidbox:citations": [{"identifier":
+        "10.53731/9t6xx-kht30", "scheme": "doi", "reference": "Fenner, M. (2025, October
+        27). Supporting blog contributions beyond authorship. <i>Front Matter</i>."}],
+        "rs:featured": false}, "access": {"record": "public", "files": "public", "embargo":
+        {"active": false, "reason": null}, "status": "metadata-only"}, "files": {"enabled":
+        false, "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files":
+        {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries": {}},
+        "status": "published", "deletion_status": {"is_deleted": false, "status":
+        "P"}, "stats": {"this_version": {"views": 2, "unique_views": 2, "downloads":
+        0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions": {"views": 2,
+        "unique_views": 2, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}}}'
     headers:
-      Access-Control-Allow-Origin:
-      - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2026 06:10:17 GMT
+      - Sun, 23 Aug 2026 07:29:58 GMT
+      Etag:
+      - '"57"'
+      Link:
+      - <https://rogue-scholar.org/api/records/ssrar-vhq35> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '49'
       Server:
       - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
-      content-length:
-      - '11469'
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '464'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
     status:
       code: 200
       message: OK

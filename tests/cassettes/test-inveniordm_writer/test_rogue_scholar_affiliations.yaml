@@ -1,0 +1,313 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://rogue-scholar.org/api/records/v7a82-05b98
+  response:
+    body:
+      string: '{"id": "v7a82-05b98", "created": "2024-10-13T13:12:54.717010+00:00",
+        "updated": "2026-01-25T05:36:25.009378+00:00", "links": {"self": "https://rogue-scholar.org/api/records/v7a82-05b98",
+        "self_html": "https://rogue-scholar.org/records/v7a82-05b98", "preview_html":
+        "https://rogue-scholar.org/records/v7a82-05b98?preview=1", "doi": "https://doi.org/10.59350/mg09a-5ma64",
+        "self_doi": "https://doi.org/10.59350/mg09a-5ma64", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/mg09a-5ma64",
+        "reserve_doi": "https://rogue-scholar.org/api/records/v7a82-05b98/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/4cxvh-vzs80", "parent_html":
+        "https://rogue-scholar.org/records/4cxvh-vzs80", "parent_doi": "https://doi.org/10.59350/4cxvh-vzs80",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/4cxvh-vzs80", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:v7a82-05b98/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:v7a82-05b98/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/v7a82-05b98/files", "media_files":
+        "https://rogue-scholar.org/api/records/v7a82-05b98/media-files", "archive":
+        "https://rogue-scholar.org/api/records/v7a82-05b98/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/v7a82-05b98/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/v7a82-05b98/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/v7a82-05b98/latest", "versions": "https://rogue-scholar.org/api/records/v7a82-05b98/versions",
+        "draft": "https://rogue-scholar.org/api/records/v7a82-05b98/draft", "access_links":
+        "https://rogue-scholar.org/api/records/v7a82-05b98/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/v7a82-05b98/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/v7a82-05b98/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/v7a82-05b98/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/v7a82-05b98/access/request", "access":
+        "https://rogue-scholar.org/api/records/v7a82-05b98/access", "communities":
+        "https://rogue-scholar.org/api/records/v7a82-05b98/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/v7a82-05b98/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/v7a82-05b98/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/v7a82-05b98/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/v7a82-05b98/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/v7a82-05b98/requests"},
+        "revision_id": 47, "parent": {"id": "4cxvh-vzs80", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["1392af05-f8a9-47b4-a48b-3ffe75cf3e99", "53174590-b8d0-4c88-b121-4ca75f7de145",
+        "eb763c22-a466-4cdf-9c29-df57f530345b", "f673842a-7751-41dc-9f53-9c89f9a8ef37"],
+        "default": "53174590-b8d0-4c88-b121-4ca75f7de145", "entries": [{"id": "1392af05-f8a9-47b4-a48b-3ffe75cf3e99",
+        "created": "2025-12-02T20:35:58.254513+00:00", "updated": "2025-12-02T20:56:03.936838+00:00",
+        "links": {}, "revision_id": 3, "slug": "1404", "metadata": {"title": "Management
+        Information Systems", "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1404"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}, {"id": "53174590-b8d0-4c88-b121-4ca75f7de145", "created": "2024-09-30T16:38:29.316160+00:00",
+        "updated": "2026-08-22T09:02:41.120396+00:00", "links": {}, "revision_id":
+        3576, "slug": "infomgnt", "metadata": {"title": "Research Group Information
+        Management @ Humboldt-Universit\u00e4t zu Berlin", "description": "Research
+        Group Information Management @ Humboldt-Universit\u00e4t zu Berlin", "type":
+        {"id": "blog"}, "website": "https://infomgnt.org/"}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {"feed:feed_url": "https://infomgnt.org/index.xml",
+        "feed:created": "2024-06-06", "feed:updated": "2026-07-15T22:00:00+00:00",
+        "feed:feed_format": {"id": "rss"}, "feed:generator": {"id": "Quarto"}, "feed:status":
+        {"id": "active"}, "feed:secure": true, "rs:issn": "2944-6848", "rs:prefix":
+        {"id": "10.59350"}, "rs:doi": "https://doi.org/10.59350/infomgnt", "rs:license":
+        {"id": "cc-by-4.0"}, "rs:language": {"id": "eng"}, "rs:subfield": [{"id":
+        "https://openalex.org/subfields/3309"}]}, "deletion_status": {"is_deleted":
+        false, "status": "P"}, "children": {"allow": true}}, {"id": "eb763c22-a466-4cdf-9c29-df57f530345b",
+        "created": "2025-03-03T19:33:52.244588+00:00", "updated": "2025-07-15T19:20:44.108587+00:00",
+        "links": {}, "revision_id": 12, "slug": "research", "metadata": {"title":
+        "Research", "description": "Blog posts about research.", "type": {"id": "topic"}},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}, {"id": "f673842a-7751-41dc-9f53-9c89f9a8ef37", "created": "2025-12-02T20:36:21.107441+00:00",
+        "updated": "2025-12-02T20:55:53.989386+00:00", "links": {}, "revision_id":
+        3, "slug": "3309", "metadata": {"title": "Library and Information Sciences",
+        "type": {"id": "subject"}, "website": "https://openalex.org/subfields/3309"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {"doi": {"identifier": "10.59350/4cxvh-vzs80", "provider":
+        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
+        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
+        "10.59350/mg09a-5ma64", "provider": "crossref", "client": "crossref"}, "oai":
+        {"identifier": "oai:invenio-rdm:v7a82-05b98", "provider": "oai"}}, "metadata":
+        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
+        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
+        {"type": "personal", "name": "Beucke, Daniel", "given_name": "Daniel", "family_name":
+        "Beucke", "identifiers": [{"identifier": "0000-0003-4905-1936", "scheme":
+        "orcid"}]}, "affiliations": [{"id": "05745n787", "name": "Nieders\u00e4chsische
+        Staats-und Universit\u00e4tsbibliothek G\u00f6ttingen", "identifiers": [{"identifier":
+        "05745n787", "scheme": "ror"}]}]}, {"person_or_org": {"type": "personal",
+        "name": "Meinecke, Isabella", "given_name": "Isabella", "family_name": "Meinecke",
+        "identifiers": [{"identifier": "0000-0001-8337-3619", "scheme": "orcid"}]},
+        "affiliations": [{"id": "00pwcvj19", "name": "Staats- und Universit\u00e4tsbibliothek
+        Hamburg", "identifiers": [{"identifier": "00pwcvj19", "scheme": "ror"}]}]},
+        {"person_or_org": {"type": "personal", "name": "Pampel, Heinz", "given_name":
+        "Heinz", "family_name": "Pampel", "identifiers": [{"identifier": "0000-0003-3334-2771",
+        "scheme": "orcid"}]}, "affiliations": [{"id": "01hcx6992", "name": "Humboldt-Universit\u00e4t
+        zu Berlin", "identifiers": [{"identifier": "01hcx6992", "scheme": "ror"}]}]},
+        {"person_or_org": {"type": "personal", "name": "Wrzesinski, Marcel", "given_name":
+        "Marcel", "family_name": "Wrzesinski", "identifiers": [{"identifier": "0000-0002-2343-7905",
+        "scheme": "orcid"}]}, "affiliations": [{"id": "01hcx6992", "name": "Humboldt-Universit\u00e4t
+        zu Berlin", "identifiers": [{"identifier": "01hcx6992", "scheme": "ror"}]}]}],
+        "title": "Report on the Hands-On Lab ''Scenarios for the Development of Open
+        Access Repositories'' at the 112th BiblioCon", "publisher": "Front Matter",
+        "publication_date": "2024-07-14", "subjects": [{"id": "https://openalex.org/subfields/3309",
+        "subject": "Library and Information Sciences", "scheme": "Subfields"}, {"subject":
+        "Lab Life"}, {"subject": "Research"}], "dates": [{"date": "2024-07-14T22:00:00",
+        "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued",
+        "sv": "Utf\u00e4rdad"}}}, {"date": "2024-07-14T22:00:00", "type": {"id": "updated",
+        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
+        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
+        "6d1feb10-057a-4fc2-acb0-ac95e19741af", "scheme": "uuid"}, {"identifier":
+        "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/", "scheme": "guid"},
+        {"identifier": "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report",
+        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
+        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
+        "The Creative Commons Attribution license allows re-distribution and re-use
+        of a licensed work on the condition that the creator is appropriately credited."},
+        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "In the beginning of June 2024, Nature
+        reported on the Japanese Ministry of Education''s plan to invest 10 billion
+        yen in expanding institutional Open Access Repositories (Singh Chawla 2024).
+        This initiative provides a good opportunity to discuss the future of Open
+        Access Repositories at the https://2024.bibliocon.de/. In collaboration with
+        the project \"Professionalization of the Open Access Repositories Infrastructure
+        in Germany\" (Pro OAR DE)", "references": [{"identifier": "10.1007/978-3-658-01928-0",
+        "scheme": "doi", "reference": "H\u00e4der, M. (2014). <i>Delphi-Befragungen</i>.
+        Springer Fachmedien Wiesbaden."}, {"identifier": "10.1007/978-3-658-21657-3",
+        "scheme": "doi", "reference": "Niederberger, M., &amp; Renn, O. (2019). <i>Delphi-Verfahren
+        in den Sozial- und Gesundheitswissenschaften</i>. Springer Fachmedien Wiesbaden."},
+        {"identifier": "10.5281/zenodo.10173494", "scheme": "doi", "reference": "Pampel,
+        H., &amp; Rothfritz, L. (2023). <i>Professionalisierung der Open-Access-Repositorien-Infrastruktur
+        in Deutschland (Pro-OAR-DE).</i>. Zenodo."}, {"identifier": "10.1038/d41586-024-01493-8",
+        "scheme": "doi", "reference": "Singh Chawla, D. (2024). Japan''s push to make
+        all research open access is taking shape. <i>Nature</i>."}]}, "custom_fields":
+        {"journal:journal": {"title": "Research Group Information Management @ Humboldt-Universit\u00e4t
+        zu Berlin", "issn": "2944-6848"}, "rs:content_html": "<p>In the beginning
+        of June 2024, Nature reported on the Japanese\nMinistry of Education''s plan
+        to invest 10 billion yen in expanding\ninstitutional Open Access Repositories
+        <span class=\"citation\"\ndata-cites=\"singh_chawla_japans_2024\">(Singh Chawla
+        2024)</span>. This\ninitiative provides a good opportunity to discuss the
+        future of Open\nAccess Repositories at the <a\nhref=\"https://2024.bibliocon.de/\">https://2024.bibliocon.de/</a>.</p>\n<p>In
+        collaboration with the project \"Professionalization of the Open\nAccess Repositories
+        Infrastructure in Germany\" (<a\nhref=\"https://www.ibi.hu-berlin.de/de/forschung/infomanagement/projekte/pro-oar-de\">Pro\nOAR
+        DE</a>) <span class=\"citation\"\ndata-cites=\"pampel_professionalisierung_2023\">(Pampel
+        and Rothfritz\n2023)</span>, funded by the Federal Ministry of Education and
+        Research\n(BMBF), the Electronic Publishing Working Group (<a\nhref=\"https://dini.de/e-pub\">AG
+        E-Pub</a>) of the German Initiative for\nNetworked Information (<a href=\"https://dini.de\">DINI</a>)
+        organized a\nHands-On Lab titled \"Scenarios for the Development of Open Access\nRepositories\"
+        on June 6, 2024, during the 112th BiblioCon. The goal was\nto develop scenarios
+        for the future orientation of institutional Open\nAccess repositories with
+        participants from academia, libraries, and\nother information infrastructures.</p>\n<p>The
+        methodological approach for this event was based on the Delphi\nconcept <span
+        class=\"citation\"\ndata-cites=\"hader_delphi-befragungen_2014\">(H\u00e4der
+        2014)</span>, <span\nclass=\"citation\"\ndata-cites=\"niederberger_delphi-verfahren_2019\">(Niederberger
+        and Renn\n2019)</span>. Participants were asked to evaluate predefined statements\non
+        repositories in two consecutive rounds. This method aimed to reach a\nconsensus
+        on specific scenarios for the future of repositories. About 30\npeople participated
+        in the lab and were divided into groups of four\nwhich simultaneously discussed
+        the scenarios. The discussions were based\non eight statements that were prepared
+        by the organizers in advance and\naddressed aspects of the development of
+        Open Access repositories.</p>\n<p>First, each group assessed the eight statements
+        with the aim of\ncoming to a consensus about the topic. For example, participants
+        were\nasked to discuss the following proposition: \"Preprints play an important\nrole
+        in the informational expansion of repositories.\" Each group needed\nto develop
+        a joint position on this and the other seven statements, by\nrating them on
+        a scale from \"strongly disagree\" to \"strongly agree.\"</p>\n<p>In the following
+        round, each group further explored three statements\nand discussed strategies
+        and concrete measures to address the issues\nraised in each statements. The
+        goal was to develop practical approaches\nto the topics, based on a shared
+        understanding of the statements,\nfocusing on the joint discussion of solution
+        strategies.</p>\n<p><img\nsrc=\"https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/images/112th_bibliocon.jpeg\"\nclass=\"img-fluid\"
+        /></p>\n<p><strong>Lessons Learned</strong></p>\n<p>The chosen method did
+        not allow for in-depth examination and was not\nrepresentative, but it enabled
+        a focused and useful discussion of\ncurrent issues facing institutional repositories.
+        Reaching a consensus\nwas challenging, as interpretations of the statements
+        varied\nsignificantly among participants, and evaluations differed depending
+        on\nperspectives and group compositions.</p>\n<p>For the following three statements,
+        approval ratings were identified\nin all four groups (grouped as \"somewhat
+        agree\" and \"strongly\nagree\"):</p>\n<ul>\n<li><p>Repositories'' user interfaces
+        should become more intuitive and\nmodern.</p></li>\n<li><p>Text and data repositories
+        should intensify their exchange with\neach other.</p></li>\n<li><p>Repositories
+        should take more measures to increase the visibility\nof their content.</p></li>\n</ul>\n<p>In
+        the second round, the following implementation strategies were\ndiscussed
+        for these three statements:</p>\n<p><strong>Repositories'' user interfaces
+        should become more intuitive\nand modern:</strong></p>\n<ul>\n<li><p>Offer
+        multilingual user interfaces that support languages beyond\nGerman and English.</p></li>\n<li><p>Simplify
+        uploads through data import via API integration (e.g.,\nDOI queries via Crossref).</p></li>\n<li><p>Eliminate
+        mandatory fields that researchers must fill\nout.</p></li>\n<li><p>Ensure
+        responsiveness on various devices.</p></li>\n</ul>\n<p><strong>Text and data
+        repositories should intensify their exchange\nwith each other:</strong></p>\n<ul>\n<li><p>Ensure
+        automatic data flows between research data repositories\nand institutional
+        Open Access repositories.</p></li>\n<li><p>Simplify uploads through data import
+        via API integration (e.g.,\nDOI queries via Crossref).</p></li>\n<li><p>Evaluate
+        local architecture to determine whether a generic\nrepository for all object
+        types or different repositories for each\npublication type is more practical.</p></li>\n</ul>\n<p><strong>Repositories
+        should take more measures to increase the\nvisibility of their content:</strong></p>\n<ul>\n<li><p>Display
+        bibliographic data in the OPAC or Discovery\nSystem.</p></li>\n<li><p>Index
+        bibliographic data in search services .</p></li>\n<li><p>Actively implement
+        search engine optimization measures.</p></li>\n<li><p>Enable automated data
+        flows via persistent identifiers.</p></li>\n</ul>\n<p>The authors thank the
+        participants for their open discussions and for\nsharing their experiences
+        on strategies to further professionalize Open\nAccess repositories.</p>\n<p>The
+        results will also be used for the further development of the DINI\nCertificate
+        for Open-Access Publication Services and in the ongoing work\nof the Pro OAR
+        DE project. Workshops on some aspects will be held in the\nfurther course
+        of the Pro OAR DE project.</p>\n<p>Further information about the research
+        group can be found on our <a\nhref=\"http://hu.berlin/infomgnt\">official
+        website</a>.</p>\n<p>This text \u2013 excluding quotes and otherwise labeled
+        parts \u2013 is\nlicensed under the <a\nhref=\"https://creativecommons.org/licenses/by/4.0/deed.de\">CC
+        BY 4.0\nDEED</a>.\u00a0</p>\n<p>Photo Credit: Melanie Seltmann, licensed under
+        the <a\nhref=\"https://creativecommons.org/licenses/by/4.0/deed.de\">CC BY
+        4.0\nDEED</a>.</p>\n<div id=\"quarto-appendix\" class=\"default\">\n<section
+        id=\"quarto-bibliography\" class=\"quarto-appendix-contents\">\n<h2 class=\"anchored
+        quarto-appendix-heading\"\nid=\"references\">References</h2>\n<div id=\"refs\"
+        class=\"references csl-bib-body hanging-indent\"\ndata-entry-spacing=\"0\"
+        role=\"list\">\n<div id=\"ref-hader_delphi-befragungen_2014\" class=\"csl-entry\"\nrole=\"listitem\">\nH\u00e4der,
+        Michael. 2014. <em>Delphi-Befragungen: Ein Arbeitsbuch</em>.\nWiesbaden: Springer
+        Fachmedien Wiesbaden. <a\nhref=\"https://doi.org/10.1007/978-3-658-01928-0\">https://doi.org/10.1007/978-3-658-01928-0</a>.\n</div>\n<div
+        id=\"ref-niederberger_delphi-verfahren_2019\" class=\"csl-entry\"\nrole=\"listitem\">\nNiederberger,
+        Marlen, and Ortwin Renn, eds. 2019. <em>Delphi-Verfahren\nin Den Sozial- Und
+        Gesundheitswissenschaften: Konzept, Varianten Und\nAnwendungsbeispiele</em>.
+        Wiesbaden: Springer Fachmedien Wiesbaden. <a\nhref=\"https://doi.org/10.1007/978-3-658-21657-3\">https://doi.org/10.1007/978-3-658-21657-3</a>.\n</div>\n<div
+        id=\"ref-pampel_professionalisierung_2023\" class=\"csl-entry\"\nrole=\"listitem\">\nPampel,
+        Heinz, and Laura Rothfritz. 2023. \"Professionalisierung Der\nOpen-Access-Repositorien-Infrastruktur
+        in Deutschland (Pro-OAR-DE).\"\nNovember. <a\nhref=\"https://doi.org/10.5281/ZENODO.10173494\">https://doi.org/10.5281/ZENODO.10173494</a>.\n</div>\n<div
+        id=\"ref-singh_chawla_japans_2024\" class=\"csl-entry\"\nrole=\"listitem\">\nSingh
+        Chawla, Dalmeet. 2024. \"Japan''s Push to Make All Research Open\nAccess Is
+        Taking Shape.\" <em>Nature</em>, May. <a\nhref=\"https://doi.org/10.1038/d41586-024-01493-8\">https://doi.org/10.1038/d41586-024-01493-8</a>.\n</div>\n</div>\n</section>\n<section
+        id=\"quarto-citation\" class=\"quarto-appendix-contents\">\n<h2 class=\"anchored
+        quarto-appendix-heading\" id=\"citation\">Citation</h2>\n<div>\n\n<div class=\"quarto-appendix-secondary-label\">\n<p>BibTeX
+        citation:</p>\n</div>\n<pre class=\"sourceCode code-with-copy quarto-appendix-bibtex\"><code>@online{beucke2024,\n  author
+        = {Beucke, Daniel and Meinecke, Isabella and Pampel, Heinz and\n    Wrzesinski,
+        Marcel},\n  title = {Report on the {Hands-On} {Lab} \"{Scenarios} for the\n    {Development}
+        of {Open} {Access} {Repositories}\" at the 112th\n    {BiblioCon}},\n  date
+        = {2024-07-15},\n  url = {https://doi.org/10.59350/mg09a-5ma64},\n  langid
+        = {en}\n}</code></pre>\n<div class=\"quarto-appendix-secondary-label\">\n<p>For
+        attribution, please cite this work as:</p>\n</div>\n<div id=\"ref-beucke2024\"
+        class=\"csl-entry quarto-appendix-citeas\"\nrole=\"listitem\">\nBeucke, Daniel,
+        Isabella Meinecke, Heinz Pampel, and Marcel Wrzesinski.\n2024. \"Report on
+        the Hands-On Lab ''Scenarios for the Development of Open\nAccess Repositories''
+        at the 112th BiblioCon.\" July 15, 2024. <a\nhref=\"https://doi.org/10.59350/mg09a-5ma64\">https://doi.org/10.59350/mg09a-5ma64</a>.\n</div>\n</div>\n\n</section>\n</div>",
+        "rs:image": "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/112th_bibliocon.jpeg",
+        "rs:generator": {"id": "Quarto", "title": {"en": "Quarto"}}, "pidbox:citations":
+        [{"identifier": "10.59350/rhn65-25g40", "scheme": "doi", "reference": "Kretschmar,
+        P., &amp; Khamis, C. O. (2024, July 26). Die Bibliocon 2024 - ein studentischer
+        Reisebericht. <i>Research Group Information Management @ Humboldt-Universit\u00e4t
+        Zu Berlin</i>."}, {"identifier": "10.59350/xx3w7-tyr30", "scheme": "doi",
+        "reference": "Kretschmar, P., &amp; Khamis, C. O. (2024, July 26). Die Bibliocon
+        2024 - ein studentischer Reisebericht. <i>Research Group Information Management
+        @ Humboldt-Universit\u00e4t Zu Berlin</i>."}], "rs:featured": false}, "access":
+        {"record": "public", "files": "public", "embargo": {"active": false, "reason":
+        null}, "status": "metadata-only"}, "files": {"enabled": false, "order": [],
+        "count": 0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled": false,
+        "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "status": "published",
+        "deletion_status": {"is_deleted": false, "status": "P"}, "stats": {"this_version":
+        {"views": 2, "unique_views": 2, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}, "all_versions": {"views": 2, "unique_views": 2, "downloads": 0, "unique_downloads":
+        0, "data_volume": 0.0}}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Aug 2026 07:29:47 GMT
+      Etag:
+      - '"47"'
+      Link:
+      - <https://rogue-scholar.org/api/records/v7a82-05b98> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '60'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '496'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

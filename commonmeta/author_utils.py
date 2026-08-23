@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import re
 
-from furl import furl
 from nameparser import HumanName
 
 from .base_utils import compact, parse_attributes, presence, scrub, unique, wrap
@@ -337,9 +336,10 @@ def get_affiliations(affiliations: list[dict | str]) -> list[dict]:
                     if ror_entry.get("asserted-by", None):
                         asserted_by = str(ror_entry["asserted-by"]).capitalize()
             elif i.get("id", None) is not None:
-                f = furl(i.get("id"))
-                if f.scheme in ["http", "https"]:
-                    affiliation_identifier = i.get("id")
+                # InvenioRDM stores a bare ROR id ("04wxnsj81") here, other
+                # sources a url. Both are accepted; to_ror_id below validates
+                # and drops anything that is not a ROR.
+                affiliation_identifier = i.get("id")
             name = i.get("name", None) or i.get("#text", None)
         # affiliation.identifier is ROR-only per the v1.0 schema; a non-ROR
         # identifier is dropped rather than leaking into the ROR-only field.

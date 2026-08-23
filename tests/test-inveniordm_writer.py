@@ -158,8 +158,8 @@ def test_journal_article():
 @pytest.mark.vcr
 def test_rogue_scholar():
     "Rogue Scholar"
-    string = "https://api.rogue-scholar.org/posts/10.53731/dv8z6-a6s33"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/1xr7q-9fp18"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.53731/dv8z6-a6s33"
     assert subject.type == "BlogPost"
 
@@ -188,8 +188,8 @@ def test_rogue_scholar():
     assert dig(inveniordm, "metadata.publication_date") == "2024-10-07"
 
     assert dig(inveniordm, "metadata.dates") == [
-        {"date": "2024-10-07T00:00:00Z", "type": {"id": "issued"}},
-        {"date": "2026-03-16T23:33:02Z", "type": {"id": "updated"}},
+        {"date": "2024-10-07T13:41:37", "type": {"id": "issued"}},
+        {"date": "2025-01-23T17:42:32", "type": {"id": "updated"}},
     ]
     assert dig(inveniordm, "metadata.languages.0.id") == "eng"
     assert dig(inveniordm, "metadata.version") == "v1"
@@ -211,16 +211,22 @@ def test_rogue_scholar():
     ]
     assert dig(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
     assert dig(inveniordm, "metadata.identifiers") == [
-        {
-            "identifier": "https://doi.org/10.53731/dv8z6-a6s33",
-            "scheme": "guid",
-        },
+        {"identifier": "c5c2e4e7-ac05-413b-b377-f989a72a5356", "scheme": "uuid"},
+        {"identifier": "https://doi.org/10.53731/dv8z6-a6s33", "scheme": "guid"},
+        {"identifier": "1xr7q-9fp18", "scheme": "other"},
         {
             "identifier": "https://blog.front-matter.de/posts/rogue-scholar-learns-about-communities/",
             "scheme": "url",
         },
     ]
-    assert dig(inveniordm, "metadata.related_identifiers") is None
+    # the record's concept (parent) DOI, surfaced as an IsVersionOf relation
+    assert dig(inveniordm, "metadata.related_identifiers") == [
+        {
+            "identifier": "10.53731/2ych7-jqc35",
+            "scheme": "doi",
+            "relation_type": {"id": "isversionof"},
+        }
+    ]
     assert dig(inveniordm, "metadata.funding") is None
     assert dig(inveniordm, "custom_fields.journal:journal.title") == "Front Matter"
     assert dig(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"
@@ -232,8 +238,8 @@ def test_rogue_scholar():
 @pytest.mark.vcr
 def test_rogue_scholar_organizational_author():
     "Rogue Scholar organizational author"
-    string = "https://api.rogue-scholar.org/posts/10.59350/wg8rv-awm24"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/fz2vh-31684"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/wg8rv-awm24"
     assert subject.type == "BlogPost"
 
@@ -260,10 +266,10 @@ def test_rogue_scholar_organizational_author():
 
 
 @pytest.mark.vcr
-def test_from_jsonfeed():
+def test_rogue_scholar_blog_post():
     "JSON Feed"
-    string = "https://api.rogue-scholar.org/posts/10.59350/dn2mm-m9q51"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/dn2mm-m9q51"
     assert subject.type == "BlogPost"
 
@@ -284,12 +290,14 @@ def test_from_jsonfeed():
     assert dig(inveniordm, "metadata.title") == "Linguistic roots of connectionism"
     assert dig(inveniordm, "metadata.publication_date") == "2021-07-22"
     assert dig(inveniordm, "metadata.dates") == [
-        {"date": "2021-07-22T00:00:00Z", "type": {"id": "issued"}},
-        {"date": "2026-02-15T07:37:27Z", "type": {"id": "updated"}},
+        {"date": "2021-07-22T08:39:07", "type": {"id": "issued"}},
+        {"date": "2024-02-04T21:05:36", "type": {"id": "updated"}},
     ]
     assert dig(inveniordm, "metadata.languages.0.id") == "eng"
     assert dig(inveniordm, "metadata.identifiers") == [
+        {"identifier": "525a7d13-fe07-4cab-ac54-75d7b7005647", "scheme": "uuid"},
         {"identifier": "https://ideophone.org/?p=5639", "scheme": "guid"},
+        {"identifier": "7tatc-wh557", "scheme": "other"},
         {
             "identifier": "https://ideophone.org/linguistic-roots-of-connectionism/",
             "scheme": "url",
@@ -334,10 +342,10 @@ def test_from_jsonfeed():
 
 
 @pytest.mark.vcr
-def test_from_jsonfeed_affiliations():
+def test_rogue_scholar_affiliations():
     "JSON Feed affiliations"
-    string = "https://api.rogue-scholar.org/posts/10.59350/mg09a-5ma64"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/v7a82-05b98"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/mg09a-5ma64"
     assert subject.type == "BlogPost"
 
@@ -350,17 +358,17 @@ def test_from_jsonfeed_affiliations():
     assert len(dig(inveniordm, "metadata.creators")) == 4
     assert dig(inveniordm, "metadata.creators.0") == {
         "person_or_org": {
-            "family_name": "Beucke",
-            "given_name": "Daniel",
             "name": "Beucke, Daniel",
+            "given_name": "Daniel",
+            "family_name": "Beucke",
             "type": "personal",
             "identifiers": [{"identifier": "0000-0003-4905-1936", "scheme": "orcid"}],
         },
         "affiliations": [
             {
                 "id": "05745n787",
-                "name": "Göttingen State and University Library",
-            },
+                "name": "Niedersächsische Staats-und Universitätsbibliothek Göttingen",
+            }
         ],
     }
     assert (
@@ -369,15 +377,17 @@ def test_from_jsonfeed_affiliations():
     )
     assert dig(inveniordm, "metadata.publication_date") == "2024-07-14"
     assert dig(inveniordm, "metadata.dates") == [
-        {"date": "2024-07-14T00:00:00Z", "type": {"id": "issued"}},
-        {"date": "2026-01-25T05:36:25Z", "type": {"id": "updated"}},
+        {"date": "2024-07-14T22:00:00", "type": {"id": "issued"}},
+        {"date": "2024-07-14T22:00:00", "type": {"id": "updated"}},
     ]
     assert dig(inveniordm, "metadata.languages.0.id") == "eng"
     assert dig(inveniordm, "metadata.identifiers") == [
+        {"identifier": "6d1feb10-057a-4fc2-acb0-ac95e19741af", "scheme": "uuid"},
         {
             "identifier": "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/",
             "scheme": "guid",
         },
+        {"identifier": "v7a82-05b98", "scheme": "other"},
         {
             "identifier": "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report",
             "scheme": "url",
@@ -429,10 +439,10 @@ def test_from_jsonfeed_affiliations():
 
 
 @pytest.mark.vcr
-def test_from_jsonfeed_dates():
+def test_rogue_scholar_dates():
     "JSON Feed dates"
-    string = "https://api.rogue-scholar.org/posts/10.59350/k9zxj-pek64"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/8vkjg-x6j96"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/k9zxj-pek64"
     assert subject.type == "BlogPost"
 
@@ -444,13 +454,8 @@ def test_from_jsonfeed_dates():
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert dig(inveniordm, "metadata.publication_date") == "2018-08-28"
     assert dig(inveniordm, "metadata.dates") == [
-        {
-            "date": "2018-08-28T00:00:00Z",
-            "type": {
-                "id": "issued",
-            },
-        },
-        {"date": "2026-07-20T07:47:23Z", "type": {"id": "updated"}},
+        {"date": "2018-08-28T01:05:10Z", "type": {"id": "issued"}},
+        {"date": "2018-10-19T21:13:05Z", "type": {"id": "updated"}},
     ]
     assert dig(inveniordm, "custom_fields.rs:content_html").startswith(
         "<p>I was lucky enough to have Phil Mannion as one of the peer-reviewers"
@@ -467,10 +472,10 @@ def test_from_jsonfeed_dates():
 
 
 @pytest.mark.vcr
-def test_from_jsonfeed_funding():
+def test_rogue_scholar_funding():
     "JSON Feed funding"
-    string = "https://api.rogue-scholar.org/posts/10.59350/hnegw-6rx17"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/y3sy6-27n54"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/hnegw-6rx17"
     assert subject.type == "BlogPost"
     # assert subject.funding_references is not None
@@ -510,10 +515,10 @@ def test_from_jsonfeed_funding():
 
 
 @pytest.mark.vcr
-def test_from_jsonfeed_more_funding():
+def test_rogue_scholar_more_funding():
     "JSON Feed more funding"
-    string = "https://api.rogue-scholar.org/posts/10.59350/m99dx-x9g53"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/qz2sd-6tw29"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/m99dx-x9g53"
     assert subject.type == "BlogPost"
 
@@ -553,10 +558,10 @@ def test_from_jsonfeed_more_funding():
 
 
 @pytest.mark.vcr
-def test_from_jsonfeed_references():
+def test_rogue_scholar_references():
     "JSON Feed references"
-    string = "https://api.rogue-scholar.org/posts/10.53731/r79v4e1-97aq74v-ag578"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/trhz1-s0336"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.53731/r79v4e1-97aq74v-ag578"
     assert subject.type == "BlogPost"
 
@@ -571,7 +576,7 @@ def test_from_jsonfeed_references():
         == "Differences between ORCID and DataCite Metadata"
     )
     related_identifiers = dig(inveniordm, "metadata.related_identifiers")
-    assert len(related_identifiers) == 1
+    assert len(related_identifiers) == 2
     assert related_identifiers[0] == {
         "identifier": "10.5438/bc11-cqw1",
         "relation_type": {"id": "isidenticalto"},
@@ -579,12 +584,10 @@ def test_from_jsonfeed_references():
     }
     assert dig(inveniordm, "metadata.funding") == [
         {
+            "funder": {"name": "European Commission", "id": "00k4n6c32"},
             "award": {
                 "number": "654039",
-            },
-            "funder": {
-                "id": "00k4n6c32",
-                "name": "European Commission",
+                "identifiers": [{"scheme": "doi", "identifier": "10.3030/654039"}],
             },
         }
     ]
@@ -603,10 +606,10 @@ def test_from_jsonfeed_references():
 
 
 @pytest.mark.vcr
-def test_from_jsonfeed_unstructured_references():
+def test_rogue_scholar_unstructured_references():
     "JSON Feed unstructured references"
-    string = "https://api.rogue-scholar.org/posts/10.59350/27ewm-zn378"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/345qb-aan84"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/27ewm-zn378"
     assert subject.type == "BlogPost"
     assert len(subject.references) == 7
@@ -631,10 +634,10 @@ def test_from_jsonfeed_unstructured_references():
 
 
 @pytest.mark.vcr
-def test_from_jsonfeed_citations():
+def test_rogue_scholar_citations():
     "JSON Feed citations"
-    string = "https://api.rogue-scholar.org/posts/10.59350/dcw3y-7em87"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/w2nqy-wxa44"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/dcw3y-7em87"
     assert subject.type == "BlogPost"
     # assert len(subject.citations) == 2
@@ -659,10 +662,10 @@ def test_from_jsonfeed_citations():
 
 
 @pytest.mark.vcr
-def test_from_jsonfeed_relations():
+def test_rogue_scholar_relations():
     "JSON Feed relations"
-    string = "https://api.rogue-scholar.org/posts/10.54900/zg929-e9595"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/4jymf-n5m83"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.54900/zg929-e9595"
     assert subject.type == "BlogPost"
 
@@ -674,7 +677,7 @@ def test_from_jsonfeed_relations():
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert dig(inveniordm, "metadata.title") == "Large Language Publishing"
     related_identifiers = dig(inveniordm, "metadata.related_identifiers")
-    assert len(related_identifiers) == 1
+    assert len(related_identifiers) == 2
     assert related_identifiers[0] == {
         "identifier": "10.18357/kula.291",
         "relation_type": {"id": "ispreviousversionof"},
@@ -690,10 +693,10 @@ def test_from_jsonfeed_relations():
 
 
 @pytest.mark.vcr
-def test_from_jsonfeed_broken_reference():
+def test_rogue_scholar_broken_reference():
     "JSON Feed relations"
-    string = "https://api.rogue-scholar.org/posts/10.59350/z78kb-qrz59"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/jehpc-qpc91"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/z78kb-qrz59"
     assert subject.type == "BlogPost"
 
@@ -719,8 +722,8 @@ def test_from_jsonfeed_broken_reference():
 @pytest.mark.vcr
 def test_external_doi():
     "external DOI used by Rogue Scholar"
-    string = "https://api.rogue-scholar.org/posts/10.57689/dini-blog.20210712"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/9jsrb-jtc73"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.57689/dini-blog.20210712"
     assert subject.type == "BlogPost"
 
@@ -739,8 +742,8 @@ def test_external_doi():
 @pytest.mark.vcr
 def test_post_with_contributor_roles():
     "post with contributor roles"
-    string = "https://api.rogue-scholar.org/posts/10.59350/510pg-zzf58"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/apt10-14q04"
+    subject = Metadata(string, via="inveniordm")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/510pg-zzf58"
     assert subject.type == "BlogPost"
@@ -796,8 +799,8 @@ def test_post_with_contributor_roles():
 @pytest.mark.vcr
 def test_post_with_interviewee_roles():
     "post with interviewee roles"
-    string = "https://api.rogue-scholar.org/posts/10.59350/s8m95-ap410"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/ssrar-vhq35"
+    subject = Metadata(string, via="inveniordm")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/s8m95-ap410"
     assert subject.type == "BlogPost"
@@ -815,8 +818,8 @@ def test_post_with_interviewee_roles():
 @pytest.mark.vcr
 def test_multiple_subfields():
     "post with multiple subfields"
-    string = "https://api.rogue-scholar.org/posts/10.59350/1srmw-yb311"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/nnx9s-74a78"
+    subject = Metadata(string, via="inveniordm")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/1srmw-yb311"
     assert subject.type == "BlogPost"
@@ -838,6 +841,16 @@ def test_multiple_subfields():
             "subject": "FOS: Biological sciences",
             "scheme": "FOS",
         },
+        {
+            "id": "https://openalex.org/T12287",
+            "subject": "Fibroblast Growth Factor Research",
+            "scheme": "Topics",
+        },
+        {
+            "id": "https://openalex.org/subfields/1312",
+            "subject": "Molecular Biology",
+            "scheme": "Subfields",
+        },
         {"subject": "Publishing"},
         {"subject": "Science"},
         {"subject": "Cancer"},
@@ -849,8 +862,8 @@ def test_multiple_subfields():
 @pytest.mark.vcr
 def test_content_with_external_src():
     "external DOI used by Rogue Scholar"
-    string = "https://api.rogue-scholar.org/posts/10.59350/vwd81-p8z85"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/xtmqd-gwg60"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/vwd81-p8z85"
     assert subject.type == "BlogPost"
     assert re.search(
@@ -871,11 +884,11 @@ def test_content_with_external_src():
     )
 
 
-@pytest.mark.vcr("test_from_jsonfeed.yaml")
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
 def test_upsert_record_falls_back_to_guid():
     "upsert_record uses GUID from output identifiers when DOI lookup returns None"
-    string = "https://api.rogue-scholar.org/posts/10.59350/dn2mm-m9q51"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
     assert subject.is_valid
 
     existing_id = "abc123xyz"
@@ -1008,11 +1021,11 @@ def test_record_matches_a_longer_list():
     assert record_matches(UPSERT_OUTPUT, published) is False
 
 
-@pytest.mark.vcr("test_from_jsonfeed.yaml")
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
 def test_upsert_record_skips_an_unchanged_record():
     "an unchanged record is not republished, since that writes a new revision"
-    string = "https://api.rogue-scholar.org/posts/10.59350/dn2mm-m9q51"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
     assert subject.is_valid
 
     record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
@@ -1053,11 +1066,11 @@ def test_upsert_record_skips_an_unchanged_record():
     mock_publish.assert_not_called()
 
 
-@pytest.mark.vcr("test_from_jsonfeed.yaml")
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
 def test_upsert_record_skip_unchanged_can_be_turned_off():
     "skip_unchanged=False forces the republish of a record that did not change"
-    string = "https://api.rogue-scholar.org/posts/10.59350/dn2mm-m9q51"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
     record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
 
     with (

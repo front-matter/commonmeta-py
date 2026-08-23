@@ -1,0 +1,201 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://rogue-scholar.org/api/records/qz2sd-6tw29
+  response:
+    body:
+      string: '{"id": "qz2sd-6tw29", "created": "2024-10-16T11:32:46.423151+00:00",
+        "updated": "2025-04-13T16:44:27.028138+00:00", "links": {"self": "https://rogue-scholar.org/api/records/qz2sd-6tw29",
+        "self_html": "https://rogue-scholar.org/records/qz2sd-6tw29", "preview_html":
+        "https://rogue-scholar.org/records/qz2sd-6tw29?preview=1", "doi": "https://doi.org/10.59350/m99dx-x9g53",
+        "self_doi": "https://doi.org/10.59350/m99dx-x9g53", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/m99dx-x9g53",
+        "reserve_doi": "https://rogue-scholar.org/api/records/qz2sd-6tw29/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/bee85-pww30", "parent_html":
+        "https://rogue-scholar.org/records/bee85-pww30", "self_iiif_manifest": "https://rogue-scholar.org/api/iiif/record:qz2sd-6tw29/manifest",
+        "self_iiif_sequence": "https://rogue-scholar.org/api/iiif/record:qz2sd-6tw29/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/qz2sd-6tw29/files", "media_files":
+        "https://rogue-scholar.org/api/records/qz2sd-6tw29/media-files", "archive":
+        "https://rogue-scholar.org/api/records/qz2sd-6tw29/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/qz2sd-6tw29/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/qz2sd-6tw29/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/qz2sd-6tw29/latest", "versions": "https://rogue-scholar.org/api/records/qz2sd-6tw29/versions",
+        "draft": "https://rogue-scholar.org/api/records/qz2sd-6tw29/draft", "access_links":
+        "https://rogue-scholar.org/api/records/qz2sd-6tw29/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/qz2sd-6tw29/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/qz2sd-6tw29/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/qz2sd-6tw29/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/qz2sd-6tw29/access/request", "access":
+        "https://rogue-scholar.org/api/records/qz2sd-6tw29/access", "communities":
+        "https://rogue-scholar.org/api/records/qz2sd-6tw29/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/qz2sd-6tw29/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/qz2sd-6tw29/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/qz2sd-6tw29/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/qz2sd-6tw29/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/qz2sd-6tw29/requests"},
+        "revision_id": 27, "parent": {"id": "bee85-pww30", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["64af7724-6171-4e2c-8f09-ba23d5f324b6", "d79fe364-6d96-40b6-b437-b93ca3493106"],
+        "default": "64af7724-6171-4e2c-8f09-ba23d5f324b6", "entries": [{"id": "64af7724-6171-4e2c-8f09-ba23d5f324b6",
+        "created": "2024-10-10T20:06:12.024084+00:00", "updated": "2026-08-22T09:02:05.083936+00:00",
+        "links": {}, "revision_id": 3844, "slug": "coref", "metadata": {"title": "COREF
+        Blog", "description": "COREF Blog", "type": {"id": "blog"}, "website": "https://coref.project.re3data.org/"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {"feed:feed_url": "https://coref.project.re3data.org/blog.atom", "feed:created":
+        "2026-06-08", "feed:updated": "2026-07-04T13:31:55+00:00", "feed:feed_format":
+        {"id": "atom"}, "feed:generator": {"id": "Other"}, "feed:status": {"id": "active"},
+        "feed:authors": [{"name": "re3data Team"}], "rs:prefix": {"id": "10.59350"},
+        "rs:doi": "https://doi.org/10.59350/coref", "rs:license": {"id": "cc-by-4.0"},
+        "rs:language": {"id": "eng"}, "rs:subfield": [{"id": "https://openalex.org/subfields/1710"}]},
+        "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        true}}, {"id": "d79fe364-6d96-40b6-b437-b93ca3493106", "created": "2025-02-10T08:12:28.813373+00:00",
+        "updated": "2025-12-02T20:56:15.845048+00:00", "links": {}, "revision_id":
+        11, "slug": "1710", "metadata": {"title": "Information Systems", "type": {"id":
+        "subject"}, "website": "https://openalex.org/subfields/1710"}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
+        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}]}, "pids":
+        {}}, "versions": {"is_latest": true, "index": 1}, "is_published": true, "is_draft":
+        false, "pids": {"doi": {"identifier": "10.59350/m99dx-x9g53", "provider":
+        "external"}, "oai": {"identifier": "oai:invenio-rdm:qz2sd-6tw29", "provider":
+        "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost", "title":
+        {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators":
+        [{"person_or_org": {"type": "organizational", "name": "re3data Team"}}], "title":
+        "Summer Meeting of the Editorial Board", "publisher": "Front Matter", "publication_date":
+        "2024-09-04", "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
+        "subject": "Computer and information sciences", "scheme": "FOS"}], "dates":
+        [{"date": "2024-09-04T15:02:55", "type": {"id": "issued", "title": {"de":
+        "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}}, {"date":
+        "2024-09-04T15:02:55", "type": {"id": "updated", "title": {"de": "Aktualisiert",
+        "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id": "eng", "title":
+        {"en": "English"}}], "identifiers": [{"identifier": "91d2eaf4-f54b-4887-ad08-600a2ce2d86d",
+        "scheme": "uuid"}, {"identifier": "https://coref.project.re3data.org/blog/summer-meeting-of-the-editorial-board",
+        "scheme": "guid"}, {"identifier": "https://coref.project.re3data.org/blog/summer-meeting-of-the-editorial-board",
+        "scheme": "url"}], "rights": [{"id": "cc-by-4.0", "title": {"en": "Creative
+        Commons Attribution 4.0 International"}, "description": {"en": "The Creative
+        Commons Attribution license allows re-distribution and re-use of a licensed
+        work on the condition that the creator is appropriately credited."}, "icon":
+        "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "Summer Meeting of the Editorial Board
+        The re3data.org editorial board was able to get together in person over the
+        summer, meeting for two days in June at the library of the Karlsruhe Institute
+        of Technology (KIT). It was a great opportunity to on-board our new editors
+        and to reconnect with colleagues to focus on updates and improvements to the
+        registry. In addition to the work, the group enjoyed good food and fellowship
+        in the evening.", "funding": [{"funder": {"id": "018mejw64", "name": "Deutsche
+        Forschungsgemeinschaft"}, "award": {"id": "422587133", "number": "422587133",
+        "title": {"en": "re3data \u2013 Offene und nutzerorientierte Referenz f\u00fcr
+        Forschungsdatenrepositorien (re3data COREF)"}, "identifiers": [{"identifier":
+        "https://gepris-extern.dfg.de/gepris/projekt/422587133", "scheme": "url"}]}}]},
+        "custom_fields": {"journal:journal": {"title": "COREF Blog"}, "rs:content_html":
+        "<img alt=\"\" src=\"https://coref.project.re3data.org/images/7/b/6/1/b/7b61bcef98211c200b6c508c172e8833ae50caaa-working.jpg\"/>\n<p>Summer
+        Meeting of the Editorial Board</p>\n<p>The re3data.org editorial board was
+        able to get together in person over the summer, meeting for two days in June
+        at the library of the Karlsruhe Institute of Technology (KIT). It was a great
+        opportunity to on-board our new editors and to reconnect with colleagues to
+        focus on updates and improvements to the registry. In addition to the work,
+        the group enjoyed good food and fellowship in the evening.</p>\n<p>Some were
+        not able to travel to Germany but were able to join remotely for introductions
+        and an icebreaker to get to know each other better. The KIT staff led a tutorial
+        and demonstrated the registry''s backend editorial workflow, following a submission
+        through each step in the process as it moved through the system.</p>\n<p>We
+        also had a focussed discussion on new ways to engage with the broader research
+        data community, first by sharing general strategies and then brainstorming
+        specific approaches for each of our regions and networks. Each editor left
+        with 2-3 action items of things they could do to raise awareness of re3data.org
+        and to identify new repositories to index, in particular, from under-represented
+        parts of the world. The board will revisit these on its next quarterly call
+        to update each other on progress.</p>\n<p>Four additional working sessions
+        addressed important topics. A hands-on activity explored inconsistencies over
+        the years in how editors have identified different types of repositories,
+        and they discussed potential changes to their approach to repository typology.
+        The board mapped and investigated the alignment between Version 4 of re3data''s
+        <a href=\"https://doi.org/10.48440/re3.014\">Metadata Schema for the Description
+        of Research Data Repositories</a> and the <a href=\"https://doi.org/10.15497/rda00103\">RDA
+        Common Descriptive Attributes of Research Data Repositories recommendation</a>
+        that was endorsed earlier this year by the Research Data Alliance. They explored
+        how users from specific disciplines may experience the registry differently.
+        For example, how would a humanities scholar interact with re3data.org in ways
+        that would be different from a geoscientist? Each of the editors has individual
+        expertise in different disciplines and presented their views in the context
+        of their subject area. Last but not least, the group experimented and explored
+        how artificial intelligence (AI) tools consume information about repositories
+        that we present in the registry as well as how we may utilize AI to improve
+        our work.</p>\n<p>The meeting concluded with a session of lightning talks
+        on topics of relevance that were brought by our editors, which spanned a wide
+        spectrum of initiatives and interests. </p>\n<p>This was the third in a series
+        of three meetings that were sponsored by the <a href=\"https://www.dfg.de/\">Deutsche
+        Forschungsgemeinschaft (DFG)</a> in support of the <a href=\"https://coref.project.re3data.org/project\">COREF
+        project</a>. The meetings helped reshape the editorial process, brought in
+        missing language and subject expertise, and extended global networks to better
+        cover regions that are currently underrepresented in re3data.</p>\n<p><img
+        alt=\"working\" src=\"https://coref.project.re3data.org/images/7/1/7/5/b/7175be771978de37dc8a61f11f0bb246905a6169-working.jpg\"
+        title=\"working\"/>\n<img alt=\"re3data_editorial_board_2024_s\" src=\"https://coref.project.re3data.org/user/pages/02.blog/18.summer-meeting-of-the-editorial-board/re3data_editorial_board_2024_s.jpg\"
+        title=\"re3data_editorial_board_2024_s\"/>\n<img alt=\"super_pretzel\" src=\"https://coref.project.re3data.org/user/pages/02.blog/18.summer-meeting-of-the-editorial-board/super_pretzel.jpg\"
+        title=\"super_pretzel\"/></p>", "rs:generator": {"id": "Other", "title": {"en":
+        "Other"}}, "rs:featured": false}, "access": {"record": "public", "files":
+        "public", "embargo": {"active": false, "reason": null}, "status": "metadata-only"},
+        "files": {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries":
+        {}}, "media_files": {"enabled": false, "order": [], "count": 0, "total_bytes":
+        0, "entries": {}}, "status": "published", "deletion_status": {"is_deleted":
+        false, "status": "P"}, "stats": {"this_version": {"views": 0, "unique_views":
+        0, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions":
+        {"views": 0, "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Aug 2026 07:29:48 GMT
+      Etag:
+      - '"27"'
+      Link:
+      - <https://rogue-scholar.org/api/records/qz2sd-6tw29> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '59'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '493'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

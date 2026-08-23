@@ -1,0 +1,277 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://rogue-scholar.org/api/records/pywwn-1kp92
+  response:
+    body:
+      string: '{"id": "pywwn-1kp92", "created": "2024-10-13T14:40:44.805506+00:00",
+        "updated": "2025-09-30T08:03:41.957222+00:00", "links": {"self": "https://rogue-scholar.org/api/records/pywwn-1kp92",
+        "self_html": "https://rogue-scholar.org/records/pywwn-1kp92", "preview_html":
+        "https://rogue-scholar.org/records/pywwn-1kp92?preview=1", "doi": "https://doi.org/10.59350/kz04m-s8z58",
+        "self_doi": "https://doi.org/10.59350/kz04m-s8z58", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/kz04m-s8z58",
+        "reserve_doi": "https://rogue-scholar.org/api/records/pywwn-1kp92/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/yqtsj-vr862", "parent_html":
+        "https://rogue-scholar.org/records/yqtsj-vr862", "parent_doi": "https://doi.org/10.59350/yqtsj-vr862",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/yqtsj-vr862", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:pywwn-1kp92/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:pywwn-1kp92/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/pywwn-1kp92/files", "media_files":
+        "https://rogue-scholar.org/api/records/pywwn-1kp92/media-files", "archive":
+        "https://rogue-scholar.org/api/records/pywwn-1kp92/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/pywwn-1kp92/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/pywwn-1kp92/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/pywwn-1kp92/latest", "versions": "https://rogue-scholar.org/api/records/pywwn-1kp92/versions",
+        "draft": "https://rogue-scholar.org/api/records/pywwn-1kp92/draft", "access_links":
+        "https://rogue-scholar.org/api/records/pywwn-1kp92/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/pywwn-1kp92/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/pywwn-1kp92/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/pywwn-1kp92/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/pywwn-1kp92/access/request", "access":
+        "https://rogue-scholar.org/api/records/pywwn-1kp92/access", "communities":
+        "https://rogue-scholar.org/api/records/pywwn-1kp92/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/pywwn-1kp92/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/pywwn-1kp92/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/pywwn-1kp92/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/pywwn-1kp92/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/pywwn-1kp92/requests"},
+        "revision_id": 17, "parent": {"id": "yqtsj-vr862", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["2010c4da-31b7-4cd7-97cf-c75892ae6902", "346efb91-f134-4f0b-bd6a-30e2094d2c40",
+        "e31421de-c2b6-4ed8-8105-f749e28dc0c0"], "default": "2010c4da-31b7-4cd7-97cf-c75892ae6902",
+        "entries": [{"id": "2010c4da-31b7-4cd7-97cf-c75892ae6902", "created": "2024-10-05T10:40:12.314653+00:00",
+        "updated": "2026-08-22T09:06:43.176409+00:00", "links": {}, "revision_id":
+        3524, "slug": "wisspub", "metadata": {"title": "wisspub.net", "description":
+        "Gemeinschaftsblog zu wissenschaftlicher Kommunikation im Netz.", "type":
+        {"id": "blog"}, "website": "https://wisspub.net"}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {"feed:feed_url": "https://wisspub.net/feed/atom/",
+        "feed:created": "2023-01-16", "feed:updated": "2026-07-04T13:40:30+00:00",
+        "feed:feed_format": {"id": "atom"}, "feed:generator": {"id": "WordPress.com"},
+        "feed:status": {"id": "active"}, "feed:secure": true, "feed:use_api": true,
+        "rs:prefix": {"id": "10.59350"}, "rs:doi": "https://doi.org/10.59350/wisspub",
+        "rs:license": {"id": "cc-by-4.0"}, "rs:language": {"id": "deu"}, "rs:subfield":
+        [{"id": "https://openalex.org/subfields/1802"}]}, "deletion_status": {"is_deleted":
+        false, "status": "P"}, "children": {"allow": true}}, {"id": "346efb91-f134-4f0b-bd6a-30e2094d2c40",
+        "created": "2024-10-02T19:02:40.195535+00:00", "updated": "2026-01-25T12:33:52.081167+00:00",
+        "links": {}, "revision_id": 23, "slug": "openaccess", "metadata": {"title":
+        "Open Access", "type": {"id": "topic"}}, "access": {"visibility": "public",
+        "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
+        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
+        "e31421de-c2b6-4ed8-8105-f749e28dc0c0", "created": "2025-02-11T21:59:21.242481+00:00",
+        "updated": "2025-12-02T20:56:14.199659+00:00", "links": {}, "revision_id":
+        11, "slug": "1207", "metadata": {"title": "History and Philosophy of Science",
+        "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1207"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {"doi": {"identifier": "10.59350/yqtsj-vr862", "provider":
+        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
+        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
+        "10.59350/kz04m-s8z58", "provider": "crossref", "client": "crossref"}, "oai":
+        {"identifier": "oai:invenio-rdm:pywwn-1kp92", "provider": "oai"}}, "metadata":
+        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
+        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
+        {"type": "personal", "name": "Pampel, Heinz", "given_name": "Heinz", "family_name":
+        "Pampel", "identifiers": [{"identifier": "0000-0003-3334-2771", "scheme":
+        "orcid"}]}, "affiliations": [{"id": "01hcx6992", "name": "Humboldt-Universit\u00e4t
+        zu Berlin", "identifiers": [{"identifier": "01hcx6992", "scheme": "ror"}]}]}],
+        "title": "EU-Mitgliedstaaten betonen die Rolle von wissenschaftsgeleiteten
+        Open-Access-Modellen jenseits von APCs", "publisher": "Front Matter", "publication_date":
+        "2023-05-23", "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?5",
+        "subject": "Social science", "scheme": "FOS"}, {"subject": "Open Access"},
+        {"subject": "Open Access Transformation"}, {"subject": "Open Science"}], "dates":
+        [{"date": "2023-05-23T11:16:53", "type": {"id": "issued", "title": {"de":
+        "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}}, {"date":
+        "2023-05-23T11:16:53", "type": {"id": "updated", "title": {"de": "Aktualisiert",
+        "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id": "deu", "title":
+        {"en": "German"}}], "identifiers": [{"identifier": "1c578558-1324-4493-b8af-84c49eabc52f",
+        "scheme": "uuid"}, {"identifier": "https://wisspub.net/?p=20455", "scheme":
+        "guid"}, {"identifier": "https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs/",
+        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
+        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
+        "The Creative Commons Attribution license allows re-distribution and re-use
+        of a licensed work on the condition that the creator is appropriately credited."},
+        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "Die EU-Wissenschaftsministerien haben
+        sich auf ihrer heutigen Sitzung in Br\u00fcssel unter dem Titel \"Council
+        conclusions on high-quality, transparent, open, trustworthy and equitable
+        scholarly publishing\" (PDF der englischen Version, PDF der deutschen Version)\u00a0mit
+        den aktuellen Herausforderungen des wissenschaftlichen Publikationswesens
+        befasst."}, "custom_fields": {"journal:journal": {"title": "wisspub.net"},
+        "rs:content_html": "<p>Die EU-Wissenschaftsministerien haben sich auf ihrer
+        <a href=\"https://www.consilium.europa.eu/en/press/press-releases/2023/05/23/council-calls-for-transparent-equitable-and-open-access-to-scholarly-publications/\">heutigen
+        Sitzung</a> in Br\u00fcssel unter dem Titel \"Council conclusions on high-quality,
+        transparent, open, trustworthy and equitable scholarly publishing\" (<a href=\"https://data.consilium.europa.eu/doc/document/ST-8827-2023-INIT/en/pdf\">PDF
+        der englischen Version</a>, <a href=\"https://data.consilium.europa.eu/doc/document/ST-8827-2023-INIT/de/pdf\">PDF
+        der deutschen Version</a>)\u00a0mit den aktuellen Herausforderungen des wissenschaftlichen
+        Publikationswesens befasst.</p>\n\n\n\n<p>Bereits im Vorfeld der Sitzung der
+        Wissenschaftsministerien wurden verschiedene Versionen der Erkl\u00e4rung
+        \u00f6ffentlich diskutiert (siehe z.B.<a href=\"https://sciencebusiness.net/news/Universities/leaked-eu-member-states-set-out-reform-scientific-publishing\">
+        Science Business</a> und<a href=\"https://www.timeshighereducation.com/news/can-eu-make-parallel-publishing-system-work\">
+        Times Higher Education</a>). Im Kern stand die Frage, inwiefern das EU-Papier
+        den Fokus auf Finanzierungs- und Gesch\u00e4ftsmodelle abseits von Publikationsgeb\u00fchren
+        (Article Processing Charges, APCs) legt und ob sogar eine Abkehr von der Unterst\u00fctzung
+        dieses Modells durch die \u00f6ffentliche Hand in Europa betont wird.</p>\n\n\n\n<p>Schweden
+        hatte das Thema im Rahmen seiner EU-Ratspr\u00e4sidentschaft augegriffen und
+        bereits im <a href=\"https://wisspub.net/2023/02/10/eu-wissenschaftsministerien-erortern-open-science/\">Februar</a>
+        in einem Hintergrund-Papier adressiert. Schon in diesem Briefing Paper wurde
+        die Problematik steigender Preise f\u00fcr die wissenschaftlichen Fachinformation
+        betont.\u00a0</p>\n\n\n\n<p>In der jetzt verabschiedeten Version der Schlussfolgerungen
+        die Forderung nach sofortigem Open Access f\u00fcr wissenschaftliche Publikationen,
+        die im Rahmen der \u00f6ffentlich gef\u00f6rderten Forschung entstehen, nochmals
+        betont. Dieses Ziel wurde<a href=\"https://wisspub.net/2016/05/27/eu-und-g7-staaten-setzen-auf-open-science/\">
+        bereits 2016</a> von den EU-Wissenschaftsministerien erhoben. Die Wissenschaftsminister:innen
+        hatten damals einen Open-Access-Anteil von 100 % bis 2020 gefordert. Dieser
+        Wert wurde bisher jedoch nicht erreicht. In Deutschland liegt der Open-Access-Anteil
+        zum Beispiel bei <a href=\"https://open-access-monitor.de/\">63</a> Prozent,
+        w\u00e4hrend die Niederlande im Publikationsjahr 2021 einen Anteil von <a
+        href=\"https://www.openaccess.nl/en/in-the-netherlands/monitor\">82</a>\u00a0Prozent
+        erreichten.</p>\n\n\n<div class=\"wp-block-image\">\n<figure class=\"alignleft
+        size-large is-resized\"><a href=\"https://wisspub.wordpress.com/wp-content/uploads/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png\"><img
+        loading=\"lazy\" data-attachment-id=\"20457\" data-permalink=\"http://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs/bildschirmc2adfoto-2023-05-23-um-11-05-39/\"
+        data-orig-file=\"https://wisspub.wordpress.com/wp-content/uploads/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png\"
+        data-orig-size=\"1512,2142\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\"
+        data-image-title=\"bildschirmc2adfoto-2023-05-23-um-11.05.39\" data-image-description=\"\"
+        data-image-caption=\"\" data-medium-file=\"https://wisspub.wordpress.com/wp-content/uploads/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=212\"
+        data-large-file=\"https://wisspub.wordpress.com/wp-content/uploads/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=723\"
+        src=\"https://wisspub.wordpress.com/wp-content/uploads/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=723\"
+        alt=\"\" class=\"wp-image-20457\" width=\"353\" height=\"500\" srcset=\"https://wisspub.wordpress.com/wp-content/uploads/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=353
+        353w, https://wisspub.wordpress.com/wp-content/uploads/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=706
+        706w, https://wisspub.wordpress.com/wp-content/uploads/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=106
+        106w, https://wisspub.wordpress.com/wp-content/uploads/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=212
+        212w\" sizes=\"(max-width: 353px) 100vw, 353px\" /></a><figcaption class=\"wp-element-caption\"><em>\"Council
+        conclusions on high-quality, transparent, open, trustworthy and equitable
+        scholarly publishing\"</em></figcaption></figure></div>\n\n\n<p>Angesichts
+        steigender Abonnementkosten und \u00e4hnlicher Entwicklungen im Bereich der
+        Publikationsgeb\u00fchren f\u00fcr Open Access und hybride Optionen betont
+        das EU-Papier das Potenzial von Gesch\u00e4fts- und Finanzierungsmodellen,
+        die weder die Leser:innen noch die Autor:innen finanziell belasten und sich
+        durch angemessene und transparente Preise auszeichnen (Punkt 6). Es wird beklagt,
+        dass die steigenden Preise f\u00fcr wissenschaftliche Fachinformationen zu
+        Ungleichheiten f\u00fchren und die \u00f6ffentliche Hand in Europa zum Nachteil
+        der Forschung belasten (Punkt 5).</p>\n\n\n\n<p>Aufgrund dieser Kritik am
+        kommerziellen Verlagswesen wird in zwei bemerkenswerten Punkten (6 und 7)
+        die Bedeutung von nicht gewinnorientierten Open-Access-Modellen betont. Wortlaut:</p>\n\n\n\n<p>\"The
+        Council of the European Union [&#8230;] highlights the importance of not-for-profit,
+        scholarly open access publishing models that do not charge fees to authors
+        or readers and where authors can publish their work without funding/institutional
+        eligibility criteria; notes the variety of models that do not depend on article
+        processing charges or similar per-unit charges and stresses the importance
+        of supporting the development of such models led by public research organisations;
+        [&#8230;] stresses that it is essential to avoid situations where researchers
+        are limited in their choice of publication channels due to financial capacities
+        rather than quality criteria, and where access to research publications is
+        restricted by paywalls\"</p>\n\n\n\n<p>Zwar sind diese Unterstreichung und
+        Betonung sicherlich nur ein kleiner Schritt auf dem Weg zur Gestaltung eines
+        pluralistischen, transparenten und nachhaltigen Systems der digtialen Wissenschaftskommunikation.
+        Sie kommen jedoch zu einem Zeitpunkt, zu dem die Kritik an dem Modell der
+        Publikationsgeb\u00fchren w\u00e4chst.</p>\n\n\n\n<p>Erst k\u00fcrzlich hat
+        die Ivy Plus Libraries Confederation (IPLC) in den USA, als Zusammenschluss
+        von Bibliotheken forschungsstarker Einrichtungen, das APC-Modell<a href=\"https://ivpluslibraries.org/2023/03/iplc-letter-to-the-office-of-science-technology-policy/\">
+        deutlich kritisiert</a>. Die Bibliothekar:innen sehen die Gefahr, dass Publikationsgeb\u00fchren
+        Ungleichheit f\u00f6rdern und Forschende aus finanziell weniger gut ausgestatteten
+        Regionen beim Open-Access-Publizieren benachteiligt werden. Sie charakterisieren
+        APCs als eine H\u00fcrde bei der Publikation.</p>\n\n\n\n<p>Auch hat der \u00f6ffentlichkeitswirksame
+        <a href=\"https://www.nature.com/articles/d41586-023-01391-5\">R\u00fccktritt</a>
+        des Editorial Boards der Elsevier-Zeitschrift NeuroImage aufgrund steigender
+        APCs den kritischen Blick auf das Gesch\u00e4ftsmodell gelenkt. Die zur\u00fcckgetretenen
+        Herausgebenden haben nun bei MIT Press ein neues Journal <a href=\"https://mitpress.mit.edu/the-mit-press-to-launch-open-access-journal-imaging-neuroscience/\">gegr\u00fcndet</a>,
+        das niedrige APCs erhebt. Dieser Schritt zeigt, dass nicht APCs das Problem
+        sein m\u00fcssen, sondern vielmehr deren Preisgestaltung.</p>\n\n\n\n<p>Um
+        die im obrigen Zitat formulierten Anliegen der EU-Staaten zu adressieren,
+        soll die Koordinierung innerhalb der EU und mit globalen Partnern zur Unterst\u00fctzung
+        von Chancengleichheit im wissenschaftlichen Publizieren gef\u00f6rdert werden
+        (Absatz 7). Hierzu sollen auch abgestimmte Finanzierungsstrategien entwickelt
+        werden, um die Anzahl von not-for-profit open access multi-format scholarly
+        publishing models in Europe with no costs for authors or readers&#8221; signifikant
+        zu erh\u00f6hen (Absatz 11).</p>\n\n\n\n<p>Auch soll das Anliegen durch eine
+        m\u00f6gliche Beteiligung der EU-Mitgliedstaaten an Open Research Europe (ORE),
+        der von der EU-Kommission finanzierten Publikationsplattform f\u00fcr Autor:innen
+        aus den EU-Rahmenprogrammen, vorangetrieben werden (Absatz 15).&nbsp;</p>\n\n\n\n<p>In
+        der <a href=\"https://www.consilium.europa.eu/de/press/press-releases/2023/05/23/council-calls-for-transparent-equitable-and-open-access-to-scholarly-publications/\">Pressemitteilung</a>
+        werden weitere Themen der verabschiedeten Schlussfolgerungen augegriffen:&nbsp;</p>\n\n\n\n<p>\"Some
+        Member States have introduced secondary publication rights into their national
+        copyright legislation, enabling open access to scholarly publications which
+        involve public funds. The Council encourages national open access policies
+        and guidelines to make scholarly publications immediately openly accessible
+        under open licences. The conclusions acknowledge positive developments in
+        terms of monitoring progress, like within the framework of the European Open
+        Science Cloud (EOSC), and suggest including open science monitoring in the
+        European Research Area monitoring mechanism.\"</p>\n\n\n\n<p>Die Schlussfolgerungen
+        k\u00f6nnen zweifellos als St\u00e4rkung des wissenschaftsgeleiteten Open-Access-Publizierens
+        in akademischer Tr\u00e4gerschaft\u00a0 interpretiert werden. Der eingeschlagene
+        Kurs ist zu begr\u00fc\u00dfen. Um die bereits vielf\u00e4ltigen Open-Access-Publikationsangebote
+        und -Verlage, die von wissenschaftlichen Einrichtungen betrieben oder gemeinsam
+        (mit angemessenen und ohne APCs) finanziert werden, nachhaltig zu st\u00e4rken,
+        ist es erforderlich, kooperative Finanzierungsmodelle auf internationaler
+        Ebene zu entwickeln und umzusetzen. Daf\u00fcr sind, wie das Papier richtig
+        betont, abgestimmte F\u00f6rderaktivit\u00e4ten erforderlich, die beispielsweise
+        in Deutschland, komplement\u00e4r zu DEAL, dem wissenschaftsgeleiteten Open-Access-Publizieren
+        einen deutlichen Aufschwung geben.</p>", "rs:generator": {"id": "WordPress.com",
+        "title": {"en": "WordPress.com"}}, "rs:featured": false}, "access": {"record":
+        "public", "files": "public", "embargo": {"active": false, "reason": null},
+        "status": "metadata-only"}, "files": {"enabled": false, "order": [], "count":
+        0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled": false, "order":
+        [], "count": 0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
+        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
+        0, "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}, "all_versions": {"views": 0, "unique_views": 0, "downloads": 0, "unique_downloads":
+        0, "data_volume": 0.0}}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Aug 2026 07:29:55 GMT
+      Etag:
+      - '"17"'
+      Link:
+      - <https://rogue-scholar.org/api/records/pywwn-1kp92> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '52'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '479'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

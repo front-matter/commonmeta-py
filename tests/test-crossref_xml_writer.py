@@ -102,36 +102,6 @@ def test_write_crossref_xml_list():
     assert dig(crossref_xml, "abstract") is None
 
 
-@pytest.mark.vcr
-def test_write_commonmeta_list_as_crossref_xml():
-    """write_commonmeta_list crossref_xml"""
-    string = path.join(path.dirname(__file__), "fixtures", "json_feed.json")
-    subject_list = MetadataList(string)
-    assert len(subject_list.items) == 15
-
-    crossref_xml_list = subject_list.write(to="crossref_xml")
-    assert subject_list.is_valid
-    crossref_xml_list = parse_xml(crossref_xml_list, dialect="crossref")
-    crossref_xml_list = dig(crossref_xml_list, "doi_batch.body.posted_content", [])
-    assert len(crossref_xml_list) == 15
-    crossref_xml = crossref_xml_list[0]
-    assert dig(crossref_xml, "doi_data.doi") == "10.59350/26ft6-dmv65"
-    assert (
-        dig(crossref_xml, "titles.0.title")
-        == "Das BUA Open Science Dashboard Projekt: die Entwicklung disziplinspezifischer Open-Science-Indikatoren"
-    )
-    assert len(dig(crossref_xml, "contributors.person_name")) == 1
-    assert dig(crossref_xml, "contributors.person_name.0") == {
-        "contributor_role": "author",
-        "given_name": "Maatje Sophia",
-        "sequence": "first",
-        "surname": "Duine",
-    }
-    assert dig(crossref_xml, "abstract.0.p").startswith(
-        "Autorinnen: Maaike Duine (ORCiD) und Maxi Kindling (ORCiD)"
-    )
-
-
 def test_normalize_isbn_crossref():
     """Test normalize_isbn_crossref"""
     assert normalize_isbn_crossref("9783161484100") == "978-3161484100"
@@ -400,20 +370,17 @@ def test_write_crossref_schema_org_upstream_blog():
 
 
 @pytest.mark.vcr
-def test_jsonfeed_upstream_blog():
-    """jsonfeed upstream blog"""
-    string = "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48"
-    subject = Metadata(string)
+def test_rogue_scholar_upstream_blog():
+    """Rogue Scholar upstream blog"""
+    string = "https://rogue-scholar.org/api/records/thmsh-a1z89"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
     assert subject.type == "BlogPost"
     assert subject.relations == [
+        {"id": "https://doi.org/10.54900/kvz56-05126", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.54900/upstream", "type": "IsPartOf"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/upstream",
-            "type": "IsPartOf",
-        },
     ]
-    assert subject.state == "stale"
+    assert subject.state == "findable"
     assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -431,6 +398,13 @@ def test_jsonfeed_upstream_blog():
         "ORCID": "https://orcid.org/0000-0001-9165-2757",
     }
     assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.54900/kvz56-05126",
+            }
+        },
         {
             "inter_work_relation": {
                 "relationship-type": "isPartOf",
@@ -456,20 +430,17 @@ def test_jsonfeed_upstream_blog():
 
 
 @pytest.mark.vcr
-def test_jsonfeed_upstream_blog_archived():
-    """jsonfeed upstream blog archived"""
-    string = "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48"
+def test_rogue_scholar_upstream_blog_archived():
+    """Rogue Scholar upstream blog, archived"""
+    string = "https://rogue-scholar.org/api/records/thmsh-a1z89"
     url = "https://rogue-scholar.org/records/thmsh-a1z89"
-    subject = Metadata(string, url=url)
+    subject = Metadata(string, via="inveniordm", url=url)
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
     assert subject.type == "BlogPost"
     assert subject.url == "https://rogue-scholar.org/records/thmsh-a1z89"
     assert subject.relations == [
+        {"id": "https://doi.org/10.54900/kvz56-05126", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.54900/upstream", "type": "IsPartOf"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/upstream",
-            "type": "IsPartOf",
-        },
     ]
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -487,6 +458,13 @@ def test_jsonfeed_upstream_blog_archived():
         "ORCID": "https://orcid.org/0000-0001-9165-2757",
     }
     assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.54900/kvz56-05126",
+            }
+        },
         {
             "inter_work_relation": {
                 "relationship-type": "isPartOf",
@@ -516,15 +494,23 @@ def test_jsonfeed_upstream_blog_archived():
 
 
 @pytest.mark.vcr
-def test_jsonfeed_with_references():
-    """jsonfeed with references"""
-    string = "https://api.rogue-scholar.org/posts/10.54900/zwm7q-vet94"
-    subject = Metadata(string)
+def test_rogue_scholar_with_references():
+    """Rogue Scholar record with references"""
+    string = "https://rogue-scholar.org/api/records/de2ng-zbq88"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.54900/zwm7q-vet94"
     assert subject.subjects == [
         {
             "id": "https://openalex.org/subfields/1802",
             "subject": "Information Systems and Management",
+        },
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?5.2",
+            "subject": "Economics and business",
+        },
+        {
+            "id": "https://openalex.org/T11986",
+            "subject": "Scientific Computing and Data Management",
         },
         {"subject": "News"},
     ]
@@ -535,13 +521,10 @@ def test_jsonfeed_with_references():
         "researchers. Accessed April 13, 2023.",
     }
     assert subject.relations == [
+        {"id": "https://doi.org/10.54900/kktve-tdr43", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.54900/upstream", "type": "IsPartOf"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/upstream",
-            "type": "IsPartOf",
-        },
     ]
-    assert subject.state == "stale"
+    assert subject.state == "findable"
     assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -566,6 +549,13 @@ def test_jsonfeed_with_references():
         "surname": "Katz",
     }
     assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.54900/kktve-tdr43",
+            }
+        },
         {
             "inter_work_relation": {
                 "relationship-type": "isPartOf",
@@ -592,25 +582,25 @@ def test_jsonfeed_with_references():
 
 
 @pytest.mark.vcr
-def test_jsonfeed_with_doi():
-    """jsonfeed with DOI"""
-    string = "https://api.rogue-scholar.org/posts/10.59350/kz04m-s8z58"
-    subject = Metadata(string, doi="10.59350/kz04m-s8z58")
+def test_rogue_scholar_with_doi():
+    """Rogue Scholar record with a DOI"""
+    string = "https://rogue-scholar.org/api/records/pywwn-1kp92"
+    subject = Metadata(string, via="inveniordm", doi="10.59350/kz04m-s8z58")
     assert subject.id == "https://doi.org/10.59350/kz04m-s8z58"
     assert subject.subjects == [
         {
-            "id": "https://openalex.org/subfields/1802",
-            "subject": "Information Systems and Management",
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?5",
+            "subject": "Social science",
         },
         {"subject": "Open Access"},
         {"subject": "Open Access Transformation"},
         {"subject": "Open Science"},
     ]
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/yqtsj-vr862", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.59350/wisspub", "type": "IsPartOf"},
-        {"id": "https://rogue-scholar.org/api/communities/wisspub", "type": "IsPartOf"},
     ]
-    assert subject.state == "stale"
+    assert subject.state == "findable"
     assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -636,6 +626,13 @@ def test_jsonfeed_with_doi():
     }
     assert dig(crossref_xml, "program.1.related_item") == [
         {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/yqtsj-vr862",
+            }
+        },
+        {
             "inter_work_relation": {
                 "relationship-type": "isPartOf",
                 "identifier-type": "doi",
@@ -660,10 +657,10 @@ def test_jsonfeed_with_doi():
 
 
 @pytest.mark.vcr
-def test_jsonfeed_without_doi():
-    """jsonfeed without DOI"""
-    string = "https://api.rogue-scholar.org/posts/10.59350/qc0px-76778"
-    subject = Metadata(string)
+def test_rogue_scholar_without_doi():
+    """Rogue Scholar record without a DOI"""
+    string = "https://rogue-scholar.org/api/records/ztadp-fzw85"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/qc0px-76778"
     assert subject.contributors == [
         {
@@ -700,13 +697,13 @@ def test_jsonfeed_without_doi():
         },
     ]
     assert subject.relations == [
-        {"id": "https://doi.org/10.59350/leidenmadtrics", "type": "IsPartOf"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/leidenmadtrics",
-            "type": "IsPartOf",
-        },
+        {"id": "https://doi.org/10.53731/76vm1-yme44", "type": "IsReferencedBy"},
+        {"id": "https://doi.org/10.53731/4pr0j-7pq24", "type": "IsReferencedBy"},
+        {"id": "https://doi.org/10.53731/8gwcz-gv749", "type": "IsReferencedBy"},
+        {"id": "https://doi.org/10.53731/aa1rk-1xf54", "type": "IsReferencedBy"},
+        {"id": "https://doi.org/10.59350/gygeh-nv475", "type": "IsVersionOf"},
     ]
-    assert subject.state == "stale"
+    assert subject.state == "findable"
     assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -737,12 +734,12 @@ def test_jsonfeed_without_doi():
     }
     assert dig(crossref_xml, "program.1.related_item") == [
         {
-            "inter_work_relation": {
-                "relationship-type": "isPartOf",
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
                 "identifier-type": "doi",
-                "#text": "10.59350/leidenmadtrics",
+                "#text": "10.59350/gygeh-nv475",
             }
-        },
+        }
     ]
     assert (
         dig(crossref_xml, "titles.0.title")
@@ -758,8 +755,8 @@ def test_jsonfeed_without_doi():
 @pytest.mark.vcr
 def test_ghost_with_affiliations():
     "ghost with affiliations"
-    string = "https://api.rogue-scholar.org/posts/10.53731/r796hz1-97aq74v-ag4f3"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/nvp78-k5915"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.53731/r796hz1-97aq74v-ag4f3"
     assert subject.type == "BlogPost"
     assert len(subject.contributors) == 1
@@ -785,13 +782,11 @@ def test_ghost_with_affiliations():
             "id": "https://info.orcid.org/auto-update-has-arrived-orcid-records-move-to-the-next-level/",
             "type": "IsIdenticalTo",
         },
+        {"id": "https://doi.org/10.53731/t5qvs-sw351", "type": "IsReferencedBy"},
+        {"id": "https://doi.org/10.53731/zym1z-dg650", "type": "IsVersionOf"},
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/front_matter",
-            "type": "IsPartOf",
-        },
     ]
-    assert subject.state == "stale"
+    assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -827,6 +822,13 @@ def test_ghost_with_affiliations():
             }
         },
         {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.53731/zym1z-dg650",
+            }
+        },
+        {
             "inter_work_relation": {
                 "relationship-type": "isPartOf",
                 "identifier-type": "issn",
@@ -839,10 +841,10 @@ def test_ghost_with_affiliations():
 
 
 @pytest.mark.vcr
-def test_jsonfeed_with_organizational_author():
-    """jsonfeed item with organizational author"""
-    string = "https://api.rogue-scholar.org/posts/10.59350/2shz7-ehx26"
-    subject = Metadata(string)
+def test_rogue_scholar_with_organizational_author():
+    """Rogue Scholar record with an organizational author"""
+    string = "https://rogue-scholar.org/api/records/7tzqm-vcp96"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/2shz7-ehx26"
     assert subject.contributors == [
         {
@@ -854,10 +856,10 @@ def test_jsonfeed_with_organizational_author():
         }
     ]
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/p3yn9-6aw60", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.59350/libscie", "type": "IsPartOf"},
-        {"id": "https://rogue-scholar.org/api/communities/libscie", "type": "IsPartOf"},
     ]
-    assert subject.version == "v1"
+    assert subject.version is None
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -868,6 +870,13 @@ def test_jsonfeed_with_organizational_author():
         "#text": "Liberate Science",
     }
     assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/p3yn9-6aw60",
+            }
+        },
         {
             "inter_work_relation": {
                 "relationship-type": "isPartOf",
@@ -890,10 +899,10 @@ def test_jsonfeed_with_organizational_author():
 
 
 @pytest.mark.vcr
-def test_jsonfeed_with_archived_content():
-    """jsonfeed item with archived content"""
-    string = "https://api.rogue-scholar.org/posts/10.59350/faeph-x4x84"
-    subject = Metadata(string)
+def test_rogue_scholar_with_archived_content():
+    """Rogue Scholar record with archived content"""
+    string = "https://rogue-scholar.org/api/records/ewn0f-f5a52"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.59350/faeph-x4x84"
     # assert (
     #     subject.url
@@ -904,10 +913,10 @@ def test_jsonfeed_with_archived_content():
         == "https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
     )
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/nn8ym-pj313", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.59350/thor", "type": "IsPartOf"},
-        {"id": "https://rogue-scholar.org/api/communities/thor", "type": "IsPartOf"},
     ]
-    assert subject.version == "v1"
+    assert subject.version is None
 
     # crossref_xml = subject.write(to="crossref_xml")
     # assert subject.is_valid
@@ -941,18 +950,15 @@ def test_jsonfeed_with_archived_content():
 
 
 @pytest.mark.vcr
-def test_jsonfeed_with_relations():
-    """jsonfeed item with relations"""
-    string = "https://api.rogue-scholar.org/posts/10.53731/r79v4e1-97aq74v-ag578"
-    subject = Metadata(string)
+def test_rogue_scholar_with_relations():
+    """Rogue Scholar record with relations"""
+    string = "https://rogue-scholar.org/api/records/trhz1-s0336"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.53731/r79v4e1-97aq74v-ag578"
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bc11-cqw1", "type": "IsIdenticalTo"},
+        {"id": "https://doi.org/10.53731/jsp50-9je75", "type": "IsVersionOf"},
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/front_matter",
-            "type": "IsPartOf",
-        },
     ]
     assert len(subject.references) == 1
     # assert subject.references[0] == {
@@ -986,6 +992,13 @@ def test_jsonfeed_with_relations():
             }
         },
         {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.53731/jsp50-9je75",
+            }
+        },
+        {
             "inter_work_relation": {
                 "relationship-type": "isPartOf",
                 "identifier-type": "issn",
@@ -998,10 +1011,10 @@ def test_jsonfeed_with_relations():
 
 
 @pytest.mark.vcr
-def test_jsonfeed_with_relations_and_funding():
-    """jsonfeed with relations and funding"""
-    string = "https://api.rogue-scholar.org/posts/10.53731/r79s4nh-97aq74v-ag4t1"
-    subject = Metadata(string)
+def test_rogue_scholar_with_relations_and_funding():
+    """Rogue Scholar record with relations and funding"""
+    string = "https://rogue-scholar.org/api/records/ddhjk-a8f36"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.53731/r79s4nh-97aq74v-ag4t1"
     assert subject.type == "BlogPost"
     assert len(subject.references) == 3
@@ -1012,11 +1025,8 @@ def test_jsonfeed_with_relations_and_funding():
     }
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bv9z-dc66", "type": "IsIdenticalTo"},
+        {"id": "https://doi.org/10.53731/jn1h8-m3m07", "type": "IsVersionOf"},
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/front_matter",
-            "type": "IsPartOf",
-        },
     ]
     assert subject.funding_references == [
         {
@@ -1036,8 +1046,7 @@ def test_jsonfeed_with_relations_and_funding():
     assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
         "doi": "10.14454/3bpw-w381",
-        "unstructured_citation": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance "
-        "Indicators (KPIs)</i> (Version 1.1.0). DataCite.",
+        "unstructured_citation": "Fenner, M. (2019). Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs) (Version 1.1.0). DataCite.",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "The connections between scholarly resources generated by persistent identifiers (PIDs) and associated metadata form a graph"
@@ -1052,6 +1061,13 @@ def test_jsonfeed_with_relations_and_funding():
                 "relationship-type": "isIdenticalTo",
                 "identifier-type": "doi",
                 "#text": "10.5438/bv9z-dc66",
+            }
+        },
+        {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.53731/jn1h8-m3m07",
             }
         },
         {
@@ -1070,7 +1086,7 @@ def test_jsonfeed_with_relations_and_funding():
 def test_inveniordm_with_relations_and_funding():
     """inveniordm with relations and funding"""
     string = "https://rogue-scholar.org/api/records/ddhjk-a8f36"
-    subject = Metadata(string)
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.53731/r79s4nh-97aq74v-ag4t1"
     assert subject.type == "BlogPost"
     assert len(subject.references) == 3
@@ -1097,8 +1113,7 @@ def test_inveniordm_with_relations_and_funding():
     assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
         "doi": "10.14454/3bpw-w381",
-        "unstructured_citation": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance "
-        "Indicators (KPIs)</i> (Version 1.1.0). DataCite.",
+        "unstructured_citation": "Fenner, M. (2019). Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs) (Version 1.1.0). DataCite.",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "The connections between scholarly resources generated by persistent identifiers (PIDs) and associated metadata form a graph"
@@ -1140,18 +1155,16 @@ def test_inveniordm_with_relations_and_funding():
 
 
 @pytest.mark.vcr
-def test_jsonfeed_via_inveniordm():
-    """jsonfeed via invenioRDM"""
-    string = "https://api.rogue-scholar.org/posts/10.53731/r294649-6f79289-8cwav"
-    subject = Metadata(string)
+def test_rogue_scholar_with_citations():
+    """Rogue Scholar record with citations"""
+    string = "https://rogue-scholar.org/api/records/92zc8-f0b76"
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.53731/r294649-6f79289-8cwav"
     assert subject.type == "BlogPost"
     assert len(subject.references) == 2
     assert subject.references[0] == {
         "id": "https://doi.org/10.1016/j.ccr.2007.01.016",
-        "unstructured": "Haldar, M., Hancock, J. D., Coffin, C. M., Lessnick, S. L., & Capecchi, "
-        "M. R. (2007). A Conditional Mouse Model of Synovial Sarcoma: Insights "
-        "into a Myogenic Origin. Cancer Cell, 11(4), 375–388.",
+        "unstructured": "Haldar, M., Hancock, J. D., Coffin, C. M., Lessnick, S. L., &amp; Capecchi, M. R. (2007). A Conditional Mouse Model of Synovial Sarcoma: Insights into a Myogenic Origin. <i>Cancer Cell</i>, <i>11</i>(4), 375–388.",
     }
     assert subject.container == {
         "identifiers": [{"identifier": "2749-9952", "identifier_type": "ISSN"}],
@@ -1160,11 +1173,12 @@ def test_jsonfeed_via_inveniordm():
         "type": "Blog",
     }
     assert subject.relations == [
-        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
         {
-            "id": "https://rogue-scholar.org/api/communities/front_matter",
-            "type": "IsPartOf",
+            "id": "https://doi.org/10.53731/r294649-6f79289-8cw1p",
+            "type": "IsReferencedBy",
         },
+        {"id": "https://doi.org/10.53731/c8m3b-4t710", "type": "IsVersionOf"},
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.version == "v1"
 
@@ -1175,19 +1189,16 @@ def test_jsonfeed_via_inveniordm():
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert len(dig(inveniordm, "metadata.creators")) == 1
     assert dig(inveniordm, "metadata.creators.0") == {
-        "affiliations": [
-            {
-                "id": "00f2yqf98",
-                "name": "Hannover Medical School",
-            },
-        ],
         "person_or_org": {
-            "family_name": "Fenner",
-            "given_name": "Martin",
             "name": "Fenner, Martin",
+            "given_name": "Martin",
+            "family_name": "Fenner",
             "type": "personal",
             "identifiers": [{"identifier": "0000-0003-1419-2405", "scheme": "orcid"}],
         },
+        "affiliations": [
+            {"id": "00f2yqf98", "name": "Medizinische Hochschule Hannover"}
+        ],
     }
     assert (
         dig(inveniordm, "metadata.title")
@@ -1222,11 +1233,18 @@ def test_jsonfeed_via_inveniordm():
         "name": "relations",
         "related_item": [
             {
+                "intra_work_relation": {
+                    "relationship-type": "isVersionOf",
+                    "identifier-type": "doi",
+                    "#text": "10.53731/c8m3b-4t710",
+                }
+            },
+            {
                 "inter_work_relation": {
-                    "#text": "2749-9952",
-                    "identifier-type": "issn",
                     "relationship-type": "isPartOf",
-                },
+                    "identifier-type": "issn",
+                    "#text": "2749-9952",
+                }
             },
         ],
     }
@@ -1736,7 +1754,7 @@ def test_zenodo_poster():
 def test_rogue_scholar_with_parent_doi():
     """Rogue Scholar with parent DOI"""
     string = "https://rogue-scholar.org/api/records/a9awy-52h48"
-    subject = Metadata(string)
+    subject = Metadata(string, via="inveniordm")
     assert subject.id == "https://doi.org/10.53731/m7gng-jmm19"
     assert subject.type == "BlogPost"
 
@@ -1747,11 +1765,12 @@ def test_rogue_scholar_with_parent_doi():
     assert dig(crossref_xml, "language") == "en"
     assert len(dig(crossref_xml, "contributors.person_name")) == 1
     assert dig(crossref_xml, "contributors.person_name.0") == {
-        "ORCID": "https://orcid.org/0000-0003-1419-2405",
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Martin",
         "surname": "Fenner",
+        "affiliations": {"institution": {"institution_name": "Front Matter"}},
+        "ORCID": "https://orcid.org/0000-0003-1419-2405",
     }
     assert (
         dig(crossref_xml, "titles.0.title")
@@ -1793,7 +1812,7 @@ def test_rogue_scholar_with_parent_doi():
 def test_rogue_scholar_as_parent_doi():
     """Rogue Scholar as parent DOI"""
     string = "https://rogue-scholar.org/api/records/dj4cp-2b786"
-    subject = Metadata(string, parent_doi="10.53731/dj4cp-2b786")
+    subject = Metadata(string, via="inveniordm", parent_doi="10.53731/dj4cp-2b786")
     assert subject.id == "https://doi.org/10.53731/dj4cp-2b786"
     assert subject.type == "BlogPost"
 
@@ -1804,11 +1823,12 @@ def test_rogue_scholar_as_parent_doi():
     assert dig(crossref_xml, "language") == "en"
     assert len(dig(crossref_xml, "contributors.person_name")) == 1
     assert dig(crossref_xml, "contributors.person_name.0") == {
-        "ORCID": "https://orcid.org/0000-0003-1419-2405",
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Martin",
         "surname": "Fenner",
+        "affiliations": {"institution": {"institution_name": "Front Matter"}},
+        "ORCID": "https://orcid.org/0000-0003-1419-2405",
     }
     assert (
         dig(crossref_xml, "titles.0.title")
@@ -1854,25 +1874,24 @@ def test_rogue_scholar_as_parent_doi():
 @pytest.mark.vcr
 def test_post_with_contributor_roles():
     "post with contributor roles"
-    string = "https://api.rogue-scholar.org/posts/10.59350/510pg-zzf58"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/apt10-14q04"
+    subject = Metadata(string, via="inveniordm")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/510pg-zzf58"
     assert subject.type == "BlogPost"
-    assert len(subject.contributors) == 2
+    assert len(subject.contributors) == 3
     assert subject.relations == [
+        {"id": "https://doi.org/10.53731/9t6xx-kht30", "type": "IsReferencedBy"},
+        {"id": "https://doi.org/10.53731/d0wwa-gwz14", "type": "IsReferencedBy"},
+        {"id": "https://doi.org/10.59350/eqnvx-r9e30", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.59350/ropensci", "type": "IsPartOf"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/ropensci",
-            "type": "IsPartOf",
-        },
     ]
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(dig(crossref_xml, "contributors.person_name")) == 2
+    assert len(dig(crossref_xml, "contributors.person_name")) == 3
     assert dig(crossref_xml, "contributors.person_name.1") == {
         "ORCID": "https://orcid.org/0000-0002-4522-7466",
         "contributor_role": "author",
@@ -1881,6 +1900,13 @@ def test_post_with_contributor_roles():
         "surname": "Bellini Saibene",
     }
     assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/eqnvx-r9e30",
+            }
+        },
         {
             "inter_work_relation": {
                 "relationship-type": "isPartOf",
@@ -1894,8 +1920,8 @@ def test_post_with_contributor_roles():
 @pytest.mark.vcr
 def test_post_with_translator_role():
     "post with translator role"
-    string = "https://api.rogue-scholar.org/posts/10.59350/swnyg-ger25"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/wsaar-7ac18"
+    subject = Metadata(string, via="inveniordm")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/swnyg-ger25"
     assert subject.type == "BlogPost"
@@ -1909,11 +1935,8 @@ def test_post_with_translator_role():
         "roles": ["Author"],
     }
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/1g3fk-aay46", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.59350/ropensci", "type": "IsPartOf"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/ropensci",
-            "type": "IsPartOf",
-        },
     ]
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -1930,6 +1953,13 @@ def test_post_with_translator_role():
     }
     assert dig(crossref_xml, "program.1.related_item") == [
         {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/1g3fk-aay46",
+            }
+        },
+        {
             "inter_work_relation": {
                 "relationship-type": "isPartOf",
                 "identifier-type": "doi",
@@ -1942,17 +1972,15 @@ def test_post_with_translator_role():
 @pytest.mark.vcr
 def test_post_with_interviewee_roles():
     "post with interviewee roles"
-    string = "https://api.rogue-scholar.org/posts/10.59350/s8m95-ap410"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/ssrar-vhq35"
+    subject = Metadata(string, via="inveniordm")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/s8m95-ap410"
     assert subject.type == "BlogPost"
     assert subject.relations == [
+        {"id": "https://doi.org/10.53731/9t6xx-kht30", "type": "IsReferencedBy"},
+        {"id": "https://doi.org/10.59350/g62yr-gxy87", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.59350/ropensci", "type": "IsPartOf"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/ropensci",
-            "type": "IsPartOf",
-        },
     ]
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -1968,6 +1996,13 @@ def test_post_with_interviewee_roles():
     }
     assert dig(crossref_xml, "program.1.related_item") == [
         {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/g62yr-gxy87",
+            }
+        },
+        {
             "inter_work_relation": {
                 "relationship-type": "isPartOf",
                 "identifier-type": "doi",
@@ -1980,19 +2015,20 @@ def test_post_with_interviewee_roles():
 @pytest.mark.vcr
 def test_wrong_doi_reference():
     "wrong DOI reference"
-    string = "https://api.rogue-scholar.org/posts/10.59350/sjrdz-3cm71"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/nz4pe-q7x23"
+    subject = Metadata(string, via="inveniordm")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/sjrdz-3cm71"
     assert subject.type == "BlogPost"
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/zhjk9-4bd81", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.59350/rzepa", "type": "IsPartOf"},
-        {"id": "https://rogue-scholar.org/api/communities/rzepa", "type": "IsPartOf"},
     ]
     assert subject.references == [
         {
+            "id": None,
             "unstructured": 'H. Rzepa, "A one-electron bond in methyl-λ1-borane.", 2024.',
-        },
+        }
     ]
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -2006,6 +2042,13 @@ def test_wrong_doi_reference():
         "unstructured_citation": 'H. Rzepa, "A one-electron bond in methyl-λ1-borane.", 2024.',
     }
     assert dig(crossref_xml, "program.1.related_item") == [
+        {
+            "intra_work_relation": {
+                "relationship-type": "isVersionOf",
+                "identifier-type": "doi",
+                "#text": "10.59350/zhjk9-4bd81",
+            }
+        },
         {
             "inter_work_relation": {
                 "relationship-type": "isPartOf",
@@ -2098,27 +2141,6 @@ def test_error_invalid_metalist():
         )  # Empty list is not valid for Crossref XML generation])
 
     assert "No input format found" in str(exc_info.value)
-
-
-@pytest.mark.vcr
-def test_write_blog():
-    """Write crossref_xml blog"""
-    string = "https://api.rogue-scholar.org/blogs/front_matter"
-    subject = Metadata(string)
-    assert subject.id == "https://doi.org/10.53731/front_matter"
-    assert subject.type == "Blog"
-    assert subject.url == "https://blog.front-matter.de/"
-    assert subject.relations is None
-
-    crossref_xml = subject.write(to="crossref_xml")
-    assert subject.is_valid
-    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_metadata", {})
-    assert dig(crossref_xml, "language") == "en"
-    assert dig(crossref_xml, "full_title") == "Front Matter"
-    assert dig(crossref_xml, "issn") == "2749-9952"
-    assert dig(crossref_xml, "doi_data.doi") == "10.53731/front_matter"
-    assert dig(crossref_xml, "doi_data.resource") == "https://blog.front-matter.de/"
 
 
 def test_get_relations_emits_version_relations():

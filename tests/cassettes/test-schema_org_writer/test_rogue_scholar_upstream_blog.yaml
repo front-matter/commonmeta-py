@@ -1,0 +1,355 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://rogue-scholar.org/api/records/thmsh-a1z89
+  response:
+    body:
+      string: '{"id": "thmsh-a1z89", "created": "2024-10-14T10:02:25.394848+00:00",
+        "updated": "2026-07-24T11:05:41.112032+00:00", "links": {"self": "https://rogue-scholar.org/api/records/thmsh-a1z89",
+        "self_html": "https://rogue-scholar.org/records/thmsh-a1z89", "preview_html":
+        "https://rogue-scholar.org/records/thmsh-a1z89?preview=1", "doi": "https://doi.org/10.54900/n6dnt-xpq48",
+        "self_doi": "https://doi.org/10.54900/n6dnt-xpq48", "self_doi_html": "https://rogue-scholar.org/doi/10.54900/n6dnt-xpq48",
+        "reserve_doi": "https://rogue-scholar.org/api/records/thmsh-a1z89/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/kvz56-05126", "parent_html":
+        "https://rogue-scholar.org/records/kvz56-05126", "parent_doi": "https://doi.org/10.54900/kvz56-05126",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.54900/kvz56-05126", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:thmsh-a1z89/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:thmsh-a1z89/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/thmsh-a1z89/files", "media_files":
+        "https://rogue-scholar.org/api/records/thmsh-a1z89/media-files", "archive":
+        "https://rogue-scholar.org/api/records/thmsh-a1z89/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/thmsh-a1z89/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/thmsh-a1z89/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/thmsh-a1z89/latest", "versions": "https://rogue-scholar.org/api/records/thmsh-a1z89/versions",
+        "draft": "https://rogue-scholar.org/api/records/thmsh-a1z89/draft", "access_links":
+        "https://rogue-scholar.org/api/records/thmsh-a1z89/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/thmsh-a1z89/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/thmsh-a1z89/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/thmsh-a1z89/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/thmsh-a1z89/access/request", "access":
+        "https://rogue-scholar.org/api/records/thmsh-a1z89/access", "communities":
+        "https://rogue-scholar.org/api/records/thmsh-a1z89/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/thmsh-a1z89/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/thmsh-a1z89/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/thmsh-a1z89/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/thmsh-a1z89/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/thmsh-a1z89/requests"},
+        "revision_id": 61, "parent": {"id": "kvz56-05126", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b", "fbc3bd5a-137e-4366-94ae-92a6e9d744e3"],
+        "default": "b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b", "entries": [{"id": "b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b",
+        "created": "2024-10-05T11:02:14.834230+00:00", "updated": "2026-08-22T09:06:37.914260+00:00",
+        "links": {}, "revision_id": 3856, "slug": "upstream", "metadata": {"title":
+        "Upstream", "description": "The community blog for all things Open Research.",
+        "type": {"id": "blog"}, "website": "https://upstream.force11.org"}, "access":
+        {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {"feed:feed_url": "https://upstream.force11.org/atom-complete/", "feed:current_feed_url":
+        "https://upstream.force11.org/atom/", "feed:created": "2023-01-13", "feed:updated":
+        "2026-08-04T12:36:38+00:00", "feed:feed_format": {"id": "atom"}, "feed:generator":
+        {"id": "Ghost"}, "feed:status": {"id": "active"}, "feed:secure": true, "feed:use_api":
+        true, "rs:prefix": {"id": "10.54900"}, "rs:doi": "https://doi.org/10.54900/upstream",
+        "rs:license": {"id": "cc-by-4.0"}, "rs:language": {"id": "eng"}, "rs:subfield":
+        [{"id": "https://openalex.org/subfields/1802"}]}, "deletion_status": {"is_deleted":
+        false, "status": "P"}, "children": {"allow": true}}, {"id": "fbc3bd5a-137e-4366-94ae-92a6e9d744e3",
+        "created": "2025-02-11T17:20:32.633964+00:00", "updated": "2025-12-02T20:56:11.605253+00:00",
+        "links": {}, "revision_id": 11, "slug": "1802", "metadata": {"title": "Information
+        Systems and Management", "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1802"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {"doi": {"identifier": "10.54900/kvz56-05126", "provider":
+        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
+        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
+        "10.54900/n6dnt-xpq48", "provider": "crossref", "client": "crossref"}, "oai":
+        {"identifier": "oai:invenio-rdm:thmsh-a1z89", "provider": "oai"}}, "metadata":
+        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
+        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
+        {"type": "personal", "name": "Datta, Esha", "given_name": "Esha", "family_name":
+        "Datta", "identifiers": [{"identifier": "0000-0001-9165-2757", "scheme": "orcid"}]}}],
+        "title": "Attempts at automating journal subject classification", "publisher":
+        "Front Matter", "publication_date": "2023-05-23", "subjects": [{"id": "https://openalex.org/subfields/1802",
+        "subject": "Information Systems and Management", "scheme": "Subfields"}, {"id":
+        "http://www.oecd.org/science/inno/38235147.pdf?5.2", "subject": "Economics
+        and business", "scheme": "FOS"}, {"subject": "Original Research"}], "dates":
+        [{"date": "2023-05-23T09:31:45Z", "type": {"id": "issued", "title": {"de":
+        "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}}, {"date":
+        "2024-03-14T12:05:31Z", "type": {"id": "updated", "title": {"de": "Aktualisiert",
+        "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id": "eng", "title":
+        {"en": "English"}}], "identifiers": [{"identifier": "https://doi.org/10.54900/n6dnt-xpq48",
+        "scheme": "guid"}, {"identifier": "https://upstream.force11.org/attempts-at-automating-journal-subject-classification/",
+        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
+        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
+        "The Creative Commons Attribution license allows re-distribution and re-use
+        of a licensed work on the condition that the creator is appropriately credited."},
+        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "Traditionally, journal subject classification
+        was done manually at varying levels of granularity, depending on the use case
+        for the institution. Subject classification is done to help collate resources
+        by subject enabling the user to discover publications based on different levels
+        of subject specificity."}, "custom_fields": {"journal:journal": {"title":
+        "Upstream"}, "rs:content_html": "<p>Traditionally, journal subject classification
+        was done manually at varying levels of granularity, depending on the use case
+        for the institution. Subject classification is done to help collate resources
+        by subject enabling the user to discover publications based on different levels
+        of subject specificity. It can also be used to help determine where to publish
+        and the direction a particular author may be pursuing in their research if
+        one wants to track where their work is being published. Currently, most subject
+        classification is done manually as it is a speciality that requires a lot
+        of training. However, this effort can be siloed by institution or can be hampered
+        by various inter-institutional agreements that prevent other resources from
+        being classified. It could also prevent a standardized approach to classifying
+        items if different publications in separate institutions use different taxonomies
+        and classification systems. Automating classification work surfaces questions
+        about the relevance of the taxonomy used, the potential bias that might exist,
+        and the texts being classified. Currently, journals are classified using various
+        taxonomies and are siloed in many systems, such as library databases or software
+        for publishers. Providing a service that can automatically classify a text
+        (and provide a measure of accuracy!) outside of a specific system can democratize
+        access to this information across all systems. Crossref infrastructure enables
+        a range of services for the research community; we have a wealth of metadata
+        created by a very large global community. We wondered how we could contribute
+        in this area.</p><p>In our own metadata corpus, we had subject classifications
+        for a subset of our journals provided by Elsevier. However, this meant that
+        we were providing subject information unevenly across our metadata. We wondered
+        if we could extrapolate the information and provide the data across all our
+        metadata.</p><p>We looked specifically at journal-level classification instead
+        of article-level classification for a few reasons. We had the training data
+        for journal-level subject classification; it was a good place to begin understanding
+        what would be needed. Our work so far provides a foundation for further article-level
+        classification - if Crossref decides to investigate further.</p><p>To start
+        with, I used Elsevier''s All Science Journal Classification Codes (<a href=\"https://service.elsevier.com/app/answers/detail/a_id/15181/supporthub/scopus/\">ASJC</a>),
+        which have been applied to their <a href=\"https://www.elsevier.com/solutions/scopus/how-scopus-works/content\">database</a>
+        of publications, which includes journals and books. We used ASJC because it
+        contained metadata that could be parsed programmatically. If the project progressed
+        well, we felt that we could look at other classification systems.</p><p>After
+        pre-processing, three methods (tf-idf, Embeddings, LLM) were used, and their
+        performances were benchmarked. The following outlines the steps taken for
+        the pre-processing, cleaning, and implementation details of the methods used
+        to predict the subject classification of journals.</p><h3 id=\"pre-processing-of-data\">Pre-processing
+        of data</h3><p>The Excel document was processed as a CSV file and has various
+        information, including journal titles, the corresponding print and e- ISSNs,
+        and their ASJC codes. The journals were mostly in English but were also in
+        many other languages, such as Russian, Italian, Spanish, Chinese, and others.
+        First, there was a process to see which journals in the Elsevier list also
+        existed in the Crossref corpus. As of June 2022, there were 26,000 journals
+        covered by the Elsevier database. The journals could contain one or many subject
+        categories. For example, the <em>Journal of Children''s Services</em> has
+        several subjects assigned to them, such as Law, Sociology and Political Science,
+        Education, and Health. The journal titles have some data, but not a lot. They
+        averaged about four words per title, so more data was needed. First, 10 -
+        20 journal article titles per journal were added if there were that many journal
+        articles available. At Crossref, a few journal articles contain abstracts,
+        but not all. So, for the moment, journal titles and their corresponding article
+        titles were the additional data points that were used.</p><h5 id=\"cleaning-the-data\"><strong>Cleaning
+        the data</strong></h5><p>The data was cleaned up to remove stop words, various
+        types of formulae, and XML from the titles. Stop words generally consist of
+        articles, pronouns, conjunctions, and other frequently used words. The <a
+        href=\"https://github.com/stopwords-iso/stopwords-iso\">stop words list</a>
+        of all languages in the ISO-639 standard was used to process the titles. Some
+        domain-specific terms to the stop words, such as \"journal\", \"archive\",
+        \"book\", \"studies\", and so on, were also added to the list. Formulae and
+        XML tags were removed with regular expressions. Rare subject categories that
+        were assigned to very few journals (less than 50 out of 26000 journals)  were
+        also removed. The cleaned data was now ready for processing. It was split
+        into training, validation, and test sets.</p><h3 id=\"methods\">Methods</h3><p>This
+        particular type of classification is known as a multi-label classification
+        problem since zero, or many subjects can be assigned to a journal. Three methods
+        were used to see which performed best.</p><h4 id=\"tf-idf-linear-support-vector-classification\"><strong>TF-IDF
+        + Linear Support Vector Classification</strong></h4><p>The first approach
+        used the tf-idf and multilabel binarizer libraries from <a href=\"https://scikit-learn.org/stable/index.html\">scikit
+        learn</a>. <a href=\"https://en.wikipedia.org/wiki/Tf%E2%80%93idf\">Tf-idf</a>
+        is a numerical statistic that is intended to reflect how important a word
+        is to a document in a collection. Using tf-idf, a  number of different strategies
+        that can be used within a multi-label classification problem were benchmarked.
+        The tf-idf vectorizer and multilabel binarizer are Python libraries that convert
+        data into machine parseable vectors. Essentially, the data is a table of journal
+        and article titles and their corresponding subjects.</p><p>A baseline prediction
+        was needed to benchmark the performance of the strategies used. This prediction
+        was made by comparing the presence of the subject codes assigned to the journal
+        with the most common subject codes present in the corpus. The measure used
+        to compare the performances was the micro <a href=\"https://en.wikipedia.org/wiki/F-score\">F1</a>
+        score. The micro F1 score of the baseline prediction was 0.067. It shows that
+        applying a naive approach will provide a prediction at 6.67% accuracy. That
+        measure provided a good starting point to get an idea of the performance of
+        subsequent methods.</p><p>Among the strategies used, the best-performing strategy
+        was One vs Rest using LinearSVC. The micro F1 score was 0.43 after processing
+        20,000 features using the validation dataset. This was a decent increase from
+        the baseline; however, it is still not very serviceable. In order to improve
+        performance, it was decided to reduce the granularity of subjects. For example,
+        the journal, <em>Journal of Children''s Services,</em> has several subjects
+        assigned to them, such as Law, Sociology and Political Science'', Education,
+        and Health. Elsevier''s ASJC subjects are in hierarchies. There are several
+        subgroups of fields within some overarching fields. For example, the group,
+        Medicine, has several specialities of medicine listed under it. The subjects,
+        Social Sciences and Psychology work similarly. They are two separate fields
+        of study, and the journal has articles that apply to either or both fields
+        of study. The subjects listed in the  <em>Journal of Children''s Services
+        </em>are in two different groups: Social Sciences and Psychology. Downgrading
+        the granularity makes the learning process a little simpler. So, instead of
+        the  <em>Journal of Children''s Services </em>belonging to several different
+        subjects, the journal now belonged to two subjects. Using the same strategy,
+        one vs rest with LinearSVC, we get an F1 score of 0.72 for the same number
+        of titles. This was a marked improvement from before. There were other avenues
+        that could be looked at, such as bringing in more data in the form of references,
+        but there were also other methods to look at. We were curious about the role
+        of embeddings and decided to pursue that approach.</p><h4 id=\"embeddings-linear-support-vector-classification\"><strong>Embeddings
+        + Linear Support Vector Classification</strong></h4><p>This approach is slightly
+        different from the tf-idf approach. For the titles, we decided to use a model
+        that was already trained on a scientific corpus. For this, AllenAI''s <a href=\"https://github.com/allenai/scibert\">SciBERT</a>
+        was used, a fine-tuned <a href=\"https://arxiv.org/abs/1810.04805\">BERT</a>
+        model trained on papers from the corpus of <a href=\"https://semanticscholar.org\">semanticscholar.org</a>;
+        a tool provided by AllenAI. The model provides an embedding: a vector representation
+        of the titles, based on the data it has already been trained on. This allows
+        it to provide more semantic weight on the data rather than simple occurrence
+        of the words in the document (this occurs with the previous method, tf-idf).
+        The generation of the embedding took over 18 hours on a laptop, but after
+        that, generating predictions became quite fast. The amount of data needed
+        to generate this vector is also lower than the tf-idf generation. The subjects
+        were processed similarly to before and generated a vector using the multilabel
+        binarizer. With 512 features from the titles (instead of 20,000) in the previous
+        approach, the same strategy was used as earlier. Using the one vs rest strategy
+        with LinearSVC the strategy was run against the validation set and got a F1
+        score of 0.71. </p><p>So far, the tally is:</p><table>\n<thead>\n<tr>\n<th>Method</th>\n<th>F1
+        Score</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Tf-idf + multilabel binarizer</td>\n<td>0.73</td>\n</tr>\n<tr>\n<td>SciBERT
+        embedding + multilabel binarizer</td>\n<td>0.71</td>\n</tr>\n</tbody>\n</table>\n<p>At
+        this point, we were going to look into gathering more data points such as
+        references and run a comparison between these two methods. However, large
+        language models, especially ChatGPT, came into the zeitgeist, a few weeks
+        into mulling over other options.</p><h4 id=\"openai-llm-sentence-completion\"><strong>OpenAI:
+        LLM + sentence completion</strong></h4><p>Out of curiosity, the author looked
+        to see what chatGPT could do. ChatGPT was asked to figure out what topics
+        an existing journal title belonged to, and it came very close to predicting
+        the correct answer. The author also asked it to figure out to which topic
+        multiple Dutch journal article titles belonged, and it predicted the correct
+        answer again. The author decided to investigate this avenue knowing that if
+        there were good results, open large language models would be used to see if
+        there would be comparable results. The screenshot below shows the examples
+        listed above.</p><figure class=\"kg-card kg-image-card\"><img src=\"https://upstream.force11.org/content/images/2023/08/openai_experiment.png\"
+        class=\"kg-image\" alt=\"\" loading=\"lazy\" width=\"1600\" height=\"1495\"
+        srcset=\"https://upstream.force11.org/content/images/size/w600/2023/08/openai_experiment.png
+        600w, https://upstream.force11.org/content/images/size/w1000/2023/08/openai_experiment.png
+        1000w, https://upstream.force11.org/content/images/2023/08/openai_experiment.png
+        1600w\" sizes=\"(min-width: 720px) 720px\"></figure><p>Subjects had to be
+        processed a little differently for this model. The ASJC codes have subjects
+        in text form as well as numerical values. For example, if there is a journal
+        classified as \"Medicine\", it has a code of \"27\". The author fine-tuned
+        the openAI model using their \"ada\" model   (it is the fastest and the cheapest)
+        and sent it some sentence completion prompts. Essentially, this means that
+        the model is being fine-tuned into telling it what subject codes it needs
+        to complete the sentences that it is being sent. So, suppose several different
+        titles are sent to the model and asked to complete it with several delimited
+        subject codes. In that case, the model should be able to predict which subject
+        codes should complete the sentences. A set of prompts were created with the
+        journal titles and their corresponding subject codes as the sentence completion
+        prompt to train the model. It looked like this:</p><p><strong><code>{\"prompt\":\"Lower
+        Middle Ordovician carbon and oxygen\u2026..,\"completion\":\" 11\\n19\"}</code></strong></p><p>The
+        above snippet has several different titles where the subjects assigned to
+        these titles are 11 and 19, which are <em>Agricultural and Biological Sciences</em>
+        and<em> Earth and Planetary Sciences,</em> respectively.</p><p>The openAI''s
+        API was used to fine-tune and train a model using the above prompts, and $10.00
+        later, generated a model.</p><figure class=\"kg-card kg-image-card\"><img
+        src=\"https://upstream.force11.org/content/images/2023/08/data-src-image-60e0df22-f6e0-4c81-adf0-fe21d2839897.png\"
+        class=\"kg-image\" alt=\"\" loading=\"lazy\" width=\"1600\" height=\"702\"
+        srcset=\"https://upstream.force11.org/content/images/size/w600/2023/08/data-src-image-60e0df22-f6e0-4c81-adf0-fe21d2839897.png
+        600w, https://upstream.force11.org/content/images/size/w1000/2023/08/data-src-image-60e0df22-f6e0-4c81-adf0-fe21d2839897.png
+        1000w, https://upstream.force11.org/content/images/2023/08/data-src-image-60e0df22-f6e0-4c81-adf0-fe21d2839897.png
+        1600w\" sizes=\"(min-width: 720px) 720px\"></figure><p>The validation dataset
+        was run against the model and got a micro F1 score of 0.69. So, the tally
+        now is:</p><table>\n<thead>\n<tr>\n<th>Method</th>\n<th>F1 Score</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Tf-idf
+        + multilabel binarizer</td>\n<td>0.73</td>\n</tr>\n<tr>\n<td>SciBERT embedding
+        + multilabel binarizer</td>\n<td>0.71</td>\n</tr>\n<tr>\n<td>ChatGPT + sentence
+        completion</td>\n<td>0.69</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"summary\">Summary</h3><p>So,
+        sad trombone, using three different methods, the F1 score is similar across
+        all three methods. Essentially, we needed more data for more accurate predictions.
+        Crossref has abstracts for a subset of the deposited publication metadata.
+        Therefore, this data could not be used at this time for comparison. However,
+        having that data could possibly yield better results. The only way to do that
+        is to use a similar method to get those results. We do not have that currently,
+        and so, for now,  it becomes a chicken and egg thought exercise. Getting even
+        more data, such as full-text, could also produce interesting results, but
+        we do not have the data for that either. For now, Crossref decided to remove
+        the existing subject classifications that were present in some of our metadata.
+        We could revisit the problem later - if we have more data. There are certainly
+        interesting applications of these methods. We could:</p><ol><li>Look into
+        topic clustering across our metadata and see what surfaces. This could also
+        have applications in looking at the research zeitgeist across various time
+        periods.</li><li>Measure the similarities of embeddings with each other to
+        look at article similarities, which could yield interesting results in recommendations
+        and search.<br></li></ol><p>Automated subject classification also raises questions
+        about fairness and bias in its algorithms and training and validation data.
+        It would also be productive to clearly understand how the algorithm reaches
+        its conclusions. Therefore, any automated system must be thoroughly tested,
+        and anyone using it should have a very good understanding of what is happening
+        within the algorithm.</p><p>This was an interesting exercise for the author
+        to get acquainted with machine learning and become familiar with some of the
+        available techniques.</p><p></p>", "rs:image": "https://upstream.force11.org/content/images/2023/05/esha-subject-blog.jpg",
+        "rs:generator": {"id": "Ghost", "title": {"en": "Ghost"}}, "rs:featured":
+        false, "rs:doi": "https://doi.org/10.54900/upstream"}, "access": {"record":
+        "public", "files": "public", "embargo": {"active": false, "reason": null},
+        "status": "metadata-only"}, "files": {"enabled": false, "order": [], "count":
+        0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled": false, "order":
+        [], "count": 0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
+        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
+        1, "unique_views": 1, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}, "all_versions": {"views": 1, "unique_views": 1, "downloads": 0, "unique_downloads":
+        0, "data_volume": 0.0}}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Aug 2026 07:30:02 GMT
+      Etag:
+      - '"61"'
+      Link:
+      - <https://rogue-scholar.org/api/records/thmsh-a1z89> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '45'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '461'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

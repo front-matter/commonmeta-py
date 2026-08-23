@@ -1,0 +1,270 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://rogue-scholar.org/api/records/trhz1-s0336
+  response:
+    body:
+      string: '{"id": "trhz1-s0336", "created": "2024-10-13T22:43:16.189663+00:00",
+        "updated": "2026-08-17T19:27:59.966345+00:00", "links": {"self": "https://rogue-scholar.org/api/records/trhz1-s0336",
+        "self_html": "https://rogue-scholar.org/records/trhz1-s0336", "preview_html":
+        "https://rogue-scholar.org/records/trhz1-s0336?preview=1", "doi": "https://doi.org/10.53731/r79v4e1-97aq74v-ag578",
+        "self_doi": "https://doi.org/10.53731/r79v4e1-97aq74v-ag578", "self_doi_html":
+        "https://rogue-scholar.org/doi/10.53731/r79v4e1-97aq74v-ag578", "reserve_doi":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/draft/pids/doi", "parent":
+        "https://rogue-scholar.org/api/records/jsp50-9je75", "parent_html": "https://rogue-scholar.org/records/jsp50-9je75",
+        "parent_doi": "https://doi.org/10.53731/jsp50-9je75", "parent_doi_html": "https://rogue-scholar.org/doi/10.53731/jsp50-9je75",
+        "self_iiif_manifest": "https://rogue-scholar.org/api/iiif/record:trhz1-s0336/manifest",
+        "self_iiif_sequence": "https://rogue-scholar.org/api/iiif/record:trhz1-s0336/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/trhz1-s0336/files", "media_files":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/media-files", "archive":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/trhz1-s0336/latest", "versions": "https://rogue-scholar.org/api/records/trhz1-s0336/versions",
+        "draft": "https://rogue-scholar.org/api/records/trhz1-s0336/draft", "access_links":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/access/request", "access":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/access", "communities":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/trhz1-s0336/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/trhz1-s0336/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/trhz1-s0336/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/trhz1-s0336/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/trhz1-s0336/requests"},
+        "revision_id": 81, "parent": {"id": "jsp50-9je75", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["15a362ea-8138-42b8-917f-1840a92addf8", "d79fe364-6d96-40b6-b437-b93ca3493106",
+        "f5585376-cf4d-4ba8-b423-16834e1f708f"], "default": "15a362ea-8138-42b8-917f-1840a92addf8",
+        "entries": [{"id": "15a362ea-8138-42b8-917f-1840a92addf8", "created": "2024-08-30T15:03:16.250133+00:00",
+        "updated": "2026-08-22T09:02:28.595812+00:00", "links": {}, "revision_id":
+        4007, "slug": "front_matter", "metadata": {"title": "Front Matter", "description":
+        "The Front Matter Blog covers the intersection of science and technology since
+        2007.", "type": {"id": "blog"}, "website": "https://blog.front-matter.de/"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {"feed:feed_url": "https://blog.front-matter.de/atom", "feed:created": "2023-01-01",
+        "feed:updated": "2026-08-20T09:30:26+00:00", "feed:feed_format": {"id": "atom"},
+        "feed:generator": {"id": "Ghost"}, "feed:status": {"id": "active"}, "feed:authors":
+        [{"name": "Martin Fenner", "url": "https://orcid.org/0000-0003-1419-2405"}],
+        "feed:secure": true, "feed:use_api": true, "rs:issn": "2749-9952", "rs:prefix":
+        {"id": "10.53731"}, "rs:doi": "https://doi.org/10.53731/front_matter", "rs:license":
+        {"id": "cc-by-4.0"}, "rs:language": {"id": "eng"}, "rs:subfield": [{"id":
+        "https://openalex.org/subfields/1710"}]}, "deletion_status": {"is_deleted":
+        false, "status": "P"}, "children": {"allow": true}}, {"id": "d79fe364-6d96-40b6-b437-b93ca3493106",
+        "created": "2025-02-10T08:12:28.813373+00:00", "updated": "2025-12-02T20:56:15.845048+00:00",
+        "links": {}, "revision_id": 11, "slug": "1710", "metadata": {"title": "Information
+        Systems", "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1710"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}, {"id": "f5585376-cf4d-4ba8-b423-16834e1f708f", "created": "2024-10-08T16:22:44.009032+00:00",
+        "updated": "2026-01-25T20:41:39.296986+00:00", "links": {}, "revision_id":
+        11, "slug": "metadata", "metadata": {"title": "Metadata", "description": "Blog
+        posts about metadata.", "type": {"id": "topic"}}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
+        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}]}, "pids":
+        {"doi": {"identifier": "10.53731/jsp50-9je75", "provider": "crossref", "client":
+        "crossref"}}}, "versions": {"is_latest": true, "index": 1}, "is_published":
+        true, "is_draft": false, "pids": {"doi": {"identifier": "10.53731/r79v4e1-97aq74v-ag578",
+        "provider": "crossref", "client": "crossref"}, "oai": {"identifier": "oai:invenio-rdm:trhz1-s0336",
+        "provider": "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost",
+        "title": {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}},
+        "creators": [{"person_or_org": {"type": "personal", "name": "Fenner, Martin",
+        "given_name": "Martin", "family_name": "Fenner", "identifiers": [{"identifier":
+        "0000-0003-1419-2405", "scheme": "orcid"}]}, "affiliations": [{"id": "04wxnsj81",
+        "name": "DataCite", "identifiers": [{"identifier": "04wxnsj81", "scheme":
+        "ror"}]}]}], "title": "Differences between ORCID and DataCite Metadata", "publisher":
+        "Front Matter", "publication_date": "2015-09-18", "subjects": [{"id": "https://openalex.org/subfields/1710",
+        "subject": "Information Systems", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
+        "subject": "Computer and information sciences", "scheme": "FOS"}, {"id": "https://openalex.org/T11937",
+        "subject": "Research Data Management Practices", "scheme": "Topics"}, {"subject":
+        "Metadata"}], "dates": [{"date": "2015-09-18T00:00:00Z", "type": {"id": "issued",
+        "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}},
+        {"date": "2025-05-07T17:04:39Z", "type": {"id": "updated", "title": {"de":
+        "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id":
+        "eng", "title": {"en": "English"}}], "identifiers": [{"identifier": "https://doi.org/10.53731/r79v4e1-97aq74v-ag578",
+        "scheme": "guid"}, {"identifier": "https://blog.front-matter.de/posts/differences-between-orcid-and-datacite-metadata/",
+        "scheme": "url"}], "related_identifiers": [{"identifier": "10.5438/bc11-cqw1",
+        "scheme": "doi", "relation_type": {"id": "isidenticalto", "title": {"de":
+        "Ist identisch mit", "en": "Is identical to", "sv": "\u00c4r identisk med"}}}],
+        "version": "v1", "rights": [{"id": "cc-by-4.0", "title": {"en": "Creative
+        Commons Attribution 4.0 International"}, "description": {"en": "The Creative
+        Commons Attribution license allows re-distribution and re-use of a licensed
+        work on the condition that the creator is appropriately credited."}, "icon":
+        "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "One of the first tasks for DataCite in
+        the European Commission-funded THOR project, which started in June, was to
+        contribute to a comparison of the ORCID and DataCite metadata standards.",
+        "funding": [{"funder": {"id": "00k4n6c32", "name": "European Commission"},
+        "award": {"number": "654039", "identifiers": [{"identifier": "10.3030/654039",
+        "scheme": "doi"}]}}], "references": [{"identifier": "10.5281/zenodo.30799",
+        "scheme": "doi", "reference": "Fenner, M., Demeranville, T., Kotarski, R.,
+        Vision, T., Rueda, L., Dasler, R., Haak, L., &amp; Cruse, P. (2015). <i>D2.1:
+        Artefact, Contributor, And Organisation Relationship Data Schema</i>. Zenodo."}]},
+        "custom_fields": {"journal:journal": {"title": "Front Matter", "issn": "2749-9952"},
+        "rs:content_html": "<p>One of the first tasks for DataCite in the European
+        Commission-funded <a href=\"http://project-thor.eu/\">THOR project</a>, which
+        started in June, was to contribute to a comparison of the ORCID and DataCite
+        metadata standards. Together with ORCID, CERN, the British Library and Dryad
+        we looked at how contributors, organizations and artefacts - and the relations
+        between them - are described in the respective metadata schemata, and how
+        they are implemented in two example data repositories, <a href=\"http://archaeologydataservice.ac.uk/\">Archaeology
+        Data Service</a> and <a href=\"https://www.datadryad.org/\">Dryad Digital
+        Repository</a>.</p><p>The focus of our work was on identifying major gaps.
+        Our report was finished and made publicly available last week (Fenner et al.,
+        <a href=\"https://blog.datacite.org/differences-between-orcid-and-datacite-metadata/#ref-https://doi.org/10.5281/ZENODO.30799\">2015</a>).
+        The key findings are summarized below:</p><ul><li>Common Approach to Personal
+        Names</li><li>Standardized Contributor Roles</li><li>Standardized Relation
+        Types</li><li>Metadata for Organisations</li><li>Persistent Identifiers for
+        Projects</li><li>Harmonization of ORCID and DataCite Metadata</li></ul><h3
+        id=\"common-approach-to-personal-names\">Common Approach to Personal Names</h3><p>While
+        a single input field for contributor names is common, separate fields for
+        given and family names are required for <a href=\"http://docs.citationstyles.org/en/stable/specification.html#names\">proper
+        formatting of citations</a>. As long as citations to scholarly content rely
+        on properly formatted text rather than persistent identifiers, services holding
+        bibliographic information have to support these separate fields. Further work
+        is needed to help with the transition to separate input fields for given and
+        famliy names, and to handle contributors that are organizations or groups
+        of people.</p><h3 id=\"standardized-contributor-roles\">Standardized Contributor
+        Roles</h3><p>The currently existing vocabularies for <strong>contributor type</strong>
+        (DataCite) and <strong>contributor role</strong> (ORCID) provide a high-level
+        description, but fall short when trying to describe the author/creator contribution
+        in more detail. <a href=\"http://docs.casrai.org/CRediT\">Project CRediT</a>
+        is a multi-stakeholder initiative that has developed a common vocabulary with
+        14 different contributor roles, and this vocabulary can be used to provide
+        this detail, e.g. who provided resources such as reagents or samples, who
+        did the statistical analysis, or who contributed to the methodology of a study.</p><p>CRediT
+        is complementary to existing contributor role vocabularies such as those by
+        ORCID and DataCite. For contributor roles it is particularly important that
+        the same vocabulary is used across stakeholders, so that the roles described
+        in the data center can be forwarded first to DataCite, then to ORCID, and
+        then also to other places such as institutional repositories.</p><h3 id=\"standardized-relation-types\">Standardized
+        Relation Types</h3><p>Capturing relations between scholarly works such as
+        datasets in a standardized way is important, as these relations are used for
+        citations and thus the basis for many indicators of scholarly impact. Currently
+        used vocabularies for relation types between scholarly works, e.g. by CrossRef
+        and DataCite, only partly overlap. In addition we see differences in community
+        practices, e.g. some scholars but not others reserve the term citation for
+        links between two scholarly articles. The term data citation is sometimes
+        used for all links from scholarly works to datasets, but other times reserved
+        for formal citations appearing in reference lists.</p><h3 id=\"metadata-for-organisations\">Metadata
+        for Organisations</h3><p>Both ORCID and DataCite not only provide persistent
+        identifiers for people and data, but they also collect metadata around these
+        persistent identifiers, in particular links to other identifiers. The use
+        of persistent identifiers for organizations lags behind the use of persistent
+        identifiers for research outputs and people, and more work is needed.</p><h3
+        id=\"persistent-identifiers-for-projects\">Persistent Identifiers for Projects</h3><p>Research
+        projects are collaborative activities among contributors that may change over
+        time. Projects have a start and end date and are often funded by a grant.
+        The existing persistent identifier (PID) infrastructure does support artefacts,
+        contributors and organisations, but there is no first-class PID support for
+        projects. This creates a major gap that becomes obvious when we try to describe
+        the relationships between funders, contributors and research outputs.</p><p>Both
+        the ORCID and DataCite metadata support funding information, but only as direct
+        links to contributors or research outputs, respectively. This not only makes
+        it difficult to exchange funding information between DataCite and ORCID, but
+        also fails to adequately model the sometimes complex relationships, e.g. when
+        multiple funders and grants were involved in supporting a research output.
+        We therefore not only need persistent identifiers for projects, but also infrastructure
+        for collecting and aggregating links to contributors and artefacts.</p><h3
+        id=\"harmonization-of-orcid-and-datacite-metadata\">Harmonization of ORCID
+        and DataCite Metadata</h3><p>We identified significant differences between
+        the ORCID and DataCite metadata schema, and these differences hinder the flow
+        of information between the two services. Several different approaches to overcome
+        these differences are conceivable:</p><ol><li>only use a common subset, relying
+        on linked persistent identifiers to get the full metadata</li><li>harmonize
+        the ORCID and DataCite metadata schemata</li><li>common API exchange formats
+        for metadata</li></ol><p>The first approach is the linked open data approach,
+        and was designed specifically for scenarios like this. One limitation is that
+        it requires persistent identifiers for all relevant attributes (e.g. for every
+        creator/contributor in the DataCite metadata). One major objective for THOR
+        is therefore to increase the use of persistent identifiers, both by THOR partners,
+        and by the community at large.</p><p>A common metadata schema between ORCID
+        and DataCite is neither feasible nor necessarily needed. In addition, we have
+        to also consider interoperability with other metadata standards (e.g. CASRAI,
+        OpenAIRE, COAR), and with other artifacts, such as those having CrossRef DOIs.
+        What is more realistic is harmonization across a limited set essential metadata.</p><p>The
+        third approach to improve interoperability uses a common API format that includes
+        all the metadata that need to be exchanged, but doesn''t require the metadata
+        schema itself to change. This approach was <a href=\"https://www.crossref.org/blog/crossref-and-datacite-unify-support-for-http-content-negotiation/\">taken
+        by DataCite and CrossRef a few years ago</a> to provide metadata for DOIs
+        in a consistent way despite significant differences in the CrossRef and DataCite
+        metadata schema. Using HTTP content negotiation, metadata are provided in
+        a variety of formats.</p><h2 id=\"acknowledgments\">Acknowledgments</h2><p>This
+        blog post was <a href=\"https://doi.org/10.5438/bc11-cqw1\">originally published</a>
+        on the DataCite Blog. This work was funded by the European Union''s Horizon
+        2020 research and innovation programme under <a href=\"https://doi.org/10.3030/654039\"
+        rel=\"noreferrer\">grant agreement No.&nbsp;654039</a>.</p><h2 id=\"references\">References</h2><ol><li>Fenner
+        M, Demeranville T, Kotarski R, et al. <em>D2.1: Artefact, Contributor, And
+        Organisation Relationship Data Schema</em>. Zenodo; 2015. doi:<a href=\"https://doi.org/10.5281/ZENODO.30799\">10.5281/ZENODO.30799</a></li></ol>",
+        "rs:image": "https://storage.ghost.io/c/c5/33/c533c955-b5f3-4ff1-ae2d-6b52a212e602/content/images/2023/09/cat_and_dog-1.png",
+        "rs:generator": {"id": "Ghost", "title": {"en": "Ghost"}}, "rs:featured":
+        false}, "access": {"record": "public", "files": "public", "embargo": {"active":
+        false, "reason": null}, "status": "metadata-only"}, "files": {"enabled": false,
+        "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files":
+        {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries": {}},
+        "status": "published", "deletion_status": {"is_deleted": false, "status":
+        "P"}, "stats": {"this_version": {"views": 0, "unique_views": 0, "downloads":
+        0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions": {"views": 0,
+        "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Aug 2026 07:29:48 GMT
+      Etag:
+      - '"81"'
+      Link:
+      - <https://rogue-scholar.org/api/records/trhz1-s0336> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '59'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '492'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

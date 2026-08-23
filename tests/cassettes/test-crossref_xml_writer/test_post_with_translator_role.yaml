@@ -5,41 +5,123 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, zstd
+      - gzip, deflate, br, zstd
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.34.2
     method: GET
-    uri: https://api.rogue-scholar.org/posts/10.59350/swnyg-ger25
+    uri: https://rogue-scholar.org/api/records/wsaar-7ac18
   response:
     body:
-      string: '{"authors":[{"contributor_roles":[],"family":"Nicolini","given":"Juan
-        Pablo Ruiz","url":"https://orcid.org/0000-0002-3138-6343"},{"contributor_roles":[],"family":"Bellini
-        Saibene","given":"Yanina","url":"https://orcid.org/0000-0002-4522-7466"}],"blog":{"authors":[{"name":"The
-        rOpenSci Team"}],"community_id":"19c501a7-647b-4a11-9f5e-cf400817cce3","created":1780876800,"current_feed_url":null,"description":"Open
-        Tools and R Packages for Open Science","doi":"https://doi.org/10.59350/ropensci","favicon":"https://rogue-scholar.org/api/communities/19c501a7-647b-4a11-9f5e-cf400817cce3/logo","feed_format":"application/feed+json","feed_url":"https://ropensci.org/blog/index.json","filter":null,"generator":"Other","home_page_url":"https://ropensci.org/blog","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"ropensci","status":"active","subfield":"1710","title":"rOpenSci
-        - open tools for open science","updated":1783993035,"use_api":null},"blog_name":"rOpenSci
-        - open tools for open science","blog_slug":"ropensci","content_html":"<blockquote><p><em>\"I''m
-        just a political scientist, standing in front of the R console  asking it
-        to help me finish my thesis.\"</em></p></blockquote><p>It was 2015, a Political
-        Science master''s student had to process data to hand in his thesis and decided
-        to take the opportunity to learn how to use R. To the long and winding road
-        of the academic requirement was added an extra degree of difficulty: incorporating
-        programming software from scratch, with a somewhat steep learning curve.</p><p>Years
-        later, <a href=\"https://github.com/TuQmano/evoteSALTA_UTDT\">as I review
-        scripts from the thesis code</a>, I smile to see long lines of code to recode
-        variables with a structure like this:</p><div class=\"highlight\"><pre class=\"chroma\"
-        tabindex=\"0\"><code class=\"language-r\" data-lang=\"r\"><span class=\"line\"><span
-        class=\"cl\"></span></span><span class=\"line\"><span class=\"cl\"><span class=\"c1\">#PARTY
-        LABELS A GOBERNADOR</span></span></span><span class=\"line\"><span class=\"cl\"><span
-        class=\"c1\"># 0 VOTOS EN BLANCO</span></span></span><span class=\"line\"><span
-        class=\"cl\"><span class=\"c1\"># 1 WAYAR GOBERNADOR  (WALTER WAYAR)</span></span></span><span
-        class=\"line\"><span class=\"cl\"><span class=\"c1\"># 2 COALICION CIVICA
-        (ARI) (ALBERTO ROLANDO TONDA)</span></span></span><span class=\"line\"><span
-        class=\"cl\"><span class=\"c1\"># 3 FRENTE JUSTICIALISTA RENOVADOR DE LA VICOTRIA
-        (JUAN MANUEL URTUBEY)</span></span></span><span class=\"line\"><span class=\"cl\"><span
-        class=\"c1\"># 4 FRENTE OLMEDO GOBERNADOR  (ALFREDO OLMEDO)</span></span></span><span
+      string: '{"id": "wsaar-7ac18", "created": "2024-10-13T16:12:46.018084+00:00",
+        "updated": "2025-12-06T08:31:50.959125+00:00", "links": {"self": "https://rogue-scholar.org/api/records/wsaar-7ac18",
+        "self_html": "https://rogue-scholar.org/records/wsaar-7ac18", "preview_html":
+        "https://rogue-scholar.org/records/wsaar-7ac18?preview=1", "doi": "https://doi.org/10.59350/swnyg-ger25",
+        "self_doi": "https://doi.org/10.59350/swnyg-ger25", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/swnyg-ger25",
+        "reserve_doi": "https://rogue-scholar.org/api/records/wsaar-7ac18/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/1g3fk-aay46", "parent_html":
+        "https://rogue-scholar.org/records/1g3fk-aay46", "parent_doi": "https://doi.org/10.59350/1g3fk-aay46",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/1g3fk-aay46", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:wsaar-7ac18/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:wsaar-7ac18/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/wsaar-7ac18/files", "media_files":
+        "https://rogue-scholar.org/api/records/wsaar-7ac18/media-files", "archive":
+        "https://rogue-scholar.org/api/records/wsaar-7ac18/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/wsaar-7ac18/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/wsaar-7ac18/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/wsaar-7ac18/latest", "versions": "https://rogue-scholar.org/api/records/wsaar-7ac18/versions",
+        "draft": "https://rogue-scholar.org/api/records/wsaar-7ac18/draft", "access_links":
+        "https://rogue-scholar.org/api/records/wsaar-7ac18/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/wsaar-7ac18/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/wsaar-7ac18/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/wsaar-7ac18/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/wsaar-7ac18/access/request", "access":
+        "https://rogue-scholar.org/api/records/wsaar-7ac18/access", "communities":
+        "https://rogue-scholar.org/api/records/wsaar-7ac18/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/wsaar-7ac18/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/wsaar-7ac18/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/wsaar-7ac18/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/wsaar-7ac18/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/wsaar-7ac18/requests"},
+        "revision_id": 199, "parent": {"id": "1g3fk-aay46", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["19c501a7-647b-4a11-9f5e-cf400817cce3", "d79fe364-6d96-40b6-b437-b93ca3493106"],
+        "default": "19c501a7-647b-4a11-9f5e-cf400817cce3", "entries": [{"id": "19c501a7-647b-4a11-9f5e-cf400817cce3",
+        "created": "2024-10-05T18:45:09.152768+00:00", "updated": "2026-08-22T09:04:58.342095+00:00",
+        "links": {}, "revision_id": 3832, "slug": "ropensci", "metadata": {"title":
+        "rOpenSci - open tools for open science", "description": "Open Tools and R
+        Packages for Open Science", "type": {"id": "blog"}, "website": "https://ropensci.org/blog"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {"feed:feed_url": "https://ropensci.org/blog/index.json", "feed:created":
+        "2026-06-08", "feed:updated": "2026-08-13T11:29:29+00:00", "feed:feed_format":
+        {"id": "jsonfeed"}, "feed:generator": {"id": "Other"}, "feed:status": {"id":
+        "active"}, "feed:authors": [{"name": "The rOpenSci Team"}], "feed:secure":
+        true, "rs:prefix": {"id": "10.59350"}, "rs:doi": "https://doi.org/10.59350/ropensci",
+        "rs:license": {"id": "cc-by-4.0"}, "rs:language": {"id": "eng"}, "rs:subfield":
+        [{"id": "https://openalex.org/subfields/1710"}]}, "deletion_status": {"is_deleted":
+        false, "status": "P"}, "children": {"allow": true}}, {"id": "d79fe364-6d96-40b6-b437-b93ca3493106",
+        "created": "2025-02-10T08:12:28.813373+00:00", "updated": "2025-12-02T20:56:15.845048+00:00",
+        "links": {}, "revision_id": 11, "slug": "1710", "metadata": {"title": "Information
+        Systems", "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1710"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {"doi": {"identifier": "10.59350/1g3fk-aay46", "provider":
+        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
+        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
+        "10.59350/swnyg-ger25", "provider": "crossref", "client": "crossref"}, "oai":
+        {"identifier": "oai:invenio-rdm:wsaar-7ac18", "provider": "oai"}}, "metadata":
+        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
+        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
+        {"type": "personal", "name": "Nicolini, Juan Pablo Ruiz", "given_name": "Juan
+        Pablo Ruiz", "family_name": "Nicolini", "identifiers": [{"identifier": "0000-0002-3138-6343",
+        "scheme": "orcid"}]}}, {"person_or_org": {"type": "personal", "name": "Bellini
+        Saibene, Yanina", "given_name": "Yanina", "family_name": "Bellini Saibene",
+        "identifiers": [{"identifier": "0000-0002-4522-7466", "scheme": "orcid"}]}}],
+        "title": "Divide and Conquer: From polar To the Polarverse", "publisher":
+        "Front Matter", "publication_date": "2023-12-05", "subjects": [{"id": "https://openalex.org/subfields/1710",
+        "subject": "Information Systems", "scheme": "Subfields"}, {"subject": "Community"},
+        {"subject": "Packages"}, {"subject": "Development"}], "dates": [{"date": "2023-12-05T01:00:00",
+        "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued",
+        "sv": "Utf\u00e4rdad"}}}, {"date": "2025-05-05T16:18:24", "type": {"id": "updated",
+        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
+        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
+        "02cfd2f0-5934-401b-bf13-2b84354e10c9", "scheme": "uuid"}, {"identifier":
+        "https://doi.org/10.59350/swnyg-ger25", "scheme": "guid"}, {"identifier":
+        "https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/",
+        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
+        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
+        "The Creative Commons Attribution license allows re-distribution and re-use
+        of a licensed work on the condition that the creator is appropriately credited."},
+        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "It was 2015, a Political Science master''s
+        student had to process data to hand in his thesis and decided to take the
+        opportunity to learn how to use R. To the long and winding road of the academic
+        requirement was added an extra degree of difficulty: incorporating programming
+        software from scratch, with a somewhat steep learning curve."}, "custom_fields":
+        {"journal:journal": {"title": "rOpenSci - open tools for open science"}, "rs:content_html":
+        "<blockquote><p><em>\"I''m just a political scientist, standing in front of
+        the R console  asking it to help me finish my thesis.\"</em></p></blockquote><p>It
+        was 2015, a Political Science master''s student had to process data to hand
+        in his thesis and decided to take the opportunity to learn how to use R. To
+        the long and winding road of the academic requirement was added an extra degree
+        of difficulty: incorporating programming software from scratch, with a somewhat
+        steep learning curve.</p><p>Years later, <a href=\"https://github.com/TuQmano/evoteSALTA_UTDT\">as
+        I review scripts from the thesis code</a>, I smile to see long lines of code
+        to recode variables with a structure like this:</p><div class=\"highlight\"><pre
+        class=\"chroma\" tabindex=\"0\"><code class=\"language-r\" data-lang=\"r\"><span
+        class=\"line\"><span class=\"cl\"></span></span><span class=\"line\"><span
+        class=\"cl\"><span class=\"c1\">#PARTY LABELS A GOBERNADOR</span></span></span><span
+        class=\"line\"><span class=\"cl\"><span class=\"c1\"># 0 VOTOS EN BLANCO</span></span></span><span
+        class=\"line\"><span class=\"cl\"><span class=\"c1\"># 1 WAYAR GOBERNADOR  (WALTER
+        WAYAR)</span></span></span><span class=\"line\"><span class=\"cl\"><span class=\"c1\">#
+        2 COALICION CIVICA (ARI) (ALBERTO ROLANDO TONDA)</span></span></span><span
+        class=\"line\"><span class=\"cl\"><span class=\"c1\"># 3 FRENTE JUSTICIALISTA
+        RENOVADOR DE LA VICOTRIA (JUAN MANUEL URTUBEY)</span></span></span><span class=\"line\"><span
+        class=\"cl\"><span class=\"c1\"># 4 FRENTE OLMEDO GOBERNADOR  (ALFREDO OLMEDO)</span></span></span><span
         class=\"line\"><span class=\"cl\"><span class=\"c1\"># 5 MORELLO GOBERNADOR
         / PROYECTO SUR  (CARLOS FERNANDO MORELLO)</span></span></span><span class=\"line\"><span
         class=\"cl\"><span class=\"c1\"># 6 PARTIDO OBRERO (CLAUDIO DEL PLA)</span></span></span><span
@@ -212,37 +294,58 @@ interactions:
         We added new tools.</p><p>Now, with the support and encouragement provided
         by the great team at <a href=\"https://fund.ar/\">Fundar</a>, in general,
         and the <a href=\"https://fund.ar/area/datos/\">data</a> area that I coordinate,
-        in particular. We kept moving forward. Little by little. \"Slowly, but steady\".</p>","doi":"https://doi.org/10.59350/swnyg-ger25","guid":"https://doi.org/10.59350/swnyg-ger25","images":[{"alt":"geofecetAR
-        R package hex logo on the left and original polAr R package hex logo on the
-        right","src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/hex_joint.png","width":"600"},{"alt":"LatinR
-        Confernce (2022) - Package Development Ronund Table","src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/latinr-rpkg.png"},{"alt":"The
-        polarverse","src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/polarverse.png"},{"alt":"polAr
-        R-Universe","src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/politicaargentina-r-universe.png"},{"src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/hex_joint.png"},{"src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/latinr-rpkg.png"},{"src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/polarverse.png"},{"src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/politicaargentina-r-universe.png"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1701734400,"rid":"wsaar-7ac18","summary":"It
-        was 2015, a Political Science master''s student had to process data to hand
-        in his thesis and decided to take the opportunity to learn how to use R. To
-        the long and winding road of the academic requirement was added an extra degree
-        of difficulty: incorporating programming software from scratch, with a somewhat
-        steep learning curve.","tags":["Community","Packages","Development"],"title":"Divide
-        and Conquer: From polar To the Polarverse","updated_at":1765009910,"url":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/","version":"v1"}
-
-        '
+        in particular. We kept moving forward. Little by little. \"Slowly, but steady\".</p>",
+        "rs:generator": {"id": "Hugo", "title": {"en": "Hugo"}}, "rs:featured": false},
+        "access": {"record": "public", "files": "public", "embargo": {"active": false,
+        "reason": null}, "status": "metadata-only"}, "files": {"enabled": false, "order":
+        [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled":
+        false, "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "status":
+        "published", "deletion_status": {"is_deleted": false, "status": "P"}, "stats":
+        {"this_version": {"views": 1, "unique_views": 1, "downloads": 0, "unique_downloads":
+        0, "data_volume": 0.0}, "all_versions": {"views": 1, "unique_views": 1, "downloads":
+        0, "unique_downloads": 0, "data_volume": 0.0}}}'
     headers:
-      Access-Control-Allow-Origin:
-      - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2026 06:10:16 GMT
+      - Sun, 23 Aug 2026 07:29:57 GMT
+      Etag:
+      - '"199"'
+      Link:
+      - <https://rogue-scholar.org/api/records/wsaar-7ac18> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '50'
       Server:
       - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
-      content-length:
-      - '20392'
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '465'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
     status:
       code: 200
       message: OK

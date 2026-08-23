@@ -10,8 +10,8 @@ from furl import furl
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
-from .doi_utils import doi_as_url
-from .readers.jsonfeed_reader import get_jsonfeed_doi
+from .base_utils import dig
+from .doi_utils import doi_as_url, doi_from_url
 
 # User-Agent for API requests
 COMMONMETA_USER_AGENT = (
@@ -77,22 +77,53 @@ def generate_ghost_token(key: str) -> str:
     return jwt.encode(payload, bytes.fromhex(secret), algorithm="HS256", headers=header)
 
 
+def get_post_url(doi: str | None, host: str = "rogue-scholar.org") -> str | None:
+    """Look a post's url up in InvenioRDM by DOI.
+
+    Replaces the lookup against api.rogue-scholar.org that the JSON Feed
+    reader used to provide. The records search is public, so no token is
+    needed; the post url is the ``url`` identifier on the record.
+    """
+    doi = doi_from_url(doi)
+    if not doi:
+        return None
+    try:
+        response = http.get(
+            f"https://{host}/api/records",
+            params={"q": f'doi:"{doi}"', "size": 1},
+            headers={"User-Agent": COMMONMETA_USER_AGENT},
+            timeout=10,
+        )
+        response.raise_for_status()
+        record = dig(response.json(), "hits.hits.0")
+    except (requests.exceptions.RequestException, ValueError):
+        return None
+    if not record:
+        return None
+    return next(
+        (
+            i.get("identifier")
+            for i in dig(record, "metadata.identifiers") or []
+            if i.get("scheme") == "url"
+        ),
+        None,
+    )
+
+
 def update_ghost_post_via_api(
-    doi: str, api_key: str | None = None, api_url: str | None = None
+    doi: str,
+    api_key: str | None = None,
+    api_url: str | None = None,
+    host: str = "rogue-scholar.org",
 ) -> dict[str, str]:
     """Update Ghost post via API"""
     # Check required parameters
     if not api_key or not api_url:
         return {"error": "api_key and api_url are required"}
 
-    # get post url from Rogue Scholar API, needed to find post via Ghost API
-    post = get_jsonfeed_doi(doi)
-    if not isinstance(post, dict):
-        return {"error": "Invalid response from Rogue Scholar API"}
-    if post.get("error", None):
-        return {"error": str(post.get("error"))}
+    # get post url from InvenioRDM, needed to find the post via the Ghost API
+    url = get_post_url(doi, host=host)
     doi = doi_as_url(doi)
-    url = post.get("url", None)
     if not doi or not url:
         return {"error": "DOI or URL not found"}
 

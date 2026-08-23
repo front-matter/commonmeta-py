@@ -1,0 +1,157 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://rogue-scholar.org/api/records/y3sy6-27n54
+  response:
+    body:
+      string: '{"id": "y3sy6-27n54", "created": "2024-10-16T10:03:52.814770+00:00",
+        "updated": "2025-10-22T08:30:34.388699+00:00", "links": {"self": "https://rogue-scholar.org/api/records/y3sy6-27n54",
+        "self_html": "https://rogue-scholar.org/records/y3sy6-27n54", "preview_html":
+        "https://rogue-scholar.org/records/y3sy6-27n54?preview=1", "doi": "https://doi.org/10.59350/hnegw-6rx17",
+        "self_doi": "https://doi.org/10.59350/hnegw-6rx17", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/hnegw-6rx17",
+        "reserve_doi": "https://rogue-scholar.org/api/records/y3sy6-27n54/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/5q354-q0515", "parent_html":
+        "https://rogue-scholar.org/records/5q354-q0515", "self_iiif_manifest": "https://rogue-scholar.org/api/iiif/record:y3sy6-27n54/manifest",
+        "self_iiif_sequence": "https://rogue-scholar.org/api/iiif/record:y3sy6-27n54/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/y3sy6-27n54/files", "media_files":
+        "https://rogue-scholar.org/api/records/y3sy6-27n54/media-files", "archive":
+        "https://rogue-scholar.org/api/records/y3sy6-27n54/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/y3sy6-27n54/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/y3sy6-27n54/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/y3sy6-27n54/latest", "versions": "https://rogue-scholar.org/api/records/y3sy6-27n54/versions",
+        "draft": "https://rogue-scholar.org/api/records/y3sy6-27n54/draft", "access_links":
+        "https://rogue-scholar.org/api/records/y3sy6-27n54/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/y3sy6-27n54/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/y3sy6-27n54/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/y3sy6-27n54/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/y3sy6-27n54/access/request", "access":
+        "https://rogue-scholar.org/api/records/y3sy6-27n54/access", "communities":
+        "https://rogue-scholar.org/api/records/y3sy6-27n54/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/y3sy6-27n54/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/y3sy6-27n54/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/y3sy6-27n54/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/y3sy6-27n54/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/y3sy6-27n54/requests"},
+        "revision_id": 37, "parent": {"id": "5q354-q0515", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["9e52146d-52b4-4733-9b05-1b23091c3835", "d79fe364-6d96-40b6-b437-b93ca3493106"],
+        "default": "9e52146d-52b4-4733-9b05-1b23091c3835", "entries": [{"id": "9e52146d-52b4-4733-9b05-1b23091c3835",
+        "created": "2024-10-10T20:26:43.804699+00:00", "updated": "2026-06-08T18:54:44.545766+00:00",
+        "links": {}, "revision_id": 852, "slug": "thor", "metadata": {"title": "Project
+        THOR", "description": "Technical and Human infrastructure for Open Research.",
+        "type": {"id": "blog"}, "website": "https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/",
+        "funding": [{"funder": {"id": "00k4n6c32"}, "award": {"id": "654039"}}]},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {"feed:feed_url": "https://project-thor.eu/feed/atom/", "feed:created": "2023-09-21",
+        "feed:feed_format": {"id": "jsonfeed"}, "feed:generator": {"id": "Other"},
+        "feed:status": {"id": "archived"}, "feed:secure": true, "feed:use_api": true,
+        "rs:prefix": {"id": "10.59350"}, "rs:doi": "https://doi.org/10.59350/thor",
+        "rs:license": {"id": "cc-by-4.0"}, "rs:language": {"id": "eng"}, "rs:subfield":
+        [{"id": "https://openalex.org/subfields/1802"}]}, "deletion_status": {"is_deleted":
+        false, "status": "P"}, "children": {"allow": true}}, {"id": "d79fe364-6d96-40b6-b437-b93ca3493106",
+        "created": "2025-02-10T08:12:28.813373+00:00", "updated": "2025-12-02T20:56:15.845048+00:00",
+        "links": {}, "revision_id": 11, "slug": "1710", "metadata": {"title": "Information
+        Systems", "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1710"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {}}, "versions": {"is_latest": true, "index": 1}, "is_published":
+        true, "is_draft": false, "pids": {"doi": {"identifier": "10.59350/hnegw-6rx17",
+        "provider": "external"}, "oai": {"identifier": "oai:invenio-rdm:y3sy6-27n54",
+        "provider": "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost",
+        "title": {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}},
+        "creators": [{"person_or_org": {"type": "personal", "name": "Duine, Maaike",
+        "given_name": "Maaike", "family_name": "Duine", "identifiers": [{"identifier":
+        "0000-0003-3412-7192", "scheme": "orcid"}]}, "affiliations": [{"id": "04fa4r544",
+        "name": "ORCID", "identifiers": [{"identifier": "04fa4r544", "scheme": "ror"}]}]}],
+        "title": "THOR Final Event programme is out!", "publisher": "Front Matter",
+        "publication_date": "2017-10-12", "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
+        "subject": "Computer and information sciences", "scheme": "FOS"}], "dates":
+        [{"date": "2017-10-12T17:42:10", "type": {"id": "issued", "title": {"de":
+        "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}}, {"date":
+        "2017-10-12T17:42:10", "type": {"id": "updated", "title": {"de": "Aktualisiert",
+        "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id": "eng", "title":
+        {"en": "English"}}], "identifiers": [{"identifier": "4821bef0-5342-462e-9584-3fa7ca95e7aa",
+        "scheme": "uuid"}, {"identifier": "http://project-thor.eu/?p=1644", "scheme":
+        "guid"}, {"identifier": "https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2017/10/12/thor-final-event-programme-is-out",
+        "scheme": "url"}], "rights": [{"id": "cc-by-4.0", "title": {"en": "Creative
+        Commons Attribution 4.0 International"}, "description": {"en": "The Creative
+        Commons Attribution license allows re-distribution and re-use of a licensed
+        work on the condition that the creator is appropriately credited."}, "icon":
+        "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "Come and join us at the Universit\u00e0
+        degli Studi di Roma \"La Sapienza\" in Rome, Italy, on November 15th 2017
+        to learn about how we have advanced the state of the art in persistent identifiers.
+        You will find out about how THOR partners have developed new tools to connect
+        identifiers across systems, to link people, datasets, samples, reactions and
+        more."}, "custom_fields": {"journal:journal": {"title": "Project THOR"}, "rs:generator":
+        {"id": "WordPress.com", "title": {"en": "WordPress.com"}}, "pidbox:citations":
+        [{"identifier": "https://doi.org/10.53731/27w59-wrs22", "scheme": "doi", "reference":
+        "Fenner, M. (2024, October 23). My contribution to Open Access Week 2024.
+        <i>Front Matter</i>."}], "rs:featured": false}, "access": {"record": "public",
+        "files": "public", "embargo": {"active": false, "reason": null}, "status":
+        "metadata-only"}, "files": {"enabled": false, "order": [], "count": 0, "total_bytes":
+        0, "entries": {}}, "media_files": {"enabled": false, "order": [], "count":
+        0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
+        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
+        0, "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}, "all_versions": {"views": 0, "unique_views": 0, "downloads": 0, "unique_downloads":
+        0, "data_volume": 0.0}}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Aug 2026 07:29:48 GMT
+      Etag:
+      - '"37"'
+      Link:
+      - <https://rogue-scholar.org/api/records/y3sy6-27n54> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '59'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '494'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

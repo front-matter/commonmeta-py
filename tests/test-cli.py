@@ -88,43 +88,11 @@ def test_convert_datacite():
 
 
 @pytest.mark.vcr
-def test_convert_crossref_xml_from_jsonfeed():
-    """Test crossref_xml generation from jsonfeed"""
-    runner = CliRunner()
-    string = "https://api.rogue-scholar.org/posts/10.59350/50ebs-4zq55"
-    result = runner.invoke(convert, [string, "--to", "crossref_xml"])
-    assert result.exit_code == 0
-    assert "<doi>10.59350/50ebs-4zq55</doi>" in result.output
-
-
-@pytest.mark.vcr
-def test_convert_datacite_from_jsonfeed():
-    """Test datacite generation from jsonfeed"""
-    runner = CliRunner()
-    string = "https://api.rogue-scholar.org/posts/10.59350/50ebs-4zq55"
-    result = runner.invoke(convert, [string, "--to", "datacite"])
-    assert result.exit_code == 0
-    assert '"schemaVersion": "http://datacite.org/schema/kernel-4"' in result.output
-
-
-@pytest.mark.vcr
-def test_convert_crossref_xml_from_jsonfeed_no_doi():
-    """Test crossref_xml generation from jsonfeed no doi"""
-    runner = CliRunner()
-    string = "https://api.rogue-scholar.org/posts/10.59350/50ebs-4zq55"
-    result = runner.invoke(
-        convert, [string, "--to", "crossref_xml", "--prefix", "10.59350"]
-    )
-    assert result.exit_code == 0
-    assert "<doi>10.59350/50ebs-4zq55</doi>" in result.output
-
-
-@pytest.mark.vcr
 def test_list():
     """Test commonmeta list"""
     runner = CliRunner()
-    string = path.join(path.dirname(__file__), "fixtures", "posts.json")
-    result = runner.invoke(list, [string])
+    string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
+    result = runner.invoke(list, [string, "--from", "crossref"])
     assert result.exit_code == 0
     # assert 2 == len(result.output)
 

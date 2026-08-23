@@ -5,25 +5,116 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, zstd
+      - gzip, deflate, br, zstd
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.34.2
     method: GET
-    uri: https://api.rogue-scholar.org/posts/10.53731/r796hz1-97aq74v-ag4f3
+    uri: https://rogue-scholar.org/api/records/nvp78-k5915
   response:
     body:
-      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/04wxnsj81","name":"DataCite"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"authors":[{"name":"Martin
-        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"community_id":"15a362ea-8138-42b8-917f-1840a92addf8","created":1672531200,"current_feed_url":null,"description":"The
-        Front Matter Blog covers the intersection of science and technology since
-        2007.","doi":"https://doi.org/10.53731/front_matter","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
-        Matter","updated":1784105018,"use_api":true},"blog_name":"Front Matter","blog_slug":"front_matter","content_html":"<p><em>We
-        will follow up with a blog post later this week explaining the DataCite auto-update
-        implementation.</em></p>\n<p>Since ORCID''s inception, our key goal has been
-        to unambiguously identify researchers and provide tools to automate the connection
-        between researchers and their creative works. We are taking a big step towards
-        achieving this goal today, with the launch of <a href=\"http://orcid.org/blog/2014/11/21/new-functionality-friday-auto-update-your-orcid-record\">Auto-Update</a>
+      string: '{"id": "nvp78-k5915", "created": "2024-10-13T22:42:47.833520+00:00",
+        "updated": "2026-08-20T15:00:25.797429+00:00", "links": {"self": "https://rogue-scholar.org/api/records/nvp78-k5915",
+        "self_html": "https://rogue-scholar.org/records/nvp78-k5915", "preview_html":
+        "https://rogue-scholar.org/records/nvp78-k5915?preview=1", "doi": "https://doi.org/10.53731/r796hz1-97aq74v-ag4f3",
+        "self_doi": "https://doi.org/10.53731/r796hz1-97aq74v-ag4f3", "self_doi_html":
+        "https://rogue-scholar.org/doi/10.53731/r796hz1-97aq74v-ag4f3", "reserve_doi":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/draft/pids/doi", "parent":
+        "https://rogue-scholar.org/api/records/zym1z-dg650", "parent_html": "https://rogue-scholar.org/records/zym1z-dg650",
+        "parent_doi": "https://doi.org/10.53731/zym1z-dg650", "parent_doi_html": "https://rogue-scholar.org/doi/10.53731/zym1z-dg650",
+        "self_iiif_manifest": "https://rogue-scholar.org/api/iiif/record:nvp78-k5915/manifest",
+        "self_iiif_sequence": "https://rogue-scholar.org/api/iiif/record:nvp78-k5915/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/nvp78-k5915/files", "media_files":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/media-files", "archive":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/nvp78-k5915/latest", "versions": "https://rogue-scholar.org/api/records/nvp78-k5915/versions",
+        "draft": "https://rogue-scholar.org/api/records/nvp78-k5915/draft", "access_links":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/access/request", "access":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/access", "communities":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/nvp78-k5915/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/nvp78-k5915/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/nvp78-k5915/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/nvp78-k5915/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/nvp78-k5915/requests"},
+        "revision_id": 73, "parent": {"id": "zym1z-dg650", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["15a362ea-8138-42b8-917f-1840a92addf8", "d79fe364-6d96-40b6-b437-b93ca3493106"],
+        "default": "15a362ea-8138-42b8-917f-1840a92addf8", "entries": [{"id": "15a362ea-8138-42b8-917f-1840a92addf8",
+        "created": "2024-08-30T15:03:16.250133+00:00", "updated": "2026-08-22T09:02:28.595812+00:00",
+        "links": {}, "revision_id": 4007, "slug": "front_matter", "metadata": {"title":
+        "Front Matter", "description": "The Front Matter Blog covers the intersection
+        of science and technology since 2007.", "type": {"id": "blog"}, "website":
+        "https://blog.front-matter.de/"}, "access": {"visibility": "public", "members_visibility":
+        "public", "member_policy": "open", "record_submission_policy": "open", "review_policy":
+        "open"}, "custom_fields": {"feed:feed_url": "https://blog.front-matter.de/atom",
+        "feed:created": "2023-01-01", "feed:updated": "2026-08-20T09:30:26+00:00",
+        "feed:feed_format": {"id": "atom"}, "feed:generator": {"id": "Ghost"}, "feed:status":
+        {"id": "active"}, "feed:authors": [{"name": "Martin Fenner", "url": "https://orcid.org/0000-0003-1419-2405"}],
+        "feed:secure": true, "feed:use_api": true, "rs:issn": "2749-9952", "rs:prefix":
+        {"id": "10.53731"}, "rs:doi": "https://doi.org/10.53731/front_matter", "rs:license":
+        {"id": "cc-by-4.0"}, "rs:language": {"id": "eng"}, "rs:subfield": [{"id":
+        "https://openalex.org/subfields/1710"}]}, "deletion_status": {"is_deleted":
+        false, "status": "P"}, "children": {"allow": true}}, {"id": "d79fe364-6d96-40b6-b437-b93ca3493106",
+        "created": "2025-02-10T08:12:28.813373+00:00", "updated": "2025-12-02T20:56:15.845048+00:00",
+        "links": {}, "revision_id": 11, "slug": "1710", "metadata": {"title": "Information
+        Systems", "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1710"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {"doi": {"identifier": "10.53731/zym1z-dg650", "provider":
+        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
+        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
+        "10.53731/r796hz1-97aq74v-ag4f3", "provider": "crossref", "client": "crossref"},
+        "oai": {"identifier": "oai:invenio-rdm:nvp78-k5915", "provider": "oai"}},
+        "metadata": {"resource_type": {"id": "publication-blogpost", "title": {"de":
+        "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators":
+        [{"person_or_org": {"type": "personal", "name": "Fenner, Martin", "given_name":
+        "Martin", "family_name": "Fenner", "identifiers": [{"identifier": "0000-0003-1419-2405",
+        "scheme": "orcid"}]}, "affiliations": [{"id": "04wxnsj81", "name": "DataCite",
+        "identifiers": [{"identifier": "04wxnsj81", "scheme": "ror"}]}]}], "title":
+        "Auto-Update Has Arrived!", "publisher": "Front Matter", "publication_date":
+        "2015-10-26", "subjects": [{"id": "https://openalex.org/subfields/1710", "subject":
+        "Information Systems", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
+        "subject": "Computer and information sciences", "scheme": "FOS"}, {"subject":
+        "News"}], "dates": [{"date": "2015-10-26T00:00:00Z", "type": {"id": "issued",
+        "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}},
+        {"date": "2023-09-20T08:09:13Z", "type": {"id": "updated", "title": {"de":
+        "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id":
+        "eng", "title": {"en": "English"}}], "identifiers": [{"identifier": "https://doi.org/10.53731/r796hz1-97aq74v-ag4f3",
+        "scheme": "guid"}, {"identifier": "https://blog.front-matter.de/posts/auto-update-has-arrived/",
+        "scheme": "url"}], "related_identifiers": [{"identifier": "10.5438/ferw-cwhq",
+        "scheme": "doi", "relation_type": {"id": "isidenticalto", "title": {"de":
+        "Ist identisch mit", "en": "Is identical to", "sv": "\u00c4r identisk med"}}},
+        {"identifier": "https://info.orcid.org/auto-update-has-arrived-orcid-records-move-to-the-next-level/",
+        "scheme": "url", "relation_type": {"id": "isidenticalto", "title": {"de":
+        "Ist identisch mit", "en": "Is identical to", "sv": "\u00c4r identisk med"}}}],
+        "version": "v1", "rights": [{"id": "cc-by-4.0", "title": {"en": "Creative
+        Commons Attribution 4.0 International"}, "description": {"en": "The Creative
+        Commons Attribution license allows re-distribution and re-use of a licensed
+        work on the condition that the creator is appropriately credited."}, "icon":
+        "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "We will follow up with a blog post later
+        this week explaining the DataCite auto-update implementation. Since ORCID''s
+        inception, our key goal has been to unambiguously identify researchers and
+        provide tools to automate the connection between researchers and their creative
+        works. We are taking a big step towards achieving this goal today, with the
+        launch of Auto-Update functionality in collaboration with Crossref and DataCite."},
+        "custom_fields": {"journal:journal": {"title": "Front Matter", "issn": "2749-9952"},
+        "rs:content_html": "<p><em>We will follow up with a blog post later this week
+        explaining the DataCite auto-update implementation.</em></p>\n<p>Since ORCID''s
+        inception, our key goal has been to unambiguously identify researchers and
+        provide tools to automate the connection between researchers and their creative
+        works. We are taking a big step towards achieving this goal today, with the
+        launch of <a href=\"http://orcid.org/blog/2014/11/21/new-functionality-friday-auto-update-your-orcid-record\">Auto-Update</a>
         functionality in collaboration with <a href=\"http://www.crossref.org/\">Crossref</a>
         and <a href=\"https://www.datacite.org/\">DataCite</a>.</p>\n<p>There''s already
         been a lot of excitement about Auto-Update: <a href=\"https://www.crossref.org/blog/crossref-to-auto-update-orcid-records/\">Crossref''s
@@ -104,32 +195,60 @@ interactions:
         workflows is publicly available.</p>\n<h3 id=\"acknowledgments\">Acknowledgments</h3>\n<p>This
         blog post was <a href=\"https://doi.org/10.5438/ferw-cwhq\">originally published</a>
         on the DataCite blog and has been cross-posted from the <a href=\"https://info.orcid.org/auto-update-has-arrived-orcid-records-move-to-the-next-level/\"
-        rel=\"noreferrer\">ORCID blog</a>. </p>","doi":"https://doi.org/10.53731/r796hz1-97aq74v-ag4f3","guid":"https://doi.org/10.53731/r796hz1-97aq74v-ag4f3","image":"https://storage.ghost.io/c/c5/33/c533c955-b5f3-4ff1-ae2d-6b52a212e602/content/images/2022/08/graph.png","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1445817600,"relationships":[{"type":"IsIdenticalTo","url":"https://doi.org/10.5438/ferw-cwhq"},{"type":"IsIdenticalTo","url":"https://info.orcid.org/auto-update-has-arrived-orcid-records-move-to-the-next-level/"}],"rid":"nvp78-k5915","summary":"We
-        will follow up with a blog post later this week explaining the DataCite auto-update
-        implementation. Since ORCID''s inception, our key goal has been to unambiguously
-        identify researchers and provide tools to automate the connection between
-        researchers and their creative works. We are taking a big step towards achieving
-        this goal today, with the launch of Auto-Update functionality in collaboration
-        with Crossref and DataCite.","tags":["News"],"title":"Auto-Update Has Arrived!","updated_at":1784482277,"url":"https://blog.front-matter.de/posts/auto-update-has-arrived/","version":"v1"}
-
-        '
+        rel=\"noreferrer\">ORCID blog</a>. </p>", "rs:image": "https://storage.ghost.io/c/c5/33/c533c955-b5f3-4ff1-ae2d-6b52a212e602/content/images/2022/08/graph.png",
+        "rs:generator": {"id": "Ghost", "title": {"en": "Ghost"}}, "pidbox:citations":
+        [{"identifier": "10.53731/t5qvs-sw351", "scheme": "doi", "reference": "Fenner,
+        M. (2026, August 6). Work Anniversaries. <i>Front Matter</i>."}], "rs:featured":
+        false}, "access": {"record": "public", "files": "public", "embargo": {"active":
+        false, "reason": null}, "status": "metadata-only"}, "files": {"enabled": false,
+        "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files":
+        {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries": {}},
+        "status": "published", "deletion_status": {"is_deleted": false, "status":
+        "P"}, "stats": {"this_version": {"views": 1, "unique_views": 1, "downloads":
+        0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions": {"views": 1,
+        "unique_views": 1, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}}}'
     headers:
-      Access-Control-Allow-Origin:
-      - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2026 06:10:09 GMT
+      - Sun, 23 Aug 2026 07:29:55 GMT
+      Etag:
+      - '"73"'
+      Link:
+      - <https://rogue-scholar.org/api/records/nvp78-k5915> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '52'
       Server:
       - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
-      content-length:
-      - '9670'
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '477'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
     status:
       code: 200
       message: OK

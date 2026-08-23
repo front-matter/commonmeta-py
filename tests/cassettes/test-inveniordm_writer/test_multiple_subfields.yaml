@@ -5,27 +5,121 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, zstd
+      - gzip, deflate, br, zstd
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.34.2
     method: GET
-    uri: https://api.rogue-scholar.org/posts/10.59350/1srmw-yb311
+    uri: https://rogue-scholar.org/api/records/nnx9s-74a78
   response:
     body:
-      string: '{"authors":[{"contributor_roles":[],"family":"Royle","given":"Stephen","url":"https://orcid.org/0000-0001-8927-6967"}],"blog":{"authors":[{"name":"Stephen
-        Royle"}],"community_id":"d1d0a116-fe9c-4f5a-b8c5-c3b69edb8327","created":1673740800,"current_feed_url":null,"description":"x
-        == (s || z). You say it kwontized","doi":"https://doi.org/10.59350/quantixed","favicon":"https://rogue-scholar.org/api/communities/d1d0a116-fe9c-4f5a-b8c5-c3b69edb8327/logo","feed_format":"application/atom+xml","feed_url":"https://quantixed.org/feed/atom/","filter":null,"generator":"WordPress","home_page_url":"https://quantixed.org","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"quantixed","status":"active","subfield":"1307","title":"quantixed","updated":1784648121,"use_api":true},"blog_name":"quantixed","blog_slug":"quantixed","content_html":"<p>We
-        have a <a href=\"http://dx.doi.org/10.1098/rsob.170080\">new paper out</a>!
-        This post is to explain what it&#8217;s about.</p>\n<p>Cancer cells often
-        have <em>gene fusions</em>. This happens because the DNA in cancer cells is
-        really messed up. Sometimes, chromosomes can break and get reattached to a
-        different one in a strange way. This means you get a fusion between one gene
-        and another which makes a new gene, called a gene fusion. There are famous
-        fusions that are known to cause cancer, such as the <em>Philadelphia chromosome</em>
-        in chronic myelogenous leukaemia. This rearrangement of chromosomes 9 and
-        22 result in a fusion called BCR-ABL. There are lots of different gene fusions
+      string: '{"id": "nnx9s-74a78", "created": "2024-10-19T14:38:42.558874+00:00",
+        "updated": "2026-01-28T08:13:14.126368+00:00", "links": {"self": "https://rogue-scholar.org/api/records/nnx9s-74a78",
+        "self_html": "https://rogue-scholar.org/records/nnx9s-74a78", "preview_html":
+        "https://rogue-scholar.org/records/nnx9s-74a78?preview=1", "doi": "https://doi.org/10.59350/1srmw-yb311",
+        "self_doi": "https://doi.org/10.59350/1srmw-yb311", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/1srmw-yb311",
+        "reserve_doi": "https://rogue-scholar.org/api/records/nnx9s-74a78/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/67884-2r587", "parent_html":
+        "https://rogue-scholar.org/records/67884-2r587", "parent_doi": "https://doi.org/10.59350/67884-2r587",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/67884-2r587", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:nnx9s-74a78/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:nnx9s-74a78/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/nnx9s-74a78/files", "media_files":
+        "https://rogue-scholar.org/api/records/nnx9s-74a78/media-files", "archive":
+        "https://rogue-scholar.org/api/records/nnx9s-74a78/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/nnx9s-74a78/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/nnx9s-74a78/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/nnx9s-74a78/latest", "versions": "https://rogue-scholar.org/api/records/nnx9s-74a78/versions",
+        "draft": "https://rogue-scholar.org/api/records/nnx9s-74a78/draft", "access_links":
+        "https://rogue-scholar.org/api/records/nnx9s-74a78/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/nnx9s-74a78/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/nnx9s-74a78/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/nnx9s-74a78/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/nnx9s-74a78/access/request", "access":
+        "https://rogue-scholar.org/api/records/nnx9s-74a78/access", "communities":
+        "https://rogue-scholar.org/api/records/nnx9s-74a78/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/nnx9s-74a78/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/nnx9s-74a78/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/nnx9s-74a78/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/nnx9s-74a78/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/nnx9s-74a78/requests"},
+        "revision_id": 13, "parent": {"id": "67884-2r587", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["9bdd4adb-ed45-4c1a-9ba6-9f3b83fad430", "c9951d9e-6c0a-4723-8890-4a8130a96623",
+        "d1d0a116-fe9c-4f5a-b8c5-c3b69edb8327"], "default": "d1d0a116-fe9c-4f5a-b8c5-c3b69edb8327",
+        "entries": [{"id": "9bdd4adb-ed45-4c1a-9ba6-9f3b83fad430", "created": "2025-12-02T15:40:27.274589+00:00",
+        "updated": "2025-12-02T20:55:56.528457+00:00", "links": {}, "revision_id":
+        5, "slug": "1312", "metadata": {"title": "Molecular Biology", "type": {"id":
+        "subject"}, "website": "https://openalex.org/subfields/1312"}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
+        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
+        "c9951d9e-6c0a-4723-8890-4a8130a96623", "created": "2025-12-02T20:35:50.467947+00:00",
+        "updated": "2025-12-02T20:55:31.193161+00:00", "links": {}, "revision_id":
+        3, "slug": "1307", "metadata": {"title": "Cell Biology", "type": {"id": "subject"},
+        "website": "https://openalex.org/subfields/1307"}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
+        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
+        "d1d0a116-fe9c-4f5a-b8c5-c3b69edb8327", "created": "2024-10-10T20:03:11.293616+00:00",
+        "updated": "2026-08-22T09:04:43.344515+00:00", "links": {}, "revision_id":
+        3830, "slug": "quantixed", "metadata": {"title": "quantixed", "description":
+        "x == (s || z). You say it kwontized", "type": {"id": "blog"}, "website":
+        "https://quantixed.org"}, "access": {"visibility": "public", "members_visibility":
+        "public", "member_policy": "open", "record_submission_policy": "open", "review_policy":
+        "open"}, "custom_fields": {"feed:feed_url": "https://quantixed.org/feed/atom/",
+        "feed:created": "2023-01-15", "feed:updated": "2026-08-04T07:20:47+00:00",
+        "feed:feed_format": {"id": "atom"}, "feed:generator": {"id": "WordPress"},
+        "feed:status": {"id": "active"}, "feed:authors": [{"name": "Stephen Royle"}],
+        "feed:secure": true, "feed:use_api": true, "rs:prefix": {"id": "10.59350"},
+        "rs:doi": "https://doi.org/10.59350/quantixed", "rs:license": {"id": "cc-by-4.0"},
+        "rs:language": {"id": "eng"}, "rs:subfield": [{"id": "https://openalex.org/subfields/1307"}]},
+        "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        true}}]}, "pids": {"doi": {"identifier": "10.59350/67884-2r587", "provider":
+        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
+        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
+        "10.59350/1srmw-yb311", "provider": "crossref", "client": "crossref"}, "oai":
+        {"identifier": "oai:invenio-rdm:nnx9s-74a78", "provider": "oai"}}, "metadata":
+        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
+        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
+        {"type": "personal", "name": "Royle, Stephen", "given_name": "Stephen", "family_name":
+        "Royle", "identifiers": [{"identifier": "0000-0001-8927-6967", "scheme": "orcid"}]}}],
+        "title": "Fusion confusion: new paper on FGFR3-TACC3 fusions in cancer", "publisher":
+        "Front Matter", "publication_date": "2017-08-30", "subjects": [{"id": "https://openalex.org/subfields/1307",
+        "subject": "Cell Biology", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?1.6",
+        "subject": "Biological sciences", "scheme": "FOS"}, {"id": "https://openalex.org/T12287",
+        "subject": "Fibroblast Growth Factor Research", "scheme": "Topics"}, {"id":
+        "https://openalex.org/subfields/1312", "subject": "Molecular Biology", "scheme":
+        "Subfields"}, {"subject": "Publishing"}, {"subject": "Science"}, {"subject":
+        "Cancer"}, {"subject": "Cell Biology"}, {"subject": "FGFR3"}], "dates": [{"date":
+        "2017-08-30T11:27:41", "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht",
+        "en": "Issued", "sv": "Utf\u00e4rdad"}}}, {"date": "2017-08-30T11:27:41",
+        "type": {"id": "updated", "title": {"de": "Aktualisiert", "en": "Updated",
+        "sv": "Uppdaterad"}}}], "languages": [{"id": "eng", "title": {"en": "English"}}],
+        "identifiers": [{"identifier": "efec0a8c-6acf-4c8b-8d3a-4965e3ffded2", "scheme":
+        "uuid"}, {"identifier": "https://quantixed.wordpress.com/?p=1194", "scheme":
+        "guid"}, {"identifier": "https://quantixed.org/2017/08/30/fusion-confusion-new-paper-on-fgfr3-tacc3-fusions-in-cancer/",
+        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
+        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
+        "The Creative Commons Attribution license allows re-distribution and re-use
+        of a licensed work on the condition that the creator is appropriately credited."},
+        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "We have a new paper out! This post is
+        to explain what it''s about. Cancer cells often have gene fusions. This happens
+        because the DNA in cancer cells is really messed up. Sometimes, chromosomes
+        can break and get reattached to a different one in a strange way."}, "custom_fields":
+        {"journal:journal": {"title": "quantixed"}, "rs:content_html": "<p>We have
+        a <a href=\"http://dx.doi.org/10.1098/rsob.170080\">new paper out</a>! This
+        post is to explain what it&#8217;s about.</p>\n<p>Cancer cells often have
+        <em>gene fusions</em>. This happens because the DNA in cancer cells is really
+        messed up. Sometimes, chromosomes can break and get reattached to a different
+        one in a strange way. This means you get a fusion between one gene and another
+        which makes a new gene, called a gene fusion. There are famous fusions that
+        are known to cause cancer, such as the <em>Philadelphia chromosome</em> in
+        chronic myelogenous leukaemia. This rearrangement of chromosomes 9 and 22
+        result in a fusion called BCR-ABL. There are lots of different gene fusions
         and a\u00a0few years ago, a new fusion was discovered in bladder and brain
         cancers, called <a href=\"https://doi.org/10.1126/science.1220834\">FGFR3-TACC3</a>.</p>\n<p>Genes
         encode proteins and proteins do jobs in cells. So the question is: how are
@@ -89,33 +183,58 @@ interactions:
         changed a bit in the last few months, but back in February several key cancer
         journals did not accept papers that had appeared first as preprints.</p>\n<p>&#8212;</p>\n<p>The
         title of the post comes from &#8220;Fusion Confusion&#8221; 4th track on the
-        Hazy EP by Dr Phibes &amp; The House of Wax Equations.</p>","doi":"https://doi.org/10.59350/1srmw-yb311","guid":"https://quantixed.wordpress.com/?p=1194","images":[{"height":"300","sizes":"auto,
-        (max-width: 200px) 100vw, 200px","src":"https://quantixed.org/wp-content/uploads/2017/08/sarkar.jpg?w=200","srcset":"https://quantixed.org/wp-content/uploads/2017/08/sarkar.jpg,
-        https://quantixed.org/wp-content/uploads/2017/08/sarkar-200x300.jpg","width":"200"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1504051200,"rid":"nnx9s-74a78","summary":"We
-        have a new paper out! This post is to explain what it''s about. Cancer cells
-        often have gene fusions. This happens because the DNA in cancer cells is really
-        messed up. Sometimes, chromosomes can break and get reattached to a different
-        one in a strange way.","tags":["Publishing","Science","Cancer","Cell Biology","FGFR3"],"title":"Fusion
-        confusion: new paper on FGFR3-TACC3 fusions in cancer","updated_at":1769587994,"url":"https://quantixed.org/2017/08/30/fusion-confusion-new-paper-on-fgfr3-tacc3-fusions-in-cancer/","version":"v1"}
-
-        '
+        Hazy EP by Dr Phibes &amp; The House of Wax Equations.</p>", "rs:generator":
+        {"id": "WordPress", "title": {"en": "WordPress"}}, "rs:featured": false},
+        "access": {"record": "public", "files": "public", "embargo": {"active": false,
+        "reason": null}, "status": "metadata-only"}, "files": {"enabled": false, "order":
+        [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled":
+        false, "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "status":
+        "published", "deletion_status": {"is_deleted": false, "status": "P"}, "stats":
+        {"this_version": {"views": 2, "unique_views": 2, "downloads": 0, "unique_downloads":
+        0, "data_volume": 0.0}, "all_versions": {"views": 2, "unique_views": 2, "downloads":
+        0, "unique_downloads": 0, "data_volume": 0.0}}}'
     headers:
-      Access-Control-Allow-Origin:
-      - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2026 06:10:41 GMT
+      - Sun, 23 Aug 2026 07:29:50 GMT
+      Etag:
+      - '"13"'
+      Link:
+      - <https://rogue-scholar.org/api/records/nnx9s-74a78> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '57'
       Server:
       - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
-      content-length:
-      - '7948'
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '484'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
     status:
       code: 200
       message: OK

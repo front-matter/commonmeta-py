@@ -281,8 +281,8 @@ def test_from_schema_org():
 @pytest.mark.vcr
 def test_post_with_contributor_roles():
     "post with contributor roles"
-    string = "https://api.rogue-scholar.org/posts/10.59350/510pg-zzf58"
-    subject = Metadata(string)
+    string = "https://rogue-scholar.org/api/records/apt10-14q04"
+    subject = Metadata(string, via="inveniordm")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/510pg-zzf58"
     assert subject.type == "BlogPost"

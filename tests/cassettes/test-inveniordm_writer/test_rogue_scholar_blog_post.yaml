@@ -1,0 +1,243 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://rogue-scholar.org/api/records/7tatc-wh557
+  response:
+    body:
+      string: '{"id": "7tatc-wh557", "created": "2024-10-13T21:57:41.344766+00:00",
+        "updated": "2026-02-15T07:37:27.338659+00:00", "links": {"self": "https://rogue-scholar.org/api/records/7tatc-wh557",
+        "self_html": "https://rogue-scholar.org/records/7tatc-wh557", "preview_html":
+        "https://rogue-scholar.org/records/7tatc-wh557?preview=1", "doi": "https://doi.org/10.59350/dn2mm-m9q51",
+        "self_doi": "https://doi.org/10.59350/dn2mm-m9q51", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/dn2mm-m9q51",
+        "reserve_doi": "https://rogue-scholar.org/api/records/7tatc-wh557/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/ne7qv-1j250", "parent_html":
+        "https://rogue-scholar.org/records/ne7qv-1j250", "parent_doi": "https://doi.org/10.59350/ne7qv-1j250",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/ne7qv-1j250", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:7tatc-wh557/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:7tatc-wh557/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/7tatc-wh557/files", "media_files":
+        "https://rogue-scholar.org/api/records/7tatc-wh557/media-files", "archive":
+        "https://rogue-scholar.org/api/records/7tatc-wh557/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/7tatc-wh557/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/7tatc-wh557/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/7tatc-wh557/latest", "versions": "https://rogue-scholar.org/api/records/7tatc-wh557/versions",
+        "draft": "https://rogue-scholar.org/api/records/7tatc-wh557/draft", "access_links":
+        "https://rogue-scholar.org/api/records/7tatc-wh557/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/7tatc-wh557/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/7tatc-wh557/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/7tatc-wh557/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/7tatc-wh557/access/request", "access":
+        "https://rogue-scholar.org/api/records/7tatc-wh557/access", "communities":
+        "https://rogue-scholar.org/api/records/7tatc-wh557/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/7tatc-wh557/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/7tatc-wh557/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/7tatc-wh557/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/7tatc-wh557/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/7tatc-wh557/requests"},
+        "revision_id": 17, "parent": {"id": "ne7qv-1j250", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["09d7590b-fbea-4c8f-b7b8-82c353ff6909", "630b3478-0650-470a-97ac-cade0f621b4b",
+        "ac7a6214-f166-416e-9500-caa8343d6285"], "default": "ac7a6214-f166-416e-9500-caa8343d6285",
+        "entries": [{"id": "09d7590b-fbea-4c8f-b7b8-82c353ff6909", "created": "2025-02-09T18:20:41.660842+00:00",
+        "updated": "2025-12-02T20:55:57.414303+00:00", "links": {}, "revision_id":
+        13, "slug": "1208", "metadata": {"title": "Literature and Literary Theory",
+        "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1208"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}, {"id": "630b3478-0650-470a-97ac-cade0f621b4b", "created": "2025-12-02T20:35:33.974994+00:00",
+        "updated": "2025-12-02T20:55:51.838636+00:00", "links": {}, "revision_id":
+        3, "slug": "1203", "metadata": {"title": "Language and Linguistics", "type":
+        {"id": "subject"}, "website": "https://openalex.org/subfields/1203"}, "access":
+        {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}, {"id": "ac7a6214-f166-416e-9500-caa8343d6285", "created": "2024-10-10T20:10:20.818995+00:00",
+        "updated": "2026-08-22T09:02:40.712771+00:00", "links": {}, "revision_id":
+        3848, "slug": "ideophone", "metadata": {"title": "The Ideophone", "description":
+        "Sounding out ideas on language, interaction, and iconicity", "type": {"id":
+        "blog"}, "website": "https://ideophone.org"}, "access": {"visibility": "public",
+        "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {"feed:feed_url": "https://ideophone.org/feed/atom/",
+        "feed:created": "2026-06-08", "feed:updated": "2026-07-07T09:16:27+00:00",
+        "feed:feed_format": {"id": "atom"}, "feed:generator": {"id": "WordPress"},
+        "feed:status": {"id": "active"}, "feed:filter": "category:98", "feed:secure":
+        true, "feed:use_api": true, "rs:prefix": {"id": "10.59350"}, "rs:doi": "https://doi.org/10.59350/ideophone",
+        "rs:license": {"id": "cc-by-4.0"}, "rs:language": {"id": "eng"}, "rs:subfield":
+        [{"id": "https://openalex.org/subfields/1203"}]}, "deletion_status": {"is_deleted":
+        false, "status": "P"}, "children": {"allow": true}}]}, "pids": {"doi": {"identifier":
+        "10.59350/ne7qv-1j250", "provider": "crossref", "client": "crossref"}}}, "versions":
+        {"is_latest": true, "index": 1}, "is_published": true, "is_draft": false,
+        "pids": {"doi": {"identifier": "10.59350/dn2mm-m9q51", "provider": "crossref",
+        "client": "crossref"}, "oai": {"identifier": "oai:invenio-rdm:7tatc-wh557",
+        "provider": "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost",
+        "title": {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}},
+        "creators": [{"person_or_org": {"type": "personal", "name": "Dingemanse, Mark",
+        "given_name": "Mark", "family_name": "Dingemanse"}}], "title": "Linguistic
+        roots of connectionism", "publisher": "Front Matter", "publication_date":
+        "2021-07-22", "subjects": [{"id": "https://openalex.org/subfields/1203", "subject":
+        "Language and Linguistics", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?6.2",
+        "subject": "Languages and literature", "scheme": "FOS"}, {"subject": "Linguistics"},
+        {"subject": "Threads"}], "dates": [{"date": "2021-07-22T08:39:07", "type":
+        {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv":
+        "Utf\u00e4rdad"}}}, {"date": "2024-02-04T21:05:36", "type": {"id": "updated",
+        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
+        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
+        "525a7d13-fe07-4cab-ac54-75d7b7005647", "scheme": "uuid"}, {"identifier":
+        "https://ideophone.org/?p=5639", "scheme": "guid"}, {"identifier": "https://ideophone.org/linguistic-roots-of-connectionism/",
+        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
+        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
+        "The Creative Commons Attribution license allows re-distribution and re-use
+        of a licensed work on the condition that the creator is appropriately credited."},
+        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "This Lingbuzz preprint by Baroni is a
+        nice read if you''re interested in linguistically oriented deep net analysis.
+        I did feel it''s a bit hampered by the near-exclusive equation of linguistic
+        theory with generative/Chomskyan aps.", "references": [{"identifier": "https://ling.auf.net/lingbuzz/006031",
+        "scheme": "url", "reference": "Baroni, M. (2021, June). On the proper role
+        of linguistically-oriented deep net analysis in linguistic theorizing. LingBuzz.
+        Retrieved from"}, {"reference": "Bybee, J. L. (2010). Language, Usage, and
+        Cognition. Cambridge: Cambridge University Press."}, {"identifier": "10.1038/s41562-017-0163",
+        "scheme": "doi", "reference": "Christiansen, M. H., & Chater, N. (2017). Towards
+        an integrated science of language. Nature Human Behaviour, 1, s41562-017-0163\u2013017."},
+        {"identifier": "10.1023/a:1022699029236", "scheme": "doi", "reference": "Elman,
+        J. L. (1991). Distributed Representations, Simple Recurrent Networks, And
+        Grammatical Structure. Machine Learning, 7, 195\u2013225. https://doi.org/10.1023/A:1022699029236"},
+        {"reference": "Lappin, S. (2021). Deep learning and linguistic representation.
+        Boca Raton: CRC Press."}, {"identifier": "10.1037/0033-295x.109.1.35", "scheme":
+        "doi", "reference": "MacDonald, M. C., & Christiansen, M. H. (2002). Reassessing
+        working memory: Comment on Just and Carpenter (1992) and Waters and Caplan
+        (1996). Psychological Review, 109(1), 35\u201354. https://doi.org/10.1037/0033-295X.109.1.35"}]},
+        "custom_fields": {"journal:journal": {"title": "The Ideophone"}, "rs:content_html":
+        "<p>This <a rel=\"noreferrer noopener\" href=\"https://ling.auf.net/lingbuzz/006031\"
+        target=\"_blank\">Lingbuzz preprint by Baroni</a> is a nice read if you&#8217;re
+        interested in linguistically oriented deep net analysis. I did feel it&#8217;s
+        a bit hampered by the near-exclusive equation of linguistic theory with generative/Chomskyan
+        aps. (I know it makes a point of claiming a &#8220;very broad notion of theoretical
+        linguistics&#8221;, but it doesn&#8217;t really demonstrate this, and throughout
+        the implicit notion of theory is near-exclusively aligned with GG and its
+        associated concerns of competence, poverty of the stimulus, et cetera).</p>\n\n\n\n<figure
+        class=\"wp-block-image\"><img decoding=\"async\" src=\"https://pbs.twimg.com/media/E4FDxONXwAMFvCh.png\"
+        alt=\"\"/></figure>\n\n\n\n<p>For instance, it notes (citing Lappin) that
+        theoretical linguistics &#8220;played no role&#8221; in deep learning for
+        NLP, but while this may hold for generative grammar (GG), linguistic theorizing
+        was much broader than that right at the start of connectionism and RNNs, e.g.
+        in <a href=\"http://doi.org/10.1023/A:1022699029236\" target=\"_blank\" rel=\"noreferrer
+        noopener\">Elman 1991</a>.</p>\n\n\n\n<p>In fact, just look at the bibliography
+        of Elman&#8217;s classic RNN work and tell us again how exactly theoretical
+        linguistics &#8220;played no role&#8221; \u2014  Bates &amp; Macwhinney, Chomsky,
+        Fillmore, Fodor, Givon, Hopper &amp; Thompson, Lakoff, Langacker, they&#8217;re
+        all there. Elman&#8217;s bibliography is a virtual <em>Who is Who</em> of
+        big tent linguistics at the start of the 1990s. The only way to give any content
+        to Lappin&#8217;s claim (and by extension, Baroni&#8217;s generalization)
+        is to give the notion of &#8220;theoretical linguistics&#8221; the narrowest
+        conceivable reading.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images
+        columns-default is-cropped wp-block-gallery-3 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure
+        class=\"wp-block-image size-large\"><a href=\"https://ideophone.org/files/E4FEkLuWUAI6IwO.png\"><img
+        loading=\"lazy\" decoding=\"async\" width=\"696\" height=\"1024\" data-id=\"5640\"
+        src=\"https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png\" alt=\"\"
+        class=\"wp-image-5640\" srcset=\"https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png
+        696w, https://ideophone.org/files/E4FEkLuWUAI6IwO-204x300.png 204w, https://ideophone.org/files/E4FEkLuWUAI6IwO.png
+        754w\" sizes=\"auto, (max-width: 696px) 100vw, 696px\" /></a></figure>\n</figure>\n\n\n\n<p>However,
+        Baroni&#8217;s point may generalize: perhaps modern-day usage-based, functional,
+        and cognitive approaches to ling theory aren&#8217;t drawing as heavily on
+        current NLP/ML/DL work as they could either. Might a lack of reciprocity play
+        a role? After all, the well known ahistoricism and lack of interdisciplinary
+        engagement of NLP today does not exactly invite productive exchange. (Though
+        some of us try.)</p>\n\n\n\n<p>The theory=Chomsky equation also makes it appearance
+        at the end, where Baroni muses about  incorporating storage, retrieval, gating
+        and attention in theories of language. Outside the confines of Chomskyan linguistics
+        folks have long been working on precisely such things. One might think work
+        by Joan Bybee, Maryellen MacDonald, Morten Christiansen, and others might
+        merit a mention!</p>\n\n\n\n<figure class=\"wp-block-image\"><img decoding=\"async\"
+        src=\"https://pbs.twimg.com/media/E4FH0LUXwAY9NfF.png\" alt=\"\"/></figure>\n\n\n\n<p>In
+        sum, Baroni&#8217;s piece provides an informative if partial review of recent
+        work and includes bold proposals (e.g., deep nets as algorithmic linguistic
+        theories), worth reading if you&#8217;re interested in a particular kind of
+        linguistics. Consider pairing it with this <a href=\"http://doi.org/10.1023/A:1022699029236\"
+        target=\"_blank\" rel=\"noreferrer noopener\">well-aged bottle of Elman 1991</a>!</p>\n\n\n\n<h2
+        class=\"heading\" class=\"wp-block-heading\">References</h2>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Baroni,
+        M. (2021, June). <em>On the proper role of linguistically-oriented deep net
+        analysis in linguistic theorizing</em>. LingBuzz. Retrieved from <a href=\"https://ling.auf.net/lingbuzz/006031\">https://ling.auf.net/lingbuzz/006031</a></li>\n\n\n\n<li>Bybee,
+        J. L. (2010). <em>Language, Usage, and Cognition</em>. Cambridge: Cambridge
+        University Press.</li>\n\n\n\n<li>Christiansen, M. H., &amp; Chater, N. (2017).
+        Towards an integrated science of language. <em>Nature Human Behaviour</em>,
+        <em>1</em>, s41562-017-0163\u2013017. doi: <a href=\"https://doi.org/10.1038/s41562-017-0163\">10.1038/s41562-017-0163</a></li>\n\n\n\n<li>Elman,
+        J. L. (1991). Distributed Representations, Simple Recurrent Networks, And
+        Grammatical Structure. <em>Machine Learning</em>, <em>7</em>, 195\u2013225.
+        doi: <a href=\"https://doi.org/10.1023/A:1022699029236\">10.1023/A:1022699029236</a></li>\n\n\n\n<li>Lappin,
+        S. (2021). <em>Deep learning and linguistic representation</em>. Boca Raton:
+        CRC Press.</li>\n\n\n\n<li>MacDonald, M. C., &amp; Christiansen, M. H. (2002).
+        Reassessing working memory: Comment on Just and Carpenter (1992) and Waters
+        and Caplan (1996). <em>Psychological Review</em>, <em>109</em>(1), 35\u201354.
+        doi: <a href=\"https://doi.org/10.1037/0033-295X.109.1.35\">10.1037/0033-295X.109.1.35</a></li>\n</ul>\n\n\n\n<p><em>Originally
+        tweeted by <a rel=\"mention\" class=\"u-url mention\" href=\"https://scholar.social/@dingemansemark\">@dingemansemark</a>
+        (<a href=\"https://twitter.com/DingemanseMark\">@DingemanseMark</a>) on <a
+        href=\"https://twitter.com/DingemanseMark/status/1405488247057391616\">June
+        17, 2021</a>.</em></p>\n\n\n\n<p></p>", "rs:image": "https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png",
+        "rs:generator": {"id": "WordPress", "title": {"en": "WordPress"}}, "rs:featured":
+        false}, "access": {"record": "public", "files": "public", "embargo": {"active":
+        false, "reason": null}, "status": "metadata-only"}, "files": {"enabled": false,
+        "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files":
+        {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries": {}},
+        "status": "published", "deletion_status": {"is_deleted": false, "status":
+        "P"}, "stats": {"this_version": {"views": 1, "unique_views": 1, "downloads":
+        0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions": {"views": 1,
+        "unique_views": 1, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Aug 2026 07:29:47 GMT
+      Etag:
+      - '"17"'
+      Link:
+      - <https://rogue-scholar.org/api/records/7tatc-wh557> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '60'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '497'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

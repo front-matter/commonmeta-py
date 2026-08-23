@@ -1,0 +1,183 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://rogue-scholar.org/api/records/7tzqm-vcp96
+  response:
+    body:
+      string: '{"id": "7tzqm-vcp96", "created": "2024-10-19T11:59:32.781175+00:00",
+        "updated": "2025-04-13T22:46:02.308363+00:00", "links": {"self": "https://rogue-scholar.org/api/records/7tzqm-vcp96",
+        "self_html": "https://rogue-scholar.org/records/7tzqm-vcp96", "preview_html":
+        "https://rogue-scholar.org/records/7tzqm-vcp96?preview=1", "doi": "https://doi.org/10.59350/2shz7-ehx26",
+        "self_doi": "https://doi.org/10.59350/2shz7-ehx26", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/2shz7-ehx26",
+        "reserve_doi": "https://rogue-scholar.org/api/records/7tzqm-vcp96/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/p3yn9-6aw60", "parent_html":
+        "https://rogue-scholar.org/records/p3yn9-6aw60", "self_iiif_manifest": "https://rogue-scholar.org/api/iiif/record:7tzqm-vcp96/manifest",
+        "self_iiif_sequence": "https://rogue-scholar.org/api/iiif/record:7tzqm-vcp96/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/7tzqm-vcp96/files", "media_files":
+        "https://rogue-scholar.org/api/records/7tzqm-vcp96/media-files", "archive":
+        "https://rogue-scholar.org/api/records/7tzqm-vcp96/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/7tzqm-vcp96/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/7tzqm-vcp96/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/7tzqm-vcp96/latest", "versions": "https://rogue-scholar.org/api/records/7tzqm-vcp96/versions",
+        "draft": "https://rogue-scholar.org/api/records/7tzqm-vcp96/draft", "access_links":
+        "https://rogue-scholar.org/api/records/7tzqm-vcp96/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/7tzqm-vcp96/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/7tzqm-vcp96/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/7tzqm-vcp96/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/7tzqm-vcp96/access/request", "access":
+        "https://rogue-scholar.org/api/records/7tzqm-vcp96/access", "communities":
+        "https://rogue-scholar.org/api/records/7tzqm-vcp96/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/7tzqm-vcp96/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/7tzqm-vcp96/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/7tzqm-vcp96/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/7tzqm-vcp96/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/7tzqm-vcp96/requests"},
+        "revision_id": 9, "parent": {"id": "p3yn9-6aw60", "access": {"owned_by": {"user":
+        "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests": false,
+        "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["8655fbee-45c9-4cd4-9500-f55f85811cee", "e31421de-c2b6-4ed8-8105-f749e28dc0c0"],
+        "default": "8655fbee-45c9-4cd4-9500-f55f85811cee", "entries": [{"id": "8655fbee-45c9-4cd4-9500-f55f85811cee",
+        "created": "2024-10-06T08:17:22.152949+00:00", "updated": "2026-06-08T18:54:54.771738+00:00",
+        "links": {}, "revision_id": 653, "slug": "libscie", "metadata": {"title":
+        "Liberate Science", "description": "Supporting research as a common good.",
+        "type": {"id": "blog"}, "website": "https://www.libscie.org/"}, "access":
+        {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {"feed:feed_url": "https://libscie.org/rss/", "feed:created": "2023-01-04",
+        "feed:feed_format": {"id": "rss"}, "feed:generator": {"id": "Ghost"}, "feed:status":
+        {"id": "archived"}, "feed:filter": "visibility:public", "feed:secure": true,
+        "feed:use_api": false, "rs:prefix": {"id": "10.59350"}, "rs:doi": "https://doi.org/10.59350/libscie",
+        "rs:license": {"id": "cc-by-4.0"}, "rs:language": {"id": "eng"}, "rs:subfield":
+        [{"id": "https://openalex.org/subfields/1802"}]}, "deletion_status": {"is_deleted":
+        false, "status": "P"}, "children": {"allow": true}}, {"id": "e31421de-c2b6-4ed8-8105-f749e28dc0c0",
+        "created": "2025-02-11T21:59:21.242481+00:00", "updated": "2025-12-02T20:56:14.199659+00:00",
+        "links": {}, "revision_id": 11, "slug": "1207", "metadata": {"title": "History
+        and Philosophy of Science", "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1207"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {}}, "versions": {"is_latest": true, "index": 1}, "is_published":
+        true, "is_draft": false, "pids": {"doi": {"identifier": "10.59350/2shz7-ehx26",
+        "provider": "external"}, "oai": {"identifier": "oai:invenio-rdm:7tzqm-vcp96",
+        "provider": "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost",
+        "title": {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}},
+        "creators": [{"person_or_org": {"type": "organizational", "name": "Liberate
+        Science"}}], "title": "KU Leuven supports ResearchEquals", "publisher": "Front
+        Matter", "publication_date": "2023-05-09", "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?5",
+        "subject": "Social science", "scheme": "FOS"}, {"subject": "ResearchEquals"}],
+        "dates": [{"date": "2023-05-09T06:43:26", "type": {"id": "issued", "title":
+        {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}}, {"date":
+        "2023-05-09T06:43:26", "type": {"id": "updated", "title": {"de": "Aktualisiert",
+        "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id": "eng", "title":
+        {"en": "English"}}], "identifiers": [{"identifier": "5561f8e4-2ff1-4186-a8d5-8dacb3afe414",
+        "scheme": "uuid"}, {"identifier": "6446a54e261a1e6be45d3764", "scheme": "guid"},
+        {"identifier": "https://libscie.org/ku-leuven-supports-researchequals", "scheme":
+        "url"}], "rights": [{"id": "cc-by-4.0", "title": {"en": "Creative Commons
+        Attribution 4.0 International"}, "description": {"en": "The Creative Commons
+        Attribution license allows re-distribution and re-use of a licensed work on
+        the condition that the creator is appropriately credited."}, "icon": "cc-by-icon",
+        "props": {"url": "https://creativecommons.org/licenses/by/4.0/", "scheme":
+        "spdx"}}], "description": "KU Leuven is now an inaugural supporting member
+        of ResearchEquals, sustaining and governing the development of modular publishing.
+        As part of their commitment to Open Science, KU Leuven supports sustainable
+        implementations of Open Access and Open Science through the KU Leuven Fund
+        for Fair OA. The fund is usually only available to non-profits, but ResearchEquals''
+        governance convinced KU Leuven to support a for-profit initiative."}, "custom_fields":
+        {"journal:journal": {"title": "Liberate Science"}, "rs:content_html": "<p>KU
+        Leuven is now an inaugural supporting member of ResearchEquals,\nsustaining
+        and governing the development of modular publishing.</p>\n<p>As part of their
+        commitment to Open Science, KU Leuven supports\nsustainable implementations
+        of Open Access and Open Science through the\n<a\nhref=\"https://www.kuleuven.be/open-science/what-is-open-science/scholarly-publishing-and-open-access/open-access-kuleuven/OS-services?ref=libscie.org\">KU\nLeuven
+        Fund for Fair OA</a>. The fund is usually only available to\nnon-profits,
+        but ResearchEquals'' governance convinced KU Leuven to\nsupport a for-profit
+        initiative.</p>\n<p>\"We don''t want to be too rigid in our approach and understand
+        that\npublishing or other research infrastructures can work according to\ndifferent
+        sustainability models. What matters to us is that, if profits\nare made, they
+        are reinvested in the academic community and that\nresearchers remain firmly
+        in control.\" Demmy Verbeke said.</p>\n<p>Supporting members help sustain
+        operations and receive additional\ngovernance rights for <a\nhref=\"https://researchequals.com/?ref=libscie.org\">ResearchEquals</a>.\nThese
+        rights include the option to participate in quarterly assemblies,\nstrategy
+        and decision making processes, the power to block acquisitions,\nand to request
+        more information around business operations. As a result,\nsupporting members
+        shape how ResearchEquals evolves. Individuals can\nbecome supporting members
+        for 79.99 euro''s per year. Institutions can\nbecome supporting members for
+        a yearly contribution of at least 2500\neuro''s.</p>\n<p>ResearchEquals is
+        an open source, open access publishing platform for\nresearch modules. ResearchEquals
+        realized the first modular publishing\nplatform (launched February 1st, 2022),
+        which revolves around sharing\nthe research process, step by step, instead
+        of only the final\nreport.</p>\n<p>\"It is great to see KU Leuven support
+        generative projects, regardless\nof whether they are for-profit or not\" Chris
+        Hartgerink said.</p>\n<p>KU Leuven is one of the first institutional supporting
+        members of\nResearchEquals.</p>\n<hr />\n<p>KU Leuven is one of the largest
+        universities in Belgium, with a\nstrong commitment to open access and open
+        science. Demmy Verbeke and\nLaura Mesotten manage the Fund for Fair OA of
+        KU Leuven Libraries.</p>\n<p>Liberate Science GmbH (est. 2019) cultivates
+        alternative publishing\nformats that work for researchers everywhere. ResearchEquals
+        is a\nLiberate Science GmbH project. For more information view the <a\nhref=\"https://www.researchequals.com/supporting-member?ref=libscie.org\">supporting\nmember
+        page</a> or contact CEO Chris Hartgerink (<a\nhref=\"mailto:ceo@libscie.org\">ceo@libscie.org</a>).</p>",
+        "rs:image": "https://libscie.org/content/images/2023/04/thank-you-1-.jpg",
+        "rs:generator": {"id": "Ghost", "title": {"en": "Ghost"}}, "rs:featured":
+        false}, "access": {"record": "public", "files": "public", "embargo": {"active":
+        false, "reason": null}, "status": "metadata-only"}, "files": {"enabled": false,
+        "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files":
+        {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries": {}},
+        "status": "published", "deletion_status": {"is_deleted": false, "status":
+        "P"}, "stats": {"this_version": {"views": 0, "unique_views": 0, "downloads":
+        0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions": {"views": 0,
+        "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Aug 2026 07:29:55 GMT
+      Etag:
+      - '"9"'
+      Link:
+      - <https://rogue-scholar.org/api/records/7tzqm-vcp96> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '52'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '476'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

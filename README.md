@@ -49,7 +49,6 @@ Commometa-py reads and/or writes these metadata formats:
 | [BibTex](http://en.wikipedia.org/wiki/BibTeX)                                                    | bibtex        | application/x-bibtex                   | yes | yes     |
 | [RIS](http://en.wikipedia.org/wiki/RIS_(file_format))                                            | ris           | application/x-research-info-systems    | yes   | yes     |
 | [InvenioRDM](https://inveniordm.docs.cern.ch/reference/metadata/)                                | inveniordm    | application/vnd.inveniordm.v1+json     | yes   | yes     |
-| [JSON Feed](https://www.jsonfeed.org/)                                                           | jsonfeed     | application/feed+json    | yes | later     |
 | [OpenAlex](https://www.openalex.org/)                                                           | openalex     |    | yes | no     |
 
 _commonmeta_: the Commonmeta format is the native format for the library and used internally.

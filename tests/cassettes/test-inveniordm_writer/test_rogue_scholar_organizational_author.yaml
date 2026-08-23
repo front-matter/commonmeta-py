@@ -5,17 +5,120 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, zstd
+      - gzip, deflate, br, zstd
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.34.2
     method: GET
-    uri: https://api.rogue-scholar.org/posts/10.59350/wg8rv-awm24
+    uri: https://rogue-scholar.org/api/records/fz2vh-31684
   response:
     body:
-      string: '{"authors":[{"contributor_roles":[],"family":"Habgood-Coote","given":"Joshua"}],"blog":{"authors":null,"community_id":"989c0e4f-140c-47ca-8db1-8490fb2e89d1","created":1780876800,"current_feed_url":null,"description":"British
-        Society for the Philosophy of Science","doi":"https://doi.org/10.59350/thebsps","favicon":"https://rogue-scholar.org/api/communities/989c0e4f-140c-47ca-8db1-8490fb2e89d1/logo","feed_format":"application/atom+xml","feed_url":"https://www.thebsps.org/feed/atom/","filter":"category:49","generator":"WordPress","home_page_url":"https://www.thebsps.org/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":null,"slug":"thebsps","status":"active","subfield":"1207","title":"BSPS","updated":1783353001,"use_api":true},"blog_name":"BSPS","blog_slug":"thebsps","content_html":"<p></div></div></div><!--
+      string: '{"id": "fz2vh-31684", "created": "2025-02-12T17:16:10.669461+00:00",
+        "updated": "2025-12-06T15:32:36.479554+00:00", "links": {"self": "https://rogue-scholar.org/api/records/fz2vh-31684",
+        "self_html": "https://rogue-scholar.org/records/fz2vh-31684", "preview_html":
+        "https://rogue-scholar.org/records/fz2vh-31684?preview=1", "doi": "https://doi.org/10.59350/wg8rv-awm24",
+        "self_doi": "https://doi.org/10.59350/wg8rv-awm24", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/wg8rv-awm24",
+        "reserve_doi": "https://rogue-scholar.org/api/records/fz2vh-31684/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/t1t1s-w6p77", "parent_html":
+        "https://rogue-scholar.org/records/t1t1s-w6p77", "parent_doi": "https://doi.org/10.59350/t1t1s-w6p77",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/t1t1s-w6p77", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:fz2vh-31684/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:fz2vh-31684/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/fz2vh-31684/files", "media_files":
+        "https://rogue-scholar.org/api/records/fz2vh-31684/media-files", "archive":
+        "https://rogue-scholar.org/api/records/fz2vh-31684/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/fz2vh-31684/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/fz2vh-31684/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/fz2vh-31684/latest", "versions": "https://rogue-scholar.org/api/records/fz2vh-31684/versions",
+        "draft": "https://rogue-scholar.org/api/records/fz2vh-31684/draft", "access_links":
+        "https://rogue-scholar.org/api/records/fz2vh-31684/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/fz2vh-31684/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/fz2vh-31684/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/fz2vh-31684/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/fz2vh-31684/access/request", "access":
+        "https://rogue-scholar.org/api/records/fz2vh-31684/access", "communities":
+        "https://rogue-scholar.org/api/records/fz2vh-31684/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/fz2vh-31684/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/fz2vh-31684/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/fz2vh-31684/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/fz2vh-31684/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/fz2vh-31684/requests"},
+        "revision_id": 257, "parent": {"id": "t1t1s-w6p77", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["195c25ad-1ebb-43e3-83fc-0c3285c05e71", "346185e3-33b4-4408-9d48-f72c45ff228e",
+        "989c0e4f-140c-47ca-8db1-8490fb2e89d1", "e31421de-c2b6-4ed8-8105-f749e28dc0c0"],
+        "default": "989c0e4f-140c-47ca-8db1-8490fb2e89d1", "entries": [{"id": "195c25ad-1ebb-43e3-83fc-0c3285c05e71",
+        "created": "2025-02-12T09:55:50.600394+00:00", "updated": "2025-12-02T20:56:19.354402+00:00",
+        "links": {}, "revision_id": 11, "slug": "1211", "metadata": {"title": "Philosophy",
+        "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1211"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}, {"id": "346185e3-33b4-4408-9d48-f72c45ff228e", "created": "2024-10-13T14:44:25.401543+00:00",
+        "updated": "2026-01-25T20:50:36.159563+00:00", "links": {}, "revision_id":
+        12, "slug": "bookreview", "metadata": {"title": "Book Review", "description":
+        "Blog posts featuring book reviews.", "type": {"id": "topic"}}, "access":
+        {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}, {"id": "989c0e4f-140c-47ca-8db1-8490fb2e89d1", "created": "2025-02-12T17:07:46.420117+00:00",
+        "updated": "2026-08-22T09:06:28.378809+00:00", "links": {}, "revision_id":
+        3565, "slug": "thebsps", "metadata": {"title": "BSPS", "description": "British
+        Society for the Philosophy of Science", "type": {"id": "blog"}, "website":
+        "https://www.thebsps.org/"}, "access": {"visibility": "public", "members_visibility":
+        "public", "member_policy": "open", "record_submission_policy": "open", "review_policy":
+        "open"}, "custom_fields": {"feed:feed_url": "https://www.thebsps.org/feed/atom/",
+        "feed:created": "2026-06-08", "feed:updated": "2026-07-06T15:50:01+00:00",
+        "feed:feed_format": {"id": "atom"}, "feed:generator": {"id": "WordPress"},
+        "feed:status": {"id": "active"}, "feed:filter": "category:49", "feed:use_api":
+        true, "rs:prefix": {"id": "10.59350"}, "rs:doi": "https://doi.org/10.59350/thebsps",
+        "rs:license": {"id": "cc-by-4.0"}, "rs:language": {"id": "eng"}, "rs:subfield":
+        [{"id": "https://openalex.org/subfields/1207"}]}, "deletion_status": {"is_deleted":
+        false, "status": "P"}, "children": {"allow": true}}, {"id": "e31421de-c2b6-4ed8-8105-f749e28dc0c0",
+        "created": "2025-02-11T21:59:21.242481+00:00", "updated": "2025-12-02T20:56:14.199659+00:00",
+        "links": {}, "revision_id": 11, "slug": "1207", "metadata": {"title": "History
+        and Philosophy of Science", "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1207"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {"doi": {"identifier": "10.59350/t1t1s-w6p77", "provider":
+        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
+        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
+        "10.59350/wg8rv-awm24", "provider": "crossref", "client": "crossref"}, "oai":
+        {"identifier": "oai:invenio-rdm:fz2vh-31684", "provider": "oai"}}, "metadata":
+        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
+        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
+        {"type": "personal", "name": "Habgood-Coote, Joshua", "given_name": "Joshua",
+        "family_name": "Habgood-Coote"}}], "title": "Neil Levy, Philosophy, Bullshit,
+        and Peer Review", "publisher": "Front Matter", "publication_date": "2025-02-11",
+        "subjects": [{"id": "https://openalex.org/subfields/1207", "subject": "History
+        and Philosophy of Science", "scheme": "Subfields"}, {"subject": "BJPS Review
+        Of Books"}], "dates": [{"date": "2025-02-11T08:00:06", "type": {"id": "issued",
+        "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}},
+        {"date": "2025-02-25T18:26:53", "type": {"id": "updated", "title": {"de":
+        "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id":
+        "eng", "title": {"en": "English"}}], "identifiers": [{"identifier": "f7e351b6-fbb8-4917-8235-4623fec10263",
+        "scheme": "uuid"}, {"identifier": "https://www.thebsps.org/?p=11017", "scheme":
+        "guid"}, {"identifier": "https://www.thebsps.org/reviewofbooks/habgood-coote-on-levy",
+        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
+        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
+        "The Creative Commons Attribution license allows re-distribution and re-use
+        of a licensed work on the condition that the creator is appropriately credited."},
+        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "Neil Levy <strong> PHILOSOPHY, BULLSHIT,
+        AND PEER REVIEW </strong> Reviewed by Joshua Habgood-Coote Share on TwitterShare
+        on FacebookShare on RedditShare by Mail Home Philosophy, Bullshit, and Peer
+        Review Neil Levy <strong> Reviewed by Joshua Habgood-Coote </strong> <em>
+        Philosophy, Bullshit, and Peer Review </em> <sup> \u25f3 </sup> Neil Levy
+        Cambridge: Cambridge University Press, 2023, \u00a317.00 ISBN 9781009256308
+        Cite as: Habgood-Coote, J. [2025]: ''", "references": [{"identifier": "10.1086/719117",
+        "scheme": "doi", "reference": "Arvan, M., Bright, L. K., &amp; Heesen, R.
+        (2025). Jury Theorems for Peer Review. <i>The British Journal for the Philosophy
+        of Science</i>, <i>76</i>(2), 319\u2013344."}, {"identifier": "https://jacobin.com/2023/01/analytic-philosophy-mccarthyism-postwar-communism",
+        "scheme": "url", "reference": "Unknown title"}]}, "custom_fields": {"journal:journal":
+        {"title": "BJPS Review Of Books"}, "rs:content_html": "<p></div></div></div><!--
         close content main div --></div></div><div id=''av_section_16'' class=''avia-section
         main_color avia-section-no-padding avia-no-shadow avia-full-stretch av-section-color-overlay-active
         avia-bg-style-scroll   av-small-hide av-mini-hide av-minimum-height av-minimum-height-100
@@ -482,42 +585,58 @@ interactions:
         av_default_container_wrap container_wrap sidebar_right''   ><div class=''container''
         ><div class=''template-page content  av-content-small alpha units''><div class=''post-entry
         post-entry-type-page post-entry-12684''><div class=''entry-content-wrapper
-        clearfix''></p>","doi":"https://doi.org/10.59350/wg8rv-awm24","guid":"https://www.thebsps.org/?p=11017","image":"https://www.thebsps.org/wp-content/uploads/2024/07/Thumbnail-Habgood-Coote-on-Levy.png","images":[{"height":"280","sizes":"auto,
-        (max-width: 398px) 100vw, 398px","src":"https://i0.wp.com/www.thebsps.org/wp-content/uploads/2024/07/Thumbnail-Wilson-on-Brading-and-Stan.png?resize=398%2C280&ssl=1","srcset":"https://i0.wp.com/www.thebsps.org/wp-content/uploads/2024/07/Thumbnail-Wilson-on-Brading-and-Stan.png?w=398&ssl=1,
-        https://i0.wp.com/www.thebsps.org/wp-content/uploads/2024/07/Thumbnail-Wilson-on-Brading-and-Stan.png?resize=300%2C211&ssl=1","width":"398"},{"height":"280","sizes":"auto,
-        (max-width: 398px) 100vw, 398px","src":"https://i0.wp.com/www.thebsps.org/wp-content/uploads/2024/11/Thumbnail-Planer-and-Tennie-on-Enquist-et-al.png?resize=398%2C280&ssl=1","srcset":"https://i0.wp.com/www.thebsps.org/wp-content/uploads/2024/11/Thumbnail-Planer-and-Tennie-on-Enquist-et-al.png?w=398&ssl=1,
-        https://i0.wp.com/www.thebsps.org/wp-content/uploads/2024/11/Thumbnail-Planer-and-Tennie-on-Enquist-et-al.png?resize=300%2C211&ssl=1","width":"398"},{"height":"280","sizes":"auto,
-        (max-width: 398px) 100vw, 398px","src":"https://i0.wp.com/www.thebsps.org/wp-content/uploads/2024/10/Thumbnail-Brown-on-Anderson-and-Mitchel.png?resize=398%2C280&ssl=1","srcset":"https://i0.wp.com/www.thebsps.org/wp-content/uploads/2024/10/Thumbnail-Brown-on-Anderson-and-Mitchel.png?w=398&ssl=1,
-        https://i0.wp.com/www.thebsps.org/wp-content/uploads/2024/10/Thumbnail-Brown-on-Anderson-and-Mitchel.png?resize=300%2C211&ssl=1","width":"398"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1739232000,"reference":[{"id":"https://doi.org/10.1086/719117","unstructured":"Arvan,
-        M., Bright, L. K., &amp; Heesen, R. (2025). Jury Theorems for Peer Review.
-        <i>The British Journal for the Philosophy of Science</i>, <i>76</i>(2), 319\u2013344."},{"id":"https://jacobin.com/2023/01/analytic-philosophy-mccarthyism-postwar-communism","unstructured":"Unknown
-        title"}],"rid":"fz2vh-31684","summary":"Neil Levy <strong> PHILOSOPHY, BULLSHIT,
-        AND PEER REVIEW </strong> Reviewed by Joshua Habgood-Coote Share on TwitterShare
-        on FacebookShare on RedditShare by Mail Home Philosophy, Bullshit, and Peer
-        Review Neil Levy <strong> Reviewed by Joshua Habgood-Coote </strong> <em>
-        Philosophy, Bullshit, and Peer Review </em> <sup> \u25f3 </sup> Neil Levy
-        Cambridge: Cambridge University Press, 2023, \u00a317.00 ISBN 9781009256308
-        Cite as: Habgood-Coote, J. [2025]: ''","tags":["BJPS Review Of Books"],"title":"Neil
-        Levy, Philosophy, Bullshit, and Peer Review","updated_at":1765035156,"url":"https://www.thebsps.org/reviewofbooks/habgood-coote-on-levy","version":"v1"}
-
-        '
+        clearfix''></p>", "rs:image": "https://www.thebsps.org/wp-content/uploads/2024/07/Thumbnail-Habgood-Coote-on-Levy.png",
+        "rs:generator": {"id": "WordPress", "title": {"en": "WordPress"}}, "rs:featured":
+        false}, "access": {"record": "public", "files": "public", "embargo": {"active":
+        false, "reason": null}, "status": "metadata-only"}, "files": {"enabled": false,
+        "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files":
+        {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries": {}},
+        "status": "published", "deletion_status": {"is_deleted": false, "status":
+        "P"}, "stats": {"this_version": {"views": 1, "unique_views": 1, "downloads":
+        0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions": {"views": 1,
+        "unique_views": 1, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}}}'
     headers:
-      Access-Control-Allow-Origin:
-      - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2026 06:10:37 GMT
+      - Sun, 23 Aug 2026 07:29:47 GMT
+      Etag:
+      - '"257"'
+      Link:
+      - <https://rogue-scholar.org/api/records/fz2vh-31684> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '60'
       Server:
       - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
-      content-length:
-      - '45778'
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '498'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
     status:
       code: 200
       message: OK

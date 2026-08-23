@@ -32,7 +32,6 @@ def _matrix(format_name, subdir):
     _matrix("crossref", "crossref")
     + _matrix("datacite", "datacite_reader")
     + _matrix("schemaorg", "schemaorg")
-    + _matrix("jsonfeed", "jsonfeed")
     + _matrix("inveniordm", "inveniordm")
     + _matrix("codemeta", "codemeta"),
 )

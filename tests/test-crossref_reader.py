@@ -470,10 +470,6 @@ def test_blog_post():
     )
     assert subject.version == "v1"
     assert subject.provider == "Crossref"
-    assert subject.files[5] == {
-        "mime_type": "text/markdown",
-        "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.md",
-    }
 
 
 def test_peer_review():

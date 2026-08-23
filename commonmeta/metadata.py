@@ -45,7 +45,6 @@ from .readers.inveniordm_reader import (
     read_inveniordm,
     read_inveniordm_parent,
 )
-from .readers.jsonfeed_reader import get_jsonfeed, read_jsonfeed
 from .readers.openalex_reader import (
     get_openalex,
     read_openalex,
@@ -442,8 +441,6 @@ class Metadata:
             record = get_codemeta(pid)
         elif via == "cff":
             record = get_cff(pid)
-        elif via == "jsonfeed":
-            record = get_jsonfeed(pid)
         elif via == "inveniordm":
             record = get_inveniordm(pid)
         elif via == "openalex":
@@ -534,7 +531,6 @@ class Metadata:
                 "datacite",
                 "schema_org",
                 "csl",
-                "jsonfeed",
                 "codemeta",
                 "inveniordm",
                 "openalex",
@@ -573,8 +569,6 @@ class Metadata:
             return dict(read_codemeta(data))
         elif via == "cff":
             return dict(read_cff(data))
-        elif via == "jsonfeed":
-            return dict(read_jsonfeed(data, **kwargs))
         elif via == "inveniordm":
             return dict(read_inveniordm(data, **kwargs))
         elif via == "openalex":
@@ -752,7 +746,6 @@ class MetadataList:
             "crossref",
             "csl",
             "datacite",
-            "jsonfeed",
             "openalex",
             "schema_org",
         ]:

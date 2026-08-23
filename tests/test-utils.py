@@ -492,14 +492,10 @@ def test_find_from_format_by_id():
     assert "schema_org" == find_from_format_by_id(
         "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GAOC03"
     )
-    # jsonfeed
-    assert "jsonfeed" == find_from_format_by_id(
-        "https://api.rogue-scholar.org/posts/10.59350/kz04m-s8z58"
-    )  # noqa: E501
-    # jsonfeed blog
-    assert "jsonfeed" == find_from_format_by_id(
-        "https://api.rogue-scholar.org/blogs/upstream"
-    )  # noqa: E501
+    # inveniordm
+    assert "inveniordm" == find_from_format_by_id(
+        "https://rogue-scholar.org/api/records/vtvqg-j3285"
+    )
 
 
 def test_find_from_format_by_filename():
@@ -522,11 +518,6 @@ def test_find_from_format_by_string():
     with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "commonmeta" == find_from_format_by_string(string)
-    # jsonfeed
-    filepath = path.join(path.dirname(__file__), "fixtures", "json_feed_item.json")
-    with open(filepath, encoding="utf-8") as file:
-        string = file.read()
-    assert "jsonfeed" == find_from_format_by_string(string)
     # datacite
     filepath = path.join(path.dirname(__file__), "fixtures", "datacite.json")
     with open(filepath, encoding="utf-8") as file:
@@ -577,10 +568,6 @@ def test_find_from_format_by_string():
     with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "csl" == find_from_format_by_string(string)
-    filepath = path.join(path.dirname(__file__), "fixtures", "json_feed.json")
-    with open(filepath, encoding="utf-8") as file:
-        string = file.read()
-    assert "jsonfeed" == find_from_format_by_string(string)
     assert None is find_from_format_by_string('{"foo": "bar"}')
     assert None is find_from_format_by_string(None)
 

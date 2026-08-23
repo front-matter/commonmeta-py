@@ -1087,34 +1087,26 @@ def dict_to_spdx(dct: dict) -> dict | None:
     # end
 
 
-def from_jsonfeed(elements: list) -> list:
-    """Convert from JSON Feed elements"""
-
-    def format_element(element):
-        """format element"""
-        if not isinstance(element, dict):
-            return None
-        mapping = {"url": "id"}
-        for key, value in mapping.items():
-            if element.get(key, None) is not None:
-                element[value] = element.pop(key)
-        return element
-
-    return [format_element(i) for i in elements]
-
-
 def from_inveniordm(elements: list) -> list:
     """Convert from inveniordm elements"""
 
     def format_element(element):
         """format element, merging the role and person_or_org subdicts"""
         role = dig(element, "role.id")
+        # InvenioRDM keeps affiliations as a sibling of person_or_org rather
+        # than inside it, so they have to be carried over explicitly when the
+        # subdicts are merged -- otherwise every affiliation is dropped.
+        affiliations = element.get("affiliations", None)
 
         if "person_or_org" in element.keys():
-            element = element["person_or_org"]
+            # copy, so that merging the subdicts does not mutate the record
+            # the caller passed in
+            element = dict(element["person_or_org"])
 
         if not isinstance(element, dict):
             return None
+        if affiliations is not None:
+            element["affiliations"] = affiliations
         mapping = {"orcid": "ORCID"}
         for key, value in mapping.items():
             if element.get(key, None) is not None:
@@ -1419,10 +1411,6 @@ def find_from_format_by_id(pid: str, no_network: bool = False) -> str:
         return "openalex"  # pmcid
     if re.match(r"\A(http|https):/(/)?github\.com/(.+)\Z", pid) is not None:
         return "cff"
-    if re.match(r"\Ahttps:/(/)?api\.rogue-scholar\.org/posts/(.+)\Z", pid) is not None:
-        return "jsonfeed"
-    if re.match(r"\Ahttps:/(/)?api\.rogue-scholar\.org/blogs/(.+)\Z", pid) is not None:
-        return "jsonfeed"
     if re.match(r"\Ahttps:/(/)(.+)/api/records/(.+)\Z", pid) is not None:
         return "inveniordm"
     return "schema_org"
@@ -1449,8 +1437,6 @@ def find_from_format_by_dict(dct: dict) -> str | None:
         "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
     ]:
         return "codemeta"
-    if dct.get("guid", None) is not None or dct.get("feed_url", None) is not None:
-        return "jsonfeed"
     if dct.get("schemaVersion", "").startswith("http://datacite.org/schema/kernel"):
         return "datacite"
     if dct.get("source", None) == "Crossref":
@@ -1480,8 +1466,6 @@ def find_from_format_by_string(string: str | None) -> str | None:
             "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
         ]:
             return "codemeta"
-        if data.get("guid", None) is not None:
-            return "jsonfeed"
         if data.get("schemaVersion", "").startswith(
             "http://datacite.org/schema/kernel"
         ):

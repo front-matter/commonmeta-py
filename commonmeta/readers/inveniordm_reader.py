@@ -341,7 +341,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     content = dig(meta, "custom_fields.rs:content_html")
     image = dig(meta, "custom_fields.rs:image")
     state = "findable"
-    files = [get_file(i) for i in wrap(meta.get("files"))]
+    files = [get_file(i) for i in get_file_entries(meta.get("files"))]
 
     return {
         **{
@@ -513,19 +513,40 @@ def get_subjects(subjects: list) -> list:
     return scrub([get_subject(i) for i in subjects])
 
 
+def get_file_entries(files) -> list:
+    """Return the file entries of an InvenioRDM or legacy Zenodo record.
+
+    InvenioRDM nests files in a container object keyed by filename
+    (``{"enabled": true, "entries": {"<name>": {...}}}``), so iterating
+    ``files`` itself yields the container rather than the files. Zenodo's
+    legacy API returns a plain list instead; both are accepted.
+    """
+    if isinstance(files, dict):
+        return list((files.get("entries") or {}).values())
+    return wrap(files)
+
+
 def get_file(file: dict) -> dict | None:
-    """get_file"""
+    """Map one entry of an InvenioRDM record's ``files.entries`` object."""
+    # ``links.content`` is the download url; ``links.self`` only serves the
+    # file's metadata. Older records may carry ``type`` instead of ``mimetype``.
     _type = file.get("type", None)
     return compact(
         {
             "bucket": file.get("bucket", None),
             "key": file.get("key", None),
             "checksum": file.get("checksum", None),
-            "url": dig(file, "links.self"),
+            "url": dig(file, "links.content") or dig(file, "links.self"),
             "size": file.get("size", None),
-            "mime_type": "application/" + _type if _type else None,
+            "mime_type": file.get("mimetype", None)
+            or ("application/" + _type if _type else None),
         }
     )
+
+
+# InvenioRDM lowercases relation type ids; map them back to commonmeta's
+# CamelCase spelling.
+_RELATION_TYPES_BY_LOWERCASE = {t.lower(): t for t in COMMONMETA_RELATION_TYPES}
 
 
 def get_relations(relations: list) -> list:
@@ -545,10 +566,16 @@ def get_relations(relations: list) -> list:
             identifier = doi_as_url(identifier)
         else:
             identifier = normalize_url(identifier)
-        return {
-            "id": identifier,
-            "type": (relation_type[0].upper() + relation_type[1:]),
-        }
+
+        # InvenioRDM stores relation types lowercased ("ispreviousversionof"),
+        # while commonmeta uses CamelCase ("IsPreviousVersionOf"). Capitalising
+        # only the first letter produced "Ispreviousversionof", which matched
+        # nothing in COMMONMETA_RELATION_TYPES, so every related_identifier read
+        # from a record was silently dropped by the filter below.
+        canonical = _RELATION_TYPES_BY_LOWERCASE.get(relation_type.lower())
+        if canonical is None:
+            return None
+        return {"id": identifier, "type": canonical}
 
     identifiers = [result for i in relations if (result := map_relation(i)) is not None]
     return [i for i in identifiers if i.get("type") in COMMONMETA_RELATION_TYPES]

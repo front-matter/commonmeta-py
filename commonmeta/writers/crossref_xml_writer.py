@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
+import html
 import io
 import logging
 from datetime import datetime
 from time import time
 from typing import TYPE_CHECKING, Any, Dict
 
+import nh3
 import orjson as json
 import requests
 import xmltodict
@@ -1125,6 +1127,20 @@ def get_version_info(obj) -> dict | None:
     return compact({"version": dig(obj, "version")})
 
 
+def flatten_markup(text: str | None) -> str | None:
+    """Reduce a reference string to plain text for unstructured_citation.
+
+    Reference strings extracted from post bodies keep their markup and
+    encoded entities ("<i>Cancer Cell</i>", "&amp;"), and readers preserve
+    that form so records round-trip unchanged. xmltodict escapes whatever it
+    is given, so passing it through would deposit "&amp;amp;" and
+    "&lt;i&gt;" -- rendering in Crossref as literal "&amp;" and "<i>".
+    """
+    if not text:
+        return text
+    return html.unescape(nh3.clean(text, tags=set(), attributes=None, link_rel=None))
+
+
 def get_references(obj) -> Dict | None:
     """get references"""
     if len(wrap(dig(obj, "references"))) == 0:
@@ -1137,6 +1153,7 @@ def get_references(obj) -> Dict | None:
         # the commonmeta `reference` field is the formatted reference string
         # (Crossref's unstructured_citation); fall back to the legacy field.
         unstructured = ref.get("reference", None) or ref.get("unstructured", None)
+        unstructured = flatten_markup(unstructured)
 
         # include id in unstructured_citation if it is not a DOI
         if (

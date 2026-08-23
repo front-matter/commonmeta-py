@@ -5,23 +5,126 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, zstd
+      - gzip, deflate, br, zstd
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.34.2
     method: GET
-    uri: https://api.rogue-scholar.org/posts/10.59350/vwd81-p8z85
+    uri: https://rogue-scholar.org/api/records/xtmqd-gwg60
   response:
     body:
-      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/02jz4aj89","name":"Maastricht
-        University"}],"contributor_roles":[],"family":"Willighagen","given":"Egon","url":"https://orcid.org/0000-0001-7542-0286"}],"blog":{"authors":[{"name":"Egon
-        Willighagen"}],"community_id":"7f57028e-9d03-489c-b3b4-3d60de06bc9e","created":1710288000,"current_feed_url":"https://chem-bla-ics.linkedchemistry.info/feed.json","description":"Chemblaics
-        (pronounced chem-bla-ics) is the science that uses open science and computers
-        to solve problems in chemistry, biochemistry and related fields.","doi":"https://doi.org/10.59350/chem_bla_ics","favicon":"https://rogue-scholar.org/api/communities/7f57028e-9d03-489c-b3b4-3d60de06bc9e/logo","feed_format":"application/feed+json","feed_url":"https://chem-bla-ics.linkedchemistry.info/archive.json","filter":null,"generator":"Jekyll","home_page_url":"https://chem-bla-ics.linkedchemistry.info","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"chem_bla_ics","status":"active","subfield":"1606","title":"chem-bla-ics","updated":1784246400,"use_api":true},"blog_name":"chem-bla-ics","blog_slug":"chem_bla_ics","content_html":"<p><a
-        href=\"https://sauropods.win/@mike\">Mike Taylor</a> wrote up <a href=\"https://doi.org/10.59350/svpow.24000\">a
-        post</a> about the various things a journal article is doing,\nthe first being
-        <em>a scientific report</em>. We put a lot of money in establishing a scientific
+      string: '{"id": "xtmqd-gwg60", "created": "2025-08-06T07:31:07.447137+00:00",
+        "updated": "2026-08-04T19:00:02.000341+00:00", "links": {"self": "https://rogue-scholar.org/api/records/xtmqd-gwg60",
+        "self_html": "https://rogue-scholar.org/records/xtmqd-gwg60", "preview_html":
+        "https://rogue-scholar.org/records/xtmqd-gwg60?preview=1", "doi": "https://doi.org/10.59350/vwd81-p8z85",
+        "self_doi": "https://doi.org/10.59350/vwd81-p8z85", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/vwd81-p8z85",
+        "reserve_doi": "https://rogue-scholar.org/api/records/xtmqd-gwg60/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/2cczd-x2f77", "parent_html":
+        "https://rogue-scholar.org/records/2cczd-x2f77", "parent_doi": "https://doi.org/10.59350/2cczd-x2f77",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/2cczd-x2f77", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:xtmqd-gwg60/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:xtmqd-gwg60/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/xtmqd-gwg60/files", "media_files":
+        "https://rogue-scholar.org/api/records/xtmqd-gwg60/media-files", "archive":
+        "https://rogue-scholar.org/api/records/xtmqd-gwg60/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/xtmqd-gwg60/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/xtmqd-gwg60/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/xtmqd-gwg60/latest", "versions": "https://rogue-scholar.org/api/records/xtmqd-gwg60/versions",
+        "draft": "https://rogue-scholar.org/api/records/xtmqd-gwg60/draft", "access_links":
+        "https://rogue-scholar.org/api/records/xtmqd-gwg60/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/xtmqd-gwg60/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/xtmqd-gwg60/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/xtmqd-gwg60/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/xtmqd-gwg60/access/request", "access":
+        "https://rogue-scholar.org/api/records/xtmqd-gwg60/access", "communities":
+        "https://rogue-scholar.org/api/records/xtmqd-gwg60/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/xtmqd-gwg60/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/xtmqd-gwg60/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/xtmqd-gwg60/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/xtmqd-gwg60/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/xtmqd-gwg60/requests"},
+        "revision_id": 71, "parent": {"id": "2cczd-x2f77", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["7f57028e-9d03-489c-b3b4-3d60de06bc9e", "f186660c-c392-4849-8b1e-736e32d711a4"],
+        "default": "7f57028e-9d03-489c-b3b4-3d60de06bc9e", "entries": [{"id": "7f57028e-9d03-489c-b3b4-3d60de06bc9e",
+        "created": "2024-10-05T08:43:47.084341+00:00", "updated": "2026-08-22T09:02:00.294664+00:00",
+        "links": {}, "revision_id": 3805, "slug": "chem_bla_ics", "metadata": {"title":
+        "chem-bla-ics", "description": "Chemblaics (pronounced chem-bla-ics) is the
+        science that uses open science and computers to solve problems in chemistry,
+        biochemistry and related fields.", "type": {"id": "blog"}, "website": "https://chem-bla-ics.linkedchemistry.info"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {"feed:feed_url": "https://chem-bla-ics.linkedchemistry.info/archive.json",
+        "feed:current_feed_url": "https://chem-bla-ics.linkedchemistry.info/feed.json",
+        "feed:created": "2024-03-13", "feed:updated": "2026-08-16T00:00:00+00:00",
+        "feed:feed_format": {"id": "jsonfeed"}, "feed:generator": {"id": "Jekyll"},
+        "feed:status": {"id": "active"}, "feed:authors": [{"name": "Egon Willighagen"}],
+        "feed:secure": true, "feed:use_api": true, "rs:prefix": {"id": "10.59350"},
+        "rs:doi": "https://doi.org/10.59350/chem_bla_ics", "rs:license": {"id": "cc-by-4.0"},
+        "rs:language": {"id": "eng"}, "rs:subfield": [{"id": "https://openalex.org/subfields/1606"}]},
+        "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        true}}, {"id": "f186660c-c392-4849-8b1e-736e32d711a4", "created": "2024-10-02T18:13:16.798296+00:00",
+        "updated": "2025-12-02T20:55:49.612431+00:00", "links": {}, "revision_id":
+        28, "slug": "1606", "metadata": {"title": "Physical and Theoretical Chemistry",
+        "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1606"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {"doi": {"identifier": "10.59350/2cczd-x2f77", "provider":
+        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
+        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
+        "10.59350/vwd81-p8z85", "provider": "crossref", "client": "crossref"}, "oai":
+        {"identifier": "oai:invenio-rdm:xtmqd-gwg60", "provider": "oai"}}, "metadata":
+        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
+        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
+        {"type": "personal", "name": "Willighagen, Egon", "given_name": "Egon", "family_name":
+        "Willighagen", "identifiers": [{"identifier": "0000-0001-7542-0286", "scheme":
+        "orcid"}]}, "affiliations": [{"id": "02jz4aj89", "name": "Maastricht University",
+        "identifiers": [{"identifier": "02jz4aj89", "scheme": "ror"}]}]}], "title":
+        "Archiving, but not really", "publisher": "Front Matter", "publication_date":
+        "2025-08-06", "subjects": [{"id": "https://openalex.org/subfields/1606", "subject":
+        "Physical and Theoretical Chemistry", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?1.4",
+        "subject": "Chemical sciences", "scheme": "FOS"}, {"subject": "Publishing"},
+        {"subject": "Europepmc"}], "dates": [{"date": "2025-08-06T00:00:00Z", "type":
+        {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv":
+        "Utf\u00e4rdad"}}}, {"date": "2025-08-06T00:00:00Z", "type": {"id": "updated",
+        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
+        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
+        "https://doi.org/10.59350/vwd81-p8z85", "scheme": "guid"}, {"identifier":
+        "https://chem-bla-ics.linkedchemistry.info/2025/08/06/archiving-but-not-really.html",
+        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
+        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
+        "The Creative Commons Attribution license allows re-distribution and re-use
+        of a licensed work on the condition that the creator is appropriately credited."},
+        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "Mike Taylor wrote up a post about the
+        various things a journal article is doing, the first being a scientific report.
+        We put a lot of money in establishing a scientific track record. In the past
+        30 years how we publish our research and how we archive it has changed significantly.
+        If you read my blog more often, you know I have been critical of the performance
+        of many publishers.", "references": [{"identifier": "10.59350/svpow.24000",
+        "scheme": "doi", "reference": "Taylor, M. (2025, August 1). Journal articles
+        are trying to do six things at once \u2014 no wonder they''re unreadable.
+        <i>Sauropod Vertebra Picture of the Week</i>.  <b>[cito:citesAsRecommendedReading]</b>"},
+        {"identifier": "10.1186/s13059-020-02181-2", "scheme": "doi", "reference":
+        "Hanspers, K., Riutta, A., Summer-Kutmon, M.&amp; Pico, A. R. (2020). Pathway
+        information extracted from 25 years of pathway figures. <i>Genome Biology</i>,
+        <i>21</i>(1).  <b>[cito:citesAsRecommendedReading]</b>"}, {"identifier": "10.1186/s13287-025-04166-z",
+        "scheme": "doi", "reference": "Yuan, F., Liu, J., Zhong, L., Liu, P., Li,
+        T., Yang, K., Gao, W., Zhang, G., Sun, J.&amp; Zou, X. (2025). Enhanced therapeutic
+        effects of hypoxia-preconditioned mesenchymal stromal cell-derived extracellular
+        vesicles in renal ischemic injury. <i>Stem Cell Research & Therapy</i>, <i>16</i>(1).  <b>[cito:describes]</b>"},
+        {"identifier": "10.1038/sdata.2018.29", "scheme": "doi", "reference": "Wimalaratne,
+        S. M., Juty, N., Kunze, J., Jan\u00e9e, G., McMurry, J. A., Beard, N., Jimenez,
+        R., Grethe, J. S., Hermjakob, H., Martone, M. E.&amp; Clark, T. (2018). Uniform
+        resolution of compact identifiers for biomedical data. <i>Scientific Data</i>,
+        <i>5</i>(1).  <b>[cito:obtainsBackgroundFrom]</b>"}]}, "custom_fields": {"journal:journal":
+        {"title": "chem-bla-ics"}, "rs:content_html": "<p><a href=\"https://sauropods.win/@mike\">Mike
+        Taylor</a> wrote up <a href=\"https://doi.org/10.59350/svpow.24000\">a post</a>
+        about the various things a journal article is doing,\nthe first being <em>a
+        scientific report</em>. We put a lot of money in establishing a scientific
         track record. In the past 30 years\nhow we publish our research and how we
         archive it has changed significantly. If you read my blog more often, you
         know I have\nbeen critical of the performance of many publishers. Springer
@@ -64,32 +167,58 @@ interactions:
         resolution image. But to me, this must be solved as soon\nas possible. This
         is utterly unacceptable.</p>\n<p>I wonder what the authors of the article
         (doi:<a href=\"https://doi.org/10.1186/s13287-025-04166-z\">10.1186/s13287-025-04166-z</a>)\nI
-        took as example think of this.</p>","doi":"https://doi.org/10.59350/vwd81-p8z85","guid":"https://doi.org/10.59350/vwd81-p8z85","images":[{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/imageResolutionLoss.png"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1754438400,"reference":[{"id":"https://doi.org/10.59350/svpow.24000","unstructured":"<b>[cito:citesAsRecommendedReading]</b>"},{"id":"https://doi.org/10.1186/s13059-020-02181-2","unstructured":"<b>[cito:citesAsRecommendedReading]</b>"},{"id":"https://doi.org/10.1186/s13287-025-04166-z","unstructured":"<b>[cito:describes]</b>"},{"id":"https://doi.org/10.1038/sdata.2018.29","unstructured":"<b>[cito:obtainsBackgroundFrom]</b>"}],"rid":"xtmqd-gwg60","summary":"Mike
-        Taylor wrote up a post about the various things a journal article is doing,
-        the first being a scientific report. We put a lot of money in establishing
-        a scientific track record. In the past 30 years how we publish our research
-        and how we archive it has changed significantly. If you read my blog more
-        often, you know I have been critical of the performance of many publishers.","tags":["Publishing","Europepmc"],"title":"Archiving,
-        but not really","updated_at":1784495752,"url":"https://chem-bla-ics.linkedchemistry.info/2025/08/06/archiving-but-not-really.html","version":"v1"}
-
-        '
+        took as example think of this.</p>", "rs:generator": {"id": "Jekyll", "title":
+        {"en": "Jekyll"}}, "rs:featured": false, "rs:doi": "https://doi.org/10.59350/chem_bla_ics"},
+        "access": {"record": "public", "files": "public", "embargo": {"active": false,
+        "reason": null}, "status": "metadata-only"}, "files": {"enabled": false, "order":
+        [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled":
+        false, "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "status":
+        "published", "deletion_status": {"is_deleted": false, "status": "P"}, "stats":
+        {"this_version": {"views": 0, "unique_views": 0, "downloads": 0, "unique_downloads":
+        0, "data_volume": 0.0}, "all_versions": {"views": 0, "unique_views": 0, "downloads":
+        0, "unique_downloads": 0, "data_volume": 0.0}}}'
     headers:
-      Access-Control-Allow-Origin:
-      - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2026 06:10:41 GMT
+      - Sun, 23 Aug 2026 07:29:50 GMT
+      Etag:
+      - '"71"'
+      Link:
+      - <https://rogue-scholar.org/api/records/xtmqd-gwg60> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '57'
       Server:
       - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
-      content-length:
-      - '6541'
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '483'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
     status:
       code: 200
       message: OK

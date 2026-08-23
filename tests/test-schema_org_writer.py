@@ -816,10 +816,10 @@ def test_instrument():
 
 
 @pytest.mark.vcr
-def test_jsonfeed_upstream_blog():
-    """jsonfeed upstream blog"""
-    string = "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48"
-    subject = Metadata(string)
+def test_rogue_scholar_upstream_blog():
+    """Rogue Scholar upstream blog"""
+    string = "https://rogue-scholar.org/api/records/thmsh-a1z89"
+    subject = Metadata(string, via="inveniordm")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
     assert subject.type == "BlogPost"
@@ -835,8 +835,10 @@ def test_jsonfeed_upstream_blog():
         schema_org.get("name")
         == "Attempts at automating journal subject classification"
     )
-    assert len(schema_org.get("encoding")) == 3
-    assert schema_org.get("encoding")[0] == {
-        "@type": "MediaObject",
-        "contentUrl": "https://upstream.force11.org/content/images/2023/05/esha-subject-blog.jpg",
-    }
+    # the record has no files attached (files.enabled is false), so there is
+    # nothing to encode; the post image is a custom field, not a file
+    assert schema_org.get("encoding") is None
+    assert (
+        subject.image
+        == "https://upstream.force11.org/content/images/2023/05/esha-subject-blog.jpg"
+    )

@@ -350,6 +350,13 @@ def test_repository_caltech_data():
             "id": "https://orcid.org/0000-0002-5940-3897",
             "given_name": "Ariana",
             "family_name": "Peck",
+            "affiliations": [
+                {
+                    "identifier": "https://ror.org/05dxps055",
+                    "identifier_type": "ROR",
+                    "name": "California Institute of Technology",
+                }
+            ],
         },
         "roles": ["Author"],
     }
@@ -451,6 +458,13 @@ def test_rogue_scholar():
             "id": "https://orcid.org/0000-0003-0159-013X",
             "given_name": "Aaron",
             "family_name": "Tay",
+            "affiliations": [
+                {
+                    "identifier": "https://ror.org/050qmg959",
+                    "identifier_type": "ROR",
+                    "name": "Singapore Management University",
+                }
+            ],
         },
         "roles": ["Author"],
     }
@@ -568,6 +582,13 @@ def test_rogue_scholar_with_parent_doi():
             "id": "https://orcid.org/0000-0002-1003-5675",
             "given_name": "Mike",
             "family_name": "Taylor",
+            "affiliations": [
+                {
+                    "identifier": "https://ror.org/0524sp257",
+                    "identifier_type": "ROR",
+                    "name": "University of Bristol",
+                }
+            ],
         },
         "roles": ["Author"],
     }

@@ -1,0 +1,221 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.34.2
+    method: GET
+    uri: https://rogue-scholar.org/api/records/w2nqy-wxa44
+  response:
+    body:
+      string: '{"id": "w2nqy-wxa44", "created": "2024-10-14T08:02:11.547986+00:00",
+        "updated": "2025-10-24T06:45:16.565777+00:00", "links": {"self": "https://rogue-scholar.org/api/records/w2nqy-wxa44",
+        "self_html": "https://rogue-scholar.org/records/w2nqy-wxa44", "preview_html":
+        "https://rogue-scholar.org/records/w2nqy-wxa44?preview=1", "doi": "https://doi.org/10.59350/dcw3y-7em87",
+        "self_doi": "https://doi.org/10.59350/dcw3y-7em87", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/dcw3y-7em87",
+        "reserve_doi": "https://rogue-scholar.org/api/records/w2nqy-wxa44/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/h2rjg-smp56", "parent_html":
+        "https://rogue-scholar.org/records/h2rjg-smp56", "parent_doi": "https://doi.org/10.59350/h2rjg-smp56",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/h2rjg-smp56", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:w2nqy-wxa44/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:w2nqy-wxa44/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/w2nqy-wxa44/files", "media_files":
+        "https://rogue-scholar.org/api/records/w2nqy-wxa44/media-files", "archive":
+        "https://rogue-scholar.org/api/records/w2nqy-wxa44/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/w2nqy-wxa44/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/w2nqy-wxa44/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/w2nqy-wxa44/latest", "versions": "https://rogue-scholar.org/api/records/w2nqy-wxa44/versions",
+        "draft": "https://rogue-scholar.org/api/records/w2nqy-wxa44/draft", "access_links":
+        "https://rogue-scholar.org/api/records/w2nqy-wxa44/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/w2nqy-wxa44/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/w2nqy-wxa44/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/w2nqy-wxa44/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/w2nqy-wxa44/access/request", "access":
+        "https://rogue-scholar.org/api/records/w2nqy-wxa44/access", "communities":
+        "https://rogue-scholar.org/api/records/w2nqy-wxa44/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/w2nqy-wxa44/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/w2nqy-wxa44/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/w2nqy-wxa44/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/w2nqy-wxa44/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/w2nqy-wxa44/requests"},
+        "revision_id": 27, "parent": {"id": "h2rjg-smp56", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["18f3ab6d-3fde-4bd3-b6dd-d5b1b0165592", "c8efeda5-cd52-472d-9537-6915b9c62e34",
+        "fbc3bd5a-137e-4366-94ae-92a6e9d744e3"], "default": "c8efeda5-cd52-472d-9537-6915b9c62e34",
+        "entries": [{"id": "18f3ab6d-3fde-4bd3-b6dd-d5b1b0165592", "created": "2025-02-08T14:06:33.889323+00:00",
+        "updated": "2026-01-25T20:59:18.690188+00:00", "links": {}, "revision_id":
+        9, "slug": "cito", "metadata": {"title": "CITO", "description": "Blog posts
+        about CITO (the citation typing ontology).", "type": {"id": "topic"}}, "access":
+        {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "closed"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}, {"id": "c8efeda5-cd52-472d-9537-6915b9c62e34", "created": "2024-10-05T18:54:07.448143+00:00",
+        "updated": "2026-08-22T09:04:04.396615+00:00", "links": {}, "revision_id":
+        3707, "slug": "opencitations", "metadata": {"title": "OpenCitations blog",
+        "description": "The blog of the OpenCitations Infrastructure", "type": {"id":
+        "blog"}, "website": "https://opencitations.hypotheses.org"}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {"feed:feed_url": "https://opencitations.hypotheses.org/feed/atom/",
+        "feed:created": "2023-04-19", "feed:updated": "2026-07-04T13:34:27+00:00",
+        "feed:feed_format": {"id": "atom"}, "feed:generator": {"id": "WordPress"},
+        "feed:status": {"id": "active"}, "feed:authors": [{"name": "OpenCitations
+        Team"}], "feed:secure": true, "feed:use_api": true, "rs:prefix": {"id": "10.59350"},
+        "rs:doi": "https://doi.org/10.59350/opencitations", "rs:license": {"id": "cc-by-4.0"},
+        "rs:language": {"id": "eng"}, "rs:subfield": [{"id": "https://openalex.org/subfields/1802"}]},
+        "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        true}}, {"id": "fbc3bd5a-137e-4366-94ae-92a6e9d744e3", "created": "2025-02-11T17:20:32.633964+00:00",
+        "updated": "2025-12-02T20:56:11.605253+00:00", "links": {}, "revision_id":
+        11, "slug": "1802", "metadata": {"title": "Information Systems and Management",
+        "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1802"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {"doi": {"identifier": "10.59350/h2rjg-smp56", "provider":
+        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
+        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
+        "10.59350/dcw3y-7em87", "provider": "crossref", "client": "crossref"}, "oai":
+        {"identifier": "oai:invenio-rdm:w2nqy-wxa44", "provider": "oai"}}, "metadata":
+        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
+        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
+        {"type": "personal", "name": "Shotton, David M.", "given_name": "David M.",
+        "family_name": "Shotton", "identifiers": [{"identifier": "0000-0001-5506-523X",
+        "scheme": "orcid"}]}, "affiliations": [{"id": "052gg0110", "name": "University
+        of Oxford", "identifiers": [{"identifier": "052gg0110", "scheme": "ror"}]}]}],
+        "title": "Use of CiTO in CiteULike", "publisher": "Front Matter", "publication_date":
+        "2010-10-21", "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?5.9",
+        "subject": "Other social sciences", "scheme": "FOS"}, {"subject": "JISC"},
+        {"subject": "Ontologies"}, {"subject": "Open Citations"}, {"subject": "Semantic
+        Publishing"}, {"subject": "Applications"}], "dates": [{"date": "2010-10-21T16:32:43",
+        "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued",
+        "sv": "Utf\u00e4rdad"}}}, {"date": "2022-08-04T15:52:06", "type": {"id": "updated",
+        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
+        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
+        "6d0f1603-4081-4a4c-9bdf-1f0146558935", "scheme": "uuid"}, {"identifier":
+        "http://opencitations.wordpress.com/?p=31", "scheme": "guid"}, {"identifier":
+        "https://opencitations.hypotheses.org/31", "scheme": "url"}], "version": "v1",
+        "rights": [{"id": "cc-by-4.0", "title": {"en": "Creative Commons Attribution
+        4.0 International"}, "description": {"en": "The Creative Commons Attribution
+        license allows re-distribution and re-use of a licensed work on the condition
+        that the creator is appropriately credited."}, "icon": "cc-by-icon", "props":
+        {"url": "https://creativecommons.org/licenses/by/4.0/", "scheme": "spdx"}}],
+        "description": "Egon Willighagen, at Uppsala University, has pioneered the
+        use of object properties from CiTO, the Citation Typing Ontology, to characterize
+        bibliographic citations in CiteULike, the free service for managing and discovering
+        scholarly references.\u00a0 Indeed, it was his use case that persuaded me
+        of the need to generalize CiTO to include indirect citations."}, "custom_fields":
+        {"journal:journal": {"title": "OpenCitations blog"}, "rs:content_html": "<p>Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in <a href=\"http://www.citeulike.org/\" target=\"_blank\" rel=\"noopener\">CiteULike</a>,
+        the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.</p>\n<p>For example, in documenting papers
+        that use the Chemistry Development Kit (CDK), Egon records the following paper
+        by Guha (2007)\u00a0(Egon&#8217;s CiteULike reference 7901082):\u00a0 <em><br
+        />\n</em></p>\n<p><em><a href=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-37\"
+        title=\"Guha 2007 reference 7901082\" src=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"
+        alt=\"\" width=\"640\" height=\"394\" /></a></em></p>\n<p>He tags that Guha
+        paper, using the CiTO tag <em>cito:usedMethodIn</em>, as using the CDK method
+        described in a paper by Steinbeck <em>et al</em>. (2003) (Egon&#8217;s CiteULike
+        reference 423382):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-34\"
+        title=\"Steinbeck reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"
+        alt=\"\" width=\"640\" height=\"367\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png
+        643w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png
+        500w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>However, the
+        original paper by Guha that has been tagged by Egon does <em>not</em> cite\u00a0
+        Steinbeck <em>et al</em>. (2003) directly in its reference list.\u00a0 Rather,
+        it contains a reference to a later paper on CDK by Steinbeck <em>et al</em>.
+        (2006), entitled &#8220;Recent developments of the Chemistry Development Kit
+        (CDK)&#8221; (Egon&#8217;s CiteULike reference 1073448):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-35\"
+        title=\"Steinbeck 2006 reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"
+        alt=\"\" width=\"640\" height=\"357\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png
+        798w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png
+        500w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png
+        768w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>. . . , a paper
+        that Egon tags as <strong>extending </strong>the original 2003 paper describing
+        CDK, using the property <em>cito:extends</em>.</p>\n<p>Thus the Guha paper
+        cites Steinbeck <em>et al</em>. (2003) only indirectly, via Steinbeck <em>et
+        al</em>. (2006).\u00a0 For this reason, the scope of CiTO was extended to
+        include such indirect citations.\u00a0 The description of CiTO now reads:</p>\n<p
+        style=\"padding-left: 30px\">&#8220;The purpose of the CiTO Ontology is to
+        enable characterization of the nature or type of citations, both factually
+        and rhetorically.\u00a0 The citations characterized may be either direct and
+        explicit (as in the reference list of a journal article), indirect (e.g. a
+        citation to a more recent paper by the same research group on the same topic),
+        or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism).&#8221;</p>\n<p>Thanks,
+        Egon!</p>\n<div class=\"zemanta-pixie\" style=\"margin-top: 10px;height: 15px\"></div>",
+        "rs:generator": {"id": "WordPress", "title": {"en": "WordPress"}}, "pidbox:citations":
+        [{"identifier": "10.1007/s11192-013-1108-3", "scheme": "doi", "reference":
+        "Parinov, S., &amp; Kogalovsky, M. (2013). Semantic linkages in research information
+        systems as a new data source for scientometric studies. <i>Scientometrics</i>,
+        <i>98</i>(2), 927\u2013943."}, {"identifier": "10.1134/s0361768814060139",
+        "scheme": "doi", "reference": "Kogalovsky, M. R., &amp; Parinov, S. I. (2014).
+        Social network technologies for semantic linking of information objects in
+        scientific digital library. <i>Programming and Computer Software</i>, <i>40</i>(6),
+        314\u2013322."}], "rs:featured": false}, "access": {"record": "public", "files":
+        "public", "embargo": {"active": false, "reason": null}, "status": "metadata-only"},
+        "files": {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries":
+        {}}, "media_files": {"enabled": false, "order": [], "count": 0, "total_bytes":
+        0, "entries": {}}, "status": "published", "deletion_status": {"is_deleted":
+        false, "status": "P"}, "stats": {"this_version": {"views": 0, "unique_views":
+        0, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions":
+        {"views": 0, "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Aug 2026 07:29:49 GMT
+      Etag:
+      - '"27"'
+      Link:
+      - <https://rogue-scholar.org/api/records/w2nqy-wxa44> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '58'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '490'
+      X-Ratelimit-Reset:
+      - '1787470248'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
