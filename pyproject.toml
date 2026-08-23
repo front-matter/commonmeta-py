@@ -22,7 +22,9 @@ dependencies = [
     "commonmeta-schema==1.0rc31",
     "dateparser>=1.1.7,<2",
     "PyYAML>=5.4",
+    "babel>=2.12,<3",
     "beautifulsoup4>=4.11,<5",
+    "pikepdf>=9,<11",
     "bibtexparser~=1.4",
     "citeproc-py-styles>=0.1.2,<1",
     "citeproc-py>=0.10.7,<1",
@@ -52,18 +54,18 @@ dependencies = [
     "typing-extensions>=4.7.1,<5",
     "jsonschema-rs>=0.47 ; python_full_version >= '3.10'",
     # PDF rendering (write_pdf option on the InvenioRDM writer). WeasyPrint
-    # takes html straight to pdf, so no pandoc is involved. It dropped Python
-    # 3.9 in 67.0, and commonmeta-py still supports 3.9 (requires-python
-    # >=3.9), so an unmarked pin would make the resolution unsatisfiable
-    # there. Split on the marker instead: 3.9 keeps the 66.x line, everything
-    # newer gets 67+. The API this uses - HTML(string=...).write_pdf(
-    # stylesheets=[CSS(...)]) - is unchanged across both.
+    # takes html straight to pdf, so no pandoc is involved. 69 is the floor:
+    # the pdf is written as PDF/A-3a, and the accessible ("a") conformance
+    # levels of PDF/A arrived in 67, with 69 the first release carrying all of
+    # them. WeasyPrint dropped Python 3.9 in 67 and commonmeta-py still
+    # supports it (requires-python >=3.9), so the marker keeps the resolution
+    # satisfiable there: on 3.9 WeasyPrint is simply absent and the writer
+    # reports that it cannot render a pdf. Everything else works without it.
     #
     # WeasyPrint needs pango at the system level, which is why it is imported
     # lazily: `import weasyprint` fails outright when pango is missing, and
     # only the pdf path should pay for that.
-    "weasyprint>=62,<67 ; python_full_version < '3.10'",
-    "weasyprint>=67,<70 ; python_full_version >= '3.10'",
+    "weasyprint>=69,<70 ; python_full_version >= '3.10'",
 ]
 
 [project.optional-dependencies]
