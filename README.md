@@ -27,6 +27,21 @@ This makes `commonmeta` available on your `PATH`. Upgrade it later with
 `uv tool upgrade commonmeta-py`, or remove it with `uv tool uninstall
 commonmeta-py`.
 
+Writing a pdf rendition of a post (the `write_pdf` option of the InvenioRDM
+writer) goes through WeasyPrint, which needs pango at the system level:
+`brew install pango` on macOS, `apt install libpango-1.0-0 libpangoft2-1.0-0`
+on Debian and Ubuntu. Everything else works without it. On macOS, dyld looks
+for those libraries in `DYLD_FALLBACK_LIBRARY_PATH`, so a homebrew install
+needs `export DYLD_FALLBACK_LIBRARY_PATH=$(brew --prefix)/lib`.
+
+The renditions are PDF/A-3a: archival, tagged, so a screen reader reads their
+structure rather than placed glyphs, and carrying the post's html as an
+embedded file. That variant needs WeasyPrint 69, which requires Python 3.10;
+on Python 3.9 WeasyPrint is not installed at all and the writer reports that
+it cannot render a pdf. Reading a rendition back — `read_pdf_metadata` and
+`read_pdf_attachment` in `commonmeta.io_utils` — goes through pikepdf and
+works on every supported Python.
+
 ## Supported Metadata Formats
 
 Commometa-py reads and/or writes these metadata formats:
