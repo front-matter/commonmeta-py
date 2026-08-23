@@ -114,3 +114,74 @@ def write_output(filename: str, input: bytes | str, ext: list[str]) -> None:
         write_zst_file(filename + compress, input)
     else:
         write_file(filename, input)
+
+
+def read_pdf_metadata(pdf: bytes) -> dict:
+    """Read a rendition's own metadata back out of the pdf.
+
+    Reads the XMP packet, which is where PDF/A keeps the metadata the
+    InvenioRDM writer put there when it rendered the post, the two markers
+    that say the pdf is tagged - a structure tree, and a catalog declaring it
+    marked - and the names of the embedded files. Anything absent from the pdf
+    is absent from the result.
+
+    pikepdf is imported here rather than at module level: it pulls in libqpdf,
+    which costs more to import than the rest of this module put together, and
+    only the pdf path should pay for it.
+    """
+    import pikepdf
+
+    metadata = {}
+    with pikepdf.open(io.BytesIO(pdf)) as document:
+        catalog = document.Root
+        metadata["tagged"] = (
+            bool(catalog.get("/MarkInfo", {}).get("/Marked", False))
+            and "/StructTreeRoot" in catalog
+        )
+        if "/Lang" in catalog:
+            metadata["language"] = str(catalog.Lang)
+        attachments = {
+            name: document.attachments[name].get_file().mime_type
+            for name in document.attachments
+        }
+        if attachments:
+            metadata["attachments"] = attachments
+
+        xmp = document.open_metadata()
+        for key, property_ in (
+            ("id", "dc:identifier"),
+            ("title", "dc:title"),
+            ("authors", "dc:creator"),
+            ("description", "dc:description"),
+            ("license", "dc:rights"),
+            ("license_url", "xmpRights:WebStatement"),
+            ("keywords", "pdf:Keywords"),
+            ("generator", "xmp:CreatorTool"),
+            ("created", "xmp:CreateDate"),
+            ("modified", "xmp:ModifyDate"),
+            ("producer", "pdf:Producer"),
+        ):
+            value = xmp.get(property_, None)
+            if value:
+                metadata[key] = value
+        # a single string of comma-separated keywords in the pdf, a list here
+        if metadata.get("keywords", None):
+            metadata["keywords"] = [k.strip() for k in metadata["keywords"].split(",")]
+        part = xmp.get("pdfaid:part", None)
+        if part:
+            level = xmp.get("pdfaid:conformance", "")
+            metadata["variant"] = f"PDF/A-{part}{level.lower()}"
+    return metadata
+
+
+def read_pdf_attachment(pdf: bytes, name: str | None = None) -> bytes | None:
+    """Read an embedded file back out of the pdf, the first one by default"""
+    import pikepdf
+
+    with pikepdf.open(io.BytesIO(pdf)) as document:
+        names = list(document.attachments)
+        if name is None:
+            name = names[0] if names else None
+        if name is None or name not in names:
+            return None
+        return document.attachments[name].get_file().read_bytes()

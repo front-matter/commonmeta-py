@@ -2,10 +2,20 @@
 
 from __future__ import annotations
 
+import atexit
 import logging
+from base64 import b64encode
+from datetime import date as date_type
+from datetime import datetime
+from functools import lru_cache
+from html import escape
+from io import BytesIO
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 import orjson as json
+from babel.core import UnknownLocaleError
+from babel.dates import format_date
 from requests.exceptions import RequestException
 
 from commonmeta.readers.inveniordm_reader import search_by_doi, search_by_guid
@@ -79,6 +89,43 @@ INVENIORDM_CUSTOM_FIELDS = frozenset(
         "pidbox:citations",
     }
 )
+
+# Stylesheet and fonts for the pdf rendition, shipped with the package.
+PDF_RESOURCES = Path(__file__).parent.parent / "resources" / "pdf"
+
+# The variant rogue-scholar-api deposited: archival, and tagged, so the pdf
+# carries the structure tree a screen reader and a reflowing viewer need.
+# WeasyPrint only knows the accessible ("a") conformance levels since 67, hence
+# the >=69 floor in pyproject.toml.
+PDF_VARIANT = "pdf/a-3a"
+
+# Front matter headings, in the languages rogue-scholar-api translated them to.
+PDF_TITLES = {
+    "published": {
+        "en": "Published",
+        "de": "Veröffentlicht",
+        "es": "Publicado",
+        "fr": "Publié",
+        "it": "Pubblicato",
+        "pt": "Publicados",
+    },
+    "abstract": {
+        "en": "Abstract",
+        "de": "Zusammenfassung",
+        "es": "Resumen",
+        "fr": "Résumé",
+        "it": "Riassunto",
+        "pt": "Resumo",
+    },
+    "copyright": {
+        "en": "Copyright",
+        "de": "Urheberrecht",
+        "es": "Copyright",
+        "fr": "Droit d'auteur",
+        "it": "Copyright",
+        "pt": "Direitos de autor",
+    },
+}
 
 
 def write_inveniordm(metadata: Metadata, write_pdf: bool = False, **kwargs) -> dict:
@@ -612,6 +659,356 @@ def write_inveniordm_list(
     return [write_item(item) for item in metalist.items]
 
 
+def to_pdf_author(contributor: dict) -> str | None:
+    """Format a contributor for the pdf byline, given name first"""
+    person = contributor.get("person", None) or {}
+    name = " ".join(
+        n
+        for n in (person.get("given_name", None), person.get("family_name", None))
+        if n
+    )
+    return name or (contributor.get("organization", None) or {}).get("name", None)
+
+
+def to_pdf_date(date: str | None, language: str) -> str | None:
+    """Format a publication date the way a reader writes it, in its language.
+
+    Falls back to the iso date for anything babel cannot make a long date of,
+    a partial date such as "2024-10" among them.
+    """
+    if not date:
+        return None
+    iso = get_iso8601_date(date)
+    try:
+        return format_date(date_type.fromisoformat(iso), format="long", locale=language)
+    except (ValueError, TypeError, UnknownLocaleError) as error:
+        log.warning(f"Cannot format date {date} for the pdf: {error}")
+        return iso
+
+
+def to_pdf_rights(metadata: Metadata, authors: list, language: str) -> str | None:
+    """Format the copyright line and the terms the post is available under.
+
+    Mirrors the rogue-scholar-api pdf template: a copyright holder and year for
+    everything except CC0, which waives copyright rather than asserting it,
+    followed by what the licence permits.
+    """
+    url = (metadata.license or {}).get("url", None)
+    identifier = (metadata.license or {}).get("id", None)
+    if not url and not identifier:
+        return None
+
+    link = f'<a href="{escape(url)}">' if url else "<span>"
+    close = "</a>" if url else "</span>"
+    if (identifier or "").lower().startswith("cc0"):
+        return (
+            "This is an open access article, free of all copyright, and may be "
+            "freely reproduced, distributed, transmitted, modified, built upon, "
+            "or otherwise used by anyone for any lawful purpose. The work is "
+            f"made available under the {link}Creative Commons CC0 public domain "
+            f"dedication{close}."
+        )
+
+    year = (get_iso8601_date(metadata.date_published) or "")[:4]
+    holder = authors[0] if authors else ""
+    if len(authors) > 1:
+        holder += " et al."
+    copyright_line = (
+        f'Copyright <span class="copyright">&copy;</span> '
+        f"{escape(holder)} {year}.".replace("  ", " ")
+    )
+    if (identifier or "").lower().startswith("cc-by-4.0"):
+        return (
+            f"{copyright_line} Distributed under the terms of the {link}Creative "
+            f"Commons Attribution 4.0 International License{close}, which permits "
+            "unrestricted use, distribution, and reproduction in any medium, "
+            "provided the original author and source are credited."
+        )
+    return (
+        f"{copyright_line} Distributed under the terms of the "
+        f"{link}{escape(identifier or url)}{close} license."
+    )
+
+
+def to_pdf_meta_tags(metadata: Metadata, authors: list) -> list:
+    """The meta tags WeasyPrint turns into the pdf's own metadata.
+
+    Each one lands in both the info dictionary and the XMP packet that PDF/A
+    requires: author as /Author and dc:creator, description as /Subject and
+    dc:description, keywords as /Keywords and pdf:Keywords, the dcterms dates
+    as /CreationDate and /ModDate and their xmp counterparts. `read_pdf_metadata`
+    reads them back out. The doi has no slot of its own in either, so it stays
+    on the title page rather than becoming a custom info key, which would put
+    the pdf outside PDF/A.
+    """
+    tags = [f'<meta name="author" content="{escape(name)}">' for name in authors]
+    if presence(metadata.description):
+        tags.append(
+            f'<meta name="description" content="{escape(metadata.description)}">'
+        )
+    keywords = unique(
+        [
+            subject.get("subject")
+            for subject in wrap(metadata.subjects)
+            if subject.get("subject", None)
+        ]
+    )
+    if keywords:
+        tags.append(f'<meta name="keywords" content="{escape(", ".join(keywords))}">')
+    platform = (metadata.container or {}).get("platform", None)
+    if platform:
+        tags.append(f'<meta name="generator" content="{escape(platform)}">')
+    for name, date in (
+        ("dcterms.created", metadata.date_published),
+        ("dcterms.modified", metadata.date_updated),
+    ):
+        # W3C-DTF, which is what WeasyPrint parses these as; the iso date is
+        # the part of it every record has
+        if date:
+            tags.append(f'<meta name="{name}" content="{get_iso8601_date(date)}">')
+    return tags
+
+
+def to_pdf_image(metadata: Metadata) -> str | None:
+    """The feature image as a data uri, None when there is none to be had.
+
+    Fetched here rather than left to WeasyPrint so the image travels inside
+    the pdf instead of the pdf depending on the blog still serving it, and so
+    an image that cannot be fetched is left out altogether: WeasyPrint draws
+    the alt text wherever an image fails, and "Feature image" printed across
+    the title page reads as a mistake rather than as a missing picture.
+    """
+    url = presence(metadata.image)
+    if url is None:
+        return None
+    try:
+        response = http.get(url, timeout=30)
+        response.raise_for_status()
+    except Exception as error:
+        # the image is decoration: no fetch of it is worth failing the render,
+        # and in tests the request is the cassette's to refuse
+        log.warning(f"Cannot embed the feature image {url}: {error}")
+        return None
+
+    mime_type = response.headers.get("Content-Type", "").split(";")[0].strip()
+    if not mime_type.startswith("image/"):
+        log.warning(f"Feature image {url} is {mime_type or 'of unknown type'}")
+        return None
+    return f"data:{mime_type};base64,{b64encode(response.content).decode('ascii')}"
+
+
+def add_pdf_identity(pdf: bytes, metadata: Metadata) -> bytes:
+    """Add the doi and the licence to the pdf's XMP packet.
+
+    Neither has a slot among the meta tags WeasyPrint reads, but both have a
+    standard XMP property - dc:identifier, and dc:rights with the licence url
+    as its xmpRights:WebStatement - so pikepdf writes them into the packet
+    WeasyPrint produced, rather than them becoming custom info keys, which
+    would put the pdf outside PDF/A. Writing them into that same packet, as
+    opposed to appending a second rdf:RDF block, is what makes them visible to
+    a reader that looks up properties by name rather than searching the xml.
+    """
+    identifier = presence(metadata.id)
+    license_id = (metadata.license or {}).get("id", None)
+    license_url = (metadata.license or {}).get("url", None)
+    if not identifier and not license_id and not license_url:
+        return pdf
+
+    import pikepdf
+
+    output = BytesIO()
+    with pikepdf.open(BytesIO(pdf)) as document:
+        # update_docinfo would copy these into the info dictionary, where a
+        # pdf has no entry for either, and PDF/A wants the two kept in step.
+        # set_pikepdf_as_editor would overwrite pdf:Producer, leaving it at
+        # odds with the /Producer WeasyPrint wrote, and stamp the current
+        # time as xmp:MetadataDate, which would make renditions of the same
+        # post differ from each other.
+        with document.open_metadata(
+            update_docinfo=False, set_pikepdf_as_editor=False
+        ) as xmp:
+            if identifier:
+                xmp["dc:identifier"] = identifier
+            if license_id:
+                xmp["dc:rights"] = license_id
+            if license_url:
+                xmp["xmpRights:WebStatement"] = license_url
+        document.save(output)
+    return output.getvalue()
+
+
+def to_pdf_attachment(metadata: Metadata, weasyprint):
+    """The post content, embedded in the pdf as the source it was rendered from.
+
+    PDF/A-3 is the variant that allows an arbitrary embedded file, and
+    WeasyPrint gives it the /AFRelationship the standard asks for. The dates
+    come from the record so that rendering the same post twice gives the same
+    file, rather than the current time WeasyPrint would default to.
+    """
+    created = to_pdf_datetime(metadata.date_published)
+    modified = to_pdf_datetime(metadata.date_updated) or created
+    return weasyprint.Attachment(
+        string=metadata.content,
+        name=f"{Path(pdf_filename(metadata)).stem}.html",
+        description="Post content as html (rs:content_html)",
+        relationship="Source",
+        created=created,
+        modified=modified,
+    )
+
+
+def to_pdf_datetime(date: str | None) -> datetime | None:
+    """An iso date as the datetime WeasyPrint stamps an attachment with"""
+    if not date:
+        return None
+    try:
+        return datetime.fromisoformat(get_iso8601_date(date))
+    except (ValueError, TypeError):
+        return None
+
+
+def to_pdf_html(metadata: Metadata) -> str:
+    """Build the html document the pdf is rendered from.
+
+    The post content is the body, preceded by the front matter that the
+    stylesheet styles by class, in the order the rogue-scholar-api pdf template
+    used: the title, the blog name (hidden, it only feeds the running header),
+    the byline, the publication date, the doi, the description, the feature
+    image and the licence. The licence carries `break-after: always`, so the
+    front matter is a title page.
+    """
+    language = get_language(metadata.language, format="alpha_2") or "en"
+    authors = [
+        name
+        for name in (
+            to_pdf_author(i)
+            for i in wrap(metadata.contributors)
+            if "Author" in wrap(i.get("roles", None))
+        )
+        if name
+    ]
+    container = metadata.container or {}
+    title = escape(metadata.title or "")
+
+    front_matter = [
+        f"<h1>{title}</h1>",
+        f'<span class="header">{escape(container.get("title", "") or "")}</span>',
+    ]
+    if authors:
+        names = ", ".join(f"<span>{escape(name)}</span>" for name in authors)
+        front_matter.append(f'<p class="author">{names}</p>')
+    date_published = to_pdf_date(metadata.date_published, language)
+    if date_published:
+        label = PDF_TITLES["published"].get(language, PDF_TITLES["published"]["en"])
+        front_matter.append(f'<div class="date">{label} {escape(date_published)}</div>')
+    if metadata.id:
+        front_matter.append(
+            f'<p class="identifier"><a href="{escape(metadata.id)}">'
+            f"{escape(metadata.id)}</a></p>"
+        )
+    if presence(metadata.description):
+        label = PDF_TITLES["abstract"].get(language, PDF_TITLES["abstract"]["en"])
+        # the text follows the heading directly, as in the rights block: a <p>
+        # would add its own margin on top of the heading's padding
+        front_matter.append(
+            f'<div class="abstract"><h4>{label}</h4>'
+            f"{escape(metadata.description)}</div>"
+        )
+    image = to_pdf_image(metadata)
+    if image:
+        front_matter.append(
+            f'<img class="feature-image" alt="Feature image" src="{image}" />'
+        )
+    rights = to_pdf_rights(metadata, authors, language)
+    if rights:
+        label = PDF_TITLES["copyright"].get(language, PDF_TITLES["copyright"]["en"])
+        front_matter.append(f'<div class="rights"><h4>{label}</h4>{rights}</div>')
+
+    head = [
+        "<meta charset='utf-8'>",
+        f"<title>{title}</title>",
+        *to_pdf_meta_tags(metadata, authors),
+    ]
+    return (
+        f"<html lang='{escape(language)}'><head>{''.join(head)}</head>"
+        f'<body><section class="front-matter">{"".join(front_matter)}</section>'
+        f"{metadata.content}</body></html>"
+    )
+
+
+def load_weasyprint():
+    """Import WeasyPrint, None when its native stack is missing.
+
+    Imported here rather than at module level because WeasyPrint binds pango,
+    cairo and glib through cffi at import time: on a machine without those
+    system libraries the import raises OSError rather than ImportError, and
+    only the pdf path should pay for that.
+    """
+    try:
+        import weasyprint
+
+        return weasyprint
+    except (ImportError, OSError) as error:
+        log.error(f"Cannot render pdf, weasyprint needs the pango libraries: {error}")
+        return None
+
+
+@lru_cache(maxsize=1)
+def pdf_stylesheet() -> tuple:
+    """The shipped stylesheet and the font configuration it registers into.
+
+    Parsed once per process: it reads and registers the six bundled font
+    faces, which is the expensive part of rendering a post. The same font
+    configuration has to reach `write_pdf`, otherwise the @font-face rules are
+    dropped and the text falls back to WeasyPrint's default font.
+    """
+    import weasyprint
+    from weasyprint.text.fonts import FontConfiguration
+
+    font_config = FontConfiguration()
+    css = weasyprint.CSS(
+        filename=str(PDF_RESOURCES / "style.css"), font_config=font_config
+    )
+    # WeasyPrint's font configuration calls back into its own module when it is
+    # finalized, which fails once the interpreter has torn those modules down.
+    # Dropping the cache at exit finalizes it while that is still safe.
+    atexit.register(pdf_stylesheet.cache_clear)
+    return css, font_config
+
+
+def write_pdf_rendition(
+    metadata: Metadata, url_fetcher=None, **options
+) -> bytes | None:
+    """Render the post content as a tagged pdf, None when there is nothing to render.
+
+    ``url_fetcher`` is handed to WeasyPrint for the images the post links, and
+    any further ``options`` go to ``write_pdf`` - among them ``pdf_variant``,
+    which defaults to PDF/A-3a.
+    """
+    if presence(metadata.content) is None:
+        return None
+    weasyprint = load_weasyprint()
+    if weasyprint is None:
+        return None
+
+    css, font_config = pdf_stylesheet()
+    # WeasyPrint picks its own fetcher when none is given; naming its default
+    # explicitly would go through an api it deprecated in 69.
+    fetcher = {"url_fetcher": url_fetcher} if url_fetcher is not None else {}
+    options.setdefault("pdf_variant", PDF_VARIANT)
+    options.setdefault("attachments", [to_pdf_attachment(metadata, weasyprint)])
+    document = weasyprint.HTML(
+        string=to_pdf_html(metadata), base_url=str(PDF_RESOURCES), **fetcher
+    ).render(stylesheets=[css], font_config=font_config)
+    return add_pdf_identity(document.write_pdf(**options), metadata)
+
+
+def pdf_filename(metadata: Metadata) -> str:
+    """Name the pdf after the doi suffix, which is unique and stable"""
+    doi = doi_from_url(metadata.id)
+    return f"{doi.split('/')[-1]}.pdf" if doi else "content.pdf"
+
+
 def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict:
     """Push record to InvenioRDM.
 
@@ -622,7 +1019,9 @@ def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict
         write_pdf: deposit a pdf rendition of the post as a record file.
             Ignored for records whose rs:content_html is empty, since that is
             what the pdf is rendered from. Defaults to False, which keeps
-            records metadata-only.
+            records metadata-only. The file is uploaded while the record is a
+            draft; an already published record only takes one through a new
+            version, so for those the upload is logged and skipped.
     """
 
     try:
@@ -750,9 +1149,15 @@ def upsert_record(
 
         # Publishing an unchanged record still writes a new revision and moves its
         # updated timestamp, so leave the record alone when it already matches.
+        # A record still missing its pdf is not left alone, even when the
+        # metadata matches: the file is the reason to write it again.
         if skip_unchanged:
             published = get_published_record(record["id"], host, token)
-            if published is not None and record_matches(update_output, published):
+            if (
+                published is not None
+                and record_matches(update_output, published)
+                and (not write_pdf or dig(published, "files.entries"))
+            ):
                 record["created"] = published.get("created", None)
                 record["updated"] = published.get("updated", None)
                 record["status"] = "unchanged"
@@ -766,6 +1171,12 @@ def upsert_record(
         # Create draft record for DOI that is external or needs to be registered
         # (currently only supported for Crossref PID provider)
         record = create_draft_record(record, host, token, output)
+
+    # Attach the pdf rendition while the record is still a draft: publishing
+    # locks its files. dig() rather than write_pdf, so that the upload follows
+    # the same content check the writer made when it enabled files.
+    if dig(output, "files.enabled") and record.get("id", None):
+        record = upload_pdf(metadata, host, token, record)
 
     # Publish draft record
     record = publish_draft_record(record, host, token)
@@ -867,6 +1278,59 @@ def create_draft_record(record: dict, host: str, token: str, output: dict) -> di
     except RequestException as e:
         log.error(f"Error creating draft record: {str(e)}", exc_info=True)
         record["status"] = "error_draft"
+        return record
+
+
+def upload_pdf(metadata: Metadata, host: str, token: str, record: dict) -> dict:
+    """Attach the pdf rendition to a draft record as a record file.
+
+    InvenioRDM takes a file in three calls: register the key, put the bytes,
+    commit. It only accepts them while the record is a draft, and the draft of
+    an already published record has its files locked until a new version is
+    created, so a refused upload is logged and the record is published without
+    the file rather than not published at all.
+    """
+    pdf = write_pdf_rendition(metadata)
+    if pdf is None:
+        log.warning(f"No content to render a pdf from for record {record.get('id')}")
+        return record
+
+    key = pdf_filename(metadata)
+    url = f"https://{host}/api/records/{record['id']}/draft/files"
+    headers = {"Authorization": f"Bearer {token}"}
+    try:
+        response = http.post(
+            url,
+            headers={**headers, "Content-Type": "application/json"},
+            json=[{"key": key}],
+        )
+        if response.status_code == 429:
+            record["status"] = "failed_rate_limited"
+            return record
+        if response.status_code != 201:
+            log.warning(
+                f"Failed to add pdf {key} to record {record['id']}: "
+                f"{response.status_code} - {response.text}"
+            )
+            return record
+
+        response = http.put(
+            f"{url}/{key}/content",
+            headers={**headers, "Content-Type": "application/octet-stream"},
+            data=pdf,
+        )
+        response.raise_for_status()
+
+        response = http.post(f"{url}/{key}/commit", headers=headers)
+        response.raise_for_status()
+
+        record["files"] = [key]
+        return record
+    except RequestException as e:
+        log.error(
+            f"Error uploading pdf {key} for record {record['id']}: {str(e)}",
+            exc_info=True,
+        )
         return record
 
 

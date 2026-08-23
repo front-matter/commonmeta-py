@@ -1,15 +1,188 @@
 # pylint: disable=invalid-name
 """InvenioRDM writer tests"""
 
+import base64
+import os
 import re
-from unittest.mock import patch
+import sys
+from io import BytesIO
+from pathlib import Path
+from types import SimpleNamespace
+from typing import Optional
+from unittest.mock import Mock, patch
+from urllib.parse import unquote_to_bytes, urlparse
+from urllib.request import url2pathname
 
 import orjson as json
 import pytest
+from requests.exceptions import RequestException
 
+import commonmeta
 from commonmeta import Metadata
 from commonmeta.base_utils import dig
-from commonmeta.writers.inveniordm_writer import record_matches, upsert_record
+from commonmeta.io_utils import read_pdf_attachment, read_pdf_metadata
+from commonmeta.writers.inveniordm_writer import (
+    pdf_filename,
+    record_matches,
+    to_pdf_html,
+    upsert_record,
+    write_pdf_rendition,
+)
+
+PDF_RESOURCES = Path(commonmeta.__file__).parent / "resources" / "pdf"
+
+
+def require_weasyprint():
+    """Import WeasyPrint, skipping the caller when its native stack is missing.
+
+    WeasyPrint binds pango, cairo and glib through cffi at import time, so a
+    machine without those system libraries raises OSError rather than
+    ImportError. On macOS they come from `brew install pango`, which puts them
+    somewhere dyld searches only through DYLD_FALLBACK_LIBRARY_PATH - and SIP
+    drops that variable when a protected binary is launched, so exporting it in
+    a shell profile does not reliably survive. Setting it here does, because
+    ctypes reads it when the library is actually dlopened. The writer imports
+    WeasyPrint the same way, and this runs first.
+    """
+    if sys.platform == "darwin":
+        paths = os.environ.get("DYLD_FALLBACK_LIBRARY_PATH", "").split(os.pathsep)
+        paths += [
+            p for p in ("/opt/homebrew/lib", "/usr/local/lib") if os.path.isdir(p)
+        ]
+        os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = os.pathsep.join(
+            dict.fromkeys(p for p in paths if p)
+        )
+    try:
+        import weasyprint
+    except (ImportError, OSError) as error:
+        pytest.skip(f"weasyprint needs the pango libraries: {error}")
+    return weasyprint
+
+
+def offline_url_fetcher(url, **kwargs):
+    """Serve the bundled fonts and embedded data, refuse everything remote.
+
+    Post content links images, iframes and video from the blog it came from,
+    and a test must not go to the network for them. WeasyPrint logs a failed
+    resource and lays the page out without it, which is what a reader with a
+    dead image link would get anyway. Fonts and data uris are read here rather
+    than through WeasyPrint's own default fetcher, which it deprecated in 69.
+    """
+    from weasyprint.urls import URLFetcherResponse
+
+    if url.startswith("file:"):
+        path = url2pathname(urlparse(url).path)
+        return URLFetcherResponse(url, body=open(path, "rb"))  # noqa: SIM115
+    if url.startswith("data:"):
+        # the feature image, which the writer embeds rather than links
+        header, _, payload = url.partition(",")
+        mime_type = header[len("data:") :].split(";")[0]
+        body = (
+            base64.b64decode(payload)
+            if header.endswith(";base64")
+            else unquote_to_bytes(payload)
+        )
+        return URLFetcherResponse(url, body=body, headers={"Content-Type": mime_type})
+    raise ValueError(f"external resource not fetched in tests: {url}")
+
+
+# a 1x1 red png, the stand-in for whatever a blog serves as its feature image
+PNG_PIXEL = base64.b64decode(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmM"
+    "IQAAAABJRU5ErkJggg=="
+)
+
+
+def image_response(content: bytes = PNG_PIXEL, mime_type: str = "image/png"):
+    """What `http.get` returns for a feature image, without the network."""
+    return SimpleNamespace(
+        content=content,
+        headers={"Content-Type": mime_type},
+        raise_for_status=lambda: None,
+    )
+
+
+@pytest.fixture
+def feature_image():
+    """Serve every feature image request the writer makes from memory.
+
+    The writer fetches the image itself, to embed it rather than link it, and
+    a test must not go to the blog for it. Patched at the http boundary, so
+    the fetch, the content type check and the data uri are all still covered.
+    The writer's own name for the session is replaced rather than the session
+    itself, which the readers share and use to replay their cassettes.
+    """
+    from commonmeta.writers import inveniordm_writer as w
+
+    get = Mock(return_value=image_response())
+    with patch.object(w, "http", SimpleNamespace(get=get)):
+        yield get
+
+
+def sample_metadata(content: Optional[str], title: str = "Font sample"):
+    """A stand-in for Metadata carrying only what the pdf render reads."""
+    return SimpleNamespace(
+        id="https://doi.org/10.53731/kdqkf-nf052",
+        title=title,
+        content=content,
+        contributors=None,
+        date_published=None,
+        date_updated=None,
+        description=None,
+        image=None,
+        language=None,
+        license=None,
+        container=None,
+        subjects=None,
+    )
+
+
+def assert_pdf_metadata(pdf: bytes, subject: Metadata) -> dict:
+    """The rendition carries the record's identity, byline and terms.
+
+    Read back out of the pdf rather than off the record, so this covers the
+    whole round trip: the meta tags and the xmp fragment the writer builds,
+    what WeasyPrint makes of them, and `read_pdf_metadata` reading them again.
+    """
+    metadata = read_pdf_metadata(pdf)
+    authors = [
+        contributor
+        for contributor in subject.contributors or []
+        if "Author" in (contributor.get("roles") or [])
+    ]
+    person = authors[0].get("person") or {}
+    first = " ".join(
+        name for name in (person.get("given_name"), person.get("family_name")) if name
+    ) or (authors[0].get("organization") or {}).get("name")
+
+    assert metadata["id"] == subject.id
+    assert metadata["title"] == subject.title
+    assert len(metadata["authors"]) == len(authors)
+    assert metadata["authors"][0] == first
+    assert metadata.get("license") == (subject.license or {}).get("id")
+    assert metadata.get("description") == subject.description
+    return metadata
+
+
+@pytest.fixture
+def render_pdf(tmp_path, feature_image):
+    """Render a record's pdf rendition through the writer, and keep the file.
+
+    Renders offline: the feature image comes from the `feature_image` fixture
+    and the images the post itself links are refused. Returns the pdf bytes,
+    for `read_pdf_metadata` and the font check to read back, and writes them
+    to a file the way `upload_pdf` deposits them.
+    """
+    require_weasyprint()
+
+    def render(metadata, name: str = "content.pdf", **options) -> bytes:
+        pdf = write_pdf_rendition(metadata, url_fetcher=offline_url_fetcher, **options)
+        assert pdf is not None and pdf.startswith(b"%PDF-")
+        path = tmp_path / name
+        path.write_bytes(pdf)
+        return pdf
+
+    return render
 
 
 @pytest.mark.vcr
@@ -156,7 +329,7 @@ def test_journal_article():
 
 
 @pytest.mark.vcr
-def test_rogue_scholar():
+def test_rogue_scholar(render_pdf):
     "Rogue Scholar"
     string = "https://rogue-scholar.org/api/records/1xr7q-9fp18"
     subject = Metadata(string, via="inveniordm")
@@ -233,10 +406,11 @@ def test_rogue_scholar():
     # assert dig(inveniordm, "custom_fields.rs:content_html").startswith("a")
     # assert dig(inveniordm, "custom_fields.rs:image") == 2
     assert not dig(inveniordm, "files.enabled")
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_organizational_author():
+def test_rogue_scholar_organizational_author(render_pdf):
     "Rogue Scholar organizational author"
     string = "https://rogue-scholar.org/api/records/fz2vh-31684"
     subject = Metadata(string, via="inveniordm")
@@ -263,10 +437,11 @@ def test_rogue_scholar_organizational_author():
     )
     assert dig(inveniordm, "metadata.publisher") == "Front Matter"
     assert dig(inveniordm, "metadata.publication_date") == "2025-02-11"
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_blog_post():
+def test_rogue_scholar_blog_post(render_pdf):
     "JSON Feed"
     string = "https://rogue-scholar.org/api/records/7tatc-wh557"
     subject = Metadata(string, via="inveniordm")
@@ -339,10 +514,11 @@ def test_rogue_scholar_blog_post():
         == "https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png"
     )
     assert not dig(inveniordm, "files.enabled")
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_affiliations():
+def test_rogue_scholar_affiliations(render_pdf):
     "JSON Feed affiliations"
     string = "https://rogue-scholar.org/api/records/v7a82-05b98"
     subject = Metadata(string, via="inveniordm")
@@ -436,10 +612,11 @@ def test_rogue_scholar_affiliations():
         == "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/112th_bibliocon.jpeg"
     )
     assert not dig(inveniordm, "files.enabled")
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_dates():
+def test_rogue_scholar_dates(render_pdf):
     "JSON Feed dates"
     string = "https://rogue-scholar.org/api/records/8vkjg-x6j96"
     subject = Metadata(string, via="inveniordm")
@@ -469,6 +646,7 @@ def test_rogue_scholar_dates():
     #     dig(inveniordm, "custom_fields.rs:doi")
     #     == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
     # )
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
@@ -515,7 +693,7 @@ def test_rogue_scholar_funding():
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_more_funding():
+def test_rogue_scholar_more_funding(render_pdf):
     "JSON Feed more funding"
     string = "https://rogue-scholar.org/api/records/qz2sd-6tw29"
     subject = Metadata(string, via="inveniordm")
@@ -555,10 +733,11 @@ def test_rogue_scholar_more_funding():
     )
     assert dig(inveniordm, "custom_fields.rs:image") is None
     assert dig(inveniordm, "custom_fields.rs:doi") == "https://doi.org/10.59350/coref"
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_references():
+def test_rogue_scholar_references(render_pdf):
     "JSON Feed references"
     string = "https://rogue-scholar.org/api/records/trhz1-s0336"
     subject = Metadata(string, via="inveniordm")
@@ -603,10 +782,11 @@ def test_rogue_scholar_references():
     #     dig(inveniordm, "custom_fields.rs:doi")
     #     == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
     # )
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_unstructured_references():
+def test_rogue_scholar_unstructured_references(render_pdf):
     "JSON Feed unstructured references"
     string = "https://rogue-scholar.org/api/records/345qb-aan84"
     subject = Metadata(string, via="inveniordm")
@@ -631,10 +811,11 @@ def test_rogue_scholar_unstructured_references():
         "reference": "Fang, F. C., Casadevall, A.&amp; Morrison, R. P. (2011). Retracted Science and the Retraction Index. <i>Infection and Immunity</i>, <i>79</i>(10), 3855–3859.",
         "scheme": "doi",
     }
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_citations():
+def test_rogue_scholar_citations(render_pdf):
     "JSON Feed citations"
     string = "https://rogue-scholar.org/api/records/w2nqy-wxa44"
     subject = Metadata(string, via="inveniordm")
@@ -659,10 +840,11 @@ def test_rogue_scholar_citations():
     #     "<i>Scientometrics</i>, <i>98</i>(2), 927–943.",
     #     "scheme": "doi",
     # }
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_relations():
+def test_rogue_scholar_relations(render_pdf):
     "JSON Feed relations"
     string = "https://rogue-scholar.org/api/records/4jymf-n5m83"
     subject = Metadata(string, via="inveniordm")
@@ -690,10 +872,11 @@ def test_rogue_scholar_relations():
         dig(inveniordm, "custom_fields.rs:image")
         == "https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg"
     )
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_broken_reference():
+def test_rogue_scholar_broken_reference(render_pdf):
     "JSON Feed relations"
     string = "https://rogue-scholar.org/api/records/jehpc-qpc91"
     subject = Metadata(string, via="inveniordm")
@@ -717,10 +900,11 @@ def test_rogue_scholar_broken_reference():
         "reference": "Charniga, K., McCollum, A. M., Hughes, C. M., Monroe, B., Kabamba, J., Lushima, R. S., Likafi, T., Nguete, B., Pukuta, E., Muyamuna, E., Muyembe Tamfum, J.-J., Karhemere, S., Kaba, D., &amp; Nakazawa, Y. (2024). Updating Reproduction Number Estimates for Mpox in the Democratic Republic of Congo Using Surveillance Data. <i>The American Journal of Tropical Medicine and Hygiene</i>, <i>110</i>(3), 561–568.",
         "scheme": "doi",
     }
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_external_doi():
+def test_external_doi(render_pdf):
     "external DOI used by Rogue Scholar"
     string = "https://rogue-scholar.org/api/records/9jsrb-jtc73"
     subject = Metadata(string, via="inveniordm")
@@ -737,10 +921,11 @@ def test_external_doi():
         dig(inveniordm, "metadata.title")
         == "Eine Musterdienstvereinbarung fürs FIS – ein Beispiel der TIB"
     )
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_post_with_contributor_roles():
+def test_post_with_contributor_roles(render_pdf):
     "post with contributor roles"
     string = "https://rogue-scholar.org/api/records/apt10-14q04"
     subject = Metadata(string, via="inveniordm")
@@ -794,10 +979,11 @@ def test_post_with_contributor_roles():
     #         },
     #     }
     # ]
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_post_with_interviewee_roles():
+def test_post_with_interviewee_roles(render_pdf):
     "post with interviewee roles"
     string = "https://rogue-scholar.org/api/records/ssrar-vhq35"
     subject = Metadata(string, via="inveniordm")
@@ -813,10 +999,11 @@ def test_post_with_interviewee_roles():
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert len(dig(inveniordm, "metadata.creators")) == 9
     assert dig(inveniordm, "metadata.contributors") is None
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_multiple_subfields():
+def test_multiple_subfields(render_pdf):
     "post with multiple subfields"
     string = "https://rogue-scholar.org/api/records/nnx9s-74a78"
     subject = Metadata(string, via="inveniordm")
@@ -857,10 +1044,11 @@ def test_multiple_subfields():
         {"subject": "Cell Biology"},
         {"subject": "FGFR3"},
     ]
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr
-def test_content_with_external_src():
+def test_content_with_external_src(render_pdf):
     "external DOI used by Rogue Scholar"
     string = "https://rogue-scholar.org/api/records/xtmqd-gwg60"
     subject = Metadata(string, via="inveniordm")
@@ -882,6 +1070,7 @@ def test_content_with_external_src():
         'src="https://chem-bla-ics.linkedchemistry.info/assets/images/imageResolutionLoss.png"',
         dig(inveniordm, "custom_fields.rs:content_html"),
     )
+    assert_pdf_metadata(render_pdf(subject), subject)
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
@@ -1100,6 +1289,96 @@ def test_upsert_record_skip_unchanged_can_be_turned_off():
     mock_read.assert_not_called()
 
 
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_upsert_record_uploads_the_pdf_before_publishing():
+    """Publishing locks a record's files, so the upload goes on the draft."""
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
+    record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
+    calls = []
+
+    with (
+        patch(
+            "commonmeta.writers.inveniordm_writer.search_by_doi",
+            return_value="fktsh-g4g95",
+        ),
+        patch("commonmeta.writers.inveniordm_writer.get_published_record"),
+        patch(
+            "commonmeta.writers.inveniordm_writer.edit_published_record",
+            side_effect=lambda r, *a: r,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record",
+            side_effect=lambda r, *a: r,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.upload_pdf",
+            side_effect=lambda m, h, t, r: calls.append("upload") or r,
+        ) as mock_upload,
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record",
+            side_effect=lambda r, *a: calls.append("publish")
+            or {**r, "status": "published"},
+        ),
+    ):
+        result = upsert_record(
+            subject,
+            "rogue-scholar.org",
+            "token",
+            record,
+            skip_unchanged=False,
+            write_pdf=True,
+        )
+
+    assert calls == ["upload", "publish"]
+    assert mock_upload.call_args.args[0] is subject
+    assert result["status"] == "published"
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_upsert_record_does_not_skip_a_record_without_its_pdf():
+    """Unchanged metadata is no reason to skip while the file is still missing."""
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
+    record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
+    output = json.loads(subject.write(to="inveniordm", write_pdf=True))
+    published = {
+        "id": "fktsh-g4g95",
+        "files": {"enabled": True, "entries": {}},
+        **{k: v for k, v in output.items() if k not in ("pids", "files")},
+    }
+
+    with (
+        patch(
+            "commonmeta.writers.inveniordm_writer.search_by_doi",
+            return_value="fktsh-g4g95",
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.get_published_record",
+            return_value=published,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.edit_published_record",
+            side_effect=lambda r, *a: r,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record",
+            side_effect=lambda r, *a: r,
+        ),
+        patch("commonmeta.writers.inveniordm_writer.upload_pdf") as mock_upload,
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "published"},
+        ),
+    ):
+        result = upsert_record(
+            subject, "rogue-scholar.org", "token", record, write_pdf=True
+        )
+
+    assert result["status"] == "published"
+    mock_upload.assert_called_once()
+
+
 def test_citations_written_to_pidbox_field():
     """IsReferencedBy relations are written to custom_fields.pidbox:citations."""
     record = {
@@ -1185,9 +1464,13 @@ def test_push_inveniordm_forwards_write_pdf():
     from commonmeta.writers import inveniordm_writer as w
 
     subject = Metadata("10.5281/zenodo.5244404", via="datacite")
-    with patch.object(w, "upsert_record", return_value={}) as upsert, patch.object(
-        w, "add_record_to_communities", side_effect=lambda m, h, t, r: r
-    ), patch.object(w, "update_external_services", side_effect=lambda m, h, t, r, **k: r):
+    with (
+        patch.object(w, "upsert_record", return_value={}) as upsert,
+        patch.object(w, "add_record_to_communities", side_effect=lambda m, h, t, r: r),
+        patch.object(
+            w, "update_external_services", side_effect=lambda m, h, t, r, **k: r
+        ),
+    ):
         w.push_inveniordm(subject, "example.org", "token", write_pdf=True)
 
     assert upsert.call_args.kwargs["write_pdf"] is True
@@ -1198,9 +1481,13 @@ def test_push_inveniordm_defaults_write_pdf_to_false():
     from commonmeta.writers import inveniordm_writer as w
 
     subject = Metadata("10.5281/zenodo.5244404", via="datacite")
-    with patch.object(w, "upsert_record", return_value={}) as upsert, patch.object(
-        w, "add_record_to_communities", side_effect=lambda m, h, t, r: r
-    ), patch.object(w, "update_external_services", side_effect=lambda m, h, t, r, **k: r):
+    with (
+        patch.object(w, "upsert_record", return_value={}) as upsert,
+        patch.object(w, "add_record_to_communities", side_effect=lambda m, h, t, r: r),
+        patch.object(
+            w, "update_external_services", side_effect=lambda m, h, t, r, **k: r
+        ),
+    ):
         w.push_inveniordm(subject, "example.org", "token")
 
     assert upsert.call_args.kwargs["write_pdf"] is False
@@ -1265,3 +1552,318 @@ def test_pdf_stylesheet_has_no_stray_src_declarations():
             depth_is_font_face = False
         elif re.match(r"src:\s*url\(", stripped):
             assert depth_is_font_face, f"stray src declaration: {stripped}"
+
+
+def test_pdf_stylesheet_font_faces_are_top_level():
+    """A nested @font-face is dead css: WeasyPrint does not implement nesting."""
+    css = (PDF_RESOURCES / "style.css").read_text(encoding="utf-8")
+
+    depth = 0
+    for line in css.split("\n"):
+        stripped = line.strip()
+        if stripped.startswith("@font-face"):
+            assert depth == 0, f"@font-face nested inside another rule: {stripped}"
+        depth += stripped.count("{") - stripped.count("}")
+
+
+def test_pdf_embeds_the_shipped_fonts(render_pdf):
+    """The bundled Fira faces reach the pdf rather than a system fallback.
+
+    WeasyPrint applies @font-face only when the same FontConfiguration reaches
+    both the stylesheet and the render; miss it and the text silently comes out
+    in DejaVu Sans. Embedded font names are readable in an uncompressed pdf,
+    where they carry the subset prefix WeasyPrint generates (``EYBJQT+``).
+    """
+    sample = sample_metadata(
+        "<h1>Heading</h1>"
+        "<p>Body text, <em>emphasis</em> and <code>inline_code()</code>.</p>"
+    )
+    pdf = render_pdf(sample, uncompressed_pdf=True)
+
+    fonts = {m.decode() for m in re.findall(rb"/BaseFont\s*/\w+\+([\w-]+)", pdf)}
+    assert "Fira-Sans-Light" in fonts  # html { font-family: Fira Sans; weight 300 }
+    assert "Fira-Sans-Bold" in fonts  # h1
+    assert "Fira-Sans-Light-Italic" in fonts  # em
+    assert "Fira-Mono-Light" in fonts  # code, pre, at weight 300
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_pdf_is_tagged_and_archival(render_pdf):
+    """The rendition is PDF/A-3a: archival, and tagged for a screen reader.
+
+    A tagged pdf carries a structure tree, so headings, lists and figures reach
+    assistive technology as structure rather than as placed glyphs.
+    """
+    subject = Metadata(
+        "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
+    )
+
+    metadata = read_pdf_metadata(render_pdf(subject))
+
+    assert metadata["variant"] == "PDF/A-3a"
+    assert metadata["tagged"] is True
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_pdf_embeds_the_feature_image(render_pdf):
+    """The feature image reaches the title page as an image.
+
+    An image the render cannot fetch leaves its alt text printed across the
+    page instead, so this checks for the image object itself.
+    """
+    import pikepdf
+
+    subject = Metadata(
+        "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
+    )
+
+    pdf = render_pdf(subject)
+
+    with pikepdf.open(BytesIO(pdf)) as document:
+        page = pikepdf.Page(document.pages[0])
+        # get_images() since pikepdf 10, .images on the 9.x line Python 3.9 gets
+        images = page.get_images() if hasattr(page, "get_images") else page.images
+    assert len(images) == 1
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_pdf_embeds_the_post_content(render_pdf):
+    """rs:content_html travels inside the pdf as the source it was rendered from.
+
+    PDF/A-3 is the variant that allows an embedded file of any type, and it is
+    what makes the deposited pdf a container for the post rather than only a
+    rendering of it.
+    """
+    subject = Metadata(
+        "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
+    )
+
+    pdf = render_pdf(subject)
+
+    assert read_pdf_metadata(pdf)["attachments"] == {"dn2mm-m9q51.html": "text/html"}
+    assert read_pdf_attachment(pdf).decode("utf-8") == subject.content
+    assert read_pdf_attachment(pdf, "dn2mm-m9q51.html") is not None
+    assert read_pdf_attachment(pdf, "absent.html") is None
+
+
+def test_pdf_of_an_untagged_render_is_reported_as_untagged(render_pdf):
+    """`tagged` says what the pdf carries, rather than what was asked for."""
+    pdf = render_pdf(sample_metadata("<p>Body</p>"), pdf_variant=None)
+
+    metadata = read_pdf_metadata(pdf)
+
+    assert metadata["tagged"] is False
+    assert "variant" not in metadata
+
+
+@pytest.mark.vcr("test_rogue_scholar.yaml")
+def test_pdf_metadata_round_trip(render_pdf):
+    """What the writer puts in the head of the document comes back out of the pdf."""
+    subject = Metadata(
+        "https://rogue-scholar.org/api/records/1xr7q-9fp18", via="inveniordm"
+    )
+
+    metadata = read_pdf_metadata(render_pdf(subject))
+
+    assert metadata["title"] == "Rogue Scholar learns about communities"
+    assert metadata["authors"] == ["Martin Fenner"]
+    assert metadata["description"].startswith("The Rogue Scholar infrastructure")
+    assert metadata["keywords"] == [
+        "Information Systems",
+        "Computer and information sciences",
+        "Rogue Scholar",
+    ]
+    assert metadata["generator"] == "Ghost"  # the blog platform, from rs:generator
+    assert metadata["created"] == "2024-10-07"
+    assert metadata["modified"] == "2025-01-23"
+    assert metadata["language"] == "en"
+    assert metadata["producer"].startswith("WeasyPrint")
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_to_pdf_html_front_matter(feature_image):
+    """The title page carries what the rogue-scholar-api pdf template carried."""
+    subject = Metadata(
+        "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
+    )
+
+    html = to_pdf_html(subject)
+
+    assert "<title>Linguistic roots of connectionism</title>" in html
+    assert "<h1>Linguistic roots of connectionism</h1>" in html
+    # the blog name is hidden, it only feeds the running header
+    assert '<span class="header">The Ideophone</span>' in html
+    assert '<p class="author"><span>Mark Dingemanse</span></p>' in html
+    assert '<div class="date">Published July 22, 2021</div>' in html
+    assert 'class="identifier"><a href="https://doi.org/10.59350/dn2mm-m9q51"' in html
+    assert '<div class="abstract"><h4>Abstract</h4>This Lingbuzz preprint' in html
+    # the image travels in the document rather than being linked from the blog
+    assert feature_image.call_args.args[0] == (
+        "https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png"
+    )
+    assert (
+        '<img class="feature-image" alt="Feature image" src="data:image/png;base64,'
+        in html
+    )
+    assert '<div class="rights"><h4>Copyright</h4>Copyright ' in html
+    assert (
+        "&copy;</span> Mark Dingemanse 2021. Distributed under the terms of the "
+        '<a href="https://creativecommons.org/licenses/by/4.0/legalcode">Creative '
+        "Commons Attribution 4.0 International License</a>, which permits" in html
+    )
+    assert html.endswith(f"</section>{subject.content}</body></html>")
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        # the blog no longer serves it
+        SimpleNamespace(raise_for_status=Mock(side_effect=RequestException("404"))),
+        # or serves something that is not an image, e.g. an error page
+        image_response(b"<html>Not found</html>", "text/html"),
+    ],
+)
+def test_to_pdf_html_leaves_out_an_unusable_feature_image(response):
+    """An image that cannot be fetched is left out, not left as a broken img.
+
+    WeasyPrint draws the alt text where an image fails, which would print
+    "Feature image" across the title page.
+    """
+    from commonmeta.writers import inveniordm_writer as w
+
+    sample = sample_metadata("<p>Body</p>")
+    sample.image = "https://example.org/feature.png"
+
+    with patch.object(w, "http", SimpleNamespace(get=Mock(return_value=response))):
+        html = to_pdf_html(sample)
+
+    assert "feature-image" not in html
+    assert "Feature image" not in html
+
+
+@pytest.mark.vcr("test_external_doi.yaml")
+def test_to_pdf_html_in_another_language():
+    """Front matter labels and the date follow the language of the post."""
+    subject = Metadata(
+        "https://rogue-scholar.org/api/records/9jsrb-jtc73", via="inveniordm"
+    )
+
+    html = to_pdf_html(subject)
+
+    assert html.startswith("<html lang='de'>")
+    assert '<div class="date">Veröffentlicht 12. Juli 2021</div>' in html
+    assert "<h4>Zusammenfassung</h4>" in html
+    assert "<h4>Urheberrecht</h4>" in html
+
+
+@pytest.mark.parametrize(
+    "license_, expected",
+    [
+        (
+            {"id": "CC-BY-4.0", "url": "https://creativecommons.org/licenses/by/4.0"},
+            'Copyright <span class="copyright">&copy;</span> Ada Lovelace 2024. '
+            'Distributed under the terms of the <a href="https://creativecommons.org'
+            '/licenses/by/4.0">Creative Commons Attribution 4.0 International '
+            "License</a>, which permits unrestricted use, distribution, and "
+            "reproduction in any medium, provided the original author and source "
+            "are credited.",
+        ),
+        (
+            {
+                "id": "CC0-1.0",
+                "url": "https://creativecommons.org/publicdomain/zero/1.0",
+            },
+            "This is an open access article, free of all copyright, and may be "
+            "freely reproduced, distributed, transmitted, modified, built upon, or "
+            "otherwise used by anyone for any lawful purpose. The work is made "
+            'available under the <a href="https://creativecommons.org/publicdomain'
+            '/zero/1.0">Creative Commons CC0 public domain dedication</a>.',
+        ),
+        (None, None),
+    ],
+)
+def test_to_pdf_rights(license_, expected):
+    """CC0 waives copyright rather than asserting it, and a post may have neither."""
+    from commonmeta.writers.inveniordm_writer import to_pdf_rights
+
+    sample = sample_metadata("<p>Body</p>")
+    sample.license = license_
+    sample.date_published = "2024-05-06"
+
+    assert to_pdf_rights(sample, ["Ada Lovelace"], "en") == expected
+
+
+def test_to_pdf_rights_credits_more_than_one_author():
+    """The copyright line names the first author, then et al."""
+    from commonmeta.writers.inveniordm_writer import to_pdf_rights
+
+    sample = sample_metadata("<p>Body</p>")
+    sample.license = {"id": "CC-BY-4.0", "url": "https://example.org/by"}
+    sample.date_published = "2024-05-06"
+
+    rights = to_pdf_rights(sample, ["Ada Lovelace", "Charles Babbage"], "en")
+
+    assert "Ada Lovelace et al. 2024." in rights
+
+
+def test_to_pdf_html_escapes_the_front_matter():
+    """A title with markup characters is text, not markup."""
+    sample = sample_metadata("<p>Body</p>", title='Fish & <chips> "today"')
+
+    html = to_pdf_html(sample)
+
+    assert "<h1>Fish &amp; &lt;chips&gt; &quot;today&quot;</h1>" in html
+    assert "<chips>" not in html
+
+
+def test_write_pdf_rendition_without_content():
+    """There is nothing to render for a record with no post content."""
+    assert write_pdf_rendition(sample_metadata(None)) is None
+
+
+def test_pdf_filename_uses_the_doi_suffix():
+    """The file is named for the doi, which is unique and stable per record."""
+    assert pdf_filename(sample_metadata("<p>Body</p>")) == "kdqkf-nf052.pdf"
+
+
+def test_upload_pdf_registers_uploads_and_commits():
+    """InvenioRDM takes a file in three calls, in that order."""
+    from commonmeta.writers import inveniordm_writer as w
+
+    record = {"id": "fktsh-g4g95"}
+    sample = sample_metadata("<p>Body</p>")
+    with (
+        patch.object(w, "write_pdf_rendition", return_value=b"%PDF-1.7 pdf"),
+        patch.object(w, "http") as mock_http,
+    ):
+        mock_http.post.return_value.status_code = 201
+        result = w.upload_pdf(sample, "rogue-scholar.org", "token", record)
+
+    base = "https://rogue-scholar.org/api/records/fktsh-g4g95/draft/files"
+    assert mock_http.post.call_args_list[0].args[0] == base
+    assert mock_http.post.call_args_list[0].kwargs["json"] == [
+        {"key": "kdqkf-nf052.pdf"}
+    ]
+    assert mock_http.put.call_args.args[0] == f"{base}/kdqkf-nf052.pdf/content"
+    assert mock_http.put.call_args.kwargs["data"] == b"%PDF-1.7 pdf"
+    assert mock_http.post.call_args_list[1].args[0] == f"{base}/kdqkf-nf052.pdf/commit"
+    assert result["files"] == ["kdqkf-nf052.pdf"]
+
+
+def test_upload_pdf_survives_a_refused_upload():
+    """A published record's files are locked; the record is still published."""
+    from commonmeta.writers import inveniordm_writer as w
+
+    record = {"id": "fktsh-g4g95"}
+    with (
+        patch.object(w, "write_pdf_rendition", return_value=b"%PDF-1.7 pdf"),
+        patch.object(w, "http") as mock_http,
+    ):
+        mock_http.post.return_value.status_code = 403
+        result = w.upload_pdf(
+            sample_metadata("<p>Body</p>"), "rogue-scholar.org", "token", record
+        )
+
+    mock_http.put.assert_not_called()
+    assert "files" not in result
+    assert "status" not in result
