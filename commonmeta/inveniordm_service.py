@@ -338,6 +338,34 @@ class ServiceBackend:
             )
             return False
 
+    def _enable_files(self, record_id: str) -> bool:
+        """Turn files on for a draft, returning whether they are on.
+
+        A record published metadata-only carries ``files.enabled`` false, and
+        its draft inherits it. Every file call then refuses with "403
+        Forbidden: Files are not enabled", including the one that would remove
+        what could not be attached, so the draft is discarded and the record
+        stays as it was. The next run edits it again and does the same, which
+        is why a record that was once metadata-only never gained a rendition.
+
+        The mirror of _mark_metadata_only: that one turns files off for a draft
+        that has none left, this one turns them on for a draft about to be
+        given one.
+        """
+        try:
+            draft = self._records.read_draft(self._identity, record_id).to_dict()
+            if (draft.get("files") or {}).get("enabled"):
+                return True
+            draft.setdefault("files", {})["enabled"] = True
+            self._records.update_draft(self._identity, record_id, data=draft)
+            return True
+        except Exception as e:
+            log.warning(
+                f"Could not enable files on record {record_id}: {reason(e)}",
+                extra={"record_id": record_id},
+            )
+            return False
+
     def _mark_metadata_only(self, record_id: str) -> None:
         """Turn files off on a draft that has none left.
 
@@ -411,6 +439,12 @@ class ServiceBackend:
             # It could not be removed, so it will block the publish whatever
             # happens next. Nothing to gain by uploading over it.
             return self._abandon_draft(record, key)
+
+        if not self._enable_files(record_id):
+            # Every file call refuses while they are off, including the one
+            # that would clean up after a failed attach, so there is nothing to
+            # gain by trying and a draft to lose by leaving an entry behind.
+            return record
 
         try:
             files.init_files(identity, record_id, [{"key": key}])
