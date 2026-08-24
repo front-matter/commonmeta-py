@@ -793,7 +793,7 @@ def to_pdf_image(metadata: Metadata) -> str | None:
     if url is None:
         return None
     try:
-        response = http.get(url, timeout=30)
+        response = http.get(url, timeout=30, headers={"Accept": "image/*,*/*;q=0.8"})
         response.raise_for_status()
     except Exception as error:
         # the image is decoration: no fetch of it is worth failing the render,

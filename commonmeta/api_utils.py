@@ -29,6 +29,11 @@ adapter = HTTPAdapter(max_retries=retry_strategy)
 http = requests.Session()
 http.mount("https://", adapter)
 http.mount("http://", adapter)
+# Say who we are on every request, not only on the ones that remember to.
+# Servers behind a filter answer the default "python-requests/x.y" with 406
+# Not Acceptable, which is what a blog's feature image came back as. A header
+# passed to a single request still overrides this.
+http.headers["User-Agent"] = COMMONMETA_USER_AGENT
 
 
 def get_session_with_retry(

@@ -1774,6 +1774,9 @@ def test_to_pdf_html_front_matter(feature_image):
     assert feature_image.call_args.args[0] == (
         "https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png"
     )
+    # asked for as an image: a blog behind a filter answers a bare request
+    # with 406 Not Acceptable
+    assert feature_image.call_args.kwargs["headers"]["Accept"].startswith("image/")
     assert (
         '<img class="feature-image" alt="Feature image" src="data:image/png;base64,'
         in html

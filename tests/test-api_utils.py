@@ -52,3 +52,15 @@ def test_update_ghost_post_via_api__idnot_found():
     assert {"error": "DOI or URL not found"} == update_ghost_post_via_api(
         _id, api_key, api_url
     )
+
+
+def test_the_shared_session_says_who_it_is():
+    """Servers behind a filter answer the default python-requests UA with 406.
+
+    A blog's feature image came back that way, so the session carries the
+    user agent rather than leaving it to each call site to remember.
+    """
+    from commonmeta.api_utils import COMMONMETA_USER_AGENT, http
+
+    assert http.headers["User-Agent"] == COMMONMETA_USER_AGENT
+    assert "commonmeta-py" in http.headers["User-Agent"]
