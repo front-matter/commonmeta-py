@@ -1291,6 +1291,11 @@ def upsert_record(
     # the same content check the writer made when it enabled files.
     if dig(output, "files.enabled") and record.get("id", None):
         record = upload_pdf(metadata, host, token, record)
+        # The draft carried a file that could neither be published nor removed,
+        # so it was thrown away; there is nothing left to publish, and the
+        # record stands as it was published before.
+        if record.get("status", None) == "draft_discarded":
+            return record
 
     # Publish draft record
     record = publish_draft_record(record, host, token)

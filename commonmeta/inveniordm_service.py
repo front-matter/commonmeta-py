@@ -390,6 +390,8 @@ class ServiceBackend:
         Failure leaves no incomplete entry behind, because that is what blocks
         the publish. Returning without the file is a valid outcome, which the
         caller publishes anyway; returning with a half-registered one is not.
+        Where such an entry cannot be removed, the draft is discarded rather
+        than left to fail its publish for good - see `_abandon_draft`.
         """
         files = self._records.draft_files
         identity, record_id = self._identity, record["id"]
@@ -408,7 +410,7 @@ class ServiceBackend:
         elif status is not None and not self._drop_file(record_id, key):
             # It could not be removed, so it will block the publish whatever
             # happens next. Nothing to gain by uploading over it.
-            return record
+            return self._abandon_draft(record, key)
 
         try:
             files.init_files(identity, record_id, [{"key": key}])
@@ -417,11 +419,62 @@ class ServiceBackend:
         except Exception as e:
             report_failed_attachment(record_id, key, reason(e))
             if self._file_entry(record_id, key).get("status") != "completed":
-                self._drop_file(record_id, key)
+                if not self._drop_file(record_id, key):
+                    return self._abandon_draft(record, key)
                 self._mark_metadata_only(record_id)
             return record
         record["file"] = key
         return record
+
+    def _abandon_draft(self, record: dict, key: str) -> dict:
+        """Discard a draft that carries a file it can never publish.
+
+        A file entry whose transfer never completed makes publish refuse the
+        draft - "One or more files have not completed their transfer, please
+        wait" - and where the instance does not allow a published record's
+        files to be modified, that entry cannot be removed either. The record
+        then fails on this run and on every run after it, since each one opens
+        the same draft and finds the same entry.
+
+        Discarding the draft undoes this run's edit and leaves the published
+        record as it was, which is the recoverable outcome: the entry lives in
+        the draft, so the next run opens a clean one. Only ever done where
+        there is a published record to fall back on - a draft that has never
+        been published is left alone, since discarding that would delete the
+        record - and it tells the caller not to publish what is no longer
+        there.
+        """
+        record_id = record["id"]
+        if not self._is_published(record_id):
+            return record
+        try:
+            self._records.delete_draft(self._identity, record_id)
+        except Exception as e:
+            log.error(
+                f"Could not discard the draft of record {record_id}: {reason(e)}",
+                extra={"record_id": record_id},
+            )
+            return record
+        log.warning(
+            f"Discarded the draft of record {record_id}: it carries {key} with an "
+            "incomplete transfer, which cannot be removed and which publish refuses. "
+            "The published record is unchanged, and the next run edits it again.",
+            extra={"record_id": record_id},
+        )
+        record["status"] = "draft_discarded"
+        return record
+
+    def _is_published(self, record_id: str) -> bool:
+        """Whether a published record stands behind this draft.
+
+        Not `read_record`, which logs a missing record as an error: here it is
+        an ordinary answer, and the common one for a draft being created.
+        """
+        try:
+            self._records.read(self._identity, record_id)
+            return True
+        except Exception:
+            return False
 
     def add_record_to_community(self, record: dict, community_id: str) -> dict:
         """Add a record to a community."""

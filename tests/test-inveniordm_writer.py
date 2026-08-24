@@ -1338,6 +1338,52 @@ def test_upsert_record_uploads_the_pdf_before_publishing():
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_upsert_record_does_not_publish_a_discarded_draft():
+    """A draft thrown away for carrying an unpublishable file is not published.
+
+    Publishing it would fail with "One or more files have not completed their
+    transfer", which is the state the draft was discarded to escape.
+    """
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
+    record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
+
+    with (
+        patch(
+            "commonmeta.writers.inveniordm_writer.search_by_doi",
+            return_value="fktsh-g4g95",
+        ),
+        patch("commonmeta.writers.inveniordm_writer.get_published_record"),
+        patch(
+            "commonmeta.writers.inveniordm_writer.edit_published_record",
+            side_effect=lambda r, *a: r,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record",
+            side_effect=lambda r, *a: r,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.upload_pdf",
+            side_effect=lambda m, h, t, r: {**r, "status": "draft_discarded"},
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record"
+        ) as mock_publish,
+    ):
+        result = upsert_record(
+            subject,
+            "rogue-scholar.org",
+            "token",
+            record,
+            skip_unchanged=False,
+            write_pdf=True,
+        )
+
+    assert result["status"] == "draft_discarded"
+    mock_publish.assert_not_called()
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
 def test_upsert_record_does_not_skip_a_record_without_its_pdf():
     """Unchanged metadata is no reason to skip while the file is still missing."""
     string = "https://rogue-scholar.org/api/records/7tatc-wh557"

@@ -233,10 +233,21 @@ class FakeDraftFiles:
 class FakeRecordsWithFiles(FakeRecordsService):
     """Records service exposing draft files and a draft to update."""
 
-    def __init__(self, draft_files=None, draft=None):
+    def __init__(self, draft_files=None, draft=None, published=True):
         super().__init__()
         self.files = draft_files or FakeDraftFiles()
         self.draft = draft if draft is not None else {"files": {"enabled": True}}
+        # whether a published record stands behind the draft
+        self.published = published
+
+    def read(self, identity, id_):
+        if not self.published:
+            raise KeyError(f"no published record {id_}")
+        return FakeItem({"id": id_})
+
+    def delete_draft(self, identity, id_):
+        self.calls.append(("delete_draft", identity, id_))
+        self.draft = None
 
     @property
     def draft_files(self):
@@ -441,3 +452,33 @@ def test_other_refusals_are_reported_every_time(unreported_locked_bucket, caplog
         inveniordm_service.report_failed_attachment("ccc33-ddd44", "b.pdf", "boom")
 
     assert [record.levelname for record in caplog.records] == ["WARNING", "WARNING"]
+
+
+def test_a_draft_that_can_never_publish_is_discarded(use_fake_backend, caplog):
+    """The state that made records fail their publish on every single run.
+
+    A file entry left pending by an earlier attempt cannot be removed while
+    the bucket is locked, and publish refuses a draft that carries one.
+    """
+    files = FakeDraftFiles(entries={"post.pdf": "pending"}, locked=True)
+    records = FakeRecordsWithFiles(files)
+    backend = use_fake_backend(FakeBackend(records=records))
+
+    with caplog.at_level(logging.WARNING, logger="commonmeta.inveniordm_service"):
+        record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF-")
+
+    assert record["status"] == "draft_discarded"
+    assert ("delete_draft", "system_identity", "abc12-xyz34") in records.calls
+    assert "Discarded the draft" in caplog.records[-1].getMessage()
+
+
+def test_a_draft_with_nothing_published_behind_it_is_kept(use_fake_backend):
+    """Discarding a first draft would delete the record, not undo an edit."""
+    files = FakeDraftFiles(entries={"post.pdf": "pending"}, locked=True)
+    records = FakeRecordsWithFiles(files, published=False)
+    backend = use_fake_backend(FakeBackend(records=records))
+
+    record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF-")
+
+    assert record.get("status") is None
+    assert not [call for call in records.calls if call[0] == "delete_draft"]
