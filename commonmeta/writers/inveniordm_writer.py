@@ -1059,9 +1059,21 @@ def write_pdf_rendition(
     return finish_pdf(document.write_pdf(**options), metadata)
 
 
-def pdf_filename(metadata: Metadata) -> str:
-    """Name the pdf after the doi suffix, which is unique and stable"""
-    doi = doi_from_url(metadata.id)
+def pdf_filename(metadata: Metadata, record: dict | None = None) -> str:
+    """Name the pdf after the doi suffix of the record it is attached to.
+
+    The record's doi rather than the metadata's, because the two are not always
+    the same one and only the record's is stable. Rogue Scholar mints a random
+    suffix for a post that carries no doi of its own, on every read of the feed,
+    while the record is matched by guid — so `metadata.id` differs from run to
+    run for the same post. A record was found holding three abandoned file
+    entries, one per attempt, each named after a doi that existed only for the
+    length of that run.
+
+    `upsert_record` puts the record's own doi in `record` when it matches by
+    guid, and strips pids from the update, so this name does not move.
+    """
+    doi = doi_from_url((record or {}).get("doi")) or doi_from_url(metadata.id)
     return f"{doi.split('/')[-1]}.pdf" if doi else "content.pdf"
 
 
@@ -1198,6 +1210,22 @@ def upsert_record(
         )
         if guid is not None:
             record["id"] = search_by_guid(guid, host, token)
+
+        if record["id"] is not None:
+            # Matched by guid, so the doi in hand is not necessarily the one
+            # the record carries: a caller that mints a doi for a post without
+            # one mints a different doi on every read. The record's own is
+            # taken instead, because the update below strips pids and leaves it
+            # in place — so anything derived from the doi, the pdf's name above
+            # all, stays the same from run to run rather than accumulating an
+            # entry per attempt. It also makes the doi this returns the one
+            # that exists, rather than one that lived for the length of a run.
+            published_doi = dig(
+                get_published_record(record["id"], host, token) or {},
+                "pids.doi.identifier",
+            )
+            if published_doi:
+                record["doi"] = normalize_doi(published_doi)
 
     if record["previous_doi"] is not None:
         record["previous_id"] = search_by_doi(
@@ -1372,7 +1400,7 @@ def upload_pdf(metadata: Metadata, host: str, token: str, record: dict) -> dict:
         log.warning(f"No content to render a pdf from for record {record.get('id')}")
         return record
 
-    key = pdf_filename(metadata)
+    key = pdf_filename(metadata, record)
 
     # Dispatched after rendering, not before: the pdf is built the same way for
     # either transport, and only the three upload calls differ.

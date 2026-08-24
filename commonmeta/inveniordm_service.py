@@ -338,6 +338,33 @@ class ServiceBackend:
             )
             return False
 
+    def _incomplete_keys(self, record_id: str) -> list[str]:
+        """Every key on the draft whose transfer never completed.
+
+        Publish walks all of a draft's entries and refuses the lot if any one
+        of them is incomplete, so what blocks a record is not necessarily the
+        file this run is attaching. A draft was found carrying two abandoned
+        entries under keys the run had never heard of — the rendition's name
+        comes from the doi, and this record's doi had changed between runs, so
+        each attempt registered a new key and left the last one behind.
+        Answering only for the key in hand meant none of them was ever cleared.
+        """
+        try:
+            listing = self._records.draft_files.list_files(
+                self._identity, record_id
+            ).to_dict()
+        except Exception as e:
+            log.warning(
+                f"Could not list the files of record {record_id}: {reason(e)}",
+                extra={"record_id": record_id},
+            )
+            return []
+        return [
+            entry.get("key")
+            for entry in listing.get("entries") or []
+            if entry.get("status") != "completed" and entry.get("key")
+        ]
+
     def _enable_files(self, record_id: str) -> bool:
         """Turn files on for a draft, returning whether they are on.
 
@@ -424,9 +451,19 @@ class ServiceBackend:
         files = self._records.draft_files
         identity, record_id = self._identity, record["id"]
 
+        # Clear anything that would make the publish fail, under any key: one
+        # incomplete entry refuses the whole draft, and it is not necessarily
+        # the file being attached here. Where one cannot be removed — a locked
+        # bucket — the draft is beyond saving on this run, so it is discarded
+        # and the next run gets a clean one.
+        for stale in self._incomplete_keys(record_id):
+            if not self._drop_file(record_id, stale):
+                return self._abandon_draft(record, stale)
+
+        # Whatever is left under this key is complete, the incomplete ones
+        # having just gone.
         entry = self._file_entry(record_id, key)
-        status = entry.get("status")
-        if status == "completed":
+        if entry.get("status") == "completed":
             if entry.get("checksum") == f"md5:{md5(content).hexdigest()}":
                 record["file"] = key
                 return record
@@ -435,10 +472,6 @@ class ServiceBackend:
                 # rendition of the same post, which beats no file at all.
                 record["file"] = key
                 return record
-        elif status is not None and not self._drop_file(record_id, key):
-            # It could not be removed, so it will block the publish whatever
-            # happens next. Nothing to gain by uploading over it.
-            return self._abandon_draft(record, key)
 
         if not self._enable_files(record_id):
             # Every file call refuses while they are off, including the one
