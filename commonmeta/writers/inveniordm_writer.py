@@ -16,6 +16,7 @@ from typing import TYPE_CHECKING
 import orjson as json
 from babel.core import UnknownLocaleError
 from babel.dates import format_date
+from bs4 import BeautifulSoup
 from requests.exceptions import RequestException
 
 from commonmeta.readers.inveniordm_reader import search_by_doi, search_by_guid
@@ -125,6 +126,15 @@ PDF_TITLES = {
         "fr": "Droit d'auteur",
         "it": "Copyright",
         "pt": "Direitos de autor",
+    },
+    # the alt description an image gets when the post gives it none
+    "image": {
+        "en": "Image",
+        "de": "Bild",
+        "es": "Imagen",
+        "fr": "Image",
+        "it": "Immagine",
+        "pt": "Imagem",
     },
 }
 
@@ -883,6 +893,36 @@ def to_pdf_datetime(date: str | None) -> datetime | None:
         return None
 
 
+def to_pdf_content(content: str | None, language: str) -> str:
+    """The post content, with an alt description on every image.
+
+    A tagged pdf needs one for each image, and WeasyPrint logs an error per
+    image that has none - which for a post whose images carry no alt text, as
+    blog posts routinely do, is an error per image on every render. An image
+    without alt borrows the caption of the figure it sits in, or its own title
+    attribute, or takes a generic label in the language of the post. An empty
+    alt would not do: WeasyPrint reads it as no description at all.
+    """
+    if not content or "<img" not in content:
+        return content or ""
+
+    soup = BeautifulSoup(content, "html.parser")
+    label = PDF_TITLES["image"].get(language, PDF_TITLES["image"]["en"])
+    described = False
+    for image in soup.find_all("img"):
+        if (image.get("alt") or "").strip():
+            continue
+        figure = image.find_parent("figure")
+        caption = figure.find("figcaption") if figure else None
+        image["alt"] = (
+            (caption.get_text(" ", strip=True) if caption else "")
+            or (image.get("title") or "").strip()
+            or label
+        )
+        described = True
+    return str(soup) if described else content
+
+
 def to_pdf_html(metadata: Metadata) -> str:
     """Build the html document the pdf is rendered from.
 
@@ -948,7 +988,7 @@ def to_pdf_html(metadata: Metadata) -> str:
     return (
         f"<html lang='{escape(language)}'><head>{''.join(head)}</head>"
         f'<body><section class="front-matter">{"".join(front_matter)}</section>'
-        f"{metadata.content}</body></html>"
+        f"{to_pdf_content(metadata.content, language)}</body></html>"
     )
 
 

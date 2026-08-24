@@ -24,6 +24,7 @@ from commonmeta.io_utils import read_pdf_attachment, read_pdf_metadata
 from commonmeta.writers.inveniordm_writer import (
     pdf_filename,
     record_matches,
+    to_pdf_content,
     to_pdf_html,
     upsert_record,
     write_pdf_rendition,
@@ -1737,7 +1738,45 @@ def test_to_pdf_html_front_matter(feature_image):
         '<a href="https://creativecommons.org/licenses/by/4.0/legalcode">Creative '
         "Commons Attribution 4.0 International License</a>, which permits" in html
     )
-    assert html.endswith(f"</section>{subject.content}</body></html>")
+    # the body is the post content, with an alt description on every image
+    assert html.endswith(
+        f"</section>{to_pdf_content(subject.content, 'en')}</body></html>"
+    )
+    assert 'alt="Image"' in html
+
+
+@pytest.mark.parametrize(
+    "content, expected",
+    [
+        # a tagged pdf needs a description for every image, and WeasyPrint
+        # logs an error for each one that has none
+        ('<p><img src="rnn.jpg"></p>', 'alt="Image"'),
+        ('<p><img src="rnn.jpg" alt=""></p>', 'alt="Image"'),
+        # the caption of the figure it sits in says more than a label does
+        (
+            '<figure><img src="rnn.jpg"><figcaption>A low-rank RNN</figcaption></figure>',
+            'alt="A low-rank RNN"',
+        ),
+        ('<p><img src="rnn.jpg" title="Figure 1"></p>', 'alt="Figure 1"'),
+    ],
+)
+def test_to_pdf_content_describes_every_image(content, expected):
+    """An image without an alt description gets one."""
+    assert expected in to_pdf_content(content, "en")
+
+
+def test_to_pdf_content_keeps_the_description_a_post_gives():
+    """Content that describes its own images is passed through untouched."""
+    content = '<p><img src="rnn.jpg" alt="A low-rank RNN"></p>'
+
+    assert to_pdf_content(content, "en") == content
+    assert to_pdf_content("<p>No image here</p>", "en") == "<p>No image here</p>"
+    assert to_pdf_content(None, "en") == ""
+
+
+def test_to_pdf_content_labels_an_image_in_the_language_of_the_post():
+    """The label a screen reader reads is in the document's language."""
+    assert 'alt="Bild"' in to_pdf_content('<p><img src="rnn.jpg"></p>', "de")
 
 
 @pytest.mark.parametrize(
