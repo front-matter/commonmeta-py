@@ -1,11 +1,17 @@
 """Test writing to InvenioRDM through its service layer instead of its API."""
 
+import logging
 from hashlib import md5
 
 import pytest
 
 from commonmeta import inveniordm_service
-from commonmeta.inveniordm_service import active_backend, enabled, system_process
+from commonmeta.inveniordm_service import (
+    active_backend,
+    enabled,
+    reason,
+    system_process,
+)
 from commonmeta.writers.inveniordm_writer import (
     create_draft_record,
     publish_draft_record,
@@ -366,3 +372,72 @@ def test_files_stay_enabled_when_others_remain(use_fake_backend):
 
     assert "other.pdf" in files.entries
     assert records.draft["files"]["enabled"] is True
+
+
+def test_a_validation_error_says_what_was_invalid(use_fake_backend, caplog):
+    """Invenio's validation errors stringify to nothing.
+
+    Publishing a record whose doi the pid component rejects logged "Error
+    publishing draft record: " and nothing more, which says only that
+    something went wrong.
+    """
+
+    class ValidationErrorWithMessageAsList(Exception):
+        """What invenio_rdm_records raises, in the shape that matters here."""
+
+        def __init__(self, message):
+            super().__init__()
+            self.messages = message
+
+    class Rejecting(FakeRecordsService):
+        def publish(self, identity, id_):
+            raise ValidationErrorWithMessageAsList(
+                [{"field": "pids.doi", "messages": ["Invalid DOI for the prefix."]}]
+            )
+
+    use_fake_backend(FakeBackend(records=Rejecting()))
+
+    with caplog.at_level(logging.ERROR, logger="commonmeta.inveniordm_service"):
+        record = publish_draft_record({"id": "abc12-xyz34"}, "example.org", None)
+
+    assert record["status"] == "error_publish_draft_record"
+    logged = caplog.records[0].getMessage()
+    assert "ValidationErrorWithMessageAsList" in logged
+    assert "Invalid DOI for the prefix." in logged
+
+
+def test_reason_falls_back_to_the_exception_itself():
+    """Anything that does say something keeps saying it."""
+    assert reason(RuntimeError("boom")) == "boom"
+    assert reason(RuntimeError()) == "RuntimeError"
+
+
+@pytest.fixture
+def unreported_locked_bucket(monkeypatch):
+    """Each test starts as a fresh process would, having said nothing yet."""
+    monkeypatch.setattr(inveniordm_service, "_locked_bucket_reported", False)
+
+
+def test_a_locked_bucket_is_reported_once(unreported_locked_bucket, caplog):
+    """An instance that refuses every file should not say so for every record."""
+    locked = "403 Forbidden: Bucket is locked for modifications."
+
+    with caplog.at_level(logging.DEBUG, logger="commonmeta.inveniordm_service"):
+        inveniordm_service.report_failed_attachment("aaa11-bbb22", "a.pdf", locked)
+        inveniordm_service.report_failed_attachment("ccc33-ddd44", "b.pdf", locked)
+
+    first, second = caplog.records
+    assert first.levelname == "WARNING"
+    # named, so that whoever reads it knows what would change the outcome
+    assert "RDM_IMMEDIATE_FILE_MODIFICATION_ENABLED" in first.getMessage()
+    assert second.levelname == "DEBUG"
+    assert "b.pdf" in second.getMessage()
+
+
+def test_other_refusals_are_reported_every_time(unreported_locked_bucket, caplog):
+    """Only the instance-wide state is throttled; a one-off is not."""
+    with caplog.at_level(logging.DEBUG, logger="commonmeta.inveniordm_service"):
+        inveniordm_service.report_failed_attachment("aaa11-bbb22", "a.pdf", "boom")
+        inveniordm_service.report_failed_attachment("ccc33-ddd44", "b.pdf", "boom")
+
+    assert [record.levelname for record in caplog.records] == ["WARNING", "WARNING"]

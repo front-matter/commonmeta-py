@@ -96,6 +96,51 @@ def active_backend() -> "ServiceBackend | None":
     return ServiceBackend()
 
 
+def reason(error: Exception) -> str:
+    """What a service exception says, which `str()` alone does not always tell.
+
+    InvenioRDM's validation errors carry their detail in ``messages`` and
+    stringify to nothing, so logging ``str(e)`` for one wrote "Error
+    publishing draft record: " and left the record's actual problem - a doi
+    the pid component rejected, say - out of the log entirely.
+    """
+    messages = getattr(error, "messages", None)
+    if messages:
+        return f"{type(error).__name__}: {messages}"
+    return str(error) or type(error).__name__
+
+
+#: Whether this process has already said that files cannot be modified.
+_locked_bucket_reported = False
+
+
+def report_failed_attachment(record_id: str, key: str, detail: str) -> None:
+    """Log a refused file, saying once what a locked bucket would take to fix.
+
+    An instance that does not allow a published record's files to be modified
+    refuses every one of them, so a run over a few hundred posts reports the
+    same fact a few hundred times. It is worth saying — those records will not
+    get a rendition until the setting changes — but worth saying once, and
+    with the setting named. Everything else is logged as it happens.
+    """
+    global _locked_bucket_reported
+
+    message = f"Could not attach {key} to record {record_id}: {detail}"
+    if "bucket is locked" not in detail.lower():
+        log.warning(message, extra={"record_id": record_id})
+        return
+    if _locked_bucket_reported:
+        log.debug(message, extra={"record_id": record_id})
+        return
+    _locked_bucket_reported = True
+    log.warning(
+        f"{message} A published record takes a file where InvenioRDM 14 is "
+        "configured for it: RDM_IMMEDIATE_FILE_MODIFICATION_ENABLED, with a "
+        "policy that admits this caller. Reported once per process.",
+        extra={"record_id": record_id},
+    )
+
+
 class ServiceBackend:
     """The operations the reader and writer need, as service calls.
 
@@ -141,7 +186,7 @@ class ServiceBackend:
         try:
             return self._records.read(self._identity, record_id).to_dict()
         except Exception as e:
-            log.error(f"Error reading record {record_id}: {str(e)}", exc_info=True)
+            log.error(f"Error reading record {record_id}: {reason(e)}", exc_info=True)
             return None
 
     def search_records(self, query: str) -> dict | None:
@@ -151,7 +196,7 @@ class ServiceBackend:
                 self._identity, params={"q": query, "size": 1}
             ).to_dict()
         except Exception as e:
-            log.error(f"Error searching records: {str(e)}", exc_info=True)
+            log.error(f"Error searching records: {reason(e)}", exc_info=True)
             return None
 
     def search_community_by_slug(self, slug: str) -> str | None:
@@ -161,7 +206,7 @@ class ServiceBackend:
                 self._identity, params={"q": f"slug:{slug}", "size": 1}
             ).to_dict()
         except Exception as e:
-            log.error(f"Error searching for community: {str(e)}", exc_info=True)
+            log.error(f"Error searching for community: {reason(e)}", exc_info=True)
             return None
         hits = ((results or {}).get("hits") or {}).get("hits") or []
         return hits[0].get("id") if hits else None
@@ -189,7 +234,7 @@ class ServiceBackend:
         try:
             item = self._records.create(self._identity, output)
         except Exception as e:
-            log.error(f"Error creating draft record: {str(e)}", exc_info=True)
+            log.error(f"Error creating draft record: {reason(e)}", exc_info=True)
             record["status"] = "error_draft"
             return record
         data = item.to_dict()
@@ -206,7 +251,7 @@ class ServiceBackend:
                 self._identity, record["id"], data=inveniordm_data
             )
         except Exception as e:
-            log.error(f"Error updating draft record: {str(e)}", exc_info=True)
+            log.error(f"Error updating draft record: {reason(e)}", exc_info=True)
             record["status"] = "error_update_draft_record"
             return record
         record["updated"] = item.to_dict().get("updated")
@@ -218,7 +263,7 @@ class ServiceBackend:
         try:
             item = self._records.publish(self._identity, record["id"])
         except Exception as e:
-            log.error(f"Error publishing draft record: {str(e)}", exc_info=True)
+            log.error(f"Error publishing draft record: {reason(e)}", exc_info=True)
             record["status"] = "error_publish_draft_record"
             return record
         data = item.to_dict()
@@ -233,7 +278,8 @@ class ServiceBackend:
             item = self._records.edit(self._identity, record["id"])
         except Exception as e:
             log.error(
-                f"Error creating draft from published record: {str(e)}", exc_info=True
+                f"Error creating draft from published record: {reason(e)}",
+                exc_info=True,
             )
             record["status"] = "error_edit_published_record"
             return record
@@ -246,7 +292,7 @@ class ServiceBackend:
         try:
             item = self._records.new_version(self._identity, record["id"])
         except Exception as e:
-            log.error(f"Error creating new version: {str(e)}", exc_info=True)
+            log.error(f"Error creating new version: {reason(e)}", exc_info=True)
             record["status"] = "error_create_new_version"
             return record
         data = item.to_dict()
@@ -261,7 +307,7 @@ class ServiceBackend:
             item = self._records.pids.create(self._identity, record["id"], "doi")
         except Exception as e:
             log.error(
-                f"Error reserving DOI for record {record.get('id')}: {str(e)}",
+                f"Error reserving DOI for record {record.get('id')}: {reason(e)}",
                 exc_info=True,
             )
             record["status"] = "error_reserve_doi"
@@ -287,7 +333,7 @@ class ServiceBackend:
             return True
         except Exception as e:
             log.warning(
-                f"Could not remove file {key} from record {record_id}: {str(e)}",
+                f"Could not remove file {key} from record {record_id}: {reason(e)}",
                 extra={"record_id": record_id},
             )
             return False
@@ -316,7 +362,7 @@ class ServiceBackend:
             self._records.update_draft(self._identity, record_id, data=draft)
         except Exception as e:
             log.warning(
-                f"Could not mark record {record_id} as metadata-only: {str(e)}",
+                f"Could not mark record {record_id} as metadata-only: {reason(e)}",
                 extra={"record_id": record_id},
             )
 
@@ -369,10 +415,7 @@ class ServiceBackend:
             files.set_file_content(identity, record_id, key, io.BytesIO(content))
             files.commit_file(identity, record_id, key)
         except Exception as e:
-            log.warning(
-                f"Could not attach {key} to record {record_id}: {str(e)}",
-                extra={"record_id": record_id},
-            )
+            report_failed_attachment(record_id, key, reason(e))
             if self._file_entry(record_id, key).get("status") != "completed":
                 self._drop_file(record_id, key)
                 self._mark_metadata_only(record_id)
@@ -393,7 +436,7 @@ class ServiceBackend:
             # as warnings rather than failures; so does this.
             log.warning(
                 "Failed to add record to community: %s",
-                str(e),
+                reason(e),
                 extra={"record_id": record.get("id"), "community_id": community_id},
             )
         return record
