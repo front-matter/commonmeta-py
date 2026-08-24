@@ -217,8 +217,8 @@ class FakeDraftFiles:
             raise Exception("init blew up")
         self.entries[key] = "pending"
 
-    def set_file_content(self, identity, id_, key, stream):
-        self.calls.append(("set_file_content", key))
+    def set_file_content(self, identity, id_, key, stream, content_length=None):
+        self.calls.append(("set_file_content", key, content_length))
         if "content" in self.fail_on:
             raise Exception("upload blew up")
         self.checksums[key] = file_checksum(stream.read())
@@ -227,6 +227,10 @@ class FakeDraftFiles:
         self.calls.append(("commit_file", key))
         if "commit" in self.fail_on:
             raise Exception("commit blew up")
+        if "silent" in self.fail_on:
+            # Returns cleanly and leaves the entry pending, which is how the
+            # 1,235 stuck drafts in production came to be.
+            return
         self.entries[key] = "completed"
 
 
@@ -326,7 +330,7 @@ def test_a_changed_file_is_replaced(use_fake_backend):
     assert files.calls == [
         ("delete_file", "post.pdf"),
         ("init_files", "post.pdf"),
-        ("set_file_content", "post.pdf"),
+        ("set_file_content", "post.pdf", len(b"%PDF- new")),
         ("commit_file", "post.pdf"),
     ]
     assert files.checksums["post.pdf"] == file_checksum(b"%PDF- new")
@@ -482,3 +486,37 @@ def test_a_draft_with_nothing_published_behind_it_is_kept(use_fake_backend):
 
     assert record.get("status") is None
     assert not [call for call in records.calls if call[0] == "delete_draft"]
+
+
+def test_the_upload_says_how_many_bytes_it_is_sending(use_fake_backend):
+    """A storage backend that cannot size a stream has no other way to know.
+
+    Left to work it out, S3 accepted the call, raised nothing, and left the
+    entry with no object version behind it.
+    """
+    files = FakeDraftFiles()
+    backend = use_fake_backend(FakeBackend(records=FakeRecordsWithFiles(files)))
+    content = b"%PDF-1.7 and some bytes"
+
+    backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", content)
+
+    sent = [c for c in files.calls if c[0] == "set_file_content"]
+    assert sent == [("set_file_content", "post.pdf", len(content))]
+
+
+def test_an_upload_that_fails_silently_is_caught(use_fake_backend):
+    """The three calls can all return cleanly and still not attach the file.
+
+    That is the state publish refuses, and the one that left no trace in the
+    log: the record simply never gained a rendition. So the entry is asked for
+    its status rather than assumed to be good.
+    """
+    files = FakeDraftFiles(fail_on={"silent"})
+    records = FakeRecordsWithFiles(files)
+    backend = use_fake_backend(FakeBackend(records=records))
+
+    record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF-")
+
+    assert "file" not in record
+    assert files.entries == {}, "the incomplete entry must not survive"
+    assert records.draft["files"]["enabled"] is False

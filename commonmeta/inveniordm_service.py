@@ -448,16 +448,44 @@ class ServiceBackend:
 
         try:
             files.init_files(identity, record_id, [{"key": key}])
-            files.set_file_content(identity, record_id, key, io.BytesIO(content))
+            # The length is passed rather than left to the storage backend to
+            # work out from the stream. The bytes are already in memory, so it
+            # costs nothing, and a backend that cannot size a stream itself has
+            # no other way to know: S3 in particular needs the length up front.
+            files.set_file_content(
+                identity,
+                record_id,
+                key,
+                io.BytesIO(content),
+                content_length=len(content),
+            )
             files.commit_file(identity, record_id, key)
         except Exception as e:
             report_failed_attachment(record_id, key, reason(e))
-            if self._file_entry(record_id, key).get("status") != "completed":
-                if not self._drop_file(record_id, key):
-                    return self._abandon_draft(record, key)
-                self._mark_metadata_only(record_id)
-            return record
+            return self._discard_incomplete(record, key)
+
+        # Asked rather than assumed. All three calls can return without raising
+        # and still leave the entry with no object version behind it, which is
+        # the state publish refuses — and the silent version of it is the worse
+        # one, since nothing in the log says the rendition did not arrive.
+        if self._file_entry(record_id, key).get("status") != "completed":
+            report_failed_attachment(
+                record_id, key, "the transfer did not complete, and did not say so"
+            )
+            return self._discard_incomplete(record, key)
+
         record["file"] = key
+        return record
+
+    def _discard_incomplete(self, record: dict, key: str) -> dict:
+        """Leave nothing behind that would make the draft unpublishable."""
+        record_id = record["id"]
+        if self._file_entry(record_id, key).get("status") == "completed":
+            record["file"] = key
+            return record
+        if not self._drop_file(record_id, key):
+            return self._abandon_draft(record, key)
+        self._mark_metadata_only(record_id)
         return record
 
     def _abandon_draft(self, record: dict, key: str) -> dict:
