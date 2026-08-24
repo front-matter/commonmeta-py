@@ -322,6 +322,14 @@ def test_with_upstream_blog_post():
             "given_name": "John",
             "family_name": "Chodacki",
             "asserted_by": "Publisher",
+            "affiliations": [
+                {
+                    "asserted_by": "Publisher",
+                    "identifier": "https://ror.org/00dmfq477",
+                    "identifier_type": "ROR",
+                    "name": "University of California Office of the President",
+                },
+            ],
         },
         "roles": ["Author"],
     }
