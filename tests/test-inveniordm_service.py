@@ -1,5 +1,7 @@
 """Test writing to InvenioRDM through its service layer instead of its API."""
 
+from hashlib import md5
+
 import pytest
 
 from commonmeta import inveniordm_service
@@ -158,19 +160,34 @@ def test_a_failing_service_call_becomes_a_status_not_an_exception(use_fake_backe
 # ---------------------------------------------------------------------------
 
 
+def file_checksum(content: bytes) -> str:
+    """A file's checksum, in the form InvenioRDM reports it."""
+    return f"md5:{md5(content).hexdigest()}"
+
+
 class FakeDraftFiles:
     """A draft's files, with the states InvenioRDM actually puts them in."""
 
-    def __init__(self, entries=None, fail_on=None):
+    def __init__(self, entries=None, fail_on=None, checksums=None, locked=False):
         # {key: "completed" | "pending"}
         self.entries = dict(entries or {})
+        # {key: bytes the entry holds}, which InvenioRDM reports as an md5
+        self.checksums = {k: file_checksum(v) for k, v in (checksums or {}).items()}
         self.fail_on = fail_on or set()
+        # a published record whose instance does not allow file modification
+        self.locked = locked
         self.calls = []
 
     def read_file_metadata(self, identity, id_, key):
         if key not in self.entries:
             raise KeyError(f"no file {key}")
-        return FakeItem({"key": key, "status": self.entries[key]})
+        return FakeItem(
+            {
+                "key": key,
+                "status": self.entries[key],
+                "checksum": self.checksums.get(key),
+            }
+        )
 
     def list_files(self, identity, id_):
         return FakeItem(
@@ -179,7 +196,10 @@ class FakeDraftFiles:
 
     def delete_file(self, identity, id_, key):
         self.calls.append(("delete_file", key))
+        if self.locked:
+            raise Exception("403 Forbidden: Bucket is locked for modifications.")
         self.entries.pop(key, None)
+        self.checksums.pop(key, None)
 
     def init_files(self, identity, id_, data):
         key = data[0]["key"]
@@ -195,6 +215,7 @@ class FakeDraftFiles:
         self.calls.append(("set_file_content", key))
         if "content" in self.fail_on:
             raise Exception("upload blew up")
+        self.checksums[key] = file_checksum(stream.read())
 
     def commit_file(self, identity, id_, key):
         self.calls.append(("commit_file", key))
@@ -259,13 +280,62 @@ def test_a_stale_pending_file_is_replaced_rather_than_colliding(use_fake_backend
 
 
 def test_an_already_completed_file_is_left_alone(use_fake_backend):
-    files = FakeDraftFiles(entries={"post.pdf": "completed"})
+    """The same bytes are already attached, so there is nothing to write."""
+    files = FakeDraftFiles(
+        entries={"post.pdf": "completed"}, checksums={"post.pdf": b"%PDF-"}
+    )
     backend = use_fake_backend(FakeBackend(records=FakeRecordsWithFiles(files)))
 
     record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF-")
 
     assert record["file"] == "post.pdf"
     assert files.calls == []  # no delete, no re-upload
+
+
+def test_a_changed_file_is_replaced(use_fake_backend):
+    """A post edited after publication gets the rendition of what it says now.
+
+    InvenioRDM 14 allows a published record's files to be modified without a
+    new version, where the instance enables it.
+    """
+    files = FakeDraftFiles(
+        entries={"post.pdf": "completed"}, checksums={"post.pdf": b"%PDF- old"}
+    )
+    backend = use_fake_backend(FakeBackend(records=FakeRecordsWithFiles(files)))
+
+    record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF- new")
+
+    assert record["file"] == "post.pdf"
+    assert files.calls == [
+        ("delete_file", "post.pdf"),
+        ("init_files", "post.pdf"),
+        ("set_file_content", "post.pdf"),
+        ("commit_file", "post.pdf"),
+    ]
+    assert files.checksums["post.pdf"] == file_checksum(b"%PDF- new")
+
+
+def test_a_changed_file_keeps_the_old_one_when_the_bucket_is_locked(use_fake_backend):
+    """Without file modification, the rendition already attached stays.
+
+    An older rendition of the same post beats no file at all, and the record
+    is published either way.
+    """
+    files = FakeDraftFiles(
+        entries={"post.pdf": "completed"},
+        checksums={"post.pdf": b"%PDF- old"},
+        locked=True,
+    )
+    records = FakeRecordsWithFiles(files)
+    backend = use_fake_backend(FakeBackend(records=records))
+
+    record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF- new")
+
+    assert record["file"] == "post.pdf"
+    assert files.entries == {"post.pdf": "completed"}
+    assert files.checksums["post.pdf"] == file_checksum(b"%PDF- old")
+    assert ("init_files", "post.pdf") not in files.calls
+    assert records.draft["files"]["enabled"] is True
 
 
 def test_a_failed_upload_leaves_a_publishable_draft(use_fake_backend):

@@ -44,6 +44,7 @@ import io
 import logging
 from contextlib import contextmanager
 from contextvars import ContextVar
+from hashlib import md5
 from typing import Iterator
 
 log = logging.getLogger(__name__)
@@ -270,15 +271,14 @@ class ServiceBackend:
         record["status"] = "doi_reserved"
         return record
 
-    def _file_status(self, record_id: str, key: str) -> str | None:
-        """Return a draft file's transfer status, or None when it has none."""
+    def _file_entry(self, record_id: str, key: str) -> dict:
+        """A draft file's entry, empty when the draft carries no such file."""
         try:
-            entry = self._records.draft_files.read_file_metadata(
+            return self._records.draft_files.read_file_metadata(
                 self._identity, record_id, key
             ).to_dict()
         except Exception:
-            return None
-        return entry.get("status")
+            return {}
 
     def _drop_file(self, record_id: str, key: str) -> bool:
         """Remove a draft file entry. Returns whether it is gone."""
@@ -333,23 +333,33 @@ class ServiceBackend:
             ValidationError: One or more files have not completed their
             transfer, please wait.
 
-        A key that is already there and completed is left alone — the file is
-        attached, which is all the caller wanted. An incomplete one is dropped
-        and re-uploaded.
+        A key that is already there and holds these very bytes is left alone.
+        One that holds different bytes is replaced, so that a post edited after
+        publication gets the rendition of what it says now: InvenioRDM 14 lets
+        a published record's files be modified without a new version, where
+        RDM_IMMEDIATE_FILE_MODIFICATION_ENABLED is on and a policy admits the
+        caller. Where it is not, the bucket is locked, the file cannot be
+        dropped, and the one already attached stays.
 
         Failure leaves no incomplete entry behind, because that is what blocks
-        the publish. Returning without the file is the intended outcome (the
-        draft of a published record has its files locked, and the REST path logs
-        and publishes anyway); returning with a half-registered one is not.
+        the publish. Returning without the file is a valid outcome, which the
+        caller publishes anyway; returning with a half-registered one is not.
         """
         files = self._records.draft_files
         identity, record_id = self._identity, record["id"]
 
-        status = self._file_status(record_id, key)
+        entry = self._file_entry(record_id, key)
+        status = entry.get("status")
         if status == "completed":
-            record["file"] = key
-            return record
-        if status is not None and not self._drop_file(record_id, key):
+            if entry.get("checksum") == f"md5:{md5(content).hexdigest()}":
+                record["file"] = key
+                return record
+            if not self._drop_file(record_id, key):
+                # A locked bucket, most likely. The attached file is the older
+                # rendition of the same post, which beats no file at all.
+                record["file"] = key
+                return record
+        elif status is not None and not self._drop_file(record_id, key):
             # It could not be removed, so it will block the publish whatever
             # happens next. Nothing to gain by uploading over it.
             return record
@@ -363,7 +373,7 @@ class ServiceBackend:
                 f"Could not attach {key} to record {record_id}: {str(e)}",
                 extra={"record_id": record_id},
             )
-            if self._file_status(record_id, key) != "completed":
+            if self._file_entry(record_id, key).get("status") != "completed":
                 self._drop_file(record_id, key)
                 self._mark_metadata_only(record_id)
             return record

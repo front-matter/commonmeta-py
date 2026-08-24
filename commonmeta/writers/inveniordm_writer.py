@@ -1076,8 +1076,10 @@ def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict
             Ignored for records whose rs:content_html is empty, since that is
             what the pdf is rendered from. Defaults to False, which keeps
             records metadata-only. The file is uploaded while the record is a
-            draft; an already published record only takes one through a new
-            version, so for those the upload is logged and skipped.
+            draft. An already published record takes one where the instance
+            allows its files to be modified (InvenioRDM 14 and newer, with
+            RDM_IMMEDIATE_FILE_MODIFICATION_ENABLED); where it does not, the
+            refusal is logged and the record is published without the file.
         system_process: write through InvenioRDM's service layer as
             system_identity rather than over HTTP, for code running inside the
             instance it is writing to. `token` is then unused and may be None.
@@ -1354,10 +1356,11 @@ def upload_pdf(metadata: Metadata, host: str, token: str, record: dict) -> dict:
     """Attach the pdf rendition to a draft record as a record file.
 
     InvenioRDM takes a file in three calls: register the key, put the bytes,
-    commit. It only accepts them while the record is a draft, and the draft of
-    an already published record has its files locked until a new version is
-    created, so a refused upload is logged and the record is published without
-    the file rather than not published at all.
+    commit. They go to the draft, which for an already published record has its
+    files locked unless the instance runs InvenioRDM 14 or newer with
+    RDM_IMMEDIATE_FILE_MODIFICATION_ENABLED and a policy that admits this
+    caller. Where it is locked, the refusal is logged and the record is
+    published without the file rather than not published at all.
     """
     pdf = write_pdf_rendition(metadata)
     if pdf is None:
