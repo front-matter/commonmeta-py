@@ -5,13 +5,14 @@ from __future__ import annotations
 import atexit
 import logging
 from base64 import b64encode
+from contextlib import contextmanager
 from datetime import date as date_type
 from datetime import datetime
 from functools import lru_cache
 from html import escape
 from io import BytesIO
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Iterator
 
 import orjson as json
 from babel.core import UnknownLocaleError
@@ -1032,6 +1033,47 @@ def pdf_stylesheet() -> tuple:
     return css, font_config
 
 
+class DemoteToDebug(logging.Filter):
+    """Send a logger's warnings to debug for as long as it is installed."""
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        if record.levelno == logging.WARNING:
+            record.levelno, record.levelname = logging.DEBUG, "DEBUG"
+        return True
+
+
+@contextmanager
+def quiet_render_warnings() -> Iterator[None]:
+    """Keep what a post is made of out of our logs while it is rendered.
+
+    WeasyPrint reports every declaration it cannot parse and every id it sees
+    twice, and post content carries whatever css and markup the blog's editor
+    wrote: `background-color: null` from Ghost, or the duplicate anchors a
+    Quarto document has. fontTools reports what it finds in the fonts it
+    subsets, down to which version of a table they use. None of it says
+    anything about the rendition, and nobody here can act on any of it, so it
+    is demoted to debug rather than dropped, and only for the render.
+
+    Errors keep their level: a post whose image would not load says something
+    worth hearing. So does our own stylesheet, which is parsed before this
+    takes effect.
+    """
+    demote = DemoteToDebug()
+    weasyprint_log = logging.getLogger("weasyprint")
+    weasyprint_log.addFilter(demote)
+    # fontTools reports through a logger per table, and a filter on a logger
+    # sees only what is logged to it, not what its children pass up. So its
+    # warnings are held back by level instead of being demoted.
+    fonttools_log = logging.getLogger("fontTools")
+    level = fonttools_log.level
+    fonttools_log.setLevel(max(level, logging.ERROR))
+    try:
+        yield
+    finally:
+        weasyprint_log.removeFilter(demote)
+        fonttools_log.setLevel(level)
+
+
 def write_pdf_rendition(
     metadata: Metadata, url_fetcher=None, **options
 ) -> bytes | None:
@@ -1047,16 +1089,20 @@ def write_pdf_rendition(
     if weasyprint is None:
         return None
 
+    # before the block below, so that a problem with the shipped stylesheet is
+    # still reported as one
     css, font_config = pdf_stylesheet()
     # WeasyPrint picks its own fetcher when none is given; naming its default
     # explicitly would go through an api it deprecated in 69.
     fetcher = {"url_fetcher": url_fetcher} if url_fetcher is not None else {}
     options.setdefault("pdf_variant", PDF_VARIANT)
     options.setdefault("attachments", [to_pdf_attachment(metadata, weasyprint)])
-    document = weasyprint.HTML(
-        string=to_pdf_html(metadata), base_url=str(PDF_RESOURCES), **fetcher
-    ).render(stylesheets=[css], font_config=font_config)
-    return finish_pdf(document.write_pdf(**options), metadata)
+    with quiet_render_warnings():
+        document = weasyprint.HTML(
+            string=to_pdf_html(metadata), base_url=str(PDF_RESOURCES), **fetcher
+        ).render(stylesheets=[css], font_config=font_config)
+        pdf = document.write_pdf(**options)
+    return finish_pdf(pdf, metadata)
 
 
 def pdf_filename(metadata: Metadata) -> str:
