@@ -798,24 +798,28 @@ def to_pdf_image(metadata: Metadata) -> str | None:
     return f"data:{mime_type};base64,{b64encode(response.content).decode('ascii')}"
 
 
-def add_pdf_identity(pdf: bytes, metadata: Metadata) -> bytes:
-    """Add the doi and the licence to the pdf's XMP packet.
+def finish_pdf(pdf: bytes, metadata: Metadata) -> bytes:
+    """Everything the rendition still needs after WeasyPrint has written it.
 
-    Neither has a slot among the meta tags WeasyPrint reads, but both have a
-    standard XMP property - dc:identifier, and dc:rights with the licence url
-    as its xmpRights:WebStatement - so pikepdf writes them into the packet
-    WeasyPrint produced, rather than them becoming custom info keys, which
-    would put the pdf outside PDF/A. Writing them into that same packet, as
-    opposed to appending a second rdf:RDF block, is what makes them visible to
-    a reader that looks up properties by name rather than searching the xml.
+    The doi and the licence have no slot among the meta tags WeasyPrint
+    reads, but each has a standard XMP property - dc:identifier, and dc:rights
+    with the licence url as its xmpRights:WebStatement - so pikepdf writes
+    them into the packet WeasyPrint produced, rather than them becoming custom
+    info keys, which would put the pdf outside PDF/A. Writing them into that
+    same packet, as opposed to appending a second rdf:RDF block, is what makes
+    them visible to a reader that looks up properties by name.
+
+    The images then lose their /Interpolate key, which WeasyPrint sets on
+    every image it draws and PDF/A forbids (ISO 19005-3 6.2.8: present means
+    false). It only ever hinted that a viewer may smooth the image when it is
+    scaled up, so dropping it costs the rendition nothing and is what makes
+    veraPDF pass the file.
     """
+    import pikepdf
+
     identifier = presence(metadata.id)
     license_id = (metadata.license or {}).get("id", None)
     license_url = (metadata.license or {}).get("url", None)
-    if not identifier and not license_id and not license_url:
-        return pdf
-
-    import pikepdf
 
     output = BytesIO()
     with pikepdf.open(BytesIO(pdf)) as document:
@@ -834,6 +838,17 @@ def add_pdf_identity(pdf: bytes, metadata: Metadata) -> bytes:
                 xmp["dc:rights"] = license_id
             if license_url:
                 xmp["xmpRights:WebStatement"] = license_url
+
+        for obj in document.objects:
+            # every object, rather than every page's images: an image can also
+            # sit inside a form xobject
+            if (
+                isinstance(obj, pikepdf.Stream)
+                and obj.get("/Subtype", None) == pikepdf.Name.Image
+                and "/Interpolate" in obj
+            ):
+                del obj["/Interpolate"]
+
         document.save(output)
     return output.getvalue()
 
@@ -1001,7 +1016,7 @@ def write_pdf_rendition(
     document = weasyprint.HTML(
         string=to_pdf_html(metadata), base_url=str(PDF_RESOURCES), **fetcher
     ).render(stylesheets=[css], font_config=font_config)
-    return add_pdf_identity(document.write_pdf(**options), metadata)
+    return finish_pdf(document.write_pdf(**options), metadata)
 
 
 def pdf_filename(metadata: Metadata) -> str:

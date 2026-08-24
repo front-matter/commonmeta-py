@@ -1627,6 +1627,32 @@ def test_pdf_embeds_the_feature_image(render_pdf):
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_pdf_images_are_not_interpolated(render_pdf):
+    """PDF/A forbids /Interpolate on an image (ISO 19005-3 6.2.8).
+
+    WeasyPrint sets it on every image it draws, and veraPDF fails the file on
+    it, so the writer takes the key back out.
+    """
+    import pikepdf
+
+    subject = Metadata(
+        "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
+    )
+
+    pdf = render_pdf(subject)
+
+    with pikepdf.open(BytesIO(pdf)) as document:
+        images = [
+            obj
+            for obj in document.objects
+            if isinstance(obj, pikepdf.Stream)
+            and obj.get("/Subtype", None) == pikepdf.Name.Image
+        ]
+        assert images, "no image to check"
+        assert all("/Interpolate" not in image for image in images)
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
 def test_pdf_embeds_the_post_content(render_pdf):
     """rs:content_html travels inside the pdf as the source it was rendered from.
 
