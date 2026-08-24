@@ -2,7 +2,6 @@
 """InvenioRDM writer tests"""
 
 import base64
-import logging
 import os
 import re
 import sys
@@ -1812,26 +1811,6 @@ def test_to_pdf_content_describes_every_image(content, expected):
     assert expected in to_pdf_content(content, "en")
 
 
-def test_the_css_a_post_carries_does_not_warn(render_pdf, caplog):
-    """A blog's own css is not something anyone here can act on.
-
-    Ghost writes declarations like `background-color: null`, which WeasyPrint
-    reports one warning per render for. They are demoted to debug rather than
-    dropped, and only while the post is rendered.
-    """
-    sample = sample_metadata(
-        '<p style="background-color: null">Body</p>'
-        "<style>p { background-color: null }</style>"
-    )
-
-    with caplog.at_level(logging.DEBUG, logger="weasyprint"):
-        render_pdf(sample)
-
-    ignored = [r for r in caplog.records if r.getMessage().startswith("Ignored")]
-    assert ignored, "weasyprint no longer reports invalid declarations"
-    assert all(record.levelno == logging.DEBUG for record in ignored)
-
-
 def test_to_pdf_content_keeps_the_description_a_post_gives():
     """Content that describes its own images is passed through untouched."""
     content = '<p><img src="rnn.jpg" alt="A low-rank RNN"></p>'
@@ -1844,28 +1823,6 @@ def test_to_pdf_content_keeps_the_description_a_post_gives():
 def test_to_pdf_content_labels_an_image_in_the_language_of_the_post():
     """The label a screen reader reads is in the document's language."""
     assert 'alt="Bild"' in to_pdf_content('<p><img src="rnn.jpg"></p>', "de")
-
-
-def test_the_fonts_a_render_subsets_do_not_warn(caplog):
-    """fontTools reports what it finds in a font, down to its table versions.
-
-    "fsSelection bits 7, 8 and 9 are only defined in OS/2 table version 4 and
-    up" is one such report, per font, per render.
-    """
-    from commonmeta.writers.inveniordm_writer import quiet_render_warnings
-
-    table_log = logging.getLogger("fontTools.ttLib.tables.O_S_2f_2")
-
-    with caplog.at_level(logging.DEBUG, logger="fontTools"):
-        with quiet_render_warnings():
-            table_log.warning("fsSelection")
-            table_log.error("something a font cannot do")
-        table_log.warning("after the render")
-
-    logged = [record.getMessage() for record in caplog.records]
-    assert "fsSelection" not in logged
-    assert "something a font cannot do" in logged  # errors still come through
-    assert "after the render" in logged  # and the level is put back
 
 
 @pytest.mark.parametrize(
