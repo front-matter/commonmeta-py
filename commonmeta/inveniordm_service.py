@@ -166,11 +166,20 @@ class ServiceBackend:
         return hits[0].get("id") if hits else None
 
     def get_record_communities(self, record: dict) -> list | None:
-        """Return the communities a record belongs to."""
+        """Return the communities a record belongs to, as REST returns them.
+
+        The REST path returns ``hits.hits`` — community objects — and the caller
+        reads ``c.get("id")`` from each. ``parent.communities.ids`` is a list of
+        plain id strings, so it is wrapped rather than returned as it comes:
+        handing back strings raised ``'str' object has no attribute 'get'`` in
+        add_record_to_communities, and every record in the batch was recorded
+        with status "error" after having been published.
+        """
         data = self.read_record(record.get("id"))
         if data is None:
             return None
-        return ((data.get("parent") or {}).get("communities") or {}).get("ids")
+        ids = ((data.get("parent") or {}).get("communities") or {}).get("ids") or []
+        return [{"id": community_id} for community_id in ids]
 
     # -- writes -----------------------------------------------------------
 
@@ -261,16 +270,90 @@ class ServiceBackend:
         record["status"] = "doi_reserved"
         return record
 
+    def _file_status(self, record_id: str, key: str) -> str | None:
+        """Return a draft file's transfer status, or None when it has none."""
+        try:
+            entry = self._records.draft_files.read_file_metadata(
+                self._identity, record_id, key
+            ).to_dict()
+        except Exception:
+            return None
+        return entry.get("status")
+
+    def _drop_file(self, record_id: str, key: str) -> bool:
+        """Remove a draft file entry. Returns whether it is gone."""
+        try:
+            self._records.draft_files.delete_file(self._identity, record_id, key)
+            return True
+        except Exception as e:
+            log.warning(
+                f"Could not remove file {key} from record {record_id}: {str(e)}",
+                extra={"record_id": record_id},
+            )
+            return False
+
+    def _mark_metadata_only(self, record_id: str) -> None:
+        """Turn files off on a draft that has none left.
+
+        Publishing checks two things, and fixing one exposes the other: a draft
+        with files enabled and no entries is rejected with "Missing uploaded
+        files. To disable files for this record please mark it as
+        metadata-only." So a draft that lost its only file has to say it is
+        metadata-only, or it is no more publishable than before.
+
+        Only ever called when no entries remain, which keeps it away from the
+        case that matters: an edit of a published record carries that record's
+        files, and disabling files there would strip them on publish.
+        """
+        try:
+            files = self._records.draft_files.list_files(
+                self._identity, record_id
+            ).to_dict()
+            if files.get("entries"):
+                return
+            draft = self._records.read_draft(self._identity, record_id).to_dict()
+            draft.setdefault("files", {})["enabled"] = False
+            self._records.update_draft(self._identity, record_id, data=draft)
+        except Exception as e:
+            log.warning(
+                f"Could not mark record {record_id} as metadata-only: {str(e)}",
+                extra={"record_id": record_id},
+            )
+
     def upload_file(self, record: dict, key: str, content: bytes) -> dict:
         """Attach a file to a draft: register the key, send bytes, commit.
 
-        The same three steps the REST path takes, for the same reason — a draft
-        of an already published record has its files locked, so a refusal is
-        logged and the record is published without the file rather than not
-        published at all.
+        Re-runnable, which the three calls alone are not. ``init_files`` refuses
+        a key the draft already carries, and a draft can carry one from an
+        attempt that registered the key and then failed before committing. That
+        entry never completes, so the 400 repeats on every later run and
+        ``publish`` rejects the draft for good:
+
+            400 Bad Request: File with key <key> already exists.
+            ValidationError: One or more files have not completed their
+            transfer, please wait.
+
+        A key that is already there and completed is left alone — the file is
+        attached, which is all the caller wanted. An incomplete one is dropped
+        and re-uploaded.
+
+        Failure leaves no incomplete entry behind, because that is what blocks
+        the publish. Returning without the file is the intended outcome (the
+        draft of a published record has its files locked, and the REST path logs
+        and publishes anyway); returning with a half-registered one is not.
         """
         files = self._records.draft_files
         identity, record_id = self._identity, record["id"]
+
+        status = self._file_status(record_id, key)
+        if status == "completed":
+            record["file"] = key
+            return record
+        if status is not None and not self._drop_file(record_id, key):
+            # It could not be removed, so it will block the publish whatever
+            # happens next. Nothing to gain by uploading over it.
+            return record
+
         try:
             files.init_files(identity, record_id, [{"key": key}])
             files.set_file_content(identity, record_id, key, io.BytesIO(content))
@@ -280,6 +363,9 @@ class ServiceBackend:
                 f"Could not attach {key} to record {record_id}: {str(e)}",
                 extra={"record_id": record_id},
             )
+            if self._file_status(record_id, key) != "completed":
+                self._drop_file(record_id, key)
+                self._mark_metadata_only(record_id)
             return record
         record["file"] = key
         return record
