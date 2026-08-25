@@ -126,12 +126,8 @@ def test_write_output_wrong_extension():
 
 
 @pytest.mark.vcr
-def test_pdf_rendition_of_a_post_read_from_inveniordm(render_pdf):
-    """The whole way through: a doi, the record behind it, the pdf it renders to.
-
-    https://doi.org/10.54900/xn57k-gyw73 is a post with three authors who all
-    have an orcid, tags of its own, a feature image and 34kB of html.
-    """
+def test_pdf_rendition_of_a_post_read_from_inveniordm(write_pdf):
+    """Generate a PDF from InvenioRDM record."""
     record_id = search_by_doi("10.54900/xn57k-gyw73", "rogue-scholar.org", None)
     subject = Metadata(
         f"https://rogue-scholar.org/api/records/{record_id}", via="inveniordm"
@@ -141,7 +137,7 @@ def test_pdf_rendition_of_a_post_read_from_inveniordm(render_pdf):
     assert len(subject.content) > 30000
 
     html = to_pdf_html(subject)
-    pdf = render_pdf(subject)
+    pdf = write_pdf(subject)
     metadata = read_pdf_metadata(pdf)
 
     # the front matter the record was read for

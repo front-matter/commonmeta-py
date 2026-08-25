@@ -163,8 +163,8 @@ def feature_image():
 
 
 @pytest.fixture
-def render_pdf(tmp_path, feature_image):
-    """Render a record's pdf rendition through the writer, and keep the file.
+def write_pdf(tmp_path, feature_image):
+    """Write a record's pdf rendition, and keep the file.
 
     Renders offline: the feature image comes from the `feature_image` fixture
     and the images the post itself links are refused. Returns the pdf bytes,
