@@ -8,16 +8,20 @@ from click.testing import CliRunner
 
 from commonmeta.backend import INSTALL_HINT, BackendError
 from commonmeta.cli import (
+    build,
     convert,
     decode,
     encode,
+    enrich,
+    export,
     import_,
-    list,
+    list_,
     match,
     migrate,
-    package,
     put,
+    search,
     settings,
+    stats,
     validate,
 )
 
@@ -87,14 +91,26 @@ def test_convert_datacite():
     assert "https://elifesciences.org/articles/01567" in result.output
 
 
-@pytest.mark.vcr
-def test_list():
-    """Test commonmeta list"""
-    runner = CliRunner()
+def test_list_is_the_rust_one(monkeypatch):
+    """list works on the local store, and belongs to commonmeta-rs with it.
+
+    Its filters - by member, client, year, orcid, ror, cited-by, the has-* set
+    - are parsed there rather than described twice, so the input and the flags
+    go over verbatim.
+    """
+    calls = []
+    monkeypatch.setattr(
+        "commonmeta.cli.require_backend",
+        lambda: SimpleNamespace(run_cli=calls.append),
+    )
     string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
-    result = runner.invoke(list, [string, "--from", "crossref"])
+
+    result = CliRunner().invoke(list_, [string, "--from", "crossref", "--has-orcid"])
+
     assert result.exit_code == 0
-    # assert 2 == len(result.output)
+    assert calls == [
+        ["commonmeta", "list", string, "--from", "crossref", "--has-orcid"]
+    ]
 
 
 def test_encode():
@@ -118,12 +134,17 @@ def test_decode():
 @pytest.mark.parametrize(
     "command,name",
     [
+        (build, "build"),
+        (enrich, "enrich"),
+        (export, "export"),
         (import_, "import"),
+        (list_, "list"),
         (match, "match"),
         (migrate, "migrate"),
+        (search, "search"),
         (settings, "settings"),
+        (stats, "stats"),
         (validate, "validate"),
-        (package, "package"),
     ],
     ids=lambda c: c if isinstance(c, str) else c.name,
 )
@@ -218,20 +239,25 @@ def test_convert_no_network_allows_local_file():
     assert "@misc{10.5281/zenodo.7752775" in result.output
 
 
-def test_list_sample_option_present():
-    """list gained the --sample flag (replacing the removed sample command)."""
-    runner = CliRunner()
-    help_text = runner.invoke(list, ["--help"]).output
-    assert "--sample" in help_text
-    assert "--number" in help_text
+def test_the_cli_is_the_python_one(monkeypatch):
+    """The entry point runs these commands rather than handing them all over.
 
+    convert, put, push, encode and decode are implemented here, so they work
+    from a plain install with no native extension; the store commands are
+    forwarded, and that is the whole of what commonmeta-rs is asked to do.
+    """
+    from commonmeta import cli as cli_module
 
-def test_list_sample_no_network_rejects():
-    """list --sample needs an API, so --no-network fails fast."""
-    runner = CliRunner()
-    result = runner.invoke(list, ["--sample", "--from", "crossref", "--no-network"])
-    assert result.exit_code == 1
-    assert "requires network access" in result.output
+    ran = []
+    monkeypatch.setattr(cli_module, "cli", lambda: ran.append("python"))
+    monkeypatch.setattr(
+        "commonmeta.cli.require_backend",
+        lambda: pytest.fail("the entry point handed the command to the backend"),
+    )
+
+    cli_module.main()
+
+    assert ran == ["python"]
 
 
 @pytest.mark.vcr

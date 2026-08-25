@@ -65,14 +65,26 @@ def test_backend_commands_registered_only_when_supported():
     """The CLI lists the backend commands only where they could run."""
     from commonmeta.cli import cli
 
-    backend_commands = {"import", "match", "migrate", "settings", "validate", "package"}
+    backend_commands = {
+        "build",
+        "enrich",
+        "export",
+        "import",
+        "list",
+        "match",
+        "migrate",
+        "search",
+        "settings",
+        "stats",
+        "validate",
+    }
     listed = set(cli.commands)
     if BACKEND_PYTHON_SUPPORTED:
         assert backend_commands <= listed
     else:
         assert not (backend_commands & listed)
-    # the native commands are there either way
-    assert {"convert", "decode", "encode", "list"} <= listed
+    # a record is converted and deposited without a native extension either way
+    assert {"convert", "put", "push", "encode", "decode"} <= listed
 
 
 @needs_backend
@@ -346,7 +358,9 @@ def test_fetch_is_written_to_the_cache_store(monkeypatch, tmp_path):
         "get_crossref",
         lambda pid, **kwargs: pytest.fail("fetched again instead of reading the cache"),
     )
-    assert Metadata("https://doi.org/10.5555/cached", no_network=True).via == "commonmeta"
+    assert (
+        Metadata("https://doi.org/10.5555/cached", no_network=True).via == "commonmeta"
+    )
 
 
 @needs_backend
@@ -379,7 +393,9 @@ def test_orcid_fetch_is_cached_as_xml(monkeypatch, tmp_path):
         "get_orcid_xml",
         lambda pid, **kwargs: pytest.fail("fetched again instead of reading the cache"),
     )
-    assert Metadata(f"https://orcid.org/{orcid}", no_network=True).family_name == "Neylon"
+    assert (
+        Metadata(f"https://orcid.org/{orcid}", no_network=True).family_name == "Neylon"
+    )
 
 
 @needs_backend
@@ -389,7 +405,9 @@ def test_an_unwritable_cache_does_not_fail_the_read(monkeypatch, tmp_path):
     from commonmeta import Metadata
 
     monkeypatch.setenv("COMMONMETA_DB", str(tmp_path / "absent.sqlite3"))
-    monkeypatch.setenv("CACHE_DB", str(tmp_path / "no-such-directory" / "cache.sqlite3"))
+    monkeypatch.setenv(
+        "CACHE_DB", str(tmp_path / "no-such-directory" / "cache.sqlite3")
+    )
     monkeypatch.setattr(
         metadata_module, "get_crossref", lambda pid, **kwargs: dict(_CROSSREF_MESSAGE)
     )

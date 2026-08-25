@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 import importlib.metadata
-import re
 import time
-from os import path
 
 import click
 import orjson as json
@@ -13,16 +11,10 @@ from commonmeta.api_utils import update_ghost_post_via_api
 from commonmeta.backend import (
     BACKEND_PYTHON_SUPPORTED,
     BackendError,
-    backend_available,
     require_backend,
 )
 from commonmeta.doi_utils import decode_doi, encode_doi, validate_prefix
 from commonmeta.io_utils import write_pdf_rendition
-from commonmeta.readers.crossref_reader import get_random_crossref_id
-from commonmeta.readers.datacite_reader import get_random_datacite_id
-from commonmeta.readers.openalex_reader import get_random_openalex_id
-from commonmeta.readers.vraix_reader import get_vraix_list
-from commonmeta.utils import normalize_id
 
 
 @click.group()
@@ -35,40 +27,15 @@ def cli(show_errors):
 def main() -> None:
     """Console-script entry point for the ``commonmeta`` command.
 
-    With the Rust backend extra installed, delegate the whole CLI to
-    commonmeta-rs via ``run_cli``, so commonmeta-py exposes the full commonmeta-rs
-    command surface: every subcommand and option, ``--version``, the array
-    (commonmeta JSON) ``convert`` output with a person's works, the local SQLite
-    store, bulk ``import``, and so on. Without the backend, fall back to the
-    pure-Python Click CLI below - a subset that needs no native extension, which
-    is what a plain ``pip install commonmeta-py`` (e.g. InvenioRDM) gets.
+    The commands split by what they work on. Converting and depositing a record
+    - convert, put, push, encode, decode - are implemented here, so they work
+    from a plain ``pip install commonmeta-py`` (e.g. InvenioRDM) with no native
+    extension. Everything that works on the local commonmeta database - list,
+    import, build, enrich, export, search, stats, match, migrate, settings,
+    validate - belongs to commonmeta-rs and is forwarded to it verbatim, so its
+    flags are documented and parsed in one place rather than described twice.
     """
-    import sys
-
-    if not backend_available():
-        cli()
-        return
-
-    # run_cli parses with clap: --help/--version/usage errors print and exit the
-    # process themselves; application failures come back as an exception, which
-    # we report on stderr with a non-zero exit like any CLI.
-    try:
-        require_backend().run_cli(["commonmeta", *sys.argv[1:]])
-    except Exception as error:  # noqa: BLE001 - surface any backend failure cleanly
-        click.echo(str(error), err=True)
-        sys.exit(1)
-
-
-def format_from_file(file: str) -> str:
-    """Infer the --to output format from a --file extension."""
-    if file.endswith(".parquet") or file.endswith(".parquet.zst"):
-        return "parquet"
-    elif file.endswith(".zip"):
-        return "zip"
-    elif file.endswith(".tgz") or file.endswith(".tar.gz"):
-        return "tgz"
-    else:
-        return "commonmeta"
+    cli()
 
 
 # Output formats that serialize to JSON and can be pretty-printed.
@@ -118,30 +85,6 @@ def write_pdf(metadata, output: str | None) -> None:
             "and Python 3.10 or newer; the log says which of the two it was."
         )
     click.echo(f"Wrote {output} ({len(pdf)} bytes)")
-
-
-def require_network(no_network: bool, action: str) -> None:
-    """Reject an operation that needs the network when --no-network is set.
-
-    Mirrors commonmeta-rs: operations on local files always succeed, but any
-    step that would make an outbound request fails fast with a clear message.
-    """
-    if no_network:
-        raise click.ClickException(
-            f"{action} requires network access, but --no-network is set"
-        )
-
-
-def input_requires_network(value) -> bool:
-    """A DOI/URL/identifier input must be fetched; a local file or inline
-    string is read offline.
-
-    Used by the ``list`` command, which reads through MetadataList and has no
-    local-store fallback. The ``convert`` command instead enforces --no-network
-    at fetch time (see Metadata), because its DOI/URL/ROR/ORCID inputs can be
-    served offline from the Rust backend's SQLite store.
-    """
-    return isinstance(value, str) and normalize_id(value) is not None
 
 
 @cli.command()
@@ -287,132 +230,6 @@ def put(
 
 
 @cli.command()
-@click.argument("string", type=str, required=False)
-@click.option("--from", "--via", "-f", "via", type=str)
-@click.option("--to", "-t", type=str, default=None)
-@click.option("--style", "-s", type=str, default="apa")
-@click.option("--locale", "-l", type=str, default="en-US")
-@click.option("--prefix", type=str)
-@click.option(
-    "--number",
-    "-n",
-    type=int,
-    default=10,
-    help="Number of records to return with --sample",
-)
-@click.option(
-    "--type",
-    "item_type",
-    type=str,
-    help="Work type filter for --sample --from crossref",
-)
-@click.option(
-    "--sample",
-    "sample",
-    is_flag=True,
-    default=False,
-    help="Return random works from --from (crossref, datacite, or openalex)",
-)
-@click.option("--depositor", type=str)
-@click.option("--email", type=str)
-@click.option("--registrant", type=str)
-@click.option(
-    "--date",
-    type=str,
-    help="VRAIX dump date, YYYY-MM-DD. Reads the --from (crossref/datacite) dump.",
-)
-@click.option(
-    "--input-path",
-    type=str,
-    help="Local VRAIX SQLite dump, read instead of downloading.",
-)
-@click.option("--file", type=str)
-@click.option(
-    "--no-network",
-    is_flag=True,
-    default=False,
-    help="Disable outbound network requests; fails if the operation needs one",
-)
-@click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
-@click.option("--show-timer/--no-timer", type=bool, show_default=True, default=False)
-def list(
-    string,
-    via,
-    to,
-    style,
-    locale,
-    prefix,
-    number,
-    item_type,
-    sample,
-    depositor,
-    email,
-    registrant,
-    date,
-    input_path,
-    file,
-    no_network,
-    show_errors,
-    show_timer,
-):
-    start = time.time()
-    list_kwargs = dict(
-        file=file,
-        depositor=depositor,
-        email=email,
-        registrant=registrant,
-        prefix=prefix,
-    )
-    if sample:
-        # random works from an API, e.g. `list --sample --from crossref -n 5`
-        require_network(no_network, "--sample")
-        provider = via or "crossref"
-        if provider == "crossref":
-            items = get_random_crossref_id(number, prefix=prefix, _type=item_type)
-        elif provider == "datacite":
-            items = get_random_datacite_id(number)
-        elif provider == "openalex":
-            items = get_random_openalex_id(number)
-        else:
-            raise click.ClickException(
-                f"--sample is only supported for --from crossref, datacite, "
-                f"or openalex (got {provider!r})"
-            )
-        metadata_list = MetadataList({"items": items}, via=provider, **list_kwargs)
-    # VRAIX daily dump: `list --from crossref --date … ` (the --from value is the
-    # source), matching commonmeta-rs. Also triggered by a local --input-path.
-    elif date or input_path:
-        if not input_path:
-            require_network(no_network, "downloading a VRAIX dump")
-        items = get_vraix_list(via, date, input_path=input_path)
-        metadata_list = MetadataList({"items": items}, via="vraix", **list_kwargs)
-    else:
-        if input_requires_network(string):
-            require_network(no_network, "fetching the input record")
-        metadata_list = MetadataList(string, via=via, **list_kwargs)
-    end = time.time()
-    runtime = end - start
-    if show_errors and not metadata_list.is_valid:
-        raise click.ClickException(str(metadata_list.errors))
-    if to is None:
-        to = format_from_file(file) if file else "commonmeta"
-    write_kwargs = {"style": style, "locale": locale}
-    if to in ("zip", "tgz") and file:
-        write_kwargs["base_name"] = re.sub(
-            r"\.(zip|tgz|tar\.gz)$", "", path.basename(file)
-        )
-    if file:
-        metadata_list.write(to=to, **write_kwargs)
-    else:
-        echo_output(metadata_list.write(to=to, **write_kwargs), to)
-
-    if show_errors and len(metadata_list.write_errors) > 0:
-        raise click.ClickException(str(metadata_list.write_errors))
-    if show_timer:
-        click.echo(f"Runtime: {runtime:.2f} seconds")
-
-
-@cli.command()
 @click.argument("string", type=str, required=True)
 @click.option("--from", "--via", "-f", "via", type=str)
 @click.option("--to", "-t", type=str, default="commonmeta")
@@ -554,19 +371,36 @@ def _backend_command(name: str, help_text: str) -> click.Command:
 # Docstrings are deliberately short: `--help` reaches the Rust CLI, which
 # documents each command's flags in full. These only describe the command for
 # `commonmeta --help`.
+build = _backend_command(
+    "build", "Import records and then enrich the local commonmeta database."
+)
+enrich = _backend_command(
+    "enrich",
+    "Enrich the local commonmeta database from Crossref, DataCite, ROR, ORCID.",
+)
+export = _backend_command("export", "Write a VRAIX SQLite dump as a Parquet file.")
 import_ = _backend_command(
     "import", "Import scholarly metadata into the local commonmeta database."
 )
+list_ = _backend_command(
+    "list", "Convert or filter lists of scholarly metadata, from a file or the store."
+)
 match = _backend_command("match", "Match a string to an identifier.")
 migrate = _backend_command("migrate", "Apply any pending database schema migrations.")
+search = _backend_command(
+    "search",
+    "Search the local commonmeta database by name, identifier, or affiliation.",
+)
 settings = _backend_command(
     "settings", "Show key/value settings stored in the local SQLite database."
+)
+stats = _backend_command(
+    "stats", "Show record counts for the tables of the local SQLite database."
 )
 validate = _backend_command(
     "validate",
     "Validate records in the local commonmeta database against the v1.0 schema.",
 )
-package = _backend_command("package", "Write a VRAIX SQLite dump as a Parquet file.")
 
 # Registered only where the backend can exist. commonmeta-rs requires Python
 # 3.14 (abi3-py314), so below that these commands could never work: listing them
@@ -575,7 +409,19 @@ package = _backend_command("package", "Write a VRAIX SQLite dump as a Parquet fi
 # how to install it. The commands are constructed unconditionally so importing
 # them from this module works on any interpreter.
 if BACKEND_PYTHON_SUPPORTED:
-    for _command in (import_, match, migrate, settings, validate, package):
+    for _command in (
+        build,
+        enrich,
+        export,
+        import_,
+        list_,
+        match,
+        migrate,
+        search,
+        settings,
+        stats,
+        validate,
+    ):
         cli.add_command(_command)
 
 
