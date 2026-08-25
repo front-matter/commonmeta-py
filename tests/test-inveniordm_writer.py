@@ -5,12 +5,11 @@ import re
 from io import BytesIO
 from pathlib import Path
 from types import SimpleNamespace
-from typing import Optional
 from unittest.mock import Mock, patch
 
 import orjson as json
 import pytest
-from conftest import image_response, offline_url_fetcher
+from conftest import image_response, offline_url_fetcher, sample_metadata
 from requests.exceptions import RequestException
 
 import commonmeta
@@ -27,24 +26,6 @@ from commonmeta.io_utils import (
 from commonmeta.writers.inveniordm_writer import record_matches, upsert_record
 
 PDF_RESOURCES = Path(commonmeta.__file__).parent / "resources" / "pdf"
-
-
-def sample_metadata(content: Optional[str], title: str = "Font sample"):
-    """A stand-in for Metadata carrying only what the pdf render reads."""
-    return SimpleNamespace(
-        id="https://doi.org/10.53731/kdqkf-nf052",
-        title=title,
-        content=content,
-        contributors=None,
-        date_published=None,
-        date_updated=None,
-        description=None,
-        image=None,
-        language=None,
-        license=None,
-        container=None,
-        subjects=None,
-    )
 
 
 def assert_pdf_metadata(pdf: bytes, subject: Metadata) -> dict:

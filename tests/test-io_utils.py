@@ -1,6 +1,7 @@
 # pylint: disable=invalid-name
 """Test io_utils"""
 
+import io
 import logging
 import os
 from base64 import b64encode
@@ -464,3 +465,56 @@ def test_the_pdf_says_one_thing_about_its_keywords(write_pdf_file):
         "Academic Publishing and Open Access (Topic)",
         "Original Research",
     ]
+
+
+@pytest.mark.parametrize(
+    "text, expected",
+    [
+        # the emoji was the separator, and the gap it left goes with it
+        ("AIMOS 🔸 Mindless 🔸 Top 10", "AIMOS Mindless Top 10"),
+        ("Hello🎉world", "Helloworld"),
+        # a run goes as one, and the space it stood in stays a single space,
+        # which html collapses wherever it lands
+        ("Launch day 🚀🚀", "Launch day "),
+        # a flag is a pair of regional indicators, a keycap a digit and a mark
+        ("Reading in 🇩🇪 today", "Reading in today"),
+        # what a title says with punctuation is not an emoji
+        ("Café — naïve “quotes”, 50% ± 2, α→β", "Café — naïve “quotes”, 50% ± 2, α→β"),
+    ],
+)
+def test_strip_emoji(text, expected):
+    """A page drops what it would have to draw from a colour font."""
+    from commonmeta.io_utils import strip_emoji
+
+    assert strip_emoji(text) == expected
+
+
+def test_the_page_drops_an_emoji_the_metadata_keeps(write_pdf_file):
+    """A colour font fails PDF/A, and a pdf's own metadata is text, not glyphs.
+
+    https://rogue-scholar.org/records/ywetc-na038 is a post whose title uses
+    emoji as separators; embedding Apple Color Emoji for them cost the
+    rendition its conformance (ISO 19005-3 6.2.11.5, glyph widths).
+    """
+    import pikepdf
+    from conftest import sample_metadata
+
+    sample = sample_metadata(
+        "<p>Body 🎉</p>", title="AIMOS Presentation 🔸 Mindless Transparency"
+    )
+
+    pdf = write_pdf_file(sample)
+
+    with pikepdf.open(io.BytesIO(pdf)) as document:
+        fonts = {
+            str(obj.BaseFont)
+            for obj in document.objects
+            if isinstance(obj, pikepdf.Dictionary)
+            and obj.get("/Type") == pikepdf.Name.Font
+            and "/BaseFont" in obj
+        }
+    assert fonts and all("Emoji" not in font for font in fonts)
+    # the page reads without them, the metadata reads with them
+    assert read_pdf_metadata(pdf)["title"] == (
+        "AIMOS Presentation 🔸 Mindless Transparency"
+    )

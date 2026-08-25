@@ -10,6 +10,7 @@ import gzip
 import io
 import logging
 import os
+import re
 import sys
 import zipfile
 from base64 import b64encode
@@ -192,6 +193,17 @@ SUBJECT_LABELS = (
 # about a post - "Languages and literature" under a post about connectionism.
 FOS_SUBJECT_PREFIX = "http://www.oecd.org/science/inno/38235147.pdf?"
 
+# The characters a page drops rather than draw from a colour font: the
+# pictograph blocks, the dingbats and miscellaneous symbols that have an emoji
+# presentation, and the joiners and selectors that build the rest out of them.
+# A run of them takes the spaces around it with it, so a title that used one
+# as a separator does not keep the gap where it stood.
+EMOJI = re.compile(
+    "[ \t]*"
+    "[\U0001f000-\U0001faff\u2600-\u27bf\u2b00-\u2bff\ufe0f\u20e3\u200d]+"
+    "[ \t]*"
+)
+
 # Front matter headings, in the languages rogue-scholar-api translated them to.
 PDF_TITLES = {
     "published": {
@@ -289,7 +301,7 @@ def to_pdf_keywords(metadata: Metadata) -> list:
     """The keywords for the title page: the subjects a reader can use.
 
     Each classification says what kind it is, so a reader can tell it from a
-    tag the post gave itself; the field of science is left out altogether.
+    tag the post gave itself.
     """
 
     def to_keyword(subject: dict) -> str | None:
@@ -310,6 +322,24 @@ def to_pdf_keywords(metadata: Metadata) -> list:
             for keyword in (to_keyword(s) for s in wrap(metadata.subjects))
             if keyword
         ]
+    )
+
+
+def strip_emoji(text: str) -> str:
+    """Text with its emoji removed, for the page rather than the metadata.
+
+    An emoji is drawn from whatever colour font the machine has - Apple Color
+    Emoji on a mac - and the glyph widths such a font declares do not match
+    the ones WeasyPrint writes for it, which fails PDF/A (ISO 19005-3
+    6.2.11.5) and costs the rendition the archival conformance it is made
+    for. A title reading "AIMOS Presentation 🔸 Mindless Transparency" loses
+    its diamonds on the page and keeps them in the pdf's own metadata, where
+    they are text rather than something to draw.
+    """
+    # a separator becomes the one space it separated with, and an emoji that
+    # sat against a word leaves nothing behind
+    return EMOJI.sub(
+        lambda match: " " if match.group() != match.group().strip() else "", text
     )
 
 
@@ -609,6 +639,10 @@ def to_pdf_html(metadata: Metadata) -> str:
         label = PDF_TITLES["copyright"].get(language, PDF_TITLES["copyright"]["en"])
         front_matter.append(f'<div class="rights"><h4>{label}</h4>{rights}</div>')
 
+    body = (
+        f'<section class="front-matter">{"".join(front_matter)}</section>'
+        f"{to_pdf_content(metadata.content, language)}"
+    )
     head = [
         "<meta charset='utf-8'>",
         f"<title>{escape(to_pdf_text(metadata.title))}</title>",
@@ -616,8 +650,8 @@ def to_pdf_html(metadata: Metadata) -> str:
     ]
     return (
         f"<html lang='{escape(language)}'><head>{''.join(head)}</head>"
-        f'<body><section class="front-matter">{"".join(front_matter)}</section>'
-        f"{to_pdf_content(metadata.content, language)}</body></html>"
+        # the head keeps its emoji, the page does not: see strip_emoji
+        f"<body>{strip_emoji(body)}</body></html>"
     )
 
 

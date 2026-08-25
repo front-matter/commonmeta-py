@@ -4,6 +4,7 @@ import base64
 import os
 import sys
 from types import SimpleNamespace
+from typing import Optional
 from unittest.mock import Mock, patch
 from urllib.parse import unquote_to_bytes, urlparse
 from urllib.request import url2pathname
@@ -127,6 +128,24 @@ def image_response(content: bytes = PNG_PIXEL, mime_type: str = "image/png"):
         content=content,
         headers={"Content-Type": mime_type},
         raise_for_status=lambda: None,
+    )
+
+
+def sample_metadata(content: Optional[str], title: str = "Font sample"):
+    """A stand-in for Metadata carrying only what the pdf render reads."""
+    return SimpleNamespace(
+        id="https://doi.org/10.53731/kdqkf-nf052",
+        title=title,
+        content=content,
+        contributors=None,
+        date_published=None,
+        date_updated=None,
+        description=None,
+        image=None,
+        language=None,
+        license=None,
+        container=None,
+        subjects=None,
     )
 
 
