@@ -2,6 +2,7 @@
 """Test io_utils"""
 
 import logging
+import os
 from base64 import b64encode
 from os import path, remove
 from types import SimpleNamespace
@@ -404,3 +405,38 @@ def test_write_pdf_refuses_a_name_it_does_not_write(
 
     with pytest.raises(ValueError, match="File format not supported"):
         write_pdf(Meta(), str(tmp_path / "record.json"))
+
+
+def test_find_pango_points_dyld_at_homebrew(monkeypatch):
+    """A mac finds pango where brew put it, without the shell saying so.
+
+    dyld looks for the libraries WeasyPrint dlopens by leaf name only in
+    DYLD_FALLBACK_LIBRARY_PATH, which lists neither homebrew directory - and
+    SIP strips the variable from a protected binary, so a shell profile cannot
+    be relied on to carry it either.
+    """
+    from commonmeta.io_utils import DYLD_DEFAULT_LIB_PATHS, find_pango
+
+    monkeypatch.setattr("sys.platform", "darwin")
+    monkeypatch.setattr("os.path.isdir", lambda p: p == "/opt/homebrew/lib")
+    monkeypatch.setenv("DYLD_FALLBACK_LIBRARY_PATH", "/opt/mine/lib")
+
+    find_pango()
+
+    paths = os.environ["DYLD_FALLBACK_LIBRARY_PATH"].split(os.pathsep)
+    assert paths[0] == "/opt/mine/lib"  # what was already there stays, and first
+    assert "/opt/homebrew/lib" in paths
+    # the defaults setting the variable would otherwise have dropped
+    assert set(DYLD_DEFAULT_LIB_PATHS) <= set(paths)
+
+
+def test_find_pango_leaves_other_platforms_alone(monkeypatch):
+    """Everywhere else the loader finds the libraries on its own."""
+    from commonmeta.io_utils import find_pango
+
+    monkeypatch.setattr("sys.platform", "linux")
+    monkeypatch.delenv("DYLD_FALLBACK_LIBRARY_PATH", raising=False)
+
+    find_pango()
+
+    assert "DYLD_FALLBACK_LIBRARY_PATH" not in os.environ

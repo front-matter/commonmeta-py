@@ -9,6 +9,8 @@ import atexit
 import gzip
 import io
 import logging
+import os
+import sys
 import zipfile
 from base64 import b64encode
 from datetime import date as date_type
@@ -607,6 +609,36 @@ def to_pdf_html(metadata: Metadata) -> str:
     )
 
 
+#: Where a mac keeps the libraries `brew install pango` puts there, arm64
+#: first. dyld searches neither unless DYLD_FALLBACK_LIBRARY_PATH says so.
+HOMEBREW_LIB_PATHS = ("/opt/homebrew/lib", "/usr/local/lib")
+#: What dyld falls back to when the variable is unset, which setting it drops.
+DYLD_DEFAULT_LIB_PATHS = ("~/lib", "/usr/local/lib", "/lib", "/usr/lib")
+
+
+def find_pango() -> None:
+    """Let dyld find a homebrew pango, on the mac where one is installed.
+
+    WeasyPrint dlopens pango, cairo and glib by leaf name, and on macOS dyld
+    looks for those only in DYLD_FALLBACK_LIBRARY_PATH - which does not list
+    the homebrew directories, and which SIP strips from the environment of a
+    protected binary, so exporting it in a shell profile does not reliably
+    survive either. Setting it here does, because ctypes reads it when the
+    library is actually dlopened.
+
+    Nothing is set on any other platform, where the loader finds the libraries
+    on its own, and an existing value is added to rather than replaced.
+    """
+    if sys.platform != "darwin":
+        return
+    paths = os.environ.get("DYLD_FALLBACK_LIBRARY_PATH", "").split(os.pathsep)
+    paths += [p for p in HOMEBREW_LIB_PATHS if os.path.isdir(p)]
+    paths += list(DYLD_DEFAULT_LIB_PATHS)
+    os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = os.pathsep.join(
+        dict.fromkeys(p for p in paths if p)
+    )
+
+
 def load_weasyprint():
     """Import WeasyPrint, None when its native stack is missing.
 
@@ -615,6 +647,7 @@ def load_weasyprint():
     system libraries the import raises OSError rather than ImportError, and
     only the pdf path should pay for that.
     """
+    find_pango()
     try:
         import weasyprint
 

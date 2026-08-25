@@ -30,9 +30,10 @@ commonmeta-py`.
 Writing a pdf rendition of a post (the `write_pdf` option of the InvenioRDM
 writer) goes through WeasyPrint, which needs pango at the system level:
 `brew install pango` on macOS, `apt install libpango-1.0-0 libpangoft2-1.0-0`
-on Debian and Ubuntu. Everything else works without it. On macOS, dyld looks
-for those libraries in `DYLD_FALLBACK_LIBRARY_PATH`, so a homebrew install
-needs `export DYLD_FALLBACK_LIBRARY_PATH=$(brew --prefix)/lib`.
+on Debian and Ubuntu. Everything else works without it. A homebrew install
+needs nothing further: dyld searches `DYLD_FALLBACK_LIBRARY_PATH`, which
+lists neither homebrew directory, so commonmeta-py adds them itself before
+loading WeasyPrint.
 
 The renditions are PDF/A-3a: archival, tagged, so a screen reader reads their
 structure rather than placed glyphs, and carrying the post's html as an

@@ -10,7 +10,7 @@ from urllib.request import url2pathname
 
 import pytest
 
-from commonmeta.io_utils import write_pdf_rendition
+from commonmeta.io_utils import load_weasyprint, write_pdf_rendition
 
 # Make sibling helper modules (e.g. conformance_common) importable from the
 # test-*.py files regardless of pytest's import mode.
@@ -76,29 +76,14 @@ def vcr_config():
 
 
 def require_weasyprint():
-    """Import WeasyPrint, skipping the caller when its native stack is missing.
+    """Import WeasyPrint the way the renderer does, skipping where it cannot.
 
-    WeasyPrint binds pango, cairo and glib through cffi at import time, so a
-    machine without those system libraries raises OSError rather than
-    ImportError. On macOS they come from `brew install pango`, which puts them
-    somewhere dyld searches only through DYLD_FALLBACK_LIBRARY_PATH - and SIP
-    drops that variable when a protected binary is launched, so exporting it in
-    a shell profile does not reliably survive. Setting it here does, because
-    ctypes reads it when the library is actually dlopened. The writer imports
-    WeasyPrint the same way, and this runs first.
+    `load_weasyprint` finds a homebrew pango on the way, which is what makes
+    the pdf tests run on a mac without the shell exporting anything.
     """
-    if sys.platform == "darwin":
-        paths = os.environ.get("DYLD_FALLBACK_LIBRARY_PATH", "").split(os.pathsep)
-        paths += [
-            p for p in ("/opt/homebrew/lib", "/usr/local/lib") if os.path.isdir(p)
-        ]
-        os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = os.pathsep.join(
-            dict.fromkeys(p for p in paths if p)
-        )
-    try:
-        import weasyprint
-    except (ImportError, OSError) as error:
-        pytest.skip(f"weasyprint needs the pango libraries: {error}")
+    weasyprint = load_weasyprint()
+    if weasyprint is None:
+        pytest.skip("weasyprint needs the pango libraries")
     return weasyprint
 
 
