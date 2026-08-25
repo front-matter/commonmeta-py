@@ -26,6 +26,7 @@ from commonmeta.writers.inveniordm_writer import (
     record_matches,
     to_pdf_content,
     to_pdf_html,
+    to_pdf_text,
     upsert_record,
     write_pdf_rendition,
 )
@@ -157,11 +158,13 @@ def assert_pdf_metadata(pdf: bytes, subject: Metadata) -> dict:
     ) or (authors[0].get("organization") or {}).get("name")
 
     assert metadata["id"] == subject.id
-    assert metadata["title"] == subject.title
+    # a pdf's own metadata is text: the markup a title or a description
+    # carries is rendered on the page, not repeated here
+    assert metadata["title"] == to_pdf_text(subject.title)
     assert len(metadata["authors"]) == len(authors)
     assert metadata["authors"][0] == first
     assert metadata.get("license") == (subject.license or {}).get("id")
-    assert metadata.get("description") == subject.description
+    assert metadata.get("description") == to_pdf_text(subject.description)
     return metadata
 
 
@@ -1770,6 +1773,8 @@ def test_to_pdf_html_front_matter(feature_image):
     assert '<div class="date">Published July 22, 2021</div>' in html
     assert 'class="identifier"><a href="https://doi.org/10.59350/dn2mm-m9q51"' in html
     assert '<div class="abstract"><h4>Abstract</h4>This Lingbuzz preprint' in html
+    # the tags the post gave itself, not the subjects it was classified into
+    assert '<div class="keywords"><h4>Keywords</h4>Linguistics, Threads</div>' in html
     # the image travels in the document rather than being linked from the blog
     assert feature_image.call_args.args[0] == (
         "https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png"
@@ -1920,14 +1925,43 @@ def test_to_pdf_rights_credits_more_than_one_author():
     assert "Ada Lovelace et al. 2024." in rights
 
 
-def test_to_pdf_html_escapes_the_front_matter():
-    """A title with markup characters is text, not markup."""
-    sample = sample_metadata("<p>Body</p>", title='Fish & <chips> "today"')
+def test_to_pdf_html_keeps_the_markup_a_title_carries():
+    """Post titles are html: an italicised species name is not the same string.
+
+    https://rogue-scholar.org/records/0fvwt-b6s55 is one whose title reads
+    wrong without it.
+    """
+    sample = sample_metadata(
+        "<p>Body</p>",
+        title="The atlas/axis complex of <i>Apatosaurus louisae</i> CM 3018",
+    )
+    sample.description = "A <em>very</em> short description"
 
     html = to_pdf_html(sample)
 
-    assert "<h1>Fish &amp; &lt;chips&gt; &quot;today&quot;</h1>" in html
-    assert "<chips>" not in html
+    assert (
+        "<h1>The atlas/axis complex of <i>Apatosaurus louisae</i> CM 3018</h1>" in html
+    )
+    assert "<h4>Abstract</h4>A <em>very</em> short description</div>" in html
+    # the pdf's own title is text, so the tags come out of it
+    assert (
+        "<title>The atlas/axis complex of Apatosaurus louisae CM 3018</title>" in html
+    )
+
+
+def test_to_pdf_html_drops_markup_that_is_not_inline():
+    """Anything that would lay out, load or run is dropped, not shown as text."""
+    sample = sample_metadata(
+        "<p>Body</p>", title='Fish & <chips onclick="x()">today</chips>'
+    )
+    sample.description = "<script>alert(1)</script><p>A description</p>"
+
+    html = to_pdf_html(sample)
+
+    assert "<h1>Fish &amp; today</h1>" in html
+    assert "<chips" not in html and "onclick" not in html
+    assert '<div class="abstract"><h4>Abstract</h4>A description</div>' in html
+    assert "alert(1)" not in html
 
 
 def test_write_pdf_rendition_without_content():
@@ -1981,3 +2015,90 @@ def test_upload_pdf_survives_a_refused_upload():
     mock_http.put.assert_not_called()
     assert "files" not in result
     assert "status" not in result
+
+
+def test_to_pdf_byline_links_a_name_to_its_orcid():
+    """An author with an orcid gets the iD icon, and the name carries the link."""
+    from commonmeta.writers.inveniordm_writer import to_pdf_byline
+
+    byline = to_pdf_byline(
+        [
+            {"name": "Mike Taylor", "orcid": "0000-0002-1003-5675"},
+            {"name": "Matt Wedel", "orcid": None},
+        ]
+    )
+
+    assert byline == (
+        '<p class="author">'
+        '<a href="https://orcid.org/0000-0002-1003-5675"><span>Mike Taylor</span>'
+        '<img class="orcid" alt="ORCID iD" src="orcid.svg" /></a>, '
+        "<span>Matt Wedel</span></p>"
+    )
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_to_pdf_authors_reads_the_orcid_of_each_author(feature_image):
+    """The orcid comes off the contributor, validated rather than assumed."""
+    from commonmeta.writers.inveniordm_writer import to_pdf_authors
+
+    subject = Metadata(
+        "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
+    )
+
+    assert to_pdf_authors(subject) == [{"name": "Mark Dingemanse", "orcid": None}]
+
+    subject.contributors[0]["person"]["id"] = "https://orcid.org/0000-0002-1003-5675"
+    assert to_pdf_authors(subject) == [
+        {"name": "Mark Dingemanse", "orcid": "0000-0002-1003-5675"}
+    ]
+
+
+def test_the_orcid_icon_ships_with_the_pdf_resources():
+    """The byline references it next to the stylesheet, so it has to be there."""
+    assert (PDF_RESOURCES / "orcid.svg").is_file()
+
+
+def test_to_pdf_keywords_prefers_the_tags_a_post_gave_itself():
+    """A record carries its classifications alongside the blog's own tags.
+
+    The classifications are identified by a url; the tags are not.
+    """
+    from commonmeta.writers.inveniordm_writer import to_pdf_keywords
+
+    sample = sample_metadata("<p>Body</p>")
+    sample.subjects = [
+        {"id": "https://openalex.org/subfields/1203", "subject": "Language"},
+        {"id": "http://www.oecd.org/science/inno/38235147.pdf?6.2", "subject": "FOS"},
+        {"subject": "Linguistics"},
+        {"subject": "Threads"},
+    ]
+
+    assert to_pdf_keywords(sample) == ["Linguistics", "Threads"]
+
+    # a record with nothing but classifications still says what it is about
+    sample.subjects = sample.subjects[:2]
+    assert to_pdf_keywords(sample) == ["Language", "FOS"]
+
+    sample.subjects = None
+    assert to_pdf_keywords(sample) == []
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_pdf_renders_the_orcid_icon_and_its_link(render_pdf):
+    """The icon is drawn and the byline links to the orcid it belongs to."""
+    import pikepdf
+
+    subject = Metadata(
+        "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
+    )
+    subject.contributors[0]["person"]["id"] = "https://orcid.org/0000-0002-1003-5675"
+
+    pdf = render_pdf(subject)
+
+    with pikepdf.open(BytesIO(pdf)) as document:
+        links = [
+            str(annotation.A.URI)
+            for annotation in document.pages[0].get("/Annots", [])
+            if "/A" in annotation and "/URI" in annotation.A
+        ]
+    assert "https://orcid.org/0000-0002-1003-5675" in links

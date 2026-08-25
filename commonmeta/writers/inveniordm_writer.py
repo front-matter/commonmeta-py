@@ -8,11 +8,12 @@ from base64 import b64encode
 from datetime import date as date_type
 from datetime import datetime
 from functools import lru_cache
-from html import escape
+from html import escape, unescape
 from io import BytesIO
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+import nh3
 import orjson as json
 from babel.core import UnknownLocaleError
 from babel.dates import format_date
@@ -101,6 +102,29 @@ PDF_RESOURCES = Path(__file__).parent.parent / "resources" / "pdf"
 # the >=69 floor in pyproject.toml.
 PDF_VARIANT = "pdf/a-3a"
 
+# The markup a title or a description is allowed to carry into the pdf. Post
+# titles are html, and an italicised species name says something an escaped
+# <i> does not; anything that lays out, loads or runs is dropped.
+PDF_INLINE_TAGS = {
+    "a",
+    "abbr",
+    "b",
+    "br",
+    "cite",
+    "code",
+    "em",
+    "i",
+    "mark",
+    "q",
+    "s",
+    "small",
+    "span",
+    "strong",
+    "sub",
+    "sup",
+    "u",
+}
+
 # Front matter headings, in the languages rogue-scholar-api translated them to.
 PDF_TITLES = {
     "published": {
@@ -126,6 +150,14 @@ PDF_TITLES = {
         "fr": "Droit d'auteur",
         "it": "Copyright",
         "pt": "Direitos de autor",
+    },
+    "keywords": {
+        "en": "Keywords",
+        "de": "Schlüsselwörter",
+        "es": "Palabras clave",
+        "fr": "Mots clés",
+        "it": "Parole chiave",
+        "pt": "Palavras-chave",
     },
     # the alt description an image gets when the post gives it none
     "image": {
@@ -681,6 +713,91 @@ def to_pdf_author(contributor: dict) -> str | None:
     return name or (contributor.get("organization", None) or {}).get("name", None)
 
 
+def to_pdf_authors(metadata: Metadata) -> list:
+    """The authors of the post, each with the orcid it has, if it has one."""
+    authors = []
+    for contributor in wrap(metadata.contributors):
+        if "Author" not in wrap(contributor.get("roles", None)):
+            continue
+        name = to_pdf_author(contributor)
+        if not name:
+            continue
+        person = contributor.get("person", None) or {}
+        authors.append({"name": name, "orcid": validate_orcid(person.get("id", None))})
+    return authors
+
+
+def to_pdf_byline(authors: list) -> str:
+    """The byline, with each name that has an orcid linking to it.
+
+    The name carries the link and the orcid icon marks it, which is how ORCID
+    asks for an iD to be shown next to a name and what the rogue-scholar-api
+    template did. The icon is a file next to the stylesheet, so it resolves
+    against the same base url the fonts do.
+    """
+    names = []
+    for author in authors:
+        name = f"<span>{escape(author['name'])}</span>"
+        orcid = author.get("orcid", None)
+        if orcid:
+            url = f"https://orcid.org/{orcid}"
+            name = (
+                f'<a href="{url}">{name}'
+                f'<img class="orcid" alt="ORCID iD" src="orcid.svg" /></a>'
+            )
+        names.append(name)
+    return f'<p class="author">{", ".join(names)}</p>' if names else ""
+
+
+def to_pdf_keywords(metadata: Metadata) -> list:
+    """The tags the post gave itself, rather than every subject it was given.
+
+    A Rogue Scholar record carries the OpenAlex subfield and the field of
+    science it was classified into alongside the blog's own tags, which are
+    the ones the tags of the post: the classifications are identified by a
+    url, the post's own tags are not.
+    """
+    tags = unique(
+        [
+            subject.get("subject")
+            for subject in wrap(metadata.subjects)
+            if subject.get("subject", None) and not subject.get("id", None)
+        ]
+    )
+    return tags or unique(
+        [
+            subject.get("subject")
+            for subject in wrap(metadata.subjects)
+            if subject.get("subject", None)
+        ]
+    )
+
+
+def to_pdf_markup(text: str | None) -> str:
+    """A title or description with the inline markup it carries.
+
+    Post titles are html: "The atlas/axis complex of <i>Apatosaurus louisae</i>
+    CM 3018" says something the same string with its tags escaped does not.
+    Only inline markup survives - anything that would lay out, load or run is
+    dropped rather than shown as text.
+    """
+    if not text:
+        return ""
+    return nh3.clean(text, tags=PDF_INLINE_TAGS, attributes={})
+
+
+def to_pdf_text(text: str | None) -> str:
+    """The same title or description as plain text, for the pdf's metadata.
+
+    An info dictionary and an XMP packet hold text, not markup, so the tags
+    come out and the entities they leave behind are resolved: what a reader's
+    viewer shows as the document's title.
+    """
+    if not text:
+        return ""
+    return unescape(nh3.clean(text, tags=set()))
+
+
 def to_pdf_date(date: str | None, language: str) -> str | None:
     """Format a publication date the way a reader writes it, in its language.
 
@@ -752,11 +869,12 @@ def to_pdf_meta_tags(metadata: Metadata, authors: list) -> list:
     on the title page rather than becoming a custom info key, which would put
     the pdf outside PDF/A.
     """
-    tags = [f'<meta name="author" content="{escape(name)}">' for name in authors]
-    if presence(metadata.description):
-        tags.append(
-            f'<meta name="description" content="{escape(metadata.description)}">'
-        )
+    tags = [
+        f'<meta name="author" content="{escape(author["name"])}">' for author in authors
+    ]
+    description = to_pdf_text(metadata.description)
+    if description:
+        tags.append(f'<meta name="description" content="{escape(description)}">')
     keywords = unique(
         [
             subject.get("subject")
@@ -934,25 +1052,14 @@ def to_pdf_html(metadata: Metadata) -> str:
     front matter is a title page.
     """
     language = get_language(metadata.language, format="alpha_2") or "en"
-    authors = [
-        name
-        for name in (
-            to_pdf_author(i)
-            for i in wrap(metadata.contributors)
-            if "Author" in wrap(i.get("roles", None))
-        )
-        if name
-    ]
+    authors = to_pdf_authors(metadata)
     container = metadata.container or {}
-    title = escape(metadata.title or "")
 
     front_matter = [
-        f"<h1>{title}</h1>",
+        f"<h1>{to_pdf_markup(metadata.title)}</h1>",
         f'<span class="header">{escape(container.get("title", "") or "")}</span>',
+        to_pdf_byline(authors),
     ]
-    if authors:
-        names = ", ".join(f"<span>{escape(name)}</span>" for name in authors)
-        front_matter.append(f'<p class="author">{names}</p>')
     date_published = to_pdf_date(metadata.date_published, language)
     if date_published:
         label = PDF_TITLES["published"].get(language, PDF_TITLES["published"]["en"])
@@ -968,21 +1075,28 @@ def to_pdf_html(metadata: Metadata) -> str:
         # would add its own margin on top of the heading's padding
         front_matter.append(
             f'<div class="abstract"><h4>{label}</h4>'
-            f"{escape(metadata.description)}</div>"
+            f"{to_pdf_markup(metadata.description)}</div>"
+        )
+    keywords = to_pdf_keywords(metadata)
+    if keywords:
+        label = PDF_TITLES["keywords"].get(language, PDF_TITLES["keywords"]["en"])
+        front_matter.append(
+            f'<div class="keywords"><h4>{label}</h4>'
+            f'{escape(", ".join(keywords))}</div>'
         )
     image = to_pdf_image(metadata)
     if image:
         front_matter.append(
             f'<img class="feature-image" alt="Feature image" src="{image}" />'
         )
-    rights = to_pdf_rights(metadata, authors, language)
+    rights = to_pdf_rights(metadata, [a["name"] for a in authors], language)
     if rights:
         label = PDF_TITLES["copyright"].get(language, PDF_TITLES["copyright"]["en"])
         front_matter.append(f'<div class="rights"><h4>{label}</h4>{rights}</div>')
 
     head = [
         "<meta charset='utf-8'>",
-        f"<title>{title}</title>",
+        f"<title>{escape(to_pdf_text(metadata.title))}</title>",
         *to_pdf_meta_tags(metadata, authors),
     ]
     return (

@@ -75,7 +75,12 @@
 
 html {
   color: #393939;
-  font-family: Fira Sans;
+  /* Fira Sans covers the text; the rest of the stack is for what it does not
+     have, which for a blog post title is usually an emoji. Whether one is
+     found is up to the machine rendering: on Debian that is the
+     fonts-noto-color-emoji package. */
+  font-family: Fira Sans, Noto Color Emoji, Apple Color Emoji, Segoe UI Emoji,
+    sans-serif;
   font-size: 11pt;
   font-weight: 300;
   line-height: 1.5;
@@ -307,6 +312,16 @@ h4 {
 }
 .author span {
   font-weight: 500;
+}
+.author a {
+  /* the byline reads as a byline; the orcid icon is what marks the link */
+  color: inherit;
+}
+.author img.orcid {
+  width: 12px;
+  height: 12px;
+  margin-left: 2px;
+  vertical-align: -1px;
 }
 .rights {
   break-after: always;
