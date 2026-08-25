@@ -163,7 +163,7 @@ def feature_image():
 
 
 @pytest.fixture
-def write_pdf(tmp_path, feature_image):
+def write_pdf_file(tmp_path, feature_image):
     """Write a record's pdf rendition, and keep the file.
 
     Renders offline: the feature image comes from the `feature_image` fixture

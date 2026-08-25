@@ -126,7 +126,7 @@ def test_write_output_wrong_extension():
 
 
 @pytest.mark.vcr
-def test_pdf_rendition_of_a_post_read_from_inveniordm(write_pdf):
+def test_pdf_rendition_of_a_post_read_from_inveniordm(write_pdf_file):
     """Generate a PDF from InvenioRDM record."""
     record_id = search_by_doi("10.54900/xn57k-gyw73", "rogue-scholar.org", None)
     subject = Metadata(
@@ -137,7 +137,7 @@ def test_pdf_rendition_of_a_post_read_from_inveniordm(write_pdf):
     assert len(subject.content) > 30000
 
     html = to_pdf_html(subject)
-    pdf = write_pdf(subject)
+    pdf = write_pdf_file(subject)
     metadata = read_pdf_metadata(pdf)
 
     # the front matter the record was read for

@@ -221,7 +221,7 @@ def test_journal_article():
 
 
 @pytest.mark.vcr
-def test_rogue_scholar(write_pdf):
+def test_rogue_scholar(write_pdf_file):
     "Rogue Scholar"
     string = "https://rogue-scholar.org/api/records/1xr7q-9fp18"
     subject = Metadata(string, via="inveniordm")
@@ -298,11 +298,11 @@ def test_rogue_scholar(write_pdf):
     # assert dig(inveniordm, "custom_fields.rs:content_html").startswith("a")
     # assert dig(inveniordm, "custom_fields.rs:image") == 2
     assert not dig(inveniordm, "files.enabled")
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_organizational_author(write_pdf):
+def test_rogue_scholar_organizational_author(write_pdf_file):
     "Rogue Scholar organizational author"
     string = "https://rogue-scholar.org/api/records/fz2vh-31684"
     subject = Metadata(string, via="inveniordm")
@@ -329,11 +329,11 @@ def test_rogue_scholar_organizational_author(write_pdf):
     )
     assert dig(inveniordm, "metadata.publisher") == "Front Matter"
     assert dig(inveniordm, "metadata.publication_date") == "2025-02-11"
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_blog_post(write_pdf):
+def test_rogue_scholar_blog_post(write_pdf_file):
     "JSON Feed"
     string = "https://rogue-scholar.org/api/records/7tatc-wh557"
     subject = Metadata(string, via="inveniordm")
@@ -406,11 +406,11 @@ def test_rogue_scholar_blog_post(write_pdf):
         == "https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png"
     )
     assert not dig(inveniordm, "files.enabled")
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_affiliations(write_pdf):
+def test_rogue_scholar_affiliations(write_pdf_file):
     "JSON Feed affiliations"
     string = "https://rogue-scholar.org/api/records/v7a82-05b98"
     subject = Metadata(string, via="inveniordm")
@@ -504,11 +504,11 @@ def test_rogue_scholar_affiliations(write_pdf):
         == "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/112th_bibliocon.jpeg"
     )
     assert not dig(inveniordm, "files.enabled")
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_dates(write_pdf):
+def test_rogue_scholar_dates(write_pdf_file):
     "JSON Feed dates"
     string = "https://rogue-scholar.org/api/records/8vkjg-x6j96"
     subject = Metadata(string, via="inveniordm")
@@ -538,7 +538,7 @@ def test_rogue_scholar_dates(write_pdf):
     #     dig(inveniordm, "custom_fields.rs:doi")
     #     == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
     # )
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
@@ -585,7 +585,7 @@ def test_rogue_scholar_funding():
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_more_funding(write_pdf):
+def test_rogue_scholar_more_funding(write_pdf_file):
     "JSON Feed more funding"
     string = "https://rogue-scholar.org/api/records/qz2sd-6tw29"
     subject = Metadata(string, via="inveniordm")
@@ -625,11 +625,11 @@ def test_rogue_scholar_more_funding(write_pdf):
     )
     assert dig(inveniordm, "custom_fields.rs:image") is None
     assert dig(inveniordm, "custom_fields.rs:doi") == "https://doi.org/10.59350/coref"
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_references(write_pdf):
+def test_rogue_scholar_references(write_pdf_file):
     "JSON Feed references"
     string = "https://rogue-scholar.org/api/records/trhz1-s0336"
     subject = Metadata(string, via="inveniordm")
@@ -674,11 +674,11 @@ def test_rogue_scholar_references(write_pdf):
     #     dig(inveniordm, "custom_fields.rs:doi")
     #     == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
     # )
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_unstructured_references(write_pdf):
+def test_rogue_scholar_unstructured_references(write_pdf_file):
     "JSON Feed unstructured references"
     string = "https://rogue-scholar.org/api/records/345qb-aan84"
     subject = Metadata(string, via="inveniordm")
@@ -703,11 +703,11 @@ def test_rogue_scholar_unstructured_references(write_pdf):
         "reference": "Fang, F. C., Casadevall, A.&amp; Morrison, R. P. (2011). Retracted Science and the Retraction Index. <i>Infection and Immunity</i>, <i>79</i>(10), 3855–3859.",
         "scheme": "doi",
     }
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_citations(write_pdf):
+def test_rogue_scholar_citations(write_pdf_file):
     "JSON Feed citations"
     string = "https://rogue-scholar.org/api/records/w2nqy-wxa44"
     subject = Metadata(string, via="inveniordm")
@@ -732,11 +732,11 @@ def test_rogue_scholar_citations(write_pdf):
     #     "<i>Scientometrics</i>, <i>98</i>(2), 927–943.",
     #     "scheme": "doi",
     # }
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_relations(write_pdf):
+def test_rogue_scholar_relations(write_pdf_file):
     "JSON Feed relations"
     string = "https://rogue-scholar.org/api/records/4jymf-n5m83"
     subject = Metadata(string, via="inveniordm")
@@ -764,11 +764,11 @@ def test_rogue_scholar_relations(write_pdf):
         dig(inveniordm, "custom_fields.rs:image")
         == "https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg"
     )
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_broken_reference(write_pdf):
+def test_rogue_scholar_broken_reference(write_pdf_file):
     "JSON Feed relations"
     string = "https://rogue-scholar.org/api/records/jehpc-qpc91"
     subject = Metadata(string, via="inveniordm")
@@ -792,11 +792,11 @@ def test_rogue_scholar_broken_reference(write_pdf):
         "reference": "Charniga, K., McCollum, A. M., Hughes, C. M., Monroe, B., Kabamba, J., Lushima, R. S., Likafi, T., Nguete, B., Pukuta, E., Muyamuna, E., Muyembe Tamfum, J.-J., Karhemere, S., Kaba, D., &amp; Nakazawa, Y. (2024). Updating Reproduction Number Estimates for Mpox in the Democratic Republic of Congo Using Surveillance Data. <i>The American Journal of Tropical Medicine and Hygiene</i>, <i>110</i>(3), 561–568.",
         "scheme": "doi",
     }
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_external_doi(write_pdf):
+def test_external_doi(write_pdf_file):
     "external DOI used by Rogue Scholar"
     string = "https://rogue-scholar.org/api/records/9jsrb-jtc73"
     subject = Metadata(string, via="inveniordm")
@@ -813,11 +813,11 @@ def test_external_doi(write_pdf):
         dig(inveniordm, "metadata.title")
         == "Eine Musterdienstvereinbarung fürs FIS – ein Beispiel der TIB"
     )
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_post_with_contributor_roles(write_pdf):
+def test_post_with_contributor_roles(write_pdf_file):
     "post with contributor roles"
     string = "https://rogue-scholar.org/api/records/apt10-14q04"
     subject = Metadata(string, via="inveniordm")
@@ -871,11 +871,11 @@ def test_post_with_contributor_roles(write_pdf):
     #         },
     #     }
     # ]
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_post_with_interviewee_roles(write_pdf):
+def test_post_with_interviewee_roles(write_pdf_file):
     "post with interviewee roles"
     string = "https://rogue-scholar.org/api/records/ssrar-vhq35"
     subject = Metadata(string, via="inveniordm")
@@ -891,11 +891,11 @@ def test_post_with_interviewee_roles(write_pdf):
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert len(dig(inveniordm, "metadata.creators")) == 9
     assert dig(inveniordm, "metadata.contributors") is None
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_multiple_subfields(write_pdf):
+def test_multiple_subfields(write_pdf_file):
     "post with multiple subfields"
     string = "https://rogue-scholar.org/api/records/nnx9s-74a78"
     subject = Metadata(string, via="inveniordm")
@@ -936,11 +936,11 @@ def test_multiple_subfields(write_pdf):
         {"subject": "Cell Biology"},
         {"subject": "FGFR3"},
     ]
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr
-def test_content_with_external_src(write_pdf):
+def test_content_with_external_src(write_pdf_file):
     "external DOI used by Rogue Scholar"
     string = "https://rogue-scholar.org/api/records/xtmqd-gwg60"
     subject = Metadata(string, via="inveniordm")
@@ -962,7 +962,7 @@ def test_content_with_external_src(write_pdf):
         'src="https://chem-bla-ics.linkedchemistry.info/assets/images/imageResolutionLoss.png"',
         dig(inveniordm, "custom_fields.rs:content_html"),
     )
-    assert_pdf_metadata(write_pdf(subject), subject)
+    assert_pdf_metadata(write_pdf_file(subject), subject)
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
@@ -1504,7 +1504,7 @@ def test_pdf_stylesheet_font_faces_are_top_level():
         depth += stripped.count("{") - stripped.count("}")
 
 
-def test_pdf_embeds_the_shipped_fonts(write_pdf):
+def test_pdf_embeds_the_shipped_fonts(write_pdf_file):
     """The bundled Fira faces reach the pdf rather than a system fallback.
 
     WeasyPrint applies @font-face only when the same FontConfiguration reaches
@@ -1516,7 +1516,7 @@ def test_pdf_embeds_the_shipped_fonts(write_pdf):
         "<h1>Heading</h1>"
         "<p>Body text, <em>emphasis</em> and <code>inline_code()</code>.</p>"
     )
-    pdf = write_pdf(sample, uncompressed_pdf=True)
+    pdf = write_pdf_file(sample, uncompressed_pdf=True)
 
     fonts = {m.decode() for m in re.findall(rb"/BaseFont\s*/\w+\+([\w-]+)", pdf)}
     assert "Fira-Sans-Light" in fonts  # html { font-family: Fira Sans; weight 300 }
@@ -1526,7 +1526,7 @@ def test_pdf_embeds_the_shipped_fonts(write_pdf):
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
-def test_pdf_is_tagged_and_archival(write_pdf):
+def test_pdf_is_tagged_and_archival(write_pdf_file):
     """The rendition is PDF/A-3a: archival, and tagged for a screen reader.
 
     A tagged pdf carries a structure tree, so headings, lists and figures reach
@@ -1536,14 +1536,14 @@ def test_pdf_is_tagged_and_archival(write_pdf):
         "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
     )
 
-    metadata = read_pdf_metadata(write_pdf(subject))
+    metadata = read_pdf_metadata(write_pdf_file(subject))
 
     assert metadata["variant"] == "PDF/A-3a"
     assert metadata["tagged"] is True
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
-def test_pdf_embeds_the_feature_image(write_pdf):
+def test_pdf_embeds_the_feature_image(write_pdf_file):
     """The feature image reaches the title page as an image.
 
     An image the render cannot fetch leaves its alt text printed across the
@@ -1555,7 +1555,7 @@ def test_pdf_embeds_the_feature_image(write_pdf):
         "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
     )
 
-    pdf = write_pdf(subject)
+    pdf = write_pdf_file(subject)
 
     with pikepdf.open(BytesIO(pdf)) as document:
         page = pikepdf.Page(document.pages[0])
@@ -1565,7 +1565,7 @@ def test_pdf_embeds_the_feature_image(write_pdf):
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
-def test_pdf_images_are_not_interpolated(write_pdf):
+def test_pdf_images_are_not_interpolated(write_pdf_file):
     """PDF/A forbids /Interpolate on an image (ISO 19005-3 6.2.8).
 
     WeasyPrint sets it on every image it draws, and veraPDF fails the file on
@@ -1577,7 +1577,7 @@ def test_pdf_images_are_not_interpolated(write_pdf):
         "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
     )
 
-    pdf = write_pdf(subject)
+    pdf = write_pdf_file(subject)
 
     with pikepdf.open(BytesIO(pdf)) as document:
         images = [
@@ -1591,7 +1591,7 @@ def test_pdf_images_are_not_interpolated(write_pdf):
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
-def test_pdf_embeds_the_post_content(write_pdf):
+def test_pdf_embeds_the_post_content(write_pdf_file):
     """rs:content_html travels inside the pdf as the source it was rendered from.
 
     PDF/A-3 is the variant that allows an embedded file of any type, and it is
@@ -1602,7 +1602,7 @@ def test_pdf_embeds_the_post_content(write_pdf):
         "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
     )
 
-    pdf = write_pdf(subject)
+    pdf = write_pdf_file(subject)
 
     assert read_pdf_metadata(pdf)["attachments"] == {"dn2mm-m9q51.html": "text/html"}
     assert read_pdf_attachment(pdf).decode("utf-8") == subject.content
@@ -1610,9 +1610,9 @@ def test_pdf_embeds_the_post_content(write_pdf):
     assert read_pdf_attachment(pdf, "absent.html") is None
 
 
-def test_pdf_of_an_untagged_render_is_reported_as_untagged(write_pdf):
+def test_pdf_of_an_untagged_render_is_reported_as_untagged(write_pdf_file):
     """`tagged` says what the pdf carries, rather than what was asked for."""
-    pdf = write_pdf(sample_metadata("<p>Body</p>"), pdf_variant=None)
+    pdf = write_pdf_file(sample_metadata("<p>Body</p>"), pdf_variant=None)
 
     metadata = read_pdf_metadata(pdf)
 
@@ -1621,13 +1621,13 @@ def test_pdf_of_an_untagged_render_is_reported_as_untagged(write_pdf):
 
 
 @pytest.mark.vcr("test_rogue_scholar.yaml")
-def test_pdf_metadata_round_trip(write_pdf):
+def test_pdf_metadata_round_trip(write_pdf_file):
     """What the writer puts in the head of the document comes back out of the pdf."""
     subject = Metadata(
         "https://rogue-scholar.org/api/records/1xr7q-9fp18", via="inveniordm"
     )
 
-    metadata = read_pdf_metadata(write_pdf(subject))
+    metadata = read_pdf_metadata(write_pdf_file(subject))
 
     assert metadata["title"] == "Rogue Scholar learns about communities"
     assert metadata["authors"] == ["Martin Fenner"]
@@ -1974,7 +1974,7 @@ def test_to_pdf_keywords_prefers_the_tags_a_post_gave_itself():
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
-def test_pdf_renders_the_orcid_icon_and_its_link(write_pdf):
+def test_pdf_renders_the_orcid_icon_and_its_link(write_pdf_file):
     """The icon is drawn and the byline links to the orcid it belongs to."""
     import pikepdf
 
@@ -1983,7 +1983,7 @@ def test_pdf_renders_the_orcid_icon_and_its_link(write_pdf):
     )
     subject.contributors[0]["person"]["id"] = "https://orcid.org/0000-0002-1003-5675"
 
-    pdf = write_pdf(subject)
+    pdf = write_pdf_file(subject)
 
     with pikepdf.open(BytesIO(pdf)) as document:
         links = [
