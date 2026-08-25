@@ -179,6 +179,19 @@ PDF_INLINE_TAGS = {
     "u",
 }
 
+# What the id of a subject says it is: an OpenAlex subfield is /subfields/
+# <number> and a topic is /T<number>. A tag the post gave itself has no id, and
+# is named as it is - which is what tells the two apart on the page.
+SUBJECT_LABELS = (
+    ("https://openalex.org/subfields/", "Subfield"),
+    ("https://openalex.org/T", "Topic"),
+)
+
+# The field of science a record was classified into. Left off the title page:
+# it is the coarsest of the three classifications and the one that says least
+# about a post - "Languages and literature" under a post about connectionism.
+FOS_SUBJECT_PREFIX = "http://www.oecd.org/science/inno/38235147.pdf?"
+
 # Front matter headings, in the languages rogue-scholar-api translated them to.
 PDF_TITLES = {
     "published": {
@@ -273,25 +286,29 @@ def to_pdf_byline(authors: list) -> str:
 
 
 def to_pdf_keywords(metadata: Metadata) -> list:
-    """The tags the post gave itself, rather than every subject it was given.
+    """The keywords for the title page: the subjects a reader can use.
 
-    A Rogue Scholar record carries the OpenAlex subfield and the field of
-    science it was classified into alongside the blog's own tags, which are
-    the ones the tags of the post: the classifications are identified by a
-    url, the post's own tags are not.
+    Each classification says what kind it is, so a reader can tell it from a
+    tag the post gave itself; the field of science is left out altogether.
     """
-    tags = unique(
+
+    def to_keyword(subject: dict) -> str | None:
+        name = subject.get("subject", None)
+        if not name:
+            return None
+        identifier = subject.get("id", None) or ""
+        if identifier.startswith(FOS_SUBJECT_PREFIX):
+            return None
+        for prefix, label in SUBJECT_LABELS:
+            if identifier.startswith(prefix):
+                return f"{name} ({label})"
+        return name
+
+    return unique(
         [
-            subject.get("subject")
-            for subject in wrap(metadata.subjects)
-            if subject.get("subject", None) and not subject.get("id", None)
-        ]
-    )
-    return tags or unique(
-        [
-            subject.get("subject")
-            for subject in wrap(metadata.subjects)
-            if subject.get("subject", None)
+            keyword
+            for keyword in (to_keyword(s) for s in wrap(metadata.subjects))
+            if keyword
         ]
     )
 

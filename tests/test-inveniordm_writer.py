@@ -1663,7 +1663,10 @@ def test_to_pdf_html_front_matter(feature_image):
     assert 'class="identifier"><a href="https://doi.org/10.59350/dn2mm-m9q51"' in html
     assert '<div class="abstract"><h4>Abstract</h4>This Lingbuzz preprint' in html
     # the tags the post gave itself, not the subjects it was classified into
-    assert '<div class="keywords"><h4>Keywords</h4>Linguistics, Threads</div>' in html
+    assert (
+        '<div class="keywords"><h4>Keywords</h4>Language and Linguistics '
+        "(Subfield), Linguistics, Threads</div>" in html
+    )
     # the image travels in the document rather than being linked from the blog
     assert feature_image.call_args.args[0] == (
         "https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png"
@@ -1959,26 +1962,33 @@ def test_the_orcid_icon_ships_with_the_pdf_resources():
     assert (PDF_RESOURCES / "orcid.svg").is_file()
 
 
-def test_to_pdf_keywords_prefers_the_tags_a_post_gave_itself():
+def test_to_pdf_keywords_says_what_each_subject_is():
     """A record carries its classifications alongside the blog's own tags.
 
-    The classifications are identified by a url; the tags are not.
+    The classification has an id saying what it is - an OpenAlex subfield or
+    topic - and the tag the post gave itself has none, so a reader can tell
+    which of them the post claimed for itself. The field of science is left
+    out: it is the coarsest of them and says the least about a post.
     """
     from commonmeta.io_utils import to_pdf_keywords
 
     sample = sample_metadata("<p>Body</p>")
     sample.subjects = [
         {"id": "https://openalex.org/subfields/1203", "subject": "Language"},
-        {"id": "http://www.oecd.org/science/inno/38235147.pdf?6.2", "subject": "FOS"},
+        {"id": "https://openalex.org/T12417", "subject": "Morphology"},
+        # the field of science is the coarsest classification, and left out
+        {"id": "http://www.oecd.org/science/inno/38235147.pdf?6.2", "subject": "Arts"},
         {"subject": "Linguistics"},
         {"subject": "Threads"},
+        {"scheme": "Keyword"},  # nothing to name
     ]
 
-    assert to_pdf_keywords(sample) == ["Linguistics", "Threads"]
-
-    # a record with nothing but classifications still says what it is about
-    sample.subjects = sample.subjects[:2]
-    assert to_pdf_keywords(sample) == ["Language", "FOS"]
+    assert to_pdf_keywords(sample) == [
+        "Language (Subfield)",
+        "Morphology (Topic)",
+        "Linguistics",
+        "Threads",
+    ]
 
     sample.subjects = None
     assert to_pdf_keywords(sample) == []

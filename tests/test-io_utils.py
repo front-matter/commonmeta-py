@@ -155,7 +155,11 @@ def test_pdf_rendition_of_a_post_read_from_inveniordm(write_pdf_file):
     assert '<a href="https://orcid.org/0009-0005-3885-3951">' in html
     assert '<img class="orcid" alt="ORCID iD" src="orcid.svg" />' in html
     assert '<div class="date">Published July 28, 2026</div>' in html
-    assert '<div class="keywords"><h4>Keywords</h4>Original Research</div>' in html
+    assert (
+        '<div class="keywords"><h4>Keywords</h4>Information Systems and '
+        "Management (Subfield), Academic Publishing and Open Access (Topic), "
+        "Original Research</div>" in html
+    )
 
     # and what the pdf itself says it is
     assert metadata["id"] == subject.id
