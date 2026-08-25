@@ -121,7 +121,12 @@ def get_extension(filename: str) -> tuple[str, str, str | None]:
 
 
 def write_output(filename: str, input: bytes | str, ext: list[str]) -> None:
-    """Write output to file with supported extension"""
+    """Write output to file with supported extension.
+
+    Text formats arrive as a string and binary ones - a pdf rendition, a
+    parquet file - as bytes; both are written as they are, so `ext` is what
+    says which extensions a caller means to produce.
+    """
 
     # Convert string to bytes if necessary
     if isinstance(input, str):
@@ -145,9 +150,7 @@ def write_output(filename: str, input: bytes | str, ext: list[str]) -> None:
 # Stylesheet and fonts for the pdf rendition, shipped with the package.
 PDF_RESOURCES = Path(__file__).parent / "resources" / "pdf"
 
-# The variant rogue-scholar-api deposited: archival, and tagged, so the pdf
-# carries the structure tree a screen reader and a reflowing viewer need.
-# WeasyPrint only knows the accessible ("a") conformance levels since 67, hence
+# The PDF variant used for writing PDF files. # WeasyPrint only knows the accessible ("a") conformance levels since 67, hence
 # the >=69 floor in pyproject.toml.
 PDF_VARIANT = "pdf/a-3a"
 
@@ -664,16 +667,25 @@ def pdf_stylesheet() -> tuple:
 
 
 def write_pdf_rendition(
-    metadata: Metadata, url_fetcher=None, **options
+    metadata: Metadata, url_fetcher=None, file: str | None = None, **options
 ) -> bytes | None:
-    """Render the post content as a tagged pdf, None when there is nothing to render.
+    """Render a record as a tagged pdf, None when it cannot be rendered at all.
+
+    A record that carries the html of a post - which today is one read through
+    the InvenioRDM reader - is rendered whole: the title page, then the post.
+    Every other record has its title page and stops there, which is a record
+    of the metadata rather than of the work, and is what any input can give.
 
     ``url_fetcher`` is handed to WeasyPrint for the images the post links, and
     any further ``options`` go to ``write_pdf`` - among them ``pdf_variant``,
     which defaults to PDF/A-3a.
+
+    ``file`` also writes the rendition there, through `write_output`, which
+    takes the compression suffixes with it: ``post.pdf.gz`` and ``post.pdf.zst``
+    are written compressed. It refuses to overwrite, as every other output
+    format does. The bytes are returned either way, since what a caller does
+    with a rendition is usually to send it somewhere rather than keep it.
     """
-    if presence(metadata.content) is None:
-        return None
     weasyprint = load_weasyprint()
     if weasyprint is None:
         return None
@@ -683,11 +695,17 @@ def write_pdf_rendition(
     # explicitly would go through an api it deprecated in 69.
     fetcher = {"url_fetcher": url_fetcher} if url_fetcher is not None else {}
     options.setdefault("pdf_variant", PDF_VARIANT)
-    options.setdefault("attachments", [to_pdf_attachment(metadata, weasyprint)])
+    # nothing to attach when there is no post to attach: the html the pdf was
+    # rendered from is the only file it carries
+    if presence(metadata.content):
+        options.setdefault("attachments", [to_pdf_attachment(metadata, weasyprint)])
     document = weasyprint.HTML(
         string=to_pdf_html(metadata), base_url=str(PDF_RESOURCES), **fetcher
     ).render(stylesheets=[css], font_config=font_config)
-    return finish_pdf(document.write_pdf(**options), metadata)
+    pdf = finish_pdf(document.write_pdf(**options), metadata)
+    if file:
+        write_output(file, pdf, [".pdf"])
+    return pdf
 
 
 def pdf_filename(metadata: Metadata, record: dict | None = None) -> str:

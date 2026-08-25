@@ -934,7 +934,7 @@ def upload_pdf(metadata: Metadata, host: str, token: str, record: dict) -> dict:
     """
     pdf = write_pdf_rendition(metadata)
     if pdf is None:
-        log.warning(f"No content to render a pdf from for record {record.get('id')}")
+        log.warning(f"Could not render a pdf for record {record.get('id')}")
         return record
 
     key = pdf_filename(metadata, record)

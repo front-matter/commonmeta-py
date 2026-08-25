@@ -4,6 +4,7 @@
 from os import path, remove
 
 import pytest  # noqa: F401
+import zstandard
 
 from commonmeta import Metadata
 from commonmeta.io_utils import (
@@ -159,3 +160,38 @@ def test_pdf_rendition_of_a_post_read_from_inveniordm(write_pdf_file):
     # the post travels inside the pdf as the source it was rendered from
     assert metadata["attachments"] == {"xn57k-gyw73.html": "text/html"}
     assert read_pdf_attachment(pdf).decode("utf-8") == subject.content
+
+
+@pytest.mark.vcr("test_pdf_rendition_of_a_post_read_from_inveniordm.yaml")
+def test_write_pdf_rendition_to_a_file(tmp_path, feature_image):
+    """A rendition is written the way every other output format is.
+
+    `write_output` takes the compression suffixes with it, so a rendition can
+    be written compressed by naming it that way.
+    """
+    from conftest import offline_url_fetcher, require_weasyprint
+
+    from commonmeta.io_utils import write_pdf_rendition
+
+    require_weasyprint()
+    record_id = search_by_doi("10.54900/xn57k-gyw73", "rogue-scholar.org", None)
+    subject = Metadata(
+        f"https://rogue-scholar.org/api/records/{record_id}", via="inveniordm"
+    )
+
+    plain = tmp_path / "post.pdf"
+    pdf = write_pdf_rendition(subject, url_fetcher=offline_url_fetcher, file=str(plain))
+
+    assert plain.read_bytes() == pdf
+    assert read_pdf_metadata(plain.read_bytes())["title"] == subject.title
+
+    # the same rendition, compressed, and refused when it would overwrite
+    compressed = tmp_path / "post.pdf.zst"
+    write_pdf_rendition(subject, url_fetcher=offline_url_fetcher, file=str(compressed))
+    assert zstandard.ZstdDecompressor().decompress(compressed.read_bytes()) == pdf
+    with pytest.raises(FileExistsError):
+        write_pdf_rendition(subject, url_fetcher=offline_url_fetcher, file=str(plain))
+
+    # and a name it does not write
+    with pytest.raises(ValueError):
+        write_pdf_rendition(subject, url_fetcher=offline_url_fetcher, file="post.json")

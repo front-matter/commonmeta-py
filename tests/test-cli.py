@@ -232,3 +232,74 @@ def test_list_sample_no_network_rejects():
     result = runner.invoke(list, ["--sample", "--from", "crossref", "--no-network"])
     assert result.exit_code == 1
     assert "requires network access" in result.output
+
+
+@pytest.mark.vcr
+def test_convert_to_pdf(tmp_path, weasyprint, feature_image):
+    """convert -t pdf writes the rendition of a post to a file."""
+    from commonmeta.io_utils import read_pdf_metadata
+
+    runner = CliRunner()
+    output = tmp_path / "post.pdf"
+
+    result = runner.invoke(
+        convert,
+        [
+            "https://rogue-scholar.org/api/records/e1ndf-19s62",
+            "--from",
+            "inveniordm",
+            "--to",
+            "pdf",
+            "--output",
+            str(output),
+        ],
+    )
+
+    assert result.exit_code == 0, result.output
+    assert f"Wrote {output}" in result.output
+    metadata = read_pdf_metadata(output.read_bytes())
+    assert metadata["title"] == "Ten simple rules for scholarly blogging"
+    assert metadata["variant"] == "PDF/A-3a"
+
+
+@pytest.mark.vcr
+def test_convert_to_pdf_needs_a_filename():
+    """A pdf is bytes, so it is named rather than echoed."""
+    runner = CliRunner()
+
+    result = runner.invoke(convert, ["10.7554/elife.01567", "--to", "pdf"])
+
+    assert result.exit_code == 1
+    assert "name it with --output" in result.output
+
+
+@pytest.mark.vcr
+def test_convert_to_pdf_without_post_content(tmp_path, weasyprint, feature_image):
+    """Any input writes a pdf; one without html writes the title page alone."""
+    from commonmeta.io_utils import read_pdf_metadata
+
+    runner = CliRunner()
+    output = tmp_path / "article.pdf"
+
+    result = runner.invoke(
+        convert, ["10.7554/elife.01567", "--to", "pdf", "--output", str(output)]
+    )
+
+    assert result.exit_code == 0, result.output
+    metadata = read_pdf_metadata(output.read_bytes())
+    assert metadata["title"].startswith("Automated quantitative histology")
+    assert metadata["authors"][0] == "Martial Sankar"
+    assert "attachments" not in metadata
+
+
+def test_convert_output_is_for_pdf(tmp_path):
+    """Every other format goes to the terminal, and the shell can redirect it."""
+    runner = CliRunner()
+
+    result = runner.invoke(
+        convert,
+        ["10.7554/elife.01567", "--to", "bibtex", "--output", str(tmp_path / "x.bib")],
+    )
+
+    assert result.exit_code == 1
+    assert "--output is for --to pdf" in result.output

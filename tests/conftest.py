@@ -146,6 +146,12 @@ def image_response(content: bytes = PNG_PIXEL, mime_type: str = "image/png"):
 
 
 @pytest.fixture
+def weasyprint():
+    """Skip a test that needs WeasyPrint where its native stack is missing."""
+    return require_weasyprint()
+
+
+@pytest.fixture
 def feature_image():
     """Serve every feature image request the writer makes from memory.
 
@@ -164,20 +170,24 @@ def feature_image():
 
 @pytest.fixture
 def write_pdf_file(tmp_path, feature_image):
-    """Write a record's pdf rendition, and keep the file.
+    """Write a record's pdf rendition to a file, and return the bytes.
 
     Renders offline: the feature image comes from the `feature_image` fixture
-    and the images the post itself links are refused. Returns the pdf bytes,
-    for `read_pdf_metadata` and the font check to read back, and writes them
-    to a file the way `upload_pdf` deposits them.
+    and the images the post itself links are refused. The file is written the
+    way any caller writes one, by naming it - so a test that fails leaves the
+    rendition behind to look at, and the writing itself is covered too.
     """
     require_weasyprint()
 
     def render(metadata, name: str = "content.pdf", **options) -> bytes:
-        pdf = write_pdf_rendition(metadata, url_fetcher=offline_url_fetcher, **options)
+        pdf = write_pdf_rendition(
+            metadata,
+            url_fetcher=offline_url_fetcher,
+            file=str(tmp_path / name),
+            **options,
+        )
         assert pdf is not None and pdf.startswith(b"%PDF-")
-        path = tmp_path / name
-        path.write_bytes(pdf)
+        assert (tmp_path / name).read_bytes() == pdf
         return pdf
 
     return render

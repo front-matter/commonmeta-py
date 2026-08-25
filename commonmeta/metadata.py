@@ -18,7 +18,7 @@ from .backend import (
 )
 from .base_utils import dig, parse_xml, wrap
 from .doi_utils import doi_from_url
-from .io_utils import write_output
+from .io_utils import write_output, write_pdf_rendition
 from .readers.bibtex_reader import read_bibtex
 from .readers.cff_reader import get_cff, read_cff
 from .readers.codemeta_reader import (
@@ -639,6 +639,9 @@ class Metadata:
             return write_citation(self)
         elif to == "ris":
             return write_ris(self)
+        # Binary output formats
+        elif to == "pdf":
+            return write_pdf_rendition(self, **kwargs)
         # XML-based output formats
         elif to == "crossref_xml":
             self.depositor = kwargs.get("depositor", None)

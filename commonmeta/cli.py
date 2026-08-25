@@ -94,6 +94,27 @@ def echo_output(output, to: str) -> None:
     click.echo(output)
 
 
+def write_pdf(metadata, output: str | None) -> None:
+    """Write the pdf rendition of a post to a file.
+
+    A pdf is bytes, so it is named rather than echoed. A record that carries
+    the html of a post - one read through the InvenioRDM reader, today - is
+    rendered whole; any other record gets its title page, which is a record of
+    the metadata rather than of the work.
+    """
+    if not output:
+        raise click.ClickException(
+            "--to pdf writes a file: name it with --output, e.g. -o post.pdf"
+        )
+    pdf = metadata.write(to="pdf", file=output)
+    if pdf is None:
+        raise click.ClickException(
+            "Could not render the pdf. WeasyPrint needs the pango libraries, "
+            "and Python 3.10 or newer; the log says which of the two it was."
+        )
+    click.echo(f"Wrote {output} ({len(pdf)} bytes)")
+
+
 def require_network(no_network: bool, action: str) -> None:
     """Reject an operation that needs the network when --no-network is set.
 
@@ -135,6 +156,12 @@ def input_requires_network(value) -> bool:
     default=False,
     help="Disable outbound network requests; fails if the input must be fetched",
 )
+@click.option(
+    "--output",
+    "-o",
+    type=click.Path(dir_okay=False, writable=True),
+    help="Write the output to this file. Required for --to pdf, which is binary.",
+)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 def convert(
     input,
@@ -148,6 +175,7 @@ def convert(
     email,
     registrant,
     no_network,
+    output,
     show_errors,
 ):
     # --no-network is enforced at fetch time inside Metadata: DOI/URL, ROR and
@@ -162,6 +190,15 @@ def convert(
         raise click.ClickException(str(error))
     if show_errors and not metadata.is_valid:
         raise click.ClickException(str(metadata.errors))
+
+    if to == "pdf":
+        write_pdf(metadata, output)
+        return
+    if output:
+        raise click.ClickException(
+            "--output is for --to pdf, which cannot go to the terminal. "
+            f"Redirect instead: commonmeta convert ... -t {to} > {output}"
+        )
 
     echo_output(
         metadata.write(

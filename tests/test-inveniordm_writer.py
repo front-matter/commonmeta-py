@@ -10,7 +10,7 @@ from unittest.mock import Mock, patch
 
 import orjson as json
 import pytest
-from conftest import image_response
+from conftest import image_response, offline_url_fetcher
 from requests.exceptions import RequestException
 
 import commonmeta
@@ -1854,9 +1854,21 @@ def test_to_pdf_html_drops_markup_that_is_not_inline():
     assert "alert(1)" not in html
 
 
-def test_write_pdf_rendition_without_content():
-    """There is nothing to render for a record with no post content."""
-    assert write_pdf_rendition(sample_metadata(None)) is None
+def test_write_pdf_rendition_without_content(weasyprint):
+    """A record with no post content is rendered as its title page alone.
+
+    That is every input but a record read through the InvenioRDM reader, which
+    is the one that carries the html of a post.
+    """
+    sample = sample_metadata(None, title="A record with no post behind it")
+
+    pdf = write_pdf_rendition(sample, url_fetcher=offline_url_fetcher)
+
+    metadata = read_pdf_metadata(pdf)
+    assert metadata["title"] == "A record with no post behind it"
+    assert metadata["variant"] == "PDF/A-3a"
+    # the html the pdf was rendered from is the only file it ever carries
+    assert "attachments" not in metadata
 
 
 def test_pdf_filename_uses_the_doi_suffix():
