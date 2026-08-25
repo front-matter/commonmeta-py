@@ -394,3 +394,59 @@ th,
 td {
   vertical-align: top;
 }
+
+/***********************************************
+    Post content, from the Rogue Scholar site
+    (assets/less/site/views/item.overrides)
+***********************************************/
+
+/* What the site hides on a record page, a rendition of that page hides too:
+   the widgets a blog wraps its posts in, and the anchors and buttons that do
+   nothing on paper. */
+a.d-print-none,
+.wp_orcid_field,
+.citation,
+#quarto-bibliography,
+#quarto-citation,
+.subscription-widget-wrap-editor,
+.button-wrapper,
+svg.anchor-symbol,
+.wp-block-spacer,
+.body-image-wrapper,
+.admonition {
+  display: none;
+}
+
+/* A figure is as wide as the page allows and no wider, whatever the blog's
+   own stylesheet asked for. */
+figure {
+  max-width: 100%;
+  height: auto;
+}
+figure img,
+img:not(.inline-id-icon) {
+  max-width: 100%;
+  height: auto;
+}
+figure .image-link-expand {
+  display: none;
+}
+figcaption,
+.wp-caption-text {
+  font-style: italic;
+}
+.wp-caption {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.arve-ar {
+  padding: 0;
+}
+.wp-block-syntaxhighlighter-code > pre {
+  font-size: 0.9rem;
+}
