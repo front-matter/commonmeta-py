@@ -20,16 +20,16 @@ from requests.exceptions import RequestException
 import commonmeta
 from commonmeta import Metadata
 from commonmeta.base_utils import dig
-from commonmeta.io_utils import read_pdf_attachment, read_pdf_metadata
-from commonmeta.writers.inveniordm_writer import (
+from commonmeta.io_utils import (
     pdf_filename,
-    record_matches,
+    read_pdf_attachment,
+    read_pdf_metadata,
     to_pdf_content,
     to_pdf_html,
     to_pdf_text,
-    upsert_record,
     write_pdf_rendition,
 )
+from commonmeta.writers.inveniordm_writer import record_matches, upsert_record
 
 PDF_RESOURCES = Path(commonmeta.__file__).parent / "resources" / "pdf"
 
@@ -114,10 +114,10 @@ def feature_image():
     The writer's own name for the session is replaced rather than the session
     itself, which the readers share and use to replay their cassettes.
     """
-    from commonmeta.writers import inveniordm_writer as w
+    from commonmeta import io_utils
 
     get = Mock(return_value=image_response())
-    with patch.object(w, "http", SimpleNamespace(get=get)):
+    with patch.object(io_utils, "http", SimpleNamespace(get=get)):
         yield get
 
 
@@ -1848,12 +1848,14 @@ def test_to_pdf_html_leaves_out_an_unusable_feature_image(response):
     WeasyPrint draws the alt text where an image fails, which would print
     "Feature image" across the title page.
     """
-    from commonmeta.writers import inveniordm_writer as w
+    from commonmeta import io_utils
 
     sample = sample_metadata("<p>Body</p>")
     sample.image = "https://example.org/feature.png"
 
-    with patch.object(w, "http", SimpleNamespace(get=Mock(return_value=response))):
+    with patch.object(
+        io_utils, "http", SimpleNamespace(get=Mock(return_value=response))
+    ):
         html = to_pdf_html(sample)
 
     assert "feature-image" not in html
@@ -1903,7 +1905,7 @@ def test_to_pdf_html_in_another_language():
 )
 def test_to_pdf_rights(license_, expected):
     """CC0 waives copyright rather than asserting it, and a post may have neither."""
-    from commonmeta.writers.inveniordm_writer import to_pdf_rights
+    from commonmeta.io_utils import to_pdf_rights
 
     sample = sample_metadata("<p>Body</p>")
     sample.license = license_
@@ -1914,7 +1916,7 @@ def test_to_pdf_rights(license_, expected):
 
 def test_to_pdf_rights_credits_more_than_one_author():
     """The copyright line names the first author, then et al."""
-    from commonmeta.writers.inveniordm_writer import to_pdf_rights
+    from commonmeta.io_utils import to_pdf_rights
 
     sample = sample_metadata("<p>Body</p>")
     sample.license = {"id": "CC-BY-4.0", "url": "https://example.org/by"}
@@ -2019,7 +2021,7 @@ def test_upload_pdf_survives_a_refused_upload():
 
 def test_to_pdf_byline_links_a_name_to_its_orcid():
     """An author with an orcid gets the iD icon, and the name carries the link."""
-    from commonmeta.writers.inveniordm_writer import to_pdf_byline
+    from commonmeta.io_utils import to_pdf_byline
 
     byline = to_pdf_byline(
         [
@@ -2039,7 +2041,7 @@ def test_to_pdf_byline_links_a_name_to_its_orcid():
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
 def test_to_pdf_authors_reads_the_orcid_of_each_author(feature_image):
     """The orcid comes off the contributor, validated rather than assumed."""
-    from commonmeta.writers.inveniordm_writer import to_pdf_authors
+    from commonmeta.io_utils import to_pdf_authors
 
     subject = Metadata(
         "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
@@ -2063,7 +2065,7 @@ def test_to_pdf_keywords_prefers_the_tags_a_post_gave_itself():
 
     The classifications are identified by a url; the tags are not.
     """
-    from commonmeta.writers.inveniordm_writer import to_pdf_keywords
+    from commonmeta.io_utils import to_pdf_keywords
 
     sample = sample_metadata("<p>Body</p>")
     sample.subjects = [
