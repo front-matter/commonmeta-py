@@ -5,12 +5,16 @@ from os import path, remove
 
 import pytest  # noqa: F401
 
+from commonmeta import Metadata
 from commonmeta.io_utils import (
     download_file,
     get_extension,
     read_file,
     read_gz_file,
+    read_pdf_attachment,
+    read_pdf_metadata,
     read_zip_file,
+    to_pdf_html,
     uncompress_content,
     unzip_content,
     write_file,
@@ -18,6 +22,7 @@ from commonmeta.io_utils import (
     write_output,
     write_zip_file,
 )
+from commonmeta.readers.inveniordm_reader import search_by_doi
 
 
 def test_read_file():
@@ -118,3 +123,43 @@ def test_write_output_wrong_extension():
     new_filename = path.join(path.dirname(__file__), "fixtures", "posts1.json.zip")
     with pytest.raises(ValueError):
         write_output(new_filename, output, [".yaml"])
+
+
+@pytest.mark.vcr
+def test_pdf_rendition_of_a_post_read_from_inveniordm(render_pdf):
+    """The whole way through: a doi, the record behind it, the pdf it renders to.
+
+    https://doi.org/10.54900/xn57k-gyw73 is a post with three authors who all
+    have an orcid, tags of its own, a feature image and 34kB of html.
+    """
+    record_id = search_by_doi("10.54900/xn57k-gyw73", "rogue-scholar.org", None)
+    subject = Metadata(
+        f"https://rogue-scholar.org/api/records/{record_id}", via="inveniordm"
+    )
+    assert subject.id == "https://doi.org/10.54900/xn57k-gyw73"
+    assert subject.title == "Ten simple rules for scholarly blogging"
+    assert len(subject.content) > 30000
+
+    html = to_pdf_html(subject)
+    pdf = render_pdf(subject)
+    metadata = read_pdf_metadata(pdf)
+
+    # the front matter the record was read for
+    assert "<h1>Ten simple rules for scholarly blogging</h1>" in html
+    assert '<span class="header">Upstream</span>' in html
+    assert '<a href="https://orcid.org/0009-0005-3885-3951">' in html
+    assert '<img class="orcid" alt="ORCID iD" src="orcid.svg" />' in html
+    assert '<div class="date">Published July 28, 2026</div>' in html
+    assert '<div class="keywords"><h4>Keywords</h4>Original Research</div>' in html
+
+    # and what the pdf itself says it is
+    assert metadata["id"] == subject.id
+    assert metadata["title"] == subject.title
+    assert metadata["authors"] == ["Catharina Ochsner", "Heinz Pampel", "Martin Fenner"]
+    assert metadata["license"] == "CC-BY-4.0"
+    assert metadata["language"] == "en"
+    assert metadata["variant"] == "PDF/A-3a"
+    assert metadata["tagged"] is True
+    # the post travels inside the pdf as the source it was rendered from
+    assert metadata["attachments"] == {"xn57k-gyw73.html": "text/html"}
+    assert read_pdf_attachment(pdf).decode("utf-8") == subject.content

@@ -1,0 +1,1413 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Authorization:
+      - Bearer None
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
+    method: GET
+    uri: https://rogue-scholar.org/api/records?q=doi%3A10.54900%2Fxn57k-gyw73&size=1
+  response:
+    body:
+      string: '{"hits": {"hits": [{"id": "e1ndf-19s62", "created": "2026-07-28T08:18:56.597542+00:00",
+        "updated": "2026-08-24T23:39:14.523881+00:00", "links": {"self": "https://rogue-scholar.org/api/records/e1ndf-19s62",
+        "self_html": "https://rogue-scholar.org/records/e1ndf-19s62", "preview_html":
+        "https://rogue-scholar.org/records/e1ndf-19s62?preview=1", "doi": "https://doi.org/10.54900/xn57k-gyw73",
+        "self_doi": "https://doi.org/10.54900/xn57k-gyw73", "self_doi_html": "https://rogue-scholar.org/doi/10.54900/xn57k-gyw73",
+        "reserve_doi": "https://rogue-scholar.org/api/records/e1ndf-19s62/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/t6byp-m6w86", "parent_html":
+        "https://rogue-scholar.org/records/t6byp-m6w86", "parent_doi": "https://doi.org/10.54900/t6byp-m6w86",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.54900/t6byp-m6w86", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/e1ndf-19s62/files", "media_files":
+        "https://rogue-scholar.org/api/records/e1ndf-19s62/media-files", "thumbnails":
+        {"10": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/%5E10,/0/default.jpg",
+        "50": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/%5E50,/0/default.jpg",
+        "100": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/%5E100,/0/default.jpg",
+        "250": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/%5E250,/0/default.jpg",
+        "750": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/%5E750,/0/default.jpg",
+        "1200": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/%5E1200,/0/default.jpg"},
+        "archive": "https://rogue-scholar.org/api/records/e1ndf-19s62/files-archive",
+        "archive_media": "https://rogue-scholar.org/api/records/e1ndf-19s62/media-files-archive",
+        "latest": "https://rogue-scholar.org/api/records/e1ndf-19s62/versions/latest",
+        "latest_html": "https://rogue-scholar.org/records/e1ndf-19s62/latest", "versions":
+        "https://rogue-scholar.org/api/records/e1ndf-19s62/versions", "draft": "https://rogue-scholar.org/api/records/e1ndf-19s62/draft",
+        "access_links": "https://rogue-scholar.org/api/records/e1ndf-19s62/access/links",
+        "access_grants": "https://rogue-scholar.org/api/records/e1ndf-19s62/access/grants",
+        "access_users": "https://rogue-scholar.org/api/records/e1ndf-19s62/access/users",
+        "access_groups": "https://rogue-scholar.org/api/records/e1ndf-19s62/access/groups",
+        "access_request": "https://rogue-scholar.org/api/records/e1ndf-19s62/access/request",
+        "access": "https://rogue-scholar.org/api/records/e1ndf-19s62/access", "communities":
+        "https://rogue-scholar.org/api/records/e1ndf-19s62/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/e1ndf-19s62/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/e1ndf-19s62/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/e1ndf-19s62/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/e1ndf-19s62/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/e1ndf-19s62/requests"},
+        "revision_id": 21, "parent": {"id": "t6byp-m6w86", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b", "fbc3bd5a-137e-4366-94ae-92a6e9d744e3"],
+        "default": "b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b", "entries": [{"id": "b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b",
+        "created": "2024-10-05T11:02:14.834230+00:00", "updated": "2026-08-22T09:06:37.914260+00:00",
+        "links": {}, "revision_id": 3856, "slug": "upstream", "metadata": {"title":
+        "Upstream", "type": {"id": "blog", "title": {"de": "Blog", "en": "Blog", "sv":
+        "Blogg"}}, "website": "https://upstream.force11.org"}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "closed", "record_submission_policy":
+        "open", "review_policy": "closed"}, "deletion_status": {"is_deleted": false,
+        "status": "P"}, "children": {"allow": true}}, {"id": "fbc3bd5a-137e-4366-94ae-92a6e9d744e3",
+        "created": "2025-02-11T17:20:32.633964+00:00", "updated": "2025-12-02T20:56:11.605253+00:00",
+        "links": {}, "revision_id": 11, "slug": "1802", "metadata": {"title": "Information
+        Systems and Management", "type": {"id": "subject", "title": {"de": "Fachgebiet",
+        "en": "Subject Area", "sv": "\u00c4mnesomr\u00e5de"}}, "website": "https://openalex.org/subfields/1802"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "closed", "record_submission_policy": "open", "review_policy": "closed"},
+        "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {"doi": {"identifier": "10.54900/t6byp-m6w86", "provider":
+        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
+        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
+        "10.54900/xn57k-gyw73", "provider": "crossref", "client": "crossref"}, "oai":
+        {"identifier": "oai:invenio-rdm:e1ndf-19s62", "provider": "oai"}}, "metadata":
+        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
+        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
+        {"type": "personal", "name": "Ochsner, Catharina", "given_name": "Catharina",
+        "family_name": "Ochsner", "identifiers": [{"identifier": "0009-0005-3885-3951",
+        "scheme": "orcid"}]}, "affiliations": [{"id": "01hcx6992", "name": "Humboldt-Universit\u00e4t
+        zu Berlin", "identifiers": [{"identifier": "01hcx6992", "scheme": "ror"}]}]},
+        {"person_or_org": {"type": "personal", "name": "Pampel, Heinz", "given_name":
+        "Heinz", "family_name": "Pampel", "identifiers": [{"identifier": "0000-0003-3334-2771",
+        "scheme": "orcid"}]}}, {"person_or_org": {"type": "personal", "name": "Fenner,
+        Martin", "given_name": "Martin", "family_name": "Fenner", "identifiers": [{"identifier":
+        "0000-0003-1419-2405", "scheme": "orcid"}]}, "affiliations": [{"name": "Front
+        Matter"}]}], "title": "Ten simple rules for scholarly blogging", "publisher":
+        "Front Matter", "publication_date": "2026-07-28", "subjects": [{"id": "https://openalex.org/subfields/1802",
+        "subject": "Information Systems and Management", "scheme": "Subfields"}, {"id":
+        "http://www.oecd.org/science/inno/38235147.pdf?5.2", "subject": "Economics
+        and business", "scheme": "FOS"}, {"id": "https://openalex.org/T13607", "subject":
+        "Academic Publishing and Open Access", "scheme": "Topics"}, {"subject": "Original
+        Research"}], "dates": [{"date": "2026-07-28T08:00:13Z", "type": {"id": "issued",
+        "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}},
+        {"date": "2026-07-28T08:00:13Z", "type": {"id": "updated", "title": {"de":
+        "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id":
+        "eng", "title": {"en": "English"}}], "identifiers": [{"identifier": "https://doi.org/10.54900/xn57k-gyw73",
+        "scheme": "guid"}, {"identifier": "https://upstream.force11.org/ten-simple-rules-for-scholarly-blogging/",
+        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
+        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
+        "The Creative Commons Attribution license allows re-distribution and re-use
+        of a licensed work on the condition that the creator is appropriately credited."},
+        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "The fragmentation of social media and
+        the rise of Generative Artificial intelligence (AI) have renewed the importance
+        of scholarly blogs. Similar to preprints, blogs enable researchers to communicate
+        ideas, preliminary findings, and emerging debates without waiting for lengthy
+        peer-review processes. At the same time, blogs provide more space than preprints
+        for contextualization, reflection, and a clearly identifiable scholarly voice.",
+        "references": [{"reference": "Burton, M. (2015). Blogs as infrastructure for
+        scholarly communication [Phd]. University of Michigan."}, {"identifier": "10.1177/0741088313493610",
+        "scheme": "doi", "reference": "Luz\u00f3n, M. J. (2013). Public Communication
+        of Science in Blogs. <i>Written Communication</i>, <i>30</i>(4), 428\u2013457."},
+        {"identifier": "10.1371/journal.pbio.0060240", "scheme": "doi", "reference":
+        "Batts, S. A., Anthis, N. J., &amp; Smith, T. C. (2008). Advancing Science
+        through Conversations: Bridging the Gap between Blogs and the Academy. <i>PLoS
+        Biology</i>, <i>6</i>(9), e240."}, {"identifier": "10.1002/aris.1440360102",
+        "scheme": "doi", "reference": "Borgman, C. L., &amp; Furner, J. (2002). Scholarly
+        communication and bibliometrics. <i>Annual Review of Information Science and
+        Technology</i>, <i>36</i>(1), 2\u201372."}, {"reference": "Borgman, C. L.
+        (2007). Scholarship in the digital age: Information, infrastructure and the
+        internet. The MIT Press."}, {"reference": "Blanchard, A. (2011). 3.4 science
+        blogs in research and popularization of science: Why, how and for whom? In
+        M. Cockell, J. Billotte, F. Darbellay, & F. Waldvogel (Eds.), Common knowledge:
+        The challenge of transdisciplinarity (pp. 219\u2013232). EPFL Press Lausanne,
+        Switzerland."}, {"identifier": "10.1038/s41591-019-0697-7", "scheme": "doi",
+        "reference": "Wetsman, N. (2019). How Twitter is changing medical research.
+        <i>Nature Medicine</i>, <i>26</i>(1), 11\u201313."}, {"identifier": "10.1126/science.adf6617",
+        "scheme": "doi", "reference": "Kupferschmidt, K. (2022). As Musk reshapes
+        Twitter, academics ponder taking flight."}, {"identifier": "10.1038/d41586-023-02554-0",
+        "scheme": "doi", "reference": "Vidal Valero, M. (2023). Thousands of scientists
+        are cutting back on Twitter, seeding angst and uncertainty. <i>Nature</i>,
+        <i>620</i>(7974), 482\u2013484."}, {"identifier": "10.5210/fm.v15i8.2962",
+        "scheme": "doi", "reference": "Kjellberg, S. (2010). I am a blogging researcher:
+        Motivations for blogging in a scholarly context. <i>First Monday</i>."}, {"identifier":
+        "https://shs.hal.science/halshs-01264402", "scheme": "url", "reference": "K\u00f6nig,
+        M. (2015, December 1). <i>Herausforderung f\u00fcr unsere Wissenschaftskultur:
+        Weblogs in den Geisteswissenschaften</i>."}, {"reference": "Baez, J., Schreiber,
+        U., & Bartlett, B. (2011). \"A new idea of how to communicate ideas\". Zur
+        Entwicklung wissenschaftlicher Blogs\u2014Ein Interview mit den Gr\u00fcndern
+        des Gruppenblogs The n-Category Caf\u00e9. In Gloning, Thomas & Fritz, Gerd
+        (Eds.), Digitale Wissenschaftskommunikation. Formate und ihre Nutzung. Linguistische
+        Untersuchungen. (No. 3; pp. 287\u2013312). Gie\u00dfener Elektronische Bibliothek."},
+        {"identifier": "https://hal.science/hal-01249318", "scheme": "url", "reference":
+        "Blanchard, A. (2010). <i>Ce que le blog apporte \u00e0 la recherche</i>."},
+        {"reference": "Gloning, T. (2011). Interne Wissenschaftskommunikation im Zeichen
+        der Digitalisierung. Formate, Nutzungsweisen, Dynamik. In iris Bons, G. Fritz,
+        & T. Gloning (Eds.), Digitale Wissenschaftskommunikation \u2013 Formate und
+        ihre Nutzung (No. 3; pp. 3\u201333). Gie\u00dfener Elektronische Bibliothek."},
+        {"identifier": "10.1080/00221546.2012.11777241", "scheme": "doi", "reference":
+        "Bouwma-Gearhart, J. L., &amp; Bess, J. L. (2012). The Transformative Potential
+        of Blogs for Research in Higher Education. <i>The Journal of Higher Education</i>,
+        <i>83</i>(2), 249\u2013275."}, {"identifier": "10.58079/tdx9", "scheme": "doi",
+        "reference": "Karoline D\u00f6ring. (2017). <i>Wissenschaftsblogs als Publikationsorte
+        \u2013 Ein von den Geisteswissenschaften noch zu wenig genutztes Potential?</i>."},
+        {"identifier": "10.5281/zenodo.13234482", "scheme": "doi", "reference": "Pampel,
+        H., &amp; Rothfritz, L. (2024). <i>Kooperative Informationsinfrastruktur f\u00fcr
+        wissenschaftliche Blogs (Infra Wiss Blogs)</i>."}, {"identifier": "https://www.gesis.org/en/research/projects-and-exchange/external-funding-projects/wi4impact-project-page",
+        "scheme": "url", "reference": "GESIS Leibniz Institute for the Social Sciences.
+        (n.d.). Knowing how knowledge works in the context of digitalization\u2014Wi4impact.
+        Retrieved January 21, 2025, from"}, {"identifier": "https://osf.io/preprints/socarxiv/cvdr7_v1",
+        "scheme": "url", "reference": "Kuhle, B., Voigt, C., Breuer, J., & Repke,
+        L. (2025). Public online engagement with science blogs and podcasts: A multimethod
+        assessment of effectiveness in the German academic context."}, {"reference":
+        "Davies, J., & Merchant, G. (2007). Looking from the inside out: Academic
+        blogging as new literacy. A New Literacies Sampler, 167\u2013197."}, {"identifier":
+        "10.1515/bfp-2025-0028", "scheme": "doi", "reference": "Ochsner, C., Pampel,
+        H., H\u00f6fting, J., &amp; Rothfritz, L. (2025). Wissenschaftsblogs in Deutschland:
+        Eine Analyse infrastruktureller Aspekte. <i>Bibliothek Forschung Und Praxis</i>,
+        <i>49</i>(3), 417\u2013437."}, {"identifier": "10.1145/3742413.3789076", "scheme":
+        "doi", "reference": "Nakano, H., Takezawa, J., Matulic, F., Yang, C.-L., &amp;
+        Yatani, K. (2026). Understanding Reader Perception Shifts upon Disclosure
+        of AI Authorship. In <i>Proceedings of the 31st International Conference on
+        Intelligent User Interfaces</i> (pp. 2131\u20132146). ACM."}, {"identifier":
+        "10.1057/s41599-024-03811-x", "scheme": "doi", "reference": "Sun, Y., Sheng,
+        D., Zhou, Z., &amp; Wu, Y. (2024). AI hallucination: towards a comprehensive
+        classification of distorted information in artificial intelligence-generated
+        content. <i>Humanities and Social Sciences Communications</i>, <i>11</i>(1)."},
+        {"identifier": "10.1016/j.tree.2008.05.004", "scheme": "doi", "reference":
+        "WILKINS, J. (2008). The roles, reasons and restrictions of science blogs.
+        <i>Trends in Ecology & Evolution</i>, <i>23</i>(8), 411\u2013413."}, {"identifier":
+        "10.1108/jd-02-2025-0053", "scheme": "doi", "reference": "Ochsner, C., Pampel,
+        H., H\u00f6fting, J., &amp; Rothfritz, L. (2025). Scholarly blogs: an analysis
+        of infrastructural aspects based on German scholarly blogs. <i>Journal of
+        Documentation</i>, <i>81</i>(7), 520\u2013544."}, {"reference": "Rettberg,
+        J. W. (2008). Blogging. Polity."}, {"identifier": "10.1007/978-1-4302-0286-8_4",
+        "scheme": "doi", "reference": "Yee, R. (2008). Working with Feeds, RSS, and
+        Atom. In Pro Web 2.0 Mashups: Remixing Data and Web Services (pp. 77\u2013104).
+        Apress."}, {"identifier": "10.53731/a0d9m3n-n7r8h0m", "scheme": "doi", "reference":
+        "Fenner, M. (2023, February 6). Guidelines for Scholarly Blogs. <i>Front Matter</i>."},
+        {"identifier": "https://creativecommons.org/who-we-are/", "scheme": "url",
+        "reference": "Creative Commons. (n.d.). Who we are. Retrieved July 2, 2026,
+        from"}, {"identifier": "https://www.oaspa.org/news/why-cc-by/", "scheme":
+        "url", "reference": "Redhead, C. (2012, October). Why CC-BY? - OASPA."}, {"identifier":
+        "https://creativecommons.org/share-your-work/cclicenses/", "scheme": "url",
+        "reference": "Creative Commons. (2019). About CC liscenses."}, {"identifier":
+        "10.1371/journal.pone.0115253", "scheme": "doi", "reference": "Klein, M.,
+        Van de Sompel, H., Sanderson, R., Shankar, H., Balakireva, L., Zhou, K., Tobin,
+        R., &amp; Bar-Ilan, J. (2014). Scholarly Context Not Found: One in Five Articles
+        Suffers from Reference Rot. <i>PLoS ONE</i>, <i>9</i>(12), e115253."}, {"identifier":
+        "https://www.doi.org/the-identifier/what-is-a-doi/", "scheme": "url", "reference":
+        "DOI Foundation. (n.d.). What is a DOI? Retrieved October 31, 2025, from"},
+        {"identifier": "10.5334/dsj-2017-009", "scheme": "doi", "reference": "Klump,
+        J., &amp; Huber, R. (2017). 20 Years of Persistent Identifiers \u2013 Which
+        Systems are Here to Stay?. <i>Data Science Journal</i>, <i>16</i>."}, {"identifier":
+        "10.22028/d291-46556", "scheme": "doi", "reference": "Herb, U., Saarlandes,
+        U. des ., &amp; Saarlandes, U. des . (2025). <i>Scholarly Publishing in Transition
+        : Open Access, Peer Review, Quality, Research Evaluation, Standards</i> [Archival
+        collection]. Universit\u00e4t des Saarlandes."}, {"reference": "Zeng, M. L.,
+        & Qin, J. (2020). Metadata. American Library Association."}, {"identifier":
+        "10.6084/m9.figshare.7887059", "scheme": "doi", "reference": "Societies, F.
+        O. F. L., Information, T. C. F. P., Publishing, T. F. A. F. S., Norway, U.,
+        &amp; European Network For Research Evaluation In The Social Sciences And
+        The Humanities. (2019). <i>Helsinki Initiative on Multilingualism in Scholarly
+        Communication</i>."}, {"identifier": "10.48550/arxiv.2605.31117", "scheme":
+        "doi", "reference": "Ochsner, C., &amp; Pampel, H. (2026). <i>Requirements
+        for a cooperative information infrastructure for the digital preservation
+        of scholarly blogs</i> (Version 1). arXiv."}, {"identifier": "https://www.coara.org/",
+        "scheme": "url", "reference": "CoARA. (n.d.). CoARA \u2013 Coalition for Advancing
+        Research Assessment. Retrieved July 6, 2026, from"}, {"identifier": "10.5281/zenodo.14281892",
+        "scheme": "doi", "reference": "Deutsche Forschungsgemeinschaft. (2025). <i>Guidelines
+        for Safeguarding Good Research Practice. Code of Conduct</i>."}, {"identifier":
+        "10.47989/ir31iconf64176", "scheme": "doi", "reference": "Ochsner, C., &amp;
+        Pampel, H. (2026). Ensuring the long-term accessibility of scholarly blogs:
+        Bloggers'' attitudes and practices. <i>Information Research an International
+        Electronic Journal</i>, <i>31</i>(iConf), 1761\u20131769."}]}, "custom_fields":
+        {"journal:journal": {"title": "Upstream"}, "rs:content_html": "<p>The fragmentation
+        of social media and the rise of Generative Artificial intelligence (AI) have
+        renewed the importance of scholarly blogs. Similar to preprints, blogs enable
+        researchers to communicate ideas, preliminary findings, and emerging debates
+        without waiting for lengthy peer-review processes. At the same time, blogs
+        provide more space than preprints for contextualization, reflection, and a
+        clearly identifiable scholarly voice.</p><h2 id=\"introduction\">Introduction</h2><p>Scholarly
+        blogs serve as a platform for sharing research and research related content
+        both inside and outside the academic community (Burton, 2015; <a href=\"https://doi.org/10.1177/0741088313493610\"><u>Luz\u00f3n,
+        2013</u></a>). Blogs enable a cheap, fast and informal way publishing and
+        communicating research, which sets them apart from more traditional scientific
+        publication types, such as monographs, journal articles and conference proceedings
+        (<a href=\"https://doi.org/10.1371/journal.pbio.0060240\"><u>Batts et al.,
+        2008</u></a>; Burton, 2015). The term scholarly communication refers to the
+        interactions among scholars and the methods they use to share and socialize
+        scholarly knowledge (<a href=\"https://doi.org/10.1002/aris.1440360102\"><u>Borgman
+        &amp; Furner, 2002</u></a>; Burton, 2015). As scholarly communication continues
+        to expand beyond traditional publications, researchers are increasingly expected
+        to share their work in more open, accessible, and timely ways (Borgman, 2007).
+        Developing these skills supports not only a researchers visibility and impact
+        but also a more transparent and interactive research culture. Blogging enables
+        scholars to share insights more swiftly, reach wider audiences, and contribute
+        to ongoing public and academic debates while simultaneously fostering transferable
+        skills such as clear writing, public engagement and research transfer (Blanchard,
+        2011).</p><p>The fragmentation of social media and the rise of Generative
+        Artificial intelligence (AI) have renewed the importance of scholarly blogs.
+        Similar to preprints, blogs enable researchers to communicate ideas, preliminary
+        findings, and emerging debates without waiting for lengthy peer-review processes.
+        At the same time, blogs provide more space than preprints for contextualization,
+        reflection, and a clearly identifiable scholarly voice. During the 2010s and
+        early 2020s, Twitter became an important infrastructure for the rapid circulation
+        and discussion of research, particularly in medicine and biomedicine (<a href=\"https://doi.org/10.1038/s41591-019-0697-7\"><u>Wetsman,
+        2020</u></a>). Since the platform''s acquisition by Elon Musk, however, this
+        shared communication space has fragmented, and many researchers have reduced
+        their use of X or moved to alternative platforms (<a href=\"https://doi.org/10.1126/science.adf6617\"><u>Kupferschmidt,
+        2022</u></a>; <a href=\"https://doi.org/10.1038/d41586-023-02554-0\"><u>Vidal
+        Valero, 2023</u></a>). </p><p>Scholarly blogs provide a more durable alternative:
+        open, author-controlled, and searchable publishing spaces whose governance
+        and visibility do not depend on the decisions of a single commercial platform
+        owner. Generative AI further strengthens the case for scholarly blogging.
+        As AI systems make it increasingly easy to produce large volumes of fluent
+        but potentially interchangeable or unreliable text, identifiable authorship,
+        situated expertise, and intellectual accountability become more important.
+        Blogging also enables researchers to share insights rapidly, reach wider audiences,
+        and contribute to ongoing academic and public debates while developing transferable
+        skills in clear writing, public engagement, and research transfer (Blanchard,
+        2011). These practices can enhance researchers'' visibility and impact while
+        contributing to a more open, transparent, and interactive research culture.
+        Accordingly, the purpose of this article is to provide researchers with guidelines
+        for using blogs effectively in order to communicate their work, engage audiences,
+        and enhance the visibility and impact of their research. Therefore, in this
+        article, we present ten simple rules for scholarly blogging that aim to support
+        and encourage scholars to establish a blog that contributes to a more open,
+        transparent form of scholarly communication by offering practical guidance
+        for scholars seeking to engage more actively in this form of scholarly communication.</p><h2
+        id=\"rule-1-define-your-purpose-and-audience\">Rule 1: Define Your Purpose
+        and Audience</h2><p>Follow good scientific practices, while adopting a more
+        personal and less formal tone to build your online identity (Blanchard, 2011;
+        <a href=\"https://doi.org/10.5210/fm.v15i8.2962\"><u>Kjellberg, 2010</u></a>).
+        There are many types of blogs that range from topic-focused research blogs,
+        blogs accompanying dissertation research, blogs by research groups or about
+        research projects, blogs about sources and methods, blogs by institutes or
+        academic such as archives and libraries, seminar and conference blogs, blogs
+        accompanying a journal or publication, blogs for teaching and didactics, review
+        blogs or blogs for academic debates (<a href=\"https://shs.hal.science/halshs-01264402\"><u>K\u00f6nig,
+        2015</u></a>). Blogs allow for various scopes and types of use and can be
+        adapted to the needs of blogging scholars (Baez et al., 2011) that can express
+        themselves independently of restrictions or content guidelines (<a href=\"https://shs.hal.science/halshs-01264402\"><u>K\u00f6nig,
+        2015</u></a>). Blogging furthermore serves as a powerful tool for reflection,
+        offering a space to think aloud, documenting your research journey (<a href=\"https://hal.science/hal-01249318\"><u>Blanchard,
+        2010</u></a>; Blanchard, 2011) as a personal-public diary (Gloning, 2011)
+        and help clarifying one''s own thoughts, since ideas and thoughts can be organized
+        through writing (<a href=\"https://shs.hal.science/halshs-01264402\"><u>K\u00f6nig,
+        2015</u></a>). Beyond personal reflection, blogs can document the evolution
+        of ideas (<a href=\"https://doi.org/10.1080/00221546.2012.11777241\"><u>Bouwma-Gearhart
+        &amp; Bess, 2012</u></a>), failed approaches, and methodological decisions
+        that are often omitted from formal publications. Furthermore, Blogs offer
+        researchers the opportunity to report on ongoing research and also to publish
+        even minor research findings or to make the research process transparent in
+        the spirit of Open Science, e.g., by publishing hypotheses, thoughts, and
+        fragments (<a href=\"https://doi.org/10.58079/tdx9\"><u>D\u00f6ring, 2017</u></a>;
+        <a href=\"https://doi.org/10.5281/zenodo.13234482\"><u>Pampel &amp; Rothfritz,
+        2024</u></a>). This transparency not only supports reproducibility but also
+        provides valuable insights for other researchers as well as yourself and your
+        writing process (Blanchard, 2011). Keep in mind that a blog is a collection
+        of blog posts rather than a one-time publication. Aim for a regular publication
+        frequency that you are comfortable with, anywhere from once a week to several
+        times per year. Your target groups can be other scholars, students, or the
+        public, especially citizens with an in interest in research. Define one or
+        multiple audiences and your unique selling point in terms of content, design
+        or context (<a href=\"https://www.gesis.org/en/research/projects-and-exchange/external-funding-projects/wi4impact-project-page\"><u>GESIS
+        Leibniz Institute for the Social Sciences, n.d.</u></a>; <a href=\"https://osf.io/preprints/socarxiv/cvdr7_v1\"><u>Kuhle
+        et al., 2025</u></a>).</p><h2 id=\"rule-2-choose-a-platform\">Rule 2: Choose
+        a Platform</h2><p>As there are many good blogging software options, a blog
+        should not be hosted on a generic website. You can choose between hosting
+        your blog yourself or choose a platform to host it for you. While self hosting
+        gives you complete control over the mission of your blog, depending only on
+        your skills and time, it is also more effort and responsibility to do so,
+        compared to choosing an external platform. In case of self hosting, be aware
+        that you are not only responsible for hosting but also for ensuring the long-term
+        access of your content. However, platforms also come with dependencies, conformity
+        and sometimes costs. Consider risks of sticking with one platform before making
+        a decision. Popular blogging platforms that are also commonly used by researchers
+        are <a href=\"https://wordpress.com/de/\"><u>WordPress.com</u></a>, <a href=\"https://substack.com/\"><u>Substack</u></a>,
+        or <a href=\"https://www.blogger.com/about/?hl=de\"><u>Blogger</u></a>. Be
+        aware that commercial platforms such as Substack also come with the risk of
+        instability. You can set up your blog somewhere that already provides readers,
+        like specialized blogging platforms for scientific content (<a href=\"https://hal.science/hal-01249318\"><u>Blanchard,
+        2010</u></a>) such as <a href=\"https://hypotheses.org/\"><u>Hypotheses</u></a>,
+        facilitating the the development of online relationships (Davies &amp; Merchant,
+        2007). Many blogging platforms provide the WordPress software. If you decide
+        to self-host other software solutions are <a href=\"https://ghost.org/\"><u>Ghost</u></a>,
+        <a href=\"https://gohugo.io/\"><u>Hugo</u></a>, <a href=\"https://jekyllrb.com/\"><u>Jekyll</u></a>
+        or <a href=\"https://quarto.org/\"><u>Quarto</u></a> (<a href=\"https://doi.org/10.1515/bfp-2025-0028\"><u>Ochsner
+        et al., 2025b</u></a>).</p><h2 id=\"rule-3-ensure-quality-and-credibility\">Rule
+        3: Ensure Quality and Credibility</h2><p>Ensure quality over quantity. Maintain
+        high standards of accuracy, transparency, and reliability in your blog posts.
+        Since there are few formal control mechanisms that ensure readers the quality
+        of the content, blogs are part of science and scholarly communication and
+        should reflect good scientific practice. Clearly reference sources, link to
+        original research, and contextualize your research. Using formal references
+        often comes with the benefit of ensuring that links don''t break and are more
+        stable. Where possible, informal peer feedback by colleagues can help ensure
+        quality and build trust with your audience (<a href=\"https://doi.org/10.1371/journal.pbio.0060240\"><u>Batts
+        et al., 2008</u></a>). If you notice outdated content in older blog posts
+        you can create a new version of the blog post and make sure the new version
+        is visibly linked to in the old post. Do not use AI just to artificially generate
+        a lot of output. The application of AI may reduce your readers'' trust and
+        your credibility (<a href=\"https://doi.org/10.1145/3742413.3789076\"><u>Nakano
+        et al., 2026</u></a>). If you use AI, be transparent about it but also be
+        aware that AI bears risks of producing incorrect content and hallucinated
+        references (<a href=\"https://doi.org/10.1057/s41599-024-03811-x\"><u>Sun
+        et al., 2024</u></a>), which results in you having to control the quality
+        of the AI generated content. Ultimately you as the author are responsible
+        for all content. It''s important for your audience to know that there is a
+        person behind your blog, not an AI or an organization. Ultimately, ensuring
+        this personal dimension is what keeps blogs relevant.</p><h2 id=\"rule-4-foster-dialogue-and-build-community\">Rule
+        4: Foster Dialogue and Build Community</h2><p>Connect with your audiences
+        through your content. Blogs offer the opportunity to be engaging, entertaining
+        and even opinionated. As opposed to magazines, newspapers and television,
+        blogs offer your the opportunity to be responsive (<a href=\"https://doi.org/10.1016/j.tree.2008.05.004\"><u>Wilkins,
+        2008</u></a>). A classic way to foster community building is through blogrolls
+        (<a href=\"https://doi.org/10.1108/JD-02-2025-0053\"><u>Ochsner et al., 2025a</u></a>).
+        Blogrolls are recommendations for other blogs that bloggers curate on their
+        starting page (Rettberg, 2008). While blogrolls are not as commonly used these
+        days, they can still enhance the community aspect of blogging and the dissemination
+        of research (<a href=\"https://doi.org/10.1108/JD-02-2025-0053\"><u>Ochsner
+        et al., 2025a</u></a>). Allow comments, respond to feedback, and engage with
+        other blogs to create dialog and facilitate research through communication
+        (<a href=\"https://hal.science/hal-01249318\"><u>Blanchard, 2010</u></a>).
+        In addition to connecting with your community, comments and discussions enable
+        an open peer review process (<a href=\"https://doi.org/10.1371/journal.pbio.0060240\"><u>Batts
+        et al., 2008</u></a>). However, do not be discouraged if you do not receive
+        many comments. Your blog is still being read; channels of communication have
+        changed over the last decades of blogging through the emergence of social
+        media. However, social media also makes it possible to integrate comments,
+        for example through WordPress and Ghost. The reach of your blog and it''s
+        public online engagement can be increased by using social media (<a href=\"https://www.gesis.org/en/research/projects-and-exchange/external-funding-projects/wi4impact-project-page\"><u>GESIS
+        Leibniz Institute for the Social Sciences, n.d.</u></a>; <a href=\"https://osf.io/preprints/socarxiv/cvdr7_v1\"><u>Kuhle
+        et al., 2025</u></a>). Social media posts that target a wider, public audience
+        show the most effect (<a href=\"https://osf.io/preprints/socarxiv/cvdr7_v1\"><u>Kuhle
+        et al., 2025</u></a>). Dialogue can also place take through more formal ways
+        of science communication by being cited and becoming part of the scholarly
+        record.</p><h2 id=\"rule-5-encourage-data-flows-for-greater-impact\">Rule
+        5: Encourage Data Flows for Greater Impact</h2><p>Use feeds as primary distribution
+        channels for your blog posts. A blog feed is a standardized, machine readable
+        web link that can be integrated into other applications or sites to share
+        and exchange data (Rettberg, 2008; <a href=\"https://doi.org/10.1007/978-1-4302-0286-8_4\"><u>Yee,
+        2008</u></a>). Readers can subscribe to blog feeds through a feed reader that
+        will then alert them when new content has been published (Rettberg, 2008).
+        Use an appropriate format, like Atom and make sure the metadata in the feed
+        is correct and that the full text is included. Each blog post in the feed
+        should also provide information on the title of the post and the blog, its
+        author or authors, and its publication date, and an open license (<a href=\"https://doi.org/10.53731/a0d9m3n-n7r8h0m\"><u>Fenner,
+        2023</u></a>). Many feed readers also support the exchange of subscription
+        lists via Outline Processor Markup Language (OPML), allowing readers to easily
+        import, export, and share the blogs they follow. Other formats, such as newsletters,
+        podcasts, social media, or comments, are supplementary. Newsletters provide
+        an accessible alternative for readers who do not use RSS. Blogging platforms,
+        such as Ghost or Substack, support both RSS feeds and email newsletters, making
+        it possible to reach audiences through their preferred channel without maintaining
+        separate publishing workflows. Offering both options helps maximize the accessibility
+        and reach of your blog while allowing readers to choose how they receive updates.</p><h2
+        id=\"rule-6-use-open-licenses-to-enable-reuse\">Rule 6: Use Open Licenses
+        to Enable Reuse</h2><p>Make the reuse of your posts possible by providing
+        a license, such as those provided by Creative Commons (CC). CC is a non-profit
+        organization that provides licenses which can be used to define the legal
+        conditions of distributed content (<a href=\"https://creativecommons.org/who-we-are/\"><u>Creative
+        Commons, n.d.</u></a>). The gold standard for open access publications is
+        the CC-BY license (<a href=\"https://doi.org/10.53731/a0d9m3n-n7r8h0m\"><u>Fenner,
+        2023</u></a>; <a href=\"https://www.oaspa.org/news/why-cc-by/\"><u>Redhead,
+        2012</u></a>) that enables reuse as long as attribution is given to the author
+        (<a href=\"https://creativecommons.org/share-your-work/cclicenses/\"><u>Creative
+        Commons, 2019</u></a>). Other CC license options such as No Commercial use
+        (NC), No Derivatives (ND), and Share-Alike (SA) add restrictions that limit
+        reuse and therefore the reach of your posts (<a href=\"https://www.oaspa.org/news/why-cc-by/\"><u>Redhead,
+        2012</u></a>). Refraining from using licenses leads to your content not being
+        able to be reused.</p><h2 id=\"rule-7-support-citation\">Rule 7: Support Citation</h2><p>Web-based
+        persistent identifiers (PIDs) identify internet resources and were invented
+        as a reaction to link rot (<a href=\"https://doi.org/10.1371/journal.pone.0115253\"><u>Klein
+        et al., 2014</u></a>). Common PIDs in research are Digital Object Identifiers
+        (DOIs), which are unique, persistent digital identifiers that enable reliable
+        access to a digital object (<a href=\"https://www.doi.org/the-identifier/what-is-a-doi/\"><u>doi
+        Foundation, n.d.</u></a>) and the most persistent identifiers in research
+        data repository systems (<a href=\"https://doi.org/10.5334/dsj-2017-009\"><u>Klump
+        &amp; Huber, 2017</u></a>). DOIs are assigned via Crossref and DataCite and
+        come with the automated retrieval and import of metadata (<a href=\"https://doi.org/10.22028/D291-46556\"><u>Herb,
+        2025</u></a>). The redirection of DOIs helps prevent link rot, as blogs might
+        move to different domains or use a different link format depending on the
+        blogging platform. DOIs are also relevant when it comes to the long-term archival
+        of your posts. Bloggers can attain DOIs through the digital blog archive <a
+        href=\"https://rogue-scholar.org/\"><u>Rogue Scholar</u></a> that preserves
+        blog content, assigns DOIs to blog posts, and ensures additional redundancy
+        through web archiving with the Internet Archive. Displaying DOIs and a citation
+        proposal under each blog post is recommended (<a href=\"https://doi.org/10.53731/a0d9m3n-n7r8h0m\"><u>Fenner,
+        2023</u></a>). Additionally, blogs can be assigned International Standard
+        Serial Numbers (ISSNs), a widely used identifier for periodical publications
+        (<a href=\"https://doi.org/10.1108/JD-02-2025-0053\"><u>Ochsner et al., 2025a</u></a>).
+        DOIs need to be registered with metadata, we provide a list of relevant metadata
+        in the next rule.</p><h2 id=\"rule-8-support-metadata\">Rule 8: Support Metadata</h2><p>Metadata
+        are data that refer to information about other data. (Zeng &amp; Qin, 2020).
+        Metadata that are embedded in blogs are used by reference managers and indexers
+        and for the registration of DOIs. To be reusable for reference managers it
+        should be made available via HTML meta tags and/or Schema.org JSON-LD. The
+        metadata should furthermore be available for download in a standard bibliographic
+        format (<a href=\"https://doi.org/10.53731/a0d9m3n-n7r8h0m\"><u>Fenner, 2023</u></a>).
+        The metadata associated with a scholarly blog post should include the following
+        elements: First, the title of the blog post and the title of the affiliated
+        blog should be provided. Information about authors and contributors, like
+        editors should also be included. Make sure to list all the author''s names
+        instead of referring only to the name of an organization or research group.
+        In addition, each contributor should be identified through their Open Researcher
+        and Contributor (ORCID), while their affiliated research organization should
+        be identified using its Research Organization Registry (ROR) ID. Metadata
+        should further specify the licensing information under which the post is published,
+        with the Creative Commons Attribution (CC BY) license being the recommended
+        option. A short abstract summarizing the content of the blog post should be
+        included, together with the language in which the post is written. While English
+        is an important language used in scholarly communication that appeals to a
+        large audience, with reference to the Helsinki Initiative on Multilingualism
+        in Scholarly Communication (<a href=\"https://doi.org/10.6084/M9.FIGSHARE.7887059\"><u>Federation
+        of Finnish Learned Societies et al., 2019</u></a>) we encourage you to also
+        blog in your native language. To ensure persistent access, the metadata should
+        include either the URL of the published post or, where available, its DOI.
+        Information about the publication date and any subsequent updates should also
+        be provided to document version history. When DOIs are assigned to different
+        versions of a post, each version should receive its own DOI, alongside a DOI
+        that represents all versions and resolves to the most recent one. Finally,
+        the metadata should acknowledge any funding that supported the underlying
+        research, including grant identifiers where available. If the blog has been
+        assigned an ISSN, this should also be included. Finally, the metadata should
+        specify the subject area(s) of the blog post, improving its discoverability
+        (<a href=\"https://doi.org/10.48550/arXiv.2605.31117\"><u>Ochsner &amp; Pampel,
+        2026b</u></a>).</p><h2 id=\"rule-9-recognize-blogs-as-first-class-research-outputs\">Rule
+        9: Recognize Blogs as First-Class Research Outputs</h2><p>Contribute to establishing
+        blogs as legitimate scholarly outputs. The Coalition for Advancing Research
+        Assessment (CoARA) (<a href=\"https://www.coara.org/\"><u>CoARA, n.d.</u></a>)
+        calls for acknowledging the diverse range of outputs, practices, and activities
+        through which research generates value for science and society. Blogs belong
+        to this range, alongside data, software, and other non-traditional outputs.
+        The Helsinki Initiative on Multilingualism in Scholarly Communication (<a
+        href=\"https://doi.org/10.6084/M9.FIGSHARE.7887059\"><u>Federation of Finnish
+        Learned Societies et al., 2019</u></a>) adds a related point: blogs let researchers
+        communicate beyond the often English-dominated journal system, reaching audiences
+        in their own languages. Institutions and funding organizations should create
+        conditions to recognize such contributions in research assessment. This can
+        also include the transfer of research results to practice, policy, and the
+        public through blogs. The German Research Foundation already acknowledges
+        the relevance of blogs in its guidelines for safeguarding good research practice
+        (<a href=\"https://doi.org/10.5281/zenodo.14281892\"><u>Deutsche Forschungsgemeinschaft,
+        2025</u></a>), but broader international recognition is still missing. Valuing
+        blogs as part of a diverse research output portfolio would support CoARA''s
+        vision of research assessment beyond journal-based metrics.</p><h2 id=\"rule-10-read-and-engage-with-other-blogs\">Rule
+        10: Read and Engage With Other Blogs</h2><p>Actively participate in the blogosphere.
+        Ask your readers about what kind of content they would like to see on your
+        blogs. Let your audience help shape your Blog. Read other blogs to stay up
+        to date with developments in your research community and to discover new perspectives,
+        tools, and ideas. Feed readers will notify you when new posts of blogs you
+        are subscribed to are published. Engaging with other blogs should go beyond
+        reading. Leave comments, respond with your own blog posts, share interesting
+        articles with colleagues, and cite blog posts when they provide useful insights
+        or document software, methods, or discussions that are relevant to your work.
+        Saving blog posts in your reference manager helps you organize valuable resources
+        and makes them easier to cite later in blog posts, publications, presentations,
+        or teaching materials. Engaging in connecting with your community strengthens
+        connections and relationships and contributes to a more open and collaborative
+        scholarly communication ecosystem.</p><h2 id=\"conclusions\">Conclusions</h2><p>Scholarly
+        blogging are a flexible, open and fast addition to traditional scholarly publishing
+        and science communication. Blogs also provide a low entry bar into scholarly
+        communication and give you room to express something important that doesn''t
+        fit into other scholarly publishing formats. Finally, blogs provide a platform
+        for experimentation, by including code and data, as for example frequently
+        seen with the Quarto blogging platform. By following these ten simple rules,
+        scholars can create meaningful, accessible, and impactful blogs that foster
+        dialogue, support openness, good scientific practice, and encourage continuous
+        reflection, ultimately strengthening both individual research practices and
+        the broader scholarly communication landscape. Blogging is a community practice
+        that allows you to curate and disseminate information, not only a an individual,
+        but also within a participatory space. Finally, blogs provide a space to express
+        your personal voice, which is increasingly important in a world full of AI-generated
+        content.</p><h2 id=\"funding\">Funding</h2><p>The work of Catharina Ochsner
+        is funded by the German Research Foundation (DFG) through the project Kooperative
+        Informationsinfrastruktur f\u00fcr wissenschaftliche Blogs (Infra Wiss Blogs)
+        (project number <a href=\"https://gepris.dfg.de/project/528958385/2\"><u>528958385</u></a>).
+        Heinz Pampel was partly funded by the Einstein Center Digital Future (ECDF).</p><h2
+        id=\"references\">References</h2><ol><li>Burton, M. (2015). Blogs as infrastructure
+        for scholarly communication [Phd]. University of Michigan.</li><li>Luz\u00f3n,
+        M. J. (2013). Public communication of science in blogs: Recontextualizing
+        scientific discourse for a diversified audience. Written Communication, 30(4),
+        428\u2013457. <a href=\"https://doi.org/10.1177/0741088313493610\"><u>https://doi.org/10.1177/0741088313493610</u></a></li><li>Batts,
+        S. A., Anthis, N. J., &amp; Smith, T. C. (2008). Advancing science through
+        conversations: Bridging the gap between blogs and the academy. PLoS Biology,
+        6(9), e240. <a href=\"https://doi.org/10.1371/journal.pbio.0060240\"><u>https://doi.org/10.1371/journal.pbio.0060240</u></a></li><li>Borgman,
+        C. L., &amp; Furner, J. (2002). Scholarly communication and bibliometrics.
+        Annual Review of Information Science and Technology, 36(1), 2\u201372. <a
+        href=\"https://doi.org/10.1002/aris.1440360102\"><u>https://doi.org/10.1002/aris.1440360102</u></a></li><li>Borgman,
+        C. L. (2007). Scholarship in the digital age: Information, infrastructure
+        and the internet. The MIT Press.</li><li>Blanchard, A. (2011). 3.4 science
+        blogs in research and popularization of science: Why, how and for whom? In
+        M. Cockell, J. Billotte, F. Darbellay, &amp; F. Waldvogel (Eds.), Common knowledge:
+        The challenge of transdisciplinarity (pp. 219\u2013232). EPFL Press Lausanne,
+        Switzerland.</li><li>Wetsman, N. (2020). How Twitter is changing medical research.
+        Nature Medicine, 26(1), 11\u201313. <a href=\"https://doi.org/10.1038/s41591-019-0697-7\"><u>https://doi.org/10.1038/s41591-019-0697-7</u></a></li><li>Kupferschmidt,
+        K. (2022). As Musk reshapes Twitter, academics ponder taking flight. <a href=\"https://doi.org/10.1126/science.adf6617\"><u>https://doi.org/10.1126/science.adf6617</u></a></li><li>Vidal
+        Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding
+        angst and uncertainty. Nature, 620(7974), 482\u2013484. <a href=\"https://doi.org/10.1038/d41586-023-02554-0\"><u>https://doi.org/10.1038/d41586-023-02554-0</u></a></li><li>Kjellberg,
+        S. (2010). I am a blogging researcher: Motivations for blogging in a scholarly
+        context. First Monday, 15(8). <a href=\"https://doi.org/10.5210/fm.v15i8.2962\"><u>https://doi.org/10.5210/fm.v15i8.2962</u></a></li><li>K\u00f6nig,
+        M. (2015). Herausforderung f\u00fcr unsere Wissenschaftskultur: Weblogs in
+        den Geisteswissenschaften. In Digital Humanities. Praktiken der Digitalisierung,
+        der Dissemination und der Selbstreflexivit\u00e4t (No. 91; pp. 57\u201374).
+        Franz Steiner Verlag. <a href=\"https://shs.hal.science/halshs-01264402\"><u>https://shs.hal.science/halshs-01264402</u></a></li><li>Baez,
+        J., Schreiber, U., &amp; Bartlett, B. (2011). \"A new idea of how to communicate
+        ideas\". Zur Entwicklung wissenschaftlicher Blogs\u2014Ein Interview mit den
+        Gr\u00fcndern des Gruppenblogs The n-Category Caf\u00e9. In Gloning, Thomas
+        &amp; Fritz, Gerd (Eds.), Digitale Wissenschaftskommunikation. Formate und
+        ihre Nutzung. Linguistische Untersuchungen. (No. 3; pp. 287\u2013312). Gie\u00dfener
+        Elektronische Bibliothek.</li><li>Blanchard, A. (2010). Ce que le blog apporte
+        \u00e0 la recherche. OpenEdition Press. Read/Write Book. <a href=\"https://hal.science/hal-01249318\"><u>https://hal.science/hal-01249318</u></a></li><li>Gloning,
+        T. (2011). Interne Wissenschaftskommunikation im Zeichen der Digitalisierung.
+        Formate, Nutzungsweisen, Dynamik. In iris Bons, G. Fritz, &amp; T. Gloning
+        (Eds.), Digitale Wissenschaftskommunikation \u2013 Formate und ihre Nutzung
+        (No. 3; pp. 3\u201333). Gie\u00dfener Elektronische Bibliothek.</li><li>Bouwma-Gearhart,
+        J. L., &amp; Bess, J. L. (2012). The transformative potential of blogs for
+        research in higher education. The Journal of Higher Education, 83(2), 249\u2013275.
+        <a href=\"https://doi.org/10.1080/00221546.2012.11777241\"><u>https://doi.org/10.1080/00221546.2012.11777241</u></a></li><li>D\u00f6ring,
+        K. (2017, July). Wissenschaftsblogs als Publikationsorte \u2013 Ein von den
+        Geisteswissenschaften noch zu wenig genutztes Potential? [Billet]. <a href=\"https://doi.org/10.58079/tdx9\"><u>https://doi.org/10.58079/tdx9</u></a></li><li>Pampel,
+        H., &amp; Rothfritz, L. (2024). Kooperative informationsinfrastruktur f\u00fcr
+        wissenschaftliche blogs (infra wiss blogs). Zenodo. <a href=\"https://doi.org/10.5281/zenodo.13234482\"><u>https://doi.org/10.5281/zenodo.13234482</u></a></li><li>GESIS
+        Leibniz Institute for the Social Sciences. (n.d.). Knowing how knowledge works
+        in the context of digitalization\u2014Wi4impact. Retrieved January 21, 2025,
+        from <a href=\"https://www.gesis.org/en/research/projects-and-exchange/external-funding-projects/wi4impact-project-page\"><u>https://www.gesis.org/en/research/projects-and-exchange/external-funding-projects/wi4impact-project-page</u></a></li><li>Kuhle,
+        B., Voigt, C., Breuer, J., &amp; Repke, L. (2025). Public online engagement
+        with science blogs and podcasts: A multimethod assessment of effectiveness
+        in the German academic context. <a href=\"https://osf.io/preprints/socarxiv/cvdr7_v1\"><u>https://osf.io/preprints/socarxiv/cvdr7_v1</u></a></li><li>Davies,
+        J., &amp; Merchant, G. (2007). Looking from the inside out: Academic blogging
+        as new literacy. A New Literacies Sampler, 167\u2013197.</li><li>Ochsner,
+        C., Pampel, H., H\u00f6fting, J., &amp; Rothfritz, L. (2025b). Wissenschaftsblogs
+        in Deutschland: Eine Analyse infrastruktureller Aspekte. Bibliothek Forschung
+        Und Praxis. <a href=\"https://doi.org/10.1515/bfp-2025-0028\"><u>https://doi.org/10.1515/bfp-2025-0028</u></a></li><li>Nakano,
+        H., Takezawa, J., Matulic, F., Yang, C.-L., &amp; Yatani, K. (2026). Understanding
+        Reader Perception Shifts upon Disclosure of AI Authorship. Proceedings of
+        the 31st International Conference on Intelligent User Interfaces, IUI ''26,
+        2131\u20132146. <a href=\"https://doi.org/10.1145/3742413.3789076\"><u>https://doi.org/10.1145/3742413.3789076</u></a></li><li>Sun,
+        Y., Sheng, D., Zhou, Z., &amp; Wu, Y. (2024). AI hallucination: Towards a
+        comprehensive classification of distorted information in artificial intelligence-generated
+        content. Humanities and Social Sciences Communications, 11(1), 1278. <a href=\"https://doi.org/10.1057/s41599-024-03811-x\"><u>https://doi.org/10.1057/s41599-024-03811-x</u></a></li><li>Wilkins,
+        J. S. (2008). The roles, reasons and restrictions of science blogs. Trends
+        in Ecology &amp; Evolution, 23(8), 411\u2013413. <a href=\"https://doi.org/10.1016/j.tree.2008.05.004\"><u>https://doi.org/10.1016/j.tree.2008.05.004</u></a></li><li>Ochsner,
+        C., Pampel, H., H\u00f6fting, J., &amp; Rothfritz, L. (2025a). Scholarly blogs:
+        An analysis of infrastructural aspects based on German scholarly blogs. Journal
+        of Documentation, 81(7), 520\u2013544. <a href=\"https://doi.org/10.1108/JD-02-2025-0053\"><u>https://doi.org/10.1108/JD-02-2025-0053</u></a></li><li>Rettberg,
+        J. W. (2008). Blogging. Polity.</li><li>Yee, R. (2008). Working with Feeds,
+        RSS, and Atom. In Pro Web 2.0 Mashups: Remixing Data and Web Services (pp.
+        77\u2013104). Apress. <a href=\"https://doi.org/10.1007/978-1-4302-0286-8_4\"><u>https://doi.org/10.1007/978-1-4302-0286-8_4</u></a></li><li>Fenner,
+        M. (2023, February). Guidelines for Scholarly Blogs. Front Matter. <a href=\"https://doi.org/10.53731/a0d9m3n-n7r8h0m\"><u>https://doi.org/10.53731/a0d9m3n-n7r8h0m</u></a></li><li>Creative
+        Commons. (n.d.). Who we are. Retrieved July 2, 2026, from <a href=\"https://creativecommons.org/who-we-are/\"><u>https://creativecommons.org/who-we-are/</u></a></li><li>Redhead,
+        C. (2012, October). Why CC-BY? - OASPA. <a href=\"https://www.oaspa.org/news/why-cc-by/\"><u>https://www.oaspa.org/news/why-cc-by/</u></a></li><li>Creative
+        Commons. (2019). About CC liscenses. <a href=\"https://creativecommons.org/share-your-work/cclicenses/\"><u>https://creativecommons.org/share-your-work/cclicenses/</u></a></li><li>Klein,
+        M., Sompel, H. V. de, Sanderson, R., Shankar, H., Balakireva, L., Zhou, K.,
+        &amp; Tobin, R. (2014). Scholarly Context Not Found: One in Five Articles
+        Suffers from Reference Rot. PLOS ONE, 9(12), e115253. <a href=\"https://doi.org/10.1371/journal.pone.0115253\"><u>https://doi.org/10.1371/journal.pone.0115253</u></a></li><li>DOI
+        Foundation. (n.d.). What is a DOI? Retrieved October 31, 2025, from <a href=\"https://www.doi.org/the-identifier/what-is-a-doi/\"><u>https://www.doi.org/the-identifier/what-is-a-doi/</u></a></li><li>Klump,
+        J., &amp; Huber, R. (2017). 20 Years of Persistent Identifiers \u2013 Which
+        Systems are Here to Stay? Data Science Journal, 16, 9\u20139. <a href=\"https://doi.org/10.5334/dsj-2017-009\"><u>https://doi.org/10.5334/dsj-2017-009</u></a></li><li>Herb,
+        U. (2025). Scholarly Publishing in Transition: Open Access, Peer Review, Quality,
+        Research Evaluation, Standards. <a href=\"https://doi.org/10.22028/D291-46556\"><u>https://doi.org/10.22028/D291-46556</u></a></li><li>Zeng,
+        M. L., &amp; Qin, J. (2020). Metadata. American Library Association.</li><li>Federation
+        of Finnish Learned Societies, Information, T. C. F. P., Publishing, T. F.
+        A. F. S., Universities Norway, &amp; European Network For Research Evaluation
+        In The Social Sciences And The Humanities. (2019). Helsinki Initiative on
+        Multilingualism in Scholarly Communication. <a href=\"https://doi.org/10.6084/M9.FIGSHARE.7887059\"><u>https://doi.org/10.6084/M9.FIGSHARE.7887059</u></a></li><li>Ochsner,
+        C., &amp; Pampel, H. (2026b, May). Requirements for a cooperative information
+        infrastructure for the digital preservation of scholarly blogs. arXiv. <a
+        href=\"https://doi.org/10.48550/arXiv.2605.31117\"><u>https://doi.org/10.48550/arXiv.2605.31117</u></a></li><li>CoARA.
+        (n.d.). CoARA \u2013 Coalition for Advancing Research Assessment. Retrieved
+        July 6, 2026, from <a href=\"https://www.coara.org/\"><u>https://www.coara.org/</u></a></li><li>Deutsche
+        Forschungsgemeinschaft. (2025, January). Guidelines for Safeguarding Good
+        Research Practice. Code of Conduct. <a href=\"https://doi.org/10.5281/zenodo.14281892\"><u>https://doi.org/10.5281/zenodo.14281892</u></a></li><li>Ochsner,
+        C., &amp; Pampel, H. (2026a). Ensuring the long-term accessibility of scholarly
+        blogs: Bloggers'' attitudes and practices. Information Research, 31(iConf),
+        1761\u20131769. <a href=\"https://doi.org/10.47989/ir31iConf64176\"><u>https://doi.org/10.47989/ir31iConf64176</u></a></li></ol>",
+        "rs:image": "https://images.unsplash.com/photo-1704969724330-54510439bdaa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDE1fHxzY2llbmNlJTIwYmxvZ2dpbmd8ZW58MHx8fHwxNzg1MTcwMzYwfDA&ixlib=rb-4.1.0&q=80&w=2000",
+        "rs:generator": {"id": "Ghost", "title": {"en": "Ghost"}}, "rs:featured":
+        false, "rs:doi": "https://doi.org/10.54900/upstream"}, "access": {"record":
+        "public", "files": "public", "embargo": {"active": false, "reason": null},
+        "status": "open"}, "files": {"enabled": true, "order": [], "count": 1, "total_bytes":
+        757095, "entries": {"xn57k-gyw73.pdf": {"id": "53b064f3-1d94-4bb4-8d8a-0cd44872ec25",
+        "checksum": "md5:6a0e0a09a94031824e18350acc405d25", "ext": "pdf", "size":
+        757095, "mimetype": "application/pdf", "key": "xn57k-gyw73.pdf", "metadata":
+        {}, "access": {"hidden": false}}}}, "media_files": {"enabled": false, "order":
+        [], "count": 0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
+        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
+        13, "unique_views": 9, "downloads": 6, "unique_downloads": 4, "data_volume":
+        4542570.0}, "all_versions": {"views": 13, "unique_views": 9, "downloads":
+        6, "unique_downloads": 4, "data_volume": 4542570.0}}}], "total": 1}, "aggregations":
+        {"language": {"buckets": [{"key": "eng", "doc_count": 1, "label": "English",
+        "is_selected": false}], "label": "Languages"}, "publication_date": {"buckets":
+        [{"key": "2026", "doc_count": 1, "label": "2026", "is_selected": false}],
+        "label": "Publication date"}, "subject": {"buckets": [{"key": "Academic Publishing
+        and Open Access", "doc_count": 1, "label": "Academic Publishing and Open Access",
+        "is_selected": false}, {"key": "Economics and business", "doc_count": 1, "label":
+        "Economics and business", "is_selected": false}, {"key": "Information Systems
+        and Management", "doc_count": 1, "label": "Information Systems and Management",
+        "is_selected": false}, {"key": "Original Research", "doc_count": 1, "label":
+        "Original Research", "is_selected": false}], "label": "Subjects"}, "funders":
+        {"buckets": [], "label": "Funders"}, "affiliations": {"buckets": [{"key":
+        "01hcx6992", "doc_count": 1, "label": "Humboldt-Universit\u00e4t zu Berlin",
+        "is_selected": false}], "label": "Author affiliations"}, "author_identifiers":
+        {"buckets": [{"key": "orcid", "doc_count": 1, "label": "ORCID", "is_selected":
+        false}], "label": "Author identifiers"}, "platforms": {"buckets": [], "label":
+        "Platforms"}, "rights": {"buckets": [{"key": "cc-by-4.0", "doc_count": 1,
+        "label": "Creative Commons Attribution 4.0 International", "is_selected":
+        false}], "label": "Licenses"}, "relations": {"buckets": [], "label": "Related
+        works"}, "references": {"buckets": [{"key": "doi", "doc_count": 1, "label":
+        "DOI", "is_selected": false}, {"key": "url", "doc_count": 1, "label": "URL",
+        "is_selected": false}], "label": "References"}, "citations": {"buckets": [],
+        "label": "Citations"}, "featured": {"buckets": [], "label": "Featured"}},
+        "sortBy": "newest", "page": 1, "links": {"self": "https://rogue-scholar.org/api/records?page=1&q=doi:10.54900/xn57k-gyw73&size=1&sort=newest"}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 25 Aug 2026 16:16:38 GMT
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '60'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '499'
+      X-Ratelimit-Reset:
+      - '1787674659'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
+    method: GET
+    uri: https://rogue-scholar.org/api/records/e1ndf-19s62
+  response:
+    body:
+      string: '{"id": "e1ndf-19s62", "created": "2026-07-28T08:18:56.597542+00:00",
+        "updated": "2026-08-24T23:39:14.523881+00:00", "links": {"self": "https://rogue-scholar.org/api/records/e1ndf-19s62",
+        "self_html": "https://rogue-scholar.org/records/e1ndf-19s62", "preview_html":
+        "https://rogue-scholar.org/records/e1ndf-19s62?preview=1", "doi": "https://doi.org/10.54900/xn57k-gyw73",
+        "self_doi": "https://doi.org/10.54900/xn57k-gyw73", "self_doi_html": "https://rogue-scholar.org/doi/10.54900/xn57k-gyw73",
+        "reserve_doi": "https://rogue-scholar.org/api/records/e1ndf-19s62/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/t6byp-m6w86", "parent_html":
+        "https://rogue-scholar.org/records/t6byp-m6w86", "parent_doi": "https://doi.org/10.54900/t6byp-m6w86",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.54900/t6byp-m6w86", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/e1ndf-19s62/files", "media_files":
+        "https://rogue-scholar.org/api/records/e1ndf-19s62/media-files", "thumbnails":
+        {"10": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/%5E10,/0/default.jpg",
+        "50": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/%5E50,/0/default.jpg",
+        "100": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/%5E100,/0/default.jpg",
+        "250": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/%5E250,/0/default.jpg",
+        "750": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/%5E750,/0/default.jpg",
+        "1200": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/%5E1200,/0/default.jpg"},
+        "archive": "https://rogue-scholar.org/api/records/e1ndf-19s62/files-archive",
+        "archive_media": "https://rogue-scholar.org/api/records/e1ndf-19s62/media-files-archive",
+        "latest": "https://rogue-scholar.org/api/records/e1ndf-19s62/versions/latest",
+        "latest_html": "https://rogue-scholar.org/records/e1ndf-19s62/latest", "versions":
+        "https://rogue-scholar.org/api/records/e1ndf-19s62/versions", "draft": "https://rogue-scholar.org/api/records/e1ndf-19s62/draft",
+        "access_links": "https://rogue-scholar.org/api/records/e1ndf-19s62/access/links",
+        "access_grants": "https://rogue-scholar.org/api/records/e1ndf-19s62/access/grants",
+        "access_users": "https://rogue-scholar.org/api/records/e1ndf-19s62/access/users",
+        "access_groups": "https://rogue-scholar.org/api/records/e1ndf-19s62/access/groups",
+        "access_request": "https://rogue-scholar.org/api/records/e1ndf-19s62/access/request",
+        "access": "https://rogue-scholar.org/api/records/e1ndf-19s62/access", "communities":
+        "https://rogue-scholar.org/api/records/e1ndf-19s62/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/e1ndf-19s62/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/e1ndf-19s62/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/e1ndf-19s62/file-modification",
+        "quota_increase": "https://rogue-scholar.org/api/records/e1ndf-19s62/quota-increase",
+        "requests": "https://rogue-scholar.org/api/records/e1ndf-19s62/requests"},
+        "revision_id": 21, "parent": {"id": "t6byp-m6w86", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b", "fbc3bd5a-137e-4366-94ae-92a6e9d744e3"],
+        "default": "b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b", "entries": [{"id": "b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b",
+        "created": "2024-10-05T11:02:14.834230+00:00", "updated": "2026-08-22T09:06:37.914260+00:00",
+        "links": {}, "revision_id": 3856, "slug": "upstream", "metadata": {"title":
+        "Upstream", "description": "The community blog for all things Open Research.",
+        "type": {"id": "blog"}, "website": "https://upstream.force11.org"}, "access":
+        {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {"feed:feed_url": "https://upstream.force11.org/atom-complete/", "feed:current_feed_url":
+        "https://upstream.force11.org/atom/", "feed:created": "2023-01-13", "feed:updated":
+        "2026-08-04T12:36:38+00:00", "feed:feed_format": {"id": "atom"}, "feed:generator":
+        {"id": "Ghost"}, "feed:status": {"id": "active"}, "feed:secure": true, "feed:use_api":
+        true, "rs:prefix": {"id": "10.54900"}, "rs:doi": "https://doi.org/10.54900/upstream",
+        "rs:license": {"id": "cc-by-4.0"}, "rs:language": {"id": "eng"}, "rs:subfield":
+        [{"id": "https://openalex.org/subfields/1802"}]}, "deletion_status": {"is_deleted":
+        false, "status": "P"}, "children": {"allow": true}}, {"id": "fbc3bd5a-137e-4366-94ae-92a6e9d744e3",
+        "created": "2025-02-11T17:20:32.633964+00:00", "updated": "2025-12-02T20:56:11.605253+00:00",
+        "links": {}, "revision_id": 11, "slug": "1802", "metadata": {"title": "Information
+        Systems and Management", "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1802"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {"doi": {"identifier": "10.54900/t6byp-m6w86", "provider":
+        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
+        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
+        "10.54900/xn57k-gyw73", "provider": "crossref", "client": "crossref"}, "oai":
+        {"identifier": "oai:invenio-rdm:e1ndf-19s62", "provider": "oai"}}, "metadata":
+        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
+        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
+        {"type": "personal", "name": "Ochsner, Catharina", "given_name": "Catharina",
+        "family_name": "Ochsner", "identifiers": [{"identifier": "0009-0005-3885-3951",
+        "scheme": "orcid"}]}, "affiliations": [{"id": "01hcx6992", "name": "Humboldt-Universit\u00e4t
+        zu Berlin", "identifiers": [{"identifier": "01hcx6992", "scheme": "ror"}]}]},
+        {"person_or_org": {"type": "personal", "name": "Pampel, Heinz", "given_name":
+        "Heinz", "family_name": "Pampel", "identifiers": [{"identifier": "0000-0003-3334-2771",
+        "scheme": "orcid"}]}}, {"person_or_org": {"type": "personal", "name": "Fenner,
+        Martin", "given_name": "Martin", "family_name": "Fenner", "identifiers": [{"identifier":
+        "0000-0003-1419-2405", "scheme": "orcid"}]}, "affiliations": [{"name": "Front
+        Matter"}]}], "title": "Ten simple rules for scholarly blogging", "publisher":
+        "Front Matter", "publication_date": "2026-07-28", "subjects": [{"id": "https://openalex.org/subfields/1802",
+        "subject": "Information Systems and Management", "scheme": "Subfields"}, {"id":
+        "http://www.oecd.org/science/inno/38235147.pdf?5.2", "subject": "Economics
+        and business", "scheme": "FOS"}, {"id": "https://openalex.org/T13607", "subject":
+        "Academic Publishing and Open Access", "scheme": "Topics"}, {"subject": "Original
+        Research"}], "dates": [{"date": "2026-07-28T08:00:13Z", "type": {"id": "issued",
+        "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}},
+        {"date": "2026-07-28T08:00:13Z", "type": {"id": "updated", "title": {"de":
+        "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id":
+        "eng", "title": {"en": "English"}}], "identifiers": [{"identifier": "https://doi.org/10.54900/xn57k-gyw73",
+        "scheme": "guid"}, {"identifier": "https://upstream.force11.org/ten-simple-rules-for-scholarly-blogging/",
+        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
+        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
+        "The Creative Commons Attribution license allows re-distribution and re-use
+        of a licensed work on the condition that the creator is appropriately credited."},
+        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "The fragmentation of social media and
+        the rise of Generative Artificial intelligence (AI) have renewed the importance
+        of scholarly blogs. Similar to preprints, blogs enable researchers to communicate
+        ideas, preliminary findings, and emerging debates without waiting for lengthy
+        peer-review processes. At the same time, blogs provide more space than preprints
+        for contextualization, reflection, and a clearly identifiable scholarly voice.",
+        "references": [{"reference": "Burton, M. (2015). Blogs as infrastructure for
+        scholarly communication [Phd]. University of Michigan."}, {"identifier": "10.1177/0741088313493610",
+        "scheme": "doi", "reference": "Luz\u00f3n, M. J. (2013). Public Communication
+        of Science in Blogs. <i>Written Communication</i>, <i>30</i>(4), 428\u2013457."},
+        {"identifier": "10.1371/journal.pbio.0060240", "scheme": "doi", "reference":
+        "Batts, S. A., Anthis, N. J., &amp; Smith, T. C. (2008). Advancing Science
+        through Conversations: Bridging the Gap between Blogs and the Academy. <i>PLoS
+        Biology</i>, <i>6</i>(9), e240."}, {"identifier": "10.1002/aris.1440360102",
+        "scheme": "doi", "reference": "Borgman, C. L., &amp; Furner, J. (2002). Scholarly
+        communication and bibliometrics. <i>Annual Review of Information Science and
+        Technology</i>, <i>36</i>(1), 2\u201372."}, {"reference": "Borgman, C. L.
+        (2007). Scholarship in the digital age: Information, infrastructure and the
+        internet. The MIT Press."}, {"reference": "Blanchard, A. (2011). 3.4 science
+        blogs in research and popularization of science: Why, how and for whom? In
+        M. Cockell, J. Billotte, F. Darbellay, & F. Waldvogel (Eds.), Common knowledge:
+        The challenge of transdisciplinarity (pp. 219\u2013232). EPFL Press Lausanne,
+        Switzerland."}, {"identifier": "10.1038/s41591-019-0697-7", "scheme": "doi",
+        "reference": "Wetsman, N. (2019). How Twitter is changing medical research.
+        <i>Nature Medicine</i>, <i>26</i>(1), 11\u201313."}, {"identifier": "10.1126/science.adf6617",
+        "scheme": "doi", "reference": "Kupferschmidt, K. (2022). As Musk reshapes
+        Twitter, academics ponder taking flight."}, {"identifier": "10.1038/d41586-023-02554-0",
+        "scheme": "doi", "reference": "Vidal Valero, M. (2023). Thousands of scientists
+        are cutting back on Twitter, seeding angst and uncertainty. <i>Nature</i>,
+        <i>620</i>(7974), 482\u2013484."}, {"identifier": "10.5210/fm.v15i8.2962",
+        "scheme": "doi", "reference": "Kjellberg, S. (2010). I am a blogging researcher:
+        Motivations for blogging in a scholarly context. <i>First Monday</i>."}, {"identifier":
+        "https://shs.hal.science/halshs-01264402", "scheme": "url", "reference": "K\u00f6nig,
+        M. (2015, December 1). <i>Herausforderung f\u00fcr unsere Wissenschaftskultur:
+        Weblogs in den Geisteswissenschaften</i>."}, {"reference": "Baez, J., Schreiber,
+        U., & Bartlett, B. (2011). \"A new idea of how to communicate ideas\". Zur
+        Entwicklung wissenschaftlicher Blogs\u2014Ein Interview mit den Gr\u00fcndern
+        des Gruppenblogs The n-Category Caf\u00e9. In Gloning, Thomas & Fritz, Gerd
+        (Eds.), Digitale Wissenschaftskommunikation. Formate und ihre Nutzung. Linguistische
+        Untersuchungen. (No. 3; pp. 287\u2013312). Gie\u00dfener Elektronische Bibliothek."},
+        {"identifier": "https://hal.science/hal-01249318", "scheme": "url", "reference":
+        "Blanchard, A. (2010). <i>Ce que le blog apporte \u00e0 la recherche</i>."},
+        {"reference": "Gloning, T. (2011). Interne Wissenschaftskommunikation im Zeichen
+        der Digitalisierung. Formate, Nutzungsweisen, Dynamik. In iris Bons, G. Fritz,
+        & T. Gloning (Eds.), Digitale Wissenschaftskommunikation \u2013 Formate und
+        ihre Nutzung (No. 3; pp. 3\u201333). Gie\u00dfener Elektronische Bibliothek."},
+        {"identifier": "10.1080/00221546.2012.11777241", "scheme": "doi", "reference":
+        "Bouwma-Gearhart, J. L., &amp; Bess, J. L. (2012). The Transformative Potential
+        of Blogs for Research in Higher Education. <i>The Journal of Higher Education</i>,
+        <i>83</i>(2), 249\u2013275."}, {"identifier": "10.58079/tdx9", "scheme": "doi",
+        "reference": "Karoline D\u00f6ring. (2017). <i>Wissenschaftsblogs als Publikationsorte
+        \u2013 Ein von den Geisteswissenschaften noch zu wenig genutztes Potential?</i>."},
+        {"identifier": "10.5281/zenodo.13234482", "scheme": "doi", "reference": "Pampel,
+        H., &amp; Rothfritz, L. (2024). <i>Kooperative Informationsinfrastruktur f\u00fcr
+        wissenschaftliche Blogs (Infra Wiss Blogs)</i>."}, {"identifier": "https://www.gesis.org/en/research/projects-and-exchange/external-funding-projects/wi4impact-project-page",
+        "scheme": "url", "reference": "GESIS Leibniz Institute for the Social Sciences.
+        (n.d.). Knowing how knowledge works in the context of digitalization\u2014Wi4impact.
+        Retrieved January 21, 2025, from"}, {"identifier": "https://osf.io/preprints/socarxiv/cvdr7_v1",
+        "scheme": "url", "reference": "Kuhle, B., Voigt, C., Breuer, J., & Repke,
+        L. (2025). Public online engagement with science blogs and podcasts: A multimethod
+        assessment of effectiveness in the German academic context."}, {"reference":
+        "Davies, J., & Merchant, G. (2007). Looking from the inside out: Academic
+        blogging as new literacy. A New Literacies Sampler, 167\u2013197."}, {"identifier":
+        "10.1515/bfp-2025-0028", "scheme": "doi", "reference": "Ochsner, C., Pampel,
+        H., H\u00f6fting, J., &amp; Rothfritz, L. (2025). Wissenschaftsblogs in Deutschland:
+        Eine Analyse infrastruktureller Aspekte. <i>Bibliothek Forschung Und Praxis</i>,
+        <i>49</i>(3), 417\u2013437."}, {"identifier": "10.1145/3742413.3789076", "scheme":
+        "doi", "reference": "Nakano, H., Takezawa, J., Matulic, F., Yang, C.-L., &amp;
+        Yatani, K. (2026). Understanding Reader Perception Shifts upon Disclosure
+        of AI Authorship. In <i>Proceedings of the 31st International Conference on
+        Intelligent User Interfaces</i> (pp. 2131\u20132146). ACM."}, {"identifier":
+        "10.1057/s41599-024-03811-x", "scheme": "doi", "reference": "Sun, Y., Sheng,
+        D., Zhou, Z., &amp; Wu, Y. (2024). AI hallucination: towards a comprehensive
+        classification of distorted information in artificial intelligence-generated
+        content. <i>Humanities and Social Sciences Communications</i>, <i>11</i>(1)."},
+        {"identifier": "10.1016/j.tree.2008.05.004", "scheme": "doi", "reference":
+        "WILKINS, J. (2008). The roles, reasons and restrictions of science blogs.
+        <i>Trends in Ecology & Evolution</i>, <i>23</i>(8), 411\u2013413."}, {"identifier":
+        "10.1108/jd-02-2025-0053", "scheme": "doi", "reference": "Ochsner, C., Pampel,
+        H., H\u00f6fting, J., &amp; Rothfritz, L. (2025). Scholarly blogs: an analysis
+        of infrastructural aspects based on German scholarly blogs. <i>Journal of
+        Documentation</i>, <i>81</i>(7), 520\u2013544."}, {"reference": "Rettberg,
+        J. W. (2008). Blogging. Polity."}, {"identifier": "10.1007/978-1-4302-0286-8_4",
+        "scheme": "doi", "reference": "Yee, R. (2008). Working with Feeds, RSS, and
+        Atom. In Pro Web 2.0 Mashups: Remixing Data and Web Services (pp. 77\u2013104).
+        Apress."}, {"identifier": "10.53731/a0d9m3n-n7r8h0m", "scheme": "doi", "reference":
+        "Fenner, M. (2023, February 6). Guidelines for Scholarly Blogs. <i>Front Matter</i>."},
+        {"identifier": "https://creativecommons.org/who-we-are/", "scheme": "url",
+        "reference": "Creative Commons. (n.d.). Who we are. Retrieved July 2, 2026,
+        from"}, {"identifier": "https://www.oaspa.org/news/why-cc-by/", "scheme":
+        "url", "reference": "Redhead, C. (2012, October). Why CC-BY? - OASPA."}, {"identifier":
+        "https://creativecommons.org/share-your-work/cclicenses/", "scheme": "url",
+        "reference": "Creative Commons. (2019). About CC liscenses."}, {"identifier":
+        "10.1371/journal.pone.0115253", "scheme": "doi", "reference": "Klein, M.,
+        Van de Sompel, H., Sanderson, R., Shankar, H., Balakireva, L., Zhou, K., Tobin,
+        R., &amp; Bar-Ilan, J. (2014). Scholarly Context Not Found: One in Five Articles
+        Suffers from Reference Rot. <i>PLoS ONE</i>, <i>9</i>(12), e115253."}, {"identifier":
+        "https://www.doi.org/the-identifier/what-is-a-doi/", "scheme": "url", "reference":
+        "DOI Foundation. (n.d.). What is a DOI? Retrieved October 31, 2025, from"},
+        {"identifier": "10.5334/dsj-2017-009", "scheme": "doi", "reference": "Klump,
+        J., &amp; Huber, R. (2017). 20 Years of Persistent Identifiers \u2013 Which
+        Systems are Here to Stay?. <i>Data Science Journal</i>, <i>16</i>."}, {"identifier":
+        "10.22028/d291-46556", "scheme": "doi", "reference": "Herb, U., Saarlandes,
+        U. des ., &amp; Saarlandes, U. des . (2025). <i>Scholarly Publishing in Transition
+        : Open Access, Peer Review, Quality, Research Evaluation, Standards</i> [Archival
+        collection]. Universit\u00e4t des Saarlandes."}, {"reference": "Zeng, M. L.,
+        & Qin, J. (2020). Metadata. American Library Association."}, {"identifier":
+        "10.6084/m9.figshare.7887059", "scheme": "doi", "reference": "Societies, F.
+        O. F. L., Information, T. C. F. P., Publishing, T. F. A. F. S., Norway, U.,
+        &amp; European Network For Research Evaluation In The Social Sciences And
+        The Humanities. (2019). <i>Helsinki Initiative on Multilingualism in Scholarly
+        Communication</i>."}, {"identifier": "10.48550/arxiv.2605.31117", "scheme":
+        "doi", "reference": "Ochsner, C., &amp; Pampel, H. (2026). <i>Requirements
+        for a cooperative information infrastructure for the digital preservation
+        of scholarly blogs</i> (Version 1). arXiv."}, {"identifier": "https://www.coara.org/",
+        "scheme": "url", "reference": "CoARA. (n.d.). CoARA \u2013 Coalition for Advancing
+        Research Assessment. Retrieved July 6, 2026, from"}, {"identifier": "10.5281/zenodo.14281892",
+        "scheme": "doi", "reference": "Deutsche Forschungsgemeinschaft. (2025). <i>Guidelines
+        for Safeguarding Good Research Practice. Code of Conduct</i>."}, {"identifier":
+        "10.47989/ir31iconf64176", "scheme": "doi", "reference": "Ochsner, C., &amp;
+        Pampel, H. (2026). Ensuring the long-term accessibility of scholarly blogs:
+        Bloggers'' attitudes and practices. <i>Information Research an International
+        Electronic Journal</i>, <i>31</i>(iConf), 1761\u20131769."}]}, "custom_fields":
+        {"journal:journal": {"title": "Upstream"}, "rs:content_html": "<p>The fragmentation
+        of social media and the rise of Generative Artificial intelligence (AI) have
+        renewed the importance of scholarly blogs. Similar to preprints, blogs enable
+        researchers to communicate ideas, preliminary findings, and emerging debates
+        without waiting for lengthy peer-review processes. At the same time, blogs
+        provide more space than preprints for contextualization, reflection, and a
+        clearly identifiable scholarly voice.</p><h2 id=\"introduction\">Introduction</h2><p>Scholarly
+        blogs serve as a platform for sharing research and research related content
+        both inside and outside the academic community (Burton, 2015; <a href=\"https://doi.org/10.1177/0741088313493610\"><u>Luz\u00f3n,
+        2013</u></a>). Blogs enable a cheap, fast and informal way publishing and
+        communicating research, which sets them apart from more traditional scientific
+        publication types, such as monographs, journal articles and conference proceedings
+        (<a href=\"https://doi.org/10.1371/journal.pbio.0060240\"><u>Batts et al.,
+        2008</u></a>; Burton, 2015). The term scholarly communication refers to the
+        interactions among scholars and the methods they use to share and socialize
+        scholarly knowledge (<a href=\"https://doi.org/10.1002/aris.1440360102\"><u>Borgman
+        &amp; Furner, 2002</u></a>; Burton, 2015). As scholarly communication continues
+        to expand beyond traditional publications, researchers are increasingly expected
+        to share their work in more open, accessible, and timely ways (Borgman, 2007).
+        Developing these skills supports not only a researchers visibility and impact
+        but also a more transparent and interactive research culture. Blogging enables
+        scholars to share insights more swiftly, reach wider audiences, and contribute
+        to ongoing public and academic debates while simultaneously fostering transferable
+        skills such as clear writing, public engagement and research transfer (Blanchard,
+        2011).</p><p>The fragmentation of social media and the rise of Generative
+        Artificial intelligence (AI) have renewed the importance of scholarly blogs.
+        Similar to preprints, blogs enable researchers to communicate ideas, preliminary
+        findings, and emerging debates without waiting for lengthy peer-review processes.
+        At the same time, blogs provide more space than preprints for contextualization,
+        reflection, and a clearly identifiable scholarly voice. During the 2010s and
+        early 2020s, Twitter became an important infrastructure for the rapid circulation
+        and discussion of research, particularly in medicine and biomedicine (<a href=\"https://doi.org/10.1038/s41591-019-0697-7\"><u>Wetsman,
+        2020</u></a>). Since the platform''s acquisition by Elon Musk, however, this
+        shared communication space has fragmented, and many researchers have reduced
+        their use of X or moved to alternative platforms (<a href=\"https://doi.org/10.1126/science.adf6617\"><u>Kupferschmidt,
+        2022</u></a>; <a href=\"https://doi.org/10.1038/d41586-023-02554-0\"><u>Vidal
+        Valero, 2023</u></a>). </p><p>Scholarly blogs provide a more durable alternative:
+        open, author-controlled, and searchable publishing spaces whose governance
+        and visibility do not depend on the decisions of a single commercial platform
+        owner. Generative AI further strengthens the case for scholarly blogging.
+        As AI systems make it increasingly easy to produce large volumes of fluent
+        but potentially interchangeable or unreliable text, identifiable authorship,
+        situated expertise, and intellectual accountability become more important.
+        Blogging also enables researchers to share insights rapidly, reach wider audiences,
+        and contribute to ongoing academic and public debates while developing transferable
+        skills in clear writing, public engagement, and research transfer (Blanchard,
+        2011). These practices can enhance researchers'' visibility and impact while
+        contributing to a more open, transparent, and interactive research culture.
+        Accordingly, the purpose of this article is to provide researchers with guidelines
+        for using blogs effectively in order to communicate their work, engage audiences,
+        and enhance the visibility and impact of their research. Therefore, in this
+        article, we present ten simple rules for scholarly blogging that aim to support
+        and encourage scholars to establish a blog that contributes to a more open,
+        transparent form of scholarly communication by offering practical guidance
+        for scholars seeking to engage more actively in this form of scholarly communication.</p><h2
+        id=\"rule-1-define-your-purpose-and-audience\">Rule 1: Define Your Purpose
+        and Audience</h2><p>Follow good scientific practices, while adopting a more
+        personal and less formal tone to build your online identity (Blanchard, 2011;
+        <a href=\"https://doi.org/10.5210/fm.v15i8.2962\"><u>Kjellberg, 2010</u></a>).
+        There are many types of blogs that range from topic-focused research blogs,
+        blogs accompanying dissertation research, blogs by research groups or about
+        research projects, blogs about sources and methods, blogs by institutes or
+        academic such as archives and libraries, seminar and conference blogs, blogs
+        accompanying a journal or publication, blogs for teaching and didactics, review
+        blogs or blogs for academic debates (<a href=\"https://shs.hal.science/halshs-01264402\"><u>K\u00f6nig,
+        2015</u></a>). Blogs allow for various scopes and types of use and can be
+        adapted to the needs of blogging scholars (Baez et al., 2011) that can express
+        themselves independently of restrictions or content guidelines (<a href=\"https://shs.hal.science/halshs-01264402\"><u>K\u00f6nig,
+        2015</u></a>). Blogging furthermore serves as a powerful tool for reflection,
+        offering a space to think aloud, documenting your research journey (<a href=\"https://hal.science/hal-01249318\"><u>Blanchard,
+        2010</u></a>; Blanchard, 2011) as a personal-public diary (Gloning, 2011)
+        and help clarifying one''s own thoughts, since ideas and thoughts can be organized
+        through writing (<a href=\"https://shs.hal.science/halshs-01264402\"><u>K\u00f6nig,
+        2015</u></a>). Beyond personal reflection, blogs can document the evolution
+        of ideas (<a href=\"https://doi.org/10.1080/00221546.2012.11777241\"><u>Bouwma-Gearhart
+        &amp; Bess, 2012</u></a>), failed approaches, and methodological decisions
+        that are often omitted from formal publications. Furthermore, Blogs offer
+        researchers the opportunity to report on ongoing research and also to publish
+        even minor research findings or to make the research process transparent in
+        the spirit of Open Science, e.g., by publishing hypotheses, thoughts, and
+        fragments (<a href=\"https://doi.org/10.58079/tdx9\"><u>D\u00f6ring, 2017</u></a>;
+        <a href=\"https://doi.org/10.5281/zenodo.13234482\"><u>Pampel &amp; Rothfritz,
+        2024</u></a>). This transparency not only supports reproducibility but also
+        provides valuable insights for other researchers as well as yourself and your
+        writing process (Blanchard, 2011). Keep in mind that a blog is a collection
+        of blog posts rather than a one-time publication. Aim for a regular publication
+        frequency that you are comfortable with, anywhere from once a week to several
+        times per year. Your target groups can be other scholars, students, or the
+        public, especially citizens with an in interest in research. Define one or
+        multiple audiences and your unique selling point in terms of content, design
+        or context (<a href=\"https://www.gesis.org/en/research/projects-and-exchange/external-funding-projects/wi4impact-project-page\"><u>GESIS
+        Leibniz Institute for the Social Sciences, n.d.</u></a>; <a href=\"https://osf.io/preprints/socarxiv/cvdr7_v1\"><u>Kuhle
+        et al., 2025</u></a>).</p><h2 id=\"rule-2-choose-a-platform\">Rule 2: Choose
+        a Platform</h2><p>As there are many good blogging software options, a blog
+        should not be hosted on a generic website. You can choose between hosting
+        your blog yourself or choose a platform to host it for you. While self hosting
+        gives you complete control over the mission of your blog, depending only on
+        your skills and time, it is also more effort and responsibility to do so,
+        compared to choosing an external platform. In case of self hosting, be aware
+        that you are not only responsible for hosting but also for ensuring the long-term
+        access of your content. However, platforms also come with dependencies, conformity
+        and sometimes costs. Consider risks of sticking with one platform before making
+        a decision. Popular blogging platforms that are also commonly used by researchers
+        are <a href=\"https://wordpress.com/de/\"><u>WordPress.com</u></a>, <a href=\"https://substack.com/\"><u>Substack</u></a>,
+        or <a href=\"https://www.blogger.com/about/?hl=de\"><u>Blogger</u></a>. Be
+        aware that commercial platforms such as Substack also come with the risk of
+        instability. You can set up your blog somewhere that already provides readers,
+        like specialized blogging platforms for scientific content (<a href=\"https://hal.science/hal-01249318\"><u>Blanchard,
+        2010</u></a>) such as <a href=\"https://hypotheses.org/\"><u>Hypotheses</u></a>,
+        facilitating the the development of online relationships (Davies &amp; Merchant,
+        2007). Many blogging platforms provide the WordPress software. If you decide
+        to self-host other software solutions are <a href=\"https://ghost.org/\"><u>Ghost</u></a>,
+        <a href=\"https://gohugo.io/\"><u>Hugo</u></a>, <a href=\"https://jekyllrb.com/\"><u>Jekyll</u></a>
+        or <a href=\"https://quarto.org/\"><u>Quarto</u></a> (<a href=\"https://doi.org/10.1515/bfp-2025-0028\"><u>Ochsner
+        et al., 2025b</u></a>).</p><h2 id=\"rule-3-ensure-quality-and-credibility\">Rule
+        3: Ensure Quality and Credibility</h2><p>Ensure quality over quantity. Maintain
+        high standards of accuracy, transparency, and reliability in your blog posts.
+        Since there are few formal control mechanisms that ensure readers the quality
+        of the content, blogs are part of science and scholarly communication and
+        should reflect good scientific practice. Clearly reference sources, link to
+        original research, and contextualize your research. Using formal references
+        often comes with the benefit of ensuring that links don''t break and are more
+        stable. Where possible, informal peer feedback by colleagues can help ensure
+        quality and build trust with your audience (<a href=\"https://doi.org/10.1371/journal.pbio.0060240\"><u>Batts
+        et al., 2008</u></a>). If you notice outdated content in older blog posts
+        you can create a new version of the blog post and make sure the new version
+        is visibly linked to in the old post. Do not use AI just to artificially generate
+        a lot of output. The application of AI may reduce your readers'' trust and
+        your credibility (<a href=\"https://doi.org/10.1145/3742413.3789076\"><u>Nakano
+        et al., 2026</u></a>). If you use AI, be transparent about it but also be
+        aware that AI bears risks of producing incorrect content and hallucinated
+        references (<a href=\"https://doi.org/10.1057/s41599-024-03811-x\"><u>Sun
+        et al., 2024</u></a>), which results in you having to control the quality
+        of the AI generated content. Ultimately you as the author are responsible
+        for all content. It''s important for your audience to know that there is a
+        person behind your blog, not an AI or an organization. Ultimately, ensuring
+        this personal dimension is what keeps blogs relevant.</p><h2 id=\"rule-4-foster-dialogue-and-build-community\">Rule
+        4: Foster Dialogue and Build Community</h2><p>Connect with your audiences
+        through your content. Blogs offer the opportunity to be engaging, entertaining
+        and even opinionated. As opposed to magazines, newspapers and television,
+        blogs offer your the opportunity to be responsive (<a href=\"https://doi.org/10.1016/j.tree.2008.05.004\"><u>Wilkins,
+        2008</u></a>). A classic way to foster community building is through blogrolls
+        (<a href=\"https://doi.org/10.1108/JD-02-2025-0053\"><u>Ochsner et al., 2025a</u></a>).
+        Blogrolls are recommendations for other blogs that bloggers curate on their
+        starting page (Rettberg, 2008). While blogrolls are not as commonly used these
+        days, they can still enhance the community aspect of blogging and the dissemination
+        of research (<a href=\"https://doi.org/10.1108/JD-02-2025-0053\"><u>Ochsner
+        et al., 2025a</u></a>). Allow comments, respond to feedback, and engage with
+        other blogs to create dialog and facilitate research through communication
+        (<a href=\"https://hal.science/hal-01249318\"><u>Blanchard, 2010</u></a>).
+        In addition to connecting with your community, comments and discussions enable
+        an open peer review process (<a href=\"https://doi.org/10.1371/journal.pbio.0060240\"><u>Batts
+        et al., 2008</u></a>). However, do not be discouraged if you do not receive
+        many comments. Your blog is still being read; channels of communication have
+        changed over the last decades of blogging through the emergence of social
+        media. However, social media also makes it possible to integrate comments,
+        for example through WordPress and Ghost. The reach of your blog and it''s
+        public online engagement can be increased by using social media (<a href=\"https://www.gesis.org/en/research/projects-and-exchange/external-funding-projects/wi4impact-project-page\"><u>GESIS
+        Leibniz Institute for the Social Sciences, n.d.</u></a>; <a href=\"https://osf.io/preprints/socarxiv/cvdr7_v1\"><u>Kuhle
+        et al., 2025</u></a>). Social media posts that target a wider, public audience
+        show the most effect (<a href=\"https://osf.io/preprints/socarxiv/cvdr7_v1\"><u>Kuhle
+        et al., 2025</u></a>). Dialogue can also place take through more formal ways
+        of science communication by being cited and becoming part of the scholarly
+        record.</p><h2 id=\"rule-5-encourage-data-flows-for-greater-impact\">Rule
+        5: Encourage Data Flows for Greater Impact</h2><p>Use feeds as primary distribution
+        channels for your blog posts. A blog feed is a standardized, machine readable
+        web link that can be integrated into other applications or sites to share
+        and exchange data (Rettberg, 2008; <a href=\"https://doi.org/10.1007/978-1-4302-0286-8_4\"><u>Yee,
+        2008</u></a>). Readers can subscribe to blog feeds through a feed reader that
+        will then alert them when new content has been published (Rettberg, 2008).
+        Use an appropriate format, like Atom and make sure the metadata in the feed
+        is correct and that the full text is included. Each blog post in the feed
+        should also provide information on the title of the post and the blog, its
+        author or authors, and its publication date, and an open license (<a href=\"https://doi.org/10.53731/a0d9m3n-n7r8h0m\"><u>Fenner,
+        2023</u></a>). Many feed readers also support the exchange of subscription
+        lists via Outline Processor Markup Language (OPML), allowing readers to easily
+        import, export, and share the blogs they follow. Other formats, such as newsletters,
+        podcasts, social media, or comments, are supplementary. Newsletters provide
+        an accessible alternative for readers who do not use RSS. Blogging platforms,
+        such as Ghost or Substack, support both RSS feeds and email newsletters, making
+        it possible to reach audiences through their preferred channel without maintaining
+        separate publishing workflows. Offering both options helps maximize the accessibility
+        and reach of your blog while allowing readers to choose how they receive updates.</p><h2
+        id=\"rule-6-use-open-licenses-to-enable-reuse\">Rule 6: Use Open Licenses
+        to Enable Reuse</h2><p>Make the reuse of your posts possible by providing
+        a license, such as those provided by Creative Commons (CC). CC is a non-profit
+        organization that provides licenses which can be used to define the legal
+        conditions of distributed content (<a href=\"https://creativecommons.org/who-we-are/\"><u>Creative
+        Commons, n.d.</u></a>). The gold standard for open access publications is
+        the CC-BY license (<a href=\"https://doi.org/10.53731/a0d9m3n-n7r8h0m\"><u>Fenner,
+        2023</u></a>; <a href=\"https://www.oaspa.org/news/why-cc-by/\"><u>Redhead,
+        2012</u></a>) that enables reuse as long as attribution is given to the author
+        (<a href=\"https://creativecommons.org/share-your-work/cclicenses/\"><u>Creative
+        Commons, 2019</u></a>). Other CC license options such as No Commercial use
+        (NC), No Derivatives (ND), and Share-Alike (SA) add restrictions that limit
+        reuse and therefore the reach of your posts (<a href=\"https://www.oaspa.org/news/why-cc-by/\"><u>Redhead,
+        2012</u></a>). Refraining from using licenses leads to your content not being
+        able to be reused.</p><h2 id=\"rule-7-support-citation\">Rule 7: Support Citation</h2><p>Web-based
+        persistent identifiers (PIDs) identify internet resources and were invented
+        as a reaction to link rot (<a href=\"https://doi.org/10.1371/journal.pone.0115253\"><u>Klein
+        et al., 2014</u></a>). Common PIDs in research are Digital Object Identifiers
+        (DOIs), which are unique, persistent digital identifiers that enable reliable
+        access to a digital object (<a href=\"https://www.doi.org/the-identifier/what-is-a-doi/\"><u>doi
+        Foundation, n.d.</u></a>) and the most persistent identifiers in research
+        data repository systems (<a href=\"https://doi.org/10.5334/dsj-2017-009\"><u>Klump
+        &amp; Huber, 2017</u></a>). DOIs are assigned via Crossref and DataCite and
+        come with the automated retrieval and import of metadata (<a href=\"https://doi.org/10.22028/D291-46556\"><u>Herb,
+        2025</u></a>). The redirection of DOIs helps prevent link rot, as blogs might
+        move to different domains or use a different link format depending on the
+        blogging platform. DOIs are also relevant when it comes to the long-term archival
+        of your posts. Bloggers can attain DOIs through the digital blog archive <a
+        href=\"https://rogue-scholar.org/\"><u>Rogue Scholar</u></a> that preserves
+        blog content, assigns DOIs to blog posts, and ensures additional redundancy
+        through web archiving with the Internet Archive. Displaying DOIs and a citation
+        proposal under each blog post is recommended (<a href=\"https://doi.org/10.53731/a0d9m3n-n7r8h0m\"><u>Fenner,
+        2023</u></a>). Additionally, blogs can be assigned International Standard
+        Serial Numbers (ISSNs), a widely used identifier for periodical publications
+        (<a href=\"https://doi.org/10.1108/JD-02-2025-0053\"><u>Ochsner et al., 2025a</u></a>).
+        DOIs need to be registered with metadata, we provide a list of relevant metadata
+        in the next rule.</p><h2 id=\"rule-8-support-metadata\">Rule 8: Support Metadata</h2><p>Metadata
+        are data that refer to information about other data. (Zeng &amp; Qin, 2020).
+        Metadata that are embedded in blogs are used by reference managers and indexers
+        and for the registration of DOIs. To be reusable for reference managers it
+        should be made available via HTML meta tags and/or Schema.org JSON-LD. The
+        metadata should furthermore be available for download in a standard bibliographic
+        format (<a href=\"https://doi.org/10.53731/a0d9m3n-n7r8h0m\"><u>Fenner, 2023</u></a>).
+        The metadata associated with a scholarly blog post should include the following
+        elements: First, the title of the blog post and the title of the affiliated
+        blog should be provided. Information about authors and contributors, like
+        editors should also be included. Make sure to list all the author''s names
+        instead of referring only to the name of an organization or research group.
+        In addition, each contributor should be identified through their Open Researcher
+        and Contributor (ORCID), while their affiliated research organization should
+        be identified using its Research Organization Registry (ROR) ID. Metadata
+        should further specify the licensing information under which the post is published,
+        with the Creative Commons Attribution (CC BY) license being the recommended
+        option. A short abstract summarizing the content of the blog post should be
+        included, together with the language in which the post is written. While English
+        is an important language used in scholarly communication that appeals to a
+        large audience, with reference to the Helsinki Initiative on Multilingualism
+        in Scholarly Communication (<a href=\"https://doi.org/10.6084/M9.FIGSHARE.7887059\"><u>Federation
+        of Finnish Learned Societies et al., 2019</u></a>) we encourage you to also
+        blog in your native language. To ensure persistent access, the metadata should
+        include either the URL of the published post or, where available, its DOI.
+        Information about the publication date and any subsequent updates should also
+        be provided to document version history. When DOIs are assigned to different
+        versions of a post, each version should receive its own DOI, alongside a DOI
+        that represents all versions and resolves to the most recent one. Finally,
+        the metadata should acknowledge any funding that supported the underlying
+        research, including grant identifiers where available. If the blog has been
+        assigned an ISSN, this should also be included. Finally, the metadata should
+        specify the subject area(s) of the blog post, improving its discoverability
+        (<a href=\"https://doi.org/10.48550/arXiv.2605.31117\"><u>Ochsner &amp; Pampel,
+        2026b</u></a>).</p><h2 id=\"rule-9-recognize-blogs-as-first-class-research-outputs\">Rule
+        9: Recognize Blogs as First-Class Research Outputs</h2><p>Contribute to establishing
+        blogs as legitimate scholarly outputs. The Coalition for Advancing Research
+        Assessment (CoARA) (<a href=\"https://www.coara.org/\"><u>CoARA, n.d.</u></a>)
+        calls for acknowledging the diverse range of outputs, practices, and activities
+        through which research generates value for science and society. Blogs belong
+        to this range, alongside data, software, and other non-traditional outputs.
+        The Helsinki Initiative on Multilingualism in Scholarly Communication (<a
+        href=\"https://doi.org/10.6084/M9.FIGSHARE.7887059\"><u>Federation of Finnish
+        Learned Societies et al., 2019</u></a>) adds a related point: blogs let researchers
+        communicate beyond the often English-dominated journal system, reaching audiences
+        in their own languages. Institutions and funding organizations should create
+        conditions to recognize such contributions in research assessment. This can
+        also include the transfer of research results to practice, policy, and the
+        public through blogs. The German Research Foundation already acknowledges
+        the relevance of blogs in its guidelines for safeguarding good research practice
+        (<a href=\"https://doi.org/10.5281/zenodo.14281892\"><u>Deutsche Forschungsgemeinschaft,
+        2025</u></a>), but broader international recognition is still missing. Valuing
+        blogs as part of a diverse research output portfolio would support CoARA''s
+        vision of research assessment beyond journal-based metrics.</p><h2 id=\"rule-10-read-and-engage-with-other-blogs\">Rule
+        10: Read and Engage With Other Blogs</h2><p>Actively participate in the blogosphere.
+        Ask your readers about what kind of content they would like to see on your
+        blogs. Let your audience help shape your Blog. Read other blogs to stay up
+        to date with developments in your research community and to discover new perspectives,
+        tools, and ideas. Feed readers will notify you when new posts of blogs you
+        are subscribed to are published. Engaging with other blogs should go beyond
+        reading. Leave comments, respond with your own blog posts, share interesting
+        articles with colleagues, and cite blog posts when they provide useful insights
+        or document software, methods, or discussions that are relevant to your work.
+        Saving blog posts in your reference manager helps you organize valuable resources
+        and makes them easier to cite later in blog posts, publications, presentations,
+        or teaching materials. Engaging in connecting with your community strengthens
+        connections and relationships and contributes to a more open and collaborative
+        scholarly communication ecosystem.</p><h2 id=\"conclusions\">Conclusions</h2><p>Scholarly
+        blogging are a flexible, open and fast addition to traditional scholarly publishing
+        and science communication. Blogs also provide a low entry bar into scholarly
+        communication and give you room to express something important that doesn''t
+        fit into other scholarly publishing formats. Finally, blogs provide a platform
+        for experimentation, by including code and data, as for example frequently
+        seen with the Quarto blogging platform. By following these ten simple rules,
+        scholars can create meaningful, accessible, and impactful blogs that foster
+        dialogue, support openness, good scientific practice, and encourage continuous
+        reflection, ultimately strengthening both individual research practices and
+        the broader scholarly communication landscape. Blogging is a community practice
+        that allows you to curate and disseminate information, not only a an individual,
+        but also within a participatory space. Finally, blogs provide a space to express
+        your personal voice, which is increasingly important in a world full of AI-generated
+        content.</p><h2 id=\"funding\">Funding</h2><p>The work of Catharina Ochsner
+        is funded by the German Research Foundation (DFG) through the project Kooperative
+        Informationsinfrastruktur f\u00fcr wissenschaftliche Blogs (Infra Wiss Blogs)
+        (project number <a href=\"https://gepris.dfg.de/project/528958385/2\"><u>528958385</u></a>).
+        Heinz Pampel was partly funded by the Einstein Center Digital Future (ECDF).</p><h2
+        id=\"references\">References</h2><ol><li>Burton, M. (2015). Blogs as infrastructure
+        for scholarly communication [Phd]. University of Michigan.</li><li>Luz\u00f3n,
+        M. J. (2013). Public communication of science in blogs: Recontextualizing
+        scientific discourse for a diversified audience. Written Communication, 30(4),
+        428\u2013457. <a href=\"https://doi.org/10.1177/0741088313493610\"><u>https://doi.org/10.1177/0741088313493610</u></a></li><li>Batts,
+        S. A., Anthis, N. J., &amp; Smith, T. C. (2008). Advancing science through
+        conversations: Bridging the gap between blogs and the academy. PLoS Biology,
+        6(9), e240. <a href=\"https://doi.org/10.1371/journal.pbio.0060240\"><u>https://doi.org/10.1371/journal.pbio.0060240</u></a></li><li>Borgman,
+        C. L., &amp; Furner, J. (2002). Scholarly communication and bibliometrics.
+        Annual Review of Information Science and Technology, 36(1), 2\u201372. <a
+        href=\"https://doi.org/10.1002/aris.1440360102\"><u>https://doi.org/10.1002/aris.1440360102</u></a></li><li>Borgman,
+        C. L. (2007). Scholarship in the digital age: Information, infrastructure
+        and the internet. The MIT Press.</li><li>Blanchard, A. (2011). 3.4 science
+        blogs in research and popularization of science: Why, how and for whom? In
+        M. Cockell, J. Billotte, F. Darbellay, &amp; F. Waldvogel (Eds.), Common knowledge:
+        The challenge of transdisciplinarity (pp. 219\u2013232). EPFL Press Lausanne,
+        Switzerland.</li><li>Wetsman, N. (2020). How Twitter is changing medical research.
+        Nature Medicine, 26(1), 11\u201313. <a href=\"https://doi.org/10.1038/s41591-019-0697-7\"><u>https://doi.org/10.1038/s41591-019-0697-7</u></a></li><li>Kupferschmidt,
+        K. (2022). As Musk reshapes Twitter, academics ponder taking flight. <a href=\"https://doi.org/10.1126/science.adf6617\"><u>https://doi.org/10.1126/science.adf6617</u></a></li><li>Vidal
+        Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding
+        angst and uncertainty. Nature, 620(7974), 482\u2013484. <a href=\"https://doi.org/10.1038/d41586-023-02554-0\"><u>https://doi.org/10.1038/d41586-023-02554-0</u></a></li><li>Kjellberg,
+        S. (2010). I am a blogging researcher: Motivations for blogging in a scholarly
+        context. First Monday, 15(8). <a href=\"https://doi.org/10.5210/fm.v15i8.2962\"><u>https://doi.org/10.5210/fm.v15i8.2962</u></a></li><li>K\u00f6nig,
+        M. (2015). Herausforderung f\u00fcr unsere Wissenschaftskultur: Weblogs in
+        den Geisteswissenschaften. In Digital Humanities. Praktiken der Digitalisierung,
+        der Dissemination und der Selbstreflexivit\u00e4t (No. 91; pp. 57\u201374).
+        Franz Steiner Verlag. <a href=\"https://shs.hal.science/halshs-01264402\"><u>https://shs.hal.science/halshs-01264402</u></a></li><li>Baez,
+        J., Schreiber, U., &amp; Bartlett, B. (2011). \"A new idea of how to communicate
+        ideas\". Zur Entwicklung wissenschaftlicher Blogs\u2014Ein Interview mit den
+        Gr\u00fcndern des Gruppenblogs The n-Category Caf\u00e9. In Gloning, Thomas
+        &amp; Fritz, Gerd (Eds.), Digitale Wissenschaftskommunikation. Formate und
+        ihre Nutzung. Linguistische Untersuchungen. (No. 3; pp. 287\u2013312). Gie\u00dfener
+        Elektronische Bibliothek.</li><li>Blanchard, A. (2010). Ce que le blog apporte
+        \u00e0 la recherche. OpenEdition Press. Read/Write Book. <a href=\"https://hal.science/hal-01249318\"><u>https://hal.science/hal-01249318</u></a></li><li>Gloning,
+        T. (2011). Interne Wissenschaftskommunikation im Zeichen der Digitalisierung.
+        Formate, Nutzungsweisen, Dynamik. In iris Bons, G. Fritz, &amp; T. Gloning
+        (Eds.), Digitale Wissenschaftskommunikation \u2013 Formate und ihre Nutzung
+        (No. 3; pp. 3\u201333). Gie\u00dfener Elektronische Bibliothek.</li><li>Bouwma-Gearhart,
+        J. L., &amp; Bess, J. L. (2012). The transformative potential of blogs for
+        research in higher education. The Journal of Higher Education, 83(2), 249\u2013275.
+        <a href=\"https://doi.org/10.1080/00221546.2012.11777241\"><u>https://doi.org/10.1080/00221546.2012.11777241</u></a></li><li>D\u00f6ring,
+        K. (2017, July). Wissenschaftsblogs als Publikationsorte \u2013 Ein von den
+        Geisteswissenschaften noch zu wenig genutztes Potential? [Billet]. <a href=\"https://doi.org/10.58079/tdx9\"><u>https://doi.org/10.58079/tdx9</u></a></li><li>Pampel,
+        H., &amp; Rothfritz, L. (2024). Kooperative informationsinfrastruktur f\u00fcr
+        wissenschaftliche blogs (infra wiss blogs). Zenodo. <a href=\"https://doi.org/10.5281/zenodo.13234482\"><u>https://doi.org/10.5281/zenodo.13234482</u></a></li><li>GESIS
+        Leibniz Institute for the Social Sciences. (n.d.). Knowing how knowledge works
+        in the context of digitalization\u2014Wi4impact. Retrieved January 21, 2025,
+        from <a href=\"https://www.gesis.org/en/research/projects-and-exchange/external-funding-projects/wi4impact-project-page\"><u>https://www.gesis.org/en/research/projects-and-exchange/external-funding-projects/wi4impact-project-page</u></a></li><li>Kuhle,
+        B., Voigt, C., Breuer, J., &amp; Repke, L. (2025). Public online engagement
+        with science blogs and podcasts: A multimethod assessment of effectiveness
+        in the German academic context. <a href=\"https://osf.io/preprints/socarxiv/cvdr7_v1\"><u>https://osf.io/preprints/socarxiv/cvdr7_v1</u></a></li><li>Davies,
+        J., &amp; Merchant, G. (2007). Looking from the inside out: Academic blogging
+        as new literacy. A New Literacies Sampler, 167\u2013197.</li><li>Ochsner,
+        C., Pampel, H., H\u00f6fting, J., &amp; Rothfritz, L. (2025b). Wissenschaftsblogs
+        in Deutschland: Eine Analyse infrastruktureller Aspekte. Bibliothek Forschung
+        Und Praxis. <a href=\"https://doi.org/10.1515/bfp-2025-0028\"><u>https://doi.org/10.1515/bfp-2025-0028</u></a></li><li>Nakano,
+        H., Takezawa, J., Matulic, F., Yang, C.-L., &amp; Yatani, K. (2026). Understanding
+        Reader Perception Shifts upon Disclosure of AI Authorship. Proceedings of
+        the 31st International Conference on Intelligent User Interfaces, IUI ''26,
+        2131\u20132146. <a href=\"https://doi.org/10.1145/3742413.3789076\"><u>https://doi.org/10.1145/3742413.3789076</u></a></li><li>Sun,
+        Y., Sheng, D., Zhou, Z., &amp; Wu, Y. (2024). AI hallucination: Towards a
+        comprehensive classification of distorted information in artificial intelligence-generated
+        content. Humanities and Social Sciences Communications, 11(1), 1278. <a href=\"https://doi.org/10.1057/s41599-024-03811-x\"><u>https://doi.org/10.1057/s41599-024-03811-x</u></a></li><li>Wilkins,
+        J. S. (2008). The roles, reasons and restrictions of science blogs. Trends
+        in Ecology &amp; Evolution, 23(8), 411\u2013413. <a href=\"https://doi.org/10.1016/j.tree.2008.05.004\"><u>https://doi.org/10.1016/j.tree.2008.05.004</u></a></li><li>Ochsner,
+        C., Pampel, H., H\u00f6fting, J., &amp; Rothfritz, L. (2025a). Scholarly blogs:
+        An analysis of infrastructural aspects based on German scholarly blogs. Journal
+        of Documentation, 81(7), 520\u2013544. <a href=\"https://doi.org/10.1108/JD-02-2025-0053\"><u>https://doi.org/10.1108/JD-02-2025-0053</u></a></li><li>Rettberg,
+        J. W. (2008). Blogging. Polity.</li><li>Yee, R. (2008). Working with Feeds,
+        RSS, and Atom. In Pro Web 2.0 Mashups: Remixing Data and Web Services (pp.
+        77\u2013104). Apress. <a href=\"https://doi.org/10.1007/978-1-4302-0286-8_4\"><u>https://doi.org/10.1007/978-1-4302-0286-8_4</u></a></li><li>Fenner,
+        M. (2023, February). Guidelines for Scholarly Blogs. Front Matter. <a href=\"https://doi.org/10.53731/a0d9m3n-n7r8h0m\"><u>https://doi.org/10.53731/a0d9m3n-n7r8h0m</u></a></li><li>Creative
+        Commons. (n.d.). Who we are. Retrieved July 2, 2026, from <a href=\"https://creativecommons.org/who-we-are/\"><u>https://creativecommons.org/who-we-are/</u></a></li><li>Redhead,
+        C. (2012, October). Why CC-BY? - OASPA. <a href=\"https://www.oaspa.org/news/why-cc-by/\"><u>https://www.oaspa.org/news/why-cc-by/</u></a></li><li>Creative
+        Commons. (2019). About CC liscenses. <a href=\"https://creativecommons.org/share-your-work/cclicenses/\"><u>https://creativecommons.org/share-your-work/cclicenses/</u></a></li><li>Klein,
+        M., Sompel, H. V. de, Sanderson, R., Shankar, H., Balakireva, L., Zhou, K.,
+        &amp; Tobin, R. (2014). Scholarly Context Not Found: One in Five Articles
+        Suffers from Reference Rot. PLOS ONE, 9(12), e115253. <a href=\"https://doi.org/10.1371/journal.pone.0115253\"><u>https://doi.org/10.1371/journal.pone.0115253</u></a></li><li>DOI
+        Foundation. (n.d.). What is a DOI? Retrieved October 31, 2025, from <a href=\"https://www.doi.org/the-identifier/what-is-a-doi/\"><u>https://www.doi.org/the-identifier/what-is-a-doi/</u></a></li><li>Klump,
+        J., &amp; Huber, R. (2017). 20 Years of Persistent Identifiers \u2013 Which
+        Systems are Here to Stay? Data Science Journal, 16, 9\u20139. <a href=\"https://doi.org/10.5334/dsj-2017-009\"><u>https://doi.org/10.5334/dsj-2017-009</u></a></li><li>Herb,
+        U. (2025). Scholarly Publishing in Transition: Open Access, Peer Review, Quality,
+        Research Evaluation, Standards. <a href=\"https://doi.org/10.22028/D291-46556\"><u>https://doi.org/10.22028/D291-46556</u></a></li><li>Zeng,
+        M. L., &amp; Qin, J. (2020). Metadata. American Library Association.</li><li>Federation
+        of Finnish Learned Societies, Information, T. C. F. P., Publishing, T. F.
+        A. F. S., Universities Norway, &amp; European Network For Research Evaluation
+        In The Social Sciences And The Humanities. (2019). Helsinki Initiative on
+        Multilingualism in Scholarly Communication. <a href=\"https://doi.org/10.6084/M9.FIGSHARE.7887059\"><u>https://doi.org/10.6084/M9.FIGSHARE.7887059</u></a></li><li>Ochsner,
+        C., &amp; Pampel, H. (2026b, May). Requirements for a cooperative information
+        infrastructure for the digital preservation of scholarly blogs. arXiv. <a
+        href=\"https://doi.org/10.48550/arXiv.2605.31117\"><u>https://doi.org/10.48550/arXiv.2605.31117</u></a></li><li>CoARA.
+        (n.d.). CoARA \u2013 Coalition for Advancing Research Assessment. Retrieved
+        July 6, 2026, from <a href=\"https://www.coara.org/\"><u>https://www.coara.org/</u></a></li><li>Deutsche
+        Forschungsgemeinschaft. (2025, January). Guidelines for Safeguarding Good
+        Research Practice. Code of Conduct. <a href=\"https://doi.org/10.5281/zenodo.14281892\"><u>https://doi.org/10.5281/zenodo.14281892</u></a></li><li>Ochsner,
+        C., &amp; Pampel, H. (2026a). Ensuring the long-term accessibility of scholarly
+        blogs: Bloggers'' attitudes and practices. Information Research, 31(iConf),
+        1761\u20131769. <a href=\"https://doi.org/10.47989/ir31iConf64176\"><u>https://doi.org/10.47989/ir31iConf64176</u></a></li></ol>",
+        "rs:image": "https://images.unsplash.com/photo-1704969724330-54510439bdaa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDE1fHxzY2llbmNlJTIwYmxvZ2dpbmd8ZW58MHx8fHwxNzg1MTcwMzYwfDA&ixlib=rb-4.1.0&q=80&w=2000",
+        "rs:generator": {"id": "Ghost", "title": {"en": "Ghost"}}, "rs:featured":
+        false, "rs:doi": "https://doi.org/10.54900/upstream"}, "access": {"record":
+        "public", "files": "public", "embargo": {"active": false, "reason": null},
+        "status": "open"}, "files": {"enabled": true, "order": [], "count": 1, "total_bytes":
+        757095, "entries": {"xn57k-gyw73.pdf": {"id": "53b064f3-1d94-4bb4-8d8a-0cd44872ec25",
+        "checksum": "md5:6a0e0a09a94031824e18350acc405d25", "ext": "pdf", "size":
+        757095, "mimetype": "application/pdf", "storage_class": "L", "key": "xn57k-gyw73.pdf",
+        "metadata": {}, "access": {"hidden": false}, "links": {"self": "https://rogue-scholar.org/api/records/e1ndf-19s62/files/xn57k-gyw73.pdf",
+        "content": "https://rogue-scholar.org/api/records/e1ndf-19s62/files/xn57k-gyw73.pdf/content",
+        "iiif_canvas": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62/canvas/xn57k-gyw73.pdf",
+        "iiif_base": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf",
+        "iiif_info": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/info.json",
+        "iiif_api": "https://rogue-scholar.org/api/iiif/record:e1ndf-19s62:xn57k-gyw73.pdf/full/full/0/default.png"}}}},
+        "media_files": {"enabled": false, "order": [], "count": 0, "total_bytes":
+        0, "entries": {}}, "status": "published", "deletion_status": {"is_deleted":
+        false, "status": "P"}, "stats": {"this_version": {"views": 13, "unique_views":
+        9, "downloads": 6, "unique_downloads": 4, "data_volume": 4542570.0}, "all_versions":
+        {"views": 13, "unique_views": 9, "downloads": 6, "unique_downloads": 4, "data_volume":
+        4542570.0}}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 25 Aug 2026 16:16:38 GMT
+      Etag:
+      - '"21"'
+      Link:
+      - <https://rogue-scholar.org/api/records/e1ndf-19s62> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '60'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '498'
+      X-Ratelimit-Reset:
+      - '1787674659'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
