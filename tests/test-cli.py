@@ -303,3 +303,15 @@ def test_convert_output_is_for_pdf(tmp_path):
 
     assert result.exit_code == 1
     assert "--output is for --to pdf" in result.output
+
+
+def test_pdf_is_not_a_metadata_format():
+    """A pdf is a rendering of a record, not a format a record converts to.
+
+    The CLI writes one; `Metadata.write` produces metadata formats and does
+    not know it.
+    """
+    from commonmeta import Metadata
+
+    with pytest.raises(ValueError, match="Unsupported output format: pdf"):
+        Metadata("10.5281/zenodo.5244404", via="datacite").write(to="pdf")

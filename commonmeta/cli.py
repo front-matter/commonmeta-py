@@ -17,6 +17,7 @@ from commonmeta.backend import (
     require_backend,
 )
 from commonmeta.doi_utils import decode_doi, encode_doi, validate_prefix
+from commonmeta.io_utils import write_pdf_rendition
 from commonmeta.readers.crossref_reader import get_random_crossref_id
 from commonmeta.readers.datacite_reader import get_random_datacite_id
 from commonmeta.readers.openalex_reader import get_random_openalex_id
@@ -95,10 +96,14 @@ def echo_output(output, to: str) -> None:
 
 
 def write_pdf(metadata, output: str | None) -> None:
-    """Write the pdf rendition of a post to a file.
+    """Write the pdf rendition of a record to a file.
 
-    A pdf is bytes, so it is named rather than echoed. A record that carries
-    the html of a post - one read through the InvenioRDM reader, today - is
+    `--to pdf` is not a metadata format, so it is not one of the formats
+    `Metadata.write` produces: a pdf is a rendering of a record, written here
+    rather than converted there.
+
+    It is bytes, so it is named rather than echoed. A record that carries the
+    html of a post - one read through the InvenioRDM reader, today - is
     rendered whole; any other record gets its title page, which is a record of
     the metadata rather than of the work.
     """
@@ -106,7 +111,7 @@ def write_pdf(metadata, output: str | None) -> None:
         raise click.ClickException(
             "--to pdf writes a file: name it with --output, e.g. -o post.pdf"
         )
-    pdf = metadata.write(to="pdf", file=output)
+    pdf = write_pdf_rendition(metadata, file=output)
     if pdf is None:
         raise click.ClickException(
             "Could not render the pdf. WeasyPrint needs the pango libraries, "
@@ -142,7 +147,13 @@ def input_requires_network(value) -> bool:
 @cli.command()
 @click.argument("input", type=str, required=True)
 @click.option("--from", "--via", "-f", "via", type=str, default=None)
-@click.option("--to", "-t", type=str, default="commonmeta")
+@click.option(
+    "--to",
+    "-t",
+    type=str,
+    default="commonmeta",
+    help="Output format, or pdf to render the record as a file (with --output).",
+)
 @click.option("--style", "-s", type=str, default="apa")
 @click.option("--locale", "-l", type=str, default="en-US")
 @click.option("--doi", type=str)
