@@ -410,13 +410,8 @@ def to_pdf_metadata(metadata: Metadata, authors: list) -> list:
     description = to_pdf_text(metadata.description)
     if description:
         tags.append(f'<meta name="description" content="{escape(description)}">')
-    keywords = unique(
-        [
-            subject.get("subject")
-            for subject in wrap(metadata.subjects)
-            if subject.get("subject", None)
-        ]
-    )
+    # the same keywords the title page prints, so the pdf says one thing
+    keywords = to_pdf_keywords(metadata)
     if keywords:
         tags.append(f'<meta name="keywords" content="{escape(", ".join(keywords))}">')
     platform = (metadata.container or {}).get("platform", None)

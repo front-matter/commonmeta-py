@@ -1633,11 +1633,9 @@ def test_pdf_metadata_round_trip(write_pdf_file):
     assert metadata["title"] == "Rogue Scholar learns about communities"
     assert metadata["authors"] == ["Martin Fenner"]
     assert metadata["description"].startswith("The Rogue Scholar infrastructure")
-    assert metadata["keywords"] == [
-        "Information Systems",
-        "Computer and information sciences",
-        "Rogue Scholar",
-    ]
+    # the keywords the title page prints, said once for the whole pdf: the
+    # classification names what it is, the field of science is left out
+    assert metadata["keywords"] == ["Information Systems (Subfield)", "Rogue Scholar"]
     assert metadata["generator"] == "Ghost"  # the blog platform, from rs:generator
     assert metadata["created"] == "2024-10-07"
     assert metadata["modified"] == "2025-01-23"

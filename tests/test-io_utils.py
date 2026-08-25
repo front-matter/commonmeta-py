@@ -444,3 +444,23 @@ def test_find_pango_leaves_other_platforms_alone(monkeypatch):
     find_pango()
 
     assert "DYLD_FALLBACK_LIBRARY_PATH" not in os.environ
+
+
+@pytest.mark.vcr("test_pdf_rendition_of_a_post_read_from_inveniordm.yaml")
+def test_the_pdf_says_one_thing_about_its_keywords(write_pdf_file):
+    """What the title page prints is what the pdf carries as its own metadata."""
+    from commonmeta.io_utils import to_pdf_keywords
+
+    record_id = search_by_doi("10.54900/xn57k-gyw73", "rogue-scholar.org", None)
+    subject = Metadata(
+        f"https://rogue-scholar.org/api/records/{record_id}", via="inveniordm"
+    )
+
+    metadata = read_pdf_metadata(write_pdf_file(subject))
+
+    assert metadata["keywords"] == to_pdf_keywords(subject)
+    assert metadata["keywords"] == [
+        "Information Systems and Management (Subfield)",
+        "Academic Publishing and Open Access (Topic)",
+        "Original Research",
+    ]
