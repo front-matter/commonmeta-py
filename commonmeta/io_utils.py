@@ -336,12 +336,7 @@ def to_pdf_date(date: str | None, language: str) -> str | None:
 
 
 def to_pdf_rights(metadata: Metadata, authors: list, language: str) -> str | None:
-    """Format the copyright line and the terms the post is available under.
-
-    Mirrors the rogue-scholar-api pdf template: a copyright holder and year for
-    everything except CC0, which waives copyright rather than asserting it,
-    followed by what the licence permits.
-    """
+    """Format the copyright line and the terms the PDF is available under."""
     url = (metadata.license or {}).get("url", None)
     identifier = (metadata.license or {}).get("id", None)
     if not url and not identifier:
@@ -375,11 +370,11 @@ def to_pdf_rights(metadata: Metadata, authors: list, language: str) -> str | Non
         )
     return (
         f"{copyright_line} Distributed under the terms of the "
-        f"{link}{escape(identifier or url)}{close} license."
+        f"{link}{escape(str(identifier or url or ''))}{close} license."
     )
 
 
-def to_pdf_meta_tags(metadata: Metadata, authors: list) -> list:
+def to_pdf_metadata(metadata: Metadata, authors: list) -> list:
     """The meta tags WeasyPrint turns into the pdf's own metadata.
 
     Each one lands in both the info dictionary and the XMP packet that PDF/A
@@ -419,7 +414,7 @@ def to_pdf_meta_tags(metadata: Metadata, authors: list) -> list:
     return tags
 
 
-def to_pdf_image(metadata: Metadata) -> str | None:
+def embed_image(metadata: Metadata) -> str | None:
     """The feature image as a data uri, None when there is none to be had.
 
     Fetched here rather than left to WeasyPrint so the image travels inside
@@ -497,9 +492,6 @@ def finish_pdf(pdf: bytes, metadata: Metadata) -> bytes:
             ):
                 del obj["/Interpolate"]
 
-        # deterministic_id computes the trailer's /ID from the contents rather
-        # than from the clock, which is the last thing that made two renditions
-        # of the same post differ from each other
         document.save(output, deterministic_id=True)
     return output.getvalue()
 
@@ -533,15 +525,7 @@ def to_pdf_datetime(date: str | None) -> datetime | None:
 
 
 def to_pdf_content(content: str | None, language: str) -> str:
-    """The post content, with an alt description on every image.
-
-    A tagged pdf needs one for each image, and WeasyPrint logs an error per
-    image that has none - which for a post whose images carry no alt text, as
-    blog posts routinely do, is an error per image on every render. An image
-    without alt borrows the caption of the figure it sits in, or its own title
-    attribute, or takes a generic label in the language of the post. An empty
-    alt would not do: WeasyPrint reads it as no description at all.
-    """
+    """The post content, with an alt description on every image."""
     if not content or "<img" not in content:
         return content or ""
 
@@ -566,10 +550,7 @@ def to_pdf_html(metadata: Metadata) -> str:
     """Build the html document the pdf is rendered from.
 
     The post content is the body, preceded by the front matter that the
-    stylesheet styles by class, in the order the rogue-scholar-api pdf template
-    used: the title, the blog name (hidden, it only feeds the running header),
-    the byline, the publication date, the doi, the description, the feature
-    image and the licence. The licence carries `break-after: always`, so the
+    stylesheet styles by class. The licence carries `break-after: always`, so the
     front matter is a title page.
     """
     language = get_language(metadata.language, format="alpha_2") or "en"
@@ -604,7 +585,7 @@ def to_pdf_html(metadata: Metadata) -> str:
         front_matter.append(
             f'<div class="keywords"><h4>{label}</h4>{escape(", ".join(keywords))}</div>'
         )
-    image = to_pdf_image(metadata)
+    image = embed_image(metadata)
     if image:
         front_matter.append(
             f'<img class="feature-image" alt="Feature image" src="{image}" />'
@@ -617,7 +598,7 @@ def to_pdf_html(metadata: Metadata) -> str:
     head = [
         "<meta charset='utf-8'>",
         f"<title>{escape(to_pdf_text(metadata.title))}</title>",
-        *to_pdf_meta_tags(metadata, authors),
+        *to_pdf_metadata(metadata, authors),
     ]
     return (
         f"<html lang='{escape(language)}'><head>{''.join(head)}</head>"
@@ -641,6 +622,27 @@ def load_weasyprint():
     except (ImportError, OSError) as error:
         log.error(f"Cannot render pdf, weasyprint needs the pango libraries: {error}")
         return None
+
+
+def write_pdf(metadata: Metadata, file: str) -> bytes:
+    """Write the pdf rendition of a record to a file, and return the bytes.
+
+    A pdf is a rendering of a record rather than a metadata format, so it is
+    not one of the things `Metadata.write` produces: a caller names a file and
+    gets one. A record that carries the html of a post - one read through the
+    InvenioRDM reader, today - is rendered whole; any other record gets its
+    title page, which is a record of the metadata rather than of the work.
+
+    Raises ValueError where the rendition cannot be made at all, since a
+    caller that named a file expects one to be there afterwards.
+    """
+    pdf = write_pdf_rendition(metadata, file=file)
+    if pdf is None:
+        raise ValueError(
+            "Could not render the pdf. WeasyPrint needs the pango libraries, "
+            "and Python 3.10 or newer; the log says which of the two it was."
+        )
+    return pdf
 
 
 def pdf_filename(metadata: Metadata, record: dict | None = None) -> str:

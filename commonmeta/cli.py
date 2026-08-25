@@ -14,7 +14,7 @@ from commonmeta.backend import (
     require_backend,
 )
 from commonmeta.doi_utils import decode_doi, encode_doi, validate_prefix
-from commonmeta.io_utils import write_pdf_rendition
+from commonmeta.io_utils import write_pdf
 
 
 @click.group()
@@ -60,31 +60,6 @@ def echo_output(output, to: str) -> None:
         except (ValueError, TypeError):
             pass
     click.echo(output)
-
-
-def write_pdf(metadata, output: str | None) -> None:
-    """Write the pdf rendition of a record to a file.
-
-    `--to pdf` is not a metadata format, so it is not one of the formats
-    `Metadata.write` produces: a pdf is a rendering of a record, written here
-    rather than converted there.
-
-    It is bytes, so it is named rather than echoed. A record that carries the
-    html of a post - one read through the InvenioRDM reader, today - is
-    rendered whole; any other record gets its title page, which is a record of
-    the metadata rather than of the work.
-    """
-    if not output:
-        raise click.ClickException(
-            "--to pdf writes a file: name it with --output, e.g. -o post.pdf"
-        )
-    pdf = write_pdf_rendition(metadata, file=output)
-    if pdf is None:
-        raise click.ClickException(
-            "Could not render the pdf. WeasyPrint needs the pango libraries, "
-            "and Python 3.10 or newer; the log says which of the two it was."
-        )
-    click.echo(f"Wrote {output} ({len(pdf)} bytes)")
 
 
 @cli.command()
@@ -146,7 +121,16 @@ def convert(
         raise click.ClickException(str(metadata.errors))
 
     if to == "pdf":
-        write_pdf(metadata, output)
+        # a pdf is bytes, so it is named rather than echoed
+        if not output:
+            raise click.ClickException(
+                "--to pdf writes a file: name it with --output, e.g. -o post.pdf"
+            )
+        try:
+            pdf = write_pdf(metadata, output)
+        except (ValueError, OSError) as error:
+            raise click.ClickException(str(error)) from error
+        click.echo(f"Wrote {output} ({len(pdf)} bytes)")
         return
     if output:
         raise click.ClickException(

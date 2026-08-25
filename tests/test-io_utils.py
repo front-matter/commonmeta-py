@@ -348,3 +348,59 @@ def test_embed_image_that_cannot_be_used(response, caplog):
             assert embed_image(Meta()) is None
 
     assert "https://example.org/feature.png" in caplog.records[0].getMessage()
+
+
+def test_write_pdf_names_a_file_and_returns_the_bytes(
+    tmp_path, weasyprint, feature_image
+):
+    """What a caller that names a file gets: the file, and what went in it."""
+    from commonmeta.io_utils import write_pdf
+
+    class Meta:
+        id = "https://doi.org/10.5555/a-record"
+        title = "A record with no post behind it"
+        content = None
+        contributors = date_published = date_updated = None
+        description = image = language = license = container = subjects = None
+
+    output = tmp_path / "record.pdf"
+    pdf = write_pdf(Meta(), str(output))
+
+    assert output.read_bytes() == pdf
+    assert read_pdf_metadata(pdf)["title"] == "A record with no post behind it"
+
+
+def test_write_pdf_without_a_renderer(tmp_path, monkeypatch):
+    """A caller that named a file is told why there is none, rather than None.
+
+    WeasyPrint is absent on Python 3.9, and on any machine without pango.
+    """
+    from commonmeta import io_utils
+    from commonmeta.io_utils import write_pdf
+
+    class Meta:
+        id = "https://doi.org/10.5555/a-record"
+        content = None
+
+    monkeypatch.setattr(io_utils, "load_weasyprint", lambda: None)
+
+    with pytest.raises(ValueError, match="pango"):
+        write_pdf(Meta(), str(tmp_path / "record.pdf"))
+    assert not (tmp_path / "record.pdf").exists()
+
+
+def test_write_pdf_refuses_a_name_it_does_not_write(
+    tmp_path, weasyprint, feature_image
+):
+    """The extension says what a file is; a pdf is not written to post.json."""
+    from commonmeta.io_utils import write_pdf
+
+    class Meta:
+        id = "https://doi.org/10.5555/a-record"
+        title = "A record"
+        content = None
+        contributors = date_published = date_updated = None
+        description = image = language = license = container = subjects = None
+
+    with pytest.raises(ValueError, match="File format not supported"):
+        write_pdf(Meta(), str(tmp_path / "record.json"))

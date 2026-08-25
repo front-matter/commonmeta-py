@@ -341,3 +341,23 @@ def test_pdf_is_not_a_metadata_format():
 
     with pytest.raises(ValueError, match="Unsupported output format: pdf"):
         Metadata("10.5281/zenodo.5244404", via="datacite").write(to="pdf")
+
+
+def test_convert_to_pdf_reports_a_render_it_cannot_make(tmp_path, monkeypatch):
+    """What io_utils raises, the cli says; it does not traceback."""
+    from commonmeta import cli as cli_module
+
+    def unavailable(metadata, file):
+        raise ValueError(
+            "Could not render the pdf. WeasyPrint needs the pango libraries"
+        )
+
+    monkeypatch.setattr(cli_module, "write_pdf", unavailable)
+
+    result = CliRunner().invoke(
+        convert,
+        ["10.7554/elife.01567", "--to", "pdf", "--output", str(tmp_path / "x.pdf")],
+    )
+
+    assert result.exit_code == 1
+    assert "needs the pango libraries" in result.output
