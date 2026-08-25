@@ -573,31 +573,3 @@ def test_a_completed_file_of_another_name_is_left_alone(use_fake_backend):
 
     assert files.entries["figure.png"] == "completed"
     assert files.entries["post.pdf"] == "completed"
-
-
-def test_the_pdf_is_named_after_the_record_not_the_run():
-    """Two dois are in play, and only one of them lasts.
-
-    Rogue Scholar mints a random suffix for a post that has none, on every read
-    of the feed, while the record is matched by guid — so metadata.id is a
-    different doi each run for the same post. Naming the file from it left one
-    record holding three entries, each named after a doi that existed only for
-    the length of the run that made it.
-    """
-    from commonmeta.writers.inveniordm_writer import pdf_filename
-
-    class Meta:
-        id = "https://doi.org/10.59350/j63pf-38v68"  # minted this run
-
-    # The record's own doi, which upsert_record adopts and the update leaves
-    # alone, names the file.
-    assert (
-        pdf_filename(Meta(), {"doi": "https://doi.org/10.59350/rqawv-7g546"})
-        == "rqawv-7g546.pdf"
-    )
-    # A bare doi is accepted as readily as a url.
-    assert pdf_filename(Meta(), {"doi": "10.59350/rqawv-7g546"}) == "rqawv-7g546.pdf"
-    # A genuinely new post has no record to take a doi from, so the one in hand
-    # is the one it will keep.
-    assert pdf_filename(Meta(), None) == "j63pf-38v68.pdf"
-    assert pdf_filename(Meta(), {}) == "j63pf-38v68.pdf"

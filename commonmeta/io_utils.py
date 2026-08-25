@@ -26,7 +26,7 @@ from babel.dates import format_date
 from bs4 import BeautifulSoup
 
 from .api_utils import http
-from .base_utils import presence, unique, wrap
+from .base_utils import dig, presence, unique, wrap
 from .date_utils import get_iso8601_date
 from .doi_utils import doi_from_url
 from .utils import get_language, validate_orcid
@@ -423,16 +423,15 @@ def to_pdf_image(metadata: Metadata) -> str | None:
     """The feature image as a data uri, None when there is none to be had.
 
     Fetched here rather than left to WeasyPrint so the image travels inside
-    the pdf instead of the pdf depending on the blog still serving it, and so
-    an image that cannot be fetched is left out altogether: WeasyPrint draws
-    the alt text wherever an image fails, and "Feature image" printed across
-    the title page reads as a mistake rather than as a missing picture.
+    the pdf instead of an external link.
     """
     url = presence(metadata.image)
     if url is None:
         return None
     try:
-        response = http.get(url, timeout=30, headers={"Accept": "image/*,*/*;q=0.8"})
+        response = http.get(
+            str(url), timeout=30, headers={"Accept": "image/*,*/*;q=0.8"}
+        )
         response.raise_for_status()
     except Exception as error:
         # the image is decoration: no fetch of it is worth failing the render,
@@ -498,7 +497,10 @@ def finish_pdf(pdf: bytes, metadata: Metadata) -> bytes:
             ):
                 del obj["/Interpolate"]
 
-        document.save(output)
+        # deterministic_id computes the trailer's /ID from the contents rather
+        # than from the clock, which is the last thing that made two renditions
+        # of the same post differ from each other
+        document.save(output, deterministic_id=True)
     return output.getvalue()
 
 
@@ -506,9 +508,7 @@ def to_pdf_attachment(metadata: Metadata, weasyprint):
     """The post content, embedded in the pdf as the source it was rendered from.
 
     PDF/A-3 is the variant that allows an arbitrary embedded file, and
-    WeasyPrint gives it the /AFRelationship the standard asks for. The dates
-    come from the record so that rendering the same post twice gives the same
-    file, rather than the current time WeasyPrint would default to.
+    WeasyPrint gives it the /AFRelationship the standard asks for.
     """
     created = to_pdf_datetime(metadata.date_published)
     modified = to_pdf_datetime(metadata.date_updated) or created
@@ -643,6 +643,16 @@ def load_weasyprint():
         return None
 
 
+def pdf_filename(metadata: Metadata, record: dict | None = None) -> str:
+    """Name the pdf after the doi of the record or metadata it is attached to.
+
+    Replaces the slash in the doi with a dash, so the filename is valid on every
+    filesystem. Falls back to "content.pdf" when there is no doi.
+    """
+    doi = doi_from_url(dig(record, "doi")) or doi_from_url(metadata.id)
+    return f"{doi.replace('/', '-')}.pdf" if doi else "content.pdf"
+
+
 @lru_cache(maxsize=1)
 def pdf_stylesheet() -> tuple:
     """The shipped stylesheet and the font configuration it registers into.
@@ -706,24 +716,6 @@ def write_pdf_rendition(
     if file:
         write_output(file, pdf, [".pdf"])
     return pdf
-
-
-def pdf_filename(metadata: Metadata, record: dict | None = None) -> str:
-    """Name the pdf after the doi suffix of the record it is attached to.
-
-    The record's doi rather than the metadata's, because the two are not always
-    the same one and only the record's is stable. Rogue Scholar mints a random
-    suffix for a post that carries no doi of its own, on every read of the feed,
-    while the record is matched by guid — so `metadata.id` differs from run to
-    run for the same post. A record was found holding three abandoned file
-    entries, one per attempt, each named after a doi that existed only for the
-    length of that run.
-
-    `upsert_record` puts the record's own doi in `record` when it matches by
-    guid, and strips pids from the update, so this name does not move.
-    """
-    doi = doi_from_url((record or {}).get("doi")) or doi_from_url(metadata.id)
-    return f"{doi.split('/')[-1]}.pdf" if doi else "content.pdf"
 
 
 def read_pdf_metadata(pdf: bytes) -> dict:

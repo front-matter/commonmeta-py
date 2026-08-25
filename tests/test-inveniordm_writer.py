@@ -17,7 +17,6 @@ import commonmeta
 from commonmeta import Metadata
 from commonmeta.base_utils import dig
 from commonmeta.io_utils import (
-    pdf_filename,
     read_pdf_attachment,
     read_pdf_metadata,
     to_pdf_content,
@@ -1604,9 +1603,11 @@ def test_pdf_embeds_the_post_content(write_pdf_file):
 
     pdf = write_pdf_file(subject)
 
-    assert read_pdf_metadata(pdf)["attachments"] == {"dn2mm-m9q51.html": "text/html"}
+    assert read_pdf_metadata(pdf)["attachments"] == {
+        "10.59350-dn2mm-m9q51.html": "text/html"
+    }
     assert read_pdf_attachment(pdf).decode("utf-8") == subject.content
-    assert read_pdf_attachment(pdf, "dn2mm-m9q51.html") is not None
+    assert read_pdf_attachment(pdf, "10.59350-dn2mm-m9q51.html") is not None
     assert read_pdf_attachment(pdf, "absent.html") is None
 
 
@@ -1871,11 +1872,6 @@ def test_write_pdf_rendition_without_content(weasyprint):
     assert "attachments" not in metadata
 
 
-def test_pdf_filename_uses_the_doi_suffix():
-    """The file is named for the doi, which is unique and stable per record."""
-    assert pdf_filename(sample_metadata("<p>Body</p>")) == "kdqkf-nf052.pdf"
-
-
 def test_upload_pdf_registers_uploads_and_commits():
     """InvenioRDM takes a file in three calls, in that order."""
     from commonmeta.writers import inveniordm_writer as w
@@ -1892,12 +1888,15 @@ def test_upload_pdf_registers_uploads_and_commits():
     base = "https://rogue-scholar.org/api/records/fktsh-g4g95/draft/files"
     assert mock_http.post.call_args_list[0].args[0] == base
     assert mock_http.post.call_args_list[0].kwargs["json"] == [
-        {"key": "kdqkf-nf052.pdf"}
+        {"key": "10.53731-kdqkf-nf052.pdf"}
     ]
-    assert mock_http.put.call_args.args[0] == f"{base}/kdqkf-nf052.pdf/content"
+    assert mock_http.put.call_args.args[0] == f"{base}/10.53731-kdqkf-nf052.pdf/content"
     assert mock_http.put.call_args.kwargs["data"] == b"%PDF-1.7 pdf"
-    assert mock_http.post.call_args_list[1].args[0] == f"{base}/kdqkf-nf052.pdf/commit"
-    assert result["files"] == ["kdqkf-nf052.pdf"]
+    assert (
+        mock_http.post.call_args_list[1].args[0]
+        == f"{base}/10.53731-kdqkf-nf052.pdf/commit"
+    )
+    assert result["files"] == ["10.53731-kdqkf-nf052.pdf"]
 
 
 def test_upload_pdf_survives_a_refused_upload():

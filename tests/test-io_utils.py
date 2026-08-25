@@ -10,6 +10,7 @@ from commonmeta import Metadata
 from commonmeta.io_utils import (
     download_file,
     get_extension,
+    pdf_filename,
     read_file,
     read_gz_file,
     read_pdf_attachment,
@@ -158,7 +159,7 @@ def test_pdf_rendition_of_a_post_read_from_inveniordm(write_pdf_file):
     assert metadata["variant"] == "PDF/A-3a"
     assert metadata["tagged"] is True
     # the post travels inside the pdf as the source it was rendered from
-    assert metadata["attachments"] == {"xn57k-gyw73.html": "text/html"}
+    assert metadata["attachments"] == {"10.54900-xn57k-gyw73.html": "text/html"}
     assert read_pdf_attachment(pdf).decode("utf-8") == subject.content
 
 
@@ -195,3 +196,62 @@ def test_write_pdf_rendition_to_a_file(tmp_path, feature_image):
     # and a name it does not write
     with pytest.raises(ValueError):
         write_pdf_rendition(subject, url_fetcher=offline_url_fetcher, file="post.json")
+
+
+def test_pdf_filename_names_the_file_after_the_doi():
+    """The whole doi, with its slash made safe for a filename."""
+
+    class Meta:
+        id = "https://doi.org/10.59350/j63pf-38v68"
+
+    assert pdf_filename(Meta()) == "10.59350-j63pf-38v68.pdf"
+
+
+def test_pdf_filename_replaces_every_slash():
+    """A name with a slash in it is a path rather than a file."""
+
+    class Meta:
+        id = "https://doi.org/10.5555/foo/bar"
+
+    assert pdf_filename(Meta()) == "10.5555-foo-bar.pdf"
+
+
+def test_pdf_filename_prefers_the_record_to_the_run():
+    """Two dois are in play, and only one of them lasts.
+
+    Rogue Scholar mints a random suffix for a post that has none, on every read
+    of the feed, while the record is matched by guid - so metadata.id is a
+    different doi each run for the same post. Naming the file from it left one
+    record holding three entries, each named after a doi that existed only for
+    the length of the run that made it.
+    """
+
+    class Meta:
+        id = "https://doi.org/10.59350/j63pf-38v68"  # minted this run
+
+    # The record's own doi, which upsert_record adopts and the update leaves
+    # alone, names the file.
+    assert (
+        pdf_filename(Meta(), {"doi": "https://doi.org/10.59350/rqawv-7g546"})
+        == "10.59350-rqawv-7g546.pdf"
+    )
+    # A bare doi is accepted as readily as a url.
+    assert (
+        pdf_filename(Meta(), {"doi": "10.59350/rqawv-7g546"})
+        == "10.59350-rqawv-7g546.pdf"
+    )
+    # A genuinely new post has no record to take a doi from, so the one in hand
+    # is the one it will keep.
+    assert pdf_filename(Meta(), None) == "10.59350-j63pf-38v68.pdf"
+    assert pdf_filename(Meta(), {}) == "10.59350-j63pf-38v68.pdf"
+    assert pdf_filename(Meta(), {"doi": None}) == "10.59350-j63pf-38v68.pdf"
+
+
+def test_pdf_filename_without_a_doi():
+    """Nothing to name it after, and a pdf still has to be called something."""
+
+    class Meta:
+        id = "https://rogue-scholar.org/records/e1ndf-19s62"
+
+    assert pdf_filename(Meta()) == "content.pdf"
+    assert pdf_filename(Meta(), {"doi": None}) == "content.pdf"
