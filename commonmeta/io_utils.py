@@ -247,6 +247,15 @@ PDF_TITLES = {
         "it": "Immagine",
         "pt": "Imagem",
     },
+    # and the one the poster frame of a video gets
+    "video": {
+        "en": "Video",
+        "de": "Video",
+        "es": "Vídeo",
+        "fr": "Vidéo",
+        "it": "Video",
+        "pt": "Vídeo",
+    },
 }
 
 
@@ -458,31 +467,32 @@ def to_pdf_metadata(metadata: Metadata, authors: list) -> list:
     return tags
 
 
-def embed_image(metadata: Metadata) -> str | None:
-    """The feature image as a data uri, None when there is none to be had.
+def to_data_uri(url: str, what: str = "image") -> str | None:
+    """An image fetched and inlined, None when it is not one to be had.
 
     Fetched here rather than left to WeasyPrint so the image travels inside
-    the pdf instead of an external link.
+    the pdf instead of the pdf depending on a server still serving it. No
+    image is worth failing a render for: what cannot be fetched, or comes
+    back as something other than an image, is said once and left out.
     """
-    url = presence(metadata.image)
-    if url is None:
-        return None
     try:
-        response = http.get(
-            str(url), timeout=30, headers={"Accept": "image/*,*/*;q=0.8"}
-        )
+        response = http.get(url, timeout=30, headers={"Accept": "image/*,*/*;q=0.8"})
         response.raise_for_status()
     except Exception as error:
-        # the image is decoration: no fetch of it is worth failing the render,
-        # and in tests the request is the cassette's to refuse
-        log.warning(f"Cannot embed the feature image {url}: {error}")
+        log.warning(f"Cannot embed the {what} {url}: {error}")
         return None
 
     mime_type = response.headers.get("Content-Type", "").split(";")[0].strip()
     if not mime_type.startswith("image/"):
-        log.warning(f"Feature image {url} is {mime_type or 'of unknown type'}")
+        log.warning(f"The {what} {url} is {mime_type or 'of unknown type'}")
         return None
     return f"data:{mime_type};base64,{b64encode(response.content).decode('ascii')}"
+
+
+def embed_image(metadata: Metadata) -> str | None:
+    """The feature image as a data uri, None when there is none to be had."""
+    url = presence(metadata.image)
+    return to_data_uri(str(url), "feature image") if url else None
 
 
 def finish_pdf(pdf: bytes, metadata: Metadata) -> bytes:
@@ -568,14 +578,68 @@ def to_pdf_datetime(date: str | None) -> datetime | None:
         return None
 
 
+def to_pdf_video(url: str) -> tuple[str, str] | None:
+    """The page a video embed points at, and the poster frame to show for it.
+
+    A pdf has no browsing context, so WeasyPrint draws nothing at all for an
+    iframe: a post that embeds a video loses it without trace. What it can
+    show is the frame the platform publishes as the video's thumbnail, over a
+    link to the video itself. YouTube serves one at a known address; Vimeo
+    does not, so a vimeo embed becomes the link alone.
+    """
+    match = re.search(
+        r"(?:youtube(?:-nocookie)?\.com/(?:embed|v)/|youtu\.be/)([\w-]{11})", url
+    )
+    if match:
+        video = match.group(1)
+        return (
+            f"https://youtu.be/{video}",
+            f"https://img.youtube.com/vi/{video}/hqdefault.jpg",
+        )
+    match = re.search(r"player\.vimeo\.com/video/(\d+)", url)
+    if match:
+        return f"https://vimeo.com/{match.group(1)}", ""
+    return None
+
+
+def to_pdf_videos(soup: BeautifulSoup, label: str) -> bool:
+    """Replace each video embed with its poster frame, linked to the video."""
+    replaced = False
+    for iframe in soup.find_all("iframe"):
+        video = to_pdf_video(iframe.get("src", None) or "")
+        if video is None:
+            continue
+        page, poster = video
+        data_uri = to_data_uri(poster, "video poster") if poster else None
+
+        figure = soup.new_tag("figure")
+        figure["class"] = "video"
+        if data_uri:
+            link = soup.new_tag("a", href=page)
+            image = soup.new_tag("img", src=data_uri, alt=label)
+            link.append(image)
+            figure.append(link)
+        caption = soup.new_tag("figcaption")
+        caption_link = soup.new_tag("a", href=page)
+        caption_link.string = page
+        caption.append(caption_link)
+        figure.append(caption)
+        iframe.replace_with(figure)
+        replaced = True
+    return replaced
+
+
 def to_pdf_content(content: str | None, language: str) -> str:
-    """The post content, with an alt description on every image."""
-    if not content or "<img" not in content:
+    """The post content, with an alt description on every image and a poster
+    frame where a video was embedded."""
+    if not content or ("<img" not in content and "<iframe" not in content):
         return content or ""
 
     soup = BeautifulSoup(content, "html.parser")
     label = PDF_TITLES["image"].get(language, PDF_TITLES["image"]["en"])
-    described = False
+    described = to_pdf_videos(
+        soup, PDF_TITLES["video"].get(language, PDF_TITLES["video"]["en"])
+    )
     for image in soup.find_all("img"):
         if (image.get("alt") or "").strip():
             continue

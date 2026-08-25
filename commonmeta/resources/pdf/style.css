@@ -449,3 +449,18 @@ figcaption,
 .wp-block-syntaxhighlighter-code > pre {
   font-size: 0.9rem;
 }
+
+/* A video embed, as the poster frame the platform publishes for it over a
+   link to the video: an iframe draws nothing at all on paper. */
+figure.video {
+  margin: 12pt 0;
+  text-align: center;
+}
+figure.video img {
+  max-width: 75%;
+  max-height: 8cm;
+}
+figure.video figcaption {
+  font-style: normal;
+  font-size: 9pt;
+}

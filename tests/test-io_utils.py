@@ -24,6 +24,7 @@ from commonmeta.io_utils import (
     read_pdf_attachment,
     read_pdf_metadata,
     read_zip_file,
+    to_pdf_content,
     to_pdf_html,
     uncompress_content,
     unzip_content,
@@ -518,3 +519,80 @@ def test_the_page_drops_an_emoji_the_metadata_keeps(write_pdf_file):
     assert read_pdf_metadata(pdf)["title"] == (
         "AIMOS Presentation 🔸 Mindless Transparency"
     )
+
+
+@pytest.mark.parametrize(
+    "src, page, poster",
+    [
+        (
+            "https://www.youtube-nocookie.com/embed/okjTV1oX4RU?rel=0&autoplay=0",
+            "https://youtu.be/okjTV1oX4RU",
+            "https://img.youtube.com/vi/okjTV1oX4RU/hqdefault.jpg",
+        ),
+        (
+            "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            "https://youtu.be/dQw4w9WgXcQ",
+            "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+        ),
+        # vimeo publishes no thumbnail at a known address, so the link stands alone
+        ("https://player.vimeo.com/video/76979871", "https://vimeo.com/76979871", ""),
+        # anything else an iframe carries is not a video
+        ("https://example.org/subscribe", None, None),
+    ],
+)
+def test_to_pdf_video(src, page, poster):
+    """Where an embed points, and the frame to show for it."""
+    from commonmeta.io_utils import to_pdf_video
+
+    assert to_pdf_video(src) == (None if page is None else (page, poster))
+
+
+def test_to_pdf_content_shows_a_video_as_its_poster_frame():
+    """A pdf has no browsing context: an iframe draws nothing at all.
+
+    https://rogue-scholar.org/records/ywetc-na038 embeds a talk this way, and
+    the rendition lost it without trace.
+    """
+    from conftest import PNG_PIXEL, image_response
+
+    from commonmeta import io_utils
+
+    content = (
+        '<p>Before</p><div class="youtube-wrap"><iframe '
+        'src="https://www.youtube-nocookie.com/embed/okjTV1oX4RU?rel=0"'
+        "></iframe></div><p>After</p>"
+    )
+    get = Mock(return_value=image_response(PNG_PIXEL, "image/jpeg"))
+
+    with patch.object(io_utils, "http", SimpleNamespace(get=get)):
+        html = to_pdf_content(content, "en")
+
+    assert (
+        get.call_args.args[0] == "https://img.youtube.com/vi/okjTV1oX4RU/hqdefault.jpg"
+    )
+    assert '<figure class="video">' in html
+    assert '<a href="https://youtu.be/okjTV1oX4RU">' in html
+    assert '<img alt="Video" src="data:image/jpeg;base64,' in html
+    # and the link is readable on paper, where a link cannot be followed
+    assert (
+        "<figcaption>"
+        '<a href="https://youtu.be/okjTV1oX4RU">https://youtu.be/okjTV1oX4RU</a>'
+        "</figcaption>" in html
+    )
+    assert "<iframe" not in html
+    assert "<p>Before</p>" in html and "<p>After</p>" in html
+
+
+def test_to_pdf_content_keeps_the_link_when_the_poster_cannot_be_had():
+    """A thumbnail is worth a request, not a render: the link is the point."""
+    from commonmeta import io_utils
+
+    content = '<iframe src="https://player.vimeo.com/video/76979871"></iframe>'
+    get = Mock(side_effect=AssertionError("vimeo has no thumbnail to fetch"))
+
+    with patch.object(io_utils, "http", SimpleNamespace(get=get)):
+        html = to_pdf_content(content, "en")
+
+    assert '<figure class="video"><figcaption>' in html
+    assert '<a href="https://vimeo.com/76979871">https://vimeo.com/76979871</a>' in html
+    assert "<img" not in html
