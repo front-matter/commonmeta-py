@@ -1,14 +1,20 @@
 # pylint: disable=invalid-name
 """Test io_utils"""
 
+import logging
+from base64 import b64encode
 from os import path, remove
+from types import SimpleNamespace
+from unittest.mock import Mock, patch
 
 import pytest  # noqa: F401
 import zstandard
+from requests.exceptions import RequestException
 
 from commonmeta import Metadata
 from commonmeta.io_utils import (
     download_file,
+    embed_image,
     get_extension,
     pdf_filename,
     read_file,
@@ -255,3 +261,90 @@ def test_pdf_filename_without_a_doi():
 
     assert pdf_filename(Meta()) == "content.pdf"
     assert pdf_filename(Meta(), {"doi": None}) == "content.pdf"
+
+
+def test_embed_image_returns_a_data_uri():
+    """The feature image travels inside the pdf rather than being linked."""
+    from conftest import PNG_PIXEL, image_response
+
+    from commonmeta import io_utils
+
+    class Meta:
+        image = "https://example.org/feature.png"
+
+    get = Mock(return_value=image_response(PNG_PIXEL, "image/png"))
+    with patch.object(io_utils, "http", SimpleNamespace(get=get)):
+        uri = embed_image(Meta())
+
+    assert uri == f"data:image/png;base64,{b64encode(PNG_PIXEL).decode()}"
+    assert get.call_args.args[0] == "https://example.org/feature.png"
+    # asked for as an image: a blog behind a filter answers a bare request with
+    # 406 Not Acceptable
+    assert get.call_args.kwargs["headers"]["Accept"].startswith("image/")
+
+
+def test_embed_image_takes_the_type_the_server_serves():
+    """A jpeg is a jpeg, whatever the url ends in."""
+    from conftest import image_response
+
+    from commonmeta import io_utils
+
+    class Meta:
+        image = "https://example.org/feature.png"
+
+    get = Mock(
+        return_value=image_response(b"\xff\xd8\xff", "image/jpeg; charset=binary")
+    )
+    with patch.object(io_utils, "http", SimpleNamespace(get=get)):
+        uri = embed_image(Meta())
+
+    assert uri.startswith("data:image/jpeg;base64,")
+
+
+def test_embed_image_without_an_image():
+    """Most records have none, and nothing is fetched for them."""
+    from commonmeta import io_utils
+
+    class Meta:
+        image = None
+
+    get = Mock()
+    with patch.object(io_utils, "http", SimpleNamespace(get=get)):
+        assert embed_image(Meta()) is None
+
+    get.assert_not_called()
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        # the blog no longer serves it
+        SimpleNamespace(raise_for_status=Mock(side_effect=RequestException("404"))),
+        # or serves an error page where the image used to be
+        SimpleNamespace(
+            content=b"<html>Not found</html>",
+            headers={"Content-Type": "text/html"},
+            raise_for_status=lambda: None,
+        ),
+        # or nothing that says what it is
+        SimpleNamespace(content=b"", headers={}, raise_for_status=lambda: None),
+    ],
+)
+def test_embed_image_that_cannot_be_used(response, caplog):
+    """An image the render cannot use is left out, and said so once.
+
+    WeasyPrint draws the alt text where an image fails, which would print
+    "Feature image" across the title page.
+    """
+    from commonmeta import io_utils
+
+    class Meta:
+        image = "https://example.org/feature.png"
+
+    with caplog.at_level(logging.WARNING, logger="commonmeta.io_utils"):
+        with patch.object(
+            io_utils, "http", SimpleNamespace(get=Mock(return_value=response))
+        ):
+            assert embed_image(Meta()) is None
+
+    assert "https://example.org/feature.png" in caplog.records[0].getMessage()
