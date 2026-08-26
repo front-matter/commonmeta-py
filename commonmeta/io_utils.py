@@ -889,9 +889,8 @@ def to_pdf_metadata(metadata: Metadata, authors: list) -> list:
     requires: author as /Author and dc:creator, description as /Subject and
     dc:description, keywords as /Keywords and pdf:Keywords, the dcterms dates
     as /CreationDate and /ModDate and their xmp counterparts. `read_pdf_metadata`
-    reads them back out. The doi has no slot of its own in either, so it stays
-    on the title page rather than becoming a custom info key, which would put
-    the pdf outside PDF/A.
+    reads them back out. The doi and the licence have no meta tag of their own
+    and are written afterwards, by `finish_pdf`.
     """
     tags = [
         f'<meta name="author" content="{escape(author["name"])}">' for author in authors
@@ -951,10 +950,11 @@ def finish_pdf(pdf: bytes, metadata: Metadata) -> bytes:
     The doi and the licence have no slot among the meta tags WeasyPrint
     reads, but each has a standard XMP property - dc:identifier, and dc:rights
     with the licence url as its xmpRights:WebStatement - so pikepdf writes
-    them into the packet WeasyPrint produced, rather than them becoming custom
-    info keys, which would put the pdf outside PDF/A. Writing them into that
-    same packet, as opposed to appending a second rdf:RDF block, is what makes
-    them visible to a reader that looks up properties by name.
+    them into the packet WeasyPrint produced. Writing them into that same
+    packet, as opposed to appending a second rdf:RDF block, is what makes them
+    visible to a reader that looks up properties by name. The doi is written a
+    second time into the info dictionary, which is what a viewer shows as the
+    document's properties.
 
     The images then lose their /Interpolate key, which WeasyPrint sets on
     every image it draws and PDF/A forbids (ISO 19005-3 6.2.8: present means
@@ -985,6 +985,14 @@ def finish_pdf(pdf: bytes, metadata: Metadata) -> bytes:
                 xmp["dc:rights"] = license_id
             if license_url:
                 xmp["xmpRights:WebStatement"] = license_url
+
+        # the doi goes in the info dictionary too, under the key publishers
+        # write it under: that is what a viewer's document properties and
+        # `pdfinfo` read, and neither looks in the xmp packet. PDF/A asks the
+        # entries it defines to agree with their xmp counterparts, and /doi is
+        # not one of them - veraPDF passes a rendition carrying it.
+        if identifier:
+            document.docinfo[pikepdf.Name("/doi")] = identifier
 
         for obj in document.objects:
             # every object, rather than every page's images: an image can also

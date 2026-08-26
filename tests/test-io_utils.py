@@ -1088,3 +1088,34 @@ def test_to_pdf_citation_of_a_record_that_cannot_be_cited():
 
     assert to_pdf_citation(sample, "en") is None
     assert "recommended-citation" not in to_pdf_html(sample)
+
+
+def test_the_pdf_carries_its_doi_where_a_viewer_shows_it(render_pdf):
+    """The doi is in the info dictionary as well as in the xmp packet.
+
+    A viewer's document properties, and `pdfinfo`, read the first and never
+    look at the second; PDF/A asks the entries it defines to agree with their
+    xmp counterparts, and /doi is not one of those.
+    """
+    import pikepdf
+    from conftest import sample_metadata
+
+    pdf = render_pdf(sample_metadata("<p>Body</p>"))
+
+    with pikepdf.open(io.BytesIO(pdf)) as document:
+        assert str(document.docinfo["/doi"]) == "https://doi.org/10.53731/kdqkf-nf052"
+    assert read_pdf_metadata(pdf)["id"] == "https://doi.org/10.53731/kdqkf-nf052"
+
+
+def test_the_pdf_of_a_record_without_a_doi_says_nothing_about_one(render_pdf):
+    """A record with no id gets no such entry, rather than an empty one."""
+    import pikepdf
+    from conftest import sample_metadata
+
+    sample = sample_metadata("<p>Body</p>")
+    sample.id = None
+
+    pdf = render_pdf(sample)
+
+    with pikepdf.open(io.BytesIO(pdf)) as document:
+        assert "/doi" not in document.docinfo
