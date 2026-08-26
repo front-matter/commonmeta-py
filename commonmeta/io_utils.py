@@ -31,8 +31,8 @@ from bs4 import BeautifulSoup
 from .api_utils import http
 from .base_utils import dig, presence, unique, wrap
 from .date_utils import get_iso8601_date
-from .doi_utils import doi_from_url, normalize_doi
-from .utils import get_language, issn_as_url, normalize_url, validate_orcid
+from .doi_utils import doi_from_url
+from .utils import get_language, validate_orcid
 
 if TYPE_CHECKING:
     from .metadata import Metadata
@@ -756,29 +756,14 @@ def to_pdf_type(type: str | None, language: str) -> str | None:
 def to_pdf_container(metadata: Metadata) -> str | None:
     """The journal or blog the work came out in, as the title page names it.
 
-    Set in italics, the way a citation sets it, and linked where the container
-    says which one it is: an issn resolves at the issn portal and a doi at
-    doi.org.
+    Set in italics, the way a citation sets it, and named rather than linked:
+    the one address a title page points at is the record's own, on the line
+    below.
     """
-    container = metadata.container or {}
-    title = container.get("title", None)
+    title = (metadata.container or {}).get("title", None)
     if not title:
         return None
-    name = f"<i>{to_pdf_markup(title)}</i>"
-
-    url = None
-    for identifier in wrap(container.get("identifiers", None)):
-        value = identifier.get("identifier", None)
-        if not value:
-            continue
-        url = (
-            issn_as_url(value)
-            if identifier.get("identifier_type", None) == "ISSN"
-            else normalize_doi(value) or normalize_url(value)
-        )
-        if url:
-            break
-    return f'<a href="{escape(url)}">{name}</a>' if url else name
+    return f"<i>{to_pdf_markup(title)}</i>"
 
 
 def to_pdf_published(metadata: Metadata, language: str) -> str | None:

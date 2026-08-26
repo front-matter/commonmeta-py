@@ -1636,8 +1636,7 @@ def test_to_pdf_html_front_matter(feature_image):
     assert "<title>Linguistic roots of connectionism</title>" in html
     assert "<h1>Linguistic roots of connectionism</h1>" in html
     assert '<p class="author"><span>Mark Dingemanse</span></p>' in html
-    # what the record is, when it came out, and what it came out in - the blog
-    # has no identifier of its own, so its name is set but not linked
+    # what the record is, when it came out, and what it came out in
     assert (
         '<div class="date">Blog post published July 22, 2021 in '
         "<i>The Ideophone</i></div>" in html
@@ -1748,8 +1747,7 @@ def test_to_pdf_html_in_another_language():
     assert html.startswith("<html lang='de'>")
     assert (
         '<div class="date">Blogbeitrag veröffentlicht am 12. Juli 2021 in '
-        '<a href="https://portal.issn.org/resource/ISSN/2940-1798">'
-        "<i>Gemeinsamer Blog der DINI AGs</i></a></div>" in html
+        "<i>Gemeinsamer Blog der DINI AGs</i></div>" in html
     )
     assert "<h4>Zusammenfassung</h4>" in html
     assert "<h4>Urheberrecht</h4>" in html
