@@ -1129,3 +1129,45 @@ def test_the_pdf_of_a_record_without_a_doi_says_nothing_about_one(render_pdf):
         assert "prism:doi" not in xmp
         # and no schema description for a property it does not carry
         assert "pdfaSchema" not in str(xmp)
+
+
+def test_to_pdf_feature_alt_reads_the_post_for_a_caption():
+    """The record carries the feature image as a url and nothing else.
+
+    Half the posts show the same image again in the text, and a fair few of
+    those show it over a caption - which describes the image on the title page
+    as well as it describes the one in the post.
+    """
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_feature_alt
+
+    sample = sample_metadata(
+        '<p>Body</p><figure><img src="https://example.org/cover.png">'
+        "<figcaption>Scrabble tiles spelling BLOG POST</figcaption></figure>"
+    )
+    sample.image = "https://example.org/cover.png"
+
+    assert to_pdf_feature_alt(sample, "en") == "Scrabble tiles spelling BLOG POST"
+
+
+def test_to_pdf_feature_alt_says_what_the_image_is_when_the_post_says_nothing(
+    feature_image,
+):
+    """A reader is told what the image is rather than nothing at all."""
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_feature_alt, to_pdf_html
+
+    sample = sample_metadata("<p>Body with no images at all</p>")
+    sample.image = "https://example.org/cover.png"
+
+    assert to_pdf_feature_alt(sample, "en") == "Feature image"
+    # in the language of the post, as every other label on the page is
+    assert to_pdf_feature_alt(sample, "de") == "Beitragsbild"
+    # a post that shows the image without describing it says nothing either
+    sample.content = '<p><img src="https://example.org/cover.png"></p>'
+    assert to_pdf_feature_alt(sample, "en") == "Feature image"
+
+    sample.language = "de"
+    assert 'alt="Beitragsbild"' in to_pdf_html(sample)

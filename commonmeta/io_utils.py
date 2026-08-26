@@ -253,7 +253,17 @@ PDF_TITLES = {
         "it": "Parole chiave",
         "pt": "Palavras-chave",
     },
-    # the alt description an image gets when the post gives it none
+    # the alt description the feature image falls back to, when neither the
+    # post nor the image itself says anything about it
+    "feature_image": {
+        "en": "Feature image",
+        "de": "Beitragsbild",
+        "es": "Imagen destacada",
+        "fr": "Image à la une",
+        "it": "Immagine in evidenza",
+        "pt": "Imagem de destaque",
+    },
+    # and the one any other image falls back to
     "image": {
         "en": "Image",
         "de": "Bild",
@@ -1147,6 +1157,94 @@ def find_reference_heading(soup: BeautifulSoup):
     return None
 
 
+#: What an attribute says when it says nothing: a blog that fills a caption
+#: field in with "image" has told a reader no more than the placeholder does,
+#: so the search goes on rather than stopping there.
+PLACEHOLDER_ALT = {
+    "bild",
+    "figure",
+    "foto",
+    "grafik",
+    "image",
+    "img",
+    "immagine",
+    "imagen",
+    "imagem",
+    "photo",
+    "picture",
+}
+
+
+def to_pdf_description(value: str | None) -> str | None:
+    """One candidate description, or None where it describes nothing.
+
+    A caption attribute holds markup often enough - WordPress writes a whole
+    <p> into data-image-caption - so what is wanted is its text.
+    """
+    if not value:
+        return None
+    text = BeautifulSoup(unescape(value), "html.parser").get_text(" ", strip=True)
+    text = " ".join(text.split())
+    if not text or text.casefold().strip(".:") in PLACEHOLDER_ALT:
+        return None
+    return text
+
+
+def to_pdf_alt(image, label: str) -> str:
+    """What an image in the post is described as, in the pdf.
+
+    A tagged pdf wants a description of every image and a post often gives
+    none, so the caption is read instead, in each of the places the platforms
+    put it: the figcaption of a figure, the caption paragraph of a WordPress
+    wrapper, the attribute WordPress copies it into, and the title. Of 388
+    images across 150 Rogue Scholar posts, 84 carried alt text and 149 more
+    sat under a caption in one of those.
+
+    What is deliberately not read is the media title WordPress writes into
+    data-image-title: it holds the name of the file 68 times out of 73 -
+    "MA5-15569_MA5-15671_annotated" - which is not a description of anything.
+    `label` is what is left to say when a post says nothing.
+    """
+    figure = image.find_parent("figure")
+    caption = figure.find("figcaption") if figure else None
+    wrapper = image.find_parent(class_="wp-caption")
+    wp_caption = wrapper.find(class_="wp-caption-text") if wrapper else None
+    for candidate in (
+        image.get("alt", None),
+        caption.get_text(" ", strip=True) if caption else None,
+        wp_caption.get_text(" ", strip=True) if wp_caption else None,
+        image.get("data-image-caption", None),
+        image.get("title", None),
+    ):
+        description = to_pdf_description(candidate)
+        if description:
+            return description
+    return label
+
+
+def to_pdf_feature_alt(metadata: Metadata, language: str) -> str:
+    """What the feature image on the title page is described as.
+
+    A record carries the feature image as a url and nothing else, so the post
+    is asked about it: half of them show the same image again in the text, and
+    a fair few of those show it over a caption. Where the post says nothing, a
+    reader is told what the image is rather than what it shows, which is what
+    a description is for - but a placeholder that says so beats an image a
+    reader is told nothing at all about.
+    """
+    label = PDF_TITLES["feature_image"].get(language, PDF_TITLES["feature_image"]["en"])
+    url = str(presence(metadata.image) or "")
+    content = metadata.content or ""
+    # the parse is worth its cost only where the post shows the image at all
+    if not url or url not in content:
+        return label
+    for image in BeautifulSoup(content, "html.parser").find_all("img", src=url):
+        described_as = to_pdf_alt(image, label)
+        if described_as != label:
+            return described_as
+    return label
+
+
 def to_pdf_content(content: str | None, language: str) -> str:
     """The post content, with an alt description on every image, a poster
     frame where a video was embedded, and its reference list marked."""
@@ -1165,16 +1263,10 @@ def to_pdf_content(content: str | None, language: str) -> str:
         heading["class"] = [*(heading.get("class") or []), "references"]
         described = True
     for image in soup.find_all("img"):
-        if (image.get("alt") or "").strip():
-            continue
-        figure = image.find_parent("figure")
-        caption = figure.find("figcaption") if figure else None
-        image["alt"] = (
-            (caption.get_text(" ", strip=True) if caption else "")
-            or (image.get("title") or "").strip()
-            or label
-        )
-        described = True
+        alt = to_pdf_alt(image, label)
+        if alt != image.get("alt", None):
+            image["alt"] = alt
+            described = True
     return str(soup) if described else content
 
 
@@ -1295,9 +1387,8 @@ def to_pdf_html(metadata: Metadata) -> str:
         )
     image = embed_image(metadata)
     if image:
-        front_matter.append(
-            f'<img class="feature-image" alt="Feature image" src="{image}" />'
-        )
+        alt = escape(to_pdf_feature_alt(metadata, language))
+        front_matter.append(f'<img class="feature-image" alt="{alt}" src="{image}" />')
     citation = to_pdf_citation(metadata, language)
     if citation:
         label = PDF_TITLES["citation"].get(language, PDF_TITLES["citation"]["en"])

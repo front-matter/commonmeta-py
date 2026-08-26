@@ -1718,7 +1718,33 @@ def test_to_pdf_html_front_matter(feature_image):
             '<figure><img src="rnn.jpg"><figcaption>A low-rank RNN</figcaption></figure>',
             'alt="A low-rank RNN"',
         ),
+        # the caption paragraph of a WordPress wrapper is a caption too
+        (
+            '<div class="wp-caption"><img src="axis.jpg">'
+            '<p class="wp-caption-text">Fused atlas of Apatosaurus</p></div>',
+            'alt="Fused atlas of Apatosaurus"',
+        ),
+        # as is the one WordPress copies into an attribute, markup and all
+        (
+            '<p><img src="rnn.jpg" data-image-caption="&lt;p&gt;A low-rank '
+            'RNN&lt;/p&gt;"></p>',
+            'alt="A low-rank RNN"',
+        ),
         ('<p><img src="rnn.jpg" title="Figure 1"></p>', 'alt="Figure 1"'),
+        # a caption field filled in with "image" has said nothing a label does
+        # not say, so the search goes on rather than stopping there
+        ('<p><img src="rnn.jpg" title="image"></p>', 'alt="Image"'),
+        (
+            '<figure><img src="rnn.jpg" title="A low-rank RNN">'
+            "<figcaption>Photo</figcaption></figure>",
+            'alt="A low-rank RNN"',
+        ),
+        # the media title WordPress writes is the name of the file, which
+        # describes nothing: it is not read
+        (
+            '<p><img src="rnn.jpg" data-image-title="MA5-15569_annotated"></p>',
+            'alt="Image"',
+        ),
     ],
 )
 def test_to_pdf_content_describes_every_image(content, expected):
