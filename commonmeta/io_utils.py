@@ -266,6 +266,310 @@ PDF_TITLES = {
     },
 }
 
+#: What a work is called on the title page. The English name of a type is its
+#: camel case split into words - a JournalArticle is a journal article - so
+#: only the other languages are named here.
+PDF_TYPE_NAMES = {
+    "de": {
+        "Audiovisual": "Audiovisuelles Medium",
+        "Blog": "Blog",
+        "BlogPost": "Blogbeitrag",
+        "BlogVolume": "Blogjahrgang",
+        "Book": "Buch",
+        "BookChapter": "Buchkapitel",
+        "BookPart": "Buchteil",
+        "BookSection": "Buchabschnitt",
+        "BookSeries": "Buchreihe",
+        "BookSet": "Buchsammlung",
+        "Collection": "Sammlung",
+        "Component": "Komponente",
+        "ComputationalNotebook": "Computational Notebook",
+        "Database": "Datenbank",
+        "Dataset": "Datensatz",
+        "Dissertation": "Dissertation",
+        "Document": "Dokument",
+        "Entry": "Eintrag",
+        "Event": "Veranstaltung",
+        "Figure": "Abbildung",
+        "Grant": "Förderung",
+        "Image": "Bild",
+        "Instrument": "Instrument",
+        "InteractiveResource": "Interaktive Ressource",
+        "Journal": "Zeitschrift",
+        "JournalArticle": "Zeitschriftenartikel",
+        "JournalIssue": "Zeitschriftenheft",
+        "JournalVolume": "Zeitschriftenband",
+        "LegalDocument": "Rechtsdokument",
+        "Manuscript": "Manuskript",
+        "Map": "Karte",
+        "Model": "Modell",
+        "OutputManagementPlan": "Datenmanagementplan",
+        "Patent": "Patent",
+        "PeerReview": "Gutachten",
+        "Performance": "Aufführung",
+        "PersonalCommunication": "Persönliche Mitteilung",
+        "PhysicalObject": "Physisches Objekt",
+        "Poster": "Poster",
+        "Preprint": "Preprint",
+        "Presentation": "Präsentation",
+        "Proceedings": "Konferenzband",
+        "ProceedingsArticle": "Konferenzbeitrag",
+        "ProceedingsSeries": "Konferenzreihe",
+        "Report": "Bericht",
+        "ReportComponent": "Berichtskomponente",
+        "ReportSeries": "Berichtsreihe",
+        "Review": "Begutachtung",
+        "Service": "Dienst",
+        "Software": "Software",
+        "Sound": "Tonaufnahme",
+        "Standard": "Norm",
+        "StudyRegistration": "Studienregistrierung",
+        "WebPage": "Webseite",
+        "Workflow": "Workflow",
+    },
+    "es": {
+        "Audiovisual": "Material audiovisual",
+        "Blog": "Blog",
+        "BlogPost": "Entrada de blog",
+        "BlogVolume": "Volumen de blog",
+        "Book": "Libro",
+        "BookChapter": "Capítulo de libro",
+        "BookPart": "Parte de libro",
+        "BookSection": "Sección de libro",
+        "BookSeries": "Serie de libros",
+        "BookSet": "Colección de libros",
+        "Collection": "Colección",
+        "Component": "Componente",
+        "ComputationalNotebook": "Cuaderno computacional",
+        "Database": "Base de datos",
+        "Dataset": "Conjunto de datos",
+        "Dissertation": "Tesis",
+        "Document": "Documento",
+        "Entry": "Entrada",
+        "Event": "Evento",
+        "Figure": "Figura",
+        "Grant": "Subvención",
+        "Image": "Imagen",
+        "Instrument": "Instrumento",
+        "InteractiveResource": "Recurso interactivo",
+        "Journal": "Revista",
+        "JournalArticle": "Artículo de revista",
+        "JournalIssue": "Número de revista",
+        "JournalVolume": "Volumen de revista",
+        "LegalDocument": "Documento legal",
+        "Manuscript": "Manuscrito",
+        "Map": "Mapa",
+        "Model": "Modelo",
+        "OutputManagementPlan": "Plan de gestión de datos",
+        "Patent": "Patente",
+        "PeerReview": "Revisión por pares",
+        "Performance": "Actuación",
+        "PersonalCommunication": "Comunicación personal",
+        "PhysicalObject": "Objeto físico",
+        "Poster": "Póster",
+        "Preprint": "Prepublicación",
+        "Presentation": "Presentación",
+        "Proceedings": "Actas de congreso",
+        "ProceedingsArticle": "Ponencia",
+        "ProceedingsSeries": "Serie de actas",
+        "Report": "Informe",
+        "ReportComponent": "Componente de informe",
+        "ReportSeries": "Serie de informes",
+        "Review": "Revisión",
+        "Service": "Servicio",
+        "Software": "Software",
+        "Sound": "Grabación sonora",
+        "Standard": "Norma",
+        "StudyRegistration": "Registro de estudio",
+        "WebPage": "Página web",
+        "Workflow": "Flujo de trabajo",
+    },
+    "fr": {
+        "Audiovisual": "Document audiovisuel",
+        "Blog": "Blog",
+        "BlogPost": "Billet de blog",
+        "BlogVolume": "Volume de blog",
+        "Book": "Livre",
+        "BookChapter": "Chapitre de livre",
+        "BookPart": "Partie de livre",
+        "BookSection": "Section de livre",
+        "BookSeries": "Collection de livres",
+        "BookSet": "Ensemble de livres",
+        "Collection": "Collection",
+        "Component": "Composant",
+        "ComputationalNotebook": "Carnet de calcul",
+        "Database": "Base de données",
+        "Dataset": "Jeu de données",
+        "Dissertation": "Thèse",
+        "Document": "Document",
+        "Entry": "Entrée",
+        "Event": "Événement",
+        "Figure": "Figure",
+        "Grant": "Financement",
+        "Image": "Image",
+        "Instrument": "Instrument",
+        "InteractiveResource": "Ressource interactive",
+        "Journal": "Revue",
+        "JournalArticle": "Article de revue",
+        "JournalIssue": "Numéro de revue",
+        "JournalVolume": "Volume de revue",
+        "LegalDocument": "Document juridique",
+        "Manuscript": "Manuscrit",
+        "Map": "Carte",
+        "Model": "Modèle",
+        "OutputManagementPlan": "Plan de gestion des données",
+        "Patent": "Brevet",
+        "PeerReview": "Évaluation par les pairs",
+        "Performance": "Performance",
+        "PersonalCommunication": "Communication personnelle",
+        "PhysicalObject": "Objet physique",
+        "Poster": "Affiche",
+        "Preprint": "Prépublication",
+        "Presentation": "Présentation",
+        "Proceedings": "Actes de conférence",
+        "ProceedingsArticle": "Communication de conférence",
+        "ProceedingsSeries": "Série d'actes",
+        "Report": "Rapport",
+        "ReportComponent": "Composant de rapport",
+        "ReportSeries": "Série de rapports",
+        "Review": "Évaluation",
+        "Service": "Service",
+        "Software": "Logiciel",
+        "Sound": "Enregistrement sonore",
+        "Standard": "Norme",
+        "StudyRegistration": "Enregistrement d'étude",
+        "WebPage": "Page web",
+        "Workflow": "Flux de travail",
+    },
+    "it": {
+        "Audiovisual": "Materiale audiovisivo",
+        "Blog": "Blog",
+        "BlogPost": "Articolo di blog",
+        "BlogVolume": "Volume di blog",
+        "Book": "Libro",
+        "BookChapter": "Capitolo di libro",
+        "BookPart": "Parte di libro",
+        "BookSection": "Sezione di libro",
+        "BookSeries": "Collana di libri",
+        "BookSet": "Raccolta di libri",
+        "Collection": "Raccolta",
+        "Component": "Componente",
+        "ComputationalNotebook": "Notebook computazionale",
+        "Database": "Banca dati",
+        "Dataset": "Insieme di dati",
+        "Dissertation": "Tesi",
+        "Document": "Documento",
+        "Entry": "Voce",
+        "Event": "Evento",
+        "Figure": "Figura",
+        "Grant": "Finanziamento",
+        "Image": "Immagine",
+        "Instrument": "Strumento",
+        "InteractiveResource": "Risorsa interattiva",
+        "Journal": "Rivista",
+        "JournalArticle": "Articolo di rivista",
+        "JournalIssue": "Fascicolo di rivista",
+        "JournalVolume": "Volume di rivista",
+        "LegalDocument": "Documento giuridico",
+        "Manuscript": "Manoscritto",
+        "Map": "Mappa",
+        "Model": "Modello",
+        "OutputManagementPlan": "Piano di gestione dei dati",
+        "Patent": "Brevetto",
+        "PeerReview": "Revisione tra pari",
+        "Performance": "Spettacolo",
+        "PersonalCommunication": "Comunicazione personale",
+        "PhysicalObject": "Oggetto fisico",
+        "Poster": "Poster",
+        "Preprint": "Preprint",
+        "Presentation": "Presentazione",
+        "Proceedings": "Atti di convegno",
+        "ProceedingsArticle": "Contributo in atti di convegno",
+        "ProceedingsSeries": "Serie di atti",
+        "Report": "Rapporto",
+        "ReportComponent": "Componente di rapporto",
+        "ReportSeries": "Serie di rapporti",
+        "Review": "Recensione",
+        "Service": "Servizio",
+        "Software": "Software",
+        "Sound": "Registrazione sonora",
+        "Standard": "Norma",
+        "StudyRegistration": "Registrazione di studio",
+        "WebPage": "Pagina web",
+        "Workflow": "Flusso di lavoro",
+    },
+    "pt": {
+        "Audiovisual": "Material audiovisual",
+        "Blog": "Blogue",
+        "BlogPost": "Publicação de blogue",
+        "BlogVolume": "Volume de blogue",
+        "Book": "Livro",
+        "BookChapter": "Capítulo de livro",
+        "BookPart": "Parte de livro",
+        "BookSection": "Secção de livro",
+        "BookSeries": "Série de livros",
+        "BookSet": "Coleção de livros",
+        "Collection": "Coleção",
+        "Component": "Componente",
+        "ComputationalNotebook": "Caderno computacional",
+        "Database": "Base de dados",
+        "Dataset": "Conjunto de dados",
+        "Dissertation": "Tese",
+        "Document": "Documento",
+        "Entry": "Entrada",
+        "Event": "Evento",
+        "Figure": "Figura",
+        "Grant": "Financiamento",
+        "Image": "Imagem",
+        "Instrument": "Instrumento",
+        "InteractiveResource": "Recurso interativo",
+        "Journal": "Revista",
+        "JournalArticle": "Artigo de revista",
+        "JournalIssue": "Número de revista",
+        "JournalVolume": "Volume de revista",
+        "LegalDocument": "Documento jurídico",
+        "Manuscript": "Manuscrito",
+        "Map": "Mapa",
+        "Model": "Modelo",
+        "OutputManagementPlan": "Plano de gestão de dados",
+        "Patent": "Patente",
+        "PeerReview": "Revisão por pares",
+        "Performance": "Espetáculo",
+        "PersonalCommunication": "Comunicação pessoal",
+        "PhysicalObject": "Objeto físico",
+        "Poster": "Cartaz",
+        "Preprint": "Preprint",
+        "Presentation": "Apresentação",
+        "Proceedings": "Atas de conferência",
+        "ProceedingsArticle": "Comunicação em conferência",
+        "ProceedingsSeries": "Série de atas",
+        "Report": "Relatório",
+        "ReportComponent": "Componente de relatório",
+        "ReportSeries": "Série de relatórios",
+        "Review": "Revisão",
+        "Service": "Serviço",
+        "Software": "Software",
+        "Sound": "Gravação sonora",
+        "Standard": "Norma",
+        "StudyRegistration": "Registo de estudo",
+        "WebPage": "Página web",
+        "Workflow": "Fluxo de trabalho",
+    },
+}
+
+#: How a language says what the work is and when it came out. English and
+#: German follow the name of the type with a participle; the romance languages
+#: name the date instead, which is what keeps the participle from having to
+#: agree in gender with each of the fifty-odd nouns above.
+PDF_PUBLISHED = {
+    "en": "{type} published {date}",
+    "de": "{type} veröffentlicht am {date}",
+    "es": "{type}, fecha de publicación: {date}",
+    "fr": "{type}, date de publication : {date}",
+    "it": "{type}, data di pubblicazione: {date}",
+    "pt": "{type}, data de publicação: {date}",
+}
+
 #: What a post calls the reference list it prints itself: the headings the
 #: rendition would write, and the ones a blog writes instead.
 REFERENCE_HEADINGS = {
@@ -416,6 +720,39 @@ def to_pdf_date(date: str | None, language: str) -> str | None:
     except (ValueError, TypeError, UnknownLocaleError) as error:
         log.warning(f"Cannot format date {date} for the pdf: {error}")
         return iso
+
+
+def to_pdf_type(type: str | None, language: str) -> str | None:
+    """What the record is, named in the language the rendition is written in.
+
+    "Other" names nothing a reader can use, so it is left off the page, and a
+    type no language has a name for is called what its camel case says: a
+    JournalArticle is a journal article.
+    """
+    if not type or type == "Other":
+        return None
+    name = PDF_TYPE_NAMES.get(language, {}).get(type, None)
+    if name:
+        return name
+    return re.sub(r"(?<!^)(?=[A-Z])", " ", type).capitalize()
+
+
+def to_pdf_published(metadata: Metadata, language: str) -> str | None:
+    """The line under the byline: what the record is, and when it came out.
+
+    A rendition says "Journal article published May 27, 2026" rather than the
+    date alone, so the reader of a loose pdf can tell what they are holding.
+    A record whose type says nothing keeps the date on its own.
+    """
+    date = to_pdf_date(metadata.date_published, language)
+    if not date:
+        return None
+    name = to_pdf_type(metadata.type, language)
+    if not name:
+        label = PDF_TITLES["published"].get(language, PDF_TITLES["published"]["en"])
+        return f"{label} {date}"
+    template = PDF_PUBLISHED.get(language, PDF_PUBLISHED["en"])
+    return template.format(type=name, date=date)
 
 
 def to_pdf_rights(metadata: Metadata, authors: list, language: str) -> str | None:
@@ -756,10 +1093,9 @@ def to_pdf_html(metadata: Metadata) -> str:
         f'<span class="header">{escape(container.get("title", "") or "")}</span>',
         to_pdf_byline(authors),
     ]
-    date_published = to_pdf_date(metadata.date_published, language)
-    if date_published:
-        label = PDF_TITLES["published"].get(language, PDF_TITLES["published"]["en"])
-        front_matter.append(f'<div class="date">{label} {escape(date_published)}</div>')
+    published = to_pdf_published(metadata, language)
+    if published:
+        front_matter.append(f'<div class="date">{escape(published)}</div>')
     if metadata.id:
         front_matter.append(
             f'<p class="identifier"><a href="{escape(metadata.id)}">'

@@ -135,6 +135,7 @@ def sample_metadata(content: Optional[str], title: str = "Font sample"):
     """A stand-in for Metadata carrying only what the pdf render reads."""
     return SimpleNamespace(
         id="https://doi.org/10.53731/kdqkf-nf052",
+        type=None,
         title=title,
         content=content,
         contributors=None,

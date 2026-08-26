@@ -156,7 +156,7 @@ def test_pdf_rendition_of_a_post_read_from_inveniordm(write_pdf_file):
     assert '<span class="header">Upstream</span>' in html
     assert '<a href="https://orcid.org/0009-0005-3885-3951">' in html
     assert '<img class="orcid" alt="ORCID iD" src="orcid.svg" />' in html
-    assert '<div class="date">Published July 28, 2026</div>' in html
+    assert '<div class="date">Blog post published July 28, 2026</div>' in html
     assert (
         '<div class="keywords"><h4>Keywords</h4>Information Systems and '
         "Management (Subfield), Academic Publishing and Open Access (Topic), "
@@ -367,6 +367,7 @@ def test_write_pdf_names_a_file_and_returns_the_bytes(
         id = "https://doi.org/10.5555/a-record"
         title = "A record with no post behind it"
         content = None
+        type = None
         contributors = date_published = date_updated = None
         description = image = language = license = container = subjects = None
         references = None
@@ -407,6 +408,7 @@ def test_write_pdf_refuses_a_name_it_does_not_write(
         id = "https://doi.org/10.5555/a-record"
         title = "A record"
         content = None
+        type = None
         contributors = date_published = date_updated = None
         description = image = language = license = container = subjects = None
         references = None
@@ -728,3 +730,108 @@ def test_has_reference_list(content, expected):
     from commonmeta.io_utils import has_reference_list
 
     assert has_reference_list(content) is expected
+
+
+@pytest.mark.parametrize(
+    "type, language, expected",
+    [
+        ("JournalArticle", "en", "Journal article"),
+        ("JournalArticle", "de", "Zeitschriftenartikel"),
+        ("BlogPost", "de", "Blogbeitrag"),
+        ("BlogPost", "fr", "Billet de blog"),
+        ("Software", "pt", "Software"),
+        # a type no language has a name for is called what its camel case says
+        ("StudyRegistration", "en", "Study registration"),
+        ("StudyRegistration", "nl", "Study registration"),
+        # and one that says nothing a reader can use is left off the page
+        ("Other", "en", None),
+        (None, "en", None),
+    ],
+)
+def test_to_pdf_type(type, language, expected):
+    """What the record is, in the language the rendition is written in."""
+    from commonmeta.io_utils import to_pdf_type
+
+    assert to_pdf_type(type, language) == expected
+
+
+@pytest.mark.parametrize(
+    "language, expected",
+    [
+        ("en", "Journal article published May 27, 2026"),
+        ("de", "Zeitschriftenartikel veröffentlicht am 27. Mai 2026"),
+        # the romance languages name the date rather than follow the type with
+        # a participle, which would have to agree with the noun before it
+        ("es", "Artículo de revista, fecha de publicación: 27 de mayo de 2026"),
+        ("fr", "Article de revue, date de publication : 27 mai 2026"),
+        ("it", "Articolo di rivista, data di pubblicazione: 27 maggio 2026"),
+        ("pt", "Artigo de revista, data de publicação: 27 de maio de 2026"),
+    ],
+)
+def test_to_pdf_published(language, expected):
+    """The line under the byline says what the record is and when it came out.
+
+    https://doi.org/10.1021/acs.jmedchem.6c00463, as each language writes it.
+    """
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_published
+
+    sample = sample_metadata(None)
+    sample.type = "JournalArticle"
+    sample.date_published = "2026-05-27"
+
+    assert to_pdf_published(sample, language) == expected
+
+
+def test_to_pdf_published_without_a_type():
+    """A record whose type says nothing keeps the date on its own."""
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_published
+
+    sample = sample_metadata(None)
+    sample.date_published = "2026-05-27"
+
+    assert to_pdf_published(sample, "en") == "Published May 27, 2026"
+    sample.type = "Other"
+    assert to_pdf_published(sample, "en") == "Published May 27, 2026"
+    sample.language = "de"
+    assert to_pdf_published(sample, "de") == "Veröffentlicht 27. Mai 2026"
+
+
+def test_to_pdf_published_without_a_date():
+    """A record with no publication date gets no line at all."""
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_published
+
+    sample = sample_metadata(None)
+    sample.type = "JournalArticle"
+
+    assert to_pdf_published(sample, "en") is None
+    assert '<div class="date">' not in to_pdf_html(sample)
+
+
+def test_pdf_type_names_cover_the_vocabulary():
+    """Every type a record can have has a name in each language.
+
+    A missing one would put an English word in the middle of a German line,
+    so the table is held against the schema the types come from.
+    """
+    import json
+
+    import commonmeta
+    from commonmeta.io_utils import PDF_TYPE_NAMES
+
+    schema = json.loads(
+        read_file(
+            path.join(
+                path.dirname(commonmeta.__file__), "resources", "commonmeta_v1.0.json"
+            )
+        )
+    )
+    # "Other" names nothing a reader can use, and is left off the page
+    types = set(schema["$defs"]["type"]["enum"]) - {"Other"}
+    for language, names in PDF_TYPE_NAMES.items():
+        assert set(names) == types, language
