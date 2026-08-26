@@ -1635,11 +1635,13 @@ def test_to_pdf_html_front_matter(feature_image):
 
     assert "<title>Linguistic roots of connectionism</title>" in html
     assert "<h1>Linguistic roots of connectionism</h1>" in html
-    # the blog name is hidden, it only feeds the running header
-    assert '<span class="header">The Ideophone</span>' in html
     assert '<p class="author"><span>Mark Dingemanse</span></p>' in html
-    # what the record is, and when it came out
-    assert '<div class="date">Blog post published July 22, 2021</div>' in html
+    # what the record is, when it came out, and what it came out in - the blog
+    # has no identifier of its own, so its name is set but not linked
+    assert (
+        '<div class="date">Blog post published July 22, 2021 in '
+        "<i>The Ideophone</i></div>" in html
+    )
     assert 'class="identifier"><a href="https://doi.org/10.59350/dn2mm-m9q51"' in html
     assert '<div class="abstract"><h4>Abstract</h4>This Lingbuzz preprint' in html
     # the tags the post gave itself, not the subjects it was classified into
@@ -1744,7 +1746,11 @@ def test_to_pdf_html_in_another_language():
     html = to_pdf_html(subject)
 
     assert html.startswith("<html lang='de'>")
-    assert '<div class="date">Blogbeitrag veröffentlicht am 12. Juli 2021</div>' in html
+    assert (
+        '<div class="date">Blogbeitrag veröffentlicht am 12. Juli 2021 in '
+        '<a href="https://portal.issn.org/resource/ISSN/2940-1798">'
+        "<i>Gemeinsamer Blog der DINI AGs</i></a></div>" in html
+    )
     assert "<h4>Zusammenfassung</h4>" in html
     assert "<h4>Urheberrecht</h4>" in html
 

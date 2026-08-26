@@ -32,14 +32,8 @@
 }
 
 @page {
-  @top-left {
-    content: string(blog);
-    font-size: 12pt;
-    font-weight: 700;
-    margin-left: 0.2cm;
-    height: 1.2cm;
-    vertical-align: middle;
-  }
+  /* The title page names the journal or blog the work came out in, so the
+     running head says only what page of what one is in hand. */
   @bottom-right {
     content: string(heading) " • Page " counter(page);
     font-size: 9pt;
@@ -48,9 +42,6 @@
   }
 }
 @page no-chapter {
-  @top-left {
-    background: none;
-  }
   @bottom-right {
     content: none;
   }
@@ -64,13 +55,6 @@
   @top-right {
     content: none;
   }
-}
-
-.header {
-  visibility: hidden;
-  display: inline;
-  margin: 0;
-  string-set: blog content();
 }
 
 html {

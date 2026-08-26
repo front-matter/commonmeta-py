@@ -31,8 +31,8 @@ from bs4 import BeautifulSoup
 from .api_utils import http
 from .base_utils import dig, presence, unique, wrap
 from .date_utils import get_iso8601_date
-from .doi_utils import doi_from_url
-from .utils import get_language, validate_orcid
+from .doi_utils import doi_from_url, normalize_doi
+from .utils import get_language, issn_as_url, normalize_url, validate_orcid
 
 if TYPE_CHECKING:
     from .metadata import Metadata
@@ -570,6 +570,18 @@ PDF_PUBLISHED = {
     "pt": "{type}, data de publicação: {date}",
 }
 
+#: And how it says it of a work that came out in something - the journal or
+#: the blog it belongs to. The name of that goes next to the type rather than
+#: at the end of the line, which is what keeps the romance sentences readable.
+PDF_PUBLISHED_IN = {
+    "en": "{type} published {date} in {container}",
+    "de": "{type} veröffentlicht am {date} in {container}",
+    "es": "{type} en {container}, fecha de publicación: {date}",
+    "fr": "{type} dans {container}, date de publication : {date}",
+    "it": "{type} in {container}, data di pubblicazione: {date}",
+    "pt": "{type} em {container}, data de publicação: {date}",
+}
+
 #: What a post calls the reference list it prints itself: the headings the
 #: rendition would write, and the ones a blog writes instead.
 REFERENCE_HEADINGS = {
@@ -741,12 +753,42 @@ def to_pdf_type(type: str | None, language: str) -> str | None:
     return re.sub(r"(?<!^)(?=[A-Z])", " ", type).capitalize()
 
 
-def to_pdf_published(metadata: Metadata, language: str) -> str | None:
-    """The line under the byline: what the record is, and when it came out.
+def to_pdf_container(metadata: Metadata) -> str | None:
+    """The journal or blog the work came out in, as the title page names it.
 
-    A rendition says "Journal article published May 27, 2026" rather than the
-    date alone, so the reader of a loose pdf can tell what they are holding.
-    A record whose type says nothing keeps the date on its own.
+    Set in italics, the way a citation sets it, and linked where the container
+    says which one it is: an issn resolves at the issn portal and a doi at
+    doi.org.
+    """
+    container = metadata.container or {}
+    title = container.get("title", None)
+    if not title:
+        return None
+    name = f"<i>{to_pdf_markup(title)}</i>"
+
+    url = None
+    for identifier in wrap(container.get("identifiers", None)):
+        value = identifier.get("identifier", None)
+        if not value:
+            continue
+        url = (
+            issn_as_url(value)
+            if identifier.get("identifier_type", None) == "ISSN"
+            else normalize_doi(value) or normalize_url(value)
+        )
+        if url:
+            break
+    return f'<a href="{escape(url)}">{name}</a>' if url else name
+
+
+def to_pdf_published(metadata: Metadata, language: str) -> str | None:
+    """The line under the byline: what the record is, when it came out, and
+    what it came out in.
+
+    A rendition says "Journal article published May 27, 2026 in <i>Journal of
+    Medicinal Chemistry</i>" rather than the date alone, so the reader of a
+    loose pdf can tell what they are holding. A record whose type says nothing
+    keeps the date on its own, as does one that belongs to nothing.
     """
     date = to_pdf_date(metadata.date_published, language)
     if not date:
@@ -754,9 +796,13 @@ def to_pdf_published(metadata: Metadata, language: str) -> str | None:
     name = to_pdf_type(metadata.type, language)
     if not name:
         label = PDF_TITLES["published"].get(language, PDF_TITLES["published"]["en"])
-        return f"{label} {date}"
-    template = PDF_PUBLISHED.get(language, PDF_PUBLISHED["en"])
-    return template.format(type=name, date=date)
+        return f"{label} {escape(date)}"
+    container = to_pdf_container(metadata)
+    if not container:
+        template = PDF_PUBLISHED.get(language, PDF_PUBLISHED["en"])
+        return template.format(type=escape(name), date=escape(date))
+    template = PDF_PUBLISHED_IN.get(language, PDF_PUBLISHED_IN["en"])
+    return template.format(type=escape(name), date=escape(date), container=container)
 
 
 def to_pdf_rights(metadata: Metadata, authors: list, language: str) -> str | None:
@@ -1105,16 +1151,15 @@ def to_pdf_html(metadata: Metadata) -> str:
     """
     language = get_language(metadata.language, format="alpha_2") or "en"
     authors = to_pdf_authors(metadata)
-    container = metadata.container or {}
 
     front_matter = [
         f"<h1>{to_pdf_markup(metadata.title)}</h1>",
-        f'<span class="header">{escape(container.get("title", "") or "")}</span>',
         to_pdf_byline(authors),
     ]
     published = to_pdf_published(metadata, language)
     if published:
-        front_matter.append(f'<div class="date">{escape(published)}</div>')
+        # already markup: the container it names is set in italics and linked
+        front_matter.append(f'<div class="date">{published}</div>')
     if metadata.id:
         front_matter.append(
             f'<p class="identifier"><a href="{escape(metadata.id)}">'

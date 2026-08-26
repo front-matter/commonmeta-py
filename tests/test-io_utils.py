@@ -153,10 +153,12 @@ def test_pdf_rendition_of_a_post_read_from_inveniordm(write_pdf_file):
 
     # the front matter the record was read for
     assert "<h1>Ten simple rules for scholarly blogging</h1>" in html
-    assert '<span class="header">Upstream</span>' in html
     assert '<a href="https://orcid.org/0009-0005-3885-3951">' in html
     assert '<img class="orcid" alt="ORCID iD" src="orcid.svg" />' in html
-    assert '<div class="date">Blog post published July 28, 2026</div>' in html
+    assert (
+        '<div class="date">Blog post published July 28, 2026 in '
+        '<a href="https://doi.org/10.54900/upstream"><i>Upstream</i></a></div>' in html
+    )
     assert (
         '<div class="keywords"><h4>Keywords</h4>Information Systems and '
         "Management (Subfield), Academic Publishing and Open Access (Topic), "
@@ -898,3 +900,113 @@ def test_to_pdf_reference_drops_markup_that_is_not_inline():
 
     assert entry == "<li>Smith, A. (2020).<a>Nature</a></li>"
     assert "alert(1)" not in entry
+
+
+@pytest.mark.parametrize(
+    "container, expected",
+    [
+        # an issn resolves at the issn portal
+        (
+            {
+                "title": "Journal of Medicinal Chemistry",
+                "identifiers": [{"identifier": "0022-2623", "identifier_type": "ISSN"}],
+            },
+            '<a href="https://portal.issn.org/resource/ISSN/0022-2623">'
+            "<i>Journal of Medicinal Chemistry</i></a>",
+        ),
+        # and a doi at doi.org, bare or as a url
+        (
+            {
+                "title": "Upstream",
+                "identifiers": [
+                    {
+                        "identifier": "https://doi.org/10.54900/upstream",
+                        "identifier_type": "DOI",
+                    }
+                ],
+            },
+            '<a href="https://doi.org/10.54900/upstream"><i>Upstream</i></a>',
+        ),
+        (
+            {
+                "title": "Front Matter",
+                "identifiers": [
+                    {"identifier": "10.53731/front-matter", "identifier_type": "DOI"}
+                ],
+            },
+            '<a href="https://doi.org/10.53731/front-matter">'
+            "<i>Front Matter</i></a>",
+        ),
+        # a blog that says which one it is in no way a reader can follow is
+        # named, and not linked
+        ({"title": "The Ideophone", "platform": "WordPress"}, "<i>The Ideophone</i>"),
+        # and the markup a name carries is its own
+        (
+            {"title": "Journal of <i>Drosophila</i> Research"},
+            "<i>Journal of <i>Drosophila</i> Research</i>",
+        ),
+        ({}, None),
+        (None, None),
+    ],
+)
+def test_to_pdf_container(container, expected):
+    """The journal or blog the work came out in, as the title page names it."""
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_container
+
+    sample = sample_metadata(None)
+    sample.container = container
+
+    assert to_pdf_container(sample) == expected
+
+
+@pytest.mark.parametrize(
+    "language, expected",
+    [
+        (
+            "en",
+            "Journal article published May 27, 2026 in "
+            '<a href="https://portal.issn.org/resource/ISSN/0022-2623">'
+            "<i>Journal of Medicinal Chemistry</i></a>",
+        ),
+        (
+            "de",
+            "Zeitschriftenartikel veröffentlicht am 27. Mai 2026 in "
+            '<a href="https://portal.issn.org/resource/ISSN/0022-2623">'
+            "<i>Journal of Medicinal Chemistry</i></a>",
+        ),
+        # the romance languages name what the work came out in next to the
+        # type, which is where their sentence has room for it
+        (
+            "es",
+            'Artículo de revista en <a href="https://portal.issn.org/resource/'
+            'ISSN/0022-2623"><i>Journal of Medicinal Chemistry</i></a>, fecha de '
+            "publicación: 27 de mayo de 2026",
+        ),
+        (
+            "fr",
+            'Article de revue dans <a href="https://portal.issn.org/resource/'
+            'ISSN/0022-2623"><i>Journal of Medicinal Chemistry</i></a>, date de '
+            "publication : 27 mai 2026",
+        ),
+    ],
+)
+def test_to_pdf_published_in_a_container(language, expected):
+    """What the record is, when it came out, and what it came out in.
+
+    https://doi.org/10.1021/acs.jmedchem.6c00463, as each language writes it.
+    """
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_published
+
+    sample = sample_metadata(None)
+    sample.type = "JournalArticle"
+    sample.date_published = "2026-05-27"
+    sample.container = {
+        "title": "Journal of Medicinal Chemistry",
+        "identifiers": [{"identifier": "0022-2623", "identifier_type": "ISSN"}],
+    }
+
+    assert to_pdf_published(sample, language) == expected
