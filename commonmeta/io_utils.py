@@ -1145,9 +1145,13 @@ def to_pdf_html(metadata: Metadata) -> str:
     """
     language = get_language(metadata.language, format="alpha_2") or "en"
     authors = to_pdf_authors(metadata)
+    container = metadata.container or {}
 
     front_matter = [
         f"<h1>{to_pdf_markup(metadata.title)}</h1>",
+        # hidden: it is here to feed the running head, which the title page
+        # does not print because the title page says it in the line below
+        f'<span class="header">{escape(container.get("title", "") or "")}</span>',
         to_pdf_byline(authors),
     ]
     published = to_pdf_published(metadata, language)

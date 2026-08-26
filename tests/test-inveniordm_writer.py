@@ -1635,6 +1635,9 @@ def test_to_pdf_html_front_matter(feature_image):
 
     assert "<title>Linguistic roots of connectionism</title>" in html
     assert "<h1>Linguistic roots of connectionism</h1>" in html
+    # hidden, and there only to feed the running head on the pages after the
+    # title page
+    assert '<span class="header">The Ideophone</span>' in html
     assert '<p class="author"><span>Mark\u00a0Dingemanse</span></p>' in html
     # what the record is, when it came out, and what it came out in
     assert (

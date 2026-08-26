@@ -32,8 +32,14 @@
 }
 
 @page {
-  /* The title page names the container the work came out in, so the
-     running head says only what page of what one is in hand. */
+  @top-left {
+    content: string(blog);
+    font-size: 12pt;
+    font-weight: 700;
+    margin-left: 0.2cm;
+    height: 1.2cm;
+    vertical-align: middle;
+  }
   @bottom-right {
     content: string(heading) " • Page " counter(page);
     font-size: 9pt;
@@ -41,7 +47,12 @@
     vertical-align: middle;
   }
 }
+/* The title page carries neither: it names the container on the line under
+   the byline, and a page number over a title page says nothing. */
 @page no-chapter {
+  @top-left {
+    content: none;
+  }
   @bottom-right {
     content: none;
   }
@@ -55,6 +66,14 @@
   @top-right {
     content: none;
   }
+}
+
+.header {
+  /* what the running head says, said once where the page can read it */
+  visibility: hidden;
+  display: inline;
+  margin: 0;
+  string-set: blog content();
 }
 
 html {
