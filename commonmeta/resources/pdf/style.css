@@ -85,12 +85,23 @@
 }
 .running-head {
   position: running(head);
+  /* the top margin has room for two rows of it: a head that ran to three
+     would sit on the first line of the text below, so a title longer than
+     that is cut off where the second row ends */
+  max-height: 2.4em;
+  overflow: hidden;
 }
 .running-head b {
   font-weight: 700;
 }
 .running-foot {
   position: running(foot);
+}
+
+body {
+  /* the page area is where the margins are set: the 8px the html default puts
+     around the body would set the text 6pt inside the head and the foot */
+  margin: 0;
 }
 
 html {
