@@ -178,25 +178,20 @@ def feature_image():
 
 
 @pytest.fixture
-def write_pdf_file(tmp_path, feature_image):
-    """Write a record's pdf rendition to a file, and return the bytes.
+def render_pdf(feature_image):
+    """A record's pdf rendition, as the bytes `write_pdf_rendition` returns.
 
-    Renders offline: the feature image comes from the `feature_image` fixture
-    and the images the post itself links are refused. The file is written the
-    way any caller writes one, by naming it - so a test that fails leaves the
-    rendition behind to look at, and the writing itself is covered too.
+    The fixture is here for what a test cannot pass inline: it skips where
+    WeasyPrint has no native stack, and it renders offline - the feature image
+    comes from the `feature_image` fixture and the images the post itself
+    links are refused. Nothing is written to disk; a test that wants a file on
+    disk names one and gets the file writing covered with it.
     """
     require_weasyprint()
 
-    def render(metadata, name: str = "content.pdf", **options) -> bytes:
-        pdf = write_pdf_rendition(
-            metadata,
-            url_fetcher=offline_url_fetcher,
-            file=str(tmp_path / name),
-            **options,
-        )
+    def render(metadata, **options) -> bytes:
+        pdf = write_pdf_rendition(metadata, url_fetcher=offline_url_fetcher, **options)
         assert pdf is not None and pdf.startswith(b"%PDF-")
-        assert (tmp_path / name).read_bytes() == pdf
         return pdf
 
     return render

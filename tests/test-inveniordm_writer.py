@@ -172,7 +172,7 @@ def test_journal_article():
 
 
 @pytest.mark.vcr
-def test_rogue_scholar(write_pdf_file):
+def test_rogue_scholar(render_pdf):
     "Rogue Scholar"
     string = "https://rogue-scholar.org/api/records/1xr7q-9fp18"
     subject = Metadata(string, via="inveniordm")
@@ -250,13 +250,13 @@ def test_rogue_scholar(write_pdf_file):
     # assert dig(inveniordm, "custom_fields.rs:image") == 2
     assert not dig(inveniordm, "files.enabled")
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_organizational_author(write_pdf_file):
+def test_rogue_scholar_organizational_author(render_pdf):
     "Rogue Scholar organizational author"
     string = "https://rogue-scholar.org/api/records/fz2vh-31684"
     subject = Metadata(string, via="inveniordm")
@@ -284,13 +284,13 @@ def test_rogue_scholar_organizational_author(write_pdf_file):
     assert dig(inveniordm, "metadata.publisher") == "Front Matter"
     assert dig(inveniordm, "metadata.publication_date") == "2025-02-11"
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_blog_post(write_pdf_file):
+def test_rogue_scholar_blog_post(render_pdf):
     "JSON Feed"
     string = "https://rogue-scholar.org/api/records/7tatc-wh557"
     subject = Metadata(string, via="inveniordm")
@@ -364,13 +364,13 @@ def test_rogue_scholar_blog_post(write_pdf_file):
     )
     assert not dig(inveniordm, "files.enabled")
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_affiliations(write_pdf_file):
+def test_rogue_scholar_affiliations(render_pdf):
     "JSON Feed affiliations"
     string = "https://rogue-scholar.org/api/records/v7a82-05b98"
     subject = Metadata(string, via="inveniordm")
@@ -465,13 +465,13 @@ def test_rogue_scholar_affiliations(write_pdf_file):
     )
     assert not dig(inveniordm, "files.enabled")
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_dates(write_pdf_file):
+def test_rogue_scholar_dates(render_pdf):
     "JSON Feed dates"
     string = "https://rogue-scholar.org/api/records/8vkjg-x6j96"
     subject = Metadata(string, via="inveniordm")
@@ -502,7 +502,7 @@ def test_rogue_scholar_dates(write_pdf_file):
     #     == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
     # )
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
@@ -551,7 +551,7 @@ def test_rogue_scholar_funding():
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_more_funding(write_pdf_file):
+def test_rogue_scholar_more_funding(render_pdf):
     "JSON Feed more funding"
     string = "https://rogue-scholar.org/api/records/qz2sd-6tw29"
     subject = Metadata(string, via="inveniordm")
@@ -592,13 +592,13 @@ def test_rogue_scholar_more_funding(write_pdf_file):
     assert dig(inveniordm, "custom_fields.rs:image") is None
     assert dig(inveniordm, "custom_fields.rs:doi") == "https://doi.org/10.59350/coref"
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_references(write_pdf_file):
+def test_rogue_scholar_references(render_pdf):
     "JSON Feed references"
     string = "https://rogue-scholar.org/api/records/trhz1-s0336"
     subject = Metadata(string, via="inveniordm")
@@ -644,13 +644,13 @@ def test_rogue_scholar_references(write_pdf_file):
     #     == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
     # )
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_unstructured_references(write_pdf_file):
+def test_rogue_scholar_unstructured_references(render_pdf):
     "JSON Feed unstructured references"
     string = "https://rogue-scholar.org/api/records/345qb-aan84"
     subject = Metadata(string, via="inveniordm")
@@ -676,13 +676,13 @@ def test_rogue_scholar_unstructured_references(write_pdf_file):
         "scheme": "doi",
     }
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_citations(write_pdf_file):
+def test_rogue_scholar_citations(render_pdf):
     "JSON Feed citations"
     string = "https://rogue-scholar.org/api/records/w2nqy-wxa44"
     subject = Metadata(string, via="inveniordm")
@@ -708,13 +708,13 @@ def test_rogue_scholar_citations(write_pdf_file):
     #     "scheme": "doi",
     # }
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_relations(write_pdf_file):
+def test_rogue_scholar_relations(render_pdf):
     "JSON Feed relations"
     string = "https://rogue-scholar.org/api/records/4jymf-n5m83"
     subject = Metadata(string, via="inveniordm")
@@ -743,13 +743,13 @@ def test_rogue_scholar_relations(write_pdf_file):
         == "https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg"
     )
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_rogue_scholar_broken_reference(write_pdf_file):
+def test_rogue_scholar_broken_reference(render_pdf):
     "JSON Feed relations"
     string = "https://rogue-scholar.org/api/records/jehpc-qpc91"
     subject = Metadata(string, via="inveniordm")
@@ -774,13 +774,13 @@ def test_rogue_scholar_broken_reference(write_pdf_file):
         "scheme": "doi",
     }
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_external_doi(write_pdf_file):
+def test_external_doi(render_pdf):
     "external DOI used by Rogue Scholar"
     string = "https://rogue-scholar.org/api/records/9jsrb-jtc73"
     subject = Metadata(string, via="inveniordm")
@@ -798,13 +798,13 @@ def test_external_doi(write_pdf_file):
         == "Eine Musterdienstvereinbarung fürs FIS – ein Beispiel der TIB"
     )
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_post_with_contributor_roles(write_pdf_file):
+def test_post_with_contributor_roles(render_pdf):
     "post with contributor roles"
     string = "https://rogue-scholar.org/api/records/apt10-14q04"
     subject = Metadata(string, via="inveniordm")
@@ -859,13 +859,13 @@ def test_post_with_contributor_roles(write_pdf_file):
     #     }
     # ]
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_post_with_interviewee_roles(write_pdf_file):
+def test_post_with_interviewee_roles(render_pdf):
     "post with interviewee roles"
     string = "https://rogue-scholar.org/api/records/ssrar-vhq35"
     subject = Metadata(string, via="inveniordm")
@@ -882,13 +882,13 @@ def test_post_with_interviewee_roles(write_pdf_file):
     assert len(dig(inveniordm, "metadata.creators")) == 9
     assert dig(inveniordm, "metadata.contributors") is None
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_multiple_subfields(write_pdf_file):
+def test_multiple_subfields(render_pdf):
     "post with multiple subfields"
     string = "https://rogue-scholar.org/api/records/nnx9s-74a78"
     subject = Metadata(string, via="inveniordm")
@@ -930,13 +930,13 @@ def test_multiple_subfields(write_pdf_file):
         {"subject": "FGFR3"},
     ]
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
 
 @pytest.mark.vcr
-def test_content_with_external_src(write_pdf_file):
+def test_content_with_external_src(render_pdf):
     "external DOI used by Rogue Scholar"
     string = "https://rogue-scholar.org/api/records/xtmqd-gwg60"
     subject = Metadata(string, via="inveniordm")
@@ -959,7 +959,7 @@ def test_content_with_external_src(write_pdf_file):
         dig(inveniordm, "custom_fields.rs:content_html"),
     )
     # the rendition says what record it is, read back out of the pdf itself
-    pdf = read_pdf_metadata(write_pdf_file(subject))
+    pdf = read_pdf_metadata(render_pdf(subject))
     assert pdf["id"] == subject.id
     assert pdf["title"] == to_pdf_text(subject.title)
 
@@ -1208,8 +1208,9 @@ def test_upsert_record_uploads_the_pdf_before_publishing():
         ) as mock_upload,
         patch(
             "commonmeta.writers.inveniordm_writer.publish_draft_record",
-            side_effect=lambda r, *a: calls.append("publish")
-            or {**r, "status": "published"},
+            side_effect=lambda r, *a: (
+                calls.append("publish") or {**r, "status": "published"}
+            ),
         ),
     ):
         result = upsert_record(
@@ -1503,7 +1504,7 @@ def test_pdf_stylesheet_font_faces_are_top_level():
         depth += stripped.count("{") - stripped.count("}")
 
 
-def test_pdf_embeds_the_shipped_fonts(write_pdf_file):
+def test_pdf_embeds_the_shipped_fonts(render_pdf):
     """The bundled Fira faces reach the pdf rather than a system fallback.
 
     WeasyPrint applies @font-face only when the same FontConfiguration reaches
@@ -1515,7 +1516,7 @@ def test_pdf_embeds_the_shipped_fonts(write_pdf_file):
         "<h1>Heading</h1>"
         "<p>Body text, <em>emphasis</em> and <code>inline_code()</code>.</p>"
     )
-    pdf = write_pdf_file(sample, uncompressed_pdf=True)
+    pdf = render_pdf(sample, uncompressed_pdf=True)
 
     fonts = {m.decode() for m in re.findall(rb"/BaseFont\s*/\w+\+([\w-]+)", pdf)}
     assert "Fira-Sans-Light" in fonts  # html { font-family: Fira Sans; weight 300 }
@@ -1525,7 +1526,7 @@ def test_pdf_embeds_the_shipped_fonts(write_pdf_file):
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
-def test_pdf_is_tagged_and_archival(write_pdf_file):
+def test_pdf_is_tagged_and_archival(render_pdf):
     """The rendition is PDF/A-3a: archival, and tagged for a screen reader.
 
     A tagged pdf carries a structure tree, so headings, lists and figures reach
@@ -1535,14 +1536,14 @@ def test_pdf_is_tagged_and_archival(write_pdf_file):
         "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
     )
 
-    metadata = read_pdf_metadata(write_pdf_file(subject))
+    metadata = read_pdf_metadata(render_pdf(subject))
 
     assert metadata["variant"] == "PDF/A-3a"
     assert metadata["tagged"] is True
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
-def test_pdf_embeds_the_feature_image(write_pdf_file):
+def test_pdf_embeds_the_feature_image(render_pdf):
     """The feature image reaches the title page as an image.
 
     An image the render cannot fetch leaves its alt text printed across the
@@ -1554,7 +1555,7 @@ def test_pdf_embeds_the_feature_image(write_pdf_file):
         "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
     )
 
-    pdf = write_pdf_file(subject)
+    pdf = render_pdf(subject)
 
     with pikepdf.open(BytesIO(pdf)) as document:
         page = pikepdf.Page(document.pages[0])
@@ -1564,7 +1565,7 @@ def test_pdf_embeds_the_feature_image(write_pdf_file):
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
-def test_pdf_images_are_not_interpolated(write_pdf_file):
+def test_pdf_images_are_not_interpolated(render_pdf):
     """PDF/A forbids /Interpolate on an image (ISO 19005-3 6.2.8).
 
     WeasyPrint sets it on every image it draws, and veraPDF fails the file on
@@ -1576,7 +1577,7 @@ def test_pdf_images_are_not_interpolated(write_pdf_file):
         "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
     )
 
-    pdf = write_pdf_file(subject)
+    pdf = render_pdf(subject)
 
     with pikepdf.open(BytesIO(pdf)) as document:
         images = [
@@ -1590,7 +1591,7 @@ def test_pdf_images_are_not_interpolated(write_pdf_file):
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
-def test_pdf_embeds_the_post_content(write_pdf_file):
+def test_pdf_embeds_the_post_content(render_pdf):
     """rs:content_html travels inside the pdf as the source it was rendered from.
 
     PDF/A-3 is the variant that allows an embedded file of any type, and it is
@@ -1601,7 +1602,7 @@ def test_pdf_embeds_the_post_content(write_pdf_file):
         "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
     )
 
-    pdf = write_pdf_file(subject)
+    pdf = render_pdf(subject)
 
     assert read_pdf_metadata(pdf)["attachments"] == {
         "10.59350-dn2mm-m9q51.html": "text/html"
@@ -1611,9 +1612,9 @@ def test_pdf_embeds_the_post_content(write_pdf_file):
     assert read_pdf_attachment(pdf, "absent.html") is None
 
 
-def test_pdf_of_an_untagged_render_is_reported_as_untagged(write_pdf_file):
+def test_pdf_of_an_untagged_render_is_reported_as_untagged(render_pdf):
     """`tagged` says what the pdf carries, rather than what was asked for."""
-    pdf = write_pdf_file(sample_metadata("<p>Body</p>"), pdf_variant=None)
+    pdf = render_pdf(sample_metadata("<p>Body</p>"), pdf_variant=None)
 
     metadata = read_pdf_metadata(pdf)
 
@@ -1622,13 +1623,13 @@ def test_pdf_of_an_untagged_render_is_reported_as_untagged(write_pdf_file):
 
 
 @pytest.mark.vcr("test_rogue_scholar.yaml")
-def test_pdf_metadata_round_trip(write_pdf_file):
+def test_pdf_metadata_round_trip(render_pdf):
     """What the writer puts in the head of the document comes back out of the pdf."""
     subject = Metadata(
         "https://rogue-scholar.org/api/records/1xr7q-9fp18", via="inveniordm"
     )
 
-    metadata = read_pdf_metadata(write_pdf_file(subject))
+    metadata = read_pdf_metadata(render_pdf(subject))
 
     assert metadata["title"] == "Rogue Scholar learns about communities"
     assert metadata["authors"] == ["Martin Fenner"]
@@ -1884,6 +1885,7 @@ def test_write_pdf_rendition_without_content(weasyprint):
     sample = sample_metadata(None, title="A record with no post behind it")
 
     pdf = write_pdf_rendition(sample, url_fetcher=offline_url_fetcher)
+    assert pdf is not None
 
     metadata = read_pdf_metadata(pdf)
     assert metadata["title"] == "A record with no post behind it"
@@ -2014,7 +2016,7 @@ def test_to_pdf_keywords_says_what_each_subject_is():
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
-def test_pdf_renders_the_orcid_icon_and_its_link(write_pdf_file):
+def test_pdf_renders_the_orcid_icon_and_its_link(render_pdf):
     """The icon is drawn and the byline links to the orcid it belongs to."""
     import pikepdf
 
@@ -2023,7 +2025,7 @@ def test_pdf_renders_the_orcid_icon_and_its_link(write_pdf_file):
     )
     subject.contributors[0]["person"]["id"] = "https://orcid.org/0000-0002-1003-5675"
 
-    pdf = write_pdf_file(subject)
+    pdf = render_pdf(subject)
 
     with pikepdf.open(BytesIO(pdf)) as document:
         links = [

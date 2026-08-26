@@ -137,7 +137,7 @@ def test_write_output_wrong_extension():
 
 
 @pytest.mark.vcr
-def test_pdf_rendition_of_a_post_read_from_inveniordm(write_pdf_file):
+def test_pdf_rendition_of_a_post_read_from_inveniordm(render_pdf):
     """Generate a PDF from InvenioRDM record."""
     record_id = search_by_doi("10.54900/xn57k-gyw73", "rogue-scholar.org", None)
     subject = Metadata(
@@ -148,7 +148,7 @@ def test_pdf_rendition_of_a_post_read_from_inveniordm(write_pdf_file):
     assert len(subject.content) > 30000
 
     html = to_pdf_html(subject)
-    pdf = write_pdf_file(subject)
+    pdf = render_pdf(subject)
     metadata = read_pdf_metadata(pdf)
 
     # the front matter the record was read for
@@ -455,7 +455,7 @@ def test_find_pango_leaves_other_platforms_alone(monkeypatch):
 
 
 @pytest.mark.vcr("test_pdf_rendition_of_a_post_read_from_inveniordm.yaml")
-def test_the_pdf_says_one_thing_about_its_keywords(write_pdf_file):
+def test_the_pdf_says_one_thing_about_its_keywords(render_pdf):
     """What the title page prints is what the pdf carries as its own metadata."""
     from commonmeta.io_utils import to_pdf_keywords
 
@@ -464,7 +464,7 @@ def test_the_pdf_says_one_thing_about_its_keywords(write_pdf_file):
         f"https://rogue-scholar.org/api/records/{record_id}", via="inveniordm"
     )
 
-    metadata = read_pdf_metadata(write_pdf_file(subject))
+    metadata = read_pdf_metadata(render_pdf(subject))
 
     assert metadata["keywords"] == to_pdf_keywords(subject)
     assert metadata["keywords"] == [
@@ -496,7 +496,7 @@ def test_strip_emoji(text, expected):
     assert strip_emoji(text) == expected
 
 
-def test_the_page_drops_an_emoji_the_metadata_keeps(write_pdf_file):
+def test_the_page_drops_an_emoji_the_metadata_keeps(render_pdf):
     """A colour font fails PDF/A, and a pdf's own metadata is text, not glyphs.
 
     https://rogue-scholar.org/records/ywetc-na038 is a post whose title uses
@@ -510,7 +510,7 @@ def test_the_page_drops_an_emoji_the_metadata_keeps(write_pdf_file):
         "<p>Body 🎉</p>", title="AIMOS Presentation 🔸 Mindless Transparency"
     )
 
-    pdf = write_pdf_file(sample)
+    pdf = render_pdf(sample)
 
     with pikepdf.open(io.BytesIO(pdf)) as document:
         fonts = {
