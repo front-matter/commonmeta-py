@@ -1022,3 +1022,69 @@ def test_to_pdf_metadata_keeps_the_ordinary_spaces_in_a_name():
     head = "".join(to_pdf_metadata(sample, to_pdf_authors(sample)))
 
     assert '<meta name="author" content="Nees Jan van Eck">' in head
+
+
+def test_to_pdf_running_matter():
+    """What every page after the title page carries: what the work came out
+    in and what it is called, and its address as a link in the foot."""
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_running_matter
+
+    sample = sample_metadata(None, title="Ten simple rules for scholarly blogging")
+    sample.container = {"title": "Upstream"}
+
+    assert to_pdf_running_matter(sample) == (
+        '<div class="running-head"><b>Upstream</b> • Ten simple rules for '
+        'scholarly blogging</div><div class="running-foot">'
+        '<a href="https://doi.org/10.53731/kdqkf-nf052">'
+        "https://doi.org/10.53731/kdqkf-nf052</a></div>"
+    )
+
+
+def test_to_pdf_running_matter_of_a_work_that_came_out_in_nothing():
+    """The head is the title alone, without a separator in front of it."""
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_running_matter
+
+    sample = sample_metadata(None, title="A record with no container")
+
+    assert (
+        '<div class="running-head">A record with no container</div>'
+        in to_pdf_running_matter(sample)
+    )
+
+
+@pytest.mark.vcr("test_pdf_rendition_of_a_post_read_from_inveniordm.yaml")
+def test_to_pdf_citation():
+    """How to cite the work, in apa and in the language of the rendition."""
+    from commonmeta import Metadata
+    from commonmeta.io_utils import to_pdf_citation
+
+    subject = Metadata(
+        "https://rogue-scholar.org/api/records/e1ndf-19s62", via="inveniordm"
+    )
+
+    assert to_pdf_citation(subject, "en") == (
+        "Ochsner, C., Pampel, H., &amp; Fenner, M. (2026, July 28). Ten simple "
+        "rules for scholarly blogging. <i>Upstream</i>. "
+        "https://doi.org/10.54900/xn57k-gyw73"
+    )
+    # the same record cited in another language, in that language's locale
+    # (citeproc-py orders the date parts the way the style says, so what the
+    # locale changes here is the name of the month)
+    assert "(2026, Juli 28)" in to_pdf_citation(subject, "de")
+
+
+def test_to_pdf_citation_of_a_record_that_cannot_be_cited():
+    """A record the citation processor cannot cite gets no such section."""
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_citation, to_pdf_html
+
+    sample = sample_metadata("<p>Body</p>")
+    sample.write = lambda **kwargs: b"Error: citation not available for style apa."
+
+    assert to_pdf_citation(sample, "en") is None
+    assert "recommended-citation" not in to_pdf_html(sample)

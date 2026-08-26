@@ -204,6 +204,18 @@ EMOJI = re.compile(
     "[ \t]*"
 )
 
+#: The csl locale a record is cited in, for the languages a rendition is
+#: written in. Anything else is cited in en-US, the locale citeproc falls back
+#: to anyway.
+PDF_CITATION_LOCALES = {
+    "en": "en-US",
+    "de": "de-DE",
+    "es": "es-ES",
+    "fr": "fr-FR",
+    "it": "it-IT",
+    "pt": "pt-PT",
+}
+
 #: What holds the words of a name together on the page.
 NO_BREAK_SPACE = "\u00a0"
 
@@ -249,6 +261,14 @@ PDF_TITLES = {
         "fr": "Image",
         "it": "Immagine",
         "pt": "Imagem",
+    },
+    "citation": {
+        "en": "Recommended citation",
+        "de": "Empfohlene Zitierweise",
+        "es": "Cita recomendada",
+        "fr": "Citation recommandée",
+        "it": "Citazione consigliata",
+        "pt": "Citação recomendada",
     },
     "references": {
         "en": "References",
@@ -799,6 +819,30 @@ def to_pdf_published(metadata: Metadata, language: str) -> str | None:
     return template.format(type=escape(name), date=escape(date), container=container)
 
 
+def to_pdf_citation(metadata: Metadata, language: str) -> str | None:
+    """How to cite the work, in apa and in the language of the rendition.
+
+    The reader of a loose pdf is one copy-paste away from citing it properly,
+    which is the whole point of putting it there. A record the citation
+    processor cannot make a citation of gets no such section.
+    """
+    locale = PDF_CITATION_LOCALES.get(language, "en-US")
+    try:
+        citation = metadata.write(to="citation", style="apa", locale=locale)
+    except Exception as error:  # the citation processor raises what it likes
+        log.warning(f"Cannot cite {metadata.id} in the pdf: {error}")
+        return None
+    if not citation:
+        return None
+    if isinstance(citation, bytes):
+        citation = citation.decode("utf-8")
+    # what the writer returns when it cannot cite the record
+    if citation.startswith("Error: "):
+        log.warning(f"Cannot cite {metadata.id} in the pdf: {citation}")
+        return None
+    return to_pdf_markup(citation).strip() or None
+
+
 def to_pdf_rights(metadata: Metadata, authors: list, language: str) -> str | None:
     """Format the copyright line and the terms the PDF is available under."""
     url = (metadata.license or {}).get("url", None)
@@ -1136,6 +1180,27 @@ def to_pdf_references(metadata: Metadata, language: str) -> str:
     )
 
 
+def to_pdf_running_matter(metadata: Metadata) -> str:
+    """What every page but the title page carries, at its head and its foot.
+
+    A page on its own has to say where it came from: the head names what the
+    work came out in, in bold, and what it is called, and the foot carries the
+    record's own address as a link the reader can follow. Both are taken out
+    of the flow by `position: running()`, so they are written once here and
+    laid out by the page.
+    """
+    title = to_pdf_markup(metadata.title)
+    container = to_pdf_markup((metadata.container or {}).get("title", None))
+    head = f"<b>{container}</b> • {title}" if container else title
+    matter = f'<div class="running-head">{head}</div>'
+    if metadata.id:
+        matter += (
+            f'<div class="running-foot"><a href="{escape(metadata.id)}">'
+            f"{escape(metadata.id)}</a></div>"
+        )
+    return matter
+
+
 def to_pdf_html(metadata: Metadata) -> str:
     """Build the html document the pdf is rendered from.
 
@@ -1145,13 +1210,10 @@ def to_pdf_html(metadata: Metadata) -> str:
     """
     language = get_language(metadata.language, format="alpha_2") or "en"
     authors = to_pdf_authors(metadata)
-    container = metadata.container or {}
 
     front_matter = [
         f"<h1>{to_pdf_markup(metadata.title)}</h1>",
-        # hidden: it is here to feed the running head, which the title page
-        # does not print because the title page says it in the line below
-        f'<span class="header">{escape(container.get("title", "") or "")}</span>',
+        to_pdf_running_matter(metadata),
         to_pdf_byline(authors),
     ]
     published = to_pdf_published(metadata, language)
@@ -1181,6 +1243,14 @@ def to_pdf_html(metadata: Metadata) -> str:
     if image:
         front_matter.append(
             f'<img class="feature-image" alt="Feature image" src="{image}" />'
+        )
+    citation = to_pdf_citation(metadata, language)
+    if citation:
+        label = PDF_TITLES["citation"].get(language, PDF_TITLES["citation"]["en"])
+        # not `citation`: the rogue-scholar stylesheet hides a post's own
+        # citation widget by that class
+        front_matter.append(
+            f'<div class="recommended-citation"><h4>{label}</h4>{citation}</div>'
         )
     rights = to_pdf_rights(metadata, [a["name"] for a in authors], language)
     if rights:

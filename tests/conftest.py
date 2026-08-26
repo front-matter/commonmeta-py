@@ -148,6 +148,9 @@ def sample_metadata(content: Optional[str], title: str = "Font sample"):
         container=None,
         subjects=None,
         references=None,
+        # what Metadata.write returns for a record the citation processor
+        # cannot cite: the rendition leaves the section out
+        write=lambda **kwargs: None,
     )
 
 

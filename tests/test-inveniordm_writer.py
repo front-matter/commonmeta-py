@@ -1635,9 +1635,14 @@ def test_to_pdf_html_front_matter(feature_image):
 
     assert "<title>Linguistic roots of connectionism</title>" in html
     assert "<h1>Linguistic roots of connectionism</h1>" in html
-    # hidden, and there only to feed the running head on the pages after the
-    # title page
-    assert '<span class="header">The Ideophone</span>' in html
+    # what every page after the title page carries at its head and its foot,
+    # written once here and taken out of the flow by `position: running()`
+    assert (
+        '<div class="running-head"><b>The Ideophone</b> • Linguistic roots of '
+        'connectionism</div><div class="running-foot">'
+        '<a href="https://doi.org/10.59350/dn2mm-m9q51">'
+        "https://doi.org/10.59350/dn2mm-m9q51</a></div>" in html
+    )
     assert '<p class="author"><span>Mark\u00a0Dingemanse</span></p>' in html
     # what the record is, when it came out, and what it came out in
     assert (
@@ -1661,6 +1666,12 @@ def test_to_pdf_html_front_matter(feature_image):
     assert (
         '<img class="feature-image" alt="Feature image" src="data:image/png;base64,'
         in html
+    )
+    # how to cite it, in apa and in the language of the rendition
+    assert (
+        '<div class="recommended-citation"><h4>Recommended citation</h4>'
+        "Dingemanse, M. (2021, July 22). Linguistic roots of connectionism. "
+        "<i>The Ideophone</i>. https://doi.org/10.59350/dn2mm-m9q51</div>" in html
     )
     assert '<div class="rights"><h4>Copyright</h4>Copyright ' in html
     assert (
