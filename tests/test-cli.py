@@ -301,15 +301,16 @@ def test_convert_to_pdf_needs_a_filename():
 
 @pytest.mark.vcr
 def test_convert_to_pdf_without_post_content(tmp_path, weasyprint, feature_image):
-    """Any input writes a pdf; one without html writes the title page alone."""
+    """Any input writes a pdf; one without html writes the title page alone.
+
+    The name is what says pdf here: no --to is given.
+    """
     from commonmeta.io_utils import read_pdf_metadata
 
     runner = CliRunner()
     output = tmp_path / "article.pdf"
 
-    result = runner.invoke(
-        convert, ["10.7554/elife.01567", "--to", "pdf", "--output", str(output)]
-    )
+    result = runner.invoke(convert, ["10.7554/elife.01567", "--output", str(output)])
 
     assert result.exit_code == 0, result.output
     metadata = read_pdf_metadata(output.read_bytes())
@@ -318,17 +319,50 @@ def test_convert_to_pdf_without_post_content(tmp_path, weasyprint, feature_image
     assert "attachments" not in metadata
 
 
-def test_convert_output_is_for_pdf(tmp_path):
-    """Every other format goes to the terminal, and the shell can redirect it."""
+@pytest.mark.vcr
+def test_convert_output_writes_any_format(tmp_path):
+    """--output writes the output to a file, whatever format it is in."""
     runner = CliRunner()
+    output = tmp_path / "article.bib"
 
     result = runner.invoke(
-        convert,
-        ["10.7554/elife.01567", "--to", "bibtex", "--output", str(tmp_path / "x.bib")],
+        convert, ["10.7554/elife.01567", "--to", "bibtex", "--output", str(output)]
+    )
+
+    assert result.exit_code == 0, result.output
+    assert f"Wrote {output}" in result.output
+    assert output.read_text().startswith("@article{10.7554/elife.01567")
+
+
+@pytest.mark.vcr
+def test_convert_output_names_the_format(tmp_path):
+    """A filename that names one format on its own is enough: -o x.bib is bibtex.
+
+    A .json or .html is several of the formats, so those still take --to; the
+    default stays commonmeta.
+    """
+    runner = CliRunner()
+    output = tmp_path / "article.bib"
+
+    result = runner.invoke(convert, ["10.7554/elife.01567", "--output", str(output)])
+
+    assert result.exit_code == 0, result.output
+    assert output.read_text().startswith("@article{10.7554/elife.01567")
+
+
+@pytest.mark.vcr
+def test_convert_output_disagrees_with_the_format(tmp_path):
+    """A name that says one format under --to of another is refused, not written."""
+    runner = CliRunner()
+    output = tmp_path / "article.bib"
+
+    result = runner.invoke(
+        convert, ["10.7554/elife.01567", "--to", "commonmeta", "--output", str(output)]
     )
 
     assert result.exit_code == 1
-    assert "--output is for --to pdf" in result.output
+    assert "['.json'] extension" in result.output
+    assert not output.exists()
 
 
 def test_pdf_is_not_a_metadata_format():

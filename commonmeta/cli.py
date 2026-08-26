@@ -14,7 +14,7 @@ from commonmeta.backend import (
     require_backend,
 )
 from commonmeta.doi_utils import decode_doi, encode_doi, validate_prefix
-from commonmeta.io_utils import write_pdf
+from commonmeta.io_utils import get_extension, write_output, write_pdf
 
 
 @click.group()
@@ -36,6 +36,44 @@ def main() -> None:
     flags are documented and parsed in one place rather than described twice.
     """
     cli()
+
+
+# What a filename is allowed to be called for each format, and what a name
+# says the format is when --to is left out. A .json or .html could be several
+# of them, so those say nothing.
+OUTPUT_EXTENSIONS = {
+    "bibtex": [".bib"],
+    "citation": [".html"],
+    "commonmeta": [".json"],
+    "crossref": [".json"],
+    "crossref_xml": [".xml"],
+    "csl": [".json"],
+    "datacite": [".json"],
+    "inveniordm": [".json"],
+    "orcid": [".json"],
+    "pdf": [".pdf"],
+    "ris": [".ris"],
+    "ror": [".json"],
+    "schema_org": [".json"],
+}
+FORMAT_EXTENSIONS = {
+    ".bib": "bibtex",
+    ".pdf": "pdf",
+    ".ris": "ris",
+    ".xml": "crossref_xml",
+}
+
+
+def format_from_output(output: str | None) -> str | None:
+    """The format a --output filename names, where it names one on its own.
+
+    `get_extension` looks past a compression suffix, so refs.bib.gz names
+    bibtex as refs.bib does.
+    """
+    if not output:
+        return None
+    _, extension, _ = get_extension(output)
+    return FORMAT_EXTENSIONS.get(extension.lower())
 
 
 # Output formats that serialize to JSON and can be pretty-printed.
@@ -69,8 +107,8 @@ def echo_output(output, to: str) -> None:
     "--to",
     "-t",
     type=str,
-    default="commonmeta",
-    help="Output format, or pdf to render the record as a file (with --output).",
+    default=None,
+    help="Output format [default: commonmeta, or what --output is named].",
 )
 @click.option("--style", "-s", type=str, default="apa")
 @click.option("--locale", "-l", type=str, default="en-US")
@@ -89,7 +127,7 @@ def echo_output(output, to: str) -> None:
     "--output",
     "-o",
     type=click.Path(dir_okay=False, writable=True),
-    help="Write the output to this file. Required for --to pdf, which is binary.",
+    help="Write the output to this file instead of the terminal.",
 )
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 def convert(
@@ -120,6 +158,8 @@ def convert(
     if show_errors and not metadata.is_valid:
         raise click.ClickException(str(metadata.errors))
 
+    to = to or format_from_output(output) or "commonmeta"
+
     if to == "pdf":
         # a pdf is bytes, so it is named rather than echoed
         if not output:
@@ -132,23 +172,23 @@ def convert(
             raise click.ClickException(str(error)) from error
         click.echo(f"Wrote {output} ({len(pdf)} bytes)")
         return
-    if output:
-        raise click.ClickException(
-            "--output is for --to pdf, which cannot go to the terminal. "
-            f"Redirect instead: commonmeta convert ... -t {to} > {output}"
-        )
 
-    echo_output(
-        metadata.write(
-            to=to,
-            style=style,
-            locale=locale,
-            depositor=depositor,
-            email=email,
-            registrant=registrant,
-        ),
-        to,
+    result = metadata.write(
+        to=to,
+        style=style,
+        locale=locale,
+        depositor=depositor,
+        email=email,
+        registrant=registrant,
     )
+    if output:
+        try:
+            write_output(output, result, OUTPUT_EXTENSIONS.get(to, [".json"]))
+        except (ValueError, OSError) as error:
+            raise click.ClickException(str(error)) from error
+        click.echo(f"Wrote {output}")
+    else:
+        echo_output(result, to)
     if show_errors and metadata.write_errors:
         raise click.ClickException(str(metadata.write_errors))
 
