@@ -981,3 +981,44 @@ def test_to_pdf_published_in_a_container(language, expected):
     }
 
     assert to_pdf_published(sample, language) == expected
+
+
+def test_to_pdf_byline_holds_a_name_together():
+    """A byline breaks between names, never inside one.
+
+    https://rogue-scholar.org/records/xvy4r-fzn40 has six authors and a byline
+    that runs to a second line; it broke "Nees Jan van Eck" across it.
+    """
+    from commonmeta.io_utils import to_pdf_byline
+
+    byline = to_pdf_byline(
+        [
+            {"name": "Najko Jahn", "orcid": None},
+            {"name": "Nees Jan van Eck", "orcid": "0000-0001-8448-4521"},
+        ]
+    )
+
+    assert "<span>Najko Jahn</span>" in byline
+    assert "<span>Nees Jan van Eck</span>" in byline
+    # the comma between two names is where it breaks instead
+    assert "</a>" not in byline.split("</span>, ")[0]
+
+
+def test_to_pdf_metadata_keeps_the_ordinary_spaces_in_a_name():
+    """The no-break spaces are how a name is set, not how it is written: what
+    a reader's viewer shows as the author is the name itself."""
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_authors, to_pdf_metadata
+
+    sample = sample_metadata(None)
+    sample.contributors = [
+        {
+            "roles": ["Author"],
+            "person": {"given_name": "Nees Jan", "family_name": "van Eck"},
+        }
+    ]
+
+    head = "".join(to_pdf_metadata(sample, to_pdf_authors(sample)))
+
+    assert '<meta name="author" content="Nees Jan van Eck">' in head

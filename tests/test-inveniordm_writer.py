@@ -1635,7 +1635,7 @@ def test_to_pdf_html_front_matter(feature_image):
 
     assert "<title>Linguistic roots of connectionism</title>" in html
     assert "<h1>Linguistic roots of connectionism</h1>" in html
-    assert '<p class="author"><span>Mark Dingemanse</span></p>' in html
+    assert '<p class="author"><span>Mark\u00a0Dingemanse</span></p>' in html
     # what the record is, when it came out, and what it came out in
     assert (
         '<div class="date">Blog post published July 22, 2021 in '
@@ -1916,11 +1916,13 @@ def test_to_pdf_byline_links_a_name_to_its_orcid():
         ]
     )
 
+    # a name is held together by no-break spaces, so a byline that runs to a
+    # second line breaks at the comma between two names and not inside one
     assert byline == (
         '<p class="author">'
-        '<a href="https://orcid.org/0000-0002-1003-5675"><span>Mike Taylor</span>'
+        '<a href="https://orcid.org/0000-0002-1003-5675"><span>Mike\u00a0Taylor</span>'
         '<img class="orcid" alt="ORCID iD" src="orcid.svg" /></a>, '
-        "<span>Matt Wedel</span></p>"
+        "<span>Matt\u00a0Wedel</span></p>"
     )
 
 

@@ -204,6 +204,9 @@ EMOJI = re.compile(
     "[ \t]*"
 )
 
+#: What holds the words of a name together on the page.
+NO_BREAK_SPACE = "\u00a0"
+
 # Front matter headings, in the languages rogue-scholar-api translated them to.
 PDF_TITLES = {
     "published": {
@@ -632,10 +635,16 @@ def to_pdf_byline(authors: list) -> str:
     asks for an iD to be shown next to a name and what the rogue-scholar-api
     template did. The icon is a file next to the stylesheet, so it resolves
     against the same base url the fonts do.
+
+    A name is held together by no-break spaces: a byline that ran to a second
+    line broke "Nees Jan van Eck" across it, leaving half a person at the end
+    of one line. The comma between two names is where the line breaks instead.
     """
     names = []
     for author in authors:
-        name = f"<span>{escape(author['name'])}</span>"
+        # the metadata keeps the ordinary spaces: this is how the name is set,
+        # not how it is written
+        name = f"<span>{escape(author['name']).replace(' ', NO_BREAK_SPACE)}</span>"
         orcid = author.get("orcid", None)
         if orcid:
             url = f"https://orcid.org/{orcid}"

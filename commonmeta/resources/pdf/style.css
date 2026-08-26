@@ -32,7 +32,7 @@
 }
 
 @page {
-  /* The title page names the journal or blog the work came out in, so the
+  /* The title page names the container the work came out in, so the
      running head says only what page of what one is in hand. */
   @bottom-right {
     content: string(heading) " • Page " counter(page);
@@ -59,10 +59,6 @@
 
 html {
   color: #393939;
-  /* Fira Sans covers the text, and sans-serif is for what it does not have.
-     No emoji font is named: a colour font declares glyph widths that do not
-     match the ones written for it, which fails PDF/A, so emoji are taken out
-     of the page before it is rendered rather than drawn from one. */
   font-family: Fira Sans, sans-serif;
   font-size: 11pt;
   font-weight: 300;
@@ -71,7 +67,7 @@ html {
 
 h1 {
   color: #3b82f6;
-  font-size: 27pt;
+  font-size: 24pt;
   line-height: 1.15;
   page: no-chapter;
   width: 100%;
