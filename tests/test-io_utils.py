@@ -1103,7 +1103,7 @@ def test_the_pdf_carries_its_doi_where_a_viewer_shows_it(render_pdf):
     pdf = render_pdf(sample_metadata("<p>Body</p>"))
 
     with pikepdf.open(io.BytesIO(pdf)) as document:
-        assert str(document.docinfo["/doi"]) == "https://doi.org/10.53731/kdqkf-nf052"
+        assert str(document.docinfo["/DOI"]) == "https://doi.org/10.53731/kdqkf-nf052"
     assert read_pdf_metadata(pdf)["id"] == "https://doi.org/10.53731/kdqkf-nf052"
 
 
@@ -1118,4 +1118,4 @@ def test_the_pdf_of_a_record_without_a_doi_says_nothing_about_one(render_pdf):
     pdf = render_pdf(sample)
 
     with pikepdf.open(io.BytesIO(pdf)) as document:
-        assert "/doi" not in document.docinfo
+        assert "/DOI" not in document.docinfo

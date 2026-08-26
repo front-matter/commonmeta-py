@@ -953,8 +953,8 @@ def finish_pdf(pdf: bytes, metadata: Metadata) -> bytes:
     them into the packet WeasyPrint produced. Writing them into that same
     packet, as opposed to appending a second rdf:RDF block, is what makes them
     visible to a reader that looks up properties by name. The doi is written a
-    second time into the info dictionary, which is what a viewer shows as the
-    document's properties.
+    second time into the info dictionary, as /DOI, which is what a viewer
+    shows as the document's properties.
 
     The images then lose their /Interpolate key, which WeasyPrint sets on
     every image it draws and PDF/A forbids (ISO 19005-3 6.2.8: present means
@@ -986,13 +986,13 @@ def finish_pdf(pdf: bytes, metadata: Metadata) -> bytes:
             if license_url:
                 xmp["xmpRights:WebStatement"] = license_url
 
-        # the doi goes in the info dictionary too, under the key publishers
-        # write it under: that is what a viewer's document properties and
-        # `pdfinfo` read, and neither looks in the xmp packet. PDF/A asks the
-        # entries it defines to agree with their xmp counterparts, and /doi is
-        # not one of them - veraPDF passes a rendition carrying it.
+        # the doi goes in the info dictionary too: that is what a viewer's
+        # document properties and `pdfinfo` read, and neither looks in the xmp
+        # packet. PDF/A asks the entries it defines to agree with their xmp
+        # counterparts, and /DOI is not one of them - veraPDF passes a
+        # rendition carrying it.
         if identifier:
-            document.docinfo[pikepdf.Name("/doi")] = identifier
+            document.docinfo[pikepdf.Name("/DOI")] = identifier
 
         for obj in document.objects:
             # every object, rather than every page's images: an image can also
