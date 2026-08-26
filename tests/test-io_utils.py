@@ -835,3 +835,30 @@ def test_pdf_type_names_cover_the_vocabulary():
     types = set(schema["$defs"]["type"]["enum"]) - {"Other"}
     for language, names in PDF_TYPE_NAMES.items():
         assert set(names) == types, language
+
+
+def test_to_pdf_content_marks_the_reference_list_the_post_prints():
+    """The works cited begin a page, wherever they are written.
+
+    A post that lists them itself had them run on from the text - the
+    stylesheet can only break before something it can select, so the heading
+    is marked here.
+    """
+    content = (
+        "<h2>Funding</h2><p>Funded by nobody.</p>"
+        '<h2 class="wp-block-heading">References</h2>'
+        "<ol><li>Rettberg, J. W. (2008). Blogging. Polity.</li></ol>"
+    )
+
+    html = to_pdf_content(content, "en")
+
+    assert '<h2 class="wp-block-heading references">References</h2>' in html
+    # the heading over anything else is left alone
+    assert "<h2>Funding</h2>" in html
+
+
+def test_to_pdf_content_leaves_a_post_without_a_reference_list_alone():
+    """Nothing is marked in a post that cites nothing, and nothing is parsed."""
+    content = "<h2>Reference rot</h2><p>Links die.</p>"
+
+    assert to_pdf_content(content, "en") == content

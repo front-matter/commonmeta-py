@@ -325,8 +325,16 @@ h4 {
 .rights {
   break-after: always;
 }
-/* The works the record cites close the rendition, on a page of their own. */
-section.references {
+/* The works the record cites begin a page of their own, whether the rendition
+   writes them itself or the post prints its own list - in which case the
+   heading over it carries the class. */
+section.references,
+h1.references,
+h2.references,
+h3.references,
+h4.references,
+h5.references,
+h6.references {
   break-before: always;
 }
 section.references ol {

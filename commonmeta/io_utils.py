@@ -991,17 +991,37 @@ def to_pdf_videos(soup: BeautifulSoup, label: str) -> bool:
     return replaced
 
 
+def find_reference_heading(soup: BeautifulSoup):
+    """The heading a post writes over the works it cites, if it writes one.
+
+    What marks it is what it says, in any of the languages a rendition is
+    written in - there is no markup that says a list is a reference list.
+    """
+    for heading in soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6"]):
+        if heading.get_text(" ", strip=True).strip(":. ").casefold() in (
+            REFERENCE_HEADINGS
+        ):
+            return heading
+    return None
+
+
 def to_pdf_content(content: str | None, language: str) -> str:
-    """The post content, with an alt description on every image and a poster
-    frame where a video was embedded."""
-    if not content or ("<img" not in content and "<iframe" not in content):
-        return content or ""
+    """The post content, with an alt description on every image, a poster
+    frame where a video was embedded, and its reference list marked."""
+    if not content:
+        return ""
 
     soup = BeautifulSoup(content, "html.parser")
     label = PDF_TITLES["image"].get(language, PDF_TITLES["image"]["en"])
     described = to_pdf_videos(
         soup, PDF_TITLES["video"].get(language, PDF_TITLES["video"]["en"])
     )
+    heading = find_reference_heading(soup)
+    if heading:
+        # the works cited begin a page, as they do where the rendition itself
+        # writes them: the stylesheet breaks before this class
+        heading["class"] = [*(heading.get("class") or []), "references"]
+        described = True
     for image in soup.find_all("img"):
         if (image.get("alt") or "").strip():
             continue
@@ -1047,12 +1067,7 @@ def has_reference_list(content: str | None) -> bool:
     """
     if not content:
         return False
-    return any(
-        heading.get_text(" ", strip=True).strip(":. ").casefold() in REFERENCE_HEADINGS
-        for heading in BeautifulSoup(content, "html.parser").find_all(
-            ["h1", "h2", "h3", "h4", "h5", "h6"]
-        )
-    )
+    return find_reference_heading(BeautifulSoup(content, "html.parser")) is not None
 
 
 def to_pdf_references(metadata: Metadata, language: str) -> str:
