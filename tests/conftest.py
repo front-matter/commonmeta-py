@@ -146,6 +146,7 @@ def sample_metadata(content: Optional[str], title: str = "Font sample"):
         license=None,
         container=None,
         subjects=None,
+        references=None,
     )
 
 

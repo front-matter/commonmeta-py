@@ -369,6 +369,7 @@ def test_write_pdf_names_a_file_and_returns_the_bytes(
         content = None
         contributors = date_published = date_updated = None
         description = image = language = license = container = subjects = None
+        references = None
 
     output = tmp_path / "record.pdf"
     pdf = write_pdf(Meta(), str(output))
@@ -408,6 +409,7 @@ def test_write_pdf_refuses_a_name_it_does_not_write(
         content = None
         contributors = date_published = date_updated = None
         description = image = language = license = container = subjects = None
+        references = None
 
     with pytest.raises(ValueError, match="File format not supported"):
         write_pdf(Meta(), str(tmp_path / "record.json"))
@@ -596,3 +598,133 @@ def test_to_pdf_content_keeps_the_link_when_the_poster_cannot_be_had():
     assert '<figure class="video"><figcaption>' in html
     assert '<a href="https://vimeo.com/76979871">https://vimeo.com/76979871</a>' in html
     assert "<img" not in html
+
+
+@pytest.mark.parametrize(
+    "reference, expected",
+    [
+        # the citation text, with the identifier after it as a link
+        (
+            {
+                "id": "https://doi.org/10.1177/0741088313493610",
+                "unstructured": "Luzón, M. J. (2013). Public Communication of "
+                "Science in Blogs. <i>Written Communication</i>, <i>30</i>(4).",
+            },
+            "<li>Luzón, M. J. (2013). Public Communication of Science in Blogs. "
+            "<i>Written Communication</i>, <i>30</i>(4). "
+            '<a href="https://doi.org/10.1177/0741088313493610">'
+            "https://doi.org/10.1177/0741088313493610</a></li>",
+        ),
+        # the current schema calls the citation text `reference`
+        (
+            {"reference": "Rettberg, J. W. (2008). Blogging. Polity."},
+            "<li>Rettberg, J. W. (2008). Blogging. Polity.</li>",
+        ),
+        # a citation that spells the identifier out does not get it twice
+        (
+            {
+                "id": "https://doi.org/10.5555/12345678",
+                "reference": "A work. https://doi.org/10.5555/12345678",
+            },
+            "<li>A work. https://doi.org/10.5555/12345678</li>",
+        ),
+        # an identifier is a reference on its own; nothing is not
+        (
+            {"id": "https://doi.org/10.5555/12345678"},
+            '<li><a href="https://doi.org/10.5555/12345678">'
+            "https://doi.org/10.5555/12345678</a></li>",
+        ),
+        ({"id": None, "unstructured": None}, None),
+        ("not a reference", None),
+    ],
+)
+def test_to_pdf_reference(reference, expected):
+    """One entry of the reference list, from either shape of the field."""
+    from commonmeta.io_utils import to_pdf_reference
+
+    assert to_pdf_reference(reference) == expected
+
+
+def test_to_pdf_references_closes_the_rendition():
+    """The works a record cites are printed after the post that cites them."""
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_html
+
+    sample = sample_metadata("<p>Body</p>")
+    sample.references = [
+        {"unstructured": "Burton, M. (2015). Blogs as infrastructure. [Phd]."},
+        {
+            "id": "https://doi.org/10.1371/journal.pbio.0060240",
+            "unstructured": "Batts, S. A. (2008). Advancing Science.",
+        },
+    ]
+
+    html = to_pdf_html(sample)
+
+    assert html.index("<p>Body</p>") < html.index('<section class="references">')
+    assert (
+        '<section class="references"><h2>References</h2><ol>'
+        "<li>Burton, M. (2015). Blogs as infrastructure. [Phd].</li>"
+        "<li>Batts, S. A. (2008). Advancing Science. "
+        '<a href="https://doi.org/10.1371/journal.pbio.0060240">'
+        "https://doi.org/10.1371/journal.pbio.0060240</a></li></ol></section>" in html
+    )
+
+
+def test_to_pdf_references_are_written_in_the_language_of_the_post():
+    """The heading over them reads as the rest of the front matter does."""
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_references
+
+    sample = sample_metadata("<p>Text</p>")
+    sample.references = [{"reference": "Ein Werk."}]
+
+    assert "<h2>Literatur</h2>" in to_pdf_references(sample, "de")
+
+
+def test_to_pdf_references_are_not_printed_twice():
+    """Rogue Scholar reads a record's references out of the post that lists
+    them, so a post with its own list would otherwise carry it twice."""
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_html
+
+    sample = sample_metadata(
+        "<p>Body</p><h2>References</h2><ol><li>Rettberg, J. W. (2008).</li></ol>"
+    )
+    sample.references = [{"reference": "Rettberg, J. W. (2008). Blogging. Polity."}]
+
+    assert '<section class="references">' not in to_pdf_html(sample)
+
+
+def test_to_pdf_references_of_a_record_that_cites_nothing():
+    """Nothing is printed, rather than an empty page with a heading."""
+    from conftest import sample_metadata
+
+    from commonmeta.io_utils import to_pdf_references
+
+    sample = sample_metadata("<p>Body</p>")
+    sample.references = []
+
+    assert to_pdf_references(sample, "en") == ""
+
+
+@pytest.mark.parametrize(
+    "content, expected",
+    [
+        ("<h2>References</h2><ol><li>A work.</li></ol>", True),
+        ("<h3>Literaturverzeichnis</h3>", True),
+        ("<h2>Bibliography:</h2>", True),
+        ("<h2>Referências</h2>", True),
+        ("<p>References</p>", False),
+        ("<h2>Reference rot</h2>", False),
+        (None, False),
+    ],
+)
+def test_has_reference_list(content, expected):
+    """What marks a post that prints the works it cites: the heading over them."""
+    from commonmeta.io_utils import has_reference_list
+
+    assert has_reference_list(content) is expected

@@ -325,6 +325,20 @@ h4 {
 .rights {
   break-after: always;
 }
+/* The works the record cites close the rendition, on a page of their own. */
+section.references {
+  break-before: always;
+}
+section.references ol {
+  padding: 0 0 0 16pt;
+  margin: 0;
+}
+section.references li {
+  /* a reference reads as one unit, so it is not split over a page break */
+  break-inside: avoid;
+  margin-top: 6pt;
+  padding-left: 4pt;
+}
 a,
 .citation a {
   text-decoration: none;

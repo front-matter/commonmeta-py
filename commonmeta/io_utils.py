@@ -247,6 +247,14 @@ PDF_TITLES = {
         "it": "Immagine",
         "pt": "Imagem",
     },
+    "references": {
+        "en": "References",
+        "de": "Literatur",
+        "es": "Referencias",
+        "fr": "Références",
+        "it": "Riferimenti",
+        "pt": "Referências",
+    },
     # and the one the poster frame of a video gets
     "video": {
         "en": "Video",
@@ -256,6 +264,23 @@ PDF_TITLES = {
         "it": "Video",
         "pt": "Vídeo",
     },
+}
+
+#: What a post calls the reference list it prints itself: the headings the
+#: rendition would write, and the ones a blog writes instead.
+REFERENCE_HEADINGS = {
+    heading.casefold()
+    for heading in (
+        *PDF_TITLES["references"].values(),
+        "Bibliografia",
+        "Bibliografía",
+        "Bibliographie",
+        "Bibliography",
+        "Literaturverzeichnis",
+        "Reference list",
+        "Referenzen",
+        "Works cited",
+    )
 }
 
 
@@ -654,6 +679,67 @@ def to_pdf_content(content: str | None, language: str) -> str:
     return str(soup) if described else content
 
 
+def to_pdf_reference(reference: dict) -> str | None:
+    """One entry of the reference list: its citation text, and its identifier.
+
+    The text is the formatted citation the record carries - `reference` in the
+    current schema, `unstructured` in the one before it - and the identifier
+    follows it as a link, unless the citation already spells it out.
+    """
+    if not isinstance(reference, dict):
+        return None
+    text = to_pdf_markup(
+        reference.get("reference", None) or reference.get("unstructured", None)
+    ).strip()
+    identifier = reference.get("id", None)
+    if not text and not identifier:
+        return None
+    link = ""
+    if identifier and identifier not in text:
+        link = f'<a href="{escape(identifier)}">{escape(identifier)}</a>'
+    return f"<li>{' '.join(part for part in (text, link) if part)}</li>"
+
+
+def has_reference_list(content: str | None) -> bool:
+    """Whether the post prints its own list of the works it cites.
+
+    A record's references are often read back out of the post that lists them,
+    so the two say the same thing; where the post has the list, the rendition
+    prints that one rather than the same works twice. What marks it is the
+    heading over it, in any of the languages a rendition is written in.
+    """
+    if not content:
+        return False
+    return any(
+        heading.get_text(" ", strip=True).strip(":. ").casefold() in REFERENCE_HEADINGS
+        for heading in BeautifulSoup(content, "html.parser").find_all(
+            ["h1", "h2", "h3", "h4", "h5", "h6"]
+        )
+    )
+
+
+def to_pdf_references(metadata: Metadata, language: str) -> str:
+    """The works the record cites, as a page of their own.
+
+    A rendition closes the way an article does, with the reference list after
+    the text; the stylesheet gives the section `break-before`, so it is the
+    last page. A record that cites nothing gets no such page, and neither does
+    one whose post already prints the list.
+    """
+    entries = [
+        entry
+        for entry in (to_pdf_reference(r) for r in wrap(metadata.references))
+        if entry
+    ]
+    if not entries or has_reference_list(metadata.content):
+        return ""
+    label = PDF_TITLES["references"].get(language, PDF_TITLES["references"]["en"])
+    return (
+        f'<section class="references"><h2>{label}</h2>'
+        f"<ol>{''.join(entries)}</ol></section>"
+    )
+
+
 def to_pdf_html(metadata: Metadata) -> str:
     """Build the html document the pdf is rendered from.
 
@@ -706,6 +792,7 @@ def to_pdf_html(metadata: Metadata) -> str:
     body = (
         f'<section class="front-matter">{"".join(front_matter)}</section>'
         f"{to_pdf_content(metadata.content, language)}"
+        f"{to_pdf_references(metadata, language)}"
     )
     head = [
         "<meta charset='utf-8'>",
