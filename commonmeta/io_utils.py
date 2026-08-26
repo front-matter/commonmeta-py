@@ -944,6 +944,33 @@ def embed_image(metadata: Metadata) -> str | None:
     return to_data_uri(str(url), "feature image") if url else None
 
 
+#: What a PDF/A file has to say before it may carry prism:doi. The standard
+#: predefines a handful of schemas - dc, xmp, pdf, pdfaid among them - and any
+#: property outside those has to describe itself in the packet, or the file is
+#: not PDF/A (ISO 19005-3 6.6.2.3.1). The namespace named here is the one
+#: pikepdf writes the prism prefix as, so the description and the property it
+#: describes agree.
+PRISM_EXTENSION_SCHEMA = (
+    '<rdf:Description rdf:about=""'
+    ' xmlns:pdfaExtension="http://www.aiim.org/pdfa/ns/extension/"'
+    ' xmlns:pdfaSchema="http://www.aiim.org/pdfa/ns/schema#"'
+    ' xmlns:pdfaProperty="http://www.aiim.org/pdfa/ns/property#">'
+    '<pdfaExtension:schemas><rdf:Bag><rdf:li rdf:parseType="Resource">'
+    "<pdfaSchema:schema>PRISM metadata</pdfaSchema:schema>"
+    "<pdfaSchema:namespaceURI>"
+    "http://prismstandard.org/namespaces/basic/1.0/"
+    "</pdfaSchema:namespaceURI>"
+    "<pdfaSchema:prefix>prism</pdfaSchema:prefix>"
+    '<pdfaSchema:property><rdf:Seq><rdf:li rdf:parseType="Resource">'
+    "<pdfaProperty:name>doi</pdfaProperty:name>"
+    "<pdfaProperty:valueType>Text</pdfaProperty:valueType>"
+    "<pdfaProperty:category>external</pdfaProperty:category>"
+    "<pdfaProperty:description>Digital Object Identifier</pdfaProperty:description>"
+    "</rdf:li></rdf:Seq></pdfaSchema:property>"
+    "</rdf:li></rdf:Bag></pdfaExtension:schemas></rdf:Description>"
+)
+
+
 def finish_pdf(pdf: bytes, metadata: Metadata) -> bytes:
     """Everything the rendition still needs after WeasyPrint has written it.
 
@@ -965,6 +992,7 @@ def finish_pdf(pdf: bytes, metadata: Metadata) -> bytes:
     import pikepdf
 
     identifier = presence(metadata.id)
+    doi = doi_from_url(metadata.id)
     license_id = (metadata.license or {}).get("id", None)
     license_url = (metadata.license or {}).get("url", None)
 
@@ -985,6 +1013,24 @@ def finish_pdf(pdf: bytes, metadata: Metadata) -> bytes:
                 xmp["dc:rights"] = license_id
             if license_url:
                 xmp["xmpRights:WebStatement"] = license_url
+            if doi:
+                # the bare doi, which is what prism:doi holds and what the
+                # tools that read a pdf for one expect to find there
+                xmp["prism:doi"] = doi
+
+        if doi:
+            # prism is not a schema PDF/A knows, so the packet says what it is
+            # before it says a word in it. Written here rather than through
+            # the metadata api above, which has no way to express the nested
+            # bag of structs a schema description is.
+            packet = bytes(document.Root.Metadata.read_bytes())
+            document.Root.Metadata.write(
+                packet.replace(
+                    b"</rdf:RDF>",
+                    PRISM_EXTENSION_SCHEMA.encode("utf-8") + b"</rdf:RDF>",
+                    1,
+                )
+            )
 
         # the doi goes in the info dictionary too: that is what a viewer's
         # document properties and `pdfinfo` read, and neither looks in the xmp

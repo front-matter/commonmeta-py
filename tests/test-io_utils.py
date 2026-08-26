@@ -1104,6 +1104,12 @@ def test_the_pdf_carries_its_doi_where_a_viewer_shows_it(render_pdf):
 
     with pikepdf.open(io.BytesIO(pdf)) as document:
         assert str(document.docinfo["/DOI"]) == "https://doi.org/10.53731/kdqkf-nf052"
+        # and in the xmp packet twice over: as the url dc:identifier holds,
+        # and as the bare doi the tools that read a pdf for one look for
+        xmp = document.open_metadata()
+        assert xmp["prism:doi"] == "10.53731/kdqkf-nf052"
+        # which a pdf may only carry once it says what a prism property is
+        assert "<pdfaSchema:prefix>prism</pdfaSchema:prefix>" in str(xmp)
     assert read_pdf_metadata(pdf)["id"] == "https://doi.org/10.53731/kdqkf-nf052"
 
 
@@ -1119,3 +1125,7 @@ def test_the_pdf_of_a_record_without_a_doi_says_nothing_about_one(render_pdf):
 
     with pikepdf.open(io.BytesIO(pdf)) as document:
         assert "/DOI" not in document.docinfo
+        xmp = document.open_metadata()
+        assert "prism:doi" not in xmp
+        # and no schema description for a property it does not carry
+        assert "pdfaSchema" not in str(xmp)
