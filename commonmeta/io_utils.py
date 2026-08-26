@@ -682,16 +682,20 @@ def strip_emoji(text: str) -> str:
 
 
 def to_pdf_markup(text: str | None) -> str:
-    """A title or description with the inline markup it carries.
+    """A title, description or citation with the inline markup it carries.
 
     Post titles are html: "The atlas/axis complex of <i>Apatosaurus louisae</i>
-    CM 3018" says something the same string with its tags escaped does not.
-    Only inline markup survives - anything that would lay out, load or run is
-    dropped rather than shown as text.
+    CM 3018" says something the same string with its tags escaped does not, and
+    a citation of it says the same in <i>, <sub> and <sup>. Only inline markup
+    survives - anything that would lay out, load or run is dropped rather than
+    shown as text - and of the attributes only the address a link points at,
+    which is worth as much on paper as it is on a page.
     """
     if not text:
         return ""
-    return nh3.clean(text, tags=PDF_INLINE_TAGS, attributes={})
+    return nh3.clean(
+        text, tags=PDF_INLINE_TAGS, attributes={"a": {"href"}}, link_rel=None
+    )
 
 
 def to_pdf_text(text: str | None) -> str:

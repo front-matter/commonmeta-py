@@ -862,3 +862,39 @@ def test_to_pdf_content_leaves_a_post_without_a_reference_list_alone():
     content = "<h2>Reference rot</h2><p>Links die.</p>"
 
     assert to_pdf_content(content, "en") == content
+
+
+def test_to_pdf_reference_keeps_the_markup_a_citation_carries():
+    """A citation says things in markup: a journal name is set in italics, a
+    formula and an ordinal in <sub> and <sup>, and a link points somewhere."""
+    from commonmeta.io_utils import to_pdf_reference
+
+    entry = to_pdf_reference(
+        {
+            "reference": "Smith, A. (2020). Effects of CO<sub>2</sub> and the "
+            "2<sup>nd</sup> law. <b>Nature</b>, <i>12</i>(4). "
+            '<a href="https://example.org/paper">Full text</a>'
+        }
+    )
+
+    assert entry == (
+        "<li>Smith, A. (2020). Effects of CO<sub>2</sub> and the 2<sup>nd</sup> "
+        'law. <b>Nature</b>, <i>12</i>(4). <a href="https://example.org/paper">'
+        "Full text</a></li>"
+    )
+
+
+def test_to_pdf_reference_drops_markup_that_is_not_inline():
+    """What a citation cannot carry into the pdf: layout, scripts, and an
+    address that would run one."""
+    from commonmeta.io_utils import to_pdf_reference
+
+    entry = to_pdf_reference(
+        {
+            "reference": "<div>Smith, A. (2020).</div><script>alert(1)</script>"
+            '<a href="javascript:alert(1)">Nature</a>'
+        }
+    )
+
+    assert entry == "<li>Smith, A. (2020).<a>Nature</a></li>"
+    assert "alert(1)" not in entry
