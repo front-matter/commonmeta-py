@@ -5,11 +5,11 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, zstd
+      - gzip, deflate, br, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.34.2
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://rogue-scholar.org/api/records/74hx4-qp390
   response:
@@ -37,7 +37,7 @@ interactions:
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Fri, 24 Jul 2026 06:58:14 GMT
+      - Fri, 28 Aug 2026 14:21:32 GMT
       Location:
       - /api/records/23y6y-vh985
       Permissions-Policy:
@@ -59,9 +59,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '497'
+      - '498'
       X-Ratelimit-Reset:
-      - '1784876355'
+      - '1787926953'
       X-Xss-Protection:
       - 1; mode=block
     status:
@@ -73,17 +73,17 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, zstd
+      - gzip, deflate, br, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.34.2
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://rogue-scholar.org/api/records/23y6y-vh985
   response:
     body:
       string: '{"id": "23y6y-vh985", "created": "2025-10-18T13:41:09.977701+00:00",
-        "updated": "2026-07-23T17:22:49.602303+00:00", "links": {"self": "https://rogue-scholar.org/api/records/23y6y-vh985",
+        "updated": "2026-08-28T14:14:14.168636+00:00", "links": {"self": "https://rogue-scholar.org/api/records/23y6y-vh985",
         "self_html": "https://rogue-scholar.org/records/23y6y-vh985", "preview_html":
         "https://rogue-scholar.org/records/23y6y-vh985?preview=1", "doi": "https://doi.org/10.59350/qsajq-6tn97",
         "self_doi": "https://doi.org/10.59350/qsajq-6tn97", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/qsajq-6tn97",
@@ -94,38 +94,44 @@ interactions:
         "https://rogue-scholar.org/api/iiif/record:23y6y-vh985/manifest", "self_iiif_sequence":
         "https://rogue-scholar.org/api/iiif/record:23y6y-vh985/sequence/default",
         "files": "https://rogue-scholar.org/api/records/23y6y-vh985/files", "media_files":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/media-files", "archive":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/files-archive", "archive_media":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/media-files-archive", "latest":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/versions/latest", "latest_html":
-        "https://rogue-scholar.org/records/23y6y-vh985/latest", "versions": "https://rogue-scholar.org/api/records/23y6y-vh985/versions",
-        "draft": "https://rogue-scholar.org/api/records/23y6y-vh985/draft", "access_links":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/access/links", "access_grants":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/access/grants", "access_users":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/access/users", "access_groups":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/access/groups", "access_request":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/access/request", "access":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/access", "communities":
+        "https://rogue-scholar.org/api/records/23y6y-vh985/media-files", "thumbnails":
+        {"10": "https://rogue-scholar.org/api/iiif/record:23y6y-vh985:10.59350-qsajq-6tn97.pdf/full/%5E10,/0/default.jpg",
+        "50": "https://rogue-scholar.org/api/iiif/record:23y6y-vh985:10.59350-qsajq-6tn97.pdf/full/%5E50,/0/default.jpg",
+        "100": "https://rogue-scholar.org/api/iiif/record:23y6y-vh985:10.59350-qsajq-6tn97.pdf/full/%5E100,/0/default.jpg",
+        "250": "https://rogue-scholar.org/api/iiif/record:23y6y-vh985:10.59350-qsajq-6tn97.pdf/full/%5E250,/0/default.jpg",
+        "750": "https://rogue-scholar.org/api/iiif/record:23y6y-vh985:10.59350-qsajq-6tn97.pdf/full/%5E750,/0/default.jpg",
+        "1200": "https://rogue-scholar.org/api/iiif/record:23y6y-vh985:10.59350-qsajq-6tn97.pdf/full/%5E1200,/0/default.jpg"},
+        "archive": "https://rogue-scholar.org/api/records/23y6y-vh985/files-archive",
+        "archive_media": "https://rogue-scholar.org/api/records/23y6y-vh985/media-files-archive",
+        "latest": "https://rogue-scholar.org/api/records/23y6y-vh985/versions/latest",
+        "latest_html": "https://rogue-scholar.org/records/23y6y-vh985/latest", "versions":
+        "https://rogue-scholar.org/api/records/23y6y-vh985/versions", "draft": "https://rogue-scholar.org/api/records/23y6y-vh985/draft",
+        "access_links": "https://rogue-scholar.org/api/records/23y6y-vh985/access/links",
+        "access_grants": "https://rogue-scholar.org/api/records/23y6y-vh985/access/grants",
+        "access_users": "https://rogue-scholar.org/api/records/23y6y-vh985/access/users",
+        "access_groups": "https://rogue-scholar.org/api/records/23y6y-vh985/access/groups",
+        "access_request": "https://rogue-scholar.org/api/records/23y6y-vh985/access/request",
+        "access": "https://rogue-scholar.org/api/records/23y6y-vh985/access", "communities":
         "https://rogue-scholar.org/api/records/23y6y-vh985/communities", "communities-suggestions":
         "https://rogue-scholar.org/api/records/23y6y-vh985/communities-suggestions",
         "request_deletion": "https://rogue-scholar.org/api/records/23y6y-vh985/request-deletion",
         "file_modification": "https://rogue-scholar.org/api/records/23y6y-vh985/file-modification",
         "quota_increase": "https://rogue-scholar.org/api/records/23y6y-vh985/quota-increase",
         "requests": "https://rogue-scholar.org/api/records/23y6y-vh985/requests"},
-        "revision_id": 23, "parent": {"id": "74hx4-qp390", "access": {"owned_by":
+        "revision_id": 25, "parent": {"id": "74hx4-qp390", "access": {"owned_by":
         {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
         false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
         {"ids": ["0e13541f-417e-46c0-a859-65927249df72", "346efb91-f134-4f0b-bd6a-30e2094d2c40",
         "52ef2b10-984d-40cb-ba75-d8b66e56ab02"], "default": "0e13541f-417e-46c0-a859-65927249df72",
         "entries": [{"id": "0e13541f-417e-46c0-a859-65927249df72", "created": "2024-10-05T08:57:03.365247+00:00",
-        "updated": "2026-07-24T06:05:58.546392+00:00", "links": {}, "revision_id":
-        2078, "slug": "svpow", "metadata": {"title": "Sauropod Vertebra Picture of
+        "updated": "2026-08-22T09:06:19.752893+00:00", "links": {}, "revision_id":
+        3557, "slug": "svpow", "metadata": {"title": "Sauropod Vertebra Picture of
         the Week", "description": "SV-POW!  ...  All sauropod vertebrae, except when
         we''re talking about Open Access. ISSN 3033-3695", "type": {"id": "blog"},
         "website": "https://svpow.com"}, "access": {"visibility": "public", "members_visibility":
         "public", "member_policy": "open", "record_submission_policy": "open", "review_policy":
         "open"}, "custom_fields": {"feed:feed_url": "https://svpow.com/feed/atom/",
-        "feed:created": "2023-02-01", "feed:updated": "2026-07-23T22:08:44+00:00",
+        "feed:created": "2023-02-01", "feed:updated": "2026-08-19T10:30:34+00:00",
         "feed:feed_format": {"id": "atom"}, "feed:generator": {"id": "WordPress.com"},
         "feed:status": {"id": "active"}, "feed:authors": [{"name": "Mike Taylor"}],
         "feed:secure": true, "feed:use_api": true, "rs:issn": "3033-3695", "rs:prefix":
@@ -192,12 +198,12 @@ interactions:
         video of the debate</a>! My apologies for the delay: it wasn&#8217;t available
         straight after the meeting, and then I forgot to check back a month later.</p>\n<p><a
         href=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg\"><img
-        loading=\"lazy\" data-attachment-id=\"24430\" data-permalink=\"http://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/mike-at-ssp-debate/\"
+        data-attachment-id=\"24430\" data-permalink=\"http://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/mike-at-ssp-debate/\"
         data-orig-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg\"
         data-orig-size=\"1950,1219\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\"
         data-image-title=\"mike-at-ssp-debate\" data-image-description=\"\" data-image-caption=\"\"
         data-large-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=1024\"
-        class=\"alignnone size-full wp-image-24430\" src=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg\"
+        loading=\"lazy\" class=\"alignnone size-full wp-image-24430\" src=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg\"
         alt=\"\" width=\"480\" height=\"300\" srcset=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=480&amp;h=300
         480w, https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=960&amp;h=600
         960w, https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=150&amp;h=94
@@ -211,15 +217,24 @@ interactions:
         out who won the debate, after all!</p>\n<p>&nbsp;</p>\n<hr />\n<p><a href=\"https://doi.org/10.59350/qsajq-6tn97\">doi:10.59350/qsajq-6tn97</a></p>",
         "rs:image": "https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg",
         "rs:generator": {"id": "WordPress.com", "title": {"en": "WordPress.com"}},
-        "rs:featured": false, "rs:doi": "10.59350/svpow"}, "access": {"record": "public",
-        "files": "public", "embargo": {"active": false, "reason": null}, "status":
-        "metadata-only"}, "files": {"enabled": false, "order": [], "count": 0, "total_bytes":
-        0, "entries": {}}, "media_files": {"enabled": false, "order": [], "count":
-        0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
-        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
-        6, "unique_views": 5, "downloads": 0, "unique_downloads": 0, "data_volume":
-        0.0}, "all_versions": {"views": 6, "unique_views": 5, "downloads": 0, "unique_downloads":
-        0, "data_volume": 0.0}}}'
+        "rs:featured": false}, "access": {"record": "public", "files": "public", "embargo":
+        {"active": false, "reason": null}, "status": "open"}, "files": {"enabled":
+        true, "order": [], "count": 1, "total_bytes": 302244, "entries": {"10.59350-qsajq-6tn97.pdf":
+        {"id": "eedaaf86-6a89-46ea-85db-31f571e2d48e", "checksum": "md5:5b36504d9cb2f9a37459f0382426b68e",
+        "ext": "pdf", "size": 302244, "mimetype": "application/pdf", "storage_class":
+        "L", "key": "10.59350-qsajq-6tn97.pdf", "metadata": null, "access": {"hidden":
+        false}, "links": {"self": "https://rogue-scholar.org/api/records/23y6y-vh985/files/10.59350-qsajq-6tn97.pdf",
+        "content": "https://rogue-scholar.org/api/records/23y6y-vh985/files/10.59350-qsajq-6tn97.pdf/content",
+        "iiif_canvas": "https://rogue-scholar.org/api/iiif/record:23y6y-vh985/canvas/10.59350-qsajq-6tn97.pdf",
+        "iiif_base": "https://rogue-scholar.org/api/iiif/record:23y6y-vh985:10.59350-qsajq-6tn97.pdf",
+        "iiif_info": "https://rogue-scholar.org/api/iiif/record:23y6y-vh985:10.59350-qsajq-6tn97.pdf/info.json",
+        "iiif_api": "https://rogue-scholar.org/api/iiif/record:23y6y-vh985:10.59350-qsajq-6tn97.pdf/full/full/0/default.png"}}}},
+        "media_files": {"enabled": false, "order": [], "count": 0, "total_bytes":
+        0, "entries": {}}, "status": "published", "deletion_status": {"is_deleted":
+        false, "status": "P"}, "stats": {"this_version": {"views": 1, "unique_views":
+        1, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions":
+        {"views": 1, "unique_views": 1, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}}}'
     headers:
       Alt-Svc:
       - h3=":443"; ma=2592000
@@ -231,9 +246,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Jul 2026 06:58:14 GMT
+      - Fri, 28 Aug 2026 14:21:33 GMT
       Etag:
-      - '"23"'
+      - '"25"'
       Link:
       - <https://rogue-scholar.org/api/records/23y6y-vh985> ; rel="linkset" ; type="application/linkset+json"
       Permissions-Policy:
@@ -241,7 +256,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '60'
+      - '59'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -257,9 +272,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '496'
+      - '497'
       X-Ratelimit-Reset:
-      - '1784876355'
+      - '1787926953'
       X-Xss-Protection:
       - 1; mode=block
     status:

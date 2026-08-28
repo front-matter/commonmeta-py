@@ -5,11 +5,11 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, zstd
+      - gzip, deflate, br, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.34.2
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://rogue-scholar.org/api/records/n5tg4-5h654
   response:
@@ -165,8 +165,8 @@ interactions:
         from five&nbsp;\"experts and stakeholders\" (Jan Velterop of Springer, John
         Wilbanks of Science Commons, Mark Patterson of PLoS, Matt Cockerill of BMC,
         and me.)</p>", "rs:generator": {"id": "Blogger", "title": {"en": "Blogger"}},
-        "rs:citations": [{"identifier": "10.59350/4q8j1-1ap35", "scheme": "doi", "reference":
-        "Willighagen, E. (2007, May 25). Numbers are copyrighted?. <i>Chem-bla-ics</i>."},
+        "pidbox:citations": [{"identifier": "10.59350/4q8j1-1ap35", "scheme": "doi",
+        "reference": "Willighagen, E. (2007, May 25). Numbers are copyrighted?. <i>Chem-bla-ics</i>."},
         {"identifier": "10.59350/jtzzf-jfz50", "scheme": "doi", "reference": "Willighagen,
         E. (2007, May 25). Numbers are copyrighted?. <i>Chem-bla-ics</i>."}], "rs:featured":
         false, "rs:doi": "https://doi.org/10.63485/oan"}, "access": {"record": "public",
@@ -175,8 +175,8 @@ interactions:
         0, "entries": {}}, "media_files": {"enabled": false, "order": [], "count":
         0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
         {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
-        13, "unique_views": 8, "downloads": 0, "unique_downloads": 0, "data_volume":
-        0.0}, "all_versions": {"views": 13, "unique_views": 8, "downloads": 0, "unique_downloads":
+        3, "unique_views": 3, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}, "all_versions": {"views": 3, "unique_views": 3, "downloads": 0, "unique_downloads":
         0, "data_volume": 0.0}}}'
     headers:
       Alt-Svc:
@@ -189,7 +189,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Jul 2026 06:58:14 GMT
+      - Fri, 28 Aug 2026 13:33:05 GMT
       Etag:
       - '"31"'
       Link:
@@ -217,7 +217,7 @@ interactions:
       X-Ratelimit-Remaining:
       - '498'
       X-Ratelimit-Reset:
-      - '1784876355'
+      - '1787924046'
       X-Xss-Protection:
       - 1; mode=block
     status:

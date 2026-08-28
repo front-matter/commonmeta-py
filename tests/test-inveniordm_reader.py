@@ -378,9 +378,14 @@ def test_repository_caltech_data():
         "title": "Creative Commons Attribution Non Commercial 4.0 International",
         "url": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
     }
-    # TODO: fix
-    # assert len(subject.files) == 24
-    # assert subject.files[0] == {}
+    assert len(subject.files) == 2258
+    assert subject.files[0] == {
+        "key": "CG_-10_2.mrc",
+        "checksum": "md5:2c4c37ad0606e4b2c27f70dbbd78031a",
+        "url": "https://data.caltech.edu/api/records/kfkqj-q6557/files/CG_-10_2.mrc/content",
+        "size": 47145984,
+        "mime_type": "application/marc",
+    }
 
 
 @pytest.mark.vcr
@@ -433,6 +438,15 @@ def test_repository_hcommons():
     assert subject.description.startswith(
         "The importance of communication skills cannot be disregarded"
     )
+    assert subject.files == [
+        {
+            "key": "humss-as-the-chosen-strand-and-its-influence-on-the-students-communication-skills.pdf",
+            "checksum": "md5:8bc0308e2dddf227e79c3e5889b46e49",
+            "url": "https://works.hcommons.org/api/records/zqk4g-vqe13/files/humss-as-the-chosen-strand-and-its-influence-on-the-students-communication-skills.pdf/content",
+            "size": 230574,
+            "mime_type": "application/pdf",
+        }
+    ]
 
 
 @pytest.mark.vcr
@@ -456,7 +470,7 @@ def test_rogue_scholar():
         "type": "Person",
         "person": {
             "id": "https://orcid.org/0000-0003-0159-013X",
-            "given_name": "Aaron",
+            "given_name": "Chee Hsien",
             "family_name": "Tay",
             "affiliations": [
                 {
@@ -473,7 +487,7 @@ def test_rogue_scholar():
         "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date_published == "2025-09-27T08:53:26"
+    assert subject.date_published == "2025-09-27T06:53:26Z"
     assert subject.relations == [
         {"id": "https://doi.org/10.59350/sfw0f-2fe65", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.59350/musings", "type": "IsPartOf"},
@@ -489,6 +503,7 @@ def test_rogue_scholar():
         "identifiers": [
             {"identifier": "https://doi.org/10.59350/musings", "identifier_type": "DOI"}
         ],
+        "platform": "Substack",
     }
     assert subject.subjects == [
         {
@@ -502,6 +517,15 @@ def test_rogue_scholar():
     ]
     assert subject.language == "en"
     assert subject.version == "v1"
+    assert subject.files == [
+        {
+            "key": "10.59350-5cj54-ha154.pdf",
+            "checksum": "md5:45bd78e15ced266c3b7da0bc7881d32d",
+            "url": "https://rogue-scholar.org/api/records/pevm6-kx104/files/10.59350-5cj54-ha154.pdf/content",
+            "size": 360752,
+            "mime_type": "application/pdf",
+        }
+    ]
 
 
 @pytest.mark.vcr
@@ -557,6 +581,8 @@ def test_rogue_scholar_with_citations():
     assert subject.language == "en"
     assert subject.version == "v1"
     assert subject.state == "findable"
+    # this record has file uploads disabled, so it carries no pdf rendition
+    assert subject.files is None
 
 
 @pytest.mark.vcr
@@ -631,6 +657,15 @@ def test_rogue_scholar_with_parent_doi():
     assert subject.language == "en"
     assert subject.version == "v1"
     assert subject.state == "findable"
+    assert subject.files == [
+        {
+            "key": "10.59350-qsajq-6tn97.pdf",
+            "checksum": "md5:5b36504d9cb2f9a37459f0382426b68e",
+            "url": "https://rogue-scholar.org/api/records/23y6y-vh985/files/10.59350-qsajq-6tn97.pdf/content",
+            "size": 302244,
+            "mime_type": "application/pdf",
+        }
+    ]
 
 
 @pytest.mark.vcr
@@ -648,8 +683,9 @@ def test_rogue_scholar_with_contributors():
         "type": "Person",
         "person": {
             "id": "https://orcid.org/0000-0002-4522-7466",
-            "given_name": "Yanina",
+            "given_name": "Yanina Noemí",
             "family_name": "Bellini Saibene",
+            "affiliations": [{"name": "rOpenSci"}],
         },
         "roles": ["Author"],
     }
@@ -659,9 +695,21 @@ def test_rogue_scholar_with_contributors():
             "id": "https://orcid.org/0000-0002-7690-8360",
             "given_name": "Steffi",
             "family_name": "LaZerte",
+            "affiliations": [
+                {"name": "Steffi LaZerte - Biological and Statistical R consulting"}
+            ],
         },
         "roles": ["Editor"],
     }
+    assert subject.files == [
+        {
+            "key": "10.59350-510pg-zzf58.pdf",
+            "checksum": "md5:68af7b083b1f4d31ace73ef533153dd3",
+            "url": "https://rogue-scholar.org/api/records/apt10-14q04/files/10.59350-510pg-zzf58.pdf/content",
+            "size": 105757,
+            "mime_type": "application/pdf",
+        }
+    ]
 
 
 @pytest.mark.vcr
@@ -697,6 +745,15 @@ def test_subfield_classification():
         {"subject": "Open Access"},
         {"subject": "SSP"},
         {"subject": "Stinkin' Publishers"},
+    ]
+    assert subject.files == [
+        {
+            "key": "10.59350-qsajq-6tn97.pdf",
+            "checksum": "md5:5b36504d9cb2f9a37459f0382426b68e",
+            "url": "https://rogue-scholar.org/api/records/23y6y-vh985/files/10.59350-qsajq-6tn97.pdf/content",
+            "size": 302244,
+            "mime_type": "application/pdf",
+        }
     ]
 
 

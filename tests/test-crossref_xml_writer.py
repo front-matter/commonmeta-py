@@ -508,10 +508,6 @@ def test_rogue_scholar_with_references():
             "id": "http://www.oecd.org/science/inno/38235147.pdf?5.2",
             "subject": "Economics and business",
         },
-        {
-            "id": "https://openalex.org/T11986",
-            "subject": "Scientific Computing and Data Management",
-        },
         {"subject": "News"},
     ]
     assert len(subject.references) == 11
@@ -577,6 +573,20 @@ def test_rogue_scholar_with_references():
         "researchers. Accessed April 13, 2023. "
         "https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
     }
+    assert dig(crossref_xml, "doi_data.collection.item") == [
+        {
+            "resource": {
+                "mime_type": "text/html",
+                "#text": "https://upstream.force11.org/the-research-software-alliance-resa/",
+            }
+        },
+        {
+            "resource": {
+                "mime_type": "application/pdf",
+                "#text": "https://rogue-scholar.org/api/records/de2ng-zbq88/files/10.54900-zwm7q-vet94.pdf/content",
+            }
+        },
+    ]
     assert crossref_xml.get("group_title") == "Upstream"
     assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
@@ -589,8 +599,12 @@ def test_rogue_scholar_with_doi():
     assert subject.id == "https://doi.org/10.59350/kz04m-s8z58"
     assert subject.subjects == [
         {
-            "id": "http://www.oecd.org/science/inno/38235147.pdf?5",
-            "subject": "Social science",
+            "id": "https://openalex.org/subfields/1802",
+            "subject": "Information Systems and Management",
+        },
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?5.2",
+            "subject": "Economics and business",
         },
         {"subject": "Open Access"},
         {"subject": "Open Access Transformation"},
@@ -614,15 +628,6 @@ def test_rogue_scholar_with_doi():
         "given_name": "Heinz",
         "surname": "Pampel",
         "ORCID": "https://orcid.org/0000-0003-3334-2771",
-        "affiliations": {
-            "institution": {
-                "institution_id": {
-                    "#text": "https://ror.org/01hcx6992",
-                    "type": "ror",
-                },
-                "institution_name": "Humboldt-Universität zu Berlin",
-            },
-        },
     }
     assert dig(crossref_xml, "program.1.related_item") == [
         {
@@ -647,11 +652,20 @@ def test_rogue_scholar_with_doi():
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "Die EU-Wissenschaftsministerien haben sich auf ihrer heutigen Sitzung"
     )
-    assert len(dig(crossref_xml, "doi_data.collection.item")) == 1
-    assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
-        "#text": "https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs/",
-        "mime_type": "text/html",
-    }
+    assert dig(crossref_xml, "doi_data.collection.item") == [
+        {
+            "resource": {
+                "mime_type": "text/html",
+                "#text": "https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs/",
+            }
+        },
+        {
+            "resource": {
+                "mime_type": "application/pdf",
+                "#text": "https://rogue-scholar.org/api/records/pywwn-1kp92/files/10.59350-kz04m-s8z58.pdf/content",
+            }
+        },
+    ]
     assert crossref_xml.get("group_title") == "wisspub.net"
     assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
@@ -1881,8 +1895,6 @@ def test_post_with_contributor_roles():
     assert subject.type == "BlogPost"
     assert len(subject.contributors) == 3
     assert subject.relations == [
-        {"id": "https://doi.org/10.53731/9t6xx-kht30", "type": "IsReferencedBy"},
-        {"id": "https://doi.org/10.53731/d0wwa-gwz14", "type": "IsReferencedBy"},
         {"id": "https://doi.org/10.59350/eqnvx-r9e30", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.59350/ropensci", "type": "IsPartOf"},
     ]
@@ -1896,8 +1908,9 @@ def test_post_with_contributor_roles():
         "ORCID": "https://orcid.org/0000-0002-4522-7466",
         "contributor_role": "author",
         "sequence": "additional",
-        "given_name": "Yanina",
+        "given_name": "Yanina Noemí",
         "surname": "Bellini Saibene",
+        "affiliations": {"institution": {"institution_name": "rOpenSci"}},
     }
     assert dig(crossref_xml, "program.1.related_item") == [
         {
@@ -1912,6 +1925,20 @@ def test_post_with_contributor_roles():
                 "relationship-type": "isPartOf",
                 "identifier-type": "doi",
                 "#text": "10.59350/ropensci",
+            }
+        },
+    ]
+    assert dig(crossref_xml, "doi_data.collection.item") == [
+        {
+            "resource": {
+                "mime_type": "text/html",
+                "#text": "https://ropensci.org/blog/2025/10/14/blog-roles/",
+            }
+        },
+        {
+            "resource": {
+                "mime_type": "application/pdf",
+                "#text": "https://rogue-scholar.org/api/records/apt10-14q04/files/10.59350-510pg-zzf58.pdf/content",
             }
         },
     ]
@@ -2021,13 +2048,17 @@ def test_wrong_doi_reference():
     assert subject.id == "https://doi.org/10.59350/sjrdz-3cm71"
     assert subject.type == "BlogPost"
     assert subject.relations == [
+        {"id": "https://doi.org/10.59350/sjrdz-3cm71", "type": "IsReferencedBy"},
+        {"id": "https://doi.org/10.59350/zhjk9-4bd81", "type": "IsReferencedBy"},
         {"id": "https://doi.org/10.59350/zhjk9-4bd81", "type": "IsVersionOf"},
         {"id": "https://doi.org/10.59350/rzepa", "type": "IsPartOf"},
     ]
     assert subject.references == [
         {
-            "id": None,
-            "unstructured": 'H. Rzepa, "A one-electron bond in methyl-λ1-borane.", 2024.',
+            "id": "https://doi.org/10.14469/hpc/14662",
+            "unstructured": "Rzepa, H., Imperial College London, Imperial College Research "
+            "Computing Service, &amp; Rzepa, H. (2024). <i>A one-electron bond in "
+            "methyl-λ1-borane.</i> [Archival collection]. Imperial College London.",
         }
     ]
 
@@ -2039,7 +2070,10 @@ def test_wrong_doi_reference():
     assert len(dig(crossref_xml, "citation_list.citation")) == 1
     assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
-        "unstructured_citation": 'H. Rzepa, "A one-electron bond in methyl-λ1-borane.", 2024.',
+        "doi": "10.14469/hpc/14662",
+        "unstructured_citation": "Rzepa, H., Imperial College London, Imperial College "
+        "Research Computing Service, & Rzepa, H. (2024). A one-electron bond in "
+        "methyl-λ1-borane. [Archival collection]. Imperial College London.",
     }
     assert dig(crossref_xml, "program.1.related_item") == [
         {
@@ -2054,6 +2088,20 @@ def test_wrong_doi_reference():
                 "relationship-type": "isPartOf",
                 "identifier-type": "doi",
                 "#text": "10.59350/rzepa",
+            }
+        },
+    ]
+    assert dig(crossref_xml, "doi_data.collection.item") == [
+        {
+            "resource": {
+                "mime_type": "text/html",
+                "#text": "https://www.ch.ic.ac.uk/rzepa/blog/?p=27944",
+            }
+        },
+        {
+            "resource": {
+                "mime_type": "application/pdf",
+                "#text": "https://rogue-scholar.org/api/records/nz4pe-q7x23/files/10.59350-sjrdz-3cm71.pdf/content",
             }
         },
     ]

@@ -5,11 +5,11 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, zstd
+      - gzip, deflate, br, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.34.2
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://works.hcommons.org/api/records/zqk4g-vqe13
   response:
@@ -161,10 +161,10 @@ interactions:
         "iiif_api": "https://works.hcommons.org/api/iiif/record:zqk4g-vqe13:humss-as-the-chosen-strand-and-its-influence-on-the-students-communication-skills.pdf/full/full/0/default.png"}}}},
         "media_files": {"enabled": false, "order": [], "count": 0, "total_bytes":
         0, "entries": {}}, "status": "published", "deletion_status": {"is_deleted":
-        false, "status": "P"}, "stats": {"this_version": {"views": 34496, "unique_views":
-        25187, "downloads": 21348, "unique_downloads": 15201, "data_volume": 4922293752.0},
-        "all_versions": {"views": 34496, "unique_views": 25187, "downloads": 21348,
-        "unique_downloads": 15201, "data_volume": 4922293752.0}}}'
+        false, "status": "P"}, "stats": {"this_version": {"views": 34843, "unique_views":
+        25474, "downloads": 21556, "unique_downloads": 15369, "data_volume": 4970253144.0},
+        "all_versions": {"views": 34843, "unique_views": 25474, "downloads": 21556,
+        "unique_downloads": 15369, "data_volume": 4970253144.0}}}'
     headers:
       Connection:
       - keep-alive
@@ -182,7 +182,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 24 Jul 2026 10:58:25 GMT
+      - Fri, 28 Aug 2026 13:33:05 GMT
       ETag:
       - W/"11"
       Link:
@@ -208,9 +208,9 @@ interactions:
       X-RateLimit-Remaining:
       - '199'
       X-RateLimit-Reset:
-      - '1784890766'
+      - '1787924046'
       X-Request-ID:
-      - ebbff1b61b11750aca4641f92b0daf4d
+      - 038601ed710ffaf568f4e23ac578515a
       X-XSS-Protection:
       - 1; mode=block
     status:

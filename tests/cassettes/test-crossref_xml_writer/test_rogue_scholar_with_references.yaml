@@ -9,13 +9,13 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.34.2
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://rogue-scholar.org/api/records/de2ng-zbq88
   response:
     body:
       string: '{"id": "de2ng-zbq88", "created": "2024-10-14T10:02:44.873092+00:00",
-        "updated": "2026-07-24T11:31:00.752489+00:00", "links": {"self": "https://rogue-scholar.org/api/records/de2ng-zbq88",
+        "updated": "2026-08-28T14:54:12.054058+00:00", "links": {"self": "https://rogue-scholar.org/api/records/de2ng-zbq88",
         "self_html": "https://rogue-scholar.org/records/de2ng-zbq88", "preview_html":
         "https://rogue-scholar.org/records/de2ng-zbq88?preview=1", "doi": "https://doi.org/10.54900/zwm7q-vet94",
         "self_doi": "https://doi.org/10.54900/zwm7q-vet94", "self_doi_html": "https://rogue-scholar.org/doi/10.54900/zwm7q-vet94",
@@ -26,25 +26,31 @@ interactions:
         "https://rogue-scholar.org/api/iiif/record:de2ng-zbq88/manifest", "self_iiif_sequence":
         "https://rogue-scholar.org/api/iiif/record:de2ng-zbq88/sequence/default",
         "files": "https://rogue-scholar.org/api/records/de2ng-zbq88/files", "media_files":
-        "https://rogue-scholar.org/api/records/de2ng-zbq88/media-files", "archive":
-        "https://rogue-scholar.org/api/records/de2ng-zbq88/files-archive", "archive_media":
-        "https://rogue-scholar.org/api/records/de2ng-zbq88/media-files-archive", "latest":
-        "https://rogue-scholar.org/api/records/de2ng-zbq88/versions/latest", "latest_html":
-        "https://rogue-scholar.org/records/de2ng-zbq88/latest", "versions": "https://rogue-scholar.org/api/records/de2ng-zbq88/versions",
-        "draft": "https://rogue-scholar.org/api/records/de2ng-zbq88/draft", "access_links":
-        "https://rogue-scholar.org/api/records/de2ng-zbq88/access/links", "access_grants":
-        "https://rogue-scholar.org/api/records/de2ng-zbq88/access/grants", "access_users":
-        "https://rogue-scholar.org/api/records/de2ng-zbq88/access/users", "access_groups":
-        "https://rogue-scholar.org/api/records/de2ng-zbq88/access/groups", "access_request":
-        "https://rogue-scholar.org/api/records/de2ng-zbq88/access/request", "access":
-        "https://rogue-scholar.org/api/records/de2ng-zbq88/access", "communities":
+        "https://rogue-scholar.org/api/records/de2ng-zbq88/media-files", "thumbnails":
+        {"10": "https://rogue-scholar.org/api/iiif/record:de2ng-zbq88:10.54900-zwm7q-vet94.pdf/full/%5E10,/0/default.jpg",
+        "50": "https://rogue-scholar.org/api/iiif/record:de2ng-zbq88:10.54900-zwm7q-vet94.pdf/full/%5E50,/0/default.jpg",
+        "100": "https://rogue-scholar.org/api/iiif/record:de2ng-zbq88:10.54900-zwm7q-vet94.pdf/full/%5E100,/0/default.jpg",
+        "250": "https://rogue-scholar.org/api/iiif/record:de2ng-zbq88:10.54900-zwm7q-vet94.pdf/full/%5E250,/0/default.jpg",
+        "750": "https://rogue-scholar.org/api/iiif/record:de2ng-zbq88:10.54900-zwm7q-vet94.pdf/full/%5E750,/0/default.jpg",
+        "1200": "https://rogue-scholar.org/api/iiif/record:de2ng-zbq88:10.54900-zwm7q-vet94.pdf/full/%5E1200,/0/default.jpg"},
+        "archive": "https://rogue-scholar.org/api/records/de2ng-zbq88/files-archive",
+        "archive_media": "https://rogue-scholar.org/api/records/de2ng-zbq88/media-files-archive",
+        "latest": "https://rogue-scholar.org/api/records/de2ng-zbq88/versions/latest",
+        "latest_html": "https://rogue-scholar.org/records/de2ng-zbq88/latest", "versions":
+        "https://rogue-scholar.org/api/records/de2ng-zbq88/versions", "draft": "https://rogue-scholar.org/api/records/de2ng-zbq88/draft",
+        "access_links": "https://rogue-scholar.org/api/records/de2ng-zbq88/access/links",
+        "access_grants": "https://rogue-scholar.org/api/records/de2ng-zbq88/access/grants",
+        "access_users": "https://rogue-scholar.org/api/records/de2ng-zbq88/access/users",
+        "access_groups": "https://rogue-scholar.org/api/records/de2ng-zbq88/access/groups",
+        "access_request": "https://rogue-scholar.org/api/records/de2ng-zbq88/access/request",
+        "access": "https://rogue-scholar.org/api/records/de2ng-zbq88/access", "communities":
         "https://rogue-scholar.org/api/records/de2ng-zbq88/communities", "communities-suggestions":
         "https://rogue-scholar.org/api/records/de2ng-zbq88/communities-suggestions",
         "request_deletion": "https://rogue-scholar.org/api/records/de2ng-zbq88/request-deletion",
         "file_modification": "https://rogue-scholar.org/api/records/de2ng-zbq88/file-modification",
         "quota_increase": "https://rogue-scholar.org/api/records/de2ng-zbq88/quota-increase",
         "requests": "https://rogue-scholar.org/api/records/de2ng-zbq88/requests"},
-        "revision_id": 67, "parent": {"id": "kktve-tdr43", "access": {"owned_by":
+        "revision_id": 83, "parent": {"id": "kktve-tdr43", "access": {"owned_by":
         {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
         false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
         {"ids": ["b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b", "fbc3bd5a-137e-4366-94ae-92a6e9d744e3"],
@@ -81,17 +87,19 @@ interactions:
         "scheme": "orcid"}]}, "affiliations": [{"id": "047426m28", "name": "University
         of Illinois Urbana-Champaign", "identifiers": [{"identifier": "047426m28",
         "scheme": "ror"}]}]}, {"person_or_org": {"type": "personal", "name": "Barker,
-        Michelle", "given_name": "Michelle", "family_name": "Barker"}}], "title":
-        "The Research Software Alliance (ReSA)", "publisher": "Front Matter", "publication_date":
+        Michelle", "given_name": "Michelle", "family_name": "Barker", "identifiers":
+        [{"identifier": "0000-0002-3623-172X", "scheme": "orcid"}]}, "affiliations":
+        [{"id": "007tfm130", "name": "Research Software Alliance", "identifiers":
+        [{"identifier": "007tfm130", "scheme": "ror"}]}]}], "title": "The Research
+        Software Alliance (ReSA)", "publisher": "Front Matter", "publication_date":
         "2023-04-18", "subjects": [{"id": "https://openalex.org/subfields/1802", "subject":
         "Information Systems and Management", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?5.2",
-        "subject": "Economics and business", "scheme": "FOS"}, {"id": "https://openalex.org/T11986",
-        "subject": "Scientific Computing and Data Management", "scheme": "Topics"},
-        {"subject": "News"}], "dates": [{"date": "2023-04-18T12:36:52", "type": {"id":
-        "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}},
-        {"date": "2025-01-24T18:35:19", "type": {"id": "updated", "title": {"de":
-        "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id":
-        "eng", "title": {"en": "English"}}], "identifiers": [{"identifier": "https://doi.org/10.54900/zwm7q-vet94",
+        "subject": "Economics and business", "scheme": "FOS"}, {"subject": "News"}],
+        "dates": [{"date": "2023-04-18T10:36:52Z", "type": {"id": "issued", "title":
+        {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}}, {"date":
+        "2025-01-24T17:35:19Z", "type": {"id": "updated", "title": {"de": "Aktualisiert",
+        "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id": "eng", "title":
+        {"en": "English"}}], "identifiers": [{"identifier": "https://doi.org/10.54900/zwm7q-vet94",
         "scheme": "guid"}, {"identifier": "https://upstream.force11.org/the-research-software-alliance-resa/",
         "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
         {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
@@ -102,41 +110,33 @@ interactions:
         research today.", "references": [{"identifier": "https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
         "scheme": "url", "reference": "It''s impossible to conduct research without
         software, say 7 out of 10 UK researchers. Accessed April 13, 2023."}, {"identifier":
-        "10.6084/m9.figshare.5328442.v3", "scheme": "doi", "reference": "Nangia, U.,
-        &amp; Katz, D. S. (2017). <i>Track 1 Paper: Surveying the U.S. National Postdoctoral
-        Association Regarding Software Use and Training in Research</i>. figshare."},
-        {"identifier": "10.54900/9akm9y5-5ject5y", "scheme": "doi", "reference": "van
-        Nieuwpoort, R., &amp; Katz, D. S. (2023, March 14). Defining the roles of
-        research software. <i>Upstream</i>."}, {"identifier": "10.5281/zenodo.7740084",
-        "scheme": "doi", "reference": "Barker, M., Hong, N. P. C., Van Eijnatten,
-        J., &amp; Katz, D. S. (2023). <i>Amsterdam Declaration on Funding Research
-        Software Sustainability</i> (0.3). Zenodo."}, {"identifier": "10.5281/zenodo.6859709",
-        "scheme": "doi", "reference": "Barker, M., Leung, M. A., Martinez, P. A.,
-        Gesing, S., Hartley, K., Banerji, A., Cohen, J., Goggins, S., Jay, C., Jimenz
-        Gacha, S., Katz, D. S., Kibet, C. K., Lamprecht, A.-L., Mosbergen, R., Weinzierl,
-        M., Wilson, R., Yehudi, Y., &amp; Zhang, Q. (2022). <i>Report on Vive la diff\u00e9rence
-        - research software engineers</i>. Zenodo."}, {"identifier": "10.5281/zenodo.7179892",
-        "scheme": "doi", "reference": "Martinez, P. A., Barker, M., Kibet, C., Upani,
-        J., Mbunzama, N., Oko-Isu, A., Jimenez Gacha, S., Corr\u00eaa dos Santos,
-        R. A., Wolovick, N., Kaur, S., Bhogal, J., Almarzouq, B., Tariq, A. S. B.,
-        &amp; Sheikh, A. (2022). <i>The Research Software Community Landscape in the
-        Global South</i>. Zenodo."}, {"identifier": "10.5281/zenodo.3884311", "scheme":
-        "doi", "reference": "Barker, M., Katz, D. S., &amp; Gonzalez-Beltran, A. (2020).
-        <i>Evidence for the importance of research software</i>. Zenodo."}, {"identifier":
-        "10.15497/rda00052", "scheme": "doi", "reference": "Research Data Alliance.
-        (2020). <i>Final release: COVID-19 guidelines</i>. RDA."}, {"identifier":
-        "10.15497/rda00068", "scheme": "doi", "reference": "Chue Hong, N. P., Katz,
-        D. S., Barker, M., Lamprecht, A.-L., Martinez, C., Psomopoulos, F. E., Harrow,
-        J., Castro, L. J., Gruenpeter, M., Martinez, P. A., Honeyman, T., Struck,
-        A., Lee, A., Loewe, A., Van Werkhoven, B., Jones, C., Garijo, D., Plomp, E.,
-        Genova, F., \u2026 Research Data Alliance FAIR For Research Software (FAIR4RS)
-        WG. (2021). <i>FAIR Principles for Research Software (FAIR4RS Principles)</i>.
-        Research Data Alliance."}, {"identifier": "10.5281/zenodo.6239373", "scheme":
-        "doi", "reference": "Barker, M. (2022). <i>FAIR4RS Roadmap Report</i>. Zenodo."},
-        {"identifier": "10.5281/zenodo.3699950", "scheme": "doi", "reference": "Katz,
-        D. S., Barker, M., Martinez, P. A., Anzt, H., Gonzalez-Beltran, A., &amp;
-        Bakker, T. (2020). <i>The Research Software Alliance (ReSA) and the community
-        landscape</i> (1.0) [Data set]. Zenodo."}]}, "custom_fields": {"journal:journal":
+        "10.6084/m9.figshare.5328442.v3", "scheme": "doi", "reference": "Nangia U,
+        Katz DS. Track 1 Paper: Surveying the U.S. National Postdoctoral Association
+        Regarding Software Use and Training in Research. Published online August 30,
+        2017."}, {"identifier": "10.54900/9akm9y5-5ject5y", "scheme": "doi", "reference":
+        "Nieuwpoort R van, Katz DS. Defining the roles of research software. Upstream.
+        Published online March 14, 2023."}, {"identifier": "10.5281/zenodo.7740084",
+        "scheme": "doi", "reference": "Barker M, Hong NPC, Eijnatten J van, Katz DS.
+        Amsterdam Declaration on Funding Research Software Sustainability. Published
+        online March 16, 2023."}, {"identifier": "10.5281/zenodo.6859709", "scheme":
+        "doi", "reference": "Barker M, Leung MA, Martinez PA, et al. Report on Vive
+        La Diff\u00e9rence - Research Software Engineers. Zenodo; 2022."}, {"identifier":
+        "10.5281/zenodo.7179892", "scheme": "doi", "reference": "Martinez PA. The
+        Research Software Community Landscape in the Global South. Published online
+        October 10, 2022."}, {"identifier": "10.5281/zenodo.3884311", "scheme": "doi",
+        "reference": "Barker M, Katz DS, Gonzalez-Beltran A. Evidence for the Importance
+        of Research Software. Zenodo; 2020."}, {"identifier": "10.15497/rda00052",
+        "scheme": "doi", "reference": "Research Data Alliance. Final release: COVID-19
+        guidelines. Published online 2020. https://doi.org/10.15497/RDA00052"}, {"identifier":
+        "10.15497/rda00068", "scheme": "doi", "reference": "Chue Hong NP, Katz DS,
+        Barker M, et al. FAIR Principles for Research Software (FAIR4RS Principles).
+        Published online 2021. https://doi.org/10.15497/RDA00068"}, {"identifier":
+        "10.5281/zenodo.6239373", "scheme": "doi", "reference": "Barker, Michelle.
+        FAIR4RS Roadmap Report. Published online February 20, 2022. https://doi.org/10.5281/ZENODO.6239373"},
+        {"identifier": "10.5281/zenodo.3699950", "scheme": "doi", "reference": "Katz
+        DS, Barker M, Martinez PA, Anzt H, Gonzalez-Beltran A, Bakker T. The Research
+        Software Alliance (ReSA) and the community landscape. Published online March
+        11, 2020. https://doi.org/10.5281/ZENODO.3699950"}]}, "custom_fields": {"journal:journal":
         {"title": "Upstream"}, "rs:content_html": "<p>Research software is a key part
         of most research today. As University of Manchester Professor Carole Goble
         has said, \"software is the ubiquitous instrument of science.\" Creating and
@@ -336,14 +336,25 @@ interactions:
         Software Alliance (ReSA) and the community landscape. Published online March
         11, 2020. doi:<a href=\"https://doi.org/10.5281/ZENODO.3699950\">10.5281/ZENODO.3699950</a><br></li></ol>",
         "rs:image": "https://upstream.force11.org/content/images/2023/04/resa-logo-7.png",
-        "rs:featured": false}, "access": {"record": "public", "files": "public", "embargo":
-        {"active": false, "reason": null}, "status": "metadata-only"}, "files": {"enabled":
-        false, "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files":
-        {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries": {}},
-        "status": "published", "deletion_status": {"is_deleted": false, "status":
-        "P"}, "stats": {"this_version": {"views": 1, "unique_views": 1, "downloads":
-        0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions": {"views": 1,
-        "unique_views": 1, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}}}'
+        "rs:generator": {"id": "Ghost", "title": {"en": "Ghost"}}, "rs:featured":
+        false, "rs:doi": "https://doi.org/10.54900/upstream"}, "access": {"record":
+        "public", "files": "public", "embargo": {"active": false, "reason": null},
+        "status": "open"}, "files": {"enabled": true, "order": [], "count": 1, "total_bytes":
+        1974549, "entries": {"10.54900-zwm7q-vet94.pdf": {"id": "ee17a25e-2095-451a-9b2d-4e114c72d767",
+        "checksum": "md5:86d2196f7d3349b444178683e786fe23", "ext": "pdf", "size":
+        1974549, "mimetype": "application/pdf", "storage_class": "L", "key": "10.54900-zwm7q-vet94.pdf",
+        "metadata": null, "access": {"hidden": false}, "links": {"self": "https://rogue-scholar.org/api/records/de2ng-zbq88/files/10.54900-zwm7q-vet94.pdf",
+        "content": "https://rogue-scholar.org/api/records/de2ng-zbq88/files/10.54900-zwm7q-vet94.pdf/content",
+        "iiif_canvas": "https://rogue-scholar.org/api/iiif/record:de2ng-zbq88/canvas/10.54900-zwm7q-vet94.pdf",
+        "iiif_base": "https://rogue-scholar.org/api/iiif/record:de2ng-zbq88:10.54900-zwm7q-vet94.pdf",
+        "iiif_info": "https://rogue-scholar.org/api/iiif/record:de2ng-zbq88:10.54900-zwm7q-vet94.pdf/info.json",
+        "iiif_api": "https://rogue-scholar.org/api/iiif/record:de2ng-zbq88:10.54900-zwm7q-vet94.pdf/full/full/0/default.png"}}}},
+        "media_files": {"enabled": false, "order": [], "count": 0, "total_bytes":
+        0, "entries": {}}, "status": "published", "deletion_status": {"is_deleted":
+        false, "status": "P"}, "stats": {"this_version": {"views": 1, "unique_views":
+        1, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions":
+        {"views": 1, "unique_views": 1, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}}}'
     headers:
       Alt-Svc:
       - h3=":443"; ma=2592000
@@ -355,9 +366,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 23 Aug 2026 07:29:54 GMT
+      - Fri, 28 Aug 2026 14:59:20 GMT
       Etag:
-      - '"67"'
+      - '"83"'
       Link:
       - <https://rogue-scholar.org/api/records/de2ng-zbq88> ; rel="linkset" ; type="application/linkset+json"
       Permissions-Policy:
@@ -365,7 +376,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '53'
+      - '59'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -381,9 +392,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '480'
+      - '499'
       X-Ratelimit-Reset:
-      - '1787470248'
+      - '1787929220'
       X-Xss-Protection:
       - 1; mode=block
     status:

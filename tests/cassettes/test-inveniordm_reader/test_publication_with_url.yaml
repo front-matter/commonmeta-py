@@ -5,11 +5,11 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, zstd
+      - gzip, deflate, br, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.34.2
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://zenodo.org/api/records/5244404
   response:
@@ -114,9 +114,9 @@ interactions:
         "size": 5335, "checksum": "md5:b1b5979db4d4755601b85f160ce664b9", "links":
         {"self": "https://zenodo.org/api/records/5244404/files/gisaid_acknowledgement_table.pdf/content"}}],
         "swh": {}, "owners": [{"id": "145956"}], "status": "published", "stats": {"downloads":
-        91510, "unique_downloads": 82186, "views": 152900, "unique_views": 134447,
-        "version_downloads": 2699, "version_unique_downloads": 2485, "version_unique_views":
-        4117, "version_views": 4439}, "state": "done", "submitted": true}'
+        91730, "unique_downloads": 82401, "views": 153407, "unique_views": 134946,
+        "version_downloads": 2763, "version_unique_downloads": 2546, "version_unique_views":
+        4174, "version_views": 4496}, "state": "done", "submitted": true}'
     headers:
       access-control-allow-origin:
       - '*'
@@ -129,7 +129,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Fri, 24 Jul 2026 06:58:13 GMT
+      - Fri, 28 Aug 2026 13:32:59 GMT
       etag:
       - W/"7"
       link:
@@ -139,7 +139,7 @@ interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '59'
+      - '58'
       server:
       - nginx
       strict-transport-security:
@@ -157,7 +157,7 @@ interactions:
       x-ratelimit-remaining:
       - '130'
       x-ratelimit-reset:
-      - '1784876353'
+      - '1787924038'
       x-source:
       - api
       x-xss-protection:

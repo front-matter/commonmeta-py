@@ -5,11 +5,11 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, zstd
+      - gzip, deflate, br, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.34.2
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://zenodo.org/api/records/7834392
   response:
@@ -84,26 +84,26 @@ interactions:
         "type": "dataset"}, "journal": {"issue": "3", "pages": "315-324", "title":
         "Epidemiologia", "volume": "2"}, "alternate_identifiers": [{"identifier":
         "10.3390/epidemiologia2030024"}, {"identifier": "https://github.com/thepanacealab/covid19_twitter"}],
-        "license": {"id": "other-pd"}, "communities": [{"id": "biohackathon"}, {"id":
-        "covid-19"}], "relations": {"version": [{"index": 162, "is_last": true, "parent":
-        {"pid_type": "recid", "pid_value": "3723939"}}]}, "notes": "This dataset will
-        be updated bi-weekly at least with additional tweets, look at the github repo
-        for these updates.\nRelease: We have standardized the name of the resource
-        to match our pre-print manuscript and to not have to update it every week."},
-        "title": "A large-scale COVID-19 Twitter chatter dataset for open scientific
-        research - an international collaboration", "links": {"self": "https://zenodo.org/api/records/7834392",
-        "self_html": "https://zenodo.org/records/7834392", "preview_html": "https://zenodo.org/records/7834392?preview=1",
-        "doi": "https://doi.org/10.5281/zenodo.7834392", "self_doi": "https://doi.org/10.5281/zenodo.7834392",
-        "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.7834392", "reserve_doi":
-        "https://zenodo.org/api/records/7834392/draft/pids/doi", "parent": "https://zenodo.org/api/records/3723939",
-        "parent_html": "https://zenodo.org/records/3723939", "parent_doi": "https://doi.org/10.5281/zenodo.3723939",
-        "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.3723939", "self_iiif_manifest":
-        "https://zenodo.org/api/iiif/record:7834392/manifest", "self_iiif_sequence":
-        "https://zenodo.org/api/iiif/record:7834392/sequence/default", "files": "https://zenodo.org/api/records/7834392/files",
-        "media_files": "https://zenodo.org/api/records/7834392/media-files", "archive":
-        "https://zenodo.org/api/records/7834392/files-archive", "archive_media": "https://zenodo.org/api/records/7834392/media-files-archive",
-        "latest": "https://zenodo.org/api/records/7834392/versions/latest", "latest_html":
-        "https://zenodo.org/records/7834392/latest", "versions": "https://zenodo.org/api/records/7834392/versions",
+        "license": {"id": "other-pd"}, "communities": [{"id": "covid-19"}, {"id":
+        "biohackathon"}], "relations": {"version": [{"index": 162, "is_last": true,
+        "parent": {"pid_type": "recid", "pid_value": "3723939"}}]}, "notes": "This
+        dataset will be updated bi-weekly at least with additional tweets, look at
+        the github repo for these updates.\nRelease: We have standardized the name
+        of the resource to match our pre-print manuscript and to not have to update
+        it every week."}, "title": "A large-scale COVID-19 Twitter chatter dataset
+        for open scientific research - an international collaboration", "links": {"self":
+        "https://zenodo.org/api/records/7834392", "self_html": "https://zenodo.org/records/7834392",
+        "preview_html": "https://zenodo.org/records/7834392?preview=1", "doi": "https://doi.org/10.5281/zenodo.7834392",
+        "self_doi": "https://doi.org/10.5281/zenodo.7834392", "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.7834392",
+        "reserve_doi": "https://zenodo.org/api/records/7834392/draft/pids/doi", "parent":
+        "https://zenodo.org/api/records/3723939", "parent_html": "https://zenodo.org/records/3723939",
+        "parent_doi": "https://doi.org/10.5281/zenodo.3723939", "parent_doi_html":
+        "https://zenodo.org/doi/10.5281/zenodo.3723939", "self_iiif_manifest": "https://zenodo.org/api/iiif/record:7834392/manifest",
+        "self_iiif_sequence": "https://zenodo.org/api/iiif/record:7834392/sequence/default",
+        "files": "https://zenodo.org/api/records/7834392/files", "media_files": "https://zenodo.org/api/records/7834392/media-files",
+        "archive": "https://zenodo.org/api/records/7834392/files-archive", "archive_media":
+        "https://zenodo.org/api/records/7834392/media-files-archive", "latest": "https://zenodo.org/api/records/7834392/versions/latest",
+        "latest_html": "https://zenodo.org/records/7834392/latest", "versions": "https://zenodo.org/api/records/7834392/versions",
         "draft": "https://zenodo.org/api/records/7834392/draft", "access_links": "https://zenodo.org/api/records/7834392/access/links",
         "access_grants": "https://zenodo.org/api/records/7834392/access/grants", "access_users":
         "https://zenodo.org/api/records/7834392/access/users", "access_request": "https://zenodo.org/api/records/7834392/access/request",
@@ -186,9 +186,9 @@ interactions:
         "size": 1073741824, "checksum": "md5:222e3a9b3758c119db0a0e75c8f7d582", "links":
         {"self": "https://zenodo.org/api/records/7834392/files/full_dataset_clean.tsv.gz.part-ab/content"}}],
         "swh": {}, "owners": [{"id": "95208"}], "status": "published", "stats": {"downloads":
-        422022, "unique_downloads": 249432, "views": 370211, "unique_views": 341543,
-        "version_downloads": 77399, "version_unique_downloads": 69338, "version_unique_views":
-        62210, "version_views": 63287}, "state": "done", "submitted": true}'
+        434899, "unique_downloads": 262077, "views": 371608, "unique_views": 342898,
+        "version_downloads": 77647, "version_unique_downloads": 69517, "version_unique_views":
+        62565, "version_views": 63654}, "state": "done", "submitted": true}'
     headers:
       access-control-allow-origin:
       - '*'
@@ -201,7 +201,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Fri, 24 Jul 2026 06:58:14 GMT
+      - Fri, 28 Aug 2026 13:32:59 GMT
       etag:
       - W/"2"
       link:
@@ -229,7 +229,7 @@ interactions:
       x-ratelimit-remaining:
       - '129'
       x-ratelimit-reset:
-      - '1784876353'
+      - '1787924038'
       x-source:
       - api
       x-xss-protection:
