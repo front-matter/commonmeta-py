@@ -253,6 +253,14 @@ def test_from_schema_org():
     assert datacite["titles"] == [{"title": "Eating your own Dog Food"}]
     assert datacite["creators"] == [
         {
+            "affiliation": [
+                {
+                    "affiliationIdentifier": "https://ror.org/04wxnsj81",
+                    "affiliationIdentifierScheme": "ROR",
+                    "name": "DataCite",
+                    "schemeUri": "https://ror.org",
+                },
+            ],
             "name": "Fenner, Martin",
             "givenName": "Martin",
             "familyName": "Fenner",
