@@ -2060,3 +2060,42 @@ def test_pdf_renders_the_orcid_icon_and_its_link(render_pdf):
             if "/A" in annotation and "/URI" in annotation.A
         ]
     assert "https://orcid.org/0000-0002-1003-5675" in links
+
+
+def test_no_pids_when_the_id_is_not_a_doi():
+    """A blog that registers its own DOIs elsewhere and has not put one in its
+    feed yet leaves the record with a url for an id.
+
+    InvenioRDM's PID schema requires an identifier, so declaring an external
+    DOI without one is refused and the draft is never created. No pids at all
+    is a valid draft; the DOI is added to it later.
+    """
+    subject = Metadata(
+        {
+            "id": "https://example.org/blog/a-post/",
+            "type": "BlogPost",
+            "titles": [{"title": "A post"}],
+        },
+        via="commonmeta",
+    )
+
+    inveniordm = json.loads(subject.write(to="inveniordm"))
+
+    assert inveniordm["pids"] == {}
+
+
+def test_an_external_doi_is_still_declared():
+    subject = Metadata(
+        {
+            "id": "https://doi.org/10.5438/abc1-2345",
+            "type": "BlogPost",
+            "titles": [{"title": "A post"}],
+        },
+        via="commonmeta",
+    )
+
+    inveniordm = json.loads(subject.write(to="inveniordm"))
+
+    assert inveniordm["pids"] == {
+        "doi": {"identifier": "10.5438/abc1-2345", "provider": "external"}
+    }

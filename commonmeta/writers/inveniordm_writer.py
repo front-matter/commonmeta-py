@@ -106,9 +106,18 @@ def write_inveniordm(metadata: Metadata, write_pdf: bool = False, **kwargs) -> d
     #     # DataCite DOIs should not be provided in the InvenioRDM writer
     #     pids = None
     else:
-        pids = {
-            "doi": {"identifier": doi_from_url(metadata.id), "provider": "external"},
-        }
+        # A record whose id is not a DOI at all -- a blog that registers its own
+        # DOIs elsewhere and has not put one in its feed yet. InvenioRDM's PID
+        # schema requires an identifier, so declaring an external DOI without
+        # one is refused ("Missing data for required field") and the draft is
+        # never created. No pids at all is a valid draft: the DOI is added to it
+        # later, by whoever knows it.
+        identifier = doi_from_url(metadata.id)
+        pids = (
+            {"doi": {"identifier": identifier, "provider": "external"}}
+            if identifier
+            else {}
+        )
     _type = CM_TO_INVENIORDM_TRANSLATIONS.get(metadata.type, "Other")
     creators = [
         to_inveniordm_creator(i)
