@@ -527,6 +527,88 @@ def test_the_page_drops_an_emoji_the_metadata_keeps(render_pdf):
     )
 
 
+# a table whose caption lands near the foot of the page, which is where the
+# rendition used to fail: the spacer puts it there without depending on how a
+# paragraph of text happens to break
+TABLE_WITH_CAPTION = (
+    "<table><caption>Changes in publication types</caption>"
+    "<thead><tr><th>Type</th><th>Count</th></tr></thead><tbody>"
+    + "".join(f"<tr><td>row {i}</td><td>{i}</td></tr>" for i in range(12))
+    + "</tbody></table>"
+)
+
+
+@pytest.mark.parametrize("spacer", range(18, 27))
+def test_a_table_caption_is_not_left_at_a_page_break(render_pdf, spacer):
+    """A caption keeps its table, whatever height the page break falls at.
+
+    WeasyPrint 69 cannot build a structure tree for a table whose caption was
+    left on the page before it - it raises `Table wrapper without a table` -
+    and the failure took the whole record push with it, so the stylesheet
+    keeps a caption with the first row it describes. 10.59350/4r6jj-90k30 is a
+    post it failed on: a Quarto analysis whose first table is captioned.
+    """
+    from conftest import sample_metadata
+
+    sample = sample_metadata(
+        f'<div style="height: {spacer}cm"></div>{TABLE_WITH_CAPTION}'
+    )
+
+    # the pdf is still tagged: the rendition did not fall back to writing one
+    # without a structure tree
+    assert read_pdf_metadata(render_pdf(sample))["tagged"] is True
+
+
+def test_a_page_weasyprint_cannot_tag_is_written_untagged(caplog):
+    """A rendition that cannot be tagged is written anyway, and says so.
+
+    The stylesheet keeps captions off page breaks, but `break-after: avoid` is
+    a hint rather than a guarantee, and a rendition that raises would take the
+    record push with it.
+    """
+    from commonmeta.io_utils import write_pdf_bytes
+
+    def write_pdf(**options):
+        if options["pdf_variant"].endswith("a"):
+            raise ValueError("Table wrapper without a table")
+        return b"%PDF-untagged"
+
+    renders = []
+
+    def render():
+        renders.append(1)
+        return SimpleNamespace(write_pdf=write_pdf)
+
+    metadata = SimpleNamespace(id="https://doi.org/10.59350/4r6jj-90k30")
+
+    with caplog.at_level(logging.WARNING):
+        pdf = write_pdf_bytes(render, metadata, {"pdf_variant": "pdf/a-3a"})
+
+    # the pages are laid out again rather than written twice: a document that
+    # raised part way through tagging carries what it had already built
+    assert len(renders) == 2
+
+    assert pdf == b"%PDF-untagged"
+    assert "pdf/a-3b" in caplog.text
+
+
+def test_a_page_that_fails_for_another_reason_is_not_written(caplog):
+    """Only the tagging failure falls back; everything else is a failure."""
+    from commonmeta.io_utils import write_pdf_bytes
+
+    def write_pdf(**options):
+        raise ValueError("Font is not embeddable")
+
+    metadata = SimpleNamespace(id="https://doi.org/10.59350/4r6jj-90k30")
+
+    with pytest.raises(ValueError, match="Font is not embeddable"):
+        write_pdf_bytes(
+            lambda: SimpleNamespace(write_pdf=write_pdf),
+            metadata,
+            {"pdf_variant": "pdf/a-3a"},
+        )
+
+
 @pytest.mark.parametrize(
     "src, page, poster",
     [

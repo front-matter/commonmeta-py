@@ -346,7 +346,7 @@ def test_with_upstream_blog_post():
         "title": "Upstream",
     }
     assert subject.description.startswith(
-        "Today we are announcing Upstream. And if you're reading this, you're already a part of it!"
+        "Today we are announcing <strong> Upstream </strong> ."
     )
     assert subject.subjects is None
     assert subject.language is None

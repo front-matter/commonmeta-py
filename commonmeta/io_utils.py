@@ -1521,6 +1521,34 @@ def pdf_stylesheet() -> tuple:
     return css, font_config
 
 
+def write_pdf_bytes(render, metadata: Metadata, options: dict) -> bytes:
+    """Write a rendition, untagged where WeasyPrint cannot tag it.
+
+    WeasyPrint 69 raises `Table wrapper without a table` while it builds the
+    structure tree of a table whose caption was left behind at a page break
+    (`weasyprint/pdf/tags.py`). The stylesheet keeps a caption with the row it
+    describes, so this is rare; where it still happens the post is written to
+    the same PDF/A level without the accessibility conformance rather than not
+    written at all, since a rendition that fails takes the record push with it.
+
+    ``render`` lays the pages out and is called once per attempt: writing a
+    document that raised part way through tagging leaves its boxes marked and
+    its structure tree half built, and the second write would carry both.
+    """
+    variant = options.get("pdf_variant", "")
+    try:
+        return render().write_pdf(**options)
+    except ValueError as error:
+        tagged = variant.startswith("pdf/a-") and variant.endswith("a")
+        if "Table wrapper without a table" not in str(error) or not tagged:
+            raise
+        untagged = variant[:-1] + "b"
+        log.warning(
+            f"Writing {metadata.id} as {untagged}, weasyprint cannot tag it: {error}"
+        )
+        return render().write_pdf(**{**options, "pdf_variant": untagged})
+
+
 def write_pdf_rendition(
     metadata: Metadata, url_fetcher=None, file: str | None = None, **options
 ) -> bytes | None:
@@ -1554,10 +1582,14 @@ def write_pdf_rendition(
     # rendered from is the only file it carries
     if presence(metadata.content):
         options.setdefault("attachments", [to_pdf_attachment(metadata, weasyprint)])
-    document = weasyprint.HTML(
-        string=to_pdf_html(metadata), base_url=str(PDF_RESOURCES), **fetcher
-    ).render(stylesheets=[css], font_config=font_config)
-    pdf = finish_pdf(document.write_pdf(**options), metadata)
+    html = to_pdf_html(metadata)
+
+    def render():
+        return weasyprint.HTML(
+            string=html, base_url=str(PDF_RESOURCES), **fetcher
+        ).render(stylesheets=[css], font_config=font_config)
+
+    pdf = finish_pdf(write_pdf_bytes(render, metadata, options), metadata)
     if file:
         write_output(file, pdf, [".pdf"])
     return pdf

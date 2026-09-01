@@ -441,6 +441,13 @@ th,
 td {
   vertical-align: top;
 }
+caption {
+  /* A caption alone at the foot of a page reads as a heading for nothing, and
+     WeasyPrint 69 cannot tag the table it leaves behind on the next page:
+     `Table wrapper without a table`, raised while it builds the structure
+     tree. Keeping the caption with the first row it describes avoids both. */
+  break-after: avoid;
+}
 
 /***********************************************
     Post content, from the Rogue Scholar site
