@@ -2099,3 +2099,35 @@ def test_an_external_doi_is_still_declared():
     assert inveniordm["pids"] == {
         "doi": {"identifier": "10.5438/abc1-2345", "provider": "external"}
     }
+
+
+def test_a_record_survives_a_pdf_that_will_not_render():
+    """WeasyPrint fails on some posts -- a tagged-pdf assertion on a figure it
+    has already marked, among others. The exception came out of upload_pdf,
+    through upsert_record, and took the record with it: a post went unwritten
+    because a picture in it could not be drawn."""
+    from commonmeta.writers import inveniordm_writer
+
+    record = {"id": "hbnb8-1rw96"}
+
+    with patch.object(
+        inveniordm_writer, "write_pdf_rendition", side_effect=AssertionError()
+    ):
+        result = inveniordm_writer.upload_pdf(
+            Mock(), "example.org", None, dict(record)
+        )
+
+    assert result == record
+
+
+def test_a_record_survives_having_no_pdf_to_upload():
+    from commonmeta.writers import inveniordm_writer
+
+    record = {"id": "hbnb8-1rw96"}
+
+    with patch.object(inveniordm_writer, "write_pdf_rendition", return_value=None):
+        result = inveniordm_writer.upload_pdf(
+            Mock(), "example.org", None, dict(record)
+        )
+
+    assert result == record

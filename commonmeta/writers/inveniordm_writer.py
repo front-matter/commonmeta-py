@@ -941,7 +941,19 @@ def upload_pdf(metadata: Metadata, host: str, token: str, record: dict) -> dict:
     caller. Where it is locked, the refusal is logged and the record is
     published without the file rather than not published at all.
     """
-    pdf = write_pdf_rendition(metadata)
+    # A rendition that cannot be made must not lose the record. WeasyPrint
+    # fails on some posts -- a tagged-pdf assertion on a figure it has already
+    # marked, among others -- and the exception came out here, through
+    # upsert_record, and took the record with it: a post went unwritten because
+    # a picture in it could not be drawn. The post is the thing worth keeping.
+    try:
+        pdf = write_pdf_rendition(metadata)
+    except Exception as e:
+        log.warning(
+            f"Could not render a pdf for record {record.get('id')}: {e}",
+            exc_info=True,
+        )
+        return record
     if pdf is None:
         log.warning(f"Could not render a pdf for record {record.get('id')}")
         return record
