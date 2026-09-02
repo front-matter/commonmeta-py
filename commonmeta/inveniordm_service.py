@@ -40,17 +40,42 @@ than "raises somewhere deep in a writer".
 
 from __future__ import annotations
 
+import hashlib
 import io
 import logging
 from contextlib import contextmanager
 from contextvars import ContextVar
-from hashlib import md5
 from typing import Iterator
+
+from .io_utils import former_pdf_filenames
 
 log = logging.getLogger(__name__)
 
 #: Whether the current context should use the service layer.
 _enabled: ContextVar[bool] = ContextVar("commonmeta_inveniordm_system_process")
+
+
+def is_checksum_of(checksum: str | None, content: bytes) -> bool:
+    """Whether a file entry's checksum is the checksum of these bytes.
+
+    The entry names the algorithm it used - `md5:2c4c37ad…` - and it names it
+    because the storage backend chose it: invenio-files-rest hashes with md5
+    unless a backend overrides `_init_hash`, and no setting changes that. The
+    name is read rather than assumed, so an instance that hashes otherwise is
+    compared with rather than uploaded to again on every run. An entry with no
+    checksum, or one named by an algorithm this Python cannot compute, is not
+    a match, and the file is written again.
+    """
+    algorithm, _, digest = (checksum or "").partition(":")
+    if not digest:
+        return False
+    try:
+        message_digest = hashlib.new(algorithm)
+    except ValueError:
+        log.warning(f"Cannot check a {algorithm} checksum, rewriting the file")
+        return False
+    message_digest.update(content)
+    return message_digest.hexdigest() == digest
 
 
 @contextmanager
@@ -460,11 +485,21 @@ class ServiceBackend:
             if not self._drop_file(record_id, stale):
                 return self._abandon_draft(record, stale)
 
+        # The rendition of this post that a run before the rename attached is
+        # the same rendition under an older name, and nothing else would ever
+        # look for it: left alone, the record would carry two pdfs of one post
+        # and deposit both. Where the bucket refuses the removal the old one
+        # stays and the new one is written beside it, which is the tolerance a
+        # changed file gets too - a record with a rendition beats none.
+        for superseded in former_pdf_filenames(key):
+            if self._file_entry(record_id, superseded):
+                self._drop_file(record_id, superseded)
+
         # Whatever is left under this key is complete, the incomplete ones
         # having just gone.
         entry = self._file_entry(record_id, key)
         if entry.get("status") == "completed":
-            if entry.get("checksum") == f"md5:{md5(content).hexdigest()}":
+            if is_checksum_of(entry.get("checksum"), content):
                 record["file"] = key
                 return record
             if not self._drop_file(record_id, key):

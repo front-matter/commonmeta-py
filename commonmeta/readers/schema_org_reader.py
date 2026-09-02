@@ -31,7 +31,7 @@ from ..date_utils import (
     get_iso8601_date,
     strip_milliseconds,
 )
-from ..doi_utils import doi_from_url, get_doi_ra, validate_doi
+from ..doi_utils import doi_from_url, get_doi_ra, normalize_doi, validate_doi
 from ..readers.crossref_reader import get_crossref
 from ..readers.datacite_reader import get_datacite
 from ..translators import web_translator
@@ -108,24 +108,7 @@ def get_schema_org(pid: str | None, **kwargs) -> dict:
     #             "via": "schema_org",
     #         }
 
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    # load html meta tags
-    data = get_html_meta(soup)
-    # load site-specific metadata
-    data |= web_translator(soup, url)
-
-    # load schema.org metadata. If there are multiple schema.org blocks, load them all,
-    # and pick the first one with a supported type
-    list = [
-        json.loads(x.text) for x in soup.find_all("script", type="application/ld+json")
-    ]
-    json_ld = next(
-        (i for i in list if i.get("@type", None) in SO_TO_CM_TRANSLATIONS),
-        None,
-    )
-    if json_ld is not None:
-        data |= json_ld
+    data = parse_schema_org_html(response.text, url)
 
     # if @id is a DOI, get metadata from Crossref or DataCite
     if validate_doi(data.get("@id", None)):
@@ -143,6 +126,43 @@ def get_schema_org(pid: str | None, **kwargs) -> dict:
     if data.get("author", None) is None and data.get("creator", None) is not None:
         data["author"] = data["creator"]
     return data | {"via": "schema_org", "state": "findable"}
+
+
+def parse_schema_org_html(html: str, url: str | None = None, content=False) -> dict:
+    """The schema.org a page carries: its meta tags, then its json-ld.
+
+    The json-ld wins where the two say different things, since it is the more
+    specific of the two. Factored out of `get_schema_org` so a page that is
+    not fetched can be read the same way - the html a pdf rendition carries as
+    its attachment, which is written by `to_attachment_html`.
+
+    ``content`` reads the body of the page as the content of the work. It is
+    off by default: the body of an arbitrary web page is its navigation and
+    its widgets as much as its text, and only a page written as one post is
+    its post.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+
+    # load html meta tags
+    data = get_html_meta(soup)
+    # load site-specific metadata
+    data |= web_translator(soup, url)
+
+    # load schema.org metadata. If there are multiple schema.org blocks, load them all,
+    # and pick the first one with a supported type
+    blocks = [
+        json.loads(x.text) for x in soup.find_all("script", type="application/ld+json")
+    ]
+    json_ld = next(
+        (i for i in blocks if i.get("@type", None) in SO_TO_CM_TRANSLATIONS),
+        None,
+    )
+    if json_ld is not None:
+        data |= json_ld
+
+    if content and data.get("articleBody", None) is None and soup.body is not None:
+        data["articleBody"] = soup.body.decode_contents().strip()
+    return data
 
 
 def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
@@ -244,30 +264,10 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
                 "last_page": meta.get("pageEnd", None),
             }
         )
-    elif _type in ["Preprint", "BlogPost"]:
-        container_type = "Blog" if _type == "BlogPost" else "Periodical"
-        issn = dig(meta, "isPartOf.issn")
-        container_url = dig(meta, "publisher.url")
-        container = compact(
-            {
-                "type": container_type,
-                "title": dig(meta, "isPartOf.name"),
-                "identifiers": (
-                    [
-                        {
-                            "identifier": issn if issn is not None else container_url,
-                            "identifier_type": "ISSN" if issn is not None else "URL",
-                        }
-                    ]
-                    if (issn is not None or container_url)
-                    else None
-                ),
-            }
-        )
     else:
-        container = {}
+        container = schema_org_container(meta, _type)
 
-    references = wrap(schema_org_references(meta))
+    references = schema_org_references(meta)
     funding_references = [
         get_funding_reference(i) for i in wrap(meta.get("funder", None))
     ]
@@ -282,7 +282,7 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
     subj = meta.get("keywords", None)
     if isinstance(subj, str):
         subj = [k.strip() for k in subj.split(",") if k.strip()]
-    subjects = [name_to_fos(i) for i in wrap(subj)]
+    subjects = schema_org_subjects(meta) or [name_to_fos(i) for i in wrap(subj)]
 
     if isinstance(meta.get("inLanguage"), str):
         language = meta.get("inLanguage")
@@ -296,7 +296,7 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
     geo_locations = [
         schema_org_geolocation(i) for i in wrap(meta.get("spatialCoverage", None))
     ]
-    identifiers = None
+    identifiers = schema_org_identifiers(meta)
     provider = (
         get_doi_ra(_id)
         if doi_from_url(_id)
@@ -314,19 +314,23 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
         "additional_descriptions": presence(additional_descriptions),
         "additional_type": additional_type,
         "container": container,
+        "content": meta.get("articleBody", None),
         "contributors": presence(contributors),
         "date_published": date_published,
         "date_updated": date_updated,
         "dates": presence(dates),
         "description": description,
+        "files": presence(schema_org_files(meta)),
         "funding_references": presence(funding_references),
         "geo_locations": presence(geo_locations),
-        "identifiers": identifiers,
+        "identifiers": presence(identifiers),
+        "image": schema_org_image(meta),
         "language": get_language(language),
         "license": license_,
         "provider": provider,
         "publisher": publisher,
         "references": presence(references),
+        "relations": presence(schema_org_relations(meta)),
         "state": state,
         "subjects": presence(subjects),
         "title": title,
@@ -389,9 +393,191 @@ def schema_org_is_new_version_of(meta) -> None:
     schema_org_related_item(meta, relation_type="SuccessorOf")
 
 
-def schema_org_references(meta) -> None:
-    """references is a special case because it can be a string or an object."""
-    schema_org_related_item(meta, relation_type="citation")
+def schema_org_references(meta) -> list:
+    """The works this one cites, from schema.org `citation`.
+
+    A citation is a CreativeWork with a name, an @id, or both - the writer
+    gives it the doi as its @id and the formatted citation as its name - and
+    schema.org also allows the bare string, which is then the citation text.
+    """
+    references = []
+    for citation in wrap(meta.get("citation", None)):
+        if isinstance(citation, str):
+            references.append({"reference": citation})
+            continue
+        if not isinstance(citation, dict):
+            continue
+        reference = compact(
+            {
+                "id": normalize_id(citation.get("@id", None)),
+                "reference": citation.get("name", None),
+            }
+        )
+        if reference:
+            references.append(reference)
+    return references
+
+
+# The schema.org properties that carry a relation, read the way the writer
+# writes them. The commonmeta types schema.org has no property for cannot
+# appear here, and are not read.
+SO_TO_CM_RELATION_TYPES = {
+    "isPartOf": "IsPartOf",
+    "hasPart": "HasPart",
+    "sameAs": "IsIdenticalTo",
+    "exampleOfWork": "IsVersionOf",
+    "workExample": "HasVersion",
+    "translationOfWork": "IsTranslationOf",
+    "workTranslation": "HasTranslation",
+    "isBasedOn": "IsSupplementTo",
+    "review": "HasReview",
+    "itemReviewed": "IsReviewOf",
+}
+
+SO_TO_CM_REVERSE_RELATION_TYPES = {"citation": "IsReferencedBy"}
+
+
+def schema_org_relations(meta) -> list:
+    """Relations, from the schema.org properties that carry them.
+
+    `isPartOf` is read as the container as well, which is what a blog post's
+    container is: the relation and the container are two readings of the same
+    statement, and both readers of this record write it back.
+    """
+
+    def ids(value) -> list:
+        out = []
+        for item in wrap(value):
+            _id = item.get("@id", None) if isinstance(item, dict) else item
+            _id = normalize_id(_id) if isinstance(_id, str) else None
+            if _id:
+                out.append(_id)
+        return out
+
+    relations = [
+        {"id": _id, "type": relation_type}
+        for property_, relation_type in SO_TO_CM_RELATION_TYPES.items()
+        for _id in ids(meta.get(property_, None))
+    ]
+    relations += [
+        {"id": _id, "type": relation_type}
+        for property_, relation_type in SO_TO_CM_REVERSE_RELATION_TYPES.items()
+        for _id in ids(dig(meta, f"@reverse.{property_}"))
+    ]
+    return relations
+
+
+def schema_org_subjects(meta) -> list:
+    """Subjects from `about`, which keeps the id a keyword string drops."""
+    subjects = []
+    for term in wrap(meta.get("about", None)):
+        if not isinstance(term, dict) or not term.get("name", None):
+            continue
+        subjects.append(
+            compact(
+                {
+                    "id": term.get("@id", None),
+                    "subject": term.get("name", None),
+                    "scheme": term.get("inDefinedTermSet", None),
+                }
+            )
+        )
+    return subjects
+
+
+def schema_org_identifiers(meta) -> list:
+    """Identifiers from the `identifier` PropertyValues."""
+    identifiers = []
+    for identifier in wrap(meta.get("identifier", None)):
+        if not isinstance(identifier, dict) or not identifier.get("value", None):
+            continue
+        identifiers.append(
+            compact(
+                {
+                    "identifier": identifier.get("value", None),
+                    "identifier_type": identifier.get("propertyID", None),
+                    "scheme": identifier.get("name", None),
+                }
+            )
+        )
+    return identifiers
+
+
+def schema_org_image(meta) -> str | None:
+    """The image url, from the url, the ImageObject or the list of either."""
+    image = first(wrap(meta.get("image", None)))
+    if isinstance(image, dict):
+        image = image.get("url", None) or image.get("contentUrl", None)
+    return image if isinstance(image, str) else None
+
+
+def schema_org_files(meta) -> list:
+    """Files from the MediaObjects a work is encoded or distributed as."""
+    files = []
+    for media in wrap(meta.get("encoding", None)) + wrap(
+        meta.get("distribution", None)
+    ):
+        if not isinstance(media, dict) or not media.get("contentUrl", None):
+            continue
+        files.append(
+            compact(
+                {
+                    "key": media.get("name", None),
+                    "checksum": media.get("sha256", None),
+                    "url": media.get("contentUrl", None),
+                    "size": media.get("size", None),
+                    "mime_type": media.get("encodingFormat", None),
+                }
+            )
+        )
+    return files
+
+
+# What a container is called in schema.org, where it says so at all.
+SO_TO_CM_CONTAINER_TYPES = {"Periodical": "Journal", "Blog": "Blog"}
+
+
+def schema_org_container(meta, _type: str) -> dict:
+    """The container, from `isPartOf`.
+
+    Read for every type rather than for blog posts and preprints alone, and
+    with the doi, the issn and the platform the writer puts there. A record
+    that names none of them still gets the type its work type implies, which
+    is what this reader has always returned.
+    """
+    part = meta.get("isPartOf", None)
+    if isinstance(part, str):
+        part = {"name": part}
+    if not isinstance(part, dict):
+        part = {}
+
+    identifiers = []
+    doi = normalize_doi(part.get("@id", None)) if part.get("@id", None) else None
+    if doi:
+        identifiers.append({"identifier": doi, "identifier_type": "DOI"})
+    if part.get("issn", None):
+        identifiers.append({"identifier": part["issn"], "identifier_type": "ISSN"})
+    container_url = dig(meta, "publisher.url")
+    if not identifiers and container_url:
+        identifiers.append({"identifier": container_url, "identifier_type": "URL"})
+
+    container_type = (
+        SO_TO_CM_CONTAINER_TYPES.get(part.get("@type", None), None)
+        or part.get("additionalType", None)
+        or {"BlogPost": "Blog", "Preprint": "Periodical"}.get(_type, None)
+    )
+    return compact(
+        {
+            "type": container_type,
+            "title": part.get("name", None),
+            "identifiers": presence(identifiers),
+            "platform": dig(part, "provider.name"),
+            "volume": meta.get("volumeNumber", None),
+            "issue": meta.get("issueNumber", None),
+            "first_page": meta.get("pageStart", None),
+            "last_page": meta.get("pageEnd", None),
+        }
+    )
 
 
 def schema_org_is_referenced_by(meta) -> None:

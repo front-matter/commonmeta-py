@@ -1422,6 +1422,8 @@ def find_from_format_by_ext(ext: str) -> str | None:
         return "bibtex"
     if ext == ".ris":
         return "ris"
+    if ext == ".pdf":
+        return "pdf"
     return None
 
 
@@ -1610,15 +1612,22 @@ def from_schema_org_creators(elements: list) -> list:
 
         if isinstance(i.get("affiliation", None), str):
             element["affiliation"] = {"type": "Organization", "name": i["affiliation"]}
-        elif urlparse(dig(i, "affiliation.@id", "")).hostname in [
-            "ror.org",
-            "isni.org",
-        ]:
-            element["affiliation"] = {
-                "id": i["affiliation"]["@id"],
-                "type": "Organization",
-                "name": i["affiliation"]["name"],
-            }
+        elif isinstance(i.get("affiliation", None), dict):
+            # the id where the affiliation is one schema.org can be resolved
+            # by; an affiliation that only has a name is still an affiliation
+            _id = (
+                i["affiliation"].get("@id", None)
+                if urlparse(dig(i, "affiliation.@id", "")).hostname
+                in ["ror.org", "isni.org"]
+                else None
+            )
+            element["affiliation"] = compact(
+                {
+                    "id": _id,
+                    "type": "Organization",
+                    "name": i["affiliation"].get("name", None),
+                }
+            )
         return compact(element)
 
     return [format_element(i) for i in wrap(elements)]

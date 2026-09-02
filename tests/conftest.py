@@ -141,6 +141,7 @@ def sample_metadata(content: Optional[str], title: str = "Font sample"):
         contributors=None,
         date_published=None,
         date_updated=None,
+        dates=None,
         description=None,
         image=None,
         language=None,
@@ -148,6 +149,16 @@ def sample_metadata(content: Optional[str], title: str = "Font sample"):
         container=None,
         subjects=None,
         references=None,
+        # what the schema.org writer reads when the attachment is built
+        url=None,
+        version=None,
+        publisher=None,
+        provider=None,
+        additional_type=None,
+        relations=None,
+        files=None,
+        identifiers=None,
+        funding_references=None,
         # what Metadata.write returns for a record the citation processor
         # cannot cite: the rendition leaves the section out
         write=lambda **kwargs: None,

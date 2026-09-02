@@ -583,7 +583,7 @@ def test_rogue_scholar_with_references():
         {
             "resource": {
                 "mime_type": "application/pdf",
-                "#text": "https://rogue-scholar.org/api/records/de2ng-zbq88/files/10.54900-zwm7q-vet94.pdf/content",
+                "#text": "https://rogue-scholar.org/api/records/de2ng-zbq88/files/10.54900_zwm7q-vet94.pdf/content",
             }
         },
     ]
@@ -662,7 +662,7 @@ def test_rogue_scholar_with_doi():
         {
             "resource": {
                 "mime_type": "application/pdf",
-                "#text": "https://rogue-scholar.org/api/records/pywwn-1kp92/files/10.59350-kz04m-s8z58.pdf/content",
+                "#text": "https://rogue-scholar.org/api/records/pywwn-1kp92/files/10.59350_kz04m-s8z58.pdf/content",
             }
         },
     ]
@@ -1938,7 +1938,7 @@ def test_post_with_contributor_roles():
         {
             "resource": {
                 "mime_type": "application/pdf",
-                "#text": "https://rogue-scholar.org/api/records/apt10-14q04/files/10.59350-510pg-zzf58.pdf/content",
+                "#text": "https://rogue-scholar.org/api/records/apt10-14q04/files/10.59350_510pg-zzf58.pdf/content",
             }
         },
     ]
@@ -2101,7 +2101,7 @@ def test_wrong_doi_reference():
         {
             "resource": {
                 "mime_type": "application/pdf",
-                "#text": "https://rogue-scholar.org/api/records/nz4pe-q7x23/files/10.59350-sjrdz-3cm71.pdf/content",
+                "#text": "https://rogue-scholar.org/api/records/nz4pe-q7x23/files/10.59350_sjrdz-3cm71.pdf/content",
             }
         },
     ]

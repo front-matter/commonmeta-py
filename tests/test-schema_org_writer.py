@@ -50,7 +50,7 @@ def test_journal_article():
     }
     assert schema_org.get("datePublished") == "2014-02-11"
     assert schema_org.get("url") == "https://elifesciences.org/articles/01567"
-    assert schema_org.get("periodical") == {
+    assert schema_org.get("isPartOf") == {
         "@type": "Periodical",
         "issn": "2050-084X",
         "name": "eLife",
@@ -98,7 +98,7 @@ def test_inveniordm_software():
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-03-20"
     assert schema_org.get("url") == "https://zenodo.org/records/7752775"
-    assert schema_org.get("periodical") == {
+    assert schema_org.get("isPartOf") == {
         "additionalType": "Repository",
         "name": "Zenodo",
     }
@@ -151,7 +151,7 @@ def test_inveniordm_presentation():
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-07-21"
     assert schema_org.get("url") == "https://zenodo.org/records/8173303"
-    assert schema_org.get("periodical") == {
+    assert schema_org.get("isPartOf") == {
         "additionalType": "Repository",
         "name": "Zenodo",
     }
@@ -202,7 +202,7 @@ def test_inveniordm_publication():
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2021-08-18"
     assert schema_org.get("url") == "https://zenodo.org/records/5244404"
-    assert schema_org.get("periodical") == {
+    assert schema_org.get("isPartOf") == {
         "additionalType": "Repository",
         "name": "Zenodo",
     }
@@ -254,7 +254,7 @@ def test_inveniordm_report():
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2020-05-28"
     assert schema_org.get("url") == "https://zenodo.org/records/3871094"
-    assert schema_org.get("periodical") == {
+    assert schema_org.get("isPartOf") == {
         "additionalType": "Repository",
         "name": "Zenodo",
     }
@@ -308,7 +308,7 @@ def test_inveniordm_preprint():
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-07-06"
     assert schema_org.get("url") == "https://zenodo.org/records/8120771"
-    assert schema_org.get("periodical") == {
+    assert schema_org.get("isPartOf") == {
         "additionalType": "Repository",
         "name": "Zenodo",
     }
@@ -411,7 +411,7 @@ def test_article_with_pages():
     }
     assert schema_org.get("datePublished") == "2020-01-17"
     assert schema_org.get("url") == "https://dx.plos.org/10.1371/journal.ppat.1008184"
-    assert schema_org.get("periodical") == {
+    assert schema_org.get("isPartOf") == {
         "issn": "1553-7374",
         "@type": "Periodical",
         "name": "PLOS Pathogens",
@@ -842,3 +842,100 @@ def test_rogue_scholar_upstream_blog():
         subject.image
         == "https://upstream.force11.org/content/images/2023/05/esha-subject-blog.jpg"
     )
+
+
+@pytest.mark.vcr("test_rogue_scholar_upstream_blog.yaml")
+def test_a_record_survives_the_round_trip_through_schema_org():
+    """What the writer writes, the reader reads back.
+
+    schema.org names a property for 12 of the 19 relation types, and the
+    subjects, references, identifiers, files and body it never carried are
+    each a property of their own now.
+    """
+    string = "https://rogue-scholar.org/api/records/thmsh-a1z89"
+    subject = Metadata(string, via="inveniordm")
+
+    schema_org = subject.write(to="schema_org")
+    back = Metadata(
+        json.dumps(json.loads(schema_org)).decode("utf-8"), via="schema_org"
+    )
+
+    assert back.is_valid
+    for field in (
+        "id",
+        "type",
+        "url",
+        "title",
+        "contributors",
+        "publisher",
+        "container",
+        "subjects",
+        "date_updated",
+        "language",
+        "version",
+        "license",
+        "description",
+        "content",
+        "identifiers",
+        "image",
+    ):
+        assert getattr(back, field) == getattr(subject, field), field
+    # relations come back as a set rather than in the order the record listed
+    # them: each type is a property of its own in schema.org
+    assert sorted(back.relations, key=lambda r: r["id"]) == sorted(
+        subject.relations, key=lambda r: r["id"]
+    )
+
+
+@pytest.mark.vcr("test_rogue_scholar_upstream_blog.yaml")
+def test_the_container_is_written_as_ispartof():
+    """The property the reader has always read, rather than `periodical`."""
+    string = "https://rogue-scholar.org/api/records/thmsh-a1z89"
+    subject = Metadata(string, via="inveniordm")
+
+    schema_org = json.loads(subject.write(to="schema_org"))
+
+    assert schema_org.get("periodical") is None
+    assert schema_org.get("isPartOf") == {
+        "@id": "https://doi.org/10.54900/upstream",
+        "@type": "Blog",
+        "name": "Upstream",
+        # the platform is the service behind the blog, not a work of its own
+        "provider": {"@type": "Organization", "name": "Ghost"},
+    }
+
+
+@pytest.mark.vcr("test_rogue_scholar_upstream_blog.yaml")
+def test_subjects_keep_their_ids_as_defined_terms():
+    """A keyword is a string; the id and the scheme need a DefinedTerm."""
+    string = "https://rogue-scholar.org/api/records/thmsh-a1z89"
+    subject = Metadata(string, via="inveniordm")
+
+    schema_org = json.loads(subject.write(to="schema_org"))
+
+    assert schema_org["about"][0] == {
+        "@id": "https://openalex.org/subfields/1802",
+        "@type": "DefinedTerm",
+        "name": "Information Systems and Management",
+    }
+    # the strings stay, for a consumer that reads only keywords
+    assert schema_org["keywords"][0] == "Information Systems and Management"
+
+
+def test_relations_schema_org_has_no_property_for_are_left_out():
+    """The seven types with no property are dropped, not written as extensions."""
+    from commonmeta.writers.schema_org_writer import to_schema_org_relations
+
+    written = to_schema_org_relations(
+        [
+            {"id": "https://doi.org/10.5555/version", "type": "IsVersionOf"},
+            {"id": "https://doi.org/10.5555/cited-by", "type": "IsReferencedBy"},
+            {"id": "https://doi.org/10.5555/preprint", "type": "IsPreprintOf"},
+            {"id": "https://doi.org/10.5555/older", "type": "IsPreviousVersionOf"},
+        ]
+    )
+
+    assert written == {
+        "exampleOfWork": {"@id": "https://doi.org/10.5555/version"},
+        "@reverse": {"citation": {"@id": "https://doi.org/10.5555/cited-by"}},
+    }

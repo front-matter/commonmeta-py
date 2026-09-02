@@ -9,6 +9,7 @@ from os import path, remove
 from types import SimpleNamespace
 from unittest.mock import Mock, patch
 
+import orjson
 import pytest  # noqa: F401
 import zstandard
 from requests.exceptions import RequestException
@@ -173,9 +174,15 @@ def test_pdf_rendition_of_a_post_read_from_inveniordm(render_pdf):
     assert metadata["language"] == "en"
     assert metadata["variant"] == "PDF/A-3a"
     assert metadata["tagged"] is True
-    # the post travels inside the pdf as the source it was rendered from
-    assert metadata["attachments"] == {"10.54900-xn57k-gyw73.html": "text/html"}
-    assert read_pdf_attachment(pdf).decode("utf-8") == subject.content
+    # the post travels inside the pdf as the source it was rendered from,
+    # as a page that carries the record in its head
+    assert metadata["attachments"] == {"10.54900_xn57k-gyw73.html": "text/html"}
+    attachment = read_pdf_attachment(pdf).decode("utf-8")
+    assert f"<body>\n{subject.content}\n</body>" in attachment
+    assert (
+        '<meta name="citation_title" content="Ten simple rules for scholarly '
+        'blogging">' in attachment
+    )
 
 
 @pytest.mark.vcr("test_pdf_rendition_of_a_post_read_from_inveniordm.yaml")
@@ -219,7 +226,7 @@ def test_pdf_filename_names_the_file_after_the_doi():
     class Meta:
         id = "https://doi.org/10.59350/j63pf-38v68"
 
-    assert pdf_filename(Meta()) == "10.59350-j63pf-38v68.pdf"
+    assert pdf_filename(Meta()) == "10.59350_j63pf-38v68.pdf"
 
 
 def test_pdf_filename_replaces_every_slash():
@@ -228,7 +235,7 @@ def test_pdf_filename_replaces_every_slash():
     class Meta:
         id = "https://doi.org/10.5555/foo/bar"
 
-    assert pdf_filename(Meta()) == "10.5555-foo-bar.pdf"
+    assert pdf_filename(Meta()) == "10.5555_foo_bar.pdf"
 
 
 def test_pdf_filename_prefers_the_record_to_the_run():
@@ -248,18 +255,18 @@ def test_pdf_filename_prefers_the_record_to_the_run():
     # alone, names the file.
     assert (
         pdf_filename(Meta(), {"doi": "https://doi.org/10.59350/rqawv-7g546"})
-        == "10.59350-rqawv-7g546.pdf"
+        == "10.59350_rqawv-7g546.pdf"
     )
     # A bare doi is accepted as readily as a url.
     assert (
         pdf_filename(Meta(), {"doi": "10.59350/rqawv-7g546"})
-        == "10.59350-rqawv-7g546.pdf"
+        == "10.59350_rqawv-7g546.pdf"
     )
     # A genuinely new post has no record to take a doi from, so the one in hand
     # is the one it will keep.
-    assert pdf_filename(Meta(), None) == "10.59350-j63pf-38v68.pdf"
-    assert pdf_filename(Meta(), {}) == "10.59350-j63pf-38v68.pdf"
-    assert pdf_filename(Meta(), {"doi": None}) == "10.59350-j63pf-38v68.pdf"
+    assert pdf_filename(Meta(), None) == "10.59350_j63pf-38v68.pdf"
+    assert pdf_filename(Meta(), {}) == "10.59350_j63pf-38v68.pdf"
+    assert pdf_filename(Meta(), {"doi": None}) == "10.59350_j63pf-38v68.pdf"
 
 
 def test_pdf_filename_without_a_doi():
@@ -525,6 +532,99 @@ def test_the_page_drops_an_emoji_the_metadata_keeps(render_pdf):
     assert read_pdf_metadata(pdf)["title"] == (
         "AIMOS Presentation 🔸 Mindless Transparency"
     )
+
+
+@pytest.mark.vcr("test_pdf_rendition_of_a_post_read_from_inveniordm.yaml")
+def test_an_embedded_file_is_associated_with_the_document_once(render_pdf):
+    """One entry in /AF per file, which is what the association means.
+
+    WeasyPrint 69 collects the attachments twice, from the EmbeddedFiles name
+    tree and from its own scan for /Filespec objects, and lists each of them
+    twice in the array PDF/A-3 asks for.
+    """
+    import pikepdf
+
+    record_id = search_by_doi("10.54900/xn57k-gyw73", "rogue-scholar.org", None)
+    subject = Metadata(
+        f"https://rogue-scholar.org/api/records/{record_id}", via="inveniordm"
+    )
+
+    pdf = render_pdf(subject)
+
+    with pikepdf.open(io.BytesIO(pdf)) as document:
+        associated = document.Root.AF
+        names = document.Root.Names.EmbeddedFiles.Names
+        assert [str(name) for name in names[0::2]] == ["10.54900_xn57k-gyw73.html"]
+        assert len(associated) == 1
+        # the one association is the file itself, rather than a copy of it
+        assert associated[0].objgen == names[1].objgen
+        assert str(associated[0].AFRelationship) == "/Source"
+
+
+@pytest.mark.vcr("test_pdf_rendition_of_a_post_read_from_inveniordm.yaml")
+def test_the_attachment_says_what_the_post_is():
+    """The html a rendition carries is a page, not a fragment.
+
+    It says what the post is twice: as schema.org json-ld, which is what this
+    library reads back, and as the Highwire meta tags Google Scholar reads.
+    """
+    from commonmeta.io_utils import to_attachment_html
+
+    record_id = search_by_doi("10.54900/xn57k-gyw73", "rogue-scholar.org", None)
+    subject = Metadata(
+        f"https://rogue-scholar.org/api/records/{record_id}", via="inveniordm"
+    )
+
+    html = to_attachment_html(subject)
+
+    assert html.startswith('<!doctype html>\n<html lang="en">')
+    assert (
+        '<link rel="canonical" href="https://upstream.force11.org/'
+        'ten-simple-rules-for-scholarly-blogging/">' in html
+    )
+    # the three tags Scholar requires, and the venue it cites the post by
+    assert '<meta name="citation_author" content="Ochsner, Catharina">' in html
+    assert '<meta name="citation_publication_date" content="2026/7/28">' in html
+    assert '<meta name="citation_journal_title" content="Upstream">' in html
+    assert '<meta name="citation_doi" content="10.54900/xn57k-gyw73">' in html
+
+    json_ld = orjson.loads(
+        html.split('<script type="application/ld+json">')[1].split("</script>")[0]
+    )
+    assert json_ld["@id"] == subject.id
+    assert json_ld["@type"] == "BlogPosting"
+    # the body of the page is the body of the post, so the json-ld does not
+    # carry a second copy of it
+    assert "articleBody" not in json_ld
+    assert f"<body>\n{subject.content}\n</body>" in html
+
+
+@pytest.mark.vcr
+def test_the_record_is_read_back_out_of_the_attachment(render_pdf):
+    """A rendition taken apart gives back the record it was written from."""
+    from commonmeta.readers.schema_org_reader import parse_schema_org_html
+
+    record_id = search_by_doi("10.54900/xn57k-gyw73", "rogue-scholar.org", None)
+    subject = Metadata(
+        f"https://rogue-scholar.org/api/records/{record_id}", via="inveniordm"
+    )
+
+    attachment = read_pdf_attachment(render_pdf(subject)).decode("utf-8")
+    back = Metadata(
+        orjson.dumps(
+            parse_schema_org_html(attachment, subject.url, content=True)
+        ).decode("utf-8"),
+        via="schema_org",
+    )
+
+    assert back.is_valid
+    assert back.id == subject.id
+    assert back.title == subject.title
+    assert back.contributors == subject.contributors
+    assert back.container == subject.container
+    assert back.subjects == subject.subjects
+    assert back.content == subject.content
+    assert len(back.references) == len(subject.references)
 
 
 # a table whose caption lands near the foot of the page, which is where the

@@ -1596,7 +1596,8 @@ def test_pdf_embeds_the_post_content(render_pdf):
 
     PDF/A-3 is the variant that allows an embedded file of any type, and it is
     what makes the deposited pdf a container for the post rather than only a
-    rendering of it.
+    rendering of it. The content is the body of that file, which carries the
+    record in its head as schema.org json-ld and as meta tags.
     """
     subject = Metadata(
         "https://rogue-scholar.org/api/records/7tatc-wh557", via="inveniordm"
@@ -1605,10 +1606,12 @@ def test_pdf_embeds_the_post_content(render_pdf):
     pdf = render_pdf(subject)
 
     assert read_pdf_metadata(pdf)["attachments"] == {
-        "10.59350-dn2mm-m9q51.html": "text/html"
+        "10.59350_dn2mm-m9q51.html": "text/html"
     }
-    assert read_pdf_attachment(pdf).decode("utf-8") == subject.content
-    assert read_pdf_attachment(pdf, "10.59350-dn2mm-m9q51.html") is not None
+    assert f"<body>\n{subject.content}\n</body>" in read_pdf_attachment(pdf).decode(
+        "utf-8"
+    )
+    assert read_pdf_attachment(pdf, "10.59350_dn2mm-m9q51.html") is not None
     assert read_pdf_attachment(pdf, "absent.html") is None
 
 
@@ -1936,15 +1939,15 @@ def test_upload_pdf_registers_uploads_and_commits():
     base = "https://rogue-scholar.org/api/records/fktsh-g4g95/draft/files"
     assert mock_http.post.call_args_list[0].args[0] == base
     assert mock_http.post.call_args_list[0].kwargs["json"] == [
-        {"key": "10.53731-kdqkf-nf052.pdf"}
+        {"key": "10.53731_kdqkf-nf052.pdf"}
     ]
-    assert mock_http.put.call_args.args[0] == f"{base}/10.53731-kdqkf-nf052.pdf/content"
+    assert mock_http.put.call_args.args[0] == f"{base}/10.53731_kdqkf-nf052.pdf/content"
     assert mock_http.put.call_args.kwargs["data"] == b"%PDF-1.7 pdf"
     assert (
         mock_http.post.call_args_list[1].args[0]
-        == f"{base}/10.53731-kdqkf-nf052.pdf/commit"
+        == f"{base}/10.53731_kdqkf-nf052.pdf/commit"
     )
-    assert result["files"] == ["10.53731-kdqkf-nf052.pdf"]
+    assert result["files"] == ["10.53731_kdqkf-nf052.pdf"]
 
 
 def test_upload_pdf_survives_a_refused_upload():
@@ -2113,9 +2116,7 @@ def test_a_record_survives_a_pdf_that_will_not_render():
     with patch.object(
         inveniordm_writer, "write_pdf_rendition", side_effect=AssertionError()
     ):
-        result = inveniordm_writer.upload_pdf(
-            Mock(), "example.org", None, dict(record)
-        )
+        result = inveniordm_writer.upload_pdf(Mock(), "example.org", None, dict(record))
 
     assert result == record
 
@@ -2126,8 +2127,6 @@ def test_a_record_survives_having_no_pdf_to_upload():
     record = {"id": "hbnb8-1rw96"}
 
     with patch.object(inveniordm_writer, "write_pdf_rendition", return_value=None):
-        result = inveniordm_writer.upload_pdf(
-            Mock(), "example.org", None, dict(record)
-        )
+        result = inveniordm_writer.upload_pdf(Mock(), "example.org", None, dict(record))
 
     assert result == record

@@ -22,6 +22,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 import nh3
+import orjson as json
 import requests
 import zstandard
 from babel.core import UnknownLocaleError
@@ -32,7 +33,7 @@ from .api_utils import http
 from .base_utils import dig, presence, unique, wrap
 from .date_utils import get_iso8601_date
 from .doi_utils import doi_from_url
-from .utils import get_language, validate_orcid
+from .utils import get_identifier, get_language, validate_orcid
 
 if TYPE_CHECKING:
     from .metadata import Metadata
@@ -1060,22 +1061,142 @@ def finish_pdf(pdf: bytes, metadata: Metadata) -> bytes:
             ):
                 del obj["/Interpolate"]
 
+        # /AF is the association PDF/A-3 asks for between the document and the
+        # files it embeds, and one association per file is what it means.
+        # WeasyPrint 69 collects the attachments twice - once from the
+        # EmbeddedFiles name tree and once from its own scan for /Filespec
+        # objects (weasyprint/pdf/pdfa.py) - and extends the array with both,
+        # so every attachment is listed twice over.
+        associated = document.Root.get("/AF", None)
+        if associated is not None:
+            seen: set = set()
+            unique = []
+            for filespec in associated:
+                key = filespec.objgen if filespec.is_indirect else id(filespec)
+                if key in seen:
+                    continue
+                seen.add(key)
+                unique.append(filespec)
+            if len(unique) < len(associated):
+                document.Root["/AF"] = pikepdf.Array(unique)
+
         document.save(output, deterministic_id=True)
     return output.getvalue()
 
 
+def to_citation_meta_tags(metadata: Metadata) -> list:
+    """The Highwire Press meta tags Google Scholar reads.
+
+    Scholar names three families - Highwire, BE Press and PRISM - and calls
+    Dublin Core a last resort; these are the Highwire ones, which is also what
+    a reference manager reads best. Title, one author and the publication date
+    are what it requires: a page missing any of the three "will be processed
+    as if it had no meta tags at all". Dates are written the way Scholar asks
+    for them, `2010/5/12`, and every value is escaped, since a tag value is an
+    html attribute.
+
+    https://scholar.google.com/intl/en/scholar/inclusion.html#indexing
+    """
+    container = metadata.container or {}
+    tags = []
+
+    def tag(name: str, content) -> None:
+        if content:
+            tags.append(f'<meta name="{name}" content="{escape(str(content))}">')
+
+    tag("citation_title", to_pdf_text(metadata.title))
+    for author in wrap(metadata.contributors):
+        person = author.get("person", None) or {}
+        # "Smith, John", the form Scholar gives as an example, and the plain
+        # name for a contributor that is an organization
+        name = (
+            f"{person['family_name']}, {person['given_name']}"
+            if person.get("family_name", None) and person.get("given_name", None)
+            else person.get("family_name", None)
+            or (author.get("organization", None) or {}).get("name", None)
+        )
+        tag("citation_author", name)
+    tag("citation_publication_date", to_citation_date(metadata.date_published))
+    tag("citation_online_date", to_citation_date(metadata.date_updated))
+    # the blog is the venue a post is cited by, which is what Scholar reads
+    # from citation_journal_title
+    tag("citation_journal_title", container.get("title", None))
+    tag("citation_issn", get_identifier(container, "ISSN"))
+    tag("citation_volume", container.get("volume", None))
+    tag("citation_issue", container.get("issue", None))
+    tag("citation_firstpage", container.get("first_page", None))
+    tag("citation_lastpage", container.get("last_page", None))
+    tag("citation_doi", doi_from_url(metadata.id))
+    tag("citation_language", metadata.language)
+    for file in wrap(metadata.files):
+        if file.get("mime_type", None) == "application/pdf":
+            tag("citation_pdf_url", file.get("url", None))
+            break
+    return tags
+
+
+def to_citation_date(date: str | None) -> str | None:
+    """A date as Scholar asks for it: `2010/5/12`, or the year alone."""
+    date = get_iso8601_date(date) if date else None
+    if not date:
+        return None
+    parts = [part.lstrip("0") for part in date.split("-")]
+    return "/".join(parts)
+
+
+def to_attachment_html(metadata: Metadata) -> str:
+    """The post as a page that says what it is: the content, and its metadata.
+
+    The metadata is written twice, for the two kinds of reader: as schema.org
+    json-ld, which is what this library reads back, and as the Highwire meta
+    tags Google Scholar and the reference managers read. `articleBody` is left
+    out of the json-ld - the body of the page is the body of the post, and
+    repeating 35kB of html inside a script in the same file says nothing new.
+    """
+    # imported here: the writers import this module for the pdf path
+    from .writers.schema_org_writer import write_schema_org
+
+    json_ld = write_schema_org(metadata)
+    json_ld.pop("articleBody", None)
+    head = "\n".join(
+        [
+            '<meta charset="utf-8">',
+            f"<title>{escape(to_pdf_text(metadata.title) or '')}</title>",
+            # where the post itself is published, which is not one of the
+            # tags Scholar names and is how a page says it anyway
+            *(
+                [f'<link rel="canonical" href="{escape(metadata.url)}">']
+                if metadata.url
+                else []
+            ),
+            *to_citation_meta_tags(metadata),
+            '<script type="application/ld+json">'
+            + json.dumps(json_ld).decode("utf-8")
+            + "</script>",
+        ]
+    )
+    language = f' lang="{escape(metadata.language)}"' if metadata.language else ""
+    return (
+        f"<!doctype html>\n<html{language}>\n<head>\n{head}\n</head>\n"
+        f"<body>\n{metadata.content}\n</body>\n</html>\n"
+    )
+
+
 def to_pdf_attachment(metadata: Metadata, weasyprint):
-    """The post content, embedded in the pdf as the source it was rendered from.
+    """The post, embedded in the pdf as the source it was rendered from.
 
     PDF/A-3 is the variant that allows an arbitrary embedded file, and
-    WeasyPrint gives it the /AFRelationship the standard asks for.
+    WeasyPrint gives it the /AFRelationship the standard asks for. The file is
+    a page rather than the bare content fragment: it carries the record as
+    json-ld and as meta tags, so a rendition taken out of the pdf is a
+    document that still says what it is.
     """
     created = to_pdf_datetime(metadata.date_published)
     modified = to_pdf_datetime(metadata.date_updated) or created
     return weasyprint.Attachment(
-        string=metadata.content,
+        string=to_attachment_html(metadata),
         name=f"{Path(pdf_filename(metadata)).stem}.html",
-        description="Post content as html (rs:content_html)",
+        description="Post content as html, with the record as schema.org json-ld",
         relationship="Source",
         created=created,
         modified=modified,
@@ -1491,11 +1612,28 @@ def write_pdf(metadata: Metadata, file: str) -> bytes:
 def pdf_filename(metadata: Metadata, record: dict | None = None) -> str:
     """Name the pdf after the doi of the record or metadata it is attached to.
 
-    Replaces the slash in the doi with a dash, so the filename is valid on every
-    filesystem. Falls back to "content.pdf" when there is no doi.
+    Replaces the slash in the doi with an underscore, so the filename is valid
+    on every filesystem and the prefix still reads as the prefix: a dash there
+    is a character dois themselves use, and `10.54900-xn57k-gyw73` reads as one
+    string where `10.54900_xn57k-gyw73` reads as a doi with its slash swapped.
+    Falls back to "content.pdf" when there is no doi.
     """
     doi = doi_from_url(dig(record, "doi")) or doi_from_url(metadata.id)
-    return f"{doi.replace('/', '-')}.pdf" if doi else "content.pdf"
+    return f"{doi.replace('/', '_')}.pdf" if doi else "content.pdf"
+
+
+def former_pdf_filenames(key: str) -> list:
+    """The names a rendition under this key has been written under before.
+
+    `pdf_filename` wrote the slash of the doi as a dash before it wrote it as
+    an underscore, and a record keeps whatever name its file was attached
+    under: nothing looks for a rendition by any name but the one it is about
+    to write, so the old one would sit beside the new one for good. The old
+    name is this one with its underscores back as dashes, an underscore only
+    ever standing where a slash was.
+    """
+    former = key.replace("_", "-")
+    return [former] if former != key else []
 
 
 @lru_cache(maxsize=1)
@@ -1650,6 +1788,40 @@ def read_pdf_metadata(pdf: bytes) -> dict:
         if part:
             level = xmp.get("pdfaid:conformance", "")
             metadata["variant"] = f"PDF/A-{part}{level.lower()}"
+    return metadata
+
+
+def read_pdf_docinfo(pdf: bytes) -> dict:
+    """What a pdf's info dictionary says about it, under commonmeta's names.
+
+    The info dictionary is the older of the two places a pdf keeps its own
+    metadata, and the one a viewer shows under document properties. A pdf
+    written before XMP, or by a tool that never wrote a packet, has this and
+    nothing else. `/DOI` is not one of the entries the standard defines - it
+    is what `finish_pdf` writes, and what other tools have settled on too.
+    """
+    import pikepdf
+
+    metadata = {}
+    with pikepdf.open(io.BytesIO(pdf)) as document:
+        docinfo = document.docinfo
+        for key, entry in (
+            ("id", "/DOI"),
+            ("title", "/Title"),
+            ("authors", "/Author"),
+            ("description", "/Subject"),
+            ("keywords", "/Keywords"),
+            ("created", "/CreationDate"),
+            ("modified", "/ModDate"),
+            ("generator", "/Creator"),
+            ("producer", "/Producer"),
+        ):
+            value = docinfo.get(entry, None)
+            if value is not None and str(value):
+                metadata[key] = str(value)
+    # a single string of comma-separated keywords in the pdf, a list here
+    if metadata.get("keywords", None):
+        metadata["keywords"] = [k.strip() for k in metadata["keywords"].split(",")]
     return metadata
 
 

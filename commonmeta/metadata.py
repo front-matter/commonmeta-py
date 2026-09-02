@@ -51,6 +51,7 @@ from .readers.openalex_reader import (
 )
 from .readers.orcid_reader import read_orcid
 from .readers.orcid_xml_reader import get_orcid_xml, parse_orcid_xml, read_orcid_xml
+from .readers.pdf_reader import read_pdf
 from .readers.ris_reader import read_ris
 from .readers.ror_reader import get_ror, read_ror
 from .readers.schema_org_reader import (
@@ -138,15 +139,26 @@ class Metadata:
         # falling back to an API. Mirrors commonmeta-rs' --no-network. Private
         # (underscore) so write_commonmeta doesn't serialize it into the record.
         self._no_network = kwargs.get("no_network", False)
-        if isinstance(string, str):
+        if isinstance(string, bytes):
+            # a pdf handed over as the bytes it is, rather than as a path
+            self.via = self.via or "pdf"
+            data = self._get_metadata_from_string(string, self.via)
+        elif isinstance(string, str):
             pid = normalize_id(string)
             if pid is not None and self.via is None:
                 self.via = find_from_format(pid=pid, no_network=self._no_network)
             elif path.exists(string):
-                with open(string, encoding="utf-8") as file:
-                    string = file.read()
-                if self.via is None:
-                    self.via = find_from_format(string=string)
+                with open(string, "rb") as file:
+                    content = file.read()
+                # a pdf is bytes rather than text, and says so in its first
+                # bytes; decoding it as utf-8 raises on the first binary one
+                if content.startswith(b"%PDF-"):
+                    string = content
+                    self.via = self.via or "pdf"
+                else:
+                    string = content.decode("utf-8")
+                    if self.via is None:
+                        self.via = find_from_format(string=string)
             if self.via is None:
                 self.via = "commonmeta"
             data = self.get_metadata(pid=pid, string=string)
@@ -524,6 +536,8 @@ class Metadata:
                 return {"data": string}
             elif via == "ris":
                 return {"data": string}
+            elif via == "pdf":
+                return {"data": string}
             # JSON-based formats
             elif via in [
                 "commonmeta",
@@ -575,6 +589,8 @@ class Metadata:
             return dict(read_openalex(data))
         elif via == "bibtex":
             return dict(read_bibtex(data["data"] if isinstance(data, dict) else data))
+        elif via == "pdf":
+            return dict(read_pdf(data, **kwargs))
         elif via == "ris":
             return dict(read_ris(data["data"] if isinstance(data, dict) else data))
         elif via == "ror":

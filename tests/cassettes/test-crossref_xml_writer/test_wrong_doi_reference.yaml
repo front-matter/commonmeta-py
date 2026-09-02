@@ -27,12 +27,12 @@ interactions:
         "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23/sequence/default",
         "files": "https://rogue-scholar.org/api/records/nz4pe-q7x23/files", "media_files":
         "https://rogue-scholar.org/api/records/nz4pe-q7x23/media-files", "thumbnails":
-        {"10": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350-sjrdz-3cm71.pdf/full/%5E10,/0/default.jpg",
-        "50": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350-sjrdz-3cm71.pdf/full/%5E50,/0/default.jpg",
-        "100": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350-sjrdz-3cm71.pdf/full/%5E100,/0/default.jpg",
-        "250": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350-sjrdz-3cm71.pdf/full/%5E250,/0/default.jpg",
-        "750": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350-sjrdz-3cm71.pdf/full/%5E750,/0/default.jpg",
-        "1200": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350-sjrdz-3cm71.pdf/full/%5E1200,/0/default.jpg"},
+        {"10": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350_sjrdz-3cm71.pdf/full/%5E10,/0/default.jpg",
+        "50": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350_sjrdz-3cm71.pdf/full/%5E50,/0/default.jpg",
+        "100": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350_sjrdz-3cm71.pdf/full/%5E100,/0/default.jpg",
+        "250": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350_sjrdz-3cm71.pdf/full/%5E250,/0/default.jpg",
+        "750": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350_sjrdz-3cm71.pdf/full/%5E750,/0/default.jpg",
+        "1200": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350_sjrdz-3cm71.pdf/full/%5E1200,/0/default.jpg"},
         "archive": "https://rogue-scholar.org/api/records/nz4pe-q7x23/files-archive",
         "archive_media": "https://rogue-scholar.org/api/records/nz4pe-q7x23/media-files-archive",
         "latest": "https://rogue-scholar.org/api/records/nz4pe-q7x23/versions/latest",
@@ -199,16 +199,16 @@ interactions:
         "rs:featured": false, "rs:doi": "https://doi.org/10.59350/rzepa"}, "access":
         {"record": "public", "files": "public", "embargo": {"active": false, "reason":
         null}, "status": "open"}, "files": {"enabled": true, "order": [], "count":
-        1, "total_bytes": 1731093, "entries": {"10.59350-sjrdz-3cm71.pdf": {"id":
+        1, "total_bytes": 1731093, "entries": {"10.59350_sjrdz-3cm71.pdf": {"id":
         "28b7ba82-a0c7-47e9-90a2-e579938372d6", "checksum": "md5:28cdbcc0fd7a97f8da90aea7641ae95d",
         "ext": "pdf", "size": 1731093, "mimetype": "application/pdf", "storage_class":
-        "L", "key": "10.59350-sjrdz-3cm71.pdf", "metadata": {}, "access": {"hidden":
-        false}, "links": {"self": "https://rogue-scholar.org/api/records/nz4pe-q7x23/files/10.59350-sjrdz-3cm71.pdf",
-        "content": "https://rogue-scholar.org/api/records/nz4pe-q7x23/files/10.59350-sjrdz-3cm71.pdf/content",
-        "iiif_canvas": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23/canvas/10.59350-sjrdz-3cm71.pdf",
-        "iiif_base": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350-sjrdz-3cm71.pdf",
-        "iiif_info": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350-sjrdz-3cm71.pdf/info.json",
-        "iiif_api": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350-sjrdz-3cm71.pdf/full/full/0/default.png"}}}},
+        "L", "key": "10.59350_sjrdz-3cm71.pdf", "metadata": {}, "access": {"hidden":
+        false}, "links": {"self": "https://rogue-scholar.org/api/records/nz4pe-q7x23/files/10.59350_sjrdz-3cm71.pdf",
+        "content": "https://rogue-scholar.org/api/records/nz4pe-q7x23/files/10.59350_sjrdz-3cm71.pdf/content",
+        "iiif_canvas": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23/canvas/10.59350_sjrdz-3cm71.pdf",
+        "iiif_base": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350_sjrdz-3cm71.pdf",
+        "iiif_info": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350_sjrdz-3cm71.pdf/info.json",
+        "iiif_api": "https://rogue-scholar.org/api/iiif/record:nz4pe-q7x23:10.59350_sjrdz-3cm71.pdf/full/full/0/default.png"}}}},
         "media_files": {"enabled": false, "order": [], "count": 0, "total_bytes":
         0, "entries": {}}, "status": "published", "deletion_status": {"is_deleted":
         false, "status": "P"}, "stats": {"this_version": {"views": 0, "unique_views":

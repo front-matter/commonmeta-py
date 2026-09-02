@@ -313,6 +313,101 @@ def test_an_already_completed_file_is_left_alone(use_fake_backend):
     assert files.calls == []  # no delete, no re-upload
 
 
+@pytest.mark.parametrize("algorithm", ["md5", "sha256", "sha1"])
+def test_a_file_is_checked_with_the_algorithm_its_entry_names(
+    use_fake_backend, algorithm
+):
+    """The entry says how it was hashed, and that is how it is checked.
+
+    invenio-files-rest hashes with md5 unless the storage backend overrides
+    `_init_hash`, and no setting changes it - but the entry names what it
+    used, so an instance that hashes otherwise is compared with rather than
+    written to again on every run.
+    """
+    import hashlib
+
+    content = b"%PDF-"
+    files = FakeDraftFiles(entries={"post.pdf": "completed"})
+    files.checksums["post.pdf"] = (
+        f"{algorithm}:{hashlib.new(algorithm, content).hexdigest()}"
+    )
+    backend = use_fake_backend(FakeBackend(records=FakeRecordsWithFiles(files)))
+
+    record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", content)
+
+    assert record["file"] == "post.pdf"
+    assert files.calls == []  # no delete, no re-upload
+
+
+@pytest.mark.parametrize("checksum", [None, "", "2c4c37ad", "crc32:deadbeef"])
+def test_a_file_that_cannot_be_checked_is_written_again(use_fake_backend, checksum):
+    """No checksum, no algorithm, or one this python cannot compute."""
+    files = FakeDraftFiles(entries={"post.pdf": "completed"})
+    files.checksums["post.pdf"] = checksum
+    backend = use_fake_backend(FakeBackend(records=FakeRecordsWithFiles(files)))
+
+    record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF-")
+
+    assert record["file"] == "post.pdf"
+    assert ("delete_file", "post.pdf") in files.calls
+    assert ("commit_file", "post.pdf") in files.calls
+
+
+def test_the_rendition_under_its_former_name_is_dropped(use_fake_backend):
+    """A record carries one rendition of a post, not one per naming rule.
+
+    `pdf_filename` wrote the doi's slash as a dash before it wrote it as an
+    underscore, and nothing looks for a file by a name it is not writing, so
+    the older one would sit beside the new one and be deposited with it.
+    """
+    files = FakeDraftFiles(
+        entries={"10.59350-dn2mm-m9q51.pdf": "completed"},
+        checksums={"10.59350-dn2mm-m9q51.pdf": b"%PDF-"},
+    )
+    backend = use_fake_backend(FakeBackend(records=FakeRecordsWithFiles(files)))
+
+    record = backend.upload_file(
+        {"id": "abc12-xyz34"}, "10.59350_dn2mm-m9q51.pdf", b"%PDF-"
+    )
+
+    assert record["file"] == "10.59350_dn2mm-m9q51.pdf"
+    assert list(files.entries) == ["10.59350_dn2mm-m9q51.pdf"]
+    assert files.calls[0] == ("delete_file", "10.59350-dn2mm-m9q51.pdf")
+
+
+def test_a_former_name_that_cannot_be_dropped_keeps_the_new_file(use_fake_backend):
+    """A locked bucket refuses the removal, and the post still gets its pdf."""
+    files = FakeDraftFiles(
+        entries={"10.59350-dn2mm-m9q51.pdf": "completed"},
+        checksums={"10.59350-dn2mm-m9q51.pdf": b"%PDF-"},
+        locked=True,
+    )
+    backend = use_fake_backend(FakeBackend(records=FakeRecordsWithFiles(files)))
+
+    record = backend.upload_file(
+        {"id": "abc12-xyz34"}, "10.59350_dn2mm-m9q51.pdf", b"%PDF-"
+    )
+
+    assert record["file"] == "10.59350_dn2mm-m9q51.pdf"
+    assert ("delete_file", "10.59350-dn2mm-m9q51.pdf") in files.calls
+    assert ("commit_file", "10.59350_dn2mm-m9q51.pdf") in files.calls
+
+
+def test_a_file_of_another_name_is_not_taken_for_a_former_one(use_fake_backend):
+    """Only the name this very file used to have, not any other file's."""
+    files = FakeDraftFiles(
+        entries={"figure.png": "completed", "10.59350-other-doi.pdf": "completed"},
+        checksums={"figure.png": b"PNG", "10.59350-other-doi.pdf": b"%PDF- other"},
+    )
+    backend = use_fake_backend(FakeBackend(records=FakeRecordsWithFiles(files)))
+
+    backend.upload_file({"id": "abc12-xyz34"}, "10.59350_dn2mm-m9q51.pdf", b"%PDF-")
+
+    assert "figure.png" in files.entries
+    assert "10.59350-other-doi.pdf" in files.entries
+    assert ("delete_file", "figure.png") not in files.calls
+
+
 def test_a_changed_file_is_replaced(use_fake_backend):
     """A post edited after publication gets the rendition of what it says now.
 
