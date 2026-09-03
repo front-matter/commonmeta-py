@@ -1311,7 +1311,7 @@ def search_by_slug(slug: str, type: str, host: str, token: str) -> str | None:
     """Search for a community by slug in InvenioRDM"""
     backend = active_backend()
     if backend is not None:
-        return backend.search_community_by_slug(slug)
+        return backend.search_community_by_slug(slug, type)
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",

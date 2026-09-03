@@ -224,11 +224,28 @@ class ServiceBackend:
             log.error(f"Error searching records: {reason(e)}", exc_info=True)
             return None
 
-    def search_community_by_slug(self, slug: str) -> str | None:
-        """Return a community id for a slug."""
+    def search_community_by_slug(
+        self, slug: str, type: str | None = None
+    ) -> str | None:
+        """Return a community id for a slug, of this type or a subject area.
+
+        The type is what keeps a subject from filing a post under someone
+        else's blog. Slugs are unique across every kind of community, so a post
+        subject that slugifies to `crossref` matches the Crossref blog as
+        readily as a topic, and the record joins it -- silently, and for good,
+        since nothing ever removes a community from a record. The REST path
+        this stands in for has always narrowed the search the same way, by
+        sending `type` twice: the type asked for, and `subject`.
+
+        Left unset the search spans every community, which is what the callers
+        that mean a blog want.
+        """
+        query = f"slug:{slug}"
+        if type:
+            query += f" AND (metadata.type.id:{type} OR metadata.type.id:subject)"
         try:
             results = self._communities.search(
-                self._identity, params={"q": f"slug:{slug}", "size": 1}
+                self._identity, params={"q": query, "size": 1}
             ).to_dict()
         except Exception as e:
             log.error(f"Error searching for community: {reason(e)}", exc_info=True)
