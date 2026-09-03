@@ -1625,15 +1625,31 @@ def pdf_filename(metadata: Metadata, record: dict | None = None) -> str:
 def former_pdf_filenames(key: str) -> list:
     """The names a rendition under this key has been written under before.
 
-    `pdf_filename` wrote the slash of the doi as a dash before it wrote it as
-    an underscore, and a record keeps whatever name its file was attached
-    under: nothing looks for a rendition by any name but the one it is about
-    to write, so the old one would sit beside the new one for good. The old
-    name is this one with its underscores back as dashes, an underscore only
-    ever standing where a slash was.
+    `pdf_filename` wrote the slashes of the doi as dashes before it wrote them
+    as underscores, and a record keeps whatever name its file was attached
+    under: nothing looks for a rendition by any name but the one it is about to
+    write, so the old one would sit beside the new one for good.
+
+    The old name cannot be read off the new one with certainty, because a doi
+    suffix may hold underscores of its own and they are written through
+    unchanged. `10.59350_zotero_fr.5552.pdf` is either `10.59350/zotero_fr.5552`
+    with one slash or `10.59350/zotero/fr.5552` with two, and the key no longer
+    says which. So both readings are offered and the caller drops whichever it
+    actually finds:
+
+    - every underscore was a slash, which is the whole of the old name where
+      the suffix had no underscores of its own;
+    - only the first was, the rest belonging to the suffix. The first always
+      was one: a prefix is `10.` and digits and can hold no underscore.
+
+    A doi with two slashes *and* an underscore in its suffix falls between the
+    two and keeps its old file. Nothing mints such a doi here, and the cost is
+    a stale file rather than a wrong one.
     """
-    former = key.replace("_", "-")
-    return [former] if former != key else []
+    if "_" not in key:
+        return []
+    candidates = [key.replace("_", "-"), key.replace("_", "-", 1)]
+    return list(dict.fromkeys(c for c in candidates if c != key))
 
 
 @lru_cache(maxsize=1)

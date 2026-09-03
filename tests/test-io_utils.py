@@ -18,6 +18,7 @@ from commonmeta import Metadata
 from commonmeta.io_utils import (
     download_file,
     embed_image,
+    former_pdf_filenames,
     get_extension,
     pdf_filename,
     read_file,
@@ -227,6 +228,35 @@ def test_pdf_filename_names_the_file_after_the_doi():
         id = "https://doi.org/10.59350/j63pf-38v68"
 
     assert pdf_filename(Meta()) == "10.59350_j63pf-38v68.pdf"
+
+
+def test_former_pdf_filenames_offers_the_old_name():
+    """The slash used to be a dash, and the old file is still on the record."""
+    assert "10.53731-9r3yj-zwy78.pdf" in former_pdf_filenames(
+        "10.53731_9r3yj-zwy78.pdf"
+    )
+
+
+def test_former_pdf_filenames_keeps_an_underscore_in_the_suffix():
+    """Only the slash became an underscore; the suffix's own were always there.
+
+    `10.59350/zotero_fr.5552` was written as `10.59350-zotero_fr.5552.pdf`.
+    Putting every underscore back as a dash asked for a file that was never
+    written, and the real predecessor stayed on the record beside the new one.
+    """
+    assert "10.59350-zotero_fr.5552.pdf" in former_pdf_filenames(
+        "10.59350_zotero_fr.5552.pdf"
+    )
+
+
+def test_former_pdf_filenames_covers_a_doi_with_two_slashes():
+    """Where the underscores were all slashes, they all go back to dashes."""
+    assert "10.5555-foo-bar.pdf" in former_pdf_filenames("10.5555_foo_bar.pdf")
+
+
+def test_former_pdf_filenames_has_nothing_to_offer_without_a_slash():
+    """A fallback name was never written under another one."""
+    assert former_pdf_filenames("content.pdf") == []
 
 
 def test_pdf_filename_replaces_every_slash():
