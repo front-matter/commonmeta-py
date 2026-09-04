@@ -162,20 +162,30 @@ def json_ld_nodes(soup) -> list:
     return nodes
 
 
-def is_supported_type(node: dict) -> bool:
-    """Whether a node's @type is one this reads.
+def known_type(node: dict | None, table) -> str | None:
+    """The node's @type that this table knows, or None.
 
     `@type` is a string or a list of them -- `["Article", "BlogPosting"]` is
-    ordinary -- and asking whether a list is in a dict raised
+    ordinary, and schema.org allows it anywhere. Handing a list to a dict
+    raised
 
-        TypeError: unhashable type: 'list'
+        TypeError: cannot use 'list' as a dict key (unhashable type: 'list')
 
-    which killed the read as surely as a missing type would have been harmless.
+    at every point a type was looked up, and there are three of them in this
+    reader. The first type the table knows wins: a node typed
+    `["Article", "BlogPosting"]` is both, and either translation is right.
     """
+    if not isinstance(node, dict):
+        return None
     types = node.get("@type")
-    if isinstance(types, list):
-        return any(isinstance(t, str) and t in SO_TO_CM_TRANSLATIONS for t in types)
-    return isinstance(types, str) and types in SO_TO_CM_TRANSLATIONS
+    if not isinstance(types, list):
+        types = [types]
+    return next((t for t in types if isinstance(t, str) and t in table), None)
+
+
+def is_supported_type(node: dict) -> bool:
+    """Whether a node's @type is one this reads."""
+    return known_type(node, SO_TO_CM_TRANSLATIONS) is not None
 
 
 #: Types that describe the thing a page belongs to rather than the page. They
@@ -199,9 +209,7 @@ def pick_json_ld(nodes: list) -> dict | None:
 
 def is_container_type(node: dict) -> bool:
     """Whether this node describes a site or a blog rather than a work."""
-    types = node.get("@type")
-    types = types if isinstance(types, list) else [types]
-    return any(t in CONTAINER_TYPES for t in types if isinstance(t, str))
+    return known_type(node, CONTAINER_TYPES) is not None
 
 
 def parse_schema_org_html(html: str, url: str | None = None, content=False) -> dict:
@@ -251,7 +259,9 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
     if _id is None:
         _id = meta.get("identifier", None)
     _id = normalize_id(_id)
-    _type = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", None), "WebPage")
+    _type = SO_TO_CM_TRANSLATIONS.get(
+        known_type(meta, SO_TO_CM_TRANSLATIONS), "WebPage"
+    )
     additional_type = meta.get("additionalType", None)
     url = normalize_url(meta.get("url", None)) or _id
 
@@ -632,7 +642,7 @@ def schema_org_container(meta, _type: str) -> dict:
         identifiers.append({"identifier": container_url, "identifier_type": "URL"})
 
     container_type = (
-        SO_TO_CM_CONTAINER_TYPES.get(part.get("@type", None), None)
+        SO_TO_CM_CONTAINER_TYPES.get(known_type(part, SO_TO_CM_CONTAINER_TYPES), None)
         or part.get("additionalType", None)
         or {"BlogPost": "Blog", "Preprint": "Periodical"}.get(_type, None)
     )

@@ -6,6 +6,7 @@ import pytest
 from commonmeta import Metadata
 from commonmeta.readers.schema_org_reader import (
     parse_schema_org_html,
+    read_schema_org,
     schema_org_geolocation,
 )
 
@@ -614,3 +615,22 @@ def test_a_site_is_read_when_nothing_better_is_offered():
 def test_a_page_with_no_json_ld():
     """The meta tags still read; there is simply no json-ld to prefer."""
     assert parse_schema_org_html("<html><body>plain</body></html>") is not None
+
+
+def test_a_type_that_is_a_list_all_the_way_through():
+    """Every lookup of @type has to take a list, not only the first.
+
+    A node types itself `["Article", "BlogPosting"]` and its isPartOf does the
+    same, and each lookup raised `cannot use 'list' as a dict key` in turn:
+    one in read_schema_org, one in schema_org_container.
+    """
+    page = {
+        "@type": ["Article", "BlogPosting"],
+        "@id": "https://example.org/p",
+        "url": "https://example.org/p",
+        "headline": "A post",
+        "isPartOf": {"@type": ["Blog", "CreativeWork"], "name": "The blog"},
+    }
+    out = read_schema_org(page)
+    assert out["type"] == "Preprint"
+    assert out["container"]["type"] == "Blog"
