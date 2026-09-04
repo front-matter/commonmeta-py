@@ -78,21 +78,45 @@ def get_iso8601_date(date: datetime.datetime | datetime.date | str | int | None)
     return ""
 
 
+def _sliced_date_parts(value: str | None) -> list | None:
+    """[year, month, day] read off an iso8601 date, or None if it is not one.
+
+    An incomplete date is padded rather than rejected: `2025` and `2025-09`
+    are dates, and the parts they do not carry come back as zero and are
+    dropped by the caller.
+    """
+    if not value:
+        return None
+    padded = value.ljust(10, "0") if len(value) < 10 else value
+    try:
+        year = int(padded[0:4])
+        month = int(padded[5:7])
+        day = int(padded[8:10])
+    except ValueError:
+        return None
+    return [x for x in (year, month, day) if x != 0]
+
+
 def get_date_parts(iso8601_time: str | None) -> dict:
-    """Get date parts"""
+    """The date as csl wants it, from a date in whatever form it arrived.
+
+    Pages write their dates as they please, and the readers pass on what they
+    find: `Mon, 01 Sep 2025 00:00:00 +0000` is what an rss feed carries, and
+    slicing the first four characters of it asked int() for `Mon,`. That
+    raised out of write_csl_item, so a reference with an rfc 822 date could
+    not be cited at all.
+
+    So anything the slices cannot read is put through get_iso8601_date, which
+    parses what it can. A date that will not read even then is no date, which
+    csl says with an empty list rather than by failing.
+    """
     if iso8601_time is None:
         return {"date-parts": [[]]}
 
-    # add 0s to the end of the date if it is incomplete
-    if len(iso8601_time) < 10:
-        iso8601_time = iso8601_time.ljust(10, "0")
-
-    year = int(iso8601_time[0:4])
-    month = int(iso8601_time[5:7])
-    day = int(iso8601_time[8:10])
-
-    date_parts = [x for x in [year, month, day] if x != 0]
-    return {"date-parts": [date_parts]}
+    parts = _sliced_date_parts(iso8601_time)
+    if parts is None:
+        parts = _sliced_date_parts(get_iso8601_date(iso8601_time))
+    return {"date-parts": [parts or []]}
 
 
 def get_date_from_unix_timestamp(timestamp: int | None) -> str | None:

@@ -121,3 +121,22 @@ def test_validate_edtf():
     assert "2024-07-22T23:11:00Z" == validate_edtf("2024-07-22T23:11:00Z")
     assert "2024-10-23T13:58:21" == validate_edtf("2024-10-23T13:58:21")
     assert "2012-01-01" == validate_edtf("2012-01-01")
+
+
+def test_get_date_parts_takes_a_date_that_is_not_iso8601():
+    """A page writes its date as it pleases, and the readers pass it on.
+
+    `Mon, 01 Sep 2025 00:00:00 +0000` is what an rss feed carries, and
+    slicing its first four characters asked int() for `Mon,`. That raised out
+    of write_csl_item, so a reference with such a date could not be cited.
+    """
+    assert {"date-parts": [[2025, 9, 1]]} == get_date_parts(
+        "Mon, 01 Sep 2025 00:00:00 +0000"
+    )
+    assert {"date-parts": [[2025, 9, 4]]} == get_date_parts("September 4, 2025")
+
+
+def test_get_date_parts_of_something_that_is_not_a_date():
+    """No date is an empty list, not a failure."""
+    assert {"date-parts": [[]]} == get_date_parts("not a date at all")
+    assert {"date-parts": [[]]} == get_date_parts("")
