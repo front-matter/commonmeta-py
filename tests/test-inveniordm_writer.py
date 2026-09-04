@@ -23,7 +23,11 @@ from commonmeta.io_utils import (
     to_pdf_text,
     write_pdf_rendition,
 )
-from commonmeta.writers.inveniordm_writer import record_matches, upsert_record
+from commonmeta.writers.inveniordm_writer import (
+    keep_citations,
+    record_matches,
+    upsert_record,
+)
 
 PDF_RESOURCES = Path(commonmeta.__file__).parent / "resources" / "pdf"
 
@@ -1101,6 +1105,164 @@ def test_record_matches_a_longer_list():
     assert record_matches(UPSERT_OUTPUT, published) is False
 
 
+STORED_CITATIONS = [
+    {
+        "identifier": "10.59350/4q8j1-1ap35",
+        "scheme": "doi",
+        "reference": "Willighagen, E. (2007). Numbers are copyrighted?.",
+    },
+    {
+        "identifier": "10.59350/hjy5d-b3g07",
+        "scheme": "doi",
+        "reference": "Fenner, M. (2023). Citations.",
+    },
+]
+
+
+def test_keep_citations_restores_a_field_the_push_omits():
+    "citations no source describes survive a push that says nothing about them"
+    output = {"custom_fields": {"rs:content_html": "<p>Test</p>"}}
+    published = {"custom_fields": {"pidbox:citations": STORED_CITATIONS}}
+
+    keep_citations(output, published)
+
+    assert output["custom_fields"]["pidbox:citations"] == STORED_CITATIONS
+
+
+def test_keep_citations_leaves_a_record_that_has_none_alone():
+    "nothing stored, nothing to carry over -- and no empty field written"
+    output = {"custom_fields": {"rs:content_html": "<p>Test</p>"}}
+
+    keep_citations(output, {"custom_fields": {}})
+
+    assert "pidbox:citations" not in output["custom_fields"]
+
+
+def test_keep_citations_keeps_the_stored_reference_text():
+    "the writer sends bare identifiers, so the rendered citation is folded back in"
+    output = {
+        "custom_fields": {
+            "pidbox:citations": [
+                {"identifier": "10.59350/4q8j1-1ap35", "scheme": "doi"},
+            ]
+        }
+    }
+    published = {"custom_fields": {"pidbox:citations": STORED_CITATIONS}}
+
+    keep_citations(output, published)
+
+    assert output["custom_fields"]["pidbox:citations"] == [STORED_CITATIONS[0]]
+
+
+def test_keep_citations_follows_the_payload_when_it_names_citations():
+    "which citations there are is the payload's to say; only the text is reused"
+    citation = {"identifier": "10.59350/new-one", "scheme": "doi"}
+    output = {"custom_fields": {"pidbox:citations": [citation]}}
+    published = {"custom_fields": {"pidbox:citations": STORED_CITATIONS}}
+
+    keep_citations(output, published)
+
+    assert output["custom_fields"]["pidbox:citations"] == [citation]
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_upsert_record_does_not_clear_citations():
+    """A push describing no citations leaves the ones the record holds.
+
+    Without this the record loses them on every push, and gets them back on
+    invenio-pidbox's next sweep -- two revisions and a citeproc run per push,
+    for a field neither side meant to change.
+    """
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
+    output = json.loads(subject.write(to="inveniordm"))
+    assert "pidbox:citations" not in output["custom_fields"]
+
+    record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
+    published = {
+        "id": "fktsh-g4g95",
+        "created": "2024-01-01T00:00:00+00:00",
+        "updated": "2024-01-02T00:00:00+00:00",
+        **{k: v for k, v in output.items() if k != "pids"},
+    }
+    published["custom_fields"] = {
+        **published["custom_fields"],
+        "pidbox:citations": STORED_CITATIONS,
+    }
+
+    with (
+        patch(
+            "commonmeta.writers.inveniordm_writer.search_by_doi",
+            return_value="fktsh-g4g95",
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.get_published_record",
+            return_value=published,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.edit_published_record",
+            side_effect=lambda r, *a: {**r, "status": "edited"},
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "updated"},
+        ) as mock_update,
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "published"},
+        ),
+    ):
+        result = upsert_record(
+            subject, "rogue-scholar.org", "token", record, skip_unchanged=False
+        )
+
+    assert result["status"] == "published"
+    sent = mock_update.call_args.args[3]
+    assert sent["custom_fields"]["pidbox:citations"] == STORED_CITATIONS
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_upsert_record_citations_alone_are_not_a_change():
+    "carrying them over rather than clearing them keeps the record unchanged"
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
+    output = json.loads(subject.write(to="inveniordm"))
+
+    record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
+    published = {
+        "id": "fktsh-g4g95",
+        "created": "2024-01-01T00:00:00+00:00",
+        "updated": "2024-01-02T00:00:00+00:00",
+        **{k: v for k, v in output.items() if k != "pids"},
+    }
+    published["custom_fields"] = {
+        **published["custom_fields"],
+        "pidbox:citations": STORED_CITATIONS,
+    }
+
+    with (
+        patch(
+            "commonmeta.writers.inveniordm_writer.search_by_doi",
+            return_value="fktsh-g4g95",
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.get_published_record",
+            return_value=published,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.edit_published_record"
+        ) as mock_edit,
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record"
+        ) as mock_update,
+    ):
+        result = upsert_record(subject, "rogue-scholar.org", "token", record)
+
+    assert result["status"] == "unchanged"
+    mock_edit.assert_not_called()
+    mock_update.assert_not_called()
+
+
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
 def test_upsert_record_skips_an_unchanged_record():
     "an unchanged record is not republished, since that writes a new revision"
@@ -1152,13 +1314,22 @@ def test_upsert_record_skip_unchanged_can_be_turned_off():
     string = "https://rogue-scholar.org/api/records/7tatc-wh557"
     subject = Metadata(string, via="inveniordm")
     record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
+    # a record that already holds exactly what is about to be sent
+    output = json.loads(subject.write(to="inveniordm"))
+    published = {
+        "id": "fktsh-g4g95",
+        **{k: v for k, v in output.items() if k != "pids"},
+    }
 
     with (
         patch(
             "commonmeta.writers.inveniordm_writer.search_by_doi",
             return_value="fktsh-g4g95",
         ),
-        patch("commonmeta.writers.inveniordm_writer.get_published_record") as mock_read,
+        patch(
+            "commonmeta.writers.inveniordm_writer.get_published_record",
+            return_value=published,
+        ),
         patch(
             "commonmeta.writers.inveniordm_writer.edit_published_record",
             side_effect=lambda r, *a: {**r, "status": "edited"},
@@ -1177,7 +1348,6 @@ def test_upsert_record_skip_unchanged_can_be_turned_off():
         )
 
     assert result["status"] == "published"
-    mock_read.assert_not_called()
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")

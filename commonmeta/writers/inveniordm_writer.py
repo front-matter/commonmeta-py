@@ -82,6 +82,11 @@ INVENIORDM_CUSTOM_FIELDS = frozenset(
     }
 )
 
+# The citations field, named apart from the set above because an update has to
+# reach for it by name: it is the one field here a record may hold that this
+# writer does not always describe.
+CITATIONS_FIELD = "pidbox:citations"
+
 
 def write_inveniordm(metadata: Metadata, write_pdf: bool = False, **kwargs) -> dict:
     """Write inveniordm.
@@ -783,18 +788,27 @@ def upsert_record(
         record["id"] = record["previous_id"]
         record = create_new_version(record, host, token)
 
-        # Update new version
+        # Update new version. Citations are not carried over from the previous
+        # version: they cite that version's doi, and this one starts with none
+        # until the citation graph has something to say about it.
         record = update_draft_record(record, host, token, output)
     elif record.get("id", None) is not None:
         # Update draft record with new metadata (except PIDs which should not be updated)
         update_output = {k: v for k, v in output.items() if k != "pids"}
+
+        # Read the record as it stands before writing over it. An update
+        # replaces custom_fields wholesale, so what the record holds and this
+        # push does not send is deleted -- see keep_citations, which is the one
+        # field that applies to.
+        published = get_published_record(record["id"], host, token)
+        if published is not None:
+            keep_citations(update_output, published)
 
         # Publishing an unchanged record still writes a new revision and moves its
         # updated timestamp, so leave the record alone when it already matches.
         # A record still missing its pdf is not left alone, even when the
         # metadata matches: the file is the reason to write it again.
         if skip_unchanged:
-            published = get_published_record(record["id"], host, token)
             if (
                 published is not None
                 and record_matches(update_output, published)
@@ -1053,6 +1067,46 @@ def get_published_record(record_id: str, host: str, token: str) -> dict | None:
     except RequestException as e:
         log.error(f"Error reading record {record_id}: {str(e)}", exc_info=True)
         return None
+
+
+def keep_citations(output: dict, published: dict) -> None:
+    """Carry a published record's citations into an update that omits them.
+
+    An update replaces ``custom_fields`` with what it sends, so a field the
+    record holds and the payload leaves out is deleted. Every other field this
+    writer owns is part of what a source says about a work, so sending none of
+    it means there is none. ``pidbox:citations`` is not: it lists the works
+    citing this one, which no source describes and invenio-pidbox keeps on the
+    record from the citation graph. A push that says nothing about citations
+    means "unknown", not "none", and clearing them would leave that package's
+    sweep to render them all again.
+
+    Where both sides name the same citation the stored entry is folded in,
+    because it carries the formatted ``reference`` text that this writer has no
+    way to produce -- the sent identifier and scheme still win. Which
+    citations there are is left to the payload whenever it names any.
+
+    ``output`` is modified in place, before it is compared with the published
+    record, so a push that changes nothing else still counts as unchanged.
+    """
+    stored = [
+        c
+        for c in wrap(dig(published, f"custom_fields.{CITATIONS_FIELD}"))
+        if isinstance(c, dict)
+    ]
+    if not stored:
+        return
+
+    custom_fields = output.setdefault("custom_fields", {})
+    sent = [c for c in wrap(custom_fields.get(CITATIONS_FIELD)) if isinstance(c, dict)]
+    if not sent:
+        custom_fields[CITATIONS_FIELD] = stored
+        return
+
+    by_identifier = {c.get("identifier"): c for c in stored if c.get("identifier")}
+    custom_fields[CITATIONS_FIELD] = [
+        {**by_identifier.get(c.get("identifier"), {}), **c} for c in sent
+    ]
 
 
 def _first_difference(sent, stored, path: str = "") -> str | None:
