@@ -4,7 +4,10 @@
 import pytest
 
 from commonmeta import Metadata
-from commonmeta.readers.schema_org_reader import schema_org_geolocation
+from commonmeta.readers.schema_org_reader import (
+    parse_schema_org_html,
+    schema_org_geolocation,
+)
 
 
 def vcr_config():
@@ -552,3 +555,62 @@ def test_youtube():
         == "Elsevier's David Tempest explains subscription-contract confidentiality clauses"
     )
     assert subject.dates and subject.dates.get("accessed") is not None
+
+
+# --- the shapes a page may write its json-ld in -------------------------
+
+
+def _script(body: str) -> str:
+    return f'<script type="application/ld+json">{body}</script>'
+
+
+def test_json_ld_written_as_an_array():
+    """A script tag may hold an array of nodes rather than one node.
+
+    Reading it as a node raised `'list' object has no attribute 'get'` and
+    lost the page.
+    """
+    html = _script('[{"@type": "WebSite"}, {"@type": "BlogPosting", "headline": "B"}]')
+    assert parse_schema_org_html(html)["headline"] == "B"
+
+
+def test_json_ld_written_as_a_graph():
+    """WordPress with Yoast writes a @graph, and the work is not first in it.
+
+    Taking the first supported node takes the WebSite, and the reference
+    would be validated against the blog rather than the post cited.
+    """
+    html = _script(
+        '{"@context": "https://schema.org", "@graph": ['
+        '{"@type": "WebSite", "name": "Site"},'
+        '{"@type": "WebPage"},'
+        '{"@type": "Article", "headline": "The post"},'
+        '{"@type": "Organization"}]}'
+    )
+    assert parse_schema_org_html(html)["headline"] == "The post"
+
+
+def test_a_type_that_is_a_list():
+    """`@type` is often several, and asking a dict for a list raised.
+
+    TypeError: unhashable type: 'list'
+    """
+    html = _script('{"@type": ["Article", "BlogPosting"], "headline": "D"}')
+    assert parse_schema_org_html(html)["headline"] == "D"
+
+
+def test_a_block_that_is_not_json():
+    """One broken script tag must not lose the page's other metadata."""
+    html = _script("{not json,}") + _script('{"@type": "BlogPosting", "headline": "E"}')
+    assert parse_schema_org_html(html)["headline"] == "E"
+
+
+def test_a_site_is_read_when_nothing_better_is_offered():
+    """A container is the fallback, not the default."""
+    html = _script('{"@type": "WebSite", "name": "Only a site"}')
+    assert parse_schema_org_html(html)["name"] == "Only a site"
+
+
+def test_a_page_with_no_json_ld():
+    """The meta tags still read; there is simply no json-ld to prefer."""
+    assert parse_schema_org_html("<html><body>plain</body></html>") is not None

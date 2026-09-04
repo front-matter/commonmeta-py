@@ -128,6 +128,82 @@ def get_schema_org(pid: str | None, **kwargs) -> dict:
     return data | {"via": "schema_org", "state": "findable"}
 
 
+def json_ld_nodes(soup) -> list:
+    """Every json-ld node a page carries, whatever shape it wrote them in.
+
+    A `<script type="application/ld+json">` holds one node, an array of them,
+    or a `@graph` of them -- the last being what WordPress with Yoast writes,
+    and the reason a page could carry an Article and be read as carrying
+    nothing. Reading only the first shape raised
+
+        AttributeError: 'list' object has no attribute 'get'
+
+    on every page that used one of the others, which aborted the read of the
+    reference being validated.
+
+    A block that is not json at all is skipped rather than raising: one broken
+    script tag should not lose the page's other metadata, and the pages this
+    reads are written by everyone.
+    """
+    nodes: list = []
+    for script in soup.find_all("script", type="application/ld+json"):
+        try:
+            block = json.loads(script.text)
+        except (json.JSONDecodeError, TypeError):
+            continue
+        for node in block if isinstance(block, list) else [block]:
+            if not isinstance(node, dict):
+                continue
+            graph = node.get("@graph")
+            if isinstance(graph, list):
+                nodes.extend(i for i in graph if isinstance(i, dict))
+            else:
+                nodes.append(node)
+    return nodes
+
+
+def is_supported_type(node: dict) -> bool:
+    """Whether a node's @type is one this reads.
+
+    `@type` is a string or a list of them -- `["Article", "BlogPosting"]` is
+    ordinary -- and asking whether a list is in a dict raised
+
+        TypeError: unhashable type: 'list'
+
+    which killed the read as surely as a missing type would have been harmless.
+    """
+    types = node.get("@type")
+    if isinstance(types, list):
+        return any(isinstance(t, str) and t in SO_TO_CM_TRANSLATIONS for t in types)
+    return isinstance(types, str) and types in SO_TO_CM_TRANSLATIONS
+
+
+#: Types that describe the thing a page belongs to rather than the page. They
+#: are read where nothing better is on offer, but never in preference to a work.
+CONTAINER_TYPES = {"WebSite", "Blog"}
+
+
+def pick_json_ld(nodes: list) -> dict | None:
+    """The node that describes the work, out of everything the page declares.
+
+    A page rarely declares one thing. WordPress with Yoast writes a `@graph` of
+    WebSite, WebPage, Article and Organization, in that order, and taking the
+    first supported node would take the site every time -- the reference would
+    validate against the blog rather than the post cited. So a work is
+    preferred, and a container is the fallback rather than the default.
+    """
+    supported = [node for node in nodes if is_supported_type(node)]
+    works = [node for node in supported if not is_container_type(node)]
+    return next(iter(works or supported), None)
+
+
+def is_container_type(node: dict) -> bool:
+    """Whether this node describes a site or a blog rather than a work."""
+    types = node.get("@type")
+    types = types if isinstance(types, list) else [types]
+    return any(t in CONTAINER_TYPES for t in types if isinstance(t, str))
+
+
 def parse_schema_org_html(html: str, url: str | None = None, content=False) -> dict:
     """The schema.org a page carries: its meta tags, then its json-ld.
 
@@ -148,15 +224,9 @@ def parse_schema_org_html(html: str, url: str | None = None, content=False) -> d
     # load site-specific metadata
     data |= web_translator(soup, url)
 
-    # load schema.org metadata. If there are multiple schema.org blocks, load them all,
-    # and pick the first one with a supported type
-    blocks = [
-        json.loads(x.text) for x in soup.find_all("script", type="application/ld+json")
-    ]
-    json_ld = next(
-        (i for i in blocks if i.get("@type", None) in SO_TO_CM_TRANSLATIONS),
-        None,
-    )
+    # load schema.org metadata. If there are multiple schema.org blocks, load
+    # them all, and pick the first one with a supported type
+    json_ld = pick_json_ld(json_ld_nodes(soup))
     if json_ld is not None:
         data |= json_ld
 
