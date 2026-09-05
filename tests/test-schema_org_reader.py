@@ -2,9 +2,11 @@
 """Test schema.org reader"""
 
 import pytest
+from bs4 import BeautifulSoup
 
 from commonmeta import Metadata
 from commonmeta.readers.schema_org_reader import (
+    get_html_meta,
     parse_schema_org_html,
     read_schema_org,
     schema_org_geolocation,
@@ -634,3 +636,55 @@ def test_a_type_that_is_a_list_all_the_way_through():
     out = read_schema_org(page)
     assert out["type"] == "Preprint"
     assert out["container"]["type"] == "Blog"
+
+
+# --- meta tags -----------------------------------------------------------
+
+
+def _meta(html: str) -> dict:
+    return get_html_meta(BeautifulSoup(html, "html.parser"))
+
+
+def test_a_meta_tag_with_no_content():
+    """A tag can be there and carry nothing, and indexing it raised.
+
+    KeyError: 'content', which lost the page rather than the one field.
+    """
+    assert _meta('<meta name="citation_title">')["name"] is None
+
+
+def test_a_meta_tag_whose_content_is_blank():
+    """A field that says nothing is not a value."""
+    assert _meta('<meta name="citation_title" content="  ">')["name"] is None
+
+
+def test_authors_without_content_are_skipped():
+    """One empty author tag must not lose the authors beside it."""
+    html = '<meta name="citation_author"><meta name="citation_author" content="Real">'
+    assert _meta(html)["author"] == ["Real"]
+
+
+def test_the_description_falls_back_past_dc():
+    """The or-chain sat inside the selector string, so these never ran.
+
+        soup.select_one(
+            "meta[name='dc.description']"
+            or soup.select_one("meta[property='og:description']")
+        )
+
+    the string being truthy, everything after it was dead.
+    """
+    assert (
+        _meta('<meta property="og:description" content="From og">')["description"]
+        == "From og"
+    )
+
+
+def test_the_modified_date_falls_back_to_the_article_property():
+    """The same misplaced parenthesis, in date_modified."""
+    assert (
+        _meta('<meta property="article:modified_time" content="2025-09-01">')[
+            "dateModified"
+        ]
+        == "2025-09-01"
+    )

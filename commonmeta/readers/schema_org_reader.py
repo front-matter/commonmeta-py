@@ -128,6 +128,29 @@ def get_schema_org(pid: str | None, **kwargs) -> dict:
     return data | {"via": "schema_org", "state": "findable"}
 
 
+def meta_content(tag) -> str | None:
+    """The content of a meta tag, or None where it carries none.
+
+    A tag can be present and have no content attribute -- emptied by a
+    template, or written by hand and never filled -- and indexing it raised
+
+        KeyError: 'content'
+
+    which lost the whole page rather than the one field. `pid` above has
+    always asked with `.get`; everything else indexed.
+
+    Blank content is None too. A field that is there and says nothing is not
+    a value, and treating it as one puts empty strings into the metadata and
+    stops a later fallback from being tried.
+    """
+    if tag is None:
+        return None
+    content = tag.get("content")
+    if not isinstance(content, str):
+        return None
+    return content.strip() or None
+
+
 def json_ld_nodes(soup) -> list:
     """Every json-ld node a page carries, whatever shape it wrote them in.
 
@@ -715,22 +738,24 @@ def get_html_meta(soup) -> dict:
         pid = pid.get("content", None) or pid.get("href", None)
         data["@id"] = normalize_id(pid)
 
-    _type = soup.select_one("meta[name='dc.type']") or soup.select_one(
-        "meta[name='DC.type']"
+    _type = meta_content(
+        soup.select_one("meta[name='dc.type']")
+        or soup.select_one("meta[name='DC.type']")
     )
-    data["@type"] = _type["content"].capitalize() if _type else None
+    data["@type"] = _type.capitalize() if _type else None
     if _type is None:
-        _type = soup.select_one("meta[property='og:type']")
-        data["@type"] = OG_TO_SO_TRANSLATIONS.get(_type["content"]) if _type else None
+        og_type = meta_content(soup.select_one("meta[property='og:type']"))
+        data["@type"] = OG_TO_SO_TRANSLATIONS.get(og_type) if og_type else None
 
-    url = soup.select_one("meta[property='og:url']") or soup.select_one(
-        "meta[name='twitter:url']"
+    url = meta_content(
+        soup.select_one("meta[property='og:url']")
+        or soup.select_one("meta[name='twitter:url']")
     )
-    data["url"] = url["content"] if url else None
+    data["url"] = url
     if pid is None and url is not None:
-        data["@id"] = url["content"]
+        data["@id"] = url
 
-    title = (
+    data["name"] = meta_content(
         soup.select_one("meta[name='citation_title']")
         or soup.select_one("meta[name='dc.title']")
         or soup.select_one("meta[name='DC.title']")
@@ -738,47 +763,48 @@ def get_html_meta(soup) -> dict:
         or soup.select_one("meta[name='twitter:title']")
         or soup.select_one("meta[name='title']")
     )
-    data["name"] = title["content"] if title else None
 
-    author = soup.select("meta[name='citation_author']")
-    data["author"] = [i["content"] for i in author] if author else None
+    authors = [
+        content
+        for content in (
+            meta_content(i) for i in soup.select("meta[name='citation_author']")
+        )
+        if content
+    ]
+    data["author"] = authors or None
 
-    description = soup.select_one("meta[name='citation_abstract']") or soup.select_one(
-        "meta[name='dc.description']"
+    data["description"] = meta_content(
+        soup.select_one("meta[name='citation_abstract']")
+        or soup.select_one("meta[name='dc.description']")
         or soup.select_one("meta[property='og:description']")
         or soup.select_one("meta[name='twitter:description']")
         or soup.select_one("meta[name='description']")
     )
-    data["description"] = description["content"] if description else None
 
-    keywords = soup.select_one("meta[name='citation_keywords']")
-    data["keywords"] = (
-        str(keywords["content"]).replace(";", ",").rstrip(", ") if keywords else None
-    )
+    keywords = meta_content(soup.select_one("meta[name='citation_keywords']"))
+    data["keywords"] = keywords.replace(";", ",").rstrip(", ") if keywords else None
 
-    date_published = (
+    date_published = meta_content(
         soup.select_one("meta[name='citation_publication_date']")
         or soup.select_one("meta[name='dc.date']")
         or soup.select_one("meta[property='article:published_time']")
     )
-    data["datePublished"] = (
-        get_iso8601_date(date_published["content"]) if date_published else None
-    )
-    date_modified = soup.select_one(
-        "meta[property='og:updated_time']"
+    data["datePublished"] = get_iso8601_date(date_published) if date_published else None
+
+    date_modified = meta_content(
+        soup.select_one("meta[property='og:updated_time']")
         or soup.select_one("meta[property='article:modified_time']")
     )
-    data["dateModified"] = (
-        get_iso8601_date(date_modified["content"]) if date_modified else None
-    )
-    license_ = soup.select_one("meta[name='dc.rights']")
-    data["license"] = license_["content"] if license_ else None
+    data["dateModified"] = get_iso8601_date(date_modified) if date_modified else None
 
-    lang = soup.select_one("meta[name='dc.language']") or soup.select_one(
-        "meta[name='citation_language']"
+    data["license"] = meta_content(soup.select_one("meta[name='dc.rights']"))
+
+    lang = meta_content(
+        soup.select_one("meta[name='dc.language']")
+        or soup.select_one("meta[name='citation_language']")
     )
     if lang is not None:
-        data["inLanguage"] = lang["content"]
+        data["inLanguage"] = lang
     else:
         html = soup.select_one("html")
         if html is not None:
@@ -786,15 +812,13 @@ def get_html_meta(soup) -> dict:
             if lang is not None:
                 data["inLanguage"] = lang
 
-    publisher = soup.select_one("meta[property='og:site_name']")
-    data["publisher"] = {"name": publisher["content"]} if publisher else None
+    publisher = meta_content(soup.select_one("meta[property='og:site_name']"))
+    data["publisher"] = {"name": publisher} if publisher else None
 
-    name = soup.select_one("meta[property='og:site_name']")
-    issn = soup.select_one("meta[name='citation_issn']")
     data["isPartOf"] = compact(
         {
-            "name": name["content"] if name else None,
-            "issn": issn["content"] if issn else None,
+            "name": publisher,
+            "issn": meta_content(soup.select_one("meta[name='citation_issn']")),
         }
     )
     return data
