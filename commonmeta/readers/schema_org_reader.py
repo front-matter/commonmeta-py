@@ -44,6 +44,7 @@ from ..utils import (
     normalize_cc_url,
     normalize_id,
     normalize_ids,
+    normalize_ror,
     normalize_url,
 )
 
@@ -235,6 +236,26 @@ def is_container_type(node: dict) -> bool:
     return known_type(node, CONTAINER_TYPES) is not None
 
 
+def to_work_id(_id: str | None, url: str | None) -> str | None:
+    """The work's identifier, once a json-ld node name is told from one.
+
+    A `@graph` names its nodes so they can point at each other, and WordPress
+    with Yoast writes those names as the page url with a fragment: `#article`
+    for the post, `#webpage` for the page it sits on, `#organization` for the
+    publisher. A fragment like that identifies a node inside the document, not
+    a work in the world, so where it is all that separates `@id` from the
+    node's own `url`, the url is the identifier.
+
+    Anywhere else `@id` is left alone. A page whose `@id` is a doi says so on
+    purpose, and a fragment that names something other than the page -- a
+    section of a longer work -- is not this.
+    """
+    if not _id or not url or _id == url:
+        return _id
+    base, _, fragment = _id.partition("#")
+    return url if fragment and base == url else _id
+
+
 def parse_schema_org_html(html: str, url: str | None = None, content=False) -> dict:
     """The schema.org a page carries: its meta tags, then its json-ld.
 
@@ -287,6 +308,7 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
     )
     additional_type = meta.get("additionalType", None)
     url = normalize_url(meta.get("url", None)) or _id
+    _id = to_work_id(_id, url)
 
     # Authors should be list of objects or strings
     authors = wrap(meta.get("author", None))
@@ -318,8 +340,12 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
 
     publisher = meta.get("publisher", None)
     if publisher is not None:
+        # A publisher is identified by its ROR and by nothing else, which is
+        # what the schema asks for. The `@id` of a publisher in a `@graph` is
+        # usually the node's name -- `#organization` -- and passing that on
+        # made the whole record invalid over a string that identifies nobody.
         _pub_id = (
-            normalize_id(publisher.get("@id", None))
+            normalize_ror(publisher.get("@id", None))
             if isinstance(publisher, dict)
             else None
         )
@@ -433,7 +459,7 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
         "provider": provider,
         "publisher": publisher,
         "references": presence(references),
-        "relations": presence(schema_org_relations(meta)),
+        "relations": presence(schema_org_relations(meta, _id)),
         "state": state,
         "subjects": presence(subjects),
         "title": title,
@@ -540,12 +566,17 @@ SO_TO_CM_RELATION_TYPES = {
 SO_TO_CM_REVERSE_RELATION_TYPES = {"citation": "IsReferencedBy"}
 
 
-def schema_org_relations(meta) -> list:
+def schema_org_relations(meta, _id: str | None = None) -> list:
     """Relations, from the schema.org properties that carry them.
 
     `isPartOf` is read as the container as well, which is what a blog post's
     container is: the relation and the container are two readings of the same
     statement, and both readers of this record write it back.
+
+    ``_id`` is the work's own identifier, and a relation to it is dropped. In a
+    `@graph` the Article says it is `isPartOf` the WebPage it is written on,
+    and once that page's node name resolves to its url -- the url the Article
+    itself carries -- the record would say the post is part of itself.
     """
 
     def ids(value) -> list:
@@ -558,16 +589,16 @@ def schema_org_relations(meta) -> list:
         return out
 
     relations = [
-        {"id": _id, "type": relation_type}
+        {"id": related, "type": relation_type}
         for property_, relation_type in SO_TO_CM_RELATION_TYPES.items()
-        for _id in ids(meta.get(property_, None))
+        for related in ids(meta.get(property_, None))
     ]
     relations += [
-        {"id": _id, "type": relation_type}
+        {"id": related, "type": relation_type}
         for property_, relation_type in SO_TO_CM_REVERSE_RELATION_TYPES.items()
-        for _id in ids(dig(meta, f"@reverse.{property_}"))
+        for related in ids(dig(meta, f"@reverse.{property_}"))
     ]
-    return relations
+    return [relation for relation in relations if relation["id"] != _id]
 
 
 def schema_org_subjects(meta) -> list:

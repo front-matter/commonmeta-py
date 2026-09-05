@@ -492,14 +492,62 @@ def test_arxiv():
 
 
 @pytest.mark.vcr
-def test_orcid_blog():
-    "orcid blog"
+def test_orcid_blog_post():
+    "orcid blog post"
     string = "https://info.orcid.org/orcid-2023-annual-report/"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://info.orcid.org/orcid-2023-annual-report/"
     assert subject.type == "Preprint"
     assert subject.state == "findable"
+
+
+def test_to_work_id_prefers_the_url_to_a_node_name():
+    """A `@graph` names its nodes with a fragment on the page url.
+
+    `#article` identifies a node inside the document, not a work in the world,
+    so the url the node carries is the identifier.
+    """
+    from commonmeta.readers.schema_org_reader import to_work_id
+
+    url = "https://info.orcid.org/orcid-2023-annual-report/"
+
+    assert to_work_id(f"{url}#article", url) == url
+    # nothing to prefer it to, and nothing to tell it from an identifier
+    assert to_work_id(f"{url}#article", None) == f"{url}#article"
+    assert to_work_id(url, url) == url
+
+
+def test_schema_org_relations_drops_a_work_related_to_itself():
+    """In a `@graph` the Article is `isPartOf` the page it is written on.
+
+    Both resolve to the same url once the node name gives way to it, so the
+    record would say the post is part of itself.
+    """
+    from commonmeta.readers.schema_org_reader import schema_org_relations
+
+    url = "https://info.orcid.org/orcid-2023-annual-report/"
+    meta = {"isPartOf": {"@id": url}}
+
+    assert schema_org_relations(meta, url) == []
+    # a relation to anything else is kept
+    assert schema_org_relations(meta, "https://example.org/other/") == [
+        {"id": url, "type": "IsPartOf"}
+    ]
+
+
+def test_to_work_id_leaves_an_identifier_alone():
+    """A doi, and a fragment that names something other than the page, stay."""
+    from commonmeta.readers.schema_org_reader import to_work_id
+
+    doi = "https://doi.org/10.5555/12345678"
+    url = "https://example.org/post/"
+
+    assert to_work_id(doi, url) == doi
+    # a fragment on a different page is not this page's node name
+    assert to_work_id("https://example.org/other/#article", url) == (
+        "https://example.org/other/#article"
+    )
 
 
 @pytest.mark.vcr
