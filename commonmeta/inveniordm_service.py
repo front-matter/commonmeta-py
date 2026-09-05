@@ -462,15 +462,24 @@ class ServiceBackend:
         metadata-only." So a draft that lost its only file has to say it is
         metadata-only, or it is no more publishable than before.
 
-        Only ever called when no entries remain, which keeps it away from the
-        case that matters: an edit of a published record carries that record's
-        files, and disabling files there would strip them on publish.
+        Only ever called when no entries remain, and only where no published
+        record carries one either. An edit of a published record usually
+        carries that record's files, but not where this run dropped them to
+        write them again and then could not: the draft is empty and the record
+        is not, and publishing that edit copies the draft's `enabled` onto the
+        record, clears the record's own entries with it, and then syncs through
+        the manager it has just turned off:
+
+            InvalidOperationError: 403 Forbidden: Files are not enabled.
+
+        The record is then unpublishable until its draft is discarded, having
+        been turned metadata-only over a pdf it still had.
         """
         try:
             files = self._records.draft_files.list_files(
                 self._identity, record_id
             ).to_dict()
-            if files.get("entries"):
+            if files.get("entries") or self._published_file_keys(record_id):
                 return
             draft = self._records.read_draft(self._identity, record_id).to_dict()
             draft.setdefault("files", {})["enabled"] = False
@@ -628,6 +637,19 @@ class ServiceBackend:
         )
         record["status"] = "draft_discarded"
         return record
+
+    def _published_file_keys(self, record_id: str) -> list[str]:
+        """The files of the published record a draft was opened on, by key.
+
+        Not `read_record`, which logs a missing record as an error: a draft
+        with nothing published behind it is an ordinary answer here, and the
+        common one.
+        """
+        try:
+            published = self._records.read(self._identity, record_id).to_dict()
+        except Exception:
+            return []
+        return list((published.get("files") or {}).get("entries") or [])
 
     def _is_published(self, record_id: str) -> bool:
         """Whether a published record stands behind this draft.

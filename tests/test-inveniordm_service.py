@@ -472,6 +472,31 @@ def test_a_failed_upload_leaves_a_publishable_draft(use_fake_backend):
     assert records.draft["files"]["enabled"] is False
 
 
+def test_a_draft_emptied_of_a_published_file_stays_files_enabled(use_fake_backend):
+    """The draft has no file left, and the record it was opened on has one.
+
+    Publishing that edit copies the draft's `enabled` onto the record, which
+    clears the record's own entries and then syncs through the manager it has
+    just turned off -- "403 Forbidden: Files are not enabled" out of
+    invenio-records-resources, and the record cannot be published again until
+    its draft is discarded.
+    """
+    files = FakeDraftFiles(entries={"post.pdf": "pending"}, fail_on={"commit"})
+    records = FakeRecordsWithFiles(files)
+    records.read = lambda identity, id_: FakeItem(
+        {"id": id_, "files": {"enabled": True, "entries": {"post.pdf": {}}}}
+    )
+    backend = use_fake_backend(FakeBackend(records=records))
+
+    record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF-")
+
+    # the upload failed and left nothing behind, and the draft still publishes
+    # the file the record already has
+    assert "files" not in record
+    assert files.entries == {}
+    assert records.draft["files"]["enabled"] is True
+
+
 def test_files_stay_enabled_when_others_remain(use_fake_backend):
     """An edit of a published record carries its files; do not strip them."""
     files = FakeDraftFiles(entries={"other.pdf": "completed"}, fail_on={"commit"})
