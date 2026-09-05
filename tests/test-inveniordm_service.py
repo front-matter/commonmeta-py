@@ -295,7 +295,7 @@ def test_a_stale_pending_file_is_replaced_rather_than_colliding(use_fake_backend
 
     record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF-")
 
-    assert record["file"] == "post.pdf"
+    assert record["files"] == ["post.pdf"]
     assert files.entries["post.pdf"] == "completed"
     assert ("delete_file", "post.pdf") in files.calls
 
@@ -309,7 +309,7 @@ def test_an_already_completed_file_is_left_alone(use_fake_backend):
 
     record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF-")
 
-    assert record["file"] == "post.pdf"
+    assert record["files"] == ["post.pdf"]
     assert files.calls == []  # no delete, no re-upload
 
 
@@ -335,7 +335,7 @@ def test_a_file_is_checked_with_the_algorithm_its_entry_names(
 
     record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", content)
 
-    assert record["file"] == "post.pdf"
+    assert record["files"] == ["post.pdf"]
     assert files.calls == []  # no delete, no re-upload
 
 
@@ -348,7 +348,7 @@ def test_a_file_that_cannot_be_checked_is_written_again(use_fake_backend, checks
 
     record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF-")
 
-    assert record["file"] == "post.pdf"
+    assert record["files"] == ["post.pdf"]
     assert ("delete_file", "post.pdf") in files.calls
     assert ("commit_file", "post.pdf") in files.calls
 
@@ -370,7 +370,7 @@ def test_the_rendition_under_its_former_name_is_dropped(use_fake_backend):
         {"id": "abc12-xyz34"}, "10.59350_dn2mm-m9q51.pdf", b"%PDF-"
     )
 
-    assert record["file"] == "10.59350_dn2mm-m9q51.pdf"
+    assert record["files"] == ["10.59350_dn2mm-m9q51.pdf"]
     assert list(files.entries) == ["10.59350_dn2mm-m9q51.pdf"]
     assert files.calls[0] == ("delete_file", "10.59350-dn2mm-m9q51.pdf")
 
@@ -388,7 +388,7 @@ def test_a_former_name_that_cannot_be_dropped_keeps_the_new_file(use_fake_backen
         {"id": "abc12-xyz34"}, "10.59350_dn2mm-m9q51.pdf", b"%PDF-"
     )
 
-    assert record["file"] == "10.59350_dn2mm-m9q51.pdf"
+    assert record["files"] == ["10.59350_dn2mm-m9q51.pdf"]
     assert ("delete_file", "10.59350-dn2mm-m9q51.pdf") in files.calls
     assert ("commit_file", "10.59350_dn2mm-m9q51.pdf") in files.calls
 
@@ -421,7 +421,7 @@ def test_a_changed_file_is_replaced(use_fake_backend):
 
     record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF- new")
 
-    assert record["file"] == "post.pdf"
+    assert record["files"] == ["post.pdf"]
     assert files.calls == [
         ("delete_file", "post.pdf"),
         ("init_files", "post.pdf"),
@@ -447,7 +447,7 @@ def test_a_changed_file_keeps_the_old_one_when_the_bucket_is_locked(use_fake_bac
 
     record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF- new")
 
-    assert record["file"] == "post.pdf"
+    assert record["files"] == ["post.pdf"]
     assert files.entries == {"post.pdf": "completed"}
     assert files.checksums["post.pdf"] == file_checksum(b"%PDF- old")
     assert ("init_files", "post.pdf") not in files.calls
@@ -467,7 +467,7 @@ def test_a_failed_upload_leaves_a_publishable_draft(use_fake_backend):
 
     record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF-")
 
-    assert "file" not in record
+    assert "files" not in record
     assert files.entries == {}
     assert records.draft["files"]["enabled"] is False
 
@@ -612,7 +612,7 @@ def test_an_upload_that_fails_silently_is_caught(use_fake_backend):
 
     record = backend.upload_file({"id": "abc12-xyz34"}, "post.pdf", b"%PDF-")
 
-    assert "file" not in record
+    assert "files" not in record
     assert files.entries == {}, "the incomplete entry must not survive"
     assert records.draft["files"]["enabled"] is False
 
@@ -634,7 +634,7 @@ def test_stale_entries_under_other_keys_are_cleared(use_fake_backend):
 
     record = backend.upload_file({"id": "9ch1z-brd41"}, "j63pf-38v68.pdf", b"%PDF-")
 
-    assert record["file"] == "j63pf-38v68.pdf"
+    assert record["files"] == ["j63pf-38v68.pdf"]
     assert set(files.entries) == {"j63pf-38v68.pdf"}, "the strays must be gone"
     assert files.entries["j63pf-38v68.pdf"] == "completed"
 
@@ -653,7 +653,7 @@ def test_a_stray_that_cannot_be_dropped_abandons_the_draft(use_fake_backend):
     record = backend.upload_file({"id": "9ch1z-brd41"}, "j63pf-38v68.pdf", b"%PDF-")
 
     assert record.get("status") == "draft_discarded"
-    assert "file" not in record
+    assert "files" not in record
 
 
 def test_a_completed_file_of_another_name_is_left_alone(use_fake_backend):
@@ -668,3 +668,29 @@ def test_a_completed_file_of_another_name_is_left_alone(use_fake_backend):
 
     assert files.entries["figure.png"] == "completed"
     assert files.entries["post.pdf"] == "completed"
+
+
+def test_the_files_a_draft_would_publish_are_the_completed_ones(use_fake_backend):
+    """What the writer asks before turning a draft metadata-only.
+
+    An entry whose transfer never completed publishes nothing -- it refuses the
+    draft outright -- so it is not a reason to leave files enabled.
+    """
+    files = FakeDraftFiles(entries={"post.pdf": "completed", "stale.pdf": "pending"})
+    backend = use_fake_backend(FakeBackend(records=FakeRecordsWithFiles(files)))
+
+    assert backend.draft_file_keys("abc12-xyz34") == ["post.pdf"]
+
+
+def test_a_listing_that_cannot_be_had_is_no_files(use_fake_backend):
+    """The caller then does what it did before the draft was asked at all."""
+
+    class RefusingFiles(FakeDraftFiles):
+        def list_files(self, identity, id_):
+            raise Exception("403 Forbidden")
+
+    backend = use_fake_backend(
+        FakeBackend(records=FakeRecordsWithFiles(RefusingFiles()))
+    )
+
+    assert backend.draft_file_keys("abc12-xyz34") == []

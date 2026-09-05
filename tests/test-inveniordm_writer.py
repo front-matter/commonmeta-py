@@ -2325,6 +2325,7 @@ def test_a_record_without_a_pdf_is_published_metadata_only():
             "commonmeta.writers.inveniordm_writer.write_pdf_rendition",
             side_effect=AssertionError(),
         ),
+        patch("commonmeta.writers.inveniordm_writer.draft_file_keys", return_value=[]),
         patch(
             "commonmeta.writers.inveniordm_writer.update_draft_record",
             side_effect=lambda r, *a: {**r, "status": "updated"},
@@ -2393,6 +2394,93 @@ def test_a_record_that_already_has_a_pdf_keeps_its_files_enabled():
             record,
             skip_unchanged=False,
             write_pdf=True,
+        )
+
+    assert result["status"] == "published"
+    for call in mock_update.call_args_list:
+        assert call.args[3].get("files", {}) != {"enabled": False}
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_a_pdf_attached_this_run_keeps_files_enabled():
+    """A first publish whose rendition arrived is not turned metadata-only.
+
+    upload_pdf reports the file it attached, and the service backend reported
+    it under a key the check did not read -- so every record getting its first
+    pdf was logged as "without a pdf rendition" and published with files
+    turned off, the very thing that strips the file it had just been given.
+    """
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
+    record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
+
+    with (
+        patch("commonmeta.writers.inveniordm_writer.search_by_doi", return_value=None),
+        patch("commonmeta.writers.inveniordm_writer.search_by_guid", return_value=None),
+        patch(
+            "commonmeta.writers.inveniordm_writer.create_draft_record",
+            side_effect=lambda r, *a: {**r, "id": "fktsh-g4g95", "status": "draft"},
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.upload_pdf",
+            side_effect=lambda m, h, t, r: {**r, "files": ["10.59350_dn2mm-m9q51.pdf"]},
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "updated"},
+        ) as mock_update,
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "published"},
+        ),
+    ):
+        result = upsert_record(
+            subject, "rogue-scholar.org", "token", record, write_pdf=True
+        )
+
+    assert result["status"] == "published"
+    for call in mock_update.call_args_list:
+        assert call.args[3].get("files", {}) != {"enabled": False}
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_a_draft_that_already_carries_a_file_keeps_files_enabled():
+    """The draft is asked, not assumed empty from what this run attached.
+
+    A rendition that could not be made leaves whatever the draft already has --
+    an earlier run's pdf, one this run could not replace -- and turning files
+    off on a draft that carries one strips it on publish.
+    """
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
+    record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
+
+    with (
+        patch("commonmeta.writers.inveniordm_writer.search_by_doi", return_value=None),
+        patch("commonmeta.writers.inveniordm_writer.search_by_guid", return_value=None),
+        patch(
+            "commonmeta.writers.inveniordm_writer.create_draft_record",
+            side_effect=lambda r, *a: {**r, "id": "fktsh-g4g95", "status": "draft"},
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.write_pdf_rendition",
+            side_effect=AssertionError(),
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.draft_file_keys",
+            return_value=["10.59350_dn2mm-m9q51.pdf"],
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "updated"},
+        ) as mock_update,
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "published"},
+        ),
+    ):
+        result = upsert_record(
+            subject, "rogue-scholar.org", "token", record, write_pdf=True
         )
 
     assert result["status"] == "published"

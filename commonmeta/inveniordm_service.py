@@ -380,6 +380,34 @@ class ServiceBackend:
             )
             return False
 
+    def _list_files(self, record_id: str) -> list[dict]:
+        """Every entry on the draft, none where the listing is refused."""
+        try:
+            listing = self._records.draft_files.list_files(
+                self._identity, record_id
+            ).to_dict()
+        except Exception as e:
+            log.warning(
+                f"Could not list the files of record {record_id}: {reason(e)}",
+                extra={"record_id": record_id},
+            )
+            return []
+        return listing.get("entries") or []
+
+    def draft_file_keys(self, record_id: str) -> list[str]:
+        """Every key on the draft whose transfer completed.
+
+        What the draft has to publish, which is asked before it is turned
+        metadata-only: a file that is there — an older rendition left in place,
+        one this run could not replace — is one the publish would keep and
+        disabling files would strip.
+        """
+        return [
+            entry.get("key")
+            for entry in self._list_files(record_id)
+            if entry.get("status") == "completed" and entry.get("key")
+        ]
+
     def _incomplete_keys(self, record_id: str) -> list[str]:
         """Every key on the draft whose transfer never completed.
 
@@ -391,19 +419,9 @@ class ServiceBackend:
         each attempt registered a new key and left the last one behind.
         Answering only for the key in hand meant none of them was ever cleared.
         """
-        try:
-            listing = self._records.draft_files.list_files(
-                self._identity, record_id
-            ).to_dict()
-        except Exception as e:
-            log.warning(
-                f"Could not list the files of record {record_id}: {reason(e)}",
-                extra={"record_id": record_id},
-            )
-            return []
         return [
             entry.get("key")
-            for entry in listing.get("entries") or []
+            for entry in self._list_files(record_id)
             if entry.get("status") != "completed" and entry.get("key")
         ]
 
@@ -517,12 +535,12 @@ class ServiceBackend:
         entry = self._file_entry(record_id, key)
         if entry.get("status") == "completed":
             if is_checksum_of(entry.get("checksum"), content):
-                record["file"] = key
+                record["files"] = [key]
                 return record
             if not self._drop_file(record_id, key):
                 # A locked bucket, most likely. The attached file is the older
                 # rendition of the same post, which beats no file at all.
-                record["file"] = key
+                record["files"] = [key]
                 return record
 
         if not self._enable_files(record_id):
@@ -559,14 +577,14 @@ class ServiceBackend:
             )
             return self._discard_incomplete(record, key)
 
-        record["file"] = key
+        record["files"] = [key]
         return record
 
     def _discard_incomplete(self, record: dict, key: str) -> dict:
         """Leave nothing behind that would make the draft unpublishable."""
         record_id = record["id"]
         if self._file_entry(record_id, key).get("status") == "completed":
-            record["file"] = key
+            record["files"] = [key]
             return record
         if not self._drop_file(record_id, key):
             return self._abandon_draft(record, key)

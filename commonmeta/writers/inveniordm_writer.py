@@ -853,7 +853,16 @@ def upsert_record(
         # very thing upload_pdf swallows the failure to avoid. The record goes
         # out metadata-only instead, and a later run attaches the pdf once the
         # post, or weasyprint, has changed enough to render.
-        if not record.get("files") and not has_file:
+        #
+        # The draft is asked rather than assumed empty. Turning files off on a
+        # draft that carries one strips it on publish, and what upload_pdf
+        # reported is not the whole story: a file an earlier run attached, or
+        # one this run could not replace, publishes the record as it stands.
+        if (
+            not record.get("files")
+            and not has_file
+            and not draft_file_keys(record["id"], host, token)
+        ):
             log.warning(f"Publishing record {record['id']} without a pdf rendition")
             record = update_draft_record(
                 record, host, token, {**payload, "files": {"enabled": False}}
@@ -1036,6 +1045,35 @@ def upload_pdf(metadata: Metadata, host: str, token: str, record: dict) -> dict:
             exc_info=True,
         )
         return record
+
+
+def draft_file_keys(record_id: str, host: str, token: str) -> list[str]:
+    """The files a draft carries, by key.
+
+    Asked before a draft is turned metadata-only, which is the one thing that
+    depends on a draft having no files rather than on what this run attached.
+    An answer that cannot be had is no files, which leaves the caller doing
+    what it did before this was asked at all.
+    """
+    backend = active_backend()
+    if backend is not None:
+        return backend.draft_file_keys(record_id)
+
+    try:
+        response = http.get(
+            f"https://{host}/api/records/{record_id}/draft/files",
+            headers={"Authorization": f"Bearer {token}"},
+        )
+        response.raise_for_status()
+        entries = response.json().get("entries") or []
+    except (RequestException, ValueError) as e:
+        log.warning(f"Could not list the files of record {record_id}: {str(e)}")
+        return []
+    return [
+        entry.get("key")
+        for entry in entries
+        if entry.get("status") == "completed" and entry.get("key")
+    ]
 
 
 def reserve_doi(record: dict, host: str, token: str) -> dict:
