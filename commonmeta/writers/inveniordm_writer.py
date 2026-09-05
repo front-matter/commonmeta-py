@@ -783,6 +783,12 @@ def upsert_record(
             doi_from_url(record["previous_doi"]), host, token
         )
 
+    # What was sent, and whether the record already carries a file: both are
+    # needed further down, where a rendition that could not be made has to be
+    # told apart from one the record already has.
+    payload = output
+    has_file = False
+
     if record.get("previous_id", None) is not None:
         # Create a new version from the previous record
         record["id"] = record["previous_id"]
@@ -803,6 +809,8 @@ def upsert_record(
         published = get_published_record(record["id"], host, token)
         if published is not None:
             keep_citations(update_output, published)
+        payload = update_output
+        has_file = bool(dig(published or {}, "files.entries"))
 
         # Publishing an unchanged record still writes a new revision and moves its
         # updated timestamp, so leave the record alone when it already matches.
@@ -838,6 +846,18 @@ def upsert_record(
         # record stands as it was published before.
         if record.get("status", None) == "draft_discarded":
             return record
+
+        # A draft with files enabled and none uploaded cannot be published --
+        # InvenioRDM refuses it with "Missing uploaded files" -- so a rendition
+        # that could not be made took the post with it after all, which is the
+        # very thing upload_pdf swallows the failure to avoid. The record goes
+        # out metadata-only instead, and a later run attaches the pdf once the
+        # post, or weasyprint, has changed enough to render.
+        if not record.get("files") and not has_file:
+            log.warning(f"Publishing record {record['id']} without a pdf rendition")
+            record = update_draft_record(
+                record, host, token, {**payload, "files": {"enabled": False}}
+            )
 
     # Publish draft record
     record = publish_draft_record(record, host, token)

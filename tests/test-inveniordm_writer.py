@@ -2300,3 +2300,101 @@ def test_a_record_survives_having_no_pdf_to_upload():
         result = inveniordm_writer.upload_pdf(Mock(), "example.org", None, dict(record))
 
     assert result == record
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_a_record_without_a_pdf_is_published_metadata_only():
+    """Surviving the render is not enough: the draft still has to publish.
+
+    A draft with files enabled and none uploaded is refused with "Missing
+    uploaded files", so a rendition that could not be made took the post with
+    it anyway. The record goes out metadata-only instead.
+    """
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
+    record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
+
+    with (
+        patch("commonmeta.writers.inveniordm_writer.search_by_doi", return_value=None),
+        patch("commonmeta.writers.inveniordm_writer.search_by_guid", return_value=None),
+        patch(
+            "commonmeta.writers.inveniordm_writer.create_draft_record",
+            side_effect=lambda r, *a: {**r, "id": "fktsh-g4g95", "status": "draft"},
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.write_pdf_rendition",
+            side_effect=AssertionError(),
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "updated"},
+        ) as mock_update,
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "published"},
+        ),
+    ):
+        result = upsert_record(
+            subject, "rogue-scholar.org", "token", record, write_pdf=True
+        )
+
+    assert result["status"] == "published"
+    assert mock_update.call_args.args[3]["files"] == {"enabled": False}
+
+
+@pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")
+def test_a_record_that_already_has_a_pdf_keeps_its_files_enabled():
+    """A file the record already carries publishes it, so files stay on.
+
+    Only a record with none at all is turned metadata-only; one whose upload
+    was refused -- a published record locks its files -- still has the pdf of
+    an earlier run to publish.
+    """
+    string = "https://rogue-scholar.org/api/records/7tatc-wh557"
+    subject = Metadata(string, via="inveniordm")
+    record = {"doi": "10.59350/dn2mm-m9q51", "previous_doi": None}
+    output = json.loads(subject.write(to="inveniordm", write_pdf=True))
+    published = {
+        "id": "fktsh-g4g95",
+        "files": {"enabled": True, "entries": {"10.59350_dn2mm-m9q51.pdf": {}}},
+        **{k: v for k, v in output.items() if k not in ("pids", "files")},
+    }
+
+    with (
+        patch(
+            "commonmeta.writers.inveniordm_writer.search_by_doi",
+            return_value="fktsh-g4g95",
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.get_published_record",
+            return_value=published,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.edit_published_record",
+            side_effect=lambda r, *a: r,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.write_pdf_rendition",
+            side_effect=AssertionError(),
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "updated"},
+        ) as mock_update,
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "published"},
+        ),
+    ):
+        result = upsert_record(
+            subject,
+            "rogue-scholar.org",
+            "token",
+            record,
+            skip_unchanged=False,
+            write_pdf=True,
+        )
+
+    assert result["status"] == "published"
+    for call in mock_update.call_args_list:
+        assert call.args[3].get("files", {}) != {"enabled": False}
