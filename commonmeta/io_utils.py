@@ -1735,7 +1735,7 @@ def pdf_stylesheet() -> tuple:
     return css, font_config
 
 
-def write_pdf_bytes(render, metadata: Metadata, options: dict) -> bytes:
+def write_pdf_bytes(attempt, metadata: Metadata, variant: str | None) -> bytes:
     """Write a rendition, untagged where WeasyPrint cannot tag it.
 
     WeasyPrint 69 raises `Table wrapper without a table` while it builds the
@@ -1745,22 +1745,27 @@ def write_pdf_bytes(render, metadata: Metadata, options: dict) -> bytes:
     the same PDF/A level without the accessibility conformance rather than not
     written at all, since a rendition that fails takes the record push with it.
 
-    ``render`` lays the pages out and is called once per attempt: writing a
-    document that raised part way through tagging leaves its boxes marked and
-    its structure tree half built, and the second write would carry both.
+    ``attempt`` writes the pdf at the variant it is given, and is called once
+    per attempt: nothing a first write touched can be written again. A document
+    that raised part way through tagging carries the boxes it already marked
+    and the structure tree it half built, and an attachment's source is a
+    context manager that can only ever be entered once -- a second write over
+    the same one raises "'_GeneratorContextManager' object has no attribute
+    'args'" from inside WeasyPrint, which is how the fallback failed for every
+    post that carried its html.
     """
-    variant = options.get("pdf_variant", "")
     try:
-        return render().write_pdf(**options)
+        return attempt(variant)
     except ValueError as error:
-        tagged = variant.startswith("pdf/a-") and variant.endswith("a")
+        level = variant or ""
+        tagged = level.startswith("pdf/a-") and level.endswith("a")
         if "Table wrapper without a table" not in str(error) or not tagged:
             raise
-        untagged = variant[:-1] + "b"
+        untagged = level[:-1] + "b"
         log.warning(
             f"Writing {metadata.id} as {untagged}, weasyprint cannot tag it: {error}"
         )
-        return render().write_pdf(**{**options, "pdf_variant": untagged})
+        return attempt(untagged)
 
 
 def write_pdf_rendition(
@@ -1792,18 +1797,25 @@ def write_pdf_rendition(
     # explicitly would go through an api it deprecated in 69.
     fetcher = {"url_fetcher": url_fetcher} if url_fetcher is not None else {}
     options.setdefault("pdf_variant", PDF_VARIANT)
-    # nothing to attach when there is no post to attach: the html the pdf was
-    # rendered from is the only file it carries
-    if presence(metadata.content):
-        options.setdefault("attachments", [to_pdf_attachment(metadata, weasyprint)])
     html = to_pdf_html(metadata)
+    # nothing to attach when there is no post to attach: the html the pdf was
+    # rendered from is the only file it carries. An attachment given by the
+    # caller is theirs and is passed on as it stands; one made here is made per
+    # attempt, since it cannot be written twice.
+    attach = presence(metadata.content) and "attachments" not in options
 
-    def render():
-        return weasyprint.HTML(
+    def attempt(variant: str | None) -> bytes:
+        document = weasyprint.HTML(
             string=html, base_url=str(PDF_RESOURCES), **fetcher
         ).render(stylesheets=[css], font_config=font_config)
+        attachments = (
+            {"attachments": [to_pdf_attachment(metadata, weasyprint)]} if attach else {}
+        )
+        return document.write_pdf(**{**options, **attachments, "pdf_variant": variant})
 
-    pdf = finish_pdf(write_pdf_bytes(render, metadata, options), metadata)
+    pdf = finish_pdf(
+        write_pdf_bytes(attempt, metadata, options["pdf_variant"]), metadata
+    )
     if file:
         write_output(file, pdf, [".pdf"])
     return pdf

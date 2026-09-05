@@ -698,45 +698,69 @@ def test_a_page_weasyprint_cannot_tag_is_written_untagged(caplog):
     """
     from commonmeta.io_utils import write_pdf_bytes
 
-    def write_pdf(**options):
-        if options["pdf_variant"].endswith("a"):
+    attempts = []
+
+    def attempt(variant):
+        attempts.append(variant)
+        if variant.endswith("a"):
             raise ValueError("Table wrapper without a table")
         return b"%PDF-untagged"
-
-    renders = []
-
-    def render():
-        renders.append(1)
-        return SimpleNamespace(write_pdf=write_pdf)
 
     metadata = SimpleNamespace(id="https://doi.org/10.59350/4r6jj-90k30")
 
     with caplog.at_level(logging.WARNING):
-        pdf = write_pdf_bytes(render, metadata, {"pdf_variant": "pdf/a-3a"})
+        pdf = write_pdf_bytes(attempt, metadata, "pdf/a-3a")
 
-    # the pages are laid out again rather than written twice: a document that
-    # raised part way through tagging carries what it had already built
-    assert len(renders) == 2
+    # the whole write is made again rather than the same one written twice: a
+    # document that raised part way through tagging carries what it had already
+    # built, and so does the attachment it was given
+    assert attempts == ["pdf/a-3a", "pdf/a-3b"]
 
     assert pdf == b"%PDF-untagged"
     assert "pdf/a-3b" in caplog.text
+
+
+def test_a_post_that_cannot_be_tagged_is_written_with_its_attachment(
+    render_pdf, monkeypatch
+):
+    """The fallback writes the whole pdf again, attachment and all.
+
+    WeasyPrint holds an attachment's source as a context manager, and one can
+    be entered only once: writing the same attachment a second time raised
+    "'_GeneratorContextManager' object has no attribute 'args'" from inside
+    WeasyPrint, so the fallback lost every post that carried its html - which
+    is every post that has any content to attach.
+    """
+    import weasyprint.pdf
+    from conftest import sample_metadata
+
+    tagged = []
+
+    def add_tags(*args, **kwargs):
+        tagged.append(1)
+        raise ValueError("Table wrapper without a table")
+
+    monkeypatch.setattr(weasyprint.pdf, "add_tags", add_tags)
+
+    pdf = render_pdf(sample_metadata("<p>Body</p>"))
+
+    # tagging was attempted once, for the pdf/a-3a write; the pdf/a-3b write
+    # that followed needs none and carries the post as an embedded file
+    assert tagged == [1]
+    assert b"<p>Body</p>" in read_pdf_attachment(pdf)
 
 
 def test_a_page_that_fails_for_another_reason_is_not_written(caplog):
     """Only the tagging failure falls back; everything else is a failure."""
     from commonmeta.io_utils import write_pdf_bytes
 
-    def write_pdf(**options):
+    def attempt(variant):
         raise ValueError("Font is not embeddable")
 
     metadata = SimpleNamespace(id="https://doi.org/10.59350/4r6jj-90k30")
 
     with pytest.raises(ValueError, match="Font is not embeddable"):
-        write_pdf_bytes(
-            lambda: SimpleNamespace(write_pdf=write_pdf),
-            metadata,
-            {"pdf_variant": "pdf/a-3a"},
-        )
+        write_pdf_bytes(attempt, metadata, "pdf/a-3a")
 
 
 @pytest.mark.parametrize(
