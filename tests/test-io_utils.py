@@ -1078,6 +1078,46 @@ def test_to_pdf_content_leaves_a_post_without_a_reference_list_alone():
     assert to_pdf_content(content, "en") == content
 
 
+def test_to_pdf_content_drops_a_style_nothing_here_defines():
+    """A post's inline styles reach for its site's custom properties.
+
+    WeasyPrint resolves an empty expression for `calc()` around a `var()` no
+    stylesheet here sets, and fails that on an assertion -- which took the pdf,
+    and the post with it. The declaration has no value to compute either way.
+    """
+    content = (
+        '<p style="color: red; font-size: calc(var(--font-size-14) + '
+        'var(--offset, 0px))">Hello</p>'
+    )
+
+    html = to_pdf_content(content, "en")
+
+    assert 'style="color: red"' in html
+    assert "calc(" not in html
+
+
+def test_to_pdf_content_keeps_a_property_the_same_style_defines():
+    """Most of them resolve: tailwind sets --tw-shadow beside the rule reading it."""
+    content = '<p style="--tw-shadow: 0 0 #0000; box-shadow: var(--tw-shadow)">Hi</p>'
+
+    assert to_pdf_content(content, "en") == content
+
+
+def test_to_pdf_content_keeps_a_data_uri_whole():
+    """A declaration is not split on the semicolon inside a value.
+
+    `url(data:image/svg+xml;base64,...)` names its encoding with one, and
+    cutting there would leave two halves of a rule that draws nothing.
+    """
+    style = "background: url(data:image/svg+xml;base64,PHN2Zz48L3N2Zz4=); top: var(--x)"
+    content = f'<p style="{style}">Hi</p>'
+
+    html = to_pdf_content(content, "en")
+
+    assert "data:image/svg+xml;base64,PHN2Zz48L3N2Zz4=" in html
+    assert "var(--x)" not in html
+
+
 def test_to_pdf_reference_keeps_the_markup_a_citation_carries():
     """A citation says things in markup: a journal name is set in italics, a
     formula and an ordinal in <sub> and <sup>, and a link points somewhere."""

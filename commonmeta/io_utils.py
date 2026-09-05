@@ -200,9 +200,7 @@ FOS_SUBJECT_PREFIX = "http://www.oecd.org/science/inno/38235147.pdf?"
 # A run of them takes the spaces around it with it, so a title that used one
 # as a separator does not keep the gap where it stood.
 EMOJI = re.compile(
-    "[ \t]*"
-    "[\U0001f000-\U0001faff\u2600-\u27bf\u2b00-\u2bff\ufe0f\u20e3\u200d]+"
-    "[ \t]*"
+    "[ \t]*[\U0001f000-\U0001faff\u2600-\u27bf\u2b00-\u2bff\ufe0f\u20e3\u200d]+[ \t]*"
 )
 
 #: The csl locale a record is cited in, for the languages a rendition is
@@ -1366,9 +1364,66 @@ def to_pdf_feature_alt(metadata: Metadata, language: str) -> str:
     return label
 
 
+CSS_VARIABLE = re.compile(r"var\(\s*(--[A-Za-z0-9_-]+)")
+
+
+def to_css_declarations(style: str):
+    """Split a style attribute on the semicolons that separate declarations.
+
+    Not `str.split`: a value carries semicolons of its own -- a data uri names
+    its encoding with one -- and those sit inside parentheses, where a
+    declaration never ends.
+    """
+    depth = 0
+    start = 0
+    for index, character in enumerate(style):
+        if character == "(":
+            depth += 1
+        elif character == ")":
+            depth = max(0, depth - 1)
+        elif character == ";" and depth == 0:
+            yield style[start:index]
+            start = index + 1
+    yield style[start:]
+
+
+def to_pdf_style(style: str) -> str:
+    """A style attribute with the declarations nothing can resolve removed.
+
+    Posts arrive carrying the inline styles their site rendered them with, and
+    those reach for custom properties -- a whole tailwind palette, in the posts
+    that prompted this -- that the site's stylesheet defines and a rendition
+    does not. A declaration whose `var()` names a property nothing here sets
+    has no value to compute, so dropping it costs the rendition nothing.
+
+    It also keeps WeasyPrint on its feet: `calc()` around such a `var()` leaves
+    it resolving an empty expression, and it fails that on an assertion rather
+    than treating the declaration as invalid. That took the pdf, and with it
+    the post, over a rule that could not have been drawn either way.
+
+    A property the same attribute defines is left alone, which is most of them:
+    tailwind sets `--tw-shadow` beside the `box-shadow` that reads it.
+    """
+    declarations = list(to_css_declarations(style))
+    defined = {
+        property.strip()
+        for property in (d.partition(":")[0] for d in declarations)
+        if property.strip().startswith("--")
+    }
+    kept = [
+        d
+        for d in declarations
+        if all(name in defined for name in CSS_VARIABLE.findall(d))
+    ]
+    if len(kept) == len(declarations):
+        return style
+    return "; ".join(d.strip() for d in kept if d.strip())
+
+
 def to_pdf_content(content: str | None, language: str) -> str:
     """The post content, with an alt description on every image, a poster
-    frame where a video was embedded, and its reference list marked."""
+    frame where a video was embedded, its reference list marked, and the
+    inline styles nothing here can resolve dropped."""
     if not content:
         return ""
 
@@ -1387,6 +1442,11 @@ def to_pdf_content(content: str | None, language: str) -> str:
         alt = to_pdf_alt(image, label)
         if alt != image.get("alt", None):
             image["alt"] = alt
+            described = True
+    for styled in soup.find_all(style=True):
+        style = to_pdf_style(styled["style"])
+        if style != styled["style"]:
+            styled["style"] = style
             described = True
     return str(soup) if described else content
 
