@@ -541,6 +541,50 @@ def test_a_validation_error_says_what_was_invalid(use_fake_backend, caplog):
     assert "Invalid DOI for the prefix." in logged
 
 
+def test_a_draft_that_publish_says_has_no_files_is_discarded(use_fake_backend, caplog):
+    """The one publish failure that no later run can get past on its own.
+
+    A draft whose files are turned off while the record behind it has one is
+    refused with "403 Forbidden: Files are not enabled", and every run after
+    opens that same draft and is refused again. Discarding it leaves the
+    published record as it was and gives the next run a clean draft.
+    """
+
+    class Refusing(FakeRecordsWithFiles):
+        def publish(self, identity, id_):
+            raise Exception("403 Forbidden: Files are not enabled.")
+
+    records = Refusing()
+    backend = use_fake_backend(FakeBackend(records=records))
+
+    with caplog.at_level(logging.WARNING, logger="commonmeta.inveniordm_service"):
+        record = backend.publish_draft_record({"id": "abc12-xyz34"})
+
+    assert record["status"] == "draft_discarded"
+    assert ("delete_draft", "system_identity", "abc12-xyz34") in records.calls
+    assert "Discarded the draft" in caplog.records[-1].getMessage()
+
+
+def test_a_first_draft_that_publish_says_has_no_files_is_an_error(use_fake_backend):
+    """Nothing published stands behind it, so discarding it would be the loss.
+
+    A draft that has never been published is the only copy of that record.
+    Publishing it failed and says so; the draft stays for a human to look at.
+    """
+
+    class Refusing(FakeRecordsWithFiles):
+        def publish(self, identity, id_):
+            raise Exception("403 Forbidden: Files are not enabled.")
+
+    records = Refusing(published=False)
+    backend = use_fake_backend(FakeBackend(records=records))
+
+    record = backend.publish_draft_record({"id": "abc12-xyz34"})
+
+    assert record["status"] == "error_publish_draft_record"
+    assert not [call for call in records.calls if call[0] == "delete_draft"]
+
+
 def test_reason_falls_back_to_the_exception_itself():
     """Anything that does say something keeps saying it."""
     assert reason(RuntimeError("boom")) == "boom"

@@ -301,11 +301,28 @@ class ServiceBackend:
         return record
 
     def publish_draft_record(self, record: dict) -> dict:
-        """Publish a draft."""
+        """Publish a draft, discarding one that can never be published.
+
+        A draft whose files are turned off while the record behind it has one
+        fails with "403 Forbidden: Files are not enabled", and fails the same
+        way on every later run, since each one opens that same draft. Where
+        that is what publish says, the draft goes and the published record
+        stands as it was - the recoverable outcome, and the only one that ends
+        without a record that can never be written again.
+        """
         try:
             item = self._records.publish(self._identity, record["id"])
         except Exception as e:
-            log.error(f"Error publishing draft record: {reason(e)}", exc_info=True)
+            detail = reason(e)
+            if "files are not enabled" in detail.lower():
+                discarded = self._discard_draft(
+                    record,
+                    "its files are turned off while the record behind it has one, "
+                    "which publish cannot reconcile",
+                )
+                if discarded.get("status") == "draft_discarded":
+                    return discarded
+            log.error(f"Error publishing draft record: {detail}", exc_info=True)
             record["status"] = "error_publish_draft_record"
             return record
         data = item.to_dict()
@@ -609,9 +626,18 @@ class ServiceBackend:
         files to be modified, that entry cannot be removed either. The record
         then fails on this run and on every run after it, since each one opens
         the same draft and finds the same entry.
+        """
+        return self._discard_draft(
+            record,
+            f"it carries {key} with an incomplete transfer, which cannot be "
+            "removed and which publish refuses",
+        )
 
-        Discarding the draft undoes this run's edit and leaves the published
-        record as it was, which is the recoverable outcome: the entry lives in
+    def _discard_draft(self, record: dict, why: str) -> dict:
+        """Discard a draft that can never publish, keeping the record it edits.
+
+        Discarding undoes this run's edit and leaves the published record as it
+        was, which is the recoverable outcome: what publish refuses lives in
         the draft, so the next run opens a clean one. Only ever done where
         there is a published record to fall back on - a draft that has never
         been published is left alone, since discarding that would delete the
@@ -630,9 +656,8 @@ class ServiceBackend:
             )
             return record
         log.warning(
-            f"Discarded the draft of record {record_id}: it carries {key} with an "
-            "incomplete transfer, which cannot be removed and which publish refuses. "
-            "The published record is unchanged, and the next run edits it again.",
+            f"Discarded the draft of record {record_id}: {why}. The published "
+            "record is unchanged, and the next run edits it again.",
             extra={"record_id": record_id},
         )
         record["status"] = "draft_discarded"
