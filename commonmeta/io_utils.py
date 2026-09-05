@@ -1735,15 +1735,52 @@ def pdf_stylesheet() -> tuple:
     return css, font_config
 
 
+def raised_in_weasyprint(error: BaseException) -> bool:
+    """Whether the frame that raised is WeasyPrint's own code.
+
+    An assertion is a library saying one of its own invariants does not hold.
+    WeasyPrint's are answered here by writing the pdf a different way; this
+    library's are bugs, and are not answered by trying again.
+    """
+    tb = error.__traceback__
+    if tb is None:
+        return False
+    while tb.tb_next is not None:
+        tb = tb.tb_next
+    return "weasyprint" in Path(tb.tb_frame.f_code.co_filename).parts
+
+
+def cannot_tag(error: BaseException) -> bool:
+    """Whether WeasyPrint failed to tag the page rather than to draw it.
+
+    Two so far, both bookkeeping in the structure tree rather than anything
+    about the page itself:
+
+    - `ValueError: Table wrapper without a table`, building the tree for a
+      table whose caption was left behind at a page break
+      (`weasyprint/pdf/tags.py`);
+    - a bare `AssertionError` from `Stream.marked`, which asserts it has not
+      already marked the box it is given and is handed one twice -- a figure
+      reached down two paths of the drawing tree
+      (`weasyprint/pdf/stream.py`).
+
+    Neither can happen without tagging. `marked` does nothing at all when the
+    stream carries no tags, and the structure tree is not built, so the
+    untagged write that follows is not the same attempt over again.
+    """
+    if isinstance(error, ValueError):
+        return "Table wrapper without a table" in str(error)
+    if isinstance(error, AssertionError):
+        return raised_in_weasyprint(error)
+    return False
+
+
 def write_pdf_bytes(attempt, metadata: Metadata, variant: str | None) -> bytes:
     """Write a rendition, untagged where WeasyPrint cannot tag it.
 
-    WeasyPrint 69 raises `Table wrapper without a table` while it builds the
-    structure tree of a table whose caption was left behind at a page break
-    (`weasyprint/pdf/tags.py`). The stylesheet keeps a caption with the row it
-    describes, so this is rare; where it still happens the post is written to
-    the same PDF/A level without the accessibility conformance rather than not
-    written at all, since a rendition that fails takes the record push with it.
+    What "cannot tag" covers is `cannot_tag`. The post is written to the same
+    PDF/A level without the accessibility conformance rather than not written
+    at all, since a rendition that fails takes the record push with it.
 
     ``attempt`` writes the pdf at the variant it is given, and is called once
     per attempt: nothing a first write touched can be written again. A document
@@ -1756,14 +1793,18 @@ def write_pdf_bytes(attempt, metadata: Metadata, variant: str | None) -> bytes:
     """
     try:
         return attempt(variant)
-    except ValueError as error:
+    except (ValueError, AssertionError) as error:
         level = variant or ""
         tagged = level.startswith("pdf/a-") and level.endswith("a")
-        if "Table wrapper without a table" not in str(error) or not tagged:
+        if not tagged or not cannot_tag(error):
             raise
         untagged = level[:-1] + "b"
+        # An AssertionError says nothing at all, so it is named rather than
+        # printed: "weasyprint cannot tag it: " and then the end of the line
+        # was what the log said of the one from `Stream.marked`.
         log.warning(
-            f"Writing {metadata.id} as {untagged}, weasyprint cannot tag it: {error}"
+            f"Writing {metadata.id} as {untagged}, weasyprint cannot tag it: "
+            f"{str(error) or type(error).__name__}"
         )
         return attempt(untagged)
 

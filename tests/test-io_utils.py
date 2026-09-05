@@ -720,6 +720,68 @@ def test_a_page_weasyprint_cannot_tag_is_written_untagged(caplog):
     assert "pdf/a-3b" in caplog.text
 
 
+def _weasyprint_assertion():
+    """The AssertionError `Stream.marked` raises, from a weasyprint frame.
+
+    `raised_in_weasyprint` reads the filename of the frame that raised, so the
+    test has to raise from one. Compiling under weasyprint's own path is how a
+    test gets such a frame without a document that provokes the real thing.
+    """
+    source = (
+        "def marked(box, tag):\n    tags = {box: tag}\n    assert box not in tags\n"
+    )
+    path = "/x/lib/python3.14/site-packages/weasyprint/pdf/stream.py"
+    namespace = {}
+    exec(compile(source, path, "exec"), namespace)
+    try:
+        namespace["marked"]("a box", "Figure")
+    except AssertionError as error:
+        return error
+    raise RuntimeError("the fake did not raise")
+
+
+def test_an_assertion_from_weasyprint_is_written_untagged(caplog):
+    """The second tagging failure, and the one the fallback did not catch.
+
+    `Stream.marked` asserts it has not already marked the box it is given, and
+    a figure reached down two paths of the drawing tree is handed to it twice.
+    It cannot happen without tagging -- `marked` does nothing when the stream
+    carries no tags -- so the untagged write is not the same attempt again.
+    """
+    from commonmeta.io_utils import write_pdf_bytes
+
+    attempts = []
+
+    def attempt(variant):
+        attempts.append(variant)
+        if variant.endswith("a"):
+            raise _weasyprint_assertion()
+        return b"%PDF-untagged"
+
+    metadata = SimpleNamespace(id="https://doi.org/10.59350/4r6jj-90k30")
+
+    with caplog.at_level(logging.WARNING):
+        pdf = write_pdf_bytes(attempt, metadata, "pdf/a-3a")
+
+    assert attempts == ["pdf/a-3a", "pdf/a-3b"]
+    assert pdf == b"%PDF-untagged"
+    # an AssertionError stringifies to nothing, so the line names it instead
+    assert "weasyprint cannot tag it: AssertionError" in caplog.text
+
+
+def test_an_assertion_from_anywhere_else_is_not_written_untagged():
+    """This library's own broken invariant is a bug, not a pdf to write twice."""
+    from commonmeta.io_utils import write_pdf_bytes
+
+    def attempt(variant):
+        raise AssertionError("a commonmeta invariant")
+
+    metadata = SimpleNamespace(id="https://doi.org/10.59350/4r6jj-90k30")
+
+    with pytest.raises(AssertionError, match="a commonmeta invariant"):
+        write_pdf_bytes(attempt, metadata, "pdf/a-3a")
+
+
 def test_a_post_that_cannot_be_tagged_is_written_with_its_attachment(
     render_pdf, monkeypatch
 ):

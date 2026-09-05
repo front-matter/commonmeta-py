@@ -992,8 +992,11 @@ def upload_pdf(metadata: Metadata, host: str, token: str, record: dict) -> dict:
     try:
         pdf = write_pdf_rendition(metadata)
     except Exception as e:
+        # Named rather than printed: an AssertionError stringifies to nothing,
+        # and the log line for one ended at the colon.
         log.warning(
-            f"Could not render a pdf for record {record.get('id')}: {e}",
+            f"Could not render a pdf for record {record.get('id')}: "
+            f"{str(e) or type(e).__name__}",
             exc_info=True,
         )
         return record
