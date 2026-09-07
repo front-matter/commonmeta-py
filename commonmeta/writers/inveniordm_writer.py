@@ -99,6 +99,17 @@ INVENIORDM_GENERIC_CUSTOM_FIELDS = frozenset({"journal:journal"})
 # The targets this writer knows how to describe a record for.
 INVENIORDM_PROFILES = ("rogue-scholar", "generic")
 
+# Resource types that only an instance adding them to the vocabulary has.
+# Rogue Scholar adds publication-blogpost; a stock InvenioRDM does not have it
+# and refuses the record outright -- Zenodo answers "400 Invalid value
+# publication-blogpost" -- so the generic profile says the nearest type every
+# instance does have. A preprint rather than "other": both are scholarly text
+# published outside a journal and citable on its own, which is what a reader
+# of the deposited record needs to know about it.
+INVENIORDM_GENERIC_RESOURCE_TYPES = {
+    "publication-blogpost": "publication-preprint",
+}
+
 
 def custom_fields_written(profile: str = "rogue-scholar") -> frozenset:
     """The custom fields this writer owns when writing for `profile`."""
@@ -134,6 +145,9 @@ def write_inveniordm(
     different InvenioRDM is that instance's ``external`` doi, and declaring it
     ``crossref`` names a provider the target does not configure. Pass the
     provider the target instance offers.
+
+    ``profile`` also decides the resource type where the two vocabularies
+    differ: see INVENIORDM_GENERIC_RESOURCE_TYPES.
 
     ``profile`` says which custom fields the target holds. ``rogue-scholar``,
     the default, writes them all. ``generic`` is for an instance that installs
@@ -188,6 +202,8 @@ def write_inveniordm(
             else {}
         )
     _type = CM_TO_INVENIORDM_TRANSLATIONS.get(metadata.type, "Other")
+    if generic:
+        _type = INVENIORDM_GENERIC_RESOURCE_TYPES.get(_type, _type)
     creators = [
         to_inveniordm_creator(i)
         for i in wrap(metadata.contributors)

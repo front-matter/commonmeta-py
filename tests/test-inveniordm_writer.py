@@ -2696,6 +2696,37 @@ def test_zenodo_still_takes_the_doi_provider_it_offers():
     }
 
 
+def test_a_blog_post_is_a_preprint_to_an_instance_with_no_blog_post_type():
+    """publication-blogpost is Rogue Scholar's addition to the vocabulary.
+
+    A stock InvenioRDM refuses the whole record for it -- Zenodo answers "400
+    Invalid value publication-blogpost" -- so the generic profile says the
+    nearest type every instance has.
+    """
+    subject = _zenodo_input()
+    subject.type = "BlogPost"
+
+    assert dig(write_inveniordm(subject), "metadata.resource_type.id") == (
+        "publication-blogpost"
+    )
+    assert (
+        dig(write_inveniordm(subject, profile="generic"), "metadata.resource_type.id")
+        == "publication-preprint"
+    )
+
+
+def test_a_type_both_vocabularies_have_is_left_alone():
+    """Only the types a stock instance lacks are translated."""
+    subject = _zenodo_input()
+    subject.type = "JournalArticle"
+
+    for profile in ("rogue-scholar", "generic"):
+        assert (
+            dig(write_inveniordm(subject, profile=profile), "metadata.resource_type.id")
+            == "publication-article"
+        )
+
+
 def test_an_unknown_profile_is_refused():
     """A profile the writer does not know would silently write the default."""
     with pytest.raises(ValueError, match="unknown InvenioRDM profile"):
@@ -3007,7 +3038,9 @@ def test_a_rendition_is_written_for_zenodo():
         "identifier": "10.63517/kshzw-ay335",
         "provider": "external",
     }
-    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    # Not publication-blogpost: Zenodo has no such type and refused the whole
+    # record for it, which is what this profile is for.
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-preprint"
     assert dig(inveniordm, "metadata.title") == "InvenioRDM v14.0 released"
     # the blog, which Zenodo can hold as a relation and not as a custom field
     assert dig(inveniordm, "metadata.related_identifiers") == [
