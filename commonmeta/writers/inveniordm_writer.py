@@ -88,7 +88,13 @@ INVENIORDM_CUSTOM_FIELDS = frozenset(
 CITATIONS_FIELD = "pidbox:citations"
 
 
-def write_inveniordm(metadata: Metadata, write_pdf: bool = False, **kwargs) -> dict:
+def write_inveniordm(
+    metadata: Metadata,
+    write_pdf: bool = False,
+    doi_provider: str | None = None,
+    pdf_supplied: bool = False,
+    **kwargs,
+) -> dict:
     """Write inveniordm.
 
     ``write_pdf`` deposits a pdf rendition of the post as a record file, which
@@ -96,11 +102,29 @@ def write_inveniordm(metadata: Metadata, write_pdf: bool = False, **kwargs) -> d
     with no content: ``rs:content_html`` is what the pdf is rendered from, and
     InvenioRDM refuses to publish a record that has files enabled but none
     uploaded ("Missing uploaded files"), so enabling files for a record that
-    cannot produce one would fail the publish.
+    cannot produce one would fail the publish. ``pdf_supplied`` says the caller
+    is bringing the file instead, so there is one to enable files for whatever
+    the post's content says.
+
+    ``doi_provider`` names the PID provider to declare the doi under. The
+    default reads it from the doi's prefix, which answers for the instance that
+    mints those dois and for no other: a Rogue Scholar doi pushed to a
+    different InvenioRDM is that instance's ``external`` doi, and declaring it
+    ``crossref`` names a provider the target does not configure. Pass the
+    provider the target instance offers.
     """
     if metadata is None or metadata.write_errors is not None:
         return {}
-    if is_rogue_scholar_doi(metadata.id, ra="crossref"):
+    if doi_provider is not None:
+        # The caller knows the target. An identifier is still required -- see
+        # the else branch -- so no doi means no pids either way.
+        identifier = doi_from_url(metadata.id)
+        pids = (
+            {"doi": {"identifier": identifier, "provider": doi_provider}}
+            if identifier
+            else {}
+        )
+    elif is_rogue_scholar_doi(metadata.id, ra="crossref"):
         pids = {
             "doi": {
                 "identifier": doi_from_url(metadata.id),
@@ -227,7 +251,7 @@ def write_inveniordm(metadata: Metadata, write_pdf: bool = False, **kwargs) -> d
     # Only enable files when a pdf will actually be produced. metadata.content
     # is what becomes rs:content_html below, and the pdf is rendered from it;
     # enabling files for a record that cannot produce one fails the publish.
-    files_enabled = bool(write_pdf and presence(metadata.content))
+    files_enabled = bool(write_pdf and (pdf_supplied or presence(metadata.content)))
 
     return compact(
         {
@@ -623,7 +647,7 @@ def write_inveniordm_list(
     def write_item(item) -> dict | None:
         """write inveniordm item for inveniordm list"""
 
-        return write_inveniordm(item, write_pdf=write_pdf)
+        return write_inveniordm(item, write_pdf=write_pdf, **kwargs)
 
     return [write_item(item) for item in metalist.items]
 
@@ -643,6 +667,15 @@ def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict
             allows its files to be modified (InvenioRDM 14 and newer, with
             RDM_IMMEDIATE_FILE_MODIFICATION_ENABLED); where it does not, the
             refusal is logged and the record is published without the file.
+        doi_provider: the PID provider to declare the doi under, for a target
+            that does not mint it. A Rogue Scholar doi pushed to another
+            InvenioRDM is that instance's "external" doi; the default reads the
+            provider from the doi's prefix, which is only right for the
+            instance that mints it.
+        pdf: the pdf to attach, instead of rendering one from the post. For a
+            caller depositing a file it already holds -- an archived rendition,
+            say -- rather than making a new one that need not match it. Implies
+            files are enabled, whatever the post's content says.
         system_process: write through InvenioRDM's service layer as
             system_identity rather than over HTTP, for code running inside the
             instance it is writing to. `token` is then unused and may be None.
@@ -694,6 +727,8 @@ def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict
             record,
             skip_unchanged=kwargs.get("skip_unchanged", True),
             write_pdf=kwargs.get("write_pdf", False),
+            doi_provider=kwargs.get("doi_provider", None),
+            pdf=kwargs.get("pdf", None),
         )
 
         # optionally add record to InvenioRDM communities
@@ -741,10 +776,17 @@ def upsert_record(
     record: dict,
     skip_unchanged: bool = True,
     write_pdf: bool = False,
+    doi_provider: str | None = None,
+    pdf: bytes | None = None,
 ) -> dict:
     """Upsert InvenioRDM record, based on DOI"""
 
-    output = write_inveniordm(metadata, write_pdf=write_pdf)
+    output = write_inveniordm(
+        metadata,
+        write_pdf=write_pdf,
+        doi_provider=doi_provider,
+        pdf_supplied=pdf is not None,
+    )
 
     # Check if record already exists in InvenioRDM
     record["id"] = search_by_doi(doi_from_url(record.get("doi")), host, token)
@@ -840,7 +882,7 @@ def upsert_record(
     # locks its files. dig() rather than write_pdf, so that the upload follows
     # the same content check the writer made when it enabled files.
     if dig(output, "files.enabled") and record.get("id", None):
-        record = upload_pdf(metadata, host, token, record)
+        record = upload_pdf(metadata, host, token, record, pdf=pdf)
         # The draft carried a file that could neither be published nor removed,
         # so it was thrown away; there is nothing left to publish, and the
         # record stands as it was published before.
@@ -974,8 +1016,19 @@ def create_draft_record(record: dict, host: str, token: str, output: dict) -> di
         return record
 
 
-def upload_pdf(metadata: Metadata, host: str, token: str, record: dict) -> dict:
-    """Attach the pdf rendition to a draft record as a record file.
+def upload_pdf(
+    metadata: Metadata,
+    host: str,
+    token: str,
+    record: dict,
+    pdf: bytes | None = None,
+) -> dict:
+    """Attach a pdf to a draft record as a record file.
+
+    ``pdf`` is the file to attach; without one a rendition is made from the
+    post. A caller that already holds the file -- one archived earlier, say --
+    deposits that rather than a new rendition that need not match it, and none
+    of the ways rendering fails apply to it.
 
     InvenioRDM takes a file in three calls: register the key, put the bytes,
     commit. They go to the draft, which for an already published record has its
@@ -990,7 +1043,7 @@ def upload_pdf(metadata: Metadata, host: str, token: str, record: dict) -> dict:
     # upsert_record, and took the record with it: a post went unwritten because
     # a picture in it could not be drawn. The post is the thing worth keeping.
     try:
-        pdf = write_pdf_rendition(metadata)
+        pdf = write_pdf_rendition(metadata) if pdf is None else pdf
     except Exception as e:
         # Named rather than printed: an AssertionError stringifies to nothing,
         # and the log line for one ended at the colon.

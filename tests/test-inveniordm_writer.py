@@ -26,7 +26,9 @@ from commonmeta.io_utils import (
 from commonmeta.writers.inveniordm_writer import (
     keep_citations,
     record_matches,
+    upload_pdf,
     upsert_record,
+    write_inveniordm,
 )
 
 PDF_RESOURCES = Path(commonmeta.__file__).parent / "resources" / "pdf"
@@ -1374,7 +1376,7 @@ def test_upsert_record_uploads_the_pdf_before_publishing():
         ),
         patch(
             "commonmeta.writers.inveniordm_writer.upload_pdf",
-            side_effect=lambda m, h, t, r: calls.append("upload") or r,
+            side_effect=lambda m, h, t, r, **kw: calls.append("upload") or r,
         ) as mock_upload,
         patch(
             "commonmeta.writers.inveniordm_writer.publish_draft_record",
@@ -1424,7 +1426,7 @@ def test_upsert_record_does_not_publish_a_discarded_draft():
         ),
         patch(
             "commonmeta.writers.inveniordm_writer.upload_pdf",
-            side_effect=lambda m, h, t, r: {**r, "status": "draft_discarded"},
+            side_effect=lambda m, h, t, r, **kw: {**r, "status": "draft_discarded"},
         ),
         patch(
             "commonmeta.writers.inveniordm_writer.publish_draft_record"
@@ -2423,7 +2425,7 @@ def test_a_pdf_attached_this_run_keeps_files_enabled():
         ),
         patch(
             "commonmeta.writers.inveniordm_writer.upload_pdf",
-            side_effect=lambda m, h, t, r: {**r, "files": ["10.59350_dn2mm-m9q51.pdf"]},
+            side_effect=lambda m, h, t, r, **kw: {**r, "files": ["10.59350_dn2mm-m9q51.pdf"]},
         ),
         patch(
             "commonmeta.writers.inveniordm_writer.update_draft_record",
@@ -2486,3 +2488,90 @@ def test_a_draft_that_already_carries_a_file_keeps_files_enabled():
     assert result["status"] == "published"
     for call in mock_update.call_args_list:
         assert call.args[3].get("files", {}) != {"enabled": False}
+
+
+def _rogue_scholar_metadata(doi="https://doi.org/10.59350/wg8rv-awm24"):
+    """A record carrying a Rogue Scholar doi, read from a local fixture.
+
+    Offline on purpose: what is under test is which provider the writer
+    declares, which is decided from the doi alone.
+    """
+    subject = Metadata("tests/fixtures/commonmeta.json")
+    subject.id = doi
+    return subject
+
+
+def test_doi_provider_defaults_to_the_one_the_prefix_implies():
+    """Unchanged for the instance that mints the doi."""
+    inveniordm = write_inveniordm(_rogue_scholar_metadata())
+
+    assert dig(inveniordm, "pids.doi") == {
+        "identifier": "10.59350/wg8rv-awm24",
+        "provider": "crossref",
+    }
+
+
+def test_doi_provider_can_name_the_provider_the_target_offers():
+    """A Rogue Scholar doi is another instance's external doi.
+
+    The prefix says who mints the doi, not which providers the instance being
+    pushed to configures. Zenodo has datacite and external and no crossref, so
+    a record declaring crossref there names a provider that does not exist.
+    """
+    inveniordm = write_inveniordm(_rogue_scholar_metadata(), doi_provider="external")
+
+    assert dig(inveniordm, "pids.doi") == {
+        "identifier": "10.59350/wg8rv-awm24",
+        "provider": "external",
+    }
+
+
+def test_doi_provider_still_needs_a_doi_to_declare():
+    """InvenioRDM refuses a pid with a provider and no identifier."""
+    subject = _rogue_scholar_metadata(doi="not-a-doi")
+
+    # Empty rather than absent, as the untouched branch below it already was.
+    assert not write_inveniordm(subject, doi_provider="external").get("pids")
+
+
+def test_a_supplied_pdf_enables_files_a_post_could_not_render():
+    """The content check is about rendering, and nothing is rendered here.
+
+    Files stay disabled for a post with no rs:content_html, because enabling
+    them for a record that cannot produce a file fails the publish. A caller
+    bringing its own file has one regardless.
+    """
+    subject = _rogue_scholar_metadata()
+    assert not subject.content
+
+    assert write_inveniordm(subject, write_pdf=True)["files"] == {"enabled": False}
+    assert write_inveniordm(subject, write_pdf=True, pdf_supplied=True)["files"] == {
+        "enabled": True
+    }
+
+
+def test_upload_pdf_deposits_the_file_it_was_given():
+    """A caller's own file is deposited as it stands, not re-rendered.
+
+    An archived rendition is the file that was archived; rendering the post
+    again would deposit a different one, and could fail where the first did
+    not.
+    """
+    subject = _rogue_scholar_metadata()
+    record = {"id": "fktsh-g4g95", "doi": "10.59350/wg8rv-awm24"}
+
+    with (
+        patch(
+            "commonmeta.writers.inveniordm_writer.write_pdf_rendition"
+        ) as mock_render,
+        patch("commonmeta.writers.inveniordm_writer.http") as mock_http,
+    ):
+        mock_http.post.return_value = Mock(status_code=201)
+        mock_http.put.return_value = Mock(status_code=200)
+        result = upload_pdf(
+            subject, "zenodo.org", "token", record, pdf=b"%PDF-supplied"
+        )
+
+    mock_render.assert_not_called()
+    assert result["files"] == ["10.59350_wg8rv-awm24.pdf"]
+    assert mock_http.put.call_args.kwargs["data"] == b"%PDF-supplied"
