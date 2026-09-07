@@ -160,6 +160,8 @@ def write_inveniordm(
     ``journal:journal`` and ``pidbox:citations`` already hold them. The post's
     html and its feature image have no generic home and are left out; a record
     written with ``write_pdf`` still carries the post as a pdf rendition.
+    Subjects are written to a generic target as free-text keywords, since their
+    ids are vocabularies only this instance installs.
     """
     if metadata is None or metadata.write_errors is not None:
         return {}
@@ -327,6 +329,23 @@ def write_inveniordm(
             subjects.append(subject)
             if subject_id is not None:
                 seen_ids.add(subject_id)
+    if generic:
+        # Those ids name this instance's subject vocabularies -- the OpenAlex
+        # domains, fields, subfields and topics, and the OECD fields of
+        # science. A target that has not installed them cannot resolve one and
+        # refuses the whole record for it ("400 Invalid value
+        # https://openalex.org/subfields/1710"), so a generic target is told
+        # the subject as a free-text keyword, which core InvenioRDM takes
+        # without any vocabulary at all. Names, not ids, are then what can
+        # repeat.
+        seen_names = set()
+        keywords = []
+        for subject in subjects:
+            name = subject.get("subject")
+            if name not in seen_names:
+                seen_names.add(name)
+                keywords.append({"subject": name})
+        subjects = keywords
 
     additional_descriptions = [
         d

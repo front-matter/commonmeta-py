@@ -2684,6 +2684,35 @@ def test_zenodo_relates_the_works_citing_the_post():
     assert citation not in dig(rogue_scholar, "metadata.related_identifiers")
 
 
+def test_zenodo_writes_the_subjects_it_needs_no_vocabulary_for():
+    """The subject ids name vocabularies only this instance installs -- the
+    OpenAlex ones and the OECD fields of science. A target without them
+    refuses the whole record for one it cannot resolve ("400 Invalid value
+    https://openalex.org/subfields/1710"), so it is told the names instead."""
+    subject = _zenodo_input()
+
+    generic = write_inveniordm(subject, profile="generic", doi_provider="external")
+    rogue_scholar = write_inveniordm(subject, doi_provider="external")
+
+    assert dig(generic, "metadata.subjects") == [
+        {"subject": "Library and Information Sciences"},
+        {"subject": "FOS: Other humanities"},
+    ]
+    # unchanged for the instance whose vocabularies those are
+    assert dig(rogue_scholar, "metadata.subjects") == [
+        {
+            "id": "https://openalex.org/subfields/3309",
+            "subject": "Library and Information Sciences",
+            "scheme": "Subfields",
+        },
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?6.5",
+            "subject": "FOS: Other humanities",
+            "scheme": "FOS",
+        },
+    ]
+
+
 def test_zenodo_still_takes_the_doi_provider_it_offers():
     """The two options are independent: Zenodo needs both."""
     inveniordm = write_inveniordm(
