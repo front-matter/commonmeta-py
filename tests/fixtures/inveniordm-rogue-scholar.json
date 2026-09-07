@@ -1,0 +1,381 @@
+{
+  "id": "pevm6-kx104",
+  "created": "2025-09-27T07:00:02.600301+00:00",
+  "updated": "2026-08-28T13:37:29.696512+00:00",
+  "links": {
+    "self": "https://rogue-scholar.org/api/records/pevm6-kx104",
+    "self_html": "https://rogue-scholar.org/records/pevm6-kx104",
+    "preview_html": "https://rogue-scholar.org/records/pevm6-kx104?preview=1",
+    "doi": "https://doi.org/10.59350/5cj54-ha154",
+    "self_doi": "https://doi.org/10.59350/5cj54-ha154",
+    "self_doi_html": "https://rogue-scholar.org/doi/10.59350/5cj54-ha154",
+    "reserve_doi": "https://rogue-scholar.org/api/records/pevm6-kx104/draft/pids/doi",
+    "parent": "https://rogue-scholar.org/api/records/sfw0f-2fe65",
+    "parent_html": "https://rogue-scholar.org/records/sfw0f-2fe65",
+    "parent_doi": "https://doi.org/10.59350/sfw0f-2fe65",
+    "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/sfw0f-2fe65",
+    "self_iiif_manifest": "https://rogue-scholar.org/api/iiif/record:pevm6-kx104/manifest",
+    "self_iiif_sequence": "https://rogue-scholar.org/api/iiif/record:pevm6-kx104/sequence/default",
+    "files": "https://rogue-scholar.org/api/records/pevm6-kx104/files",
+    "media_files": "https://rogue-scholar.org/api/records/pevm6-kx104/media-files",
+    "thumbnails": {
+      "10": "https://rogue-scholar.org/api/iiif/record:pevm6-kx104:10.59350-5cj54-ha154.pdf/full/%5E10,/0/default.jpg",
+      "50": "https://rogue-scholar.org/api/iiif/record:pevm6-kx104:10.59350-5cj54-ha154.pdf/full/%5E50,/0/default.jpg",
+      "100": "https://rogue-scholar.org/api/iiif/record:pevm6-kx104:10.59350-5cj54-ha154.pdf/full/%5E100,/0/default.jpg",
+      "250": "https://rogue-scholar.org/api/iiif/record:pevm6-kx104:10.59350-5cj54-ha154.pdf/full/%5E250,/0/default.jpg",
+      "750": "https://rogue-scholar.org/api/iiif/record:pevm6-kx104:10.59350-5cj54-ha154.pdf/full/%5E750,/0/default.jpg",
+      "1200": "https://rogue-scholar.org/api/iiif/record:pevm6-kx104:10.59350-5cj54-ha154.pdf/full/%5E1200,/0/default.jpg"
+    },
+    "archive": "https://rogue-scholar.org/api/records/pevm6-kx104/files-archive",
+    "archive_media": "https://rogue-scholar.org/api/records/pevm6-kx104/media-files-archive",
+    "latest": "https://rogue-scholar.org/api/records/pevm6-kx104/versions/latest",
+    "latest_html": "https://rogue-scholar.org/records/pevm6-kx104/latest",
+    "versions": "https://rogue-scholar.org/api/records/pevm6-kx104/versions",
+    "draft": "https://rogue-scholar.org/api/records/pevm6-kx104/draft",
+    "access_links": "https://rogue-scholar.org/api/records/pevm6-kx104/access/links",
+    "access_grants": "https://rogue-scholar.org/api/records/pevm6-kx104/access/grants",
+    "access_users": "https://rogue-scholar.org/api/records/pevm6-kx104/access/users",
+    "access_groups": "https://rogue-scholar.org/api/records/pevm6-kx104/access/groups",
+    "access_request": "https://rogue-scholar.org/api/records/pevm6-kx104/access/request",
+    "access": "https://rogue-scholar.org/api/records/pevm6-kx104/access",
+    "communities": "https://rogue-scholar.org/api/records/pevm6-kx104/communities",
+    "communities-suggestions": "https://rogue-scholar.org/api/records/pevm6-kx104/communities-suggestions",
+    "request_deletion": "https://rogue-scholar.org/api/records/pevm6-kx104/request-deletion",
+    "file_modification": "https://rogue-scholar.org/api/records/pevm6-kx104/file-modification",
+    "quota_increase": "https://rogue-scholar.org/api/records/pevm6-kx104/quota-increase",
+    "requests": "https://rogue-scholar.org/api/records/pevm6-kx104/requests"
+  },
+  "revision_id": 27,
+  "parent": {
+    "id": "sfw0f-2fe65",
+    "access": {
+      "owned_by": {
+        "user": "4"
+      },
+      "settings": {
+        "allow_user_requests": false,
+        "allow_guest_requests": false,
+        "accept_conditions_text": null,
+        "secret_link_expiration": 0
+      }
+    },
+    "communities": {
+      "ids": [
+        "f34e2211-9904-4b58-97ab-0beeb79ef6f7",
+        "f673842a-7751-41dc-9f53-9c89f9a8ef37"
+      ],
+      "default": "f34e2211-9904-4b58-97ab-0beeb79ef6f7",
+      "entries": [
+        {
+          "id": "f34e2211-9904-4b58-97ab-0beeb79ef6f7",
+          "created": "2024-10-02T21:49:29.951598+00:00",
+          "updated": "2026-08-22T09:03:48.094243+00:00",
+          "links": {},
+          "revision_id": 3616,
+          "slug": "musings",
+          "metadata": {
+            "title": "Aaron Tay's Musings about Librarianship",
+            "description": "Aaron Tay's thoughts about academic librarianship",
+            "type": {
+              "id": "blog"
+            },
+            "website": "https://aarontay.substack.com"
+          },
+          "access": {
+            "visibility": "public",
+            "members_visibility": "public",
+            "member_policy": "open",
+            "record_submission_policy": "open",
+            "review_policy": "open"
+          },
+          "custom_fields": {
+            "feed:feed_url": "https://aarontay.substack.com/feed",
+            "feed:created": "2023-10-12",
+            "feed:updated": "2026-08-21T16:13:21+00:00",
+            "feed:feed_format": {
+              "id": "rss"
+            },
+            "feed:generator": {
+              "id": "Substack"
+            },
+            "feed:status": {
+              "id": "active"
+            },
+            "feed:secure": true,
+            "feed:use_api": true,
+            "rs:prefix": {
+              "id": "10.59350"
+            },
+            "rs:doi": "https://doi.org/10.59350/musings",
+            "rs:license": {
+              "id": "cc-by-4.0"
+            },
+            "rs:language": {
+              "id": "eng"
+            },
+            "rs:subfield": [
+              {
+                "id": "https://openalex.org/subfields/3309"
+              }
+            ]
+          },
+          "deletion_status": {
+            "is_deleted": false,
+            "status": "P"
+          },
+          "children": {
+            "allow": true
+          }
+        },
+        {
+          "id": "f673842a-7751-41dc-9f53-9c89f9a8ef37",
+          "created": "2025-12-02T20:36:21.107441+00:00",
+          "updated": "2025-12-02T20:55:53.989386+00:00",
+          "links": {},
+          "revision_id": 3,
+          "slug": "3309",
+          "metadata": {
+            "title": "Library and Information Sciences",
+            "type": {
+              "id": "subject"
+            },
+            "website": "https://openalex.org/subfields/3309"
+          },
+          "access": {
+            "visibility": "public",
+            "members_visibility": "public",
+            "member_policy": "open",
+            "record_submission_policy": "open",
+            "review_policy": "open"
+          },
+          "custom_fields": {},
+          "deletion_status": {
+            "is_deleted": false,
+            "status": "P"
+          },
+          "children": {
+            "allow": false
+          }
+        }
+      ]
+    },
+    "pids": {
+      "doi": {
+        "identifier": "10.59350/sfw0f-2fe65",
+        "provider": "crossref",
+        "client": "crossref"
+      }
+    }
+  },
+  "versions": {
+    "is_latest": true,
+    "index": 1
+  },
+  "is_published": true,
+  "is_draft": false,
+  "pids": {
+    "doi": {
+      "identifier": "10.59350/5cj54-ha154",
+      "provider": "crossref",
+      "client": "crossref"
+    },
+    "oai": {
+      "identifier": "oai:invenio-rdm:pevm6-kx104",
+      "provider": "oai"
+    }
+  },
+  "metadata": {
+    "resource_type": {
+      "id": "publication-blogpost",
+      "title": {
+        "de": "Blogbeitrag",
+        "en": "Blog post",
+        "sv": "blogginlägg"
+      }
+    },
+    "creators": [
+      {
+        "person_or_org": {
+          "type": "personal",
+          "name": "Tay, Chee Hsien, Aaron",
+          "given_name": "Chee Hsien, Aaron",
+          "family_name": "Tay",
+          "identifiers": [
+            {
+              "identifier": "0000-0003-0159-013X",
+              "scheme": "orcid"
+            }
+          ]
+        },
+        "affiliations": [
+          {
+            "id": "050qmg959",
+            "name": "Singapore Management University",
+            "identifiers": [
+              {
+                "identifier": "050qmg959",
+                "scheme": "ror"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "title": "The Petrol Tank for AI Discovery Might be Running Dry as Publishers close access to scholarly content such as abstracts due to AI incentives",
+    "publisher": "Front Matter",
+    "publication_date": "2025-09-27",
+    "subjects": [
+      {
+        "id": "https://openalex.org/subfields/3309",
+        "subject": "Library and Information Sciences",
+        "scheme": "Subfields"
+      },
+      {
+        "id": "http://www.oecd.org/science/inno/38235147.pdf?6.5",
+        "subject": "Other humanities",
+        "scheme": "FOS"
+      }
+    ],
+    "dates": [
+      {
+        "date": "2025-09-27T06:53:26Z",
+        "type": {
+          "id": "issued",
+          "title": {
+            "de": "Veröffentlicht",
+            "en": "Issued",
+            "sv": "Utfärdad"
+          }
+        }
+      },
+      {
+        "date": "2025-09-27T06:53:26Z",
+        "type": {
+          "id": "updated",
+          "title": {
+            "de": "Aktualisiert",
+            "en": "Updated",
+            "sv": "Uppdaterad"
+          }
+        }
+      }
+    ],
+    "languages": [
+      {
+        "id": "eng",
+        "title": {
+          "en": "English"
+        }
+      }
+    ],
+    "identifiers": [
+      {
+        "identifier": "172147764",
+        "scheme": "guid"
+      },
+      {
+        "identifier": "https://aarontay.substack.com/p/the-petrol-tank-for-ai-discovery",
+        "scheme": "url"
+      }
+    ],
+    "version": "v1",
+    "rights": [
+      {
+        "id": "cc-by-4.0",
+        "title": {
+          "en": "Creative Commons Attribution 4.0 International"
+        },
+        "description": {
+          "en": "The Creative Commons Attribution license allows re-distribution and re-use of a licensed work on the condition that the creator is appropriately credited."
+        },
+        "icon": "cc-by-icon",
+        "props": {
+          "url": "https://creativecommons.org/licenses/by/4.0/",
+          "scheme": "spdx"
+        }
+      }
+    ],
+    "description": "Elicit.com, Consensus, and Undermind.ai are among the new leading comprehensive cross-disciplinary \"AI-powered academic search engines\" today."
+  },
+  "custom_fields": {
+    "journal:journal": {
+      "title": "Aaron Tay's Musings about Librarianship"
+    },
+    "rs:content_html": "<p class=\"button-wrapper\" data-attrs=\"{&quot;url&quot;:&quot;https://ko-fi.com/aarontay&quot;,&quot;text&quot;:&quot;Buy me Coffee! (via ko-fi)&quot;,&quot;action&quot;:null,&quot;class&quot;:null}\" data-component-name=\"ButtonCreateButton\"><a class=\"button primary\" href=\"https://ko-fi.com/aarontay\"><span>Buy me Coffee! (via ko-fi)</span></a></p><p><a href=\"http://elicit.com\">Elicit.com</a>, <a href=\"http://consensus.app\">Consensus</a>, and <a href=\"http://undermind.ai\">Undermind.ai</a> are among the new leading comprehensive cross-disciplinary \"AI-powered academic search engines\" today. </p><blockquote><p>Traditional databases like Web of Science, Scopus have also added AI features, such as Web of Science Research Assistant, Scopus AI, but in my view, they are still playing catch up, with Scopus AI only recently adding Deep Research.</p></blockquote><p> </p><div class=\"subscription-widget-wrap-editor\" data-attrs=\"{&quot;url&quot;:&quot;https://aarontay.substack.com/subscribe?&quot;,&quot;text&quot;:&quot;Subscribe&quot;,&quot;language&quot;:&quot;en&quot;}\" data-component-name=\"SubscribeWidgetToDOM\"><div class=\"subscription-widget show-subscribe\"><div class=\"preamble\"><p class=\"cta-caption\">Thanks for reading Aaron Tay's Musings about Librarianship! Subscribe for free to receive new posts and support my work.</p></div><form class=\"subscription-widget-subscribe\"><input type=\"email\" class=\"email-input\" name=\"email\" placeholder=\"Type your email…\" tabindex=\"-1\"><input type=\"submit\" class=\"button primary\" value=\"Subscribe\"><div class=\"fake-input-wrapper\"><div class=\"fake-input\"></div><div class=\"fake-button\"></div></div></form></div></div><p>Yet, these tools, alongside many others, have depended heavily on open scholarly metadata—especially Open Abstracts and full text—typically sourced from aggregators like <a href=\"https://www.semanticscholar.org/product/api\">Semantic Scholar Academic Graph</a>/<a href=\"https://github.com/allenai/s2orc\">Semantic Scholar Open Research Corpus</a>, <a href=\"http://openalex.org\">OpenAlex</a>, and to a lesser extent <a href=\"http://lens.org\">Lens.org</a> and <a href=\"https://core.ac.uk/\">Core</a>. Even other AI-powered search tools like <a href=\"http://scispace.com\">SciSpace</a> and <a href=\"http://scite.ai\">Scite.ai</a>, which emphasize their own proprietary indexes, likely derive a significant portion of their data from open sources, complemented by specific publisher agreements.</p><p>For years, this reliance on open metadata functioned as a kind of \"free ride.\" While the <a href=\"https://i4oa.org/\">Initiative for Open Abstracts (I4OA)</a> has not matched<a href=\"https://direct.mit.edu/qss/article/2/2/433/102175/A-tipping-point-for-open-citation-data\"> the success of its older sibling</a>, the <a href=\"https://i4oc.org/\">Initiative for Open Citations</a>, in persuading major publishers like Elsevier or Springer Nature to deposit abstracts directly into Crossref (see l<a href=\"https://i4oa.org/#publishers\">ist of committed publishers for abstracts</a>), open aggregators found other means. </p><p>A <a href=\"https://bmkramer.github.io/SesameOpenScience_site/thought/202411_open_abstracts/\">November 2024 analysis by Bianca Kramer</a>, for instance, revealed that OpenAlex had obtained substantially more abstracts from these very publishers, often achieved through multiple methods including web scraping.</p><p>  </p><div class=\"captioned-image-container\"><figure><a class=\"image-link image2 is-viewable-img\" target=\"_blank\" href=\"https://substackcdn.com/image/fetch/$s_!DgBd!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png\" data-component-name=\"Image2ToDOM\"><div class=\"image2-inset\"><picture><source type=\"image/webp\" srcset=\"https://substackcdn.com/image/fetch/$s_!DgBd!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png 424w, https://substackcdn.com/image/fetch/$s_!DgBd!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png 848w, https://substackcdn.com/image/fetch/$s_!DgBd!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png 1272w, https://substackcdn.com/image/fetch/$s_!DgBd!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png 1456w\" sizes=\"100vw\"><img src=\"https://substackcdn.com/image/fetch/$s_!DgBd!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png\" width=\"1115\" height=\"919\" data-attrs=\"{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:919,&quot;width&quot;:1115,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:138370,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:&quot;https://aarontay.substack.com/i/172147764?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}\" class=\"sizing-normal\" alt=\"\" srcset=\"https://substackcdn.com/image/fetch/$s_!DgBd!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png 424w, https://substackcdn.com/image/fetch/$s_!DgBd!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png 848w, https://substackcdn.com/image/fetch/$s_!DgBd!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png 1272w, https://substackcdn.com/image/fetch/$s_!DgBd!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png 1456w\" sizes=\"100vw\" loading=\"lazy\"></picture><div class=\"image-link-expand\"><div class=\"pencraft pc-display-flex pc-gap-8 pc-reset\"><button tabindex=\"0\" type=\"button\" class=\"pencraft pc-reset pencraft icon-container restack-image\"><svg aria-hidden=\"true\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" stroke-width=\"1.5\" stroke=\"var(--color-fg-primary)\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\"><g><path d=\"M2.53001 7.81595C3.49179 4.73911 6.43281 2.5 9.91173 2.5C13.1684 2.5 15.9537 4.46214 17.0852 7.23684L17.6179 8.67647M17.6179 8.67647L18.5002 4.26471M17.6179 8.67647L13.6473 6.91176M17.4995 12.1841C16.5378 15.2609 13.5967 17.5 10.1178 17.5C6.86118 17.5 4.07589 15.5379 2.94432 12.7632L2.41165 11.3235M2.41165 11.3235L1.5293 15.7353M2.41165 11.3235L6.38224 13.0882\"></path></g></svg></button><button tabindex=\"0\" type=\"button\" class=\"pencraft pc-reset pencraft icon-container view-image\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-maximize2 lucide-maximize-2\"><polyline points=\"15 3 21 3 21 9\"></polyline><polyline points=\"9 21 3 21 3 15\"></polyline><line x1=\"21\" x2=\"14\" y1=\"3\" y2=\"10\"></line><line x1=\"3\" x2=\"10\" y1=\"21\" y2=\"14\"></line></svg></button></div></div></div></a></figure></div><p>As of November 2024, Bianca reported:</p><ul><li><p><strong>Overall, the proportion of journal articles from 2022–2024 with Crossref DOIs for which abstracts from Elsevier articles that are available is 82% in OpenAlex.</strong></p></li><li><p>Crucially, even though Elsevier, IEEE, ACS did not deposit abstracts in Crossref, OpenAlex at all, you can see the % of abstracts in OpenAlex is much higher than 0% in these publishers. It is likely that other open sources (e.g., Semantic Scholar's Open Corpus) and proprietary indexes (e.g., SciSpace) achieved similar coverage.</p></li></ul><p></p><h2>The Rise of AI Changes the Game: The End of the \"Free Ride\"</h2><p>In November 2024, Bianca sounded the alarm:</p><blockquote><p>In November 2022, OpenAlex removed abstracts for Springer Nature's non-Open Access content (see <a href=\"http://9b971b24d1a1af9cbe2c01f368a6408f0d1f69df0f7a0f1f23bc652d7c4f0abaR851\">GitHub commit</a>).</p></blockquote><p>and</p><blockquote><p>Now, two years later (in November 2024) Elsevier seems to have taken similar steps to have abstracts from closed articles removed from OpenAlex (see <a href=\"https://github.com/ourresearch/openalex-guts/commit/b85b3bc77cf9c0f3bd162426a2ba0dacdc951065\">GitHub commit</a>). The effect of this step is already visible in the OpenAlex web UI and API, and is expected to affect the data snapshot from November 2024 forward. With previous abstract coverage for Elsevier at 82% in OpenAlex, this will result in the loss of approximately 1,1M abstracts for <a href=\"https://openalex.org/works?page=1&amp;filter=primary_location.source.publisher_lineage%3Ap4310320990,open_access.is_oa%3Afalse,type%3Atypes%2Farticle,primary_location.source.type%3Asource-types%2Fjournal,publication_year%3A2022-2024\">current closed journal articles</a>, and up to 11.5M abstracts for <a href=\"https://openalex.org/works?page=1&amp;filter=primary_location.source.publisher_lineage%3Ap4310320990,open_access.is_oa%3Afalse,type%3Atypes%2Farticle,primary_location.source.type%3Asource-types%2Fjournal\">closed journal articles of all years</a>.</p></blockquote><h2><strong>September 2025: what's changed?</strong></h2><p><strong>2 Oct 2025 update - the analysis here was done prior to the <a href=\"https://blog.openalex.org/openalex-rewrite-enters-beta-%f0%9f%8e%89/\">OpenAlex Walden Update/Rewrite</a> - the results look quite different at least as of 2 Oct when you try the Walden beta results.</strong></p><p>Taking Elsevier as an example, I ran a query on the OpenAlex API to verify the situation:</p><blockquote><p><a href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310320990,publication_year:2022-2024&amp;group_by=has_abstract\">https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310320990,publication_year:2022-2024,</a><a href=\"https://openalex.org/works?page=1&amp;filter=primary_location.source.publisher_lineage:p4310320990,type:types/article,publication_year:2022-2024,has_abstract:false,has_doi:true\">has_doi:true</a><a href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310320990,publication_year:2022-2024&amp;group_by=has_abstract\">&amp;group_by=has_abstract</a></p></blockquote><p>At the time of writing, OpenAlex returns:</p><div class=\"captioned-image-container\"><figure><a class=\"image-link image2\" target=\"_blank\" href=\"https://substackcdn.com/image/fetch/$s_!KP-h!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png\" data-component-name=\"Image2ToDOM\"><div class=\"image2-inset\"><picture><source type=\"image/webp\" srcset=\"https://substackcdn.com/image/fetch/$s_!KP-h!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png 424w, https://substackcdn.com/image/fetch/$s_!KP-h!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png 848w, https://substackcdn.com/image/fetch/$s_!KP-h!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png 1272w, https://substackcdn.com/image/fetch/$s_!KP-h!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png 1456w\" sizes=\"100vw\"><img src=\"https://substackcdn.com/image/fetch/$s_!KP-h!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png\" width=\"1456\" height=\"82\" data-attrs=\"{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:82,&quot;width&quot;:1456,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:18138,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:&quot;https://aarontay.substack.com/i/172147764?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}\" class=\"sizing-normal\" alt=\"\" srcset=\"https://substackcdn.com/image/fetch/$s_!KP-h!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png 424w, https://substackcdn.com/image/fetch/$s_!KP-h!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png 848w, https://substackcdn.com/image/fetch/$s_!KP-h!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png 1272w, https://substackcdn.com/image/fetch/$s_!KP-h!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png 1456w\" sizes=\"100vw\" loading=\"lazy\"></picture><div></div></div></a></figure></div><p></p><ul><li><p>With abstracts (2022–2024): <strong>533,080</strong> works</p></li><li><p>Without abstracts (2022–2024): <strong>1,833,524 </strong>works</p></li></ul><p> That's <strong>533,080 / 2,366,604 = 22.5% </strong>with abstracts in OpenAlex—a dramatic fall from the ~83% Bianca reported in November 2024.</p><p>More tellingly, when <a href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310320990,publication_year:2022-2024,open_access.is_oa:false&amp;group_by=has_abstract\">filtering for works with abstracts that are </a><em><a href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310320990,publication_year:2022-2024,open_access.is_oa:false&amp;group_by=has_abstract\">not</a></em><a href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310320990,publication_year:2022-2024,open_access.is_oa:false&amp;group_by=has_abstract\"> Open Access, the result is empty</a>. In other words, the only Elsevier works in OpenAlex with abstracts now appear to be Open Access.</p><p>A <a href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310319965,publication_year:2022-2024,has_doi:true&amp;group_by=has_abstract\">similar query for Springer Nature</a> shows:</p><ul><li><p>With abstracts: <strong>483,478 </strong>works</p></li><li><p>Without abstracts: <strong>865,304</strong> works</p></li><li><p>Coverage: 483,478 / 1,348,782 = 35.8% - compared to slightly under 50% in Nov 2024</p></li></ul><p>Again, the<a href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310319965,publication_year:2022-2024,open_access.is_oa:false&amp;group_by=has_abstract\"> Springer Nature works in OpenAlex with abstracts appear to be exclusively Open Access</a>.</p><p> </p><h3>Implications for AI Search Tools and the Broader Research Ecosystem</h3><p>Assuming the analysis above is mostly correct,  OpenAlex (and likely other open sources) are no longer permitted to display abstracts from Elsevier and Springer Nature unless the articles are Open Access. While I have not verified other sources like the Semantic Scholar Open Corpus, I suspect similar pressure on indexes exposing abstracts from non-Open Access articles.</p><p>The impact of this shift is profoundly negative, extending beyond just AI search tools:</p><ul><li><p><strong>Degraded AI Discovery:</strong> Semantic Scholar's corpus, OpenAlex, and—to a degree—Lens.org or CORE are the key repositories of titles and abstracts that many \"AI-powered search\" tools (e.g., Undermind.ai, Consensus, Elicit) rely on. If abstracts from Elsevier and Springer Nature are taken down, incumbents that previously ingested them <em>may</em> continue to function for a while (unless explicitly asked to purge), but going forward, their effectiveness will be severely constrained. New entrants will be hit harder, limited to roughly ~22% OpenAlex abstract coverage (for Elsevier 2022–2024) instead of 80%+ just months ago—significantly degrading discovery effectiveness.</p></li><li><p><strong>Reduced Searchability in general:</strong> Beyond AI, researchers using any platform that relies on these open aggregators will find that even normal keyword searches within these databases will no longer effectively retrieve closed-access articles from these major publishers, even if the abstract itself would have matched their query. This fundamentally compromises the ability to efficiently scope and filter literature.</p></li><li><p><strong>Hinders Bibliometric and Scientometric Research:</strong> Open metadata, including abstracts, is a cornerstone for researchers studying the structure and evolution of science using tools like VOSViewer, CiteSpace, Bibliometrix, pyBibx etc. The systematic loss of this data compromises the ability to conduct reproducible, large-scale analyses of scientific literature without resorting to expensive, proprietary tools.</p></li><li><p><strong>Non-academic deep research might still work:</strong> Interestingly, because the abstracts still remain on Elsevier and SpringerNature pages, LLMs that search websites directly (e.g., ChatGPT+web search, OpenAI/Gemini/Perplexity Deep Research) could <em>theoretically</em> still access them. However, this is a less efficient, less structured, and potentially unstable approach. Also, publishers could block these AI agents, and relying on direct scraping is not a sustainable, scalable solution for building comprehensive academic knowledge graphs.</p></li></ul><p></p><h3>Conclusion — where this leaves libraries, vendors, and our students</h3><p>If AI-powered discovery is the shiny sports car, open abstracts are the petrol. We've just learned what happens when the tank runs dry. The sudden collapse from ~80% abstract coverage to ~20–35% for two of the largest publishers doesn't just ding recall metrics; it quietly shifts the playing field. Incumbents that cached content early will coast for a while; newcomers will stall at the start line. More importantly, researchers—our users—lose signal at precisely the stage where LLM-assisted search ought to shine: scoping, filtering, and \"is this worth my time?\"</p><p>We, of course, understand why publishers are doing this—mostly due to the rising value of abstracts for training and discovery as AI companies are now hungry for data for training and are willing to pay publishers for it (See <a href=\"http://Ithaka's list of Generative AI Licensing Agreement Tracker).\">Ithaka's list of Generative AI Licensing Agreement Tracker</a>). Abstracts, once a mere summary, are now a strategic asset.</p><p><strong>The solution is less clear, but our collective response must be robust.</strong> This critical juncture calls for:</p><ul><li><p><strong>Advocacy</strong>: Libraries, institutions, open science advocates must redouble efforts to push for genuinely open metadata policies. We need to explore linking this advocacy to subscription renewal negotiations, making the value of open abstracts part of the conversation with publishers. See also <a href=\"https://barcelona-declaration.org/\">Barcelona Declaration on Open Research Information</a></p></li><li><p><strong>Educating Researchers:</strong> Librarians must take the lead in educating faculty and students about the changing landscape of AI search tools. This includes explaining the data sources that underpin these tools, their new limitations, and the potential biases introduced by restricted access to abstracts. Researchers need to understand why some AI tools may now miss significant portions of the literature and how to navigate these challenges. They may also be the best advocates to publishers for keeping abstracts open as they care profoundly about making their papers discoverable.</p></li><li><p><strong>Achieving high Open Access rates : </strong>Of course, if every article is Open Access, this makes the concern over Open Abstracts pretty much moot. While we have seen great strides in Open Access rates in the last decade, I think this will take a while before we can achieve near universal rates of Open Access.</p></li></ul><p><em>Gemini 2.5 Pro and GPT-5 helped with clean-up.</em></p><div class=\"subscription-widget-wrap-editor\" data-attrs=\"{&quot;url&quot;:&quot;https://aarontay.substack.com/subscribe?&quot;,&quot;text&quot;:&quot;Subscribe&quot;,&quot;language&quot;:&quot;en&quot;}\" data-component-name=\"SubscribeWidgetToDOM\"><div class=\"subscription-widget show-subscribe\"><div class=\"preamble\"><p class=\"cta-caption\">Thanks for reading Aaron Tay's Musings about Librarianship! Subscribe for free to receive new posts and support my work.</p></div><form class=\"subscription-widget-subscribe\"><input type=\"email\" class=\"email-input\" name=\"email\" placeholder=\"Type your email…\" tabindex=\"-1\"><input type=\"submit\" class=\"button primary\" value=\"Subscribe\"><div class=\"fake-input-wrapper\"><div class=\"fake-input\"></div><div class=\"fake-button\"></div></div></form></div></div>",
+    "rs:image": "https://substackcdn.com/image/fetch/$s_!DgBd!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png",
+    "rs:generator": {
+      "id": "Substack",
+      "title": {
+        "en": "Substack"
+      }
+    },
+    "rs:featured": false,
+    "rs:doi": "https://doi.org/10.59350/musings"
+  },
+  "access": {
+    "record": "public",
+    "files": "public",
+    "embargo": {
+      "active": false,
+      "reason": null
+    },
+    "status": "open"
+  },
+  "files": {
+    "enabled": true,
+    "order": [],
+    "count": 1,
+    "total_bytes": 360752,
+    "entries": {
+      "10.59350-5cj54-ha154.pdf": {
+        "id": "e5ceb4c7-d8ff-4dd0-bb69-967d3f0cdade",
+        "checksum": "md5:45bd78e15ced266c3b7da0bc7881d32d",
+        "ext": "pdf",
+        "size": 360752,
+        "mimetype": "application/pdf",
+        "storage_class": "L",
+        "key": "10.59350-5cj54-ha154.pdf",
+        "metadata": {},
+        "access": {
+          "hidden": false
+        },
+        "links": {
+          "self": "https://rogue-scholar.org/api/records/pevm6-kx104/files/10.59350-5cj54-ha154.pdf",
+          "content": "https://rogue-scholar.org/api/records/pevm6-kx104/files/10.59350-5cj54-ha154.pdf/content",
+          "iiif_canvas": "https://rogue-scholar.org/api/iiif/record:pevm6-kx104/canvas/10.59350-5cj54-ha154.pdf",
+          "iiif_base": "https://rogue-scholar.org/api/iiif/record:pevm6-kx104:10.59350-5cj54-ha154.pdf",
+          "iiif_info": "https://rogue-scholar.org/api/iiif/record:pevm6-kx104:10.59350-5cj54-ha154.pdf/info.json",
+          "iiif_api": "https://rogue-scholar.org/api/iiif/record:pevm6-kx104:10.59350-5cj54-ha154.pdf/full/full/0/default.png"
+        }
+      }
+    }
+  },
+  "media_files": {
+    "enabled": false,
+    "order": [],
+    "count": 0,
+    "total_bytes": 0,
+    "entries": {}
+  },
+  "status": "published",
+  "deletion_status": {
+    "is_deleted": false,
+    "status": "P"
+  },
+  "stats": {
+    "this_version": {
+      "views": 4,
+      "unique_views": 3,
+      "downloads": 1,
+      "unique_downloads": 1,
+      "data_volume": 360752.0
+    },
+    "all_versions": {
+      "views": 4,
+      "unique_views": 3,
+      "downloads": 1,
+      "unique_downloads": 1,
+      "data_volume": 360752.0
+    }
+  }
+}

@@ -922,3 +922,39 @@ def test_citations_prefers_pidbox_over_legacy():
     assert citations == [
         {"id": "https://doi.org/10.59350/4q8j1-1ap35", "type": "IsReferencedBy"}
     ]
+
+
+def test_additional_descriptions():
+    """The InvenioRDM field, beside the legacy Zenodo `notes` the reader reads.
+
+    A record served by either API has one or the other; both become commonmeta
+    additional descriptions.
+    """
+    record = {
+        "pids": {"doi": {"identifier": "10.5281/zenodo.5244404"}},
+        "metadata": {
+            "title": "A record with more than one description",
+            "resource_type": {"id": "dataset"},
+            "publication_date": "2024-01-01",
+            "description": "The abstract",
+            "additional_descriptions": [
+                {"description": "How it was done", "type": {"id": "methods"}},
+                {
+                    "description": "Zusammenfassung",
+                    "type": {"id": "table-of-contents"},
+                    "lang": {"id": "deu"},
+                },
+                {"description": "<p>Just a note</p>"},
+            ],
+        },
+    }
+
+    subject = Metadata(record, via="inveniordm")
+
+    assert subject.description == "The abstract"
+    assert subject.additional_descriptions == [
+        {"description": "How it was done", "type": "Methods"},
+        # commonmeta has no table of contents type
+        {"description": "Zusammenfassung", "type": "Other", "language": "de"},
+        {"description": "Just a note", "type": "Other"},
+    ]

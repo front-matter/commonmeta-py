@@ -336,6 +336,28 @@ CM_TO_INVENIORDM_TRANSLATIONS = {
     "Other": "other",
 }
 
+# The InvenioRDM description-types vocabulary against the commonmeta types.
+# Neither covers the other: InvenioRDM has no "summary", commonmeta no
+# "series-information" or "table-of-contents", so what does not map becomes
+# "other"/"Other" rather than nothing -- InvenioRDM requires a type on every
+# additional description.
+CM_TO_INVENIORDM_DESCRIPTION_TYPES = {
+    "Abstract": "abstract",
+    "Summary": "other",
+    "Methods": "methods",
+    "TechnicalInfo": "technical-info",
+    "Other": "other",
+}
+
+INVENIORDM_TO_CM_DESCRIPTION_TYPES = {
+    "abstract": "Abstract",
+    "methods": "Methods",
+    "series-information": "Other",
+    "table-of-contents": "Other",
+    "technical-info": "TechnicalInfo",
+    "other": "Other",
+}
+
 CM_TO_DC_TRANSLATIONS = {
     "Preprint": "Preprint",
     "Audiovisual": "Audiovisual",

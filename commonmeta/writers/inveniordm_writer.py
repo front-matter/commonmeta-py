@@ -22,6 +22,7 @@ from ..base_utils import (
 )
 from ..constants import (
     CM_TO_INVENIORDM_CONTRIBUTOR_ROLES,
+    CM_TO_INVENIORDM_DESCRIPTION_TYPES,
     CM_TO_INVENIORDM_TRANSLATIONS,
     COMMUNITY_TRANSLATIONS,
     INVENIORDM_IDENTIFIER_TYPES,
@@ -62,6 +63,7 @@ INVENIORDM_METADATA_FIELDS = frozenset(
         "dates",
         "subjects",
         "description",
+        "additional_descriptions",
         "rights",
         "languages",
         "identifiers",
@@ -87,12 +89,32 @@ INVENIORDM_CUSTOM_FIELDS = frozenset(
 # writer does not always describe.
 CITATIONS_FIELD = "pidbox:citations"
 
+# The custom fields a plain InvenioRDM understands. `journal:journal` ships with
+# invenio-rdm-records as a contrib field and is what instances that hold journal
+# metadata enable, Zenodo among them. The `rs:` namespace is Rogue Scholar's own
+# and `pidbox:citations` comes with invenio-pidbox, so an instance that installs
+# neither refuses both as unknown fields, taking the whole record with them.
+INVENIORDM_GENERIC_CUSTOM_FIELDS = frozenset({"journal:journal"})
+
+# The targets this writer knows how to describe a record for.
+INVENIORDM_PROFILES = ("rogue-scholar", "generic")
+
+
+def custom_fields_written(profile: str = "rogue-scholar") -> frozenset:
+    """The custom fields this writer owns when writing for `profile`."""
+    return (
+        INVENIORDM_GENERIC_CUSTOM_FIELDS
+        if profile == "generic"
+        else INVENIORDM_CUSTOM_FIELDS
+    )
+
 
 def write_inveniordm(
     metadata: Metadata,
     write_pdf: bool = False,
     doi_provider: str | None = None,
     pdf_supplied: bool = False,
+    profile: str = "rogue-scholar",
     **kwargs,
 ) -> dict:
     """Write inveniordm.
@@ -112,9 +134,27 @@ def write_inveniordm(
     different InvenioRDM is that instance's ``external`` doi, and declaring it
     ``crossref`` names a provider the target does not configure. Pass the
     provider the target instance offers.
+
+    ``profile`` says which custom fields the target holds. ``rogue-scholar``,
+    the default, writes them all. ``generic`` is for an instance that installs
+    neither the ``rs:`` namespace nor invenio-pidbox -- Zenodo, say -- which
+    refuses an unknown custom field and with it the record, so only the contrib
+    field ``journal:journal`` is written. What those fields carry is then said
+    the way a plain InvenioRDM says it where there is a way: the container and
+    the citing works become ``ispartof`` and ``isreferencedby`` related
+    identifiers, which the Rogue Scholar profile leaves out because
+    ``journal:journal`` and ``pidbox:citations`` already hold them. The post's
+    html and its feature image have no generic home and are left out; a record
+    written with ``write_pdf`` still carries the post as a pdf rendition.
     """
     if metadata is None or metadata.write_errors is not None:
         return {}
+    if profile not in INVENIORDM_PROFILES:
+        raise ValueError(
+            f"unknown InvenioRDM profile {profile}, expected one of "
+            f"{', '.join(INVENIORDM_PROFILES)}"
+        )
+    generic = profile == "generic"
     if doi_provider is not None:
         # The caller knows the target. An identifier is still required -- see
         # the else branch -- so no doi means no pids either way.
@@ -179,22 +219,30 @@ def write_inveniordm(
     references = [to_inveniordm_reference(i) for i in wrap(metadata.references)]
     # IsReferencedBy relations are citing works: their home is
     # custom_fields.pidbox:citations, not related_identifiers (mirrors the
-    # reader, which also still accepts the legacy rs:citations name).
+    # reader, which also still accepts the legacy rs:citations name). IsPartOf
+    # is the container, which journal:journal and rs:doi hold. A generic target
+    # has neither field, so both go to related_identifiers there instead --
+    # ispartof and isreferencedby are core InvenioRDM relation types.
+    custom_field_relations = () if generic else ("IsPartOf", "IsReferencedBy")
     related_identifiers = [
         to_inveniordm_related_identifier(i)
         for i in wrap(metadata.relations)
-        if i.get("id", None)
-        and i.get("type", None) not in ("IsPartOf", "IsReferencedBy")
+        if i.get("id", None) and i.get("type", None) not in custom_field_relations
     ]
-    citations = [
-        c
-        for c in (
-            to_inveniordm_citation(i)
-            for i in wrap(metadata.relations)
-            if i.get("type", None) == "IsReferencedBy"
-        )
-        if c is not None
-    ]
+    related_identifiers = [i for i in related_identifiers if i is not None]
+    citations = (
+        []
+        if generic
+        else [
+            c
+            for c in (
+                to_inveniordm_citation(i)
+                for i in wrap(metadata.relations)
+                if i.get("type", None) == "IsReferencedBy"
+            )
+            if c is not None
+        ]
+    )
     funding = unique(
         [
             to_inveniordm_funding(i)
@@ -215,6 +263,24 @@ def write_inveniordm(
     volume = container.get("volume", None)
     issue = container.get("issue", None)
     pages = pages_as_string(container)
+
+    # A generic target holds the container doi nowhere but its relations. The
+    # readers put it in both places, so this only adds one for a record whose
+    # source says it once, and never a second copy of one already related.
+    container_doi = doi_from_url(journal_doi) if generic else None
+    if container_doi:
+        if not any(
+            i.get("identifier") == container_doi
+            and dig(i, "relation_type.id") == "ispartof"
+            for i in related_identifiers
+        ):
+            related_identifiers.append(
+                {
+                    "identifier": container_doi,
+                    "scheme": "doi",
+                    "relation_type": {"id": "ispartof"},
+                }
+            )
 
     date_fields = compact(
         {
@@ -245,6 +311,14 @@ def write_inveniordm(
             subjects.append(subject)
             if subject_id is not None:
                 seen_ids.add(subject_id)
+
+    additional_descriptions = [
+        d
+        for d in (
+            to_inveniordm_description(i) for i in wrap(metadata.additional_descriptions)
+        )
+        if d is not None
+    ]
 
     # files = to_files(metadata)
 
@@ -277,6 +351,7 @@ def write_inveniordm(
                     "dates": presence(dates),
                     "subjects": presence(subjects),
                     "description": metadata.description,
+                    "additional_descriptions": presence(additional_descriptions),
                     "rights": (
                         [{"id": metadata.license.get("id").lower()}]
                         if metadata.license and metadata.license.get("id", None)
@@ -305,14 +380,17 @@ def write_inveniordm(
                             "pages": pages,
                         }
                     ),
-                    "rs:doi": journal_doi,
-                    "rs:content_html": presence(metadata.content),
-                    "rs:image": presence(metadata.image),
+                    # Everything below is a field the target has to install.
+                    "rs:doi": None if generic else journal_doi,
+                    "rs:content_html": (
+                        None if generic else presence(metadata.content)
+                    ),
+                    "rs:image": None if generic else presence(metadata.image),
                     # rs:generator is a record VocabularyCF ({"id": <platform>});
                     # feed:generator is a *community* field and invalid on a record.
                     "rs:generator": (
                         {"id": container.get("platform")}
-                        if container.get("platform")
+                        if container.get("platform") and not generic
                         else None
                     ),
                     "pidbox:citations": presence(citations),
@@ -526,6 +604,31 @@ def to_inveniordm_citation(relation: dict) -> dict | None:
     return None
 
 
+def to_inveniordm_description(description: dict) -> dict | None:
+    """Convert a commonmeta additional description to an InvenioRDM one.
+
+    InvenioRDM requires a type on every additional description and its
+    vocabulary has no counterpart for each commonmeta one, so a type that does
+    not map is "other" rather than a description left out.
+    """
+    text = presence(description.get("description", None))
+    if text is None:
+        return None
+
+    language = get_language(description.get("language", None), format="alpha_3")
+    return compact(
+        {
+            "description": text,
+            "type": {
+                "id": CM_TO_INVENIORDM_DESCRIPTION_TYPES.get(
+                    description.get("type", None), "other"
+                )
+            },
+            "lang": {"id": language} if language else None,
+        }
+    )
+
+
 def to_inveniordm_reference(reference: dict) -> dict | None:
     """Convert reference to inveniordm reference"""
     if normalize_doi(reference.get("id", None)):
@@ -676,6 +779,8 @@ def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict
             caller depositing a file it already holds -- an archived rendition,
             say -- rather than making a new one that need not match it. Implies
             files are enabled, whatever the post's content says.
+        profile: which custom fields the target holds, "rogue-scholar"
+            (the default) or "generic". See write_inveniordm.
         system_process: write through InvenioRDM's service layer as
             system_identity rather than over HTTP, for code running inside the
             instance it is writing to. `token` is then unused and may be None.
@@ -729,6 +834,7 @@ def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict
             write_pdf=kwargs.get("write_pdf", False),
             doi_provider=kwargs.get("doi_provider", None),
             pdf=kwargs.get("pdf", None),
+            profile=kwargs.get("profile", "rogue-scholar"),
         )
 
         # optionally add record to InvenioRDM communities
@@ -778,6 +884,7 @@ def upsert_record(
     write_pdf: bool = False,
     doi_provider: str | None = None,
     pdf: bytes | None = None,
+    profile: str = "rogue-scholar",
 ) -> dict:
     """Upsert InvenioRDM record, based on DOI"""
 
@@ -786,6 +893,7 @@ def upsert_record(
         write_pdf=write_pdf,
         doi_provider=doi_provider,
         pdf_supplied=pdf is not None,
+        profile=profile,
     )
 
     # Check if record already exists in InvenioRDM
@@ -848,8 +956,11 @@ def upsert_record(
         # replaces custom_fields wholesale, so what the record holds and this
         # push does not send is deleted -- see keep_citations, which is the one
         # field that applies to.
+        # A generic target has no pidbox:citations to preserve: the citing
+        # works this push sends are related identifiers there, and putting the
+        # field back would send the target a custom field it refuses.
         published = get_published_record(record["id"], host, token)
-        if published is not None:
+        if published is not None and profile != "generic":
             keep_citations(update_output, published)
         payload = update_output
         has_file = bool(dig(published or {}, "files.entries"))
@@ -861,7 +972,7 @@ def upsert_record(
         if skip_unchanged:
             if (
                 published is not None
-                and record_matches(update_output, published)
+                and record_matches(update_output, published, profile=profile)
                 and (not write_pdf or dig(published, "files.entries"))
             ):
                 record["created"] = published.get("created", None)
@@ -1252,7 +1363,9 @@ def _first_difference(sent, stored, path: str = "") -> str | None:
     return None if sent == stored else path
 
 
-def record_matches(output: dict, published: dict) -> bool:
+def record_matches(
+    output: dict, published: dict, profile: str = "rogue-scholar"
+) -> bool:
     """Check whether a published record already holds the metadata to be written.
 
     Republishing writes a new revision even when nothing changed, so this decides
@@ -1260,11 +1373,15 @@ def record_matches(output: dict, published: dict) -> bool:
     False: writing an unchanged record is wasteful, skipping a changed one is a bug.
     The field that ruled out a match is logged, since a value normalised server-side
     would otherwise quietly rule out every record.
+
+    ``profile`` names the custom fields the writer owns on this target. A field
+    it does not write there -- ``rs:image`` on a generic instance -- is nobody's
+    to clear, so a record holding one still matches.
     """
     record_id = published.get("id", None)
     for section, owned in (
         ("metadata", INVENIORDM_METADATA_FIELDS),
-        ("custom_fields", INVENIORDM_CUSTOM_FIELDS),
+        ("custom_fields", custom_fields_written(profile)),
     ):
         sent = output.get(section) or {}
         stored = published.get(section) or {}

@@ -2425,7 +2425,10 @@ def test_a_pdf_attached_this_run_keeps_files_enabled():
         ),
         patch(
             "commonmeta.writers.inveniordm_writer.upload_pdf",
-            side_effect=lambda m, h, t, r, **kw: {**r, "files": ["10.59350_dn2mm-m9q51.pdf"]},
+            side_effect=lambda m, h, t, r, **kw: {
+                **r,
+                "files": ["10.59350_dn2mm-m9q51.pdf"],
+            },
         ),
         patch(
             "commonmeta.writers.inveniordm_writer.update_draft_record",
@@ -2575,3 +2578,504 @@ def test_upload_pdf_deposits_the_file_it_was_given():
     mock_render.assert_not_called()
     assert result["files"] == ["10.59350_wg8rv-awm24.pdf"]
     assert mock_http.put.call_args.kwargs["data"] == b"%PDF-supplied"
+
+
+# Zenodo, a generic InvenioRDM: it has the contrib field journal:journal and
+# neither the rs: namespace nor invenio-pidbox.
+
+ROGUE_SCHOLAR_RECORD = (
+    Path(__file__).parent / "fixtures" / "inveniordm-rogue-scholar.json"
+)
+
+BLOG_TITLE = "Aaron Tay's Musings about Librarianship"
+
+
+def _zenodo_input() -> Metadata:
+    """A Rogue Scholar post, read the way the InvenioRDM reader reads one.
+
+    Read from a fixture rather than over the wire: what is under test is what
+    the writer says about a record, and this one says everything a target
+    without the Rogue Scholar custom fields has to be told another way -- a
+    blog identified by a doi, the post's html and feature image, and a pdf
+    rendition already deposited as a record file.
+    """
+    return Metadata(str(ROGUE_SCHOLAR_RECORD), via="inveniordm")
+
+
+def test_zenodo_input_carries_what_the_custom_fields_hold():
+    """The fixture is only interesting while it exercises every branch below."""
+    subject = _zenodo_input()
+
+    assert subject.id == "https://doi.org/10.59350/5cj54-ha154"
+    assert subject.container.get("title") == BLOG_TITLE
+    assert subject.content and subject.image
+    assert subject.files[0]["key"] == "10.59350-5cj54-ha154.pdf"
+
+
+def test_zenodo_writes_only_the_custom_fields_the_target_installs():
+    """rs: and pidbox: are refused as unknown fields, and take the record."""
+    subject = _zenodo_input()
+
+    generic = write_inveniordm(subject, profile="generic", doi_provider="external")
+    rogue_scholar = write_inveniordm(subject, doi_provider="external")
+
+    assert list(generic["custom_fields"]) == ["journal:journal"]
+    assert dig(generic, "custom_fields.journal:journal.title") == BLOG_TITLE
+    # unchanged for the instance that has them
+    assert (
+        dig(rogue_scholar, "custom_fields.rs:doi") == "https://doi.org/10.59350/musings"
+    )
+    assert dig(rogue_scholar, "custom_fields.rs:generator") == {"id": "Substack"}
+    assert dig(rogue_scholar, "custom_fields.rs:content_html") == subject.content
+    assert dig(rogue_scholar, "custom_fields.rs:image") == subject.image
+
+
+def test_zenodo_relates_the_blog_that_journal_journal_cannot_name():
+    """journal:journal has a title and an issn and no doi, so the blog doi,
+    which is all this blog has, is an ispartof related identifier instead."""
+    subject = _zenodo_input()
+
+    generic = write_inveniordm(subject, profile="generic", doi_provider="external")
+    rogue_scholar = write_inveniordm(subject, doi_provider="external")
+
+    assert dig(generic, "metadata.related_identifiers") == [
+        {
+            "identifier": "10.59350/sfw0f-2fe65",
+            "scheme": "doi",
+            "relation_type": {"id": "isversionof"},
+        },
+        {
+            "identifier": "10.59350/musings",
+            "scheme": "doi",
+            "relation_type": {"id": "ispartof"},
+        },
+    ]
+    # said once, though the reader states the blog doi twice: as the
+    # container's identifier and as an IsPartOf relation
+    assert dig(rogue_scholar, "metadata.related_identifiers") == [
+        {
+            "identifier": "10.59350/sfw0f-2fe65",
+            "scheme": "doi",
+            "relation_type": {"id": "isversionof"},
+        }
+    ]
+
+
+def test_zenodo_relates_the_works_citing_the_post():
+    """Citing works live in pidbox:citations, which a generic target has not."""
+    subject = _zenodo_input()
+    subject.relations = subject.relations + [
+        {"id": "https://doi.org/10.59350/n2tya-6c468", "type": "IsReferencedBy"}
+    ]
+    citation = {
+        "identifier": "10.59350/n2tya-6c468",
+        "scheme": "doi",
+        "relation_type": {"id": "isreferencedby"},
+    }
+
+    generic = write_inveniordm(subject, profile="generic", doi_provider="external")
+    rogue_scholar = write_inveniordm(subject, doi_provider="external")
+
+    assert citation in dig(generic, "metadata.related_identifiers")
+    assert "pidbox:citations" not in generic["custom_fields"]
+    assert dig(rogue_scholar, "custom_fields.pidbox:citations") == [
+        {"identifier": "10.59350/n2tya-6c468", "scheme": "doi"}
+    ]
+    assert citation not in dig(rogue_scholar, "metadata.related_identifiers")
+
+
+def test_zenodo_still_takes_the_doi_provider_it_offers():
+    """The two options are independent: Zenodo needs both."""
+    inveniordm = write_inveniordm(
+        _zenodo_input(), profile="generic", doi_provider="external"
+    )
+
+    assert dig(inveniordm, "pids.doi") == {
+        "identifier": "10.59350/5cj54-ha154",
+        "provider": "external",
+    }
+
+
+def test_an_unknown_profile_is_refused():
+    """A profile the writer does not know would silently write the default."""
+    with pytest.raises(ValueError, match="unknown InvenioRDM profile"):
+        write_inveniordm(_zenodo_input(), profile="zenodo")
+
+
+def test_zenodo_deposits_the_pdf_the_post_already_has():
+    """The rendition Rogue Scholar holds is deposited as it stands.
+
+    A record read from Rogue Scholar carries its pdf as a record file; pushing
+    it on to Zenodo deposits that file rather than rendering the post again.
+    """
+    subject = _zenodo_input()
+    record = {"doi": "10.59350/5cj54-ha154", "previous_doi": None}
+    sent = {}
+
+    def create_draft(record, host, token, output):
+        sent.update(output)
+        return {**record, "id": "abc12-34567"}
+
+    with (
+        patch("commonmeta.writers.inveniordm_writer.search_by_doi", return_value=None),
+        patch("commonmeta.writers.inveniordm_writer.search_by_guid", return_value=None),
+        patch(
+            "commonmeta.writers.inveniordm_writer.create_draft_record",
+            side_effect=create_draft,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.write_pdf_rendition"
+        ) as mock_render,
+        patch("commonmeta.writers.inveniordm_writer.http") as mock_http,
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "published"},
+        ),
+    ):
+        mock_http.post.return_value = Mock(status_code=201)
+        mock_http.put.return_value = Mock(status_code=200)
+        result = upsert_record(
+            subject,
+            "zenodo.org",
+            "token",
+            record,
+            skip_unchanged=False,
+            write_pdf=True,
+            doi_provider="external",
+            pdf=b"%PDF-the-rendition",
+            profile="generic",
+        )
+
+    assert list(sent["custom_fields"]) == ["journal:journal"]
+    assert sent["files"] == {"enabled": True}
+    assert dig(sent, "pids.doi.provider") == "external"
+    mock_render.assert_not_called()
+    assert mock_http.put.call_args.kwargs["data"] == b"%PDF-the-rendition"
+    assert result["files"] == ["10.59350_5cj54-ha154.pdf"]
+    assert result["status"] == "published"
+
+
+def test_zenodo_update_does_not_send_back_citations_it_cannot_store():
+    """keep_citations restores a field the target has no place for.
+
+    Whatever a generic record holds under pidbox:citations was not put there
+    by invenio-pidbox, and sending the field back would be refused.
+    """
+    subject = _zenodo_input()
+    record = {"doi": "10.59350/5cj54-ha154", "previous_doi": None}
+    published = {
+        "id": "abc12-34567",
+        "custom_fields": {
+            "journal:journal": {"title": BLOG_TITLE},
+            "pidbox:citations": [
+                {"identifier": "10.59350/n2tya-6c468", "scheme": "doi"}
+            ],
+        },
+    }
+    sent = {}
+
+    with (
+        patch(
+            "commonmeta.writers.inveniordm_writer.search_by_doi",
+            return_value="abc12-34567",
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.get_published_record",
+            return_value=published,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.edit_published_record",
+            side_effect=lambda r, *a: r,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record",
+            side_effect=lambda r, h, t, output: sent.update(output) or r,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "published"},
+        ),
+    ):
+        upsert_record(
+            subject,
+            "zenodo.org",
+            "token",
+            record,
+            skip_unchanged=False,
+            doi_provider="external",
+            profile="generic",
+        )
+
+    assert list(sent["custom_fields"]) == ["journal:journal"]
+
+
+def test_zenodo_leaves_alone_a_record_carrying_a_field_it_does_not_write():
+    """A field the writer does not own on this target is nobody's to clear."""
+    output = write_inveniordm(
+        _zenodo_input(), profile="generic", doi_provider="external"
+    )
+    published = {
+        "id": "abc12-34567",
+        **output,
+        "custom_fields": {
+            **output["custom_fields"],
+            "rs:image": "https://example.org/feature.png",
+        },
+    }
+
+    assert record_matches(output, published, profile="generic")
+    # the Rogue Scholar profile writes rs:image, so one it did not send is stale
+    assert not record_matches(output, published)
+
+
+def test_push_inveniordm_forwards_the_profile():
+    """push_inveniordm passes the option down to upsert_record."""
+    from commonmeta.writers import inveniordm_writer as w
+
+    subject = _zenodo_input()
+    with (
+        patch.object(w, "upsert_record", return_value={}) as upsert,
+        patch.object(w, "add_record_to_communities", side_effect=lambda m, h, t, r: r),
+        patch.object(
+            w, "update_external_services", side_effect=lambda m, h, t, r, **k: r
+        ),
+    ):
+        w.push_inveniordm(subject, "zenodo.org", "token", profile="generic")
+        w.push_inveniordm(subject, "rogue-scholar.org", "token")
+
+    assert upsert.call_args_list[0].kwargs["profile"] == "generic"
+    assert upsert.call_args_list[1].kwargs["profile"] == "rogue-scholar"
+
+
+# The Zenodo records the InvenioRDM reader tests read, written back out for
+# Zenodo and read again: what the reader takes from a record is what the writer
+# has to be able to say for one.
+
+ZENODO_ROUNDTRIP = [
+    pytest.param(
+        "https://zenodo.org/api/records/5244404",
+        "JournalArticle",
+        "publication-article",
+        id="publication",
+    ),
+    pytest.param(
+        "https://zenodo.org/api/records/8173303",
+        "Presentation",
+        "presentation",
+        id="presentation",
+    ),
+    pytest.param(
+        "https://zenodo.org/api/records/7834392",
+        "Dataset",
+        "dataset",
+        id="dataset",
+    ),
+    pytest.param(
+        str(Path(__file__).parent / "fixtures" / "inveniordm-software.json"),
+        "Software",
+        "software",
+        id="software",
+    ),
+]
+
+# What the payload that creates a record does not say, and the record read back
+# therefore loses: files are deposited by their own calls, one at a time, and
+# the entries the reader reads describe files a record already holds.
+ROUNDTRIP_LOSSES = ("files",)
+
+
+@pytest.mark.vcr("test_publication.yaml", "test_presentation.yaml", "test_dataset.yaml")
+@pytest.mark.parametrize("string,cm_type,resource_type", ZENODO_ROUNDTRIP)
+def test_zenodo_record_survives_a_roundtrip(string, cm_type, resource_type):
+    """A Zenodo record written back for Zenodo reads back as the same record.
+
+    The same records the InvenioRDM reader tests read, so a mapping the reader
+    gains and the writer does not is caught here rather than on a push.
+    """
+    subject = Metadata(string)
+    assert subject.type == cm_type
+
+    written = json.loads(subject.write(to="inveniordm", profile="generic"))
+    assert dig(written, "metadata.resource_type.id") == resource_type
+    # nothing Zenodo would refuse: these records have no journal metadata
+    assert written["custom_fields"] == {"journal:journal": {}}
+
+    # The landing page is the one thing a deposit payload cannot carry -- the
+    # instance assigns it on publish, and the reader takes it from
+    # links.self_html -- so it is handed back the way the reader takes a url
+    # for a record read from anywhere else. It is what the reader recognises
+    # Zenodo by, and with it the container it gives a record there.
+    back = Metadata(written, via="inveniordm", url=subject.url)
+
+    assert back.is_valid
+    before = json.loads(subject.write(to="commonmeta"))
+    after = json.loads(back.write(to="commonmeta"))
+    assert {k: v for k, v in before.items() if k not in ROUNDTRIP_LOSSES} == after
+
+
+@pytest.mark.vcr("test_publication.yaml")
+def test_a_roundtrip_leaves_behind_what_the_instance_owns():
+    """The url and the files belong to the record, not to what deposits it."""
+    subject = Metadata("https://zenodo.org/api/records/5244404")
+
+    written = json.loads(subject.write(to="inveniordm", profile="generic"))
+    back = Metadata(written, via="inveniordm")
+
+    assert subject.url == "https://zenodo.org/records/5244404"
+    assert back.url is None
+    # the reader knows a Zenodo record by the host of its url
+    assert subject.container.get("title") == "Zenodo"
+    assert back.container.get("title") is None
+    # deposited one at a time by upload_pdf, not described in the payload
+    assert len(subject.files) == 3
+    assert back.files is None
+
+
+def test_additional_descriptions_are_written_with_a_type():
+    """InvenioRDM requires a type on every additional description."""
+    subject = _zenodo_input()
+    subject.additional_descriptions = [
+        {"description": "How it was done", "type": "Methods"},
+        {"description": "Zusammenfassung", "type": "Summary", "language": "de"},
+        {"description": "Just a note"},
+    ]
+
+    inveniordm = write_inveniordm(subject, profile="generic")
+
+    assert dig(inveniordm, "metadata.additional_descriptions") == [
+        {"description": "How it was done", "type": {"id": "methods"}},
+        # InvenioRDM's vocabulary has no summary, and nothing is said about a
+        # description that says nothing about itself
+        {
+            "description": "Zusammenfassung",
+            "type": {"id": "other"},
+            "lang": {"id": "deu"},
+        },
+        {"description": "Just a note", "type": {"id": "other"}},
+    ]
+
+
+def test_a_description_without_text_is_not_written():
+    """InvenioRDM requires the text too, and an empty one is nothing to say."""
+    subject = _zenodo_input()
+    subject.additional_descriptions = [{"type": "Methods"}, {"description": ""}]
+
+    inveniordm = write_inveniordm(subject, profile="generic")
+
+    assert "additional_descriptions" not in inveniordm["metadata"]
+
+
+# A pdf rendition of a post, the file and the record in one: the commonmeta it
+# was written from travels as an attachment inside it, so the reader takes the
+# metadata off the pdf and those same bytes are what gets deposited.
+#
+# Each of the 144 images in the rendition of https://doi.org/10.63517/kshzw-ay335
+# was replaced with a 1x1 grey pixel to keep the fixture small (2.2 MB -> 144 kB).
+# Nothing the reader looks at is drawn: the attachment, the XMP packet and the
+# text are all as rendered.
+POST_RENDITION = Path(__file__).parent / "fixtures" / "10.63517_kshzw-ay335.pdf"
+
+
+def test_a_rendition_is_read_as_the_record_it_carries():
+    """Nothing here is read off the page, and nothing is fetched."""
+    subject = Metadata(str(POST_RENDITION))
+
+    assert subject.via == "pdf"
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.63517/kshzw-ay335"
+    assert subject.type == "BlogPost"
+    assert subject.title == "InvenioRDM v14.0 released"
+    assert subject.container.get("title") == "Invenio Blog"
+    assert subject.relations == [
+        {"id": "https://doi.org/10.63517/invenio", "type": "IsPartOf"}
+    ]
+
+
+def test_a_rendition_is_written_for_zenodo():
+    """A post read from a pdf is written like one read from anywhere else."""
+    subject = Metadata(str(POST_RENDITION))
+
+    inveniordm = write_inveniordm(
+        subject,
+        profile="generic",
+        doi_provider="external",
+        write_pdf=True,
+        pdf_supplied=True,
+    )
+
+    assert dig(inveniordm, "pids.doi") == {
+        "identifier": "10.63517/kshzw-ay335",
+        "provider": "external",
+    }
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert dig(inveniordm, "metadata.title") == "InvenioRDM v14.0 released"
+    # the blog, which Zenodo can hold as a relation and not as a custom field
+    assert dig(inveniordm, "metadata.related_identifiers") == [
+        {
+            "identifier": "10.63517/invenio",
+            "scheme": "doi",
+            "relation_type": {"id": "ispartof"},
+        }
+    ]
+    assert inveniordm["custom_fields"] == {"journal:journal": {"title": "Invenio Blog"}}
+    # the file the record was read from is the file it will carry
+    assert inveniordm["files"] == {"enabled": True}
+
+
+def test_a_rendition_is_deposited_on_zenodo():
+    """Read a post from its pdf and push both to Zenodo.
+
+    The rendition is deposited as it stands rather than rendered again: it is
+    the file the metadata was read from, and it already carries that metadata
+    as an attachment.
+    """
+    subject = Metadata(str(POST_RENDITION))
+    pdf = POST_RENDITION.read_bytes()
+    record = {"doi": "10.63517/kshzw-ay335", "previous_doi": None}
+    sent = {}
+
+    def create_draft(record, host, token, output):
+        sent.update(output)
+        return {**record, "id": "kshzw-ay335"}
+
+    with (
+        patch("commonmeta.writers.inveniordm_writer.search_by_doi", return_value=None),
+        patch("commonmeta.writers.inveniordm_writer.search_by_guid", return_value=None),
+        patch(
+            "commonmeta.writers.inveniordm_writer.create_draft_record",
+            side_effect=create_draft,
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.write_pdf_rendition"
+        ) as mock_render,
+        patch("commonmeta.writers.inveniordm_writer.http") as mock_http,
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "published"},
+        ),
+    ):
+        mock_http.post.return_value = Mock(status_code=201)
+        mock_http.put.return_value = Mock(status_code=200)
+        result = upsert_record(
+            subject,
+            "zenodo.org",
+            "token",
+            record,
+            skip_unchanged=False,
+            write_pdf=True,
+            doi_provider="external",
+            pdf=pdf,
+            profile="generic",
+        )
+
+    # registered under the name the rendition already has, uploaded whole,
+    # committed, and only then published
+    assert mock_http.post.call_args_list[0].kwargs["json"] == [
+        {"key": "10.63517_kshzw-ay335.pdf"}
+    ]
+    assert mock_http.put.call_args.kwargs["data"] == pdf
+    mock_render.assert_not_called()
+    assert result["files"] == ["10.63517_kshzw-ay335.pdf"]
+    assert result["status"] == "published"
+    assert sent["files"] == {"enabled": True}
+    assert list(sent["custom_fields"]) == ["journal:journal"]

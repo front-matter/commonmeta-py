@@ -20,6 +20,7 @@ from ..base_utils import (
 )
 from ..constants import (
     COMMONMETA_RELATION_TYPES,
+    INVENIORDM_TO_CM_DESCRIPTION_TYPES,
     INVENIORDM_TO_CM_TRANSLATIONS,
     Commonmeta,
 )
@@ -246,6 +247,17 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             dig(meta, "metadata.notes"),
         ]
     )
+    # `notes` above is the legacy Zenodo API's name for a single extra
+    # description; `additional_descriptions` is the InvenioRDM field, which
+    # says how many there are and what each of them is.
+    additional_descriptions += [
+        d
+        for d in (
+            read_inveniordm_description(i)
+            for i in wrap(dig(meta, "metadata.additional_descriptions"))
+        )
+        if d is not None
+    ]
     identifiers = [
         result
         for i in wrap(dig(meta, "metadata.identifiers"))
@@ -600,6 +612,28 @@ def get_descriptions(descriptions: list) -> tuple[str | None, list]:
         return None, []
     description = items[0].get("description", None)
     return description, items[1:]
+
+
+def read_inveniordm_description(description: dict) -> dict | None:
+    """Convert an InvenioRDM additional description to a commonmeta one.
+
+    The inverse of the writer's ``to_inveniordm_description``. A type outside
+    the commonmeta vocabulary -- a table of contents, say -- is "Other", which
+    is what an InvenioRDM record with no type would be anyway.
+    """
+    text = presence(sanitize(description.get("description", None) or ""))
+    if text is None:
+        return None
+
+    return compact(
+        {
+            "description": text,
+            "type": INVENIORDM_TO_CM_DESCRIPTION_TYPES.get(
+                dig(description, "type.id"), "Other"
+            ),
+            "language": get_language(dig(description, "lang.id")),
+        }
+    )
 
 
 def format_identifier(identifier: dict) -> dict | None:
