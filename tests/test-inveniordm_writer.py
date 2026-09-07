@@ -3112,3 +3112,33 @@ def test_a_rendition_is_deposited_on_zenodo():
     assert result["status"] == "published"
     assert sent["files"] == {"enabled": True}
     assert list(sent["custom_fields"]) == ["journal:journal"]
+
+
+def test_a_draft_that_was_not_created_is_not_published():
+    """The publish replaced the reason with "Missing record id".
+
+    create_draft_record answers a refusal with a status and no id -- Zenodo
+    refusing a resource type it does not have, say -- and publishing that
+    raised InvenioRDMError from the step after the one that failed, so what
+    the target actually said was only in a log line. It also made a permanent
+    refusal retryable.
+    """
+    subject = _zenodo_input()
+    record = {"doi": "10.63517/kshzw-ay335", "previous_doi": None}
+
+    with (
+        patch("commonmeta.writers.inveniordm_writer.search_by_doi", return_value=None),
+        patch("commonmeta.writers.inveniordm_writer.search_by_guid", return_value=None),
+        patch(
+            "commonmeta.writers.inveniordm_writer.create_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "failed_create_draft"},
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record"
+        ) as mock_publish,
+    ):
+        result = upsert_record(subject, "zenodo.org", "token", record)
+
+    mock_publish.assert_not_called()
+    assert result["status"] == "failed_create_draft"
+    assert not result.get("id")

@@ -1037,6 +1037,17 @@ def upsert_record(
                 record, host, token, {**payload, "files": {"enabled": False}}
             )
 
+    # Nothing was created, so there is nothing to publish. create_draft_record
+    # and the update path say what happened in the status and log the response
+    # that explains it; going on to publish threw that away and raised
+    # "Missing record id", which says only that the step before it failed --
+    # the reason, a 400 naming the field the target refused, was left in a log
+    # line nothing tied to the run. It also made a permanent refusal look
+    # retryable: the status tells a rate limit apart from a rejection, and
+    # only one of those is worth trying again.
+    if not record.get("id"):
+        return record
+
     # Publish draft record
     record = publish_draft_record(record, host, token)
 
