@@ -901,6 +901,13 @@ INVENIORDM_IDENTIFIER_TYPES = {
     "Other": "other",
 }
 
+# The two of those Rogue Scholar adds to RDM_RECORDS_IDENTIFIERS_SCHEMES. Core
+# InvenioRDM has every other scheme above, and refuses a whole record for an
+# identifier under a scheme it has not been configured with. "other" is the
+# scheme it keeps for an identifier it has no name for, which is what one of
+# these is to it.
+INVENIORDM_CUSTOM_IDENTIFIER_SCHEMES = ("guid", "uuid")
+
 
 # --- ORCID (person entities) ---
 

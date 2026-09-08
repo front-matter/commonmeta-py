@@ -25,6 +25,7 @@ from ..constants import (
     CM_TO_INVENIORDM_DESCRIPTION_TYPES,
     CM_TO_INVENIORDM_TRANSLATIONS,
     COMMUNITY_TRANSLATIONS,
+    INVENIORDM_CUSTOM_IDENTIFIER_SCHEMES,
     INVENIORDM_IDENTIFIER_TYPES,
     OPENALEX_TOPIC_SUBFIELD_MAPPINGS,
 )
@@ -161,7 +162,9 @@ def write_inveniordm(
     html and its feature image have no generic home and are left out; a record
     written with ``write_pdf`` still carries the post as a pdf rendition.
     Subjects are written to a generic target as free-text keywords, since their
-    ids are vocabularies only this instance installs.
+    ids are vocabularies only this instance installs, and an identifier under a
+    scheme only this instance adds is deposited as ``other`` for the same
+    reason.
     """
     if metadata is None or metadata.write_errors is not None:
         return {}
@@ -234,6 +237,18 @@ def write_inveniordm(
             "scheme": "url",
         }
     )
+    if generic:
+        # guid and uuid are schemes this instance adds to the core vocabulary,
+        # and a target without them refuses the record for one it cannot
+        # resolve -- the same way it refuses an unknown subject id. The
+        # identifier is still worth depositing, under the scheme core
+        # InvenioRDM keeps for one it has no name for.
+        identifiers = [
+            {**i, "scheme": "other"}
+            if i.get("scheme") in INVENIORDM_CUSTOM_IDENTIFIER_SCHEMES
+            else i
+            for i in identifiers
+        ]
     references = [to_inveniordm_reference(i) for i in wrap(metadata.references)]
     # IsReferencedBy relations are citing works: their home is
     # custom_fields.pidbox:citations, not related_identifiers (mirrors the

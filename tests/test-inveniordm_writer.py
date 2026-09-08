@@ -2713,6 +2713,30 @@ def test_zenodo_writes_the_subjects_it_needs_no_vocabulary_for():
     ]
 
 
+def test_zenodo_says_other_for_the_identifier_schemes_only_this_instance_has():
+    """guid and uuid are Rogue Scholar's additions to the core vocabulary, and
+    a target refuses a whole record for a scheme it cannot resolve. The
+    identifier is still deposited, under the scheme core InvenioRDM keeps for
+    one it has no name for."""
+    subject = _zenodo_input()
+
+    generic = write_inveniordm(subject, profile="generic", doi_provider="external")
+    rogue_scholar = write_inveniordm(subject, doi_provider="external")
+
+    assert dig(generic, "metadata.identifiers") == [
+        {"identifier": "172147764", "scheme": "other"},
+        {"identifier": "pevm6-kx104", "scheme": "other"},
+        {
+            "identifier": "https://aarontay.substack.com/p/the-petrol-tank-for-ai-discovery",
+            "scheme": "url",
+        },
+    ]
+    # unchanged for the instance that has the scheme
+    assert {"identifier": "172147764", "scheme": "guid"} in dig(
+        rogue_scholar, "metadata.identifiers"
+    )
+
+
 def test_zenodo_still_takes_the_doi_provider_it_offers():
     """The two options are independent: Zenodo needs both."""
     inveniordm = write_inveniordm(
