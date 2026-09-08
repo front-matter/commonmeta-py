@@ -1614,9 +1614,28 @@ def get_record_communities(record: dict, host: str, token: str) -> list | None:
 
 
 def add_record_to_community(
-    record: dict, host: str, token: str, community_id: str
+    record: dict,
+    host: str,
+    token: str,
+    community_id: str,
+    require_review: bool = False,
 ) -> dict:
-    """Add a record to a community"""
+    """Add a record to a community.
+
+    ``require_review`` asks for a submission the community's curators accept,
+    rather than the direct inclusion InvenioRDM does by default. Including a
+    record directly needs the right to curate the community being added to,
+    which an instance has for its own and a depositor on someone else's
+    instance has not: there the direct add is refused and the record is
+    published in no community at all. A submission is what an outside
+    depositor can do. A backend adds to this instance's own communities, where
+    direct inclusion is both allowed and what is wanted, so the flag is a
+    remote-only concern.
+
+    The record comes back either way -- one deposited without its community is
+    worth keeping and adding again -- carrying ``community_status``, since
+    what went wrong is otherwise only in the log.
+    """
     backend = active_backend()
     if backend is not None:
         return backend.add_record_to_community(record, community_id)
@@ -1624,32 +1643,46 @@ def add_record_to_community(
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
     }
-    json = {"communities": [{"id": community_id}]}
+    community = {"id": community_id}
+    if require_review:
+        community["require_review"] = True
+    json = {"communities": [community]}
     try:
         response = http.post(
             f"https://{host}/api/records/{record['id']}/communities",
             headers=headers,
             json=json,
         )
-        if response.status_code == 400:
-            # InvenioRDM returns 400 when the community has no logo set or the
-            # record is already linked to the community.
-            data = response.json()
-            log.warning(
-                "Failed to add record to community: %s",
-                data.get("errors", response.text),
-                extra={"record_id": record["id"], "community_id": community_id},
-            )
-        elif response.status_code == 429:
+        if response.status_code == 429:
             log.warning(
                 "Rate limit exceeded while adding record to community",
                 extra={"record_id": record["id"], "community_id": community_id},
             )
-        else:
-            response.raise_for_status()
+            record["community_status"] = "failed_rate_limited"
+            return record
+        # The endpoint answers 400 when it processed none of the communities
+        # asked for and 200 with an errors list when it processed only some,
+        # so the status alone does not say whether this record got in. Every
+        # refusal is reported this way -- a community that is not there, an
+        # open request already, no right to submit to it -- and answering the
+        # caller that the record was added is how a record ends up deposited
+        # and in no community with nothing said about it.
+        data = response.json() if response.content else {}
+        errors = data.get("errors") if isinstance(data, dict) else None
+        if errors or response.status_code == 400:
+            log.warning(
+                "Failed to add record to community: %s",
+                errors or response.text,
+                extra={"record_id": record["id"], "community_id": community_id},
+            )
+            record["community_status"] = "failed_add_to_community"
+            return record
+        response.raise_for_status()
+        record["community_status"] = "added"
         return record
     except RequestException as e:
         log.error("Error adding record to community: %s", str(e), exc_info=True)
+        record["community_status"] = "error_add_to_community"
         return record
 
 

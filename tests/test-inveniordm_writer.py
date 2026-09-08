@@ -2713,6 +2713,64 @@ def test_zenodo_writes_the_subjects_it_needs_no_vocabulary_for():
     ]
 
 
+def _community_response(status_code, body):
+    """One answer from POST /api/records/<id>/communities."""
+    response = Mock(status_code=status_code, content=b"{}", text=str(body))
+    response.json.return_value = body
+    return response
+
+
+def test_a_community_that_took_none_of_the_record_is_not_reported_as_added():
+    """The endpoint answers 400 when it processed nothing at all. Answering
+    the caller that the record was added is how one ends up deposited and in
+    no community with nothing said about it."""
+    from commonmeta.writers import inveniordm_writer as w
+
+    body = {"errors": [{"community_id": "cid", "message": "Permission denied."}]}
+    with patch.object(w, "http") as mock_http:
+        mock_http.post.return_value = _community_response(400, body)
+        record = w.add_record_to_community({"id": "zen-1"}, "zenodo.org", "t", "cid")
+
+    assert record["community_status"] == "failed_add_to_community"
+
+
+def test_a_community_that_took_only_some_of_the_record_says_so_with_a_200():
+    """A per-community refusal comes back in an errors list, and the status is
+    200 as long as anything at all was processed."""
+    from commonmeta.writers import inveniordm_writer as w
+
+    body = {"processed": [], "errors": [{"community_id": "cid", "message": "no"}]}
+    with patch.object(w, "http") as mock_http:
+        mock_http.post.return_value = _community_response(200, body)
+        record = w.add_record_to_community({"id": "zen-1"}, "zenodo.org", "t", "cid")
+
+    assert record["community_status"] == "failed_add_to_community"
+
+
+def test_a_record_asks_to_be_reviewed_where_it_cannot_include_itself():
+    """Direct inclusion needs the right to curate the community being added
+    to. require_review submits instead, which is what an outside depositor
+    can do -- and is left out of the payload otherwise, since including
+    directly is what an instance does with its own communities."""
+    from commonmeta.writers import inveniordm_writer as w
+
+    with patch.object(w, "http") as mock_http:
+        mock_http.post.return_value = _community_response(200, {"processed": [{}]})
+        direct = w.add_record_to_community({"id": "zen-1"}, "zenodo.org", "t", "cid")
+        submitted = w.add_record_to_community(
+            {"id": "zen-1"}, "zenodo.org", "t", "cid", require_review=True
+        )
+
+    assert direct["community_status"] == "added"
+    assert submitted["community_status"] == "added"
+    assert mock_http.post.call_args_list[0].kwargs["json"] == {
+        "communities": [{"id": "cid"}]
+    }
+    assert mock_http.post.call_args_list[1].kwargs["json"] == {
+        "communities": [{"id": "cid", "require_review": True}]
+    }
+
+
 def test_zenodo_says_other_for_the_identifier_schemes_only_this_instance_has():
     """guid and uuid are Rogue Scholar's additions to the core vocabulary, and
     a target refuses a whole record for a scheme it cannot resolve. The
