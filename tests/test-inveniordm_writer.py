@@ -2747,11 +2747,37 @@ def test_a_community_that_took_only_some_of_the_record_says_so_with_a_200():
     assert record["community_status"] == "failed_add_to_community"
 
 
+def test_a_record_already_in_the_community_is_not_a_record_that_failed():
+    """A second run of a blog asks again for every post it deposited before.
+    The record is in the community, or waiting for a curator to accept it into
+    one -- neither is something the run should report or retry."""
+    from commonmeta.writers import inveniordm_writer as w
+
+    already = {
+        "errors": [{"message": "The record is already included in this community."}]
+    }
+    pending = {
+        "errors": [
+            {
+                "message": "There is already an open inclusion request for this community."
+            }
+        ]
+    }
+    with patch.object(w, "http") as mock_http:
+        mock_http.post.return_value = _community_response(400, already)
+        added = w.add_record_to_community({"id": "zen-1"}, "zenodo.org", "t", "cid")
+        mock_http.post.return_value = _community_response(400, pending)
+        waiting = w.add_record_to_community({"id": "zen-1"}, "zenodo.org", "t", "cid")
+
+    assert added["community_status"] == "already_added"
+    assert waiting["community_status"] == "pending"
+
+
 def test_a_record_asks_to_be_reviewed_where_it_cannot_include_itself():
-    """Direct inclusion needs the right to curate the community being added
-    to. require_review submits instead, which is what an outside depositor
-    can do -- and is left out of the payload otherwise, since including
-    directly is what an instance does with its own communities."""
+    """Only a community's curators can include a record directly, so the flag
+    changes nothing for a depositor who could not have included it anyway. It
+    is left out of the payload otherwise: including directly is what an
+    instance does with its own communities."""
     from commonmeta.writers import inveniordm_writer as w
 
     with patch.object(w, "http") as mock_http:

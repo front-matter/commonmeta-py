@@ -1613,6 +1613,25 @@ def get_record_communities(record: dict, host: str, token: str) -> list | None:
         return None
 
 
+# What InvenioRDM says when the record is already where it was being put, or
+# is already waiting to be. Neither is a failure: there is nothing left to do
+# and nothing a second run can improve. The message is all the errors list
+# carries -- these arrive under no code of their own.
+COMMUNITY_ALREADY = {
+    "already included": "already_added",
+    "already an open inclusion request": "pending",
+}
+
+
+def community_error_status(errors: list) -> str:
+    """Read what the community endpoint's errors say happened to a record."""
+    messages = " ".join(str(e.get("message", "")) for e in errors).lower()
+    for phrase, status in COMMUNITY_ALREADY.items():
+        if phrase in messages:
+            return status
+    return "failed_add_to_community"
+
+
 def add_record_to_community(
     record: dict,
     host: str,
@@ -1622,19 +1641,20 @@ def add_record_to_community(
 ) -> dict:
     """Add a record to a community.
 
-    ``require_review`` asks for a submission the community's curators accept,
-    rather than the direct inclusion InvenioRDM does by default. Including a
-    record directly needs the right to curate the community being added to,
-    which an instance has for its own and a depositor on someone else's
-    instance has not: there the direct add is refused and the record is
-    published in no community at all. A submission is what an outside
-    depositor can do. A backend adds to this instance's own communities, where
-    direct inclusion is both allowed and what is wanted, so the flag is a
-    remote-only concern.
+    The endpoint always submits an inclusion request; whether that request is
+    also accepted on the spot depends on the community's review policy and on
+    who is asking. Only a community's curators can include directly, so a
+    depositor on someone else's instance leaves an open request, and the
+    record enters the community when a curator accepts it. That is not a
+    failure and is not something a second run can hurry along.
+
+    ``require_review`` says not to attempt the direct inclusion at all, which
+    a curator wants when the record should be reviewed like anyone else's. It
+    changes nothing for a depositor who could not have included it anyway.
 
     The record comes back either way -- one deposited without its community is
     worth keeping and adding again -- carrying ``community_status``, since
-    what went wrong is otherwise only in the log.
+    what happened is otherwise only in the log.
     """
     backend = active_backend()
     if backend is not None:
@@ -1663,19 +1683,21 @@ def add_record_to_community(
         # The endpoint answers 400 when it processed none of the communities
         # asked for and 200 with an errors list when it processed only some,
         # so the status alone does not say whether this record got in. Every
-        # refusal is reported this way -- a community that is not there, an
-        # open request already, no right to submit to it -- and answering the
-        # caller that the record was added is how a record ends up deposited
-        # and in no community with nothing said about it.
+        # refusal is reported this way -- a community that is not there, no
+        # right to submit to it, the record already in it -- and answering the
+        # caller that the record was added is how one ends up deposited and in
+        # no community with nothing said about it.
         data = response.json() if response.content else {}
         errors = data.get("errors") if isinstance(data, dict) else None
         if errors or response.status_code == 400:
-            log.warning(
-                "Failed to add record to community: %s",
-                errors or response.text,
-                extra={"record_id": record["id"], "community_id": community_id},
-            )
-            record["community_status"] = "failed_add_to_community"
+            status = community_error_status(wrap(errors))
+            if status == "failed_add_to_community":
+                log.warning(
+                    "Failed to add record to community: %s",
+                    errors or response.text,
+                    extra={"record_id": record["id"], "community_id": community_id},
+                )
+            record["community_status"] = status
             return record
         response.raise_for_status()
         record["community_status"] = "added"
