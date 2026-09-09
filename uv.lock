@@ -10,9 +10,6 @@ resolution-markers = [
     "python_full_version < '3.10' and platform_python_implementation != 'PyPy'",
 ]
 
-[options]
-prerelease-mode = "explicit"
-
 [[package]]
 name = "annotated-types"
 version = "0.7.0"
@@ -482,7 +479,7 @@ dependencies = [
     { name = "mypy-extensions" },
     { name = "packaging" },
     { name = "pathspec" },
-    { name = "platformdirs", version = "4.11.7", source = { registry = "https://pypi.org/simple" } },
+    { name = "platformdirs", version = "4.11.8", source = { registry = "https://pypi.org/simple" } },
     { name = "pytokens" },
     { name = "tomli", marker = "python_full_version < '3.11'" },
     { name = "typing-extensions", marker = "python_full_version < '3.11'" },
@@ -1225,7 +1222,7 @@ requires-dist = [
     { name = "citeproc-py-styles", specifier = ">=0.1.2,<1" },
     { name = "click", specifier = ">=8.1.7,<9" },
     { name = "commonmeta-rs", marker = "python_full_version >= '3.14' and extra == 'backend'", specifier = ">=0.9.80" },
-    { name = "commonmeta-schema", specifier = "==1.0rc31" },
+    { name = "commonmeta-schema", specifier = "==1.0.0" },
     { name = "datacite", specifier = ">=1.1.1,<2" },
     { name = "dateparser", specifier = ">=1.1.7,<2" },
     { name = "edtf", specifier = ">=5.0.0,<6" },
@@ -1289,11 +1286,11 @@ wheels = [
 
 [[package]]
 name = "commonmeta-schema"
-version = "1.0rc31"
+version = "1.0.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/05/f4/02025a986efcf614b78f5139c2b4b3320e90b84c7e7aa82a3aa14c3f70ad/commonmeta_schema-1.0rc31.tar.gz", hash = "sha256:c793652109d68cf0ecf9f5aa11efc7bbc3659ee903daf41d333fcf89ff157e33", size = 171813, upload-time = "2026-08-23T08:28:16.229Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a7/56/3835bb3641726fb2849a8a2b6589eea1427476daafe18e270ad3e5194758/commonmeta_schema-1.0.0.tar.gz", hash = "sha256:e9ff946368e33a26f6da7e61f1e15fd0d872d5d39ac4ecb56db5c9aee9053fb6", size = 171845, upload-time = "2026-09-09T11:51:58.882Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c4/3e/13dc59c4396758266481c584ad0af14fe06c0669231eef7808446100d05d/commonmeta_schema-1.0rc31-py3-none-any.whl", hash = "sha256:6a62e57f69c2930bc9e37893f8de0adc1271f757f54fb0d6599dad7263b6af38", size = 312478, upload-time = "2026-08-23T08:28:13.763Z" },
+    { url = "https://files.pythonhosted.org/packages/b7/51/c56088e86d9110a599c82e0fa2b6cff22a534b3d49eda2af686ef85ddb21/commonmeta_schema-1.0.0-py3-none-any.whl", hash = "sha256:bc85b1bad8175d26338536151da43d64936bbc9d98ed71d722ba6c83f14c85d4", size = 312548, upload-time = "2026-09-09T11:51:55.9Z" },
 ]
 
 [[package]]
@@ -2706,7 +2703,7 @@ resolution-markers = [
     "python_full_version == '3.10.*'",
 ]
 dependencies = [
-    { name = "platformdirs", version = "4.11.7", source = { registry = "https://pypi.org/simple" } },
+    { name = "platformdirs", version = "4.11.8", source = { registry = "https://pypi.org/simple" } },
     { name = "traitlets", version = "5.16.1", source = { registry = "https://pypi.org/simple" } },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/02/49/9d1284d0dc65e2c757b74c6687b6d319b02f822ad039e5c512df9194d9dd/jupyter_core-5.9.1.tar.gz", hash = "sha256:4d09aaff303b9566c3ce657f580bd089ff5c91f5f89cf7d8846c3cdf465b5508", size = 89814, upload-time = "2025-10-16T19:19:18.444Z" }
@@ -4301,7 +4298,7 @@ wheels = [
 
 [[package]]
 name = "platformdirs"
-version = "4.11.7"
+version = "4.11.8"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
     "python_full_version >= '3.14'",
@@ -4309,9 +4306,9 @@ resolution-markers = [
     "python_full_version >= '3.11' and python_full_version < '3.13'",
     "python_full_version == '3.10.*'",
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/69/b7/802a56eca9f2fac455b8bab5375a2647b0f0e14a2cd63ef077de3c4a7658/platformdirs-4.11.7.tar.gz", hash = "sha256:4f41487eeeeeb07f3a6625e61d9bc0ae6809f92d3386dbd74392fbb76108104d", size = 35127, upload-time = "2026-09-01T13:35:10.502Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/53/18/f3bb8ef0d3b930692343da8aa4d3cbcd6749477c053959395ac81965a6e9/platformdirs-4.11.8.tar.gz", hash = "sha256:f23abafea7dd4276d1f29104b83598d7dcc567cafd07c9c951e66665645437fc", size = 37182, upload-time = "2026-09-08T22:20:42.866Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/27/6e/80993e10a0482f630cef528635789233224f36b1ffd11592aa15d13ff9ce/platformdirs-4.11.7-py3-none-any.whl", hash = "sha256:8a02cb259042c79d1cd0450facc2fe6dc9d303ae7901afbe33bf8ea0b188cef6", size = 23938, upload-time = "2026-09-01T13:35:09.02Z" },
+    { url = "https://files.pythonhosted.org/packages/f4/e1/5b7b8bbb55084d1425bcb9bc823ff519e1b2be05f6ebb0089e2eacc38413/platformdirs-4.11.8-py3-none-any.whl", hash = "sha256:52f2f181bbfde907966932cc8312d967d02976422d66d537ea16092b8e291081", size = 24027, upload-time = "2026-09-08T22:20:41.537Z" },
 ]
 
 [[package]]
