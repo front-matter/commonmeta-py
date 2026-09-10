@@ -24,7 +24,9 @@ from commonmeta.io_utils import (
     write_pdf_rendition,
 )
 from commonmeta.writers.inveniordm_writer import (
+    custom_fields_written,
     keep_citations,
+    keep_custom_fields,
     record_matches,
     upload_pdf,
     upsert_record,
@@ -1165,6 +1167,56 @@ def test_keep_citations_follows_the_payload_when_it_names_citations():
     keep_citations(output, published)
 
     assert output["custom_fields"]["pidbox:citations"] == [citation]
+
+
+ARCHIVE_IT_CAPTURES = [
+    {
+        "url": "https://jabberwocky.weecology.org/2024/05/01/post/",
+        "collection": "22103",
+        "first": "20231201000000",
+        "last": "20250101000000",
+    }
+]
+
+
+def test_keep_custom_fields_keeps_fields_other_packages_own():
+    "a field this writer does not describe survives a push; an owned one does not"
+    output = {"custom_fields": {"rs:content_html": "<p>New</p>"}}
+    published = {
+        "custom_fields": {
+            "rs:content_html": "<p>Old</p>",
+            "rs:image": "https://example.org/old.png",
+            "ia:captures": ARCHIVE_IT_CAPTURES,
+        }
+    }
+
+    keep_custom_fields(output, published, custom_fields_written())
+
+    assert output["custom_fields"] == {
+        "rs:content_html": "<p>New</p>",
+        "ia:captures": ARCHIVE_IT_CAPTURES,
+    }
+
+
+def test_keep_custom_fields_does_not_override_the_payload():
+    "a payload that names the field has the last word"
+    output = {"custom_fields": {"ia:captures": []}}
+    published = {"custom_fields": {"ia:captures": ARCHIVE_IT_CAPTURES}}
+
+    keep_custom_fields(output, published, custom_fields_written())
+
+    assert output["custom_fields"]["ia:captures"] == []
+
+
+def test_keep_custom_fields_leaves_a_record_with_only_owned_fields_alone():
+    "nothing to carry over -- and no empty custom_fields written"
+    output = {"metadata": {}}
+
+    keep_custom_fields(
+        output, {"custom_fields": {"rs:image": "x.png"}}, custom_fields_written()
+    )
+
+    assert "custom_fields" not in output
 
 
 @pytest.mark.vcr("test_rogue_scholar_blog_post.yaml")

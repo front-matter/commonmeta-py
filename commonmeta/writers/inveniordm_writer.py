@@ -1004,14 +1004,15 @@ def upsert_record(
 
         # Read the record as it stands before writing over it. An update
         # replaces custom_fields wholesale, so what the record holds and this
-        # push does not send is deleted -- see keep_citations, which is the one
-        # field that applies to.
-        # A generic target has no pidbox:citations to preserve: the citing
-        # works this push sends are related identifiers there, and putting the
-        # field back would send the target a custom field it refuses.
+        # push does not send is deleted -- see keep_citations for the citations
+        # and keep_custom_fields for the fields other packages keep there.
+        # A generic target has none of these to preserve: the citing works
+        # this push sends are related identifiers there, and putting a field
+        # back would send the target a custom field it refuses.
         published = get_published_record(record["id"], host, token)
         if published is not None and profile != "generic":
             keep_citations(update_output, published)
+            keep_custom_fields(update_output, published, custom_fields_written(profile))
         payload = update_output
         has_file = bool(dig(published or {}, "files.entries"))
 
@@ -1393,6 +1394,28 @@ def keep_citations(output: dict, published: dict) -> None:
     custom_fields[CITATIONS_FIELD] = [
         {**by_identifier.get(c.get("identifier"), {}), **c} for c in sent
     ]
+
+
+def keep_custom_fields(output: dict, published: dict, owned: frozenset) -> None:
+    """Keep the custom fields other packages store on a record through an update.
+
+    An update replaces ``custom_fields`` with what it sends, so a field another
+    package keeps on the record -- invenio-archive-it's ``ia:captures``, say --
+    would be deleted by every push. This writer has nothing to say about such
+    a field, so the stored value stands. The fields in ``owned`` are left to the
+    payload: sending none of them means there is none.
+
+    ``output`` is modified in place, before it is compared with the published
+    record, so a push that changes nothing else still counts as unchanged.
+    """
+    stored = dig(published, "custom_fields") or {}
+    kept = {key: value for key, value in stored.items() if key not in owned}
+    if not kept:
+        return
+
+    custom_fields = output.setdefault("custom_fields", {})
+    for key, value in kept.items():
+        custom_fields.setdefault(key, value)
 
 
 def _first_difference(sent, stored, path: str = "") -> str | None:
