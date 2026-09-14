@@ -2,6 +2,8 @@
 
 import re
 
+import pytest
+
 from commonmeta.doi_utils import (
     crossref_api_query_url,
     crossref_api_url,
@@ -200,6 +202,32 @@ def test_encode_doi_with_number():
     """Generate a random DOI with preset number"""
     response = encode_doi("10.5555", number=123456789012)
     assert response == "https://doi.org/10.5555/3jz9j-6gm44"
+
+
+@pytest.mark.parametrize(
+    ("number", "doi"),
+    [
+        pytest.param(214901993, "https://doi.org/10.59350/006cy-97960", id="substack"),
+        pytest.param(1, "https://doi.org/10.59350/00000-00195", id="one"),
+        pytest.param(
+            123456789012, "https://doi.org/10.59350/3jz9j-6gm44", id="ten-already"
+        ),
+    ],
+)
+def test_encode_doi_with_number_pads_to_ten_characters(number, doi):
+    """A small number is padded to the form a random suffix has, and still
+    decodes back to itself with a checksum that holds."""
+    assert encode_doi("10.59350", number) == doi
+    assert decode_doi(doi) == number
+    assert validate_doi_from_guid("10.59350", doi)
+
+
+def test_encode_doi_random_suffix_has_ten_characters():
+    """A random suffix is padded too: one in 32 random numbers is short."""
+    for _ in range(2000):
+        assert re.fullmatch(
+            r"https://doi\.org/10\.5555/[0-9a-z]{5}-[0-9a-z]{5}", encode_doi("10.5555")
+        )
 
 
 def test_crossref_api_url():

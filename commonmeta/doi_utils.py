@@ -173,9 +173,16 @@ def get_doi_ra(doi, no_network: bool = False) -> str | None:
 
 
 def encode_doi(prefix, number: int | None = None, checksum: bool = True) -> str:
-    """Generate a DOI using the DOI prefix and a random base32 suffix"""
+    """Generate a DOI using the DOI prefix and a base32 suffix.
+
+    The suffix encodes ``number`` where one is given -- a Substack post id, say,
+    so that the same post always gets the same DOI -- and a random number
+    otherwise. Either way it is padded with zeros to ten characters, split
+    after five, the form a random suffix has: 214901993 is ``006cy-97960``,
+    not ``6cy97-960``. commonmeta-rs pads the same way.
+    """
     if isinstance(number, int):
-        suffix = base32.encode(number, split_every=5, checksum=checksum)
+        suffix = base32.encode(number, split_every=5, min_length=10, checksum=checksum)
     else:
         suffix = base32.generate(length=10, split_every=5, checksum=True)
     return f"https://doi.org/{prefix}/{suffix}"
