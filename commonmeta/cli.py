@@ -322,10 +322,17 @@ def push(
 
 @cli.command()
 @click.argument("prefix", type=str, required=True)
-def encode(prefix: str) -> None:
+@click.option(
+    "--number",
+    # Not 0: decode_doi answers 0 for a DOI it cannot decode as well.
+    type=click.IntRange(min=1),
+    default=None,
+    help="Encode this number, e.g. a Substack post id, instead of a random one.",
+)
+def encode(prefix: str, number: int | None) -> None:
     if validate_prefix(prefix) is None:
         return None
-    output = encode_doi(prefix)
+    output = encode_doi(prefix, number)
     click.echo(output)
 
 

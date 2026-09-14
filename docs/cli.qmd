@@ -61,6 +61,15 @@ poetry run commonmeta encode 10.5555
 https://doi.org/10.5555/cc10k-bk515
 ```
 
+With `--number`, encode that number instead of a random one, e.g. a Substack
+post id, so the same number always gives the same DOI:
+
+```
+poetry run commonmeta encode 10.5555 --number 214901993
+
+https://doi.org/10.5555/006cy-97960
+```
+
 ### decode
 Given a DOI generated with commonmeta, show the random number used to generate it.
 

@@ -90,6 +90,7 @@ The examples below use `commonmeta ...`; prefix them with
 ```sh
 # Encode/decode a Crockford base32 identifier suffix given a DOI prefix
 commonmeta encode 10.5555
+commonmeta encode 10.5555 --number 214901993  # the same number, the same DOI
 commonmeta decode 10.5555/nwbyp-29t86
 
 # Convert a single record between formats, fetching it by DOI

@@ -122,6 +122,33 @@ def test_encode():
     assert "https://doi.org/10.5555/" in result.output
 
 
+@pytest.mark.parametrize(
+    ("number", "doi"),
+    [
+        pytest.param(
+            "214901993", "https://doi.org/10.59350/006cy-97960", id="substack"
+        ),
+        pytest.param(
+            "123456789012", "https://doi.org/10.59350/3jz9j-6gm44", id="ten-already"
+        ),
+    ],
+)
+def test_encode_a_number(number, doi):
+    """--number encodes that number rather than a random one, padded to the
+    form a random suffix has."""
+    result = CliRunner().invoke(encode, ["10.59350", "--number", number])
+    assert result.exit_code == 0
+    assert result.output == f"{doi}\n"
+
+
+@pytest.mark.parametrize("number", ["0", "-1", "abc"])
+def test_encode_refuses_a_number_that_is_not_one(number):
+    """0 decodes as a DOI decode_doi cannot read, so it is refused like the rest."""
+    result = CliRunner().invoke(encode, ["10.59350", "--number", number])
+    assert result.exit_code == 2
+    assert "--number" in result.output
+
+
 def test_decode():
     """Test encode"""
     runner = CliRunner()
