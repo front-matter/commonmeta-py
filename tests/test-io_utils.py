@@ -689,6 +689,45 @@ def test_a_table_caption_is_not_left_at_a_page_break(render_pdf, spacer):
     assert read_pdf_metadata(render_pdf(sample))["tagged"] is True
 
 
+def heading_pages(pdf: bytes) -> dict:
+    """The page each heading of a rendition starts on, read off its bookmark."""
+    import pikepdf
+
+    with pikepdf.open(io.BytesIO(pdf)) as document:
+        pages = {page.objgen: number for number, page in enumerate(document.pages, 1)}
+        with document.open_outline() as outline:
+
+            def walk(items):
+                for item in items:
+                    yield item.title, pages.get(item.destination[0].objgen)
+                    yield from walk(item.children)
+
+            return dict(walk(outline.root))
+
+
+@pytest.mark.parametrize(
+    "between, page",
+    [
+        # a rule over a section heading ends one part of a series
+        ("<hr>", 2),
+        ("<hr>\n", 2),
+        # a heading on its own does not begin a page, and neither does a rule
+        # over anything but a heading
+        ("", 1),
+        ("<hr><p>After a rule.</p>", 1),
+    ],
+)
+def test_a_rule_over_a_section_heading_begins_a_page(render_pdf, between, page):
+    """A post written as a series of parts, each under a rule and a heading,
+    starts each part on a page of its own. 10.54900/gh2b5-xb839 is one: the
+    blog posts of a course, collected into one."""
+    from conftest import sample_metadata
+
+    sample = sample_metadata(f"<h2>First</h2><p>Short.</p>{between}<h2>Second</h2>")
+
+    assert heading_pages(render_pdf(sample))["Second"] == page
+
+
 def test_a_page_weasyprint_cannot_tag_is_written_untagged(caplog):
     """A rendition that cannot be tagged is written anyway, and says so.
 

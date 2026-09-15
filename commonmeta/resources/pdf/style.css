@@ -363,6 +363,16 @@ h5.references,
 h6.references {
   break-before: always;
 }
+/* A rule a post draws over a section heading ends one part of a series and
+   begins the next, which on paper is a new page: the heading carries the
+   break, and the rule, which would only sit alone at the foot of the page
+   before, is not drawn. A rule anywhere else stays where the post put it. */
+hr + h2 {
+  break-before: page;
+}
+hr:has(+ h2) {
+  display: none;
+}
 section.references ol {
   padding: 0 0 0 16pt;
   margin: 0;
