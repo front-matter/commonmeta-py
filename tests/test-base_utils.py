@@ -81,6 +81,24 @@ def test_dig():
     assert None is dig(None, ["name"])
 
 
+@pytest.mark.parametrize(
+    ("path", "expected"),
+    [
+        pytest.param("a[k]", 2, id="unquoted-key"),
+        pytest.param("a['k']", 2, id="quoted-key"),
+        pytest.param("b[1]", "y", id="index"),
+        pytest.param("b.²", "default", id="superscript-digit"),
+        pytest.param("b[x]", "default", id="key-into-list"),
+        pytest.param("b[", "default", id="unclosed-bracket"),
+    ],
+)
+def test_dig_answers_default_rather_than_raising(path, expected):
+    """A path dig cannot follow gives the default: "²" is a digit to isdigit()
+    but not a number to int(), and that raised ValueError."""
+    obj = {"a": {"k": 2}, "b": ["x", "y"]}
+    assert dig(obj, path, "default") == expected
+
+
 def test_pascal_case():
     "pascal_case"
     assert "HelloWorld" == pascal_case("hello world")

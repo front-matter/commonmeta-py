@@ -49,6 +49,15 @@ ORCID_XML_NAMESPACES = (
 )
 
 
+def _token(token: str) -> str | int:
+    """A path token as a list index where it is a number, a key otherwise.
+
+    isdecimal() rather than isdigit(): "²" is a digit to isdigit() but not a
+    number to int(), which raised out of dig() instead of answering default.
+    """
+    return int(token) if token.isdecimal() else token
+
+
 def _tokens(path: str | Iterable[Any]) -> Generator[str | int, None, None]:
     """Yield tokens from a dot/bracket path like a.b[0]['c'] or a.0.b"""
     if isinstance(path, (list, tuple)):
@@ -64,25 +73,15 @@ def _tokens(path: str | Iterable[Any]) -> Generator[str | int, None, None]:
 
         if c == ".":  # end of a token
             if buf:
-                token = "".join(buf)
-                # Convert numeric strings to integers for list indexing
-                if token.isdigit():
-                    yield int(token)
-                else:
-                    yield token
+                yield _token("".join(buf))
                 buf = []
             i += 1
         elif c == "[":  # bracket expression
             if buf:
-                token = "".join(buf)
-                # Convert numeric strings to integers for list indexing
-                if token.isdigit():
-                    yield int(token)
-                else:
-                    yield token
+                yield _token("".join(buf))
                 buf = []
             i += 1
-            if path[i] in ("'", '"'):  # quoted key
+            if i < n and path[i] in ("'", '"'):  # quoted key
                 quote = path[i]
                 i += 1
                 start = i
@@ -90,23 +89,18 @@ def _tokens(path: str | Iterable[Any]) -> Generator[str | int, None, None]:
                     i += 1
                 yield path[start:i]
                 i += 2  # skip closing quote + ]
-            else:  # integer index
+            else:  # index, or an unquoted key like a[b]
                 start = i
-                while i < n and path[i].isdigit():
+                while i < n and path[i] != "]":
                     i += 1
-                yield int(path[start:i])
+                yield _token(path[start:i])
                 i += 1  # skip ]
         else:
             buf.append(c)
             i += 1
 
     if buf:
-        token = "".join(buf)
-        # Convert numeric strings to integers for list indexing
-        if token.isdigit():
-            yield int(token)
-        else:
-            yield token
+        yield _token("".join(buf))
 
 
 def dig(obj: Any, path: str | Iterable[Any], default: Any = None) -> Any:
