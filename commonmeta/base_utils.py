@@ -257,15 +257,22 @@ def scrub(list_obj: Iterable[dict] | None) -> list | None:
 
 
 def _split_words(s: str) -> list[str]:
-    """Split string into words by space, underscore, hyphen, and case changes."""
+    """Split string into words by space, underscore, hyphen, and case changes.
+
+    An acronym stays one word and the capital that ends it starts the next,
+    as commonmeta-rs splits them: HTTPServer is HTTP and Server, not
+    Httpserver.
+    """
     words, current = [], []
     for i, ch in enumerate(s):
+        nxt = s[i + 1] if i + 1 < len(s) else ""
         if ch in (" ", "_", "-"):
             if current:
                 words.append("".join(current))
                 current = []
-        elif ch.isupper() and current and not current[-1].isupper():
-            # Start of a new word on case change (e.g. fooBar -> foo, Bar)
+        elif ch.isupper() and current and (not current[-1].isupper() or nxt.islower()):
+            # Start of a new word on case change (fooBar -> foo, Bar) or at
+            # the end of an acronym (HTTPServer -> HTTP, Server)
             words.append("".join(current))
             current = [ch]
         else:

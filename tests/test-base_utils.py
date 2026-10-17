@@ -120,6 +120,27 @@ def test_kebab_case():
     assert "hello-world" == kebab_case("hello-world")
 
 
+@pytest.mark.parametrize(
+    ("string", "pascal", "camel", "kebab"),
+    [
+        pytest.param("HTTPServer", "HttpServer", "httpServer", "http-server"),
+        pytest.param(
+            "getHTTPResponse", "GetHttpResponse", "getHttpResponse", "get-http-response"
+        ),
+        pytest.param("ORCIDId", "OrcidId", "orcidId", "orcid-id"),
+        pytest.param(
+            "is-preprint-of", "IsPreprintOf", "isPreprintOf", "is-preprint-of"
+        ),
+    ],
+)
+def test_case_keeps_an_acronym_one_word(string, pascal, camel, kebab):
+    """HTTPServer is HTTP and Server, as commonmeta-rs splits it, not
+    Httpserver."""
+    assert pascal_case(string) == pascal
+    assert camel_case(string) == camel
+    assert kebab_case(string) == kebab
+
+
 def test_presence():
     "presence"
     assert None is presence("")
