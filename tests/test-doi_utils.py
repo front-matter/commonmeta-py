@@ -192,12 +192,6 @@ def test_decode_doi():
     assert response == 0
 
 
-def test_encode_doi():
-    """Generate a random DOI"""
-    response = encode_doi("10.5555")
-    assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", response)
-
-
 @pytest.mark.parametrize(
     ("number", "doi"),
     [

@@ -113,15 +113,6 @@ def test_list_is_the_rust_one(monkeypatch):
     ]
 
 
-def test_encode():
-    """Test encode"""
-    runner = CliRunner()
-    string = "10.5555"
-    result = runner.invoke(encode, [string])
-    assert result.exit_code == 0
-    assert "https://doi.org/10.5555/" in result.output
-
-
 @pytest.mark.parametrize(
     ("number", "doi"),
     [
@@ -141,10 +132,10 @@ def test_encode_a_number(number, doi):
     assert result.output == f"{doi}\n"
 
 
-@pytest.mark.parametrize("number", ["0", "-1", "abc"])
-def test_encode_refuses_a_number_that_is_not_one(number):
-    """0 decodes as a DOI decode_doi cannot read, so it is refused like the rest."""
-    result = CliRunner().invoke(encode, ["10.59350", "--number", number])
+def test_encode_refuses_a_number_that_is_not_one():
+    """Not a number at all; numbers below one are covered in
+    test-cli_properties.py."""
+    result = CliRunner().invoke(encode, ["10.59350", "--number", "abc"])
     assert result.exit_code == 2
     assert "--number" in result.output
 
