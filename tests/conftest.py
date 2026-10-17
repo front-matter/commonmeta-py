@@ -17,6 +17,17 @@ from commonmeta.io_utils import load_weasyprint, write_pdf_rendition
 # test-*.py files regardless of pytest's import mode.
 sys.path.insert(0, os.path.dirname(__file__))
 
+# hypothesis is a dev dependency on Python 3.11+ only; the *_properties tests
+# skip without it. No deadline: a reader's first call loads schemas and lookup
+# tables, which would fail the 200 ms default on that one example.
+try:
+    from hypothesis import settings
+except ImportError:
+    pass
+else:
+    settings.register_profile("commonmeta", deadline=None)
+    settings.load_profile("commonmeta")
+
 
 @pytest.fixture(autouse=True)
 def _isolate_backend_db(monkeypatch, tmp_path):

@@ -108,6 +108,7 @@ dev = [
     "types-dateparser~=1.1",
     "types-PyYAML>=5.4",
     "types-xmltodict>=0.13,<0.20",
+    "hypothesis>=6.170,<7 ; python_full_version >= '3.11'",
 ]
 
 [tool.uv]
