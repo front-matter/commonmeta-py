@@ -274,8 +274,27 @@ def get_authors(authors, **kwargs) -> list[dict]:
         if author is not None
     ]
 
-    # Remove duplicates while preserving order
-    return unique(author_list)
+    # Remove an author listed twice, while preserving order. Only an id says
+    # two entries are the same author: two people can share a name (two
+    # "Wang, Wei" on one paper), and unique() on the whole dict merged them.
+    # commonmeta-rs keeps every entry.
+    seen: set[str] = set()
+    deduped = []
+    for author in author_list:
+        _id = next(
+            (
+                (author.get(key) or {}).get("id")
+                for key in ("person", "organization")
+                if (author.get(key) or {}).get("id")
+            ),
+            None,
+        )
+        if _id is not None:
+            if _id in seen:
+                continue
+            seen.add(_id)
+        deduped.append(author)
+    return deduped
 
 
 def authors_as_string(authors: list[dict]) -> str:

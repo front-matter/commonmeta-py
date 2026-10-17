@@ -1,5 +1,7 @@
 """Test author utils"""
 
+import pytest
+
 from commonmeta.author_utils import (
     authors_as_string,
     cleanup_author,
@@ -341,6 +343,53 @@ def test_get_authors():
             "roles": ["Author"],
         }
     ] == get_authors(authors)
+
+
+@pytest.mark.parametrize(
+    ("authors", "families"),
+    [
+        pytest.param(
+            [
+                {"given": "Wei", "family": "Wang"},
+                {"given": "Wei", "family": "Wang"},
+            ],
+            ["Wang", "Wang"],
+            id="same-name-kept",
+        ),
+        pytest.param(
+            [
+                {
+                    "ORCID": "https://orcid.org/0000-0003-0077-4738",
+                    "given": "Matt",
+                    "family": "Jones",
+                },
+                {
+                    "ORCID": "https://orcid.org/0000-0003-0077-4738",
+                    "given": "M.",
+                    "family": "Jones",
+                },
+            ],
+            ["Jones"],
+            id="same-orcid-merged",
+        ),
+        pytest.param(
+            [
+                {
+                    "ORCID": "https://orcid.org/0000-0003-0077-4738",
+                    "given": "Matt",
+                    "family": "Jones",
+                },
+                {"given": "Matt", "family": "Jones"},
+            ],
+            ["Jones", "Jones"],
+            id="id-and-no-id-kept",
+        ),
+    ],
+)
+def test_get_authors_merges_only_the_same_id(authors, families):
+    """Two people can share a name, so only an id says two entries are the
+    same author. commonmeta-rs keeps every entry."""
+    assert [a["person"]["family_name"] for a in get_authors(authors)] == families
 
 
 def test_get_affiliations():
