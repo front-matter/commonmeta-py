@@ -1034,13 +1034,16 @@ def normalize_issn(string: str | dict | list | None, **kwargs) -> str | None:
         issn = next(
             (i for i in string if i.get("media_type", None) == "electronic"), {}
         ).get(content, None)
-    if issn is None:
+    if not isinstance(issn, str):
         return None
-    if len(issn) == 9:
-        return issn
-    if len(issn) == 8:
-        return issn[0:4] + "-" + issn[4:8]
-    return None
+    # Seven digits and a check character, with or without the hyphen. Checking
+    # only the length let any eight or nine characters through as an ISSN.
+    # The check character itself is not verified: the commonmeta-rs readers
+    # keep an ISSN with a wrong one, and so do these.
+    match = re.fullmatch(r"(\d{4})-?(\d{3}[\dX])", issn.strip().upper())
+    if match is None:
+        return None
+    return f"{match.group(1)}-{match.group(2)}"
 
 
 def dict_to_spdx(dct: dict) -> dict | None:

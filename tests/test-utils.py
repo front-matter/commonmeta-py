@@ -372,6 +372,24 @@ def test_normalize_issn():
     assert "2146-8427" == normalize_issn(string)
 
 
+@pytest.mark.parametrize(
+    ("string", "issn"),
+    [
+        pytest.param("21468427", "2146-8427", id="no-hyphen"),
+        pytest.param("2050-084x", "2050-084X", id="lowercase-x"),
+        pytest.param("1234-5678", "1234-5678", id="wrong-check-digit-kept"),
+        pytest.param("abcdefghi", None, id="nine-letters"),
+        pytest.param("xxxxxxxx", None, id="eight-letters"),
+        pytest.param("1234 5678", None, id="space"),
+        pytest.param("2146-84270", None, id="too-long"),
+    ],
+)
+def test_normalize_issn_checks_the_form(string, issn):
+    """Checking only the length let any eight or nine characters through. The
+    check digit is not verified, as the commonmeta-rs readers don't."""
+    assert normalize_issn(string) == issn
+
+
 def test_issn_as_url():
     """issn as url"""
     assert "https://portal.issn.org/resource/ISSN/2146-8427" == issn_as_url("2146-8427")
