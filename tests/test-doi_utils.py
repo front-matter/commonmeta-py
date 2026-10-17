@@ -198,6 +198,21 @@ def test_encode_doi():
     assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", response)
 
 
+@pytest.mark.parametrize(
+    ("number", "doi"),
+    [
+        pytest.param(2**40, "https://doi.org/10.5555/10000-00008-7", id="2**40"),
+        pytest.param(2**45 - 1, "https://doi.org/10.5555/zzzzz-zzzz4-0", id="2**45-1"),
+        pytest.param(2**65, "https://doi.org/10.5555/10000-00000-00002-3", id="2**65"),
+    ],
+)
+def test_decode_doi_with_a_split_checksum(number, doi):
+    """A checksum split by a hyphen still decodes, and validates as a guid."""
+    assert encode_doi("10.5555", number) == doi
+    assert decode_doi(doi) == number
+    assert validate_doi_from_guid("10.5555", doi)
+
+
 def test_encode_doi_with_number():
     """Generate a random DOI with preset number"""
     response = encode_doi("10.5555", number=123456789012)

@@ -194,7 +194,10 @@ def decode_doi(doi: str, checksum: bool = True) -> int:
         validated_doi = validate_doi(doi)
         if validated_doi is None:
             return 0
-        suffix = validated_doi.split("/", maxsplit=1)[1]
+        # Drop the hyphens before decoding: base32.decode takes the last two
+        # characters as the checksum, and encode can split it with a hyphen
+        # (2**40 encodes as 10000-00008-7).
+        suffix = validated_doi.split("/", maxsplit=1)[1].replace("-", "")
         if checksum:
             number = base32.decode(suffix, checksum=True)
         else:
@@ -410,7 +413,8 @@ def validate_doi_from_guid(prefix: str, guid: str, checksum=True) -> bool:
     if not p or p != prefix:
         return False
 
-    suffix = doi.split("/")[-1]
+    # Without hyphens, for the reason given in decode_doi.
+    suffix = doi.split("/")[-1].replace("-", "")
 
     try:
         number = base32.decode(suffix, checksum)
