@@ -1,16 +1,13 @@
 [![DOI](https://zenodo.org/badge/570526578.svg)](https://zenodo.org/doi/10.5281/zenodo.8340374)
-[![Build](https://github.com/front-matter/commonmeta-py/actions/workflows/build.yml/badge.svg)](https://github.com/front-matter/commonmeta-py/actions/workflows/build.yml)
 [![PyPI version](https://img.shields.io/pypi/v/commonmeta-py.svg)](https://pypi.org/project/commonmeta-py/)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=front-matter_commonmeta-py&metric=coverage)](https://sonarcloud.io/summary/new_code?id=front-matter_commonmeta-py)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=front-matter_commonmeta-py&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=front-matter_commonmeta-py)
-[![docs](https://img.shields.io/badge/docs-passing-blue)](https://python.commonmeta.org)
+[![docs](https://img.shields.io/badge/docs-passing-blue)](https://docs.commonmeta.org)
 ![GitHub](https://img.shields.io/github/license/front-matter/commonmeta-py?logo=MIT)
 
 # commonmeta-py
 
 commonmeta-py is a Python library to implement Commonmeta, the common Metadata Model for Scholarly Metadata. Use commonmeta-py to convert scholarly metadata, in a variety of formats, listed below. The first release on PyPi (version 0.5.0) was on February 16, 2023. Up until version 0.5.1, the library was called talbot. Commonmeta is also available as a Rust library [commonmeta-rs](https://codeberg.org/front-matter/commonmeta-rs).
 
-commonmeta-py uses semantic versioning. Currently, its major version number is still at 0, meaning the API is not yet stable, and breaking changes are expected in the internal API and commonmeta JSON format.
+commonmeta-py uses semantic versioning. Currently, its major version number is still at 0, meaning the API is not yet stable, and breaking changes are expected in the internal API. The commonmeta JSON Schema is at [version 1.0.0](https://pypi.org/project/commonmeta-schema/1.0.0/) since September 9, 2026.
 
 ## Installation
 
@@ -68,7 +65,6 @@ Commometa-py reads and/or writes these metadata formats:
 | [OpenAlex](https://www.openalex.org/)                                                           | openalex     |    | yes | no     |
 
 _commonmeta_: the Commonmeta format is the native format for the library and used internally.
-_Planned_: we plan to implement this format for the v1.0 public release.
 _Later_: we plan to implement this format in a later release.
 
 ## Command-line interface

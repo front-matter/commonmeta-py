@@ -79,9 +79,9 @@ dependencies = [
 backend = ["commonmeta-rs>=0.9.80 ; python_full_version >= '3.14'"]
 
 [project.urls]
-Homepage = "https://python.commonmeta.org"
-Repository = "https://codeberg.org/front-matter/commonmeta-py"
-Documentation = "https://python.commonmeta.org"
+Homepage = "https://commonmeta.org"
+Repository = "https://github.com/front-matter/commonmeta-py"
+Documentation = "https://docs.commonmeta.org"
 
 [project.scripts]
 # Delegates to the commonmeta-rs CLI when the backend extra is installed (full
