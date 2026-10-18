@@ -446,3 +446,22 @@ def test_is_personal_name():
     assert False is is_personal_name("DH Lab")
     assert False is is_personal_name("Make Data Count")
     assert False is is_personal_name("BJPS Reviewers")
+
+
+@pytest.mark.parametrize(
+    ("name", "personal"),
+    [
+        pytest.param("Labovitz, William", True, id="Lab"),
+        pytest.param("Countryman, Ann", True, id="Count"),
+        pytest.param("Zarea, Ali", True, id="area"),
+        pytest.param("Grouper, Jo", True, id="Group"),
+        pytest.param("Bell Laboratories", False, id="Laboratories"),
+        pytest.param("MIT Media Labs", False, id="Labs"),
+        pytest.param("Life Sciences Team", False, id="Sciences"),
+        pytest.param("Orange County", False, id="County"),
+    ],
+)
+def test_is_personal_name_matches_whole_words(name, personal):
+    """An organization word counts only as a whole word, plural included: as
+    substrings, "Lab" made Labovitz an organization."""
+    assert is_personal_name(name) is personal

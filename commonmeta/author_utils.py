@@ -184,6 +184,60 @@ def to_ror_id(_id: str | None) -> str | None:
     return f"https://ror.org/{ror}" if ror else None
 
 
+# Words known to be used in organization names. Matched as whole words, with
+# a plural ending: as substrings, "Lab" made Labovitz an organization, "Count"
+# Countryman and "area" Zarea.
+ORGANIZATION_WORDS = re.compile(
+    r"(?<!\w)(?:"
+    + "|".join(
+        re.escape(word)
+        for word in [
+            "University",
+            "Universities",
+            "College",
+            "Institute",
+            "School",
+            "Center",
+            "Department",
+            "Laboratory",
+            "Laboratories",
+            "Library",
+            "Libraries",
+            "Museum",
+            "Foundation",
+            "Society",
+            "Societies",
+            "Association",
+            "Company",
+            "Companies",
+            "Corporation",
+            "Collaboration",
+            "Organization",
+            "Consortium",
+            "Incorporated",
+            "Inc.",
+            "Institut",
+            "Research",
+            "Researchers",
+            "Science",
+            "Team",
+            "Ministry",
+            "Ministries",
+            "Government",
+            "Count",
+            "County",
+            "Reviewers",
+            "Staff",
+            "Lab",
+            "Redaktion",
+            "Group",
+            "Area",
+        ]
+    )
+    + r")(?:s|es)?(?!\w)"
+)
+
+
 def is_personal_name(name) -> bool:
     """is_personal_name"""
     # personal names are not allowed to contain semicolons
@@ -195,43 +249,7 @@ def is_personal_name(name) -> bool:
         return False
 
     # check if name contains words known to be used in organization names
-    if any(
-        word in name
-        for word in [
-            "University",
-            "College",
-            "Institute",
-            "School",
-            "Center",
-            "Department",
-            "Laboratory",
-            "Library",
-            "Museum",
-            "Foundation",
-            "Society",
-            "Association",
-            "Company",
-            "Corporation",
-            "Collaboration",
-            "Organization",
-            "Consortium",
-            "Incorporated",
-            "Inc.",
-            "Institut",
-            "Research",
-            "Science",
-            "Team",
-            "Ministry",
-            "Government",
-            "Count",
-            "Reviewers",
-            "Staff",
-            "Lab",
-            "Redaktion",
-            "Group",
-            "area",
-        ]
-    ):
+    if ORGANIZATION_WORDS.search(name):
         return False
 
     # check for suffixes, e.g. "John Smith, MD"

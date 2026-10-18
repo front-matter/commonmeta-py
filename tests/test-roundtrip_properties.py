@@ -13,12 +13,19 @@ from hypothesis import given, settings  # noqa: E402
 from hypothesis import strategies as st  # noqa: E402
 
 from commonmeta import Metadata  # noqa: E402
+from commonmeta.author_utils import ORGANIZATION_WORDS  # noqa: E402
 
 # "ı" and "İ" change length when their case changes, which a writer that
 # capitalizes a name is free to do.
 letters = st.characters(categories=["L"], exclude_characters="ıİ")
 words = st.text(letters, min_size=1, max_size=8)
-names = st.text(letters, min_size=2, max_size=10).map(str.capitalize)
+# A name that is an organization word ("Lab", "Team") reads back as an
+# organization, and rightly: a reader cannot tell it from one.
+names = (
+    st.text(letters, min_size=2, max_size=10)
+    .map(str.capitalize)
+    .filter(lambda name: not ORGANIZATION_WORDS.search(name))
+)
 
 # Names may repeat: two people can share one, and a reader must keep both.
 contributors = st.lists(
