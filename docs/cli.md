@@ -1,22 +1,36 @@
 ---
 title: CLI
-toc: true
-toc-expand: true
+weight: 30
 ---
 
-The commonmeta-py command line interface (CLI) supports the following commands:
+The commonmeta-py command line interface (CLI) supports the following commands.
+
+Install the `commonmeta` command with [uv](https://docs.astral.sh/uv/):
+
+```
+uv tool install commonmeta-py
+```
+
+Or run it without installing, passing the package name with `--from`, as it
+differs from the command name:
+
+```
+uvx --from commonmeta-py commonmeta convert 10.7554/elife.01567
+```
+
+From a checkout of the repository, run it with `uv run commonmeta`.
 
 ### convert
 Given a PID, string or file path, fetch metadata, and convert into one of the supported formats (defaults to `commonmeta`).
 
 ```
-poetry run commonmeta convert 10.7554/elife.01567
+commonmeta convert 10.7554/elife.01567
 
 {"id":"https://doi.org/10.7554/elife.01567","type":"JournalArticle","url":"https://elifesciences.org/articles/01567", ...
 ```
 
 ```
-poetry run commonmeta convert 10.7554/elife.01567 --to citation --style vancouver
+commonmeta convert 10.7554/elife.01567 --to citation --style vancouver
 
 1. Sankar M, Nieminen K, Ragni L, Xenarios I, Hardtke CS. Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. eLife [Internet]. 2014Feb11;3. Available from: https://elifesciences.org/articles/01567
 ```
@@ -25,13 +39,13 @@ poetry run commonmeta convert 10.7554/elife.01567 --to citation --style vancouve
 Given a string or file path, fetch metadata, and convert into one of the supported formats (defaults to `commonmeta`).
 
 ```
-poetry run commonmeta list '{"items": ["10.7554/elife.01567", "10.7554/eLife.86386"]}'
+commonmeta list '{"items": ["10.7554/elife.01567", "10.7554/eLife.86386"]}'
 
 [{"via":"crossref","id":"https://doi.org/10.7554/elife.01567","type":"JournalArticle","url":"https://elifesciences.org/articles/01567", ...
 ```
 
 ```
-poetry run commonmeta list '{"items": ["10.7554/elife.01567", "10.7554/eLife.86386"]}' --to citation --style vancouver
+commonmeta list '{"items": ["10.7554/elife.01567", "10.7554/eLife.86386"]}' --to citation --style vancouver
 
 1. Sankar M, Nieminen K, Ragni L, Xenarios I, Hardtke CS. Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. eLife [Internet]. 2014Feb11;3. Available from: https://elifesciences.org/articles/01567
 
@@ -39,24 +53,17 @@ poetry run commonmeta list '{"items": ["10.7554/elife.01567", "10.7554/eLife.863
 ```
 
 ```
-poetry run commonmeta list '{"items": ["10.7554/elife.01567", "10.7554/eLife.86386"]}' --to bibtex
+commonmeta list '{"items": ["10.7554/elife.01567", "10.7554/eLife.86386"]}' --to bibtex
 
 @article{10.7554/elife.01567,
     abstract = {Among various advantages, their small size makes model organisms preferred subjects of investigation. Yet, even in model
-```
-
-### sample
-Given a number, generate a random list of Crossref metadata.
-
-```
-poetry run commonmeta sample -n 10 --to bibtex
 ```
 
 ### encode
 Given a DOI prefix, generate a random DOI string.
 
 ```
-poetry run commonmeta encode 10.5555
+commonmeta encode 10.5555
 
 https://doi.org/10.5555/cc10k-bk515
 ```
@@ -65,7 +72,7 @@ With `--number`, encode that number instead of a random one, e.g. a Substack
 post id, so the same number always gives the same DOI:
 
 ```
-poetry run commonmeta encode 10.5555 --number 214901993
+commonmeta encode 10.5555 --number 214901993
 
 https://doi.org/10.5555/006cy-97960
 ```
@@ -74,7 +81,7 @@ https://doi.org/10.5555/006cy-97960
 Given a DOI generated with commonmeta, show the random number used to generate it.
 
 ```
-poetry run commonmeta decode 10.5555/cc10k-bk515
+commonmeta decode 10.5555/cc10k-bk515
 
 435441614033957
 ```
@@ -83,7 +90,7 @@ poetry run commonmeta decode 10.5555/cc10k-bk515
 Show help.
 
 ```
-poetry run commonmeta --help
+commonmeta --help
 
 ```
 

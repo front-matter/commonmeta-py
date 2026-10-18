@@ -90,11 +90,6 @@ Documentation = "https://python.commonmeta.org"
 commonmeta = "commonmeta.cli:main"
 
 [dependency-groups]
-docs = [
-    "quartodoc>=0.11.1,<0.12",
-    "jupyterlab>=4.0.9,<5",
-    "jupyterlab-quarto>=0.2.8,<0.3",
-]
 dev = [
     "black>=24",
     "coverage",
@@ -112,7 +107,7 @@ dev = [
 ]
 
 [tool.uv]
-default-groups = ["docs", "dev"]
+default-groups = ["dev"]
 
 [tool.hatch.build.targets.sdist]
 include = ["commonmeta"]

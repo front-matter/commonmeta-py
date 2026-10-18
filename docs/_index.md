@@ -1,7 +1,5 @@
 ---
 title: Guide
-toc: true
-toc-expand: true
 ---
 
 [![Build](https://github.com/front-matter/commonmeta-py/actions/workflows/build.yml/badge.svg)](https://github.com/front-matter/commonmeta-py/actions/workflows/build.yml)
@@ -13,38 +11,58 @@ commonmeta-py is a Python library to implement commonmeta, the metadata format f
 
 ## Installation
 
-Stable version
+commonmeta-py is installed with [uv](https://docs.astral.sh/uv/). Add it as a
+library dependency to your project:
+
 ```
-pip (or pip3) install commonmeta-py
+uv add commonmeta-py
 ```
 
-Dev version
+To use the `commonmeta` command-line tool, install it globally instead:
+
 ```
-pip install git+https://github.com/front-matter/commonmeta-py.git#egg=commonmeta-py
+uv tool install commonmeta-py
+```
+
+This makes `commonmeta` available on your `PATH`. Upgrade it later with
+`uv tool upgrade commonmeta-py`, or remove it with
+`uv tool uninstall commonmeta-py`.
+
+Dev version, from the main branch:
+
+```
+uv add git+https://github.com/front-matter/commonmeta-py
+```
+
+The Rust backend (bulk import, the local SQLite store, Parquet output) is an
+optional extra and needs Python 3.14:
+
+```
+uv add "commonmeta-py[backend]"
 ```
 
 ## Testing
 
-commonmeta-py uses `pytest` and `vcrpy` for testing. To run the tests, issue one of the following commands from the root folder:
+commonmeta-py uses `pytest`, `vcrpy` and `hypothesis` for testing. To run the tests, install the dependencies with `uv sync` (add `--extra backend` for the backend tests), then issue one of the following commands from the root folder:
 
 All tests:
 ```
-pytest
+uv run pytest
 ```
 
 All tests in a test file, e.g. `tests/test-utils.py`:
 ```
-pytest tests/test-utils.py
+uv run pytest tests/test-utils.py
 ```
 
 Run a specific test e.g. `test_datacite_api_url` in `tests/test-utils.py`:
 ```
-pytest tests/test-utils.py -k 'test_datacite_api_url'
+uv run pytest tests/test-utils.py -k 'test_datacite_api_url'
 ```
 
 `vcrpy`records HTTP requests to speed up testing. 
 
-## Supported Formats
+## Supported Metadata Formats
 
 Commometa-py reads and/or writes these metadata formats:
 
