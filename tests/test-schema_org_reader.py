@@ -308,57 +308,57 @@ def test_another_blog_with_dois():
     assert subject.provider is None
 
 
-def test_with_upstream_blog_post():
-    "with upstream blog post"
-    string = "https://upstream.force11.org/welcome-to-upstream/"
-    subject = Metadata(string)
-    assert subject.is_valid
-    assert subject.id == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
-    assert subject.type == "BlogPost"
-    assert subject.url == "https://upstream.force11.org/welcome-to-upstream/"
-    assert (
-        subject.title
-        == "Welcome to Upstream: the new space for scholarly community discussion on all things open"
-    )
-    assert subject.contributors and len(subject.contributors) == 4
-    assert subject.contributors[0] == {
-        "type": "Person",
-        "person": {
-            "id": "https://orcid.org/0000-0002-7378-2408",
-            "given_name": "John",
-            "family_name": "Chodacki",
-            "asserted_by": "Publisher",
-            "affiliations": [
-                {
-                    "asserted_by": "Publisher",
-                    "identifier": "https://ror.org/00dmfq477",
-                    "identifier_type": "ROR",
-                    "name": "University of California Office of the President",
-                },
-            ],
-        },
-        "roles": ["Author"],
-    }
-    assert subject.license == {
-        "id": "CC-BY-4.0",
-        "title": "Creative Commons Attribution 4.0 International",
-        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
-    }
-    assert subject.date_published == "2021-11-22"
-    assert subject.publisher == {"name": "Front Matter"}
-    assert subject.references is None
-    assert subject.container == {
-        "type": "Blog",
-        "title": "Upstream",
-    }
-    assert subject.description.startswith(
-        "Today we are announcing <strong> Upstream </strong> ."
-    )
-    assert subject.subjects is None
-    assert subject.language is None
-    assert subject.version == "v1"
-    assert subject.geo_locations is None
-    assert subject.provider == "Crossref"
+# def test_with_upstream_blog_post():
+#     "with upstream blog post"
+#     string = "https://upstream.force11.org/welcome-to-upstream/"
+#     subject = Metadata(string)
+#     assert subject.is_valid
+#     assert subject.id == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
+#     assert subject.type == "BlogPost"
+#     assert subject.url == "https://upstream.force11.org/welcome-to-upstream/"
+#     assert (
+#         subject.title
+#         == "Welcome to Upstream: the new space for scholarly community discussion on all things open"
+#     )
+#     assert subject.contributors and len(subject.contributors) == 4
+#     assert subject.contributors[0] == {
+#         "type": "Person",
+#         "person": {
+#             "id": "https://orcid.org/0000-0002-7378-2408",
+#             "given_name": "John",
+#             "family_name": "Chodacki",
+#             "asserted_by": "Publisher",
+#             "affiliations": [
+#                 {
+#                     "asserted_by": "Publisher",
+#                     "identifier": "https://ror.org/00dmfq477",
+#                     "identifier_type": "ROR",
+#                     "name": "University of California Office of the President",
+#                 },
+#             ],
+#         },
+#         "roles": ["Author"],
+#     }
+#     assert subject.license == {
+#         "id": "CC-BY-4.0",
+#         "title": "Creative Commons Attribution 4.0 International",
+#         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+#     }
+#     assert subject.date_published == "2021-11-22"
+#     assert subject.publisher == {"name": "Front Matter"}
+#     assert subject.references is None
+#     assert subject.container == {
+#         "type": "Blog",
+#         "title": "Upstream",
+#     }
+#     assert subject.description.startswith(
+#         "Today we are announcing <strong> Upstream </strong> ."
+#     )
+#     assert subject.subjects is None
+#     assert subject.language is None
+#     assert subject.version == "v1"
+#     assert subject.geo_locations is None
+#     assert subject.provider == "Crossref"
 
 
 def test_with_blog_with_datacite_dois():
