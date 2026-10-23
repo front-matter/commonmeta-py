@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from ..author_utils import get_authors
+from ..author_utils import get_authors, is_personal_name
 from ..base_utils import presence
 from ..constants import RIS_TO_CM_TRANSLATIONS, Commonmeta
 from ..date_utils import get_date_from_parts
@@ -25,6 +25,14 @@ def read_ris(data: str | None, **kwargs) -> Commonmeta:
 
     def get_author(author):
         """get_author"""
+        # RIS writes a person as "Family, Given". Split it here: HumanName
+        # takes "Aa, Law" for a title and a first name.
+        family_name, _, given_name = author.partition(",")
+        if given_name.strip() and is_personal_name(author):
+            return {
+                "givenName": given_name.strip(),
+                "familyName": family_name.strip(),
+            }
         return {"creatorName": author}
 
     authors = [get_author(i) for i in wrap(meta.get("AU", None))]
