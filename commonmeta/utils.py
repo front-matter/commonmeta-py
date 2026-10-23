@@ -1110,7 +1110,13 @@ def from_inveniordm(elements: list) -> list:
             return None
         if affiliations is not None:
             element["affiliations"] = affiliations
-        mapping = {"orcid": "ORCID"}
+        # get_one_author reads givenName/familyName; without them it parses the
+        # name and HumanName takes "Aa, Pd" for a family name and a suffix.
+        mapping = {
+            "orcid": "ORCID",
+            "given_name": "givenName",
+            "family_name": "familyName",
+        }
         for key, value in mapping.items():
             if element.get(key, None) is not None:
                 element[value] = element.pop(key)

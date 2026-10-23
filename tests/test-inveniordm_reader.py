@@ -470,7 +470,7 @@ def test_rogue_scholar():
         "type": "Person",
         "person": {
             "id": "https://orcid.org/0000-0003-0159-013X",
-            "given_name": "Chee Hsien",
+            "given_name": "Chee Hsien, Aaron",
             "family_name": "Tay",
             "affiliations": [
                 {

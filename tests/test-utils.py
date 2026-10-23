@@ -681,8 +681,8 @@ def test_from_inveniordm():
     assert [
         {
             "name": "LaZerte, Steffi",
-            "given_name": "Steffi",
-            "family_name": "LaZerte",
+            "givenName": "Steffi",
+            "familyName": "LaZerte",
             "type": "personal",
             "identifiers": [
                 {
