@@ -295,8 +295,10 @@ def get_authors(authors, **kwargs) -> list[dict]:
     # Remove an author listed twice, while preserving order. Only an id says
     # two entries are the same author: two people can share a name (two
     # "Wang, Wei" on one paper), and unique() on the whole dict merged them.
+    # The same author can be listed again in another role (an author who is
+    # also the contact person), so the roles are part of the key.
     # commonmeta-rs keeps every entry.
-    seen: set[str] = set()
+    seen: set[tuple[str, tuple[str, ...]]] = set()
     deduped = []
     for author in author_list:
         _id = next(
@@ -308,9 +310,10 @@ def get_authors(authors, **kwargs) -> list[dict]:
             None,
         )
         if _id is not None:
-            if _id in seen:
+            key = (_id, tuple(author.get("roles") or []))
+            if key in seen:
                 continue
-            seen.add(_id)
+            seen.add(key)
         deduped.append(author)
     return deduped
 

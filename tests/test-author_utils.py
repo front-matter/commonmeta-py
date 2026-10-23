@@ -384,11 +384,29 @@ def test_get_authors():
             ["Jones", "Jones"],
             id="id-and-no-id-kept",
         ),
+        pytest.param(
+            [
+                {
+                    "ORCID": "https://orcid.org/0000-0003-0077-4738",
+                    "given": "Matt",
+                    "family": "Jones",
+                },
+                {
+                    "ORCID": "https://orcid.org/0000-0003-0077-4738",
+                    "given": "Matt",
+                    "family": "Jones",
+                    "contributorType": "Editor",
+                },
+            ],
+            ["Jones", "Jones"],
+            id="same-orcid-other-role-kept",
+        ),
     ],
 )
 def test_get_authors_merges_only_the_same_id(authors, families):
     """Two people can share a name, so only an id says two entries are the
-    same author. commonmeta-rs keeps every entry."""
+    same author, and only in the same roles. commonmeta-rs keeps every
+    entry."""
     assert [a["person"]["family_name"] for a in get_authors(authors)] == families
 
 
