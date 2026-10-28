@@ -76,7 +76,7 @@ def test_doi_with_data_citation():
     ]
     assert subject.archive_locations == ["CLOCKSS"]
     assert subject.relations == [
-        {"id": "https://portal.issn.org/resource/ISSN/2050-084X", "type": "IsPartOf"},
+        {"id": "http://issn.org/resource/ISSN/2050-084X", "type": "IsPartOf"},
         {"id": "https://doi.org/10.5061/dryad.b835k", "type": "IsSupplementedBy"},
     ]
     assert subject.container == {

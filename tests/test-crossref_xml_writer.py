@@ -798,7 +798,7 @@ def test_ghost_with_affiliations():
         },
         {"id": "https://doi.org/10.53731/t5qvs-sw351", "type": "IsReferencedBy"},
         {"id": "https://doi.org/10.53731/zym1z-dg650", "type": "IsVersionOf"},
-        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {"id": "http://issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.state == "findable"
 
@@ -972,7 +972,7 @@ def test_rogue_scholar_with_relations():
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bc11-cqw1", "type": "IsIdenticalTo"},
         {"id": "https://doi.org/10.53731/jsp50-9je75", "type": "IsVersionOf"},
-        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {"id": "http://issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert len(subject.references) == 1
     # assert subject.references[0] == {
@@ -1040,7 +1040,7 @@ def test_rogue_scholar_with_relations_and_funding():
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bv9z-dc66", "type": "IsIdenticalTo"},
         {"id": "https://doi.org/10.53731/jn1h8-m3m07", "type": "IsVersionOf"},
-        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {"id": "http://issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.funding_references == [
         {
@@ -1192,7 +1192,7 @@ def test_rogue_scholar_with_citations():
             "type": "IsReferencedBy",
         },
         {"id": "https://doi.org/10.53731/c8m3b-4t710", "type": "IsVersionOf"},
-        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {"id": "http://issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.version == "v1"
 

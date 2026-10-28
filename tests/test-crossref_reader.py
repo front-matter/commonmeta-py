@@ -71,7 +71,7 @@ def test_doi_with_data_citation():
         {"type": "IsSupplementedBy", "id": "https://doi.org/10.5061/dryad.b835k"},
         # {"type": "HasReview", "id": "https://doi.org/10.7554/elife.01567.017"},
         # {"type": "HasReview", "id": "https://doi.org/10.7554/elife.01567.016"},
-        {"type": "IsPartOf", "id": "https://portal.issn.org/resource/ISSN/2050-084X"},
+        {"type": "IsPartOf", "id": "http://issn.org/resource/ISSN/2050-084X"},
     ]
     assert subject.funding_references == [
         {"funder_name": "SystemsX"},
@@ -455,7 +455,7 @@ def test_blog_post():
     }
     assert subject.relations == [
         {"type": "IsVersionOf", "id": "https://doi.org/10.53731/q5ges-cp507"},
-        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {"id": "http://issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.funding_references is None
     assert subject.container == {
@@ -712,7 +712,7 @@ def test_date_in_future():
         "asserted_by": "Crossref",
     }
     assert subject.relations == [
-        {"id": "https://portal.issn.org/resource/ISSN/0014-2999", "type": "IsPartOf"},
+        {"id": "http://issn.org/resource/ISSN/0014-2999", "type": "IsPartOf"},
     ]
     assert subject.funding_references == [
         {"funder_name": "NIH", "award_number": "R01 NS089482"},

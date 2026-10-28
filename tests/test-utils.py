@@ -392,12 +392,15 @@ def test_normalize_issn_checks_the_form(string, issn):
 
 def test_issn_as_url():
     """issn as url"""
-    assert "https://portal.issn.org/resource/ISSN/2146-8427" == issn_as_url("2146-8427")
+    assert "http://issn.org/resource/ISSN/2146-8427" == issn_as_url("2146-8427")
     assert None is issn_as_url("10.5438/0012")
 
 
 def test_issn_from_url():
     """issn from url"""
+    assert "2146-8427" == issn_from_url("https://issn.org/resource/ISSN/2146-8427")
+    assert "2146-8427" == issn_from_url("http://issn.org/resource/ISSN/2146-8427")
+    # the ISSN portal's address, which earlier records carry
     assert "2146-8427" == issn_from_url(
         "https://portal.issn.org/resource/ISSN/2146-8427"
     )

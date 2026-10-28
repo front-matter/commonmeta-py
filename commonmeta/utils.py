@@ -1983,14 +1983,18 @@ def issn_as_url(issn: str) -> str | None:
     """ISSN as URL"""
     if normalize_issn(issn) is None:
         return None
-    return f"https://portal.issn.org/resource/ISSN/{issn}"
+    # the URI the ISSN linked data application profile names for a resource;
+    # http, as it is an identifier rather than a page (which is on the portal)
+    return f"http://issn.org/resource/ISSN/{issn}"
 
 
 def issn_from_url(url: str) -> str | None:
     """ISSN from URL"""
     if url is None:
         return None
-    match = re.match(r"\Ahttps://portal.issn.org/resource/ISSN/(.+)\Z", url)
+    # the ISSN portal's address, which records written earlier still carry, is
+    # read as well as the one written now
+    match = re.match(r"\Ahttps?://(?:portal\.)?issn\.org/resource/ISSN/(.+)\Z", url)
     if match is None:
         return None
     return match.group(1)

@@ -1322,7 +1322,7 @@ def get_relations(obj) -> Dict | None:
         if validate_doi(relation_id):
             identifier_type = "doi"
             _id = doi_from_url(relation_id)
-        elif f.host == "portal.issn.org" and obj.type in [
+        elif f.host in ("issn.org", "portal.issn.org") and obj.type in [
             "Preprint",
             "BlogPost",
             "Poster",
