@@ -19,7 +19,7 @@ keywords = [
     "inveniordm",
 ]
 dependencies = [
-    "commonmeta-schema~=1.0.3",
+    "commonmeta-schema~=1.0.6",
     "dateparser>=1.1.7,<2",
     "PyYAML>=5.4",
     "babel>=2.12,<3",
@@ -65,7 +65,7 @@ dependencies = [
     # WeasyPrint needs pango at the system level, which is why it is imported
     # lazily: `import weasyprint` fails outright when pango is missing, and
     # only the pdf path should pay for that.
-    "weasyprint>=69,<70 ; python_full_version >= '3.10'",
+    "weasyprint>=70; python_full_version >= '3.10'",
 ]
 
 [project.optional-dependencies]
