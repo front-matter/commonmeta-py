@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING
 
 from ..base_utils import compact, parse_attributes, wrap
 from ..constants import CM_TO_SO_TRANSLATIONS
+from ..doi_utils import normalize_doi, validate_doi
 from ..utils import (
     get_identifier,
     get_language,
@@ -140,7 +141,7 @@ def write_schema_org(metadata: Metadata, **kwargs) -> dict:
             "about": to_schema_org_subjects(metadata.subjects),
             "articleBody": metadata.content,
             "image": metadata.image,
-            "identifier": to_schema_org_identifiers(metadata.identifiers),
+            "identifier": to_schema_org_identifiers(metadata.identifiers, metadata.id),
             "funder": to_schema_org_funders(metadata.funding_references),
             "inLanguage": get_language(metadata.language, format="alpha_2"),
             "dateCreated": (metadata.dates or {}).get("created", None),
@@ -272,21 +273,20 @@ def to_schema_org_subjects(subjects) -> list | None:
     return terms or None
 
 
-def to_schema_org_identifiers(identifiers) -> list | None:
-    """Identifiers as PropertyValues, the schema.org way to say what a value is."""
+def to_schema_org_identifiers(identifiers, _id: str | None = None) -> list | None:
+    """Identifiers as plain strings, with the record's own DOI among them.
+
+    This is what commonmeta-rs writes. The reader tells their type from the
+    value again.
+    """
     values = [
-        compact(
-            {
-                "@type": "PropertyValue",
-                "propertyID": identifier.get("identifier_type", None),
-                "value": identifier.get("identifier", None),
-                # the scheme an identifier belongs to, where the record names one
-                "name": identifier.get("scheme", None),
-            }
-        )
+        identifier["identifier"]
         for identifier in wrap(identifiers)
         if isinstance(identifier, dict) and identifier.get("identifier", None)
     ]
+    doi = validate_doi(_id)
+    if doi and normalize_doi(doi) not in values:
+        values.append(normalize_doi(doi))
     return values or None
 
 

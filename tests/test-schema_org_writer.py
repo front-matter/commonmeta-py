@@ -850,7 +850,7 @@ def test_a_record_survives_the_round_trip_through_schema_org():
 
     schema.org names a property for 12 of the 19 relation types, and the
     subjects, references, identifiers, files and body it never carried are
-    each a property of their own now.
+    each a property of their own now. Identifiers keep their values only.
     """
     string = "https://rogue-scholar.org/api/records/thmsh-a1z89"
     subject = Metadata(string, via="inveniordm")
@@ -876,10 +876,16 @@ def test_a_record_survives_the_round_trip_through_schema_org():
         "license",
         "description",
         "content",
-        "identifiers",
         "image",
     ):
         assert getattr(back, field) == getattr(subject, field), field
+    # identifiers are written as plain strings, as commonmeta-rs writes them:
+    # the values come back, their type is told from the value again, and a
+    # scheme such as the InvenioRDM record id is not carried. The record's own
+    # DOI is its id, and is read back as that rather than as an identifier.
+    assert [i["identifier"] for i in back.identifiers] == [
+        i["identifier"] for i in subject.identifiers if i["identifier"] != subject.id
+    ]
     # relations come back as a set rather than in the order the record listed
     # them: each type is a property of its own in schema.org
     assert sorted(back.relations, key=lambda r: r["id"]) == sorted(

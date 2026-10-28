@@ -34,6 +34,7 @@ from ..date_utils import (
 from ..doi_utils import doi_from_url, get_doi_ra, normalize_doi, validate_doi
 from ..readers.crossref_reader import get_crossref
 from ..readers.datacite_reader import get_datacite
+from ..schema_utils import identifier_types
 from ..translators import web_translator
 from ..utils import (
     dict_to_spdx,
@@ -46,6 +47,7 @@ from ..utils import (
     normalize_ids,
     normalize_ror,
     normalize_url,
+    validate_id,
 )
 
 
@@ -425,7 +427,7 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
     geo_locations = [
         schema_org_geolocation(i) for i in wrap(meta.get("spatialCoverage", None))
     ]
-    identifiers = schema_org_identifiers(meta)
+    identifiers = schema_org_identifiers(meta, _id)
     provider = (
         get_doi_ra(_id)
         if doi_from_url(_id)
@@ -619,18 +621,48 @@ def schema_org_subjects(meta) -> list:
     return subjects
 
 
-def schema_org_identifiers(meta) -> list:
-    """Identifiers from the `identifier` PropertyValues."""
+def schema_org_identifiers(meta, _id: str | None = None) -> list:
+    """Identifiers from `identifier`, as plain strings or PropertyValues.
+
+    commonmeta-rs and this writer write strings, whose type is told from the
+    value; other sites say what a value is with a PropertyValue. The record's
+    own id is its `id` rather than one of its identifiers, and a PropertyValue
+    of a type the schema has no name for (DataCite puts an md5 checksum there)
+    is no identifier of the work.
+    """
+    own = normalize_doi(_id) or _id if _id else None
     identifiers = []
     for identifier in wrap(meta.get("identifier", None)):
-        if not isinstance(identifier, dict) or not identifier.get("value", None):
+        if isinstance(identifier, str) and identifier.strip():
+            value, identifier_type = validate_id(identifier.strip())
+            if identifier_type == "DOI":
+                value = normalize_doi(value)
+            elif identifier_type is None:
+                value, identifier_type = identifier.strip(), "Other"
+            else:
+                # validate_id strips an ORCID or ROR to its bare id
+                value = identifier.strip()
+            scheme = None
+        elif isinstance(identifier, dict) and identifier.get("value", None):
+            identifier_type = identifier_types().get(
+                str(identifier.get("propertyID", "")).lower()
+            )
+            if identifier_type is None:
+                continue
+            value = identifier["value"]
+            if identifier_type == "DOI":
+                value = normalize_doi(value) or value
+            scheme = identifier.get("name", None)
+        else:
+            continue
+        if own and (normalize_doi(value) or value) == own:
             continue
         identifiers.append(
             compact(
                 {
-                    "identifier": identifier.get("value", None),
-                    "identifier_type": identifier.get("propertyID", None),
-                    "scheme": identifier.get("name", None),
+                    "identifier": value,
+                    "identifier_type": identifier_type,
+                    "scheme": scheme,
                 }
             )
         )

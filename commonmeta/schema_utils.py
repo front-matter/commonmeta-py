@@ -106,6 +106,19 @@ def _json_validator(schema: str):
     return Draft202012Validator(schema_definition)
 
 
+@lru_cache(maxsize=None)
+def identifier_types() -> dict[str, str]:
+    """The identifier types the commonmeta schema allows, by their lower case.
+
+    A reader that is told a type in another case ("doi") finds the schema's
+    spelling of it ("DOI") here.
+    """
+    enum = _schema_definition("commonmeta")["$defs"]["identifier"]["properties"][
+        "identifier_type"
+    ]["enum"]
+    return {value.lower(): value for value in enum}
+
+
 def json_schema_errors(
     instance: dict[str, Any], schema: str = "commonmeta"
 ) -> str | None:
