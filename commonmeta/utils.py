@@ -1910,19 +1910,23 @@ def from_curie(id: str | None) -> str | None:
     """from CURIE"""
     if id is None:
         return None
-    _type = id.split(":")[0]
+    # a string without a colon is no CURIE; split at the first colon only, so
+    # that a URL keeps its own
+    _type, colon, value = id.partition(":")
+    if not colon:
+        return None
     if _type.upper() == "DOI":
-        return doi_as_url(id.split(":")[1])
+        return doi_as_url(value)
     elif _type.upper() == "ROR":
-        return "https://ror.org/" + id.split(":")[1]
+        return "https://ror.org/" + value
     elif _type.upper() == "ISNI":
-        return "https://isni.org/isni/" + id.split(":")[1]
+        return "https://isni.org/isni/" + value
     elif _type.upper() == "ORCID":
-        return normalize_orcid(id.split(":")[1])
+        return normalize_orcid(value)
     elif _type.upper() == "URL":
-        return normalize_url(id.split(":")[1])
+        return normalize_url(value)
     elif _type.upper() == "JDP":
-        return id.split(":")[1]
+        return value
     # TODO: resolvable url for other identifier types
     return None
 
