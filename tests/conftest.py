@@ -6,8 +6,6 @@ import sys
 from types import SimpleNamespace
 from typing import Optional
 from unittest.mock import Mock, patch
-from urllib.parse import unquote_to_bytes, urlparse
-from urllib.request import url2pathname
 
 import pytest
 
@@ -99,31 +97,19 @@ def require_weasyprint():
     return weasyprint
 
 
-def offline_url_fetcher(url, **kwargs):
+def offline_url_fetcher():
     """Serve the bundled fonts and embedded data, refuse everything remote.
 
     Post content links images, iframes and video from the blog it came from,
     and a test must not go to the network for them. WeasyPrint logs a failed
     resource and lays the page out without it, which is what a reader with a
-    dead image link would get anyway. Fonts and data uris are read here rather
-    than through WeasyPrint's own default fetcher, which it deprecated in 69.
+    dead image link would get anyway. WeasyPrint 70 takes only a `URLFetcher`
+    instance, and its own reads file and data uris - the fonts, and the feature
+    image the writer embeds rather than links.
     """
-    from weasyprint.urls import URLFetcherResponse
+    from weasyprint.urls import URLFetcher
 
-    if url.startswith("file:"):
-        path = url2pathname(urlparse(url).path)
-        return URLFetcherResponse(url, body=open(path, "rb"))  # noqa: SIM115
-    if url.startswith("data:"):
-        # the feature image, which the writer embeds rather than links
-        header, _, payload = url.partition(",")
-        mime_type = header[len("data:") :].split(";")[0]
-        body = (
-            base64.b64decode(payload)
-            if header.endswith(";base64")
-            else unquote_to_bytes(payload)
-        )
-        return URLFetcherResponse(url, body=body, headers={"Content-Type": mime_type})
-    raise ValueError(f"external resource not fetched in tests: {url}")
+    return URLFetcher(allowed_protocols={"file", "data"})
 
 
 # a 1x1 red png, the stand-in for whatever a blog serves as its feature image
@@ -212,7 +198,9 @@ def render_pdf(feature_image):
     require_weasyprint()
 
     def render(metadata, **options) -> bytes:
-        pdf = write_pdf_rendition(metadata, url_fetcher=offline_url_fetcher, **options)
+        pdf = write_pdf_rendition(
+            metadata, url_fetcher=offline_url_fetcher(), **options
+        )
         assert pdf is not None and pdf.startswith(b"%PDF-")
         return pdf
 

@@ -204,21 +204,27 @@ def test_write_pdf_rendition_to_a_file(tmp_path, feature_image):
     )
 
     plain = tmp_path / "post.pdf"
-    pdf = write_pdf_rendition(subject, url_fetcher=offline_url_fetcher, file=str(plain))
+    pdf = write_pdf_rendition(
+        subject, url_fetcher=offline_url_fetcher(), file=str(plain)
+    )
 
     assert plain.read_bytes() == pdf
     assert read_pdf_metadata(plain.read_bytes())["title"] == subject.title
 
     # the same rendition, compressed, and refused when it would overwrite
     compressed = tmp_path / "post.pdf.zst"
-    write_pdf_rendition(subject, url_fetcher=offline_url_fetcher, file=str(compressed))
+    write_pdf_rendition(
+        subject, url_fetcher=offline_url_fetcher(), file=str(compressed)
+    )
     assert zstandard.ZstdDecompressor().decompress(compressed.read_bytes()) == pdf
     with pytest.raises(FileExistsError):
-        write_pdf_rendition(subject, url_fetcher=offline_url_fetcher, file=str(plain))
+        write_pdf_rendition(subject, url_fetcher=offline_url_fetcher(), file=str(plain))
 
     # and a name it does not write
     with pytest.raises(ValueError):
-        write_pdf_rendition(subject, url_fetcher=offline_url_fetcher, file="post.json")
+        write_pdf_rendition(
+            subject, url_fetcher=offline_url_fetcher(), file="post.json"
+        )
 
 
 def test_pdf_filename_names_the_file_after_the_doi():

@@ -2137,7 +2137,7 @@ def test_write_pdf_rendition_without_content(weasyprint):
     """
     sample = sample_metadata(None, title="A record with no post behind it")
 
-    pdf = write_pdf_rendition(sample, url_fetcher=offline_url_fetcher)
+    pdf = write_pdf_rendition(sample, url_fetcher=offline_url_fetcher())
     assert pdf is not None
 
     metadata = read_pdf_metadata(pdf)
