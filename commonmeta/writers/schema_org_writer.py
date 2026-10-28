@@ -120,7 +120,7 @@ def write_schema_org(metadata: Metadata, **kwargs) -> dict:
     return compact(
         {
             **to_schema_org_relations(metadata.relations),
-            "@context": "http://schema.org",
+            "@context": "https://schema.org",
             "@id": metadata.id,
             "@type": schema_org,
             "url": metadata.url,
@@ -165,7 +165,12 @@ def write_schema_org(metadata: Metadata, **kwargs) -> dict:
                 if metadata.publisher
                 else None
             ),
-            "provider": {"@type": "Organization", "name": metadata.provider or ""},
+            # a provider without a name says nothing
+            "provider": (
+                {"@type": "Organization", "name": metadata.provider}
+                if metadata.provider
+                else None
+            ),
         }
     )
 

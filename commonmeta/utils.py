@@ -1436,13 +1436,17 @@ def find_from_format_by_ext(ext: str) -> str | None:
     return None
 
 
+# the writer says https, as schema.org itself now does; older records say http
+SCHEMA_ORG_CONTEXTS = ("https://schema.org", "http://schema.org")
+
+
 def find_from_format_by_dict(dct: dict) -> str | None:
     if dct is None or not isinstance(dct, dict):
         return None
     """Find reader from format by dict"""
     if dct.get("schema_version", "").startswith("https://commonmeta.org"):
         return "commonmeta"
-    if dct.get("@context", None) == "http://schema.org":
+    if dct.get("@context", None) in SCHEMA_ORG_CONTEXTS:
         return "schema_org"
     if dct.get("@context", None) in [
         "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
@@ -1471,7 +1475,7 @@ def find_from_format_by_string(string: str | None) -> str | None:
             return "commonmeta"
         if data.get("items", None) is not None:
             data = data["items"][0]
-        if data.get("@context", None) == "http://schema.org":
+        if data.get("@context", None) in SCHEMA_ORG_CONTEXTS:
             return "schema_org"
         if data.get("@context", None) in [
             "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
