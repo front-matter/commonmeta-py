@@ -72,7 +72,6 @@ def write_csl_item(metadata: Metadata) -> dict | None:
             "page": presence(pages_as_string(container)),
             "publisher": publisher.get("name", None),
             "title": metadata.title,
-            "copyright": metadata.license.get("id", None) if metadata.license else None,
             "version": metadata.version,
         }
     )

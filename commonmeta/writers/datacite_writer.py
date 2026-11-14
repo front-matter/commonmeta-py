@@ -120,9 +120,10 @@ def write_datacite(metadata: Metadata, **kwargs) -> dict | None:
             "ris": CM_TO_RIS_TRANSLATIONS.get(metadata.type, "GEN"),
         }
     )
+    # The DataCite schema has publicationYear as a four-digit string
     publication_year = None
     if metadata.date_published and metadata.date_published[:4].isdigit():
-        publication_year = int(metadata.date_published[:4])
+        publication_year = metadata.date_published[:4]
 
     def to_datacite_date(date_item: tuple[str, str]) -> dict:
         """Convert date tuple (key, value) to datacite date"""

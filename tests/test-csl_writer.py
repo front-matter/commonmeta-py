@@ -123,7 +123,7 @@ def test_doi_with_data_citation():
     assert csl.get("volume") == "3"
     assert csl.get("page") is None
     assert csl.get("language") == "en"
-    assert csl.get("copyright") == "CC-BY-3.0"
+    assert "copyright" not in csl
 
 
 #     it 'software' do
@@ -198,7 +198,7 @@ def test_with_pages():
     assert csl.get("volume") == "2012"
     assert csl.get("page") == "1-7"
     assert csl.get("language") == "en"
-    assert csl.get("copyright") == "CC-BY-3.0"
+    assert "copyright" not in csl
 
 
 def test_only_first_page():
@@ -226,7 +226,7 @@ def test_only_first_page():
     assert csl.get("volume") == "14"
     assert csl.get("page") == "e0214986"
     assert csl.get("language") == "en"
-    assert csl.get("copyright") == "CC0-1.0"
+    assert "copyright" not in csl
 
 
 def test_missing_creator():
@@ -256,7 +256,7 @@ def test_missing_creator():
     assert csl.get("volume") == "6"
     assert csl.get("page") == "15"
     assert csl.get("language") == "en"
-    assert csl.get("copyright") == "CC-BY-4.0"
+    assert "copyright" not in csl
 
 
 #     it 'container title' do
@@ -361,7 +361,7 @@ def test_organization_author():
     assert csl.get("volume") == "4"
     assert csl.get("page") is None
     assert csl.get("language") == "en"
-    assert csl.get("copyright") == "CC-BY-4.0"
+    assert "copyright" not in csl
 
 
 #     it 'interactive resource without dates' do
