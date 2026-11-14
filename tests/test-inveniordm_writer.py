@@ -1655,6 +1655,40 @@ def test_push_inveniordm_defaults_write_pdf_to_false():
     assert upsert.call_args.kwargs["write_pdf"] is False
 
 
+@pytest.mark.parametrize(
+    "record",
+    [
+        {"id": "abcd-1234", "status": "error_publish_draft_record"},
+        {"id": "abcd-1234", "status": "error_update_draft_record"},
+        {"id": None, "status": "error_draft"},
+        {"status": "failed_rate_limited"},
+    ],
+)
+def test_communities_are_left_alone_without_a_published_record(record):
+    """A new record whose draft could not be published has no published
+    record behind its id, and reading one failed with PIDUnregistered."""
+    from commonmeta.writers import inveniordm_writer as w
+
+    subject = Metadata("10.5281/zenodo.5244404", via="datacite")
+    with patch.object(w, "get_record_communities") as communities:
+        result = w.add_record_to_communities(subject, "example.org", "token", record)
+
+    communities.assert_not_called()
+    assert result == record
+
+
+@pytest.mark.parametrize("status", ["published", "unchanged", "draft_discarded"])
+def test_communities_are_read_for_a_published_record(status):
+    from commonmeta.writers import inveniordm_writer as w
+
+    subject = Metadata("10.5281/zenodo.5244404", via="datacite")
+    record = {"id": "abcd-1234", "status": status}
+    with patch.object(w, "get_record_communities", return_value=[]) as communities:
+        w.add_record_to_communities(subject, "example.org", "token", record)
+
+    communities.assert_called_once_with(record, "example.org", "token")
+
+
 def test_pdf_resources_are_packaged():
     """The pdf stylesheet and its fonts ship with the package."""
     from pathlib import Path
@@ -2763,6 +2797,23 @@ def test_zenodo_writes_the_subjects_it_needs_no_vocabulary_for():
             "scheme": "FOS",
         },
     ]
+
+
+def test_a_subject_without_a_name_is_left_out():
+    """An empty tag in a feed becomes a subject with neither an id nor a
+    name. InvenioRDM keeps it in a draft but refuses to publish it ("An
+    existing id or a free text subject must be present.")."""
+    subject = _zenodo_input()
+    subject.subjects = [
+        {"subject": ""},
+        {"subject": "   "},
+        {"id": None, "subject": " Open Science "},
+        {"subject": None},
+    ]
+
+    record = write_inveniordm(subject, doi_provider="external")
+
+    assert dig(record, "metadata.subjects") == [{"subject": "Open Science"}]
 
 
 def _community_response(status_code, body):

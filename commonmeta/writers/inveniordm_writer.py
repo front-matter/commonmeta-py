@@ -538,19 +538,25 @@ def to_inveniordm_contributor(contributor: dict) -> dict:
 
 def to_inveniordm_subject(sub: dict) -> list | None:
     """Convert subject to inveniordm subject. Adds scheme based on id pattern.
-    For subfields, also returns a FOS subject if a mapping exists."""
-    if sub.get("subject", None) is None:
-        return None
+    For subfields, also returns a FOS subject if a mapping exists.
 
-    if sub.get("id", "").startswith("https://openalex.org/domains/"):
+    A subject without a name, or with only whitespace for one (an empty tag
+    in a feed), is left out: InvenioRDM keeps it in a draft but refuses to
+    publish a subject with neither an id nor a free-text name."""
+    name = sub.get("subject")
+    if not isinstance(name, str) or not name.strip():
+        return None
+    sub_id = sub.get("id") or ""
+
+    if sub_id.startswith("https://openalex.org/domains/"):
         scheme = "Domains"
-    elif sub.get("id", "").startswith("https://openalex.org/fields/"):
+    elif sub_id.startswith("https://openalex.org/fields/"):
         scheme = "Fields"
-    elif sub.get("id", "").startswith("https://openalex.org/subfields/"):
+    elif sub_id.startswith("https://openalex.org/subfields/"):
         scheme = "Subfields"
-    elif sub.get("id", "").startswith("https://openalex.org/T"):
+    elif sub_id.startswith("https://openalex.org/T"):
         scheme = "Topics"
-    elif sub.get("id", "").startswith("http://www.oecd.org/science/inno/38235147.pdf"):
+    elif sub_id.startswith("http://www.oecd.org/science/inno/38235147.pdf"):
         scheme = "FOS"
     else:
         scheme = None
@@ -558,17 +564,17 @@ def to_inveniordm_subject(sub: dict) -> list | None:
     result = [
         compact(
             {
-                "id": sub.get("id", None),
-                "subject": sub.get("subject"),
+                "id": sub.get("id") or None,
+                "subject": name.strip(),
                 "scheme": scheme,
             }
         )
     ]
 
     # If this is a subfield, also add a FOS subject if mapping exists
-    if sub.get("id", "").startswith("https://openalex.org/subfields/"):
+    if sub_id.startswith("https://openalex.org/subfields/"):
         # Extract subfield ID (last part of URL)
-        subfield_id = sub.get("id", "").split("/")[-1]
+        subfield_id = sub_id.split("/")[-1]
         fos_name = OPENALEX_TO_FOS_MAPPINGS.get(subfield_id, None)
         if fos_name:
             fos_id = FOS_MAPPINGS.get(fos_name, None)
@@ -1089,10 +1095,25 @@ def upsert_record(
     return record
 
 
+# Statuses upsert_record ends with when a published record stands behind the
+# id: newly published, left alone because it already matched, or a draft
+# discarded in favour of the published record as it was.
+PUBLISHED_STATUSES = frozenset({"published", "unchanged", "draft_discarded"})
+
+
 def add_record_to_communities(
     metadata: Metadata, host: str, token: str, record: dict
 ) -> dict:
-    """Add record to one or more InvenioRDM communities"""
+    """Add record to one or more InvenioRDM communities.
+
+    Only a published record has communities. When the upsert ended without
+    one -- a new record whose draft could not be published, or one that was
+    never created -- its id names an unpublished draft or nothing at all, and
+    reading it as a published record fails ("PIDUnregistered"). The record is
+    returned as it is, with the status that says what went wrong.
+    """
+    if not record.get("id") or record.get("status") not in PUBLISHED_STATUSES:
+        return record
 
     communities = get_record_communities(record, host, token)
     community_ids = [c.get("id") for c in communities] if communities else []
