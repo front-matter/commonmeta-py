@@ -93,8 +93,24 @@ def diff(expected: Any, actual: Any) -> list[Mismatch]:
     return out
 
 
+def _same_spdx_license(path_: str, exp: dict, act: dict) -> bool:
+    """A license naming the same SPDX id on both sides is the same license.
+
+    Its URL has variants (with or without /legalcode): commonmeta-py writes a
+    Creative Commons license's canonical /legalcode URL, commonmeta-rs keeps the
+    one the source gives. commonmeta-rs compares licenses the same way
+    (differences.rs).
+    """
+    if not path_.endswith(".license") or not exp.get("id") or not act.get("id"):
+        return False
+    return str(exp["id"]).casefold() == str(act["id"]).casefold()
+
+
 def _diff_rec(exp: Any, act: Any, path_: str, out: list[Mismatch]) -> None:
     if isinstance(exp, dict) and isinstance(act, dict):
+        if _same_spdx_license(path_, exp, act):
+            exp = {k: v for k, v in exp.items() if k != "url"}
+            act = {k: v for k, v in act.items() if k != "url"}
         for k, ev in exp.items():
             if k in act:
                 _diff_rec(ev, act[k], f"{path_}.{k}", out)

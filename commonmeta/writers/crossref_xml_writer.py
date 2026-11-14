@@ -352,12 +352,14 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
         "Component",
         "Dataset",
         "Dissertation",
+        "Erratum",
         "JournalArticle",
         "PeerReview",
         "Poster",
         "Presentation",
         "ProceedingsArticle",
         "Report",
+        "Retraction",
         "Standard",
     ]:
         raise CrossrefError(
@@ -523,7 +525,8 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
             }
         )
 
-    elif metadata.type == "JournalArticle":
+    elif metadata.type in ("JournalArticle", "Retraction", "Erratum"):
+        # a retraction or correction notice is deposited as a journal article
         publisher_item = None
         kwargs["language"] = metadata.language
         data = compact(

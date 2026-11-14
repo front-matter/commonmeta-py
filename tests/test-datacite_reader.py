@@ -6,7 +6,11 @@ from os import path
 import pytest
 
 from commonmeta import Metadata
-from commonmeta.readers.datacite_reader import get_datacite, read_datacite
+from commonmeta.readers.datacite_reader import (
+    get_datacite,
+    get_published_in,
+    read_datacite,
+)
 
 
 def vcr_config():
@@ -2077,3 +2081,26 @@ def test_read_datacite():
     data = get_datacite("10.6084/m9.figshare.1449060")
     meta = read_datacite(data)
     assert meta.get("id", None) == "https://doi.org/10.6084/m9.figshare.1449060"
+
+
+@pytest.mark.parametrize(
+    "related_items,expected",
+    [
+        (
+            [{"relationType": "IsPublishedIn", "number": " 6 ", "edition": 2}],
+            {"edition": "2", "number": "6"},
+        ),
+        (
+            [
+                {"relationType": "IsPartOf", "number": "1"},
+                {"relationType": "IsPublishedIn", "number": 6},
+            ],
+            {"edition": None, "number": "6"},
+        ),
+        ([{"relationType": "IsPartOf", "number": "1"}], {}),
+        (None, {}),
+    ],
+)
+def test_published_in_edition_and_number(related_items, expected):
+    """The edition and number come from the IsPublishedIn related item only."""
+    assert get_published_in(related_items) == expected

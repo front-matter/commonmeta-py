@@ -18,8 +18,10 @@ from ..base_utils import (
     wrap,
 )
 from ..constants import (
+    CM_NOTICE_TYPES,
     CR_TO_CM_CONTAINER_TRANSLATIONS,
     CR_TO_CM_TRANSLATIONS,
+    CR_UPDATE_TO_CM_RELATION_TYPES,
     CROSSREF_CONTAINER_TYPES,
     Commonmeta,
 )
@@ -247,6 +249,14 @@ def read_crossref_xml(data: dict | None, **kwargs) -> Commonmeta:
     identifiers = crossref_identifiers(_id, bibmeta)
     archive_locations = crossref_archive_locations(bibmeta)
     relations = crossref_relations(container, programs)
+    # Crossmark updates: the works this notice retracts or corrects, asserted by
+    # the publisher. A notice that retracts or corrects is a Retraction or an
+    # Erratum, though it is deposited as a journal article.
+    for relation in crossref_update_relations(bibmeta, _id):
+        if relation not in relations:
+            relations.append(relation)
+        if _type == "JournalArticle" and relation["type"] in CM_NOTICE_TYPES:
+            _type = CM_NOTICE_TYPES[relation["type"]]
     provider = bibmeta.get("reg-agency", None)
     provider = provider.capitalize() if provider else get_doi_ra(_id)
     state = "findable" if meta or read_options else "not_found"
@@ -271,6 +281,7 @@ def read_crossref_xml(data: dict | None, **kwargs) -> Commonmeta:
         "identifiers": presence(identifiers),
         "language": language,
         "license": presence(license_),
+        "number": crossref_article_number(bibmeta),
         "provider": provider,
         "publisher": publisher,
         "references": references,
@@ -567,6 +578,39 @@ def crossref_identifiers(doi_id: str | None, bibmeta: dict) -> list:
             continue
         identifiers.append(map_item_number(raw_type, text))
     return identifiers
+
+
+def crossref_update_relations(bibmeta: dict, _id: str | None) -> list:
+    """Relations to the works a notice updates, from its crossmark updates."""
+    relations: list = []
+    for update in wrap(dig(bibmeta, "crossmark.updates.update")):
+        if not isinstance(update, dict):
+            continue
+        update_type = str(update.get("type", None) or "").lower()
+        update_type = update_type.replace("-", "_").replace(" ", "_")
+        types = CR_UPDATE_TO_CM_RELATION_TYPES.get(update_type, None)
+        text = update.get("#text", None)
+        target = normalize_doi(text.strip()) if isinstance(text, str) else None
+        # DOIs are case-insensitive; an update naming the record itself adds nothing
+        if types is None or not target or target.lower() == (_id or "").lower():
+            continue
+        relation = {"id": target, "type": types[1], "asserted_by": "Publisher"}
+        if relation not in relations:
+            relations.append(relation)
+    return relations
+
+
+def crossref_article_number(bibmeta: dict) -> str | None:
+    """The article number from a publisher item_number of type article_number."""
+    for item in wrap(dig(bibmeta, "publisher_item.item_number")):
+        if (
+            isinstance(item, dict)
+            and str(item.get("item_number_type", "")).lower() == "article_number"
+            and isinstance(item.get("#text", None), str)
+            and item["#text"].strip()
+        ):
+            return item["#text"].strip()
+    return None
 
 
 # Crossref item_number types that map directly onto commonmeta identifier_type

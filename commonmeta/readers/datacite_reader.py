@@ -241,8 +241,39 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
             "title": title,
             "url": normalize_url(meta.get("url", None)),
             "version": meta.get("version", None),
+            **get_published_in(meta.get("relatedItems", None)),
         },
         **read_options,
+    }
+
+
+def _datacite_number(value) -> str | None:
+    """A DataCite number or edition, a string or a number."""
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, (int, float)):
+        return str(value)
+    if isinstance(value, str) and value.strip():
+        return value.strip()
+    return None
+
+
+def get_published_in(related_items: list | None) -> dict:
+    """The edition and number the work has within the item it is published in
+    (the related item with relationType IsPublishedIn)."""
+    item = next(
+        (
+            i
+            for i in wrap(related_items)
+            if isinstance(i, dict) and i.get("relationType", None) == "IsPublishedIn"
+        ),
+        None,
+    )
+    if item is None:
+        return {}
+    return {
+        "edition": _datacite_number(item.get("edition", None)),
+        "number": _datacite_number(item.get("number", None)),
     }
 
 

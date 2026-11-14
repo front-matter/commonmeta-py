@@ -213,6 +213,10 @@
           "description": "The description of the resource.",
           "type": "string"
         },
+        "edition": {
+          "description": "The edition of the resource, e.g. \"2\" for a second edition of a book.",
+          "type": "string"
+        },
         "files": {
           "description": "The downloadable files for the resource.",
           "type": "array",
@@ -238,6 +242,10 @@
               },
               "mime_type": {
                 "type": "string"
+              },
+              "asserted_by": {
+                "description": "Who asserted the file, when it comes from another source than the record, e.g. OpenAlex.",
+                "$ref": "#/$defs/provider"
               }
             },
             "required": [
@@ -321,6 +329,20 @@
         "license": {
           "$ref": "#/$defs/license"
         },
+        "number": {
+          "description": "A number identifying the resource within its series or by its publisher, e.g. a report, standard or article number.",
+          "type": "string"
+        },
+        "provenance": {
+          "description": "Who asserted single-valued fields of the work that come from another source than the record, keyed by the field's path, e.g. {\"description\": \"OpenAlex\", \"container.volume\": \"OpenAlex\"}. List items and objects with their own asserted_by record it there.",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z_]+(\\.[a-z_]+)*$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/provider"
+          }
+        },
         "provider": {
           "$ref": "#/$defs/provider"
         },
@@ -365,6 +387,16 @@
                   "IsReferencedBy",
                   "IsSupplementTo",
                   "IsSupplementedBy",
+                  "IsRetractedBy",
+                  "Retracts",
+                  "IsCorrectedBy",
+                  "Corrects",
+                  "HasExpressionOfConcern",
+                  "IsExpressionOfConcernFor",
+                  "IsWithdrawnBy",
+                  "Withdraws",
+                  "IsReinstatedBy",
+                  "Reinstates",
                   "Other"
                 ]
               },
@@ -411,6 +443,10 @@
               },
               "language": {
                 "$ref": "#/$defs/language"
+              },
+              "asserted_by": {
+                "description": "Who asserted the subject, when it comes from another source than the record, e.g. OpenAlex.",
+                "$ref": "#/$defs/provider"
               }
             },
             "required": [
@@ -813,6 +849,10 @@
           "description": "The location of the conference or event.",
           "type": "string"
         },
+        "event": {
+          "description": "The title of the conference or event.",
+          "type": "string"
+        },
         "series": {
           "description": "The series name or acronym for the conference or event.",
           "type": "string"
@@ -825,6 +865,10 @@
         "date_updated": {
           "description": "The date the container record was last updated.",
           "$ref": "#/$defs/date"
+        },
+        "asserted_by": {
+          "description": "Who asserted the container, when all of it comes from another source than the record, e.g. OpenAlex. A single field filled in from another source is recorded in the work's provenance instead.",
+          "$ref": "#/$defs/provider"
         }
       }
     },
@@ -1126,12 +1170,14 @@
         "OP",
         "Contributor",
         "Commonmeta",
+        "COMET",
         "GitHub",
         "OpenAIRE",
         "OpenAlex",
         "ORCID",
         "Publisher",
         "PubMed",
+        "RetractionWatch",
         "ROR",
         "Other"
       ]
@@ -1181,6 +1227,7 @@
         "Dissertation",
         "Document",
         "Entry",
+        "Erratum",
         "Event",
         "Figure",
         "Grant",
@@ -1209,6 +1256,7 @@
         "Report",
         "ReportComponent",
         "ReportSeries",
+        "Retraction",
         "Review",
         "Service",
         "Software",

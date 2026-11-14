@@ -222,6 +222,11 @@ class Metadata:
         self.subjects = meta.get("subjects")
         self.url = meta.get("url")
         self.version = meta.get("version")
+        self.edition = meta.get("edition")
+        self.number = meta.get("number")
+        # Who asserted single-valued fields filled in from another source than
+        # the record, keyed by the field's path (e.g. "container.volume").
+        self.provenance = meta.get("provenance")
         self.content = meta.get("content")
         self.image = meta.get("image")
         # other properties - vestigial registration timestamps, distinct

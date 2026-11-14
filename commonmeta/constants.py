@@ -69,6 +69,8 @@ CM_TO_BIB_TRANSLATIONS = {
     "BookChapter": "inbook",
     "Dissertation": "phdthesis",
     "JournalArticle": "article",
+    "Retraction": "article",
+    "Erratum": "article",
     "Manuscript": "unpublished",
     "Other": "misc",
     "Proceedings": "proceedings",
@@ -139,6 +141,9 @@ CM_TO_CSL_TRANSLATIONS = {
     "Figure": "figure",
     "Image": "graphic",
     "JournalArticle": "article-journal",
+    "ProceedingsArticle": "paper-conference",
+    "Retraction": "article-journal",
+    "Erratum": "article-journal",
     "LegalDocument": "legal_case",
     "Manuscript": "manuscript",
     "Map": "map",
@@ -203,6 +208,8 @@ CM_TO_CR_TRANSLATIONS = {
     "Dissertation": "Dissertation",
     "Grant": "Grant",
     "JournalArticle": "JournalArticle",
+    "Retraction": "JournalArticle",
+    "Erratum": "JournalArticle",
     "JournalIssue": "JournalIssue",
     "JournalVolume": "JournalVolume",
     "Journal": "Journal",
@@ -326,6 +333,8 @@ CM_TO_INVENIORDM_TRANSLATIONS = {
     "Dissertation": "publication-dissertation",
     "Image": "image",
     "JournalArticle": "publication-article",
+    "Retraction": "publication-article",
+    "Erratum": "publication-article",
     "PeerReview": "publication-peerreview",
     "Poster": "poster",
     "Presentation": "presentation",
@@ -373,6 +382,8 @@ CM_TO_DC_TRANSLATIONS = {
     "Image": "Image",
     "Instrument": "Instrument",
     "JournalArticle": "JournalArticle",
+    "Retraction": "JournalArticle",
+    "Erratum": "JournalArticle",
     "LegalDocument": "Text",
     "Manuscript": "Text",
     "Map": "Image",
@@ -463,6 +474,8 @@ CM_TO_RIS_TRANSLATIONS = {
     "Figure": "FIGURE",
     "Image": "FIGURE",
     "JournalArticle": "JOUR",
+    "Retraction": "JOUR",
+    "Erratum": "JOUR",
     "LegalDocument": "GEN",
     "Manuscript": "GEN",
     "Map": "MAP",
@@ -537,6 +550,8 @@ CM_TO_SO_TRANSLATIONS = {
     "Image": "CreativeWork",
     "Instrument": "Product",
     "JournalArticle": "ScholarlyArticle",
+    "Retraction": "ScholarlyArticle",
+    "Erratum": "ScholarlyArticle",
     "LegalDocument": "Legislation",
     "Software": "SoftwareSourceCode",
     "Presentation": "PresentationDigitalDocument",
@@ -550,7 +565,7 @@ OA_TO_CM_TRANSLATIONS = {
     "dataset": "Dataset",
     "dissertation": "Dissertation",
     "editorial": "Document",
-    "erratum": "Other",
+    "erratum": "Erratum",
     "grant": "Grant",
     "letter": "Preprint",
     "libguides": "InteractiveResource",
@@ -560,7 +575,7 @@ OA_TO_CM_TRANSLATIONS = {
     "preprint": "Preprint",
     "reference-entry": "Other",
     "report": "Report",
-    "retraction": "Other",
+    "retraction": "Retraction",
     "review": "Preprint",
     "standard": "Standard",
     "supplementary-materials": "Component",
@@ -602,6 +617,8 @@ COMMONMETA_CONTAINER_TYPES = {
     "Book": "BookSeries",
     "Dataset": "Repository",
     "JournalArticle": "Journal",
+    "Retraction": "Journal",
+    "Erratum": "Journal",
     "JournalIssue": "Journal",
     "Monograph": "Book",
     "ProceedingsArticle": "Proceedings",
@@ -823,6 +840,16 @@ COMMONMETA_RELATION_TYPES = [
     "IsPreprintOf",
     "HasPreprint",
     "IsSupplementTo",
+    "IsRetractedBy",
+    "Retracts",
+    "IsCorrectedBy",
+    "Corrects",
+    "HasExpressionOfConcern",
+    "IsExpressionOfConcernFor",
+    "IsWithdrawnBy",
+    "Withdraws",
+    "IsReinstatedBy",
+    "Reinstates",
 ]
 
 # from commonmeta schema
@@ -10323,3 +10350,47 @@ OPENALEX_TOPIC_SUBFIELD_MAPPINGS = {
     "14520": "3322",
     "14521": "1110",
 }
+
+# Crossref update types (`update-to.type` / `updated-by.type`), normalized to
+# lowercase with underscores, and the pair of relation types each maps to: the
+# one on the updated work (from its `updated-by`) and the one on the notice
+# (from its `update-to`). An update type missing here has no commonmeta relation.
+CR_UPDATE_TO_CM_RELATION_TYPES = {
+    "retraction": ("IsRetractedBy", "Retracts"),
+    "partial_retraction": ("IsRetractedBy", "Retracts"),
+    "correction": ("IsCorrectedBy", "Corrects"),
+    "erratum": ("IsCorrectedBy", "Corrects"),
+    "corrigendum": ("IsCorrectedBy", "Corrects"),
+    "expression_of_concern": ("HasExpressionOfConcern", "IsExpressionOfConcernFor"),
+    "withdrawal": ("IsWithdrawnBy", "Withdraws"),
+    "removal": ("IsWithdrawnBy", "Withdraws"),
+    "reinstatement": ("IsReinstatedBy", "Reinstates"),
+    "addendum": ("IsSupplementedBy", "IsSupplementTo"),
+    "clarification": ("IsSupplementedBy", "IsSupplementTo"),
+}
+
+# The relation types that record an update to a work - a retraction, a
+# correction, an expression of concern, a withdrawal or a reinstatement - and the
+# notice that makes it. DataCite, and with it InvenioRDM, has no relation type for
+# them, so those writers leave them out.
+UPDATE_RELATION_TYPES = (
+    "IsRetractedBy",
+    "Retracts",
+    "IsCorrectedBy",
+    "Corrects",
+    "HasExpressionOfConcern",
+    "IsExpressionOfConcernFor",
+    "IsWithdrawnBy",
+    "Withdraws",
+    "IsReinstatedBy",
+    "Reinstates",
+)
+
+# The commonmeta `asserted_by` of a Crossref update's `source`.
+CR_UPDATE_SOURCE_TO_CM = {
+    "retraction-watch": "RetractionWatch",
+    "publisher": "Publisher",
+}
+
+# The commonmeta type of a notice, by the relation it has to the work it updates.
+CM_NOTICE_TYPES = {"Retracts": "Retraction", "Corrects": "Erratum"}

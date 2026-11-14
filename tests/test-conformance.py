@@ -33,7 +33,9 @@ from conformance_common import (
     writer_pairs,
 )
 
+from commonmeta import Metadata
 from commonmeta.doi_utils import decode_doi, encode_doi
+from commonmeta.schema_utils import COMMONMETA_SCHEMA_URI, json_schema_errors
 from commonmeta.utils import find_entity_type
 from commonmeta.writers.commonmeta_writer import collapse_whitespace
 
@@ -61,6 +63,9 @@ def test_commonmeta_roundtrip(path):
     # asserting on formatting the writer deliberately discards. Person and
     # organization entities are exempt: a biography's line breaks are content.
     if find_entity_type(expected) == "work":
+        # The writer stamps schema_version onto every work by design (as
+        # commonmeta-rs does); a fixture authored without it still round-trips.
+        expected.setdefault("schema_version", COMMONMETA_SCHEMA_URI)
         if expected.get("description"):
             expected["description"] = collapse_whitespace(expected["description"])
         for d in expected.get("additional_descriptions") or []:
@@ -304,3 +309,295 @@ def test_diff_flags_changed_scalar():
 def test_diff_flags_array_length():
     diffs = diff({"xs": [1, 2, 3]}, {"xs": [1, 2]})
     assert any(m.kind == "LENGTH" for m in diffs)
+
+
+# --- reader gaps closed for commonmeta-schema 1.0.11 (strict) ---
+#
+# The golden tests above xfail on any divergence, so a regression in a pair
+# that once passed would go unnoticed. These pairs exercise the 1.0.11 fields
+# (number, edition, container.event, update relations, Retraction) and must
+# match the commonmeta-rs golden exactly.
+
+STRICT_GOLDENS = [
+    ("crossref", "json", "commonmeta", "crossref_retracted_article.json"),
+    ("crossref", "json", "commonmeta", "crossref_retraction_notice.json"),
+    ("crossref_xml", "xml", "crossref_xml_commonmeta", "crossref_elife_01567.xml"),
+    ("csl", "json", "commonmeta", "csl_book.json"),
+    ("csl", "json", "commonmeta", "csl_conference_paper.json"),
+    ("csl", "json", "commonmeta", "csl_report.json"),
+]
+
+
+@pytest.mark.parametrize(
+    "from_format,ext,expected_subdir,name",
+    STRICT_GOLDENS,
+    ids=[g[3] for g in STRICT_GOLDENS],
+)
+def test_schema_1_0_11_reader_golden(from_format, ext, expected_subdir, name):
+    pairs = {pair_id(p): p for p in reader_pairs(from_format, ext, expected_subdir)}
+    assert name in pairs, f"{from_format} golden {name} not found"
+    input_path, expected_path = pairs[name]
+    # canonicalized as the golden tests above are: the writer drops an
+    # identifier repeating the DOI id, which some goldens list
+    expected = canonical_commonmeta_value(read_text(expected_path), expected_path)
+    actual = convert(from_format, "commonmeta", read_text(input_path))
+    diffs = diff(expected, actual)
+    assert not diffs, "\n".join(str(d) for d in diffs)
+    assert json_schema_errors(actual) is None
+
+
+def _crossref(message: dict) -> dict:
+    return convert("crossref", "commonmeta", json.dumps({"message": message}))
+
+
+def test_crossref_correction_notice_is_an_erratum():
+    """A correction notice Corrects the work it updates; an update type with no
+    commonmeta relation and an update naming the record itself add nothing."""
+    actual = _crossref(
+        {
+            "DOI": "10.5555/ERRATUM",
+            "type": "journal-article",
+            "title": ["Erratum: A Study"],
+            "update-to": [
+                {
+                    "DOI": "10.5555/original",
+                    "type": "correction",
+                    "source": "publisher",
+                },
+                {"DOI": "10.5555/older", "type": "new_version", "source": "publisher"},
+                {"DOI": "10.5555/erratum", "type": "correction", "source": "publisher"},
+            ],
+        }
+    )
+    assert actual["type"] == "Erratum"
+    assert actual["relations"] == [
+        {
+            "id": "https://doi.org/10.5555/original",
+            "type": "Corrects",
+            "asserted_by": "Publisher",
+        }
+    ]
+    assert json_schema_errors(actual) is None
+
+
+@pytest.mark.parametrize(
+    "update_type,relation_type",
+    [
+        ("retraction", "IsRetractedBy"),
+        ("partial_retraction", "IsRetractedBy"),
+        ("corrigendum", "IsCorrectedBy"),
+        ("expression_of_concern", "HasExpressionOfConcern"),
+        ("Expression of Concern", "HasExpressionOfConcern"),
+        ("withdrawal", "IsWithdrawnBy"),
+        ("reinstatement", "IsReinstatedBy"),
+        ("addendum", "IsSupplementedBy"),
+    ],
+)
+def test_crossref_updated_by(update_type, relation_type):
+    """The updated work keeps a relation to its notice, and its own type; a
+    source commonmeta has no provider for leaves asserted_by out."""
+    actual = _crossref(
+        {
+            "DOI": "10.5555/original",
+            "type": "journal-article",
+            "title": ["A Study"],
+            "article-number": " e123 ",
+            "updated-by": [
+                {"DOI": "10.5555/notice", "type": update_type, "source": "elsewhere"}
+            ],
+        }
+    )
+    assert actual["type"] == "JournalArticle"
+    assert actual["number"] == "e123"
+    assert actual["relations"] == [
+        {"id": "https://doi.org/10.5555/notice", "type": relation_type}
+    ]
+    assert json_schema_errors(actual) is None
+
+
+def test_crossref_container_notice_keeps_its_type():
+    """Only a work becomes a Retraction; a journal registered with an update
+    stays a journal."""
+    actual = _crossref(
+        {
+            "DOI": "10.5555/journal",
+            "type": "journal",
+            "title": ["A Journal"],
+            "update-to": [{"DOI": "10.5555/original", "type": "retraction"}],
+        }
+    )
+    assert actual["type"] == "Journal"
+
+
+def _csl(item: dict) -> dict:
+    return convert("csl", "commonmeta", json.dumps(item))
+
+
+@pytest.mark.parametrize(
+    "csl_type,series_type",
+    [
+        ("book", "BookSeries"),
+        ("chapter", "BookSeries"),
+        ("paper-conference", "ProceedingsSeries"),
+        ("report", "ReportSeries"),
+    ],
+)
+def test_csl_collection_title_without_container_is_the_series(csl_type, series_type):
+    actual = _csl(
+        {
+            "id": "10.5555/series",
+            "type": csl_type,
+            "title": "A Work",
+            "collection-title": "A Series",
+        }
+    )
+    assert actual["container"]["type"] == series_type
+    assert actual["container"]["title"] == "A Series"
+
+
+def test_csl_collection_title_beside_a_container_title_is_not_the_container():
+    actual = _csl(
+        {
+            "id": "10.5555/chapter",
+            "type": "chapter",
+            "title": "A Chapter",
+            "container-title": "A Book",
+            "collection-title": "A Series",
+        }
+    )
+    assert actual["container"] == {"type": "Book", "title": "A Book"}
+
+
+def test_csl_number_variables_and_event():
+    """CSL number variables may be numbers; `event` is the CSL 1.0.1 name of
+    `event-title`."""
+    actual = _csl(
+        {
+            "id": "10.5555/conf",
+            "type": "paper-conference",
+            "title": "A Paper",
+            "container-title": "Proceedings",
+            "event": "A Conference",
+            "edition": 3,
+            "number": 17,
+        }
+    )
+    assert actual["edition"] == "3"
+    assert actual["number"] == "17"
+    assert actual["container"]["event"] == "A Conference"
+    assert json_schema_errors(actual) is None
+
+
+CROSSMARK_RETRACTION_XML = """<?xml version="1.0" encoding="UTF-8"?>
+<crossref_result xmlns="http://www.crossref.org/qrschema/3.0" version="3.0">
+  <query_result><body><query status="resolved">
+    <doi type="journal_article">10.1177/17588359211061903</doi>
+    <doi_record><crossref xmlns="http://www.crossref.org/xschema/1.1">
+      <journal>
+        <journal_metadata language="en">
+          <full_title>Therapeutic Advances in Medical Oncology</full_title>
+          <issn media_type="electronic">1758-8359</issn>
+        </journal_metadata>
+        <journal_issue><journal_volume><volume>13</volume></journal_volume></journal_issue>
+        <journal_article publication_type="full_text">
+          <titles><title>Retraction notice: Downregulation of long noncoding RNA LINC01419</title></titles>
+          <publication_date media_type="online"><month>12</month><day>15</day><year>2021</year></publication_date>
+          <crossmark>
+            <crossmark_version>2</crossmark_version>
+            <updates>
+              <update type="retraction" date="2021-12-15">10.1177/1758835919874651</update>
+              <update type="correction" date="2022-01-10">10.5555/also-corrected</update>
+              <update type="new_version" date="2022-01-10">10.5555/newer</update>
+              <update type="retraction" date="2021-12-15">10.1177/17588359211061903</update>
+            </updates>
+          </crossmark>
+          <doi_data>
+            <doi>10.1177/17588359211061903</doi>
+            <resource>https://journals.sagepub.com/doi/10.1177/17588359211061903</resource>
+          </doi_data>
+        </journal_article>
+      </journal>
+    </crossref></doi_record>
+  </query></body></query_result>
+</crossref_result>"""
+
+
+def test_crossref_xml_crossmark_updates_make_a_retraction():
+    """Crossmark updates relate a notice to the works it retracts or corrects,
+    asserted by the publisher; the first decides the notice type (as in
+    commonmeta-rs' crossmark_updates_make_a_retraction)."""
+    actual = convert("crossref_xml", "commonmeta", CROSSMARK_RETRACTION_XML)
+    assert actual["type"] == "Retraction"
+    updates = [r for r in actual["relations"] if r["type"] != "IsPartOf"]
+    assert updates == [
+        {
+            "id": "https://doi.org/10.1177/1758835919874651",
+            "type": "Retracts",
+            "asserted_by": "Publisher",
+        },
+        {
+            "id": "https://doi.org/10.5555/also-corrected",
+            "type": "Corrects",
+            "asserted_by": "Publisher",
+        },
+    ]
+    assert json_schema_errors(actual) is None
+
+
+def _retraction_notice() -> Metadata:
+    expected_path = fixture_path("commonmeta", "crossref_retraction_notice.json")
+    record = json.loads(read_text(expected_path))
+    record["contributors"] = [
+        {
+            "type": "Person",
+            "person": {"given_name": "Jo", "family_name": "Example"},
+            "roles": ["Author"],
+        }
+    ]
+    return Metadata(record, via="commonmeta")
+
+
+def test_crossref_xml_writes_a_notice_as_a_journal_article():
+    """Crossref deposits a retraction notice as a journal article."""
+    subject = _retraction_notice()
+    xml = subject.write(to="crossref_xml")
+    assert "<journal_article" in xml
+    assert subject.write_errors is None
+
+
+def test_inveniordm_leaves_out_update_relations():
+    """InvenioRDM's relation types are DataCite's, which have none for a
+    retraction or correction."""
+    subject = _retraction_notice()
+    record = json.loads(subject.write(to="inveniordm"))
+    relation_types = [
+        r["relation_type"]["id"]
+        for r in record["metadata"].get("related_identifiers", [])
+    ]
+    assert "retracts" not in relation_types
+    assert subject.write_errors is None
+
+
+def test_csl_writes_a_proceedings_article_as_a_conference_paper():
+    expected_path = fixture_path("commonmeta", "csl_conference_paper.json")
+    subject = Metadata(json.loads(read_text(expected_path)), via="commonmeta")
+    record = json.loads(subject.write(to="csl"))
+    assert record["type"] == "paper-conference"
+
+
+@pytest.mark.parametrize(
+    "name",
+    ["csl_book.json", "csl_conference_paper.json", "crossref_retracted_article.json"],
+)
+def test_csl_and_datacite_writers_validate(name):
+    """The CSL writer writes no license (CSL-JSON has no variable for one), and
+    the DataCite writer writes publicationYear as the four-digit string its
+    schema requires."""
+    record = json.loads(read_text(fixture_path("commonmeta", name)))
+    subject = Metadata(record, via="commonmeta")
+    csl = json.loads(subject.write(to="csl"))
+    assert subject.write_errors is None
+    assert "copyright" not in csl and "license" not in csl
+    datacite = json.loads(subject.write(to="datacite"))
+    assert subject.write_errors is None
+    assert datacite["publicationYear"] == record["date_published"][:4]

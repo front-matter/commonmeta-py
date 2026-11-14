@@ -28,6 +28,7 @@ from ..constants import (
     INVENIORDM_CUSTOM_IDENTIFIER_SCHEMES,
     INVENIORDM_IDENTIFIER_TYPES,
     OPENALEX_TOPIC_SUBFIELD_MAPPINGS,
+    UPDATE_RELATION_TYPES,
 )
 from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, normalize_doi
@@ -257,10 +258,14 @@ def write_inveniordm(
     # has neither field, so both go to related_identifiers there instead --
     # ispartof and isreferencedby are core InvenioRDM relation types.
     custom_field_relations = () if generic else ("IsPartOf", "IsReferencedBy")
+    # InvenioRDM's relation types are DataCite's, which have none for a
+    # retraction or correction, so those relations are left out.
     related_identifiers = [
         to_inveniordm_related_identifier(i)
         for i in wrap(metadata.relations)
-        if i.get("id", None) and i.get("type", None) not in custom_field_relations
+        if i.get("id", None)
+        and i.get("type", None) not in custom_field_relations
+        and i.get("type", None) not in UPDATE_RELATION_TYPES
     ]
     related_identifiers = [i for i in related_identifiers if i is not None]
     citations = (

@@ -23,8 +23,11 @@ from ..base_utils import (
     wrap,
 )
 from ..constants import (
+    CM_NOTICE_TYPES,
     CR_TO_CM_CONTAINER_TRANSLATIONS,
     CR_TO_CM_TRANSLATIONS,
+    CR_UPDATE_SOURCE_TO_CM,
+    CR_UPDATE_TO_CM_RELATION_TYPES,
     CROSSREF_CONTAINER_TYPES,
     CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     Commonmeta,
@@ -117,6 +120,11 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
             _type = "BlogPost"
         elif _type == "Journal":
             _type = "Blog"
+    # A notice that retracts or corrects another work is a Retraction or an
+    # Erratum, though Crossref types it as the article it is published as.
+    notice_type = get_notice_type(meta.get("update-to", None))
+    if notice_type and _type not in CONTAINER_WORK_TYPES:
+        _type = notice_type
     date_published = (
         dig(meta, "issued.date-time")
         or get_date_from_date_parts(meta.get("issued", None))
@@ -144,6 +152,9 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
             }
         )
         relations = unique(relations)
+    for relation in get_update_relations(meta, _id):
+        if relation not in relations:
+            relations.append(relation)
     references = unique([get_reference(i) for i in wrap(meta.get("reference", None))])
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
     description, additional_descriptions = get_abstract(meta)
@@ -177,6 +188,7 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
             "identifiers": presence(identifiers),
             "language": meta.get("language", None),
             "license": license_,
+            "number": presence((meta.get("article-number", None) or "").strip()),
             "provider": "Crossref",
             "publisher": presence(publisher),
             "references": presence(references),
@@ -282,6 +294,59 @@ def get_reference(reference: dict | None) -> dict | None:
         "asserted_by": asserted_by_raw.capitalize() if asserted_by_raw else None,
     }
     return compact(metadata)
+
+
+# Crossref types that name a container rather than a work; a notice registered
+# as one keeps its type.
+CONTAINER_WORK_TYPES = ("Journal", "Blog", "BookSeries", "ProceedingsSeries")
+
+
+def _update_relation_types(update: dict) -> tuple[str, str] | None:
+    """The (on the updated work, on the notice) relation types of an update."""
+    update_type = str(update.get("type", None) or "").lower()
+    update_type = update_type.replace("-", "_").replace(" ", "_")
+    return CR_UPDATE_TO_CM_RELATION_TYPES.get(update_type, None)
+
+
+def get_notice_type(updates: list | None) -> str | None:
+    """The commonmeta type of a notice that retracts or corrects another work."""
+    for update in wrap(updates):
+        types = _update_relation_types(update) if isinstance(update, dict) else None
+        if types and types[1] in CM_NOTICE_TYPES:
+            return CM_NOTICE_TYPES[types[1]]
+    return None
+
+
+def get_update_relations(meta: dict, _id: str | None) -> list:
+    """Relations for the notices that retract or correct this work (`updated-by`)
+    and the works this notice retracts or corrects (`update-to`).
+
+    Crossref lists an update once per asserting party - the publisher, and
+    Retraction Watch for a retraction in its database - and each is kept, with
+    `asserted_by`.
+    """
+    updates = [(u, True) for u in wrap(meta.get("updated-by", None))] + [
+        (u, False) for u in wrap(meta.get("update-to", None))
+    ]
+    relations: list = []
+    for update, on_updated_work in updates:
+        if not isinstance(update, dict):
+            continue
+        types = _update_relation_types(update)
+        target = doi_as_url(update.get("DOI", None))
+        # DOIs are case-insensitive; an update naming the record itself adds nothing
+        if types is None or not target or target.lower() == (_id or "").lower():
+            continue
+        relation = compact(
+            {
+                "id": target,
+                "type": types[0] if on_updated_work else types[1],
+                "asserted_by": CR_UPDATE_SOURCE_TO_CM.get(update.get("source", None)),
+            }
+        )
+        if relation not in relations:
+            relations.append(relation)
+    return relations
 
 
 def get_relations(relations: dict | None) -> list:
