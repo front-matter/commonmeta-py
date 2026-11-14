@@ -500,7 +500,8 @@ def test_doi_with_sici():
     subject = Metadata(string, via="crossref_xml")
     assert subject.is_valid
     assert (
-        subject.id == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
+        subject.id
+        == "https://doi.org/10.1890/0012-9658(2006)87%5B2832:tiopma%5D2.0.co;2"
     )
     assert subject.type == "JournalArticle"
     assert (

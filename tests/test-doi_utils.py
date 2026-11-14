@@ -351,3 +351,38 @@ def test_generate_substack_doi():
         prefix="10.5555", slug="stephenturner", guid="167348334"
     )
     assert response == "https://doi.org/10.5555/stephenturner.167348334"
+
+
+# The same cases as commonmeta-rs' test_normalize_doi_parity_cases (doi_utils.rs).
+@pytest.mark.parametrize(
+    "doi,expected",
+    [
+        ("10.5555/ABC", "https://doi.org/10.5555/abc"),
+        ("doi:10.5555/abc", "https://doi.org/10.5555/abc"),
+        ("http://doi.org/10.5555/abc", "https://doi.org/10.5555/abc"),
+        ("https://dx.doi.org/10.5555/abc", "https://doi.org/10.5555/abc"),
+        ("https://commonmeta.org/10.5555/abc", "https://doi.org/10.5555/abc"),
+        (
+            "https://handle.stage.datacite.org/10.5555/ABC",
+            "https://handle.stage.datacite.org/10.5555/abc",
+        ),
+        (
+            "10.1890/0012-9658(2006)87[2832:TIOPMA]2.0.CO;2",
+            "https://doi.org/10.1890/0012-9658(2006)87%5B2832:tiopma%5D2.0.co;2",
+        ),
+        (
+            "https://doi.org/10.1890/0012-9658(2006)87%5b2832:tiopma%5D2.0.co;2",
+            "https://doi.org/10.1890/0012-9658(2006)87%5B2832:tiopma%5D2.0.co;2",
+        ),
+        (
+            "doi:10.1206/0003-0090(2003)277<0001:TSSAAA>2.0.CO;2",
+            "https://doi.org/10.1206/0003-0090(2003)277%3C0001:tssaaa%3E2.0.co;2",
+        ),
+        ("10.5555/a b", None),
+        ("10.555/abc", None),
+        ("https://example.org/10.5555/abc", None),
+        ("", None),
+    ],
+)
+def test_normalize_doi_parity_cases(doi, expected):
+    assert normalize_doi(doi) == expected

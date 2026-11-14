@@ -14,11 +14,12 @@ from .base_utils import compact
 
 
 def validate_doi(doi: str | None) -> str | None:
-    """Validate a DOI"""
-    if doi is None:
+    """Validate a DOI: bare, as a doi: URI or as a URL, with no whitespace in
+    it, as commonmeta-rs validates it."""
+    if doi is None or not isinstance(doi, str):
         return None
     match = re.search(
-        r"\A(?:(http|https):/(/)?(dx\.)?(doi\.org|handle\.stage\.datacite\.org|handle\.test\.datacite\.org)/)?(doi:)?(10\.\d{4,5}/.+)\Z",  # noqa: E501
+        r"\A(?:(http|https):/(/)?(dx\.)?(doi\.org|commonmeta\.org|handle\.stage\.datacite\.org|handle\.test\.datacite\.org)/)?(doi:)?(10\.\d{4,5}/\S+)\Z",  # noqa: E501
         doi,
     )
     if match is None:
@@ -116,15 +117,33 @@ def doi_as_url(doi: str | None) -> str | None:
     return "https://doi.org/" + doi.lower()
 
 
+# The characters valid in a DOI but not in a URL path, percent-encoded in a
+# normalized DOI, as commonmeta-rs encodes them: SICI-style DOIs use brackets,
+# 10.1206/0003-0090(2003)277<0001:TSSAAA>2.0.CO;2.
+DOI_SUFFIX_ENCODINGS = (("[", "%5B"), ("]", "%5D"), ("<", "%3C"), (">", "%3E"))
+
+
+def encode_doi_suffix(doi: str) -> str:
+    """Percent-encode the characters a DOI may have but a URL may not, in
+    upper case hex, whether they come raw or already encoded in either case."""
+    for raw, encoded in DOI_SUFFIX_ENCODINGS:
+        doi = doi.replace(encoded.lower(), raw).replace(encoded, raw)
+    for raw, encoded in DOI_SUFFIX_ENCODINGS:
+        doi = doi.replace(raw, encoded)
+    return doi
+
+
 def normalize_doi(doi: str | None, **kwargs) -> str | None:
-    """Normalize a DOI"""
+    """Normalize a DOI to its resolver URL, lowercased, with the characters a
+    URL may not have percent-encoded (see encode_doi_suffix), as commonmeta-rs
+    normalizes it."""
     doi_str = validate_doi(doi)
     if not doi_str:
         return None
     resolver = doi_resolver(doi, **kwargs)
     if resolver is None:
         return None
-    return resolver + doi_str.lower()
+    return resolver + encode_doi_suffix(doi_str.lower())
 
 
 def doi_resolver(doi, **kwargs) -> str | None:
