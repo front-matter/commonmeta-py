@@ -786,7 +786,7 @@ def test_geolocation_box():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.6071/z7wc73"
     assert subject.type == "Dataset"
-    assert len(subject.contributors) == 10
+    assert len(subject.contributors) == 14
     assert subject.contributors[0] == {
         "type": "Person",
         "person": {
@@ -803,13 +803,13 @@ def test_geolocation_box():
     )
     assert subject.publisher == {"name": "Dryad"}
     assert (
-        subject.date_published == "2016-03-14T17:02:02Z"
-        and subject.date_updated == "2022-03-30T00:00:00Z"
+        subject.date_published == "2016-03-14T00:00:00Z"
+        and subject.date_updated == "2023-08-18T00:00:00Z"
         and subject.dates
         == {
-            "created": "2023-08-18T17:31:44Z",
+            "created": "2022-03-01T22:38:07Z",
             "submitted": "2022-03-01T22:38:07Z",
-            "available": "2016-03-14T17:02:02Z",
+            "available": "2016-03-14T00:00:00Z",
         }
     )
     lter = {
@@ -838,11 +838,6 @@ def test_geolocation_box():
             "scheme": "fos",
             "scheme_uri": "https://web-archive.oecd.org/2012-06-15/138575-38235147.pdf",
         },
-        {
-            "subject": "FOS: Environmental engineering",
-            "scheme": "Fields of Science and Technology (FOS)",
-            "scheme_uri": "http://www.oecd.org/science/inno/38235147.pdf",
-        },
     ]
 
     assert subject.geo_locations == [
@@ -864,13 +859,15 @@ def test_geolocation_box():
     ]
     assert subject.funding_references == [
         {
-            "funder_id": "https://ror.org/021nxhr62",
-            "funder_name": "National Science Foundation",
+            "funder_id": "https://ror.org/05v01mk25",
+            "funder_name": "Division of Earth Sciences",
+            "award_title": "Southern Sierra Critical Zone Observatory",
             "award_number": "1331939",
         },
         {
-            "funder_id": "https://ror.org/021nxhr62",
-            "funder_name": "National Science Foundation",
+            "funder_id": "https://ror.org/05v01mk25",
+            "funder_name": "Division of Earth Sciences",
+            "award_title": "\n        CZO: Critical Zone Observatory--Snowline Processes in the Southern\n        Sierra Nevada\n      ",
             "award_number": "0725097",
         },
     ]

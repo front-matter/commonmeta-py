@@ -794,7 +794,7 @@ def test_dataset():
     assert subject.language == "en"
     assert subject.description is None
     assert subject.version is None
-    assert subject.provider == "Crossref"
+    assert subject.provider == "DataCite"
 
 
 def test_component():
