@@ -798,7 +798,8 @@ def test_vor_with_url():
 
 
 def test_dataset():
-    "dataset"
+    "dataset the agency lookup names DataCite for, read from Crossref"
+    # DataCite has no record of it (404), Crossref still has one
     string = "10.2210/pdb4hhb/pdb"
     subject = Metadata(string)
     assert subject.is_valid

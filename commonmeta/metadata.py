@@ -129,6 +129,9 @@ class Metadata:
 
     def __init__(self, string: str | dict[str, Any] | None, **kwargs):
         self.via = kwargs.get("via", None)
+        # A source the caller named is read as named; one found from the DOI's
+        # registration agency may fall back to the other agency.
+        self._via_given = self.via is not None
         # Validating a record against the JSON schema is the dominant cost of
         # reading one (~0.5 ms of ~1.3 ms). Bulk callers converting a corpus opt
         # out via validate=False and validate separately if they need to, which
@@ -451,6 +454,16 @@ class Metadata:
             record = get_schema_org(pid)
         elif via == "datacite":
             record = get_datacite(pid)
+            if (
+                not getattr(self, "_via_given", True)
+                and record.get("state") == "not_found"
+            ):
+                # The agency lookup can name DataCite for a DOI DataCite has no
+                # record of (10.2210/pdb4hhb/pdb) while Crossref still has it.
+                fallback = get_crossref(pid)
+                if fallback.get("state") != "not_found":
+                    record, via = fallback, "crossref"
+                    self.via = via
         elif via in ["crossref", "op"]:
             record = get_crossref(pid)
         elif via == "crossref_xml":
