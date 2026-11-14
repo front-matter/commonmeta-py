@@ -87,6 +87,7 @@ from .writers.inveniordm_writer import (
     write_inveniordm,
     write_inveniordm_list,
 )
+from .writers.openalex_writer import write_openalex, write_openalex_list
 from .writers.orcid_writer import write_orcid
 from .writers.ris_writer import write_ris, write_ris_list
 from .writers.ror_writer import write_ror
@@ -621,6 +622,7 @@ class Metadata:
             "crossref",
             "datacite",
             "inveniordm",
+            "openalex",
             "schema_org",
             "csl",
             "ror",
@@ -631,13 +633,14 @@ class Metadata:
                 "crossref": write_crossref,
                 "datacite": write_datacite,
                 "inveniordm": write_inveniordm,
+                "openalex": write_openalex,
                 "schema_org": write_schema_org,
                 "csl": write_csl,
                 "ror": write_ror,
                 "orcid": write_orcid,
             }
             output = writer_map[to](self, **kwargs)
-            # "crossref", "ror" and "orcid" have no bundled JSON schema to
+            # "crossref", "openalex", "ror" and "orcid" have no bundled JSON schema to
             # validate against. "commonmeta" is skipped because __init__ already
             # validated this record against the commonmeta schema and recorded
             # the outcome in self.errors (which feeds is_valid); the writer is
@@ -645,7 +648,7 @@ class Metadata:
             # check on every record written. The remaining formats are validated
             # here because their writers can introduce errors the commonmeta
             # record itself doesn't have.
-            if to not in ("crossref", "commonmeta", "ror", "orcid"):
+            if to not in ("crossref", "commonmeta", "openalex", "ror", "orcid"):
                 self.write_errors = json_schema_errors(output, schema=to)
                 self._set_validity()
             if output is None:
@@ -876,6 +879,12 @@ class MetadataList:
             output = write_ris_list(self)
             if self.file and output is not None:
                 return write_output(self.file, output, [".ris"])
+            else:
+                return output
+        elif to == "openalex":
+            output = json.dumps(write_openalex_list(self))
+            if self.file:
+                return write_output(self.file, output, [".json"])
             else:
                 return output
         elif to == "schema_org":

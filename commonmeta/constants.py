@@ -606,6 +606,64 @@ OA_SOURCE_TO_CM_VENUE_TYPES = {
     "conference": "ProceedingsArticle",
 }
 
+# Commonmeta work type → OpenAlex work type, as commonmeta-rs writes it. A type
+# OpenAlex has no name for is "other".
+CM_TO_OA_TRANSLATIONS = {
+    "Article": "article",
+    "BlogPost": "article",
+    "JournalArticle": "article",
+    "ProceedingsArticle": "conference-paper",
+    "Preprint": "preprint",
+    "Book": "book",
+    "BookChapter": "book-chapter",
+    "BookPart": "book-chapter",
+    "BookSection": "book-chapter",
+    "Dataset": "dataset",
+    "Dissertation": "dissertation",
+    # the closest OpenAlex has to a document that is none of the above
+    "Document": "editorial",
+    "Entry": "reference-entry",
+    "Retraction": "retraction",
+    "Erratum": "erratum",
+    "Grant": "grant",
+    "InteractiveResource": "libguides",
+    "Component": "paratext",
+    "PeerReview": "peer-review",
+    "Report": "report",
+    "Review": "review",
+    "Software": "software",
+    "Standard": "standard",
+    "StudyRegistration": "study-registration",
+}
+
+# Commonmeta container type → OpenAlex source type, as commonmeta-rs writes it.
+CM_TO_OA_CONTAINER_TRANSLATIONS = {
+    "Journal": "journal",
+    "Repository": "repository",
+    "DataRepository": "repository",
+    "Proceedings": "conference",
+    "ProceedingsSeries": "conference",
+    "Book": "ebook platform",
+    "BookSeries": "book series",
+}
+
+# OpenAlex's license slug for an SPDX id, the reverse of what the reader maps.
+SPDX_TO_OA_LICENSES = {
+    "CC-BY-4.0": "cc-by",
+    "CC-BY-3.0": "cc-by",
+    "CC0-1.0": "cc0",
+    "CC-BY-SA-4.0": "cc-by-sa",
+    "CC-BY-SA-3.0": "cc-by-sa",
+    "CC-BY-NC-4.0": "cc-by-nc",
+    "CC-BY-NC-3.0": "cc-by-nc",
+    "CC-BY-ND-4.0": "cc-by-nd",
+    "CC-BY-ND-3.0": "cc-by-nd",
+    "CC-BY-NC-SA-4.0": "cc-by-nc-sa",
+    "CC-BY-NC-SA-3.0": "cc-by-nc-sa",
+    "CC-BY-NC-ND-4.0": "cc-by-nc-nd",
+    "CC-BY-NC-ND-3.0": "cc-by-nc-nd",
+}
+
 SO_TO_DC_RELATION_TYPES = {
     "citation": "References",
     "isBasedOn": "IsSupplementedBy",

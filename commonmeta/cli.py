@@ -50,6 +50,7 @@ OUTPUT_EXTENSIONS = {
     "csl": [".json"],
     "datacite": [".json"],
     "inveniordm": [".json"],
+    "openalex": [".json"],
     "orcid": [".json"],
     "pdf": [".pdf"],
     "ris": [".ris"],
@@ -82,6 +83,7 @@ JSON_FORMATS = {
     "crossref",
     "datacite",
     "inveniordm",
+    "openalex",
     "schema_org",
     "csl",
 }

@@ -62,7 +62,7 @@ commonmeta-py reads and/or writes these metadata formats:
 | [BibTex](http://en.wikipedia.org/wiki/BibTeX)                                                    | bibtex        | application/x-bibtex                   | yes | yes     |
 | [RIS](http://en.wikipedia.org/wiki/RIS_(file_format))                                            | ris           | application/x-research-info-systems    | yes   | yes     |
 | [InvenioRDM](https://inveniordm.docs.cern.ch/reference/metadata/)                                | inveniordm    | application/vnd.inveniordm.v1+json     | yes   | yes     |
-| [OpenAlex](https://www.openalex.org/)                                                           | openalex     |    | yes | no     |
+| [OpenAlex](https://www.openalex.org/)                                                           | openalex     |    | yes | yes    |
 
 _commonmeta_: the Commonmeta format is the native format for the library and used internally.
 _Later_: we plan to implement this format in a later release.

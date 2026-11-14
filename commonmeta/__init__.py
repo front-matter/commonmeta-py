@@ -123,6 +123,7 @@ from .writers import (
     crossref_xml_writer,
     csl_writer,
     datacite_writer,
+    openalex_writer,
     ris_writer,
     schema_org_writer,
 )
