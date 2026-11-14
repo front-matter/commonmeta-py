@@ -30,6 +30,7 @@ from ..base_utils import (
 )
 from ..constants import CM_TO_CR_CONTRIBUTOR_ROLES, CM_TO_CR_CREDIT_ROLES
 from ..doi_utils import doi_as_url, doi_from_url, is_rogue_scholar_doi, validate_doi
+from ..schema_utils import json_schema_errors
 from ..utils import get_identifier, issn_as_url, validate_url
 from .inveniordm_writer import push_inveniordm
 
@@ -256,6 +257,23 @@ def _wrap_crossref_body_list(items: list[dict[str, Any]]) -> dict[str, Any]:
     return body_content
 
 
+def crossref_body_errors_by_record(items: list) -> list[tuple[str, str]]:
+    """(DOI, error) for each record of a deposit list whose body the Crossref
+    5.5.0 schema refuses. A record without a DOI is named by its position."""
+    errors = []
+    for index, item in enumerate(wrap(items)):
+        if not item or not isinstance(item, dict):
+            continue
+        # wrapped as the list is, a list of one
+        error = json_schema_errors(
+            _wrap_crossref_body_list([item]), schema="crossref_xml"
+        )
+        if error is not None:
+            doi = dig(item, "doi_data.doi") or f"record {index}"
+            errors.append((doi, error))
+    return errors
+
+
 def tostring(data: dict | list, *, head: dict | None = None) -> str:
     """Serialize Crossref XML using xmltodict."""
     if not isinstance(data, (dict, list)):
@@ -263,9 +281,22 @@ def tostring(data: dict | list, *, head: dict | None = None) -> str:
 
     head = head or {}
 
+    # Check the deposit body against the Crossref 5.5.0 JSON schema before
+    # writing XML: its errors name the field, where the XSD validation of the
+    # XML that follows names a line of it. A list is checked record by record,
+    # so the error names every record Crossref would refuse, by its DOI.
     if isinstance(data, dict):
         body = _wrap_crossref_body(dict(data))
+        errors = json_schema_errors(body, schema="crossref_xml")
+        if errors is not None:
+            raise CrossrefError(f"Crossref 5.5.0 schema: {errors}")
     else:
+        errors_by_record = crossref_body_errors_by_record(data)
+        if errors_by_record:
+            raise CrossrefError(
+                "Crossref 5.5.0 schema: "
+                + "; ".join(f"{doi}: {error}" for doi, error in errors_by_record)
+            )
         body = _wrap_crossref_body_list(data)
 
     output: dict[str, Any] = {
@@ -332,7 +363,7 @@ class CrossrefXMLSchema(Schema):
     funding_references = fields.Dict(data_key="fr:program")
     license = fields.Dict(data_key="ai:program")
     relations = fields.Dict(data_key="rel:program")
-    archive_locations = fields.List(fields.Dict())
+    archive_locations = fields.Dict()
     version_info = fields.Dict()
     doi_data = fields.Dict(data_key="doi_data")
     references = fields.Dict(data_key="citation_list")
@@ -752,7 +783,7 @@ def push_crossref_xml_list(
             "registrant": metalist.registrant,
         }
         xml = tostring(output, head=head)
-    except ValueError as e:
+    except (ValueError, CrossrefError) as e:
         log.error(f"Failed to generate XML for upload: {e}")
         return None
 
@@ -1112,14 +1143,13 @@ def get_publication_date(obj, media_type: str | None = None) -> Dict | None:
     return compact(publication_date)
 
 
-def get_archive_locations(obj) -> list | None:
-    """get archive locations"""
-    if len(wrap(dig(obj, "archive_locations"))) == 0:
+def get_archive_locations(obj) -> dict | None:
+    """The archive_locations element: one, holding an archive per location."""
+    locations = wrap(dig(obj, "archive_locations"))
+    if len(locations) == 0:
         return None
 
-    return [
-        {"archive": {"@name": location}} for location in dig(obj, "archive_locations")
-    ]
+    return {"archive": [{"@name": location} for location in locations]}
 
 
 def get_version_info(obj) -> dict | None:

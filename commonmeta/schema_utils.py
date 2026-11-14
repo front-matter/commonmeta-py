@@ -8,8 +8,6 @@ from typing import Any
 
 import orjson as json
 
-from .base_utils import normalize_xml_dict
-
 # jsonschema and xmlschema are imported inside the functions that use them, not
 # at module scope: between them they cost ~0.7s of `import commonmeta` (jsonschema
 # alone is 607ms, most of it rfc3987_syntax), and neither is needed to read or
@@ -43,9 +41,13 @@ COMMONMETA_SCHEMA_URI = (
 _SCHEMA_MAP = {
     "commonmeta": f"commonmeta_v{COMMONMETA_SCHEMA_VERSION}",
     "cff": "cff_v1.2.0",
+    # The body of a Crossref 5.5.0 deposit, as the Crossref XML writer builds
+    # it before writing XML; generated from the XSD (as in commonmeta-rs).
+    # Attributes are '@' keys and element text '#text', as xmltodict writes them.
     "crossref_xml": "crossref-v5.5.0",
     "csl": "csl-data",
-    "datacite": "datacite-v4.5",
+    # DataCite 4.7, generated from the XSD (as in commonmeta-rs).
+    "datacite": "datacite-v4.7",
     "inveniordm": "inveniordm-v0.1",
     "schema_org": "schema_org-v0.1",
 }
@@ -96,14 +98,25 @@ def _json_validator(schema: str):
 
     Both validators are stateless, so one per schema lasts the process.
     """
-    schema_definition = _schema_definition(schema)
     if _use_jsonschema_rs():
         import jsonschema_rs
 
-        return jsonschema_rs.validator_for(schema_definition)
-    from jsonschema import Draft202012Validator
+        return jsonschema_rs.validator_for(_schema_definition(schema))
+    return _python_json_validator(schema)
 
-    return Draft202012Validator(schema_definition)
+
+@lru_cache(maxsize=None)
+def _python_json_validator(schema: str):
+    """The pure-Python validator for `schema`, cached like _json_validator.
+
+    The draft comes from the schema's $schema (draft-07 for the Crossref and
+    DataCite schemas), defaulting to 2020-12.
+    """
+    from jsonschema import Draft202012Validator
+    from jsonschema.validators import validator_for
+
+    definition = _schema_definition(schema)
+    return validator_for(definition, default=Draft202012Validator)(definition)
 
 
 @lru_cache(maxsize=None)
@@ -133,12 +146,6 @@ def json_schema_errors(
     if schema not in _SCHEMA_MAP:
         raise ValueError("No schema found")
 
-    # The Crossref JSON schema uses a normalized representation without
-    # xmltodict's special keys ('@…', '#text'). Normalize instances before
-    # validation to keep writer output stable while tightening the schema.
-    if schema == "crossref_xml":
-        instance = normalize_xml_dict(instance)
-
     # The commonmeta v1.0 and CSL-JSON schemas both validate an array of
     # entities. Wrap a single-record dict in a list so it passes the top-level
     # "type": "array" check.
@@ -154,8 +161,14 @@ def json_schema_errors(
         error = next(iter(validator.iter_errors(instance)), None)
         if error is None:
             return None
-        error_path = "/".join(str(p) for p in error.instance_path)
-        return f"{error.message} (at {error_path})" if error_path else error.message
+        if "is not valid under any of the schemas" not in error.message:
+            error_path = "/".join(str(p) for p in error.instance_path)
+            return f"{error.message} (at {error_path})" if error_path else error.message
+        # jsonschema-rs stops at the anyOf/oneOf, whose message names neither
+        # the field nor the reason - the Crossref schema has one around every
+        # element. Only on this failure path, ask the pure-Python validator,
+        # whose best_match drills into the most specific sub-error.
+        validator = _python_json_validator(schema)
 
     from jsonschema import ValidationError
     from jsonschema.exceptions import best_match

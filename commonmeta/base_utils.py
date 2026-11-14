@@ -220,34 +220,6 @@ def compact(obj: dict | None) -> dict:
     return {k: v for k, v in obj.items() if v is not None}
 
 
-def normalize_xml_dict(obj: Any) -> Any:
-    """Normalize xmltodict-style dicts for JSON schema validation.
-
-    Converts:
-    - attribute keys like '@name' -> 'name'
-    - text keys like '#text' -> 'text'
-
-    Recurses through nested dicts/lists and leaves other values unchanged.
-    """
-
-    if isinstance(obj, list):
-        return [normalize_xml_dict(i) for i in obj]
-
-    if isinstance(obj, dict):
-        out: dict[str, Any] = {}
-        for k, v in obj.items():
-            if k.startswith("@"):
-                nk = k[1:]
-            elif k == "#text":
-                nk = "text"
-            else:
-                nk = k
-            out[nk] = normalize_xml_dict(v)
-        return out
-
-    return obj
-
-
 def scrub(list_obj: Iterable[dict] | None) -> list | None:
     """Remove None values from list recursively"""
     if list_obj is None:

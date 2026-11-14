@@ -345,3 +345,37 @@ def test_post_with_contributor_roles():
     #         "contributorType": "Editor",
     #     },
     # ]
+
+
+def test_publisher_is_written_as_datacite_4_7_publisher():
+    """A commonmeta publisher's place has no field in DataCite's publisher,
+    and its ROR id is the publisherIdentifier."""
+    subject = Metadata(
+        {
+            "id": "https://doi.org/10.5555/report",
+            "type": "Report",
+            "title": "A Report",
+            "contributors": [
+                {
+                    "type": "Organization",
+                    "organization": {"name": "Example Institute"},
+                    "roles": ["Author"],
+                }
+            ],
+            "date_published": "2024",
+            "publisher": {
+                "id": "https://ror.org/04wxnsj81",
+                "name": "Example Press",
+                "geo_locations": [{"place": "Cham"}],
+            },
+        },
+        via="commonmeta",
+    )
+    datacite = json.loads(subject.write(to="datacite"))
+    assert subject.write_errors is None
+    assert datacite["publisher"] == {
+        "name": "Example Press",
+        "publisherIdentifier": "https://ror.org/04wxnsj81",
+        "publisherIdentifierScheme": "ROR",
+        "schemeUri": "https://ror.org/",
+    }

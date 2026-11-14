@@ -1,0 +1,1387 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://commonmeta.org/datacite-v4.7.json",
+  "title": "DataCite v4.7",
+  "description": "A DataCite 4.7 record in DataCite's JSON, as the DataCite REST API gives a record's attributes and the commonmeta DataCite writer writes them. Generated from the DataCite 4.7 XSD by scripts/datacite_json_schema.py; the REST API's own attributes are allowed and not checked.",
+  "type": "object",
+  "properties": {
+    "doi": {
+      "$ref": "#/definitions/nonemptycontentStringType"
+    },
+    "creators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nameType": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/nameType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lang": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "givenName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "familyName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nameIdentifiers": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "nameIdentifier": {
+                  "$ref": "#/definitions/nonemptycontentStringType"
+                },
+                "nameIdentifierScheme": {
+                  "type": "string"
+                },
+                "schemeUri": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "nameIdentifier",
+                "nameIdentifierScheme"
+              ]
+            }
+          },
+          "affiliation": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "$ref": "#/definitions/nonemptycontentStringType"
+                    },
+                    "affiliationIdentifier": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "affiliationIdentifierScheme": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "schemeUri": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "name"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "titles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "titleType": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/titleType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lang": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "publisher": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "$ref": "#/definitions/nonemptycontentStringType"
+            },
+            "publisherIdentifier": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "publisherIdentifierScheme": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "schemeUri": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "lang": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "name"
+          ]
+        }
+      ]
+    },
+    "publicationYear": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/yearType"
+        },
+        {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 9999
+        }
+      ]
+    },
+    "types": {
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "resourceTypeGeneral": {
+          "$ref": "#/definitions/resourceType"
+        },
+        "schemaOrg": {
+          "type": "string"
+        },
+        "citeproc": {
+          "type": "string"
+        },
+        "bibtex": {
+          "type": "string"
+        },
+        "ris": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "resourceTypeGeneral"
+      ]
+    },
+    "subjects": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "subjectScheme": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "schemeUri": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "valueUri": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "classificationCode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "lang": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "contributors": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "contributorType": {
+            "$ref": "#/definitions/contributorType"
+          },
+          "name": {
+            "$ref": "#/definitions/nonemptycontentStringType"
+          },
+          "nameType": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/nameType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lang": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "givenName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "familyName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nameIdentifiers": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "nameIdentifier": {
+                  "$ref": "#/definitions/nonemptycontentStringType"
+                },
+                "nameIdentifierScheme": {
+                  "type": "string"
+                },
+                "schemeUri": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "nameIdentifier",
+                "nameIdentifierScheme"
+              ]
+            }
+          },
+          "affiliation": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "$ref": "#/definitions/nonemptycontentStringType"
+                    },
+                    "affiliationIdentifier": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "affiliationIdentifierScheme": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "schemeUri": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "name"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "contributorType",
+          "name"
+        ]
+      }
+    },
+    "dates": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "dateType": {
+            "$ref": "#/definitions/dateType"
+          },
+          "dateInformation": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "dateType"
+        ]
+      }
+    },
+    "language": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "alternateIdentifiers": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "alternateIdentifier": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "alternateIdentifierType": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "alternateIdentifierType"
+        ]
+      }
+    },
+    "relatedIdentifiers": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "relatedIdentifier": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "resourceTypeGeneral": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/resourceType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "relatedIdentifierType": {
+            "$ref": "#/definitions/relatedIdentifierType"
+          },
+          "relationType": {
+            "$ref": "#/definitions/relationType"
+          },
+          "relatedMetadataScheme": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "schemeUri": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "schemeType": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "relationTypeInformation": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "relatedIdentifierType",
+          "relationType"
+        ]
+      }
+    },
+    "sizes": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "formats": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rightsList": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "rights": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "rightsUri": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "rightsIdentifier": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "rightsIdentifierScheme": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "schemeUri": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "lang": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "descriptions": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "descriptionType": {
+            "$ref": "#/definitions/descriptionType"
+          },
+          "lang": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "descriptionType"
+        ]
+      }
+    },
+    "geoLocations": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "geoLocationPlace": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "geoLocationPoint": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "pointLongitude": {
+                "$ref": "#/definitions/longitudeType"
+              },
+              "pointLatitude": {
+                "$ref": "#/definitions/latitudeType"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "pointLongitude",
+              "pointLatitude"
+            ]
+          },
+          "geoLocationBox": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "westBoundLongitude": {
+                "$ref": "#/definitions/longitudeType"
+              },
+              "eastBoundLongitude": {
+                "$ref": "#/definitions/longitudeType"
+              },
+              "southBoundLatitude": {
+                "$ref": "#/definitions/latitudeType"
+              },
+              "northBoundLatitude": {
+                "$ref": "#/definitions/latitudeType"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "westBoundLongitude",
+              "eastBoundLongitude",
+              "southBoundLatitude",
+              "northBoundLatitude"
+            ]
+          },
+          "geoLocationPolygon": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "polygonPoint": {
+                  "anyOf": [
+                    {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "pointLongitude": {
+                              "$ref": "#/definitions/longitudeType"
+                            },
+                            "pointLatitude": {
+                              "$ref": "#/definitions/latitudeType"
+                            }
+                          },
+                          "additionalProperties": false,
+                          "required": [
+                            "pointLongitude",
+                            "pointLatitude"
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "pointLongitude": {
+                                "$ref": "#/definitions/longitudeType"
+                              },
+                              "pointLatitude": {
+                                "$ref": "#/definitions/latitudeType"
+                              }
+                            },
+                            "additionalProperties": false,
+                            "required": [
+                              "pointLongitude",
+                              "pointLatitude"
+                            ]
+                          },
+                          "minItems": 4
+                        }
+                      ]
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "inPolygonPoint": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "pointLongitude": {
+                      "$ref": "#/definitions/longitudeType"
+                    },
+                    "pointLatitude": {
+                      "$ref": "#/definitions/latitudeType"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "pointLongitude",
+                    "pointLatitude"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "fundingReferences": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "funderName": {
+            "$ref": "#/definitions/nonemptycontentStringType"
+          },
+          "funderIdentifier": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "funderIdentifierType": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/funderIdentifierType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "schemeUri": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "awardNumber": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "awardUri": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "awardTitle": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "funderName"
+        ],
+        "dependencies": {
+          "funderIdentifier": [
+            "funderIdentifierType"
+          ]
+        }
+      }
+    },
+    "relatedItems": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "relatedItemType": {
+            "$ref": "#/definitions/resourceType"
+          },
+          "relationType": {
+            "$ref": "#/definitions/relationType"
+          },
+          "relationTypeInformation": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "relatedItemIdentifier": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "relatedItemIdentifier": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "relatedItemIdentifierType": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/relatedIdentifierType"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "relatedMetadataScheme": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "schemeUri": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "schemeType": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "creators": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "nameType": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/definitions/nameType"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "lang": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "givenName": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "familyName": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "titles": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "titleType": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/definitions/titleType"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "lang": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "publicationYear": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/yearType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "volume": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "issue": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "number": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "numberType": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/numberType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "firstPage": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "lastPage": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "publisher": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "edition": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "contributors": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "contributorType": {
+                  "$ref": "#/definitions/contributorType"
+                },
+                "name": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "nameType": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/definitions/nameType"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "lang": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "givenName": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "familyName": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "contributorType"
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "relatedItemType",
+          "relationType"
+        ]
+      }
+    },
+    "id": {},
+    "prefix": {},
+    "suffix": {},
+    "url": {},
+    "contentUrl": {},
+    "identifiers": {},
+    "container": {},
+    "schemaVersion": {},
+    "metadataVersion": {},
+    "source": {},
+    "isActive": {},
+    "state": {},
+    "reason": {},
+    "landingPage": {},
+    "viewCount": {},
+    "viewsOverTime": {},
+    "downloadCount": {},
+    "downloadsOverTime": {},
+    "referenceCount": {},
+    "citationCount": {},
+    "citationsOverTime": {},
+    "partCount": {},
+    "partOfCount": {},
+    "versionCount": {},
+    "versionOfCount": {},
+    "created": {},
+    "registered": {},
+    "published": {},
+    "updated": {},
+    "event": {},
+    "xml": {}
+  },
+  "required": [
+    "doi",
+    "creators",
+    "titles",
+    "publisher",
+    "publicationYear",
+    "types"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "contributorType": {
+      "type": "string",
+      "enum": [
+        "ContactPerson",
+        "DataCollector",
+        "DataCurator",
+        "DataManager",
+        "Distributor",
+        "Editor",
+        "HostingInstitution",
+        "Other",
+        "Producer",
+        "ProjectLeader",
+        "ProjectManager",
+        "ProjectMember",
+        "RegistrationAgency",
+        "RegistrationAuthority",
+        "RelatedPerson",
+        "ResearchGroup",
+        "RightsHolder",
+        "Researcher",
+        "Sponsor",
+        "Supervisor",
+        "Translator",
+        "WorkPackageLeader"
+      ]
+    },
+    "dateType": {
+      "type": "string",
+      "enum": [
+        "Accepted",
+        "Available",
+        "Collected",
+        "Copyrighted",
+        "Coverage",
+        "Created",
+        "Issued",
+        "Other",
+        "Submitted",
+        "Updated",
+        "Valid",
+        "Withdrawn"
+      ]
+    },
+    "descriptionType": {
+      "type": "string",
+      "enum": [
+        "Abstract",
+        "Methods",
+        "SeriesInformation",
+        "TableOfContents",
+        "TechnicalInfo",
+        "Other"
+      ]
+    },
+    "funderIdentifierType": {
+      "type": "string",
+      "enum": [
+        "ISNI",
+        "GRID",
+        "ROR",
+        "Crossref Funder ID",
+        "Other"
+      ]
+    },
+    "latitudeType": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": -90.0,
+          "maximum": 90.0
+        },
+        {
+          "type": "string",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+        }
+      ]
+    },
+    "longitudeType": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": -180.0,
+          "maximum": 180.0
+        },
+        {
+          "type": "string",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+        }
+      ]
+    },
+    "nameType": {
+      "type": "string",
+      "enum": [
+        "Organizational",
+        "Personal"
+      ]
+    },
+    "nonemptycontentStringType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "numberType": {
+      "type": "string",
+      "enum": [
+        "Article",
+        "Chapter",
+        "Report",
+        "Other"
+      ]
+    },
+    "relatedIdentifierType": {
+      "type": "string",
+      "enum": [
+        "ARK",
+        "arXiv",
+        "bibcode",
+        "CSTR",
+        "DOI",
+        "EAN13",
+        "EISSN",
+        "Handle",
+        "IGSN",
+        "ISBN",
+        "ISSN",
+        "ISTC",
+        "LISSN",
+        "LSID",
+        "PMID",
+        "PURL",
+        "RAiD",
+        "RRID",
+        "SWHID",
+        "UPC",
+        "URL",
+        "URN",
+        "w3id"
+      ]
+    },
+    "relationType": {
+      "type": "string",
+      "enum": [
+        "IsCitedBy",
+        "Cites",
+        "IsSupplementTo",
+        "IsSupplementedBy",
+        "IsContinuedBy",
+        "Continues",
+        "IsNewVersionOf",
+        "IsPreviousVersionOf",
+        "IsPartOf",
+        "HasPart",
+        "IsPublishedIn",
+        "IsReferencedBy",
+        "References",
+        "IsDocumentedBy",
+        "Documents",
+        "IsCompiledBy",
+        "Compiles",
+        "IsVariantFormOf",
+        "IsOriginalFormOf",
+        "IsIdenticalTo",
+        "HasMetadata",
+        "IsMetadataFor",
+        "Reviews",
+        "IsReviewedBy",
+        "IsDerivedFrom",
+        "IsSourceOf",
+        "Describes",
+        "IsDescribedBy",
+        "HasVersion",
+        "IsVersionOf",
+        "Requires",
+        "IsRequiredBy",
+        "Obsoletes",
+        "IsObsoletedBy",
+        "Collects",
+        "IsCollectedBy",
+        "HasTranslation",
+        "IsTranslationOf",
+        "Other"
+      ]
+    },
+    "resourceType": {
+      "type": "string",
+      "enum": [
+        "Audiovisual",
+        "Award",
+        "Book",
+        "BookChapter",
+        "Collection",
+        "ComputationalNotebook",
+        "ConferencePaper",
+        "ConferenceProceeding",
+        "DataPaper",
+        "Dataset",
+        "Dissertation",
+        "Event",
+        "Image",
+        "Instrument",
+        "InteractiveResource",
+        "Journal",
+        "JournalArticle",
+        "Model",
+        "OutputManagementPlan",
+        "PeerReview",
+        "PhysicalObject",
+        "Poster",
+        "Preprint",
+        "Presentation",
+        "Project",
+        "Report",
+        "Service",
+        "Software",
+        "Sound",
+        "Standard",
+        "StudyRegistration",
+        "Text",
+        "Workflow",
+        "Other"
+      ]
+    },
+    "titleType": {
+      "type": "string",
+      "enum": [
+        "AlternativeTitle",
+        "Subtitle",
+        "TranslatedTitle",
+        "Other"
+      ]
+    },
+    "yearType": {
+      "type": "string",
+      "pattern": "^(?:(?:[0-9]{4}))$"
+    }
+  }
+}

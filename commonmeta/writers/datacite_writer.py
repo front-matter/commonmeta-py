@@ -15,6 +15,7 @@ from ..constants import (
     CM_TO_SO_TRANSLATIONS,
 )
 from ..doi_utils import doi_from_url
+from ..utils import normalize_ror
 
 if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
@@ -202,7 +203,7 @@ def write_datacite(metadata: Metadata, **kwargs) -> dict | None:
             "url": metadata.url,
             "creators": creators,
             "titles": titles,
-            "publisher": metadata.publisher,
+            "publisher": to_datacite_publisher(metadata.publisher),
             "publicationYear": publication_year,
             "container": to_datacite_container(metadata.container),
             "subjects": subjects,
@@ -221,6 +222,25 @@ def write_datacite(metadata: Metadata, **kwargs) -> dict | None:
                 for f in wrap(metadata.funding_references)
             ],
             "schemaVersion": "http://datacite.org/schema/kernel-4",
+        }
+    )
+
+
+def to_datacite_publisher(publisher: dict | None) -> dict | None:
+    """The DataCite publisher: its name, and its ROR id as publisherIdentifier.
+
+    Other commonmeta publisher fields (such as geo_locations) have no place in
+    DataCite's publisher.
+    """
+    if not isinstance(publisher, dict) or not publisher.get("name", None):
+        return None
+    ror = normalize_ror(publisher.get("id", None))
+    return compact(
+        {
+            "name": publisher["name"],
+            "publisherIdentifier": ror,
+            "publisherIdentifierScheme": "ROR" if ror else None,
+            "schemeUri": "https://ror.org/" if ror else None,
         }
     )
 

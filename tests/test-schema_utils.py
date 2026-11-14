@@ -59,3 +59,60 @@ def test_unknown_schema_rejected():
 def test_no_instance_rejected():
     with pytest.raises(ValueError, match="No instance provided"):
         json_schema_errors(None)
+
+
+def test_crossref_body_schema_names_the_field():
+    """The Crossref 5.5.0 deposit body schema takes xmltodict's '@' attributes
+    and '#text', and its error names the field rather than the anyOf around
+    every element."""
+    body = {
+        "journal": {
+            "journal_metadata": {"full_title": "eLife"},
+            "journal_article": {
+                "titles": {"title": {"#text": "A Title"}},
+                "publication_date": {"year": "2024"},
+                "archive_locations": [{"archive": {"@name": "CLOCKSS"}}],
+                "doi_data": {"doi": "10.5555/x", "resource": "https://example.org"},
+            },
+        }
+    }
+    errors = json_schema_errors(body, schema="crossref_xml")
+    assert errors == (
+        "[{'archive': {'@name': 'CLOCKSS'}}] is not of type 'object' "
+        "(at journal/journal_article/archive_locations)"
+    )
+    body["journal"]["journal_article"]["archive_locations"] = {
+        "archive": [{"@name": "CLOCKSS"}, {"@name": "Portico"}]
+    }
+    assert json_schema_errors(body, schema="crossref_xml") is None
+    # text is '#text' (DOM, xmltodict), not quick-xml's '$text'
+    body["journal"]["journal_article"]["titles"] = {"title": {"$text": "A Title"}}
+    assert json_schema_errors(body, schema="crossref_xml") is not None
+
+
+@pytest.mark.parametrize(
+    "publisher,valid",
+    [
+        ({"name": "Example Press"}, True),
+        (
+            {
+                "name": "Example Press",
+                "publisherIdentifier": "https://ror.org/04wxnsj81",
+                "publisherIdentifierScheme": "ROR",
+                "schemeUri": "https://ror.org/",
+            },
+            True,
+        ),
+        ({"name": "Example Press", "geo_locations": [{"place": "Cham"}]}, False),
+    ],
+)
+def test_datacite_4_7_publisher(publisher, valid):
+    record = {
+        "doi": "10.5555/x",
+        "creators": [{"name": "Example Institute"}],
+        "titles": [{"title": "A Title"}],
+        "publisher": publisher,
+        "publicationYear": "2024",
+        "types": {"resourceTypeGeneral": "Report"},
+    }
+    assert (json_schema_errors(record, schema="datacite") is None) is valid

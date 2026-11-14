@@ -2213,3 +2213,65 @@ def test_get_relations_emits_version_relations():
     ]
     assert "isVersionOf" in types
     assert "hasVersion" in types
+
+
+def test_archive_locations_are_one_element():
+    """Crossref takes one archive_locations element holding every archive."""
+    from commonmeta.writers.crossref_xml_writer import get_archive_locations
+
+    assert get_archive_locations({"archive_locations": ["CLOCKSS", "Portico"]}) == {
+        "archive": [{"@name": "CLOCKSS"}, {"@name": "Portico"}]
+    }
+    assert get_archive_locations({"archive_locations": []}) is None
+
+
+def test_deposit_body_is_checked_before_xml():
+    """A body the Crossref 5.5.0 schema refuses is not written as XML; the
+    error names the field."""
+    from commonmeta.writers.crossref_xml_writer import (
+        CrossrefError,
+        tostring,
+        write_crossref_xml,
+    )
+
+    string = path.join(path.dirname(__file__), "fixtures", "crossref.xml")
+    output = write_crossref_xml(Metadata(string, via="crossref_xml"))
+    assert "<journal_article" in tostring(output)
+    # the shape the writer had: one archive_locations per archive
+    output["archive_locations"] = [{"archive": {"@name": "CLOCKSS"}}]
+    with pytest.raises(
+        CrossrefError,
+        match="Crossref 5.5.0 schema: .* is not of type 'object' "
+        r"\(at journal/journal_article/archive_locations\)",
+    ):
+        tostring(output)
+
+
+def test_deposit_list_names_each_refused_record():
+    """A list is checked record by record: the error names every record the
+    Crossref 5.5.0 schema refuses, by its DOI (or position without one), and
+    none that it accepts."""
+    import copy
+
+    from commonmeta.writers.crossref_xml_writer import (
+        CrossrefError,
+        tostring,
+        write_crossref_xml,
+    )
+
+    string = path.join(path.dirname(__file__), "fixtures", "crossref.xml")
+    good = write_crossref_xml(Metadata(string, via="crossref_xml"))
+    assert "<journal_article" in tostring([good, good])
+
+    bad = copy.deepcopy(good)
+    bad["doi_data"]["doi"] = "10.5555/bad"
+    bad["archive_locations"] = [{"archive": {"@name": "CLOCKSS"}}]
+    no_doi = copy.deepcopy(bad)
+    del no_doi["doi_data"]
+    with pytest.raises(CrossrefError) as error:
+        tostring([good, bad, no_doi])
+    message = str(error.value)
+    assert message.startswith("Crossref 5.5.0 schema: 10.5555/bad: ")
+    assert "archive_locations" in message
+    assert "; record 2: " in message
+    assert "10.7554/elife.01567" not in message
