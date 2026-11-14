@@ -586,6 +586,30 @@ def normalize_url(
     return url
 
 
+# RFC 3986: a scheme, an optional authority, then the characters a URI may
+# have, a percent sign only as the start of an escape.
+_URI_PARTS = re.compile(r"\A([A-Za-z][A-Za-z0-9+.-]*):(?://([^/?#]*))?(.*)\Z", re.S)
+_URI_CHARS = re.compile(r"(?:[A-Za-z0-9\-._~!$&'()*+,;=:@/?#]|%[0-9A-Fa-f]{2})*")
+_IP_LITERAL = re.compile(r"\[(?:[0-9A-Fa-f:.]+|v[0-9A-Fa-f]+\.[^\]]+)\]")
+
+
+def is_valid_uri(url: str | None) -> bool:
+    """Whether `url` is a URI as RFC 3986 defines one, as commonmeta-rs checks
+    it (fluent_uri). Brackets are allowed only around an IP-literal host, so a
+    URL with a raw SICI DOI in its path - .../87[2832:tiopma]2.0.co;2 - is not.
+    """
+    if not isinstance(url, str):
+        return False
+    match = _URI_PARTS.match(url)
+    if match is None:
+        return False
+    authority = _IP_LITERAL.sub("", match.group(2) or "", count=1)
+    rest = authority + match.group(3)
+    if rest.count("#") > 1:
+        return False
+    return _URI_CHARS.fullmatch(rest) is not None
+
+
 def normalize_cc_url(url: str | None) -> str | None:
     """Normalize Creative Commons URL"""
     if url is None or not isinstance(url, str):

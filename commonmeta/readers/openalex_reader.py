@@ -16,13 +16,16 @@ from ..base_utils import (
 )
 from ..constants import (
     CR_TO_CM_TRANSLATIONS,
+    OA_SOURCE_TO_CM_VENUE_TYPES,
     OA_TO_CM_CONTAINER_TRANLATIONS,
     OA_TO_CM_TRANSLATIONS,
+    OA_VENUE_TYPES,
     Commonmeta,
 )
 from ..doi_utils import normalize_doi
 from ..utils import (
     dict_to_spdx,
+    is_valid_uri,
     normalize_orcid,
     normalize_ror,
     normalize_url,
@@ -83,18 +86,11 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
     meta = data
     read_options = kwargs or {}
 
-    _id = meta.get("doi", None) or meta.get("id", None)
+    # The DOI normalized, as commonmeta-rs reads it: OpenAlex gives a SICI-style
+    # DOI with its brackets raw.
+    _id = normalize_doi(meta.get("doi", None)) or meta.get("id", None)
 
-    # type_crossref was removed from top-level; the equivalent
-    # Crossref-style classification now lives at primary_location.raw_type.
-    _type = (
-        CR_TO_CM_TRANSLATIONS.get(meta.get("type_crossref"))
-        or CR_TO_CM_TRANSLATIONS.get(dig(meta, "primary_location.raw_type"))
-        or "Other"
-    )
-    additional_type = OA_TO_CM_TRANSLATIONS.get(meta.get("type", None))
-    if additional_type == _type:
-        additional_type = None
+    _type = get_type(meta)
 
     contributors = get_contributors(wrap(meta.get("authorships")))
     contributors = get_authors(contributors)
@@ -102,6 +98,10 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
     url = normalize_url(
         dig(meta, "primary_location.landing_page_url") or dig(meta, "id")
     )
+    # Only a valid URI, as commonmeta-rs keeps it: OpenAlex gives a landing
+    # page with a SICI-style DOI's brackets raw.
+    if not is_valid_uri(url):
+        url = None
     raw_title = meta.get("display_name") or meta.get("title")
     title = sanitize(raw_title) if raw_title else None
 
@@ -112,13 +112,10 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
 
     identifiers = build_identifiers(meta, _id)
 
-    license_ = dig(meta, "best_oa_location.license")
-    # "other-oa" is OpenAlex's sentinel for an unspecified open license; drop it.
-    if license_ == "other-oa":
-        license_ = None
-    if license_ is not None:
-        license_ = OA_LICENSES.get(license_, license_)
-        license_ = dict_to_spdx({"id": license_})
+    # Only the licenses OpenAlex names by a Creative Commons slug; "other-oa",
+    # "publisher-specific-oa" and the like name no license.
+    license_ = OA_LICENSES.get(dig(meta, "best_oa_location.license") or "")
+    license_ = dict_to_spdx({"id": license_}) if license_ else None
 
     container = get_container(meta)
 
@@ -128,22 +125,7 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
         if oa_id:
             references.append({"id": f"https://openalex.org/{oa_id}"})
 
-    funding_references = []
-    for grant in wrap(meta.get("grants")):
-        funder = grant.get("funder", "")
-        funder_name = grant.get("funder_display_name", "")
-        if not funder_name:
-            continue
-        funder_id = normalize_ror(funder) if funder else None
-        f = compact(
-            {
-                "funder_id": funder_id,
-                "funder_name": funder_name,
-                "award_number": grant.get("award_id") or None,
-            }
-        )
-        funding_references.append(f)
-    funding_references = unique(funding_references) or None
+    funding_references = unique(get_funding_references(meta)) or None
 
     description = get_abstract(meta)
     description = sanitize(description) if description else None
@@ -168,7 +150,6 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
         "id": _id,
         "type": _type,
         # recommended and optional properties
-        "additional_type": additional_type,
         "container": presence(container),
         "contributors": presence(contributors),
         "date_published": date_published,
@@ -281,27 +262,112 @@ def get_files(meta: dict) -> list | None:
     return [{"mime_type": "application/pdf", "url": pdf_url}]
 
 
-def get_container(meta: dict) -> dict | None:
-    """Get container from OpenAlex"""
-    container_type = dig(meta, "primary_location.source.type")
-    if container_type:
-        container_type = OA_TO_CM_CONTAINER_TRANLATIONS.get(
-            container_type, container_type
-        )
-    issn = dig(meta, "primary_location.source.issn_l")
-    container_title = dig(meta, "primary_location.source.display_name")
+def get_type(meta: dict) -> str:
+    """The commonmeta type: the Crossref type where the record has one, else
+    the OpenAlex type - a genre of the published literature by the source it
+    appeared in (a journal, a proceedings, a repository) - else Other.
 
-    return compact(
+    OpenAlex moved the Crossref type from type_crossref, which commonmeta-rs
+    reads, to primary_location.raw_type; both are read here, so a record
+    without either is typed as commonmeta-rs types it."""
+    oa_type = meta.get("type", None) or ""
+    source_type = dig(meta, "primary_location.source.type") or ""
+    by_venue = (
+        OA_SOURCE_TO_CM_VENUE_TYPES.get(source_type, "JournalArticle")
+        if oa_type in OA_VENUE_TYPES
+        else None
+    )
+    by_crossref = CR_TO_CM_TRANSLATIONS.get(
+        meta.get("type_crossref", None)
+    ) or CR_TO_CM_TRANSLATIONS.get(dig(meta, "primary_location.raw_type"))
+    return by_crossref or by_venue or OA_TO_CM_TRANSLATIONS.get(oa_type, "Other")
+
+
+def get_funding_references(meta: dict) -> list:
+    """Funding from awards and funders (each funder named by its ROR where
+    OpenAlex knows one): an award for each award, and the funders no award
+    names on their own. A record from before 2026 has grants instead."""
+    funders = [f for f in wrap(meta.get("funders")) if isinstance(f, dict)]
+    awards = [a for a in wrap(meta.get("awards")) if isinstance(a, dict)]
+    ror_of = {f.get("id"): f["ror"] for f in funders if f.get("ror")}
+
+    def funder_id(_id: str | None) -> str | None:
+        if _id in ror_of:
+            return normalize_ror(ror_of[_id])
+        return _id or None
+
+    references = [
+        compact(
+            {
+                "funder_id": funder_id(a.get("funder_id")),
+                "funder_name": a["funder_display_name"],
+                "award_number": a.get("funder_award_id") or None,
+                "award_title": a.get("display_name") or None,
+            }
+        )
+        for a in awards
+        if a.get("funder_display_name")
+    ]
+    award_funders = {a.get("funder_id") for a in awards}
+    for f in funders:
+        if not f.get("display_name") or f.get("id") in award_funders:
+            continue
+        references.append(
+            compact(
+                {"funder_id": funder_id(f.get("id")), "funder_name": f["display_name"]}
+            )
+        )
+    if references:
+        return references
+    return [
+        compact(
+            {
+                "funder_id": normalize_ror(g.get("funder"))
+                if g.get("funder")
+                else None,
+                "funder_name": g["funder_display_name"],
+                "award_number": g.get("award_id") or None,
+            }
+        )
+        for g in wrap(meta.get("grants"))
+        if isinstance(g, dict) and g.get("funder_display_name")
+    ]
+
+
+def get_container(meta: dict) -> dict | None:
+    """Get container from OpenAlex: the source the work appeared in, with its
+    ISSN-L, else its OpenAlex id, as identifier."""
+    source = dig(meta, "primary_location.source") or {}
+    container_title = source.get("display_name")
+    biblio = compact(
         {
-            "type": container_type,
-            "identifiers": (
-                [{"identifier": issn, "identifier_type": "ISSN"}] if issn else None
-            ),
-            "title": container_title,
             "volume": dig(meta, "biblio.volume"),
             "issue": dig(meta, "biblio.issue"),
             "first_page": dig(meta, "biblio.first_page"),
             "last_page": dig(meta, "biblio.last_page"),
+        }
+    )
+    # Without a source, commonmeta-rs has no container; its volume and pages
+    # are kept here.
+    if not container_title:
+        return biblio or None
+    container_type = OA_TO_CM_CONTAINER_TRANLATIONS.get(
+        source.get("type") or "", "Repository"
+    )
+    issn = source.get("issn_l")
+    if issn:
+        identifiers = [{"identifier": issn, "identifier_type": "ISSN"}]
+    elif source.get("id"):
+        identifiers = [{"identifier": source["id"], "identifier_type": "URL"}]
+    else:
+        identifiers = None
+
+    return compact(
+        {
+            "type": container_type,
+            "identifiers": identifiers,
+            "title": container_title,
+            **biblio,
         }
     )
 

@@ -558,27 +558,52 @@ CM_TO_SO_TRANSLATIONS = {
 }
 
 # source: https://api.openalex.org/works?group_by=type
+# OpenAlex work type → commonmeta work type, as commonmeta-rs reads it. A type
+# missing here is Other.
+#
+# Five of OpenAlex's types name a genre rather than a kind of record - an
+# article, a letter, a review, a book review, an editorial - and each is
+# published somewhere: the same genre is a journal article in a journal, a paper
+# in a proceedings and a preprint in a repository. The reader asks where the
+# work appeared first (OA_VENUE_TYPES); what they map to here is what they are
+# when it cannot, the journal article most of them are.
 OA_TO_CM_TRANSLATIONS = {
-    "article": "Preprint",
+    "article": "JournalArticle",
+    "letter": "JournalArticle",
+    "review": "JournalArticle",
+    "editorial": "JournalArticle",
+    "book-review": "JournalArticle",
+    "data-paper": "JournalArticle",
+    "software-paper": "JournalArticle",
+    "conference-paper": "ProceedingsArticle",
+    "conference-abstract": "ProceedingsArticle",
+    "preprint": "Preprint",
     "book": "Book",
     "book-chapter": "BookChapter",
     "dataset": "Dataset",
     "dissertation": "Dissertation",
-    "editorial": "Document",
+    "reference-entry": "Entry",
+    "retraction": "Retraction",
     "erratum": "Erratum",
     "grant": "Grant",
-    "letter": "Preprint",
     "libguides": "InteractiveResource",
-    "other": "Other",
     "paratext": "Component",
-    "peer-review": "PeerReview",
-    "preprint": "Preprint",
-    "reference-entry": "Other",
-    "report": "Report",
-    "retraction": "Retraction",
-    "review": "Preprint",
-    "standard": "Standard",
     "supplementary-materials": "Component",
+    "peer-review": "PeerReview",
+    "report": "Report",
+    "software": "Software",
+    "standard": "Standard",
+    "study-registration": "StudyRegistration",
+}
+
+# The OpenAlex types that name a genre of the published literature rather than
+# a kind of record: where the work appeared says what it is.
+OA_VENUE_TYPES = ("article", "letter", "review", "editorial", "book-review")
+
+# The work type of a venue genre, by the type of the source it appeared in.
+OA_SOURCE_TO_CM_VENUE_TYPES = {
+    "repository": "Preprint",
+    "conference": "ProceedingsArticle",
 }
 
 SO_TO_DC_RELATION_TYPES = {

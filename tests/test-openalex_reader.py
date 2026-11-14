@@ -23,7 +23,7 @@ def test_doi_with_data_citation():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
-    assert subject.additional_type == "Preprint"
+    assert subject.additional_type is None
     assert subject.url == "https://doi.org/10.7554/elife.01567"
     assert (
         subject.title
@@ -77,7 +77,17 @@ def test_doi_with_data_citation():
     #     "lastPage": "297",
     # }
     assert subject.relations is None
-    assert subject.funding_references is None
+    assert subject.funding_references == [
+        {
+            "funder_id": "https://ror.org/00yjd3n13",
+            "funder_name": "Schweizerischer Nationalfonds zur Förderung der Wissenschaftlichen Forschung",
+        },
+        {"funder_id": "https://ror.org/04wfr2810", "funder_name": "EMBO"},
+        {
+            "funder_id": "https://ror.org/019whta54",
+            "funder_name": "Université de Lausanne",
+        },
+    ]
     assert subject.container == {
         "identifiers": [{"identifier": "2050-084X", "identifier_type": "ISSN"}],
         "title": "eLife",
@@ -164,7 +174,25 @@ def test_journal_article():
     #     "firstPage": "929",
     #     "lastPage": "45",
     # }
-    assert subject.funding_references is None
+    assert subject.funding_references == [
+        {
+            "award_number": "S9302-B05",
+            "funder_id": "https://ror.org/013tf3c58",
+            "funder_name": "Austrian Science Fund",
+        },
+        {
+            "funder_id": "https://ror.org/01070mq45",
+            "funder_name": "Wayne State University",
+        },
+        {
+            "funder_id": "https://ror.org/03r8z3t63",
+            "funder_name": "University of New South Wales",
+        },
+        {
+            "funder_id": "https://ror.org/01hhn8329",
+            "funder_name": "Max-Planck-Gesellschaft",
+        },
+    ]
     assert subject.container == {
         "identifiers": [{"identifier": "1932-6203", "identifier_type": "ISSN"}],
         "title": "PLoS ONE",
@@ -256,7 +284,17 @@ def test_journal_article_with_funding():
     #     "publicationYear": 2018,
     #     "volume": "9",
     # }
-    assert subject.funding_references is None
+    assert subject.funding_references == [
+        {
+            "award_number": "CA17111",
+            "funder_id": "https://ror.org/01bstzn19",
+            "funder_name": "European Cooperation in Science and Technology",
+        },
+        {
+            "funder_id": "https://ror.org/02d290r06",
+            "funder_name": "Forskningsrådet om Hälsa, Arbetsliv och Välfärd",
+        },
+    ]
     assert subject.container == {
         "identifiers": [{"identifier": "1664-462X", "identifier_type": "ISSN"}],
         "title": "Frontiers in Plant Science",
@@ -370,7 +408,12 @@ def test_journal_article_with_rdf_for_container():
     }
     assert len(subject.references) == 70
     assert subject.references[-1] == {"id": "https://openalex.org/W7046245459"}
-    assert subject.funding_references is None
+    assert subject.funding_references == [
+        {
+            "funder_id": "https://ror.org/034900433",
+            "funder_name": "Ministerio de Ciencia e Innovación",
+        },
+    ]
     assert subject.container == {
         "identifiers": [{"identifier": "0278-0372", "identifier_type": "ISSN"}],
         "title": "Journal of Crustacean Biology",
@@ -504,6 +547,9 @@ def test_posted_content():
     assert subject.relations is None
     assert subject.funding_references is None
     assert subject.container == {
+        "identifiers": [
+            {"identifier": "https://openalex.org/S4306402567", "identifier_type": "URL"}
+        ],
         "type": "Repository",
         "title": "bioRxiv (Cold Spring Harbor Laboratory)",
     }
@@ -687,6 +733,9 @@ def test_dissertation():
     assert subject.references[0] == {"id": "https://openalex.org/W18156719"}
     assert subject.funding_references is None
     assert subject.container == {
+        "identifiers": [
+            {"identifier": "https://openalex.org/S7407053192", "identifier_type": "URL"}
+        ],
         "title": "The University of Queensland",
         "type": "Repository",
     }
@@ -714,13 +763,13 @@ def test_doi_with_sici():
     subject = Metadata(string, via="openalex")
     assert subject.is_valid
     assert (
-        subject.id == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
+        subject.id
+        == "https://doi.org/10.1890/0012-9658(2006)87%5B2832:tiopma%5D2.0.co;2"
     )
     assert subject.type == "JournalArticle"
-    assert subject.additional_type == "Preprint"
-    assert (
-        subject.url == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
-    )
+    assert subject.additional_type is None
+    # the landing page has the DOI's brackets raw, which no URL may have
+    assert subject.url is None
     assert (
         subject.title
         == "THE IMPACT OF PARASITE MANIPULATION AND PREDATOR FORAGING BEHAVIOR ON PREDATOR–PREY COMMUNITIES"
@@ -747,7 +796,9 @@ def test_doi_with_sici():
     assert subject.publisher == {"name": "Wiley"}
     assert len(subject.references) == 37
     assert subject.references[-1] == {"id": "https://openalex.org/W6940713498"}
-    assert subject.funding_references is None
+    assert subject.funding_references == [
+        {"funder_id": "https://ror.org/012mzw131", "funder_name": "Leverhulme Trust"},
+    ]
     assert subject.container == {
         "first_page": "2832",
         "identifiers": [{"identifier": "0012-9658", "identifier_type": "ISSN"}],
@@ -782,7 +833,7 @@ def test_doi_with_orcid():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
-    assert subject.additional_type == "Preprint"
+    assert subject.additional_type is None
     assert subject.url == "https://doi.org/10.1155/2012/291294"
     assert (
         subject.title
@@ -819,7 +870,28 @@ def test_doi_with_orcid():
     assert subject.publisher == {"name": "Hindawi Publishing Corporation"}
     assert len(subject.references) == 22
     assert subject.references[-1] == {"id": "https://openalex.org/W2624159414"}
-    assert subject.funding_references is None
+    assert subject.funding_references == [
+        {
+            "funder_id": "https://ror.org/05rsv9s98",
+            "funder_name": "U.S. Department of Veterans Affairs",
+        },
+        {
+            "funder_id": "https://ror.org/05rsv9s98",
+            "funder_name": "Office of Research and Development",
+        },
+        {
+            "funder_id": "https://ror.org/01an3r305",
+            "funder_name": "University of Pittsburgh",
+        },
+        {
+            "funder_id": "https://openalex.org/F4320316741",
+            "funder_name": "War Related Illness and Injury Study Center",
+        },
+        {
+            "funder_id": "https://ror.org/00f54p054",
+            "funder_name": "School of Medicine, Stanford University",
+        },
+    ]
     assert subject.container == {
         "identifiers": [{"identifier": "2090-1836", "identifier_type": "ISSN"}],
         "title": "Pulmonary Medicine",
@@ -858,7 +930,7 @@ def test_date_in_future():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1016/j.ejphar.2015.03.018"
     assert subject.type == "JournalArticle"
-    assert subject.additional_type == "Preprint"
+    assert subject.additional_type is None
     assert subject.url == "https://doi.org/10.1016/j.ejphar.2015.03.018"
     assert (
         subject.title
@@ -899,7 +971,12 @@ def test_date_in_future():
     #     "lastPage": "40",
     # }
     assert subject.relations is None
-    assert subject.funding_references is None
+    assert len(subject.funding_references) == 15
+    assert subject.funding_references[0] == {
+        "award_number": "T32 OD011089",
+        "funder_id": "https://ror.org/01cwqze88",
+        "funder_name": "National Institutes of Health",
+    }
     assert subject.container == {
         "identifiers": [{"identifier": "0014-2999", "identifier_type": "ISSN"}],
         "title": "European Journal of Pharmacology",
@@ -927,7 +1004,7 @@ def test_vor_with_url():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1038/hdy.2013.26"
     assert subject.type == "JournalArticle"
-    assert subject.additional_type == "Preprint"
+    assert subject.additional_type is None
     assert subject.url == "https://doi.org/10.1038/hdy.2013.26"
     assert (
         subject.title
@@ -955,7 +1032,22 @@ def test_vor_with_url():
     assert subject.publisher == {"name": "Springer Nature"}
     assert len(subject.references) == 39
     assert subject.references[-1] == {"id": "https://openalex.org/W4252286580"}
-    assert subject.funding_references is None
+    assert subject.funding_references == [
+        {
+            "award_number": "1R03DE022403-01",
+            "funder_id": "https://ror.org/004a2wv92",
+            "funder_name": "National Institute of Dental and Craniofacial Research",
+        },
+        {
+            "award_number": "R03 DE022403",
+            "funder_id": "https://ror.org/004a2wv92",
+            "funder_name": "National Institute of Dental and Craniofacial Research",
+        },
+        {
+            "funder_id": "https://ror.org/01cwqze88",
+            "funder_name": "National Institutes of Health",
+        },
+    ]
     assert subject.container == {
         "identifiers": [{"identifier": "0018-067X", "identifier_type": "ISSN"}],
         "title": "Heredity",
@@ -1053,7 +1145,13 @@ def test_component():
     assert subject.publisher == {"name": "Figshare (United Kingdom)"}
     assert subject.references is None
     assert subject.funding_references is None
-    assert subject.container == {"type": "Repository", "title": "Figshare"}
+    assert subject.container == {
+        "identifiers": [
+            {"identifier": "https://openalex.org/S4377196282", "identifier_type": "URL"}
+        ],
+        "type": "Repository",
+        "title": "Figshare",
+    }
     assert subject.subjects is None
     assert subject.language == "en"
     assert (
@@ -1096,8 +1194,16 @@ def test_dataset_usda():
     assert subject.publisher is None
     assert len(subject.references) == 5
     assert subject.references[-1] == {"id": "https://openalex.org/W6948539076"}
-    assert subject.funding_references is None
+    assert subject.funding_references == [
+        {
+            "funder_id": "https://ror.org/03zmjc935",
+            "funder_name": "U.S. Forest Service",
+        },
+    ]
     assert subject.container == {
+        "identifiers": [
+            {"identifier": "https://openalex.org/S4363604571", "identifier_type": "URL"}
+        ],
         "title": "Forest Service Research Data Archive",
         "type": "Repository",
     }
@@ -1313,7 +1419,7 @@ def test_missing_contributor():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.3390/publications6020015"
     assert subject.type == "JournalArticle"
-    assert subject.additional_type == "Preprint"
+    assert subject.additional_type is None
     assert subject.url == "https://doi.org/10.3390/publications6020015"
     assert (
         subject.title
@@ -1346,7 +1452,13 @@ def test_missing_contributor():
     }
     assert len(subject.references) == 12
     assert subject.references[-1] == {"id": "https://openalex.org/W6785452197"}
-    assert subject.funding_references is None
+    assert subject.funding_references == [
+        {"funder_id": "https://ror.org/01ggx4157", "funder_name": "CERN"},
+        {
+            "funder_id": "https://openalex.org/F4320321382",
+            "funder_name": "Sponsoring Consortium for Open Access Publishing in Particle Physics",
+        },
+    ]
     assert subject.container == {
         "type": "Journal",
         "title": "Publications",
@@ -1477,6 +1589,9 @@ def test_book():
     assert subject.references[0] == {"id": "https://openalex.org/W15275446"}
     assert subject.funding_references is None
     assert subject.container == {
+        "identifiers": [
+            {"identifier": "https://openalex.org/S4306462995", "identifier_type": "URL"}
+        ],
         "title": "Cambridge University Press eBooks",
         "type": "Book",
     }
@@ -1555,7 +1670,12 @@ def test_proceedings_article():
     #     "firstPage": "1350",
     #     "lastPage": "1385",
     # }
-    assert subject.funding_references is None
+    assert len(subject.funding_references) == 38
+    assert subject.funding_references[0] == {
+        "award_number": "AC02-05CH11231",
+        "funder_id": "https://ror.org/03sk1we31",
+        "funder_name": "National Nuclear Security Administration",
+    }
     assert subject.container == {
         "first_page": "1386",
         "last_page": "1399",
@@ -1700,3 +1820,24 @@ def test_build_identifiers():
         "identifier_type": "PMID",
     }
     assert len(identifiers) == 3
+
+
+def test_landing_page_that_is_no_valid_url():
+    """A landing page with a SICI-style DOI's brackets raw is no URL, as
+    commonmeta-rs reads it; the DOI is the id."""
+    subject = Metadata(
+        {
+            "id": "https://openalex.org/W2030857676",
+            "doi": "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2",
+            "type": "article",
+            "primary_location": {
+                "landing_page_url": "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
+            },
+        },
+        via="openalex",
+    )
+    assert (
+        subject.id
+        == "https://doi.org/10.1890/0012-9658(2006)87%5B2832:tiopma%5D2.0.co;2"
+    )
+    assert subject.url is None

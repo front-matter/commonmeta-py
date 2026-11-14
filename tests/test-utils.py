@@ -1194,3 +1194,27 @@ def test_fetch_feature_image():
     assert image.filename == "feature.jpg"
     assert image.size == (1200, 630)
     assert fetch_feature_image(None) is None
+
+
+@pytest.mark.parametrize(
+    "url,valid",
+    [
+        ("https://doi.org/10.5555/abc", True),
+        ("https://doi.org/10.1890/0012-9658(2006)87%5B2832:tiopma%5D2.0.co;2", True),
+        ("https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2", False),
+        ("https://[2001:db8::1]/x", True),
+        ("https://example.org/a?b=c#d", True),
+        ("https://example.org/a#b#c", False),
+        ("https://example.org/a b", False),
+        ("https://example.org/50%", False),
+        ("https://example.org/é", False),
+        ("mailto:a@b.org", True),
+        ("example.org", False),
+        (None, False),
+    ],
+)
+def test_is_valid_uri(url, valid):
+    """A URI as RFC 3986 defines one, as commonmeta-rs checks it."""
+    from commonmeta.utils import is_valid_uri
+
+    assert is_valid_uri(url) is valid
