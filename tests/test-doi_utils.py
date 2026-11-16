@@ -62,10 +62,40 @@ def test_doi_from_url():
     assert "10.1371/journal.pone.0072187" == doi_from_url(
         "https://www.plosone.org/article/fetchobject.action?uri=info%3adoi%2f10.1371%2fjournal.pone.0072187&representation=pdf"
     )
+    # a short DOI gives the DOI it resolves to, as doi_from_url finds it in
+    # the resolved URL
     assert (
-        "https://doi.org/10.1002/1521-3773(20000804)39:15%3C2756::AID-ANIE2756%3E3.0.CO;2-I"
+        "10.1002/1521-3773(20000804)39:15%3c2756::aid-anie2756%3e3.0.co;2-i"
         == doi_from_url("https://doi.org/d8g2nw")
     )
+    assert doi_from_url("https://doi.org/d8g2nw") == doi_from_url(
+        "https://doi.org/10/d8g2nw"
+    )
+
+
+@pytest.mark.parametrize(
+    "url,doi",
+    [
+        pytest.param(
+            "https://doi.org/https://doi.org/10.31223/X58H9G",
+            "10.31223/x58h9g",
+            id="doi url inside a doi url",
+        ),
+        pytest.param(
+            "https://doi.org/https://doi.org/10.48550/arXiv.1706.03762",
+            "10.48550/arxiv.1706.03762",
+            id="arxiv doi inside a doi url",
+        ),
+        pytest.param("https://doi.org/abc-def", None, id="not a short doi"),
+    ],
+)
+def test_doi_from_url_is_not_fooled_by_paths_that_look_like_short_dois(url, doi):
+    """A doi.org path that is not a short DOI isn't resolved as one.
+
+    A blog post linking https://doi.org/https://doi.org/10.31223/X58H9G gave
+    the whole URL back as the DOI, and the Crossref deposit failed its schema.
+    """
+    assert doi_from_url(url) == doi
 
 
 def test_short_doi_as_doi():

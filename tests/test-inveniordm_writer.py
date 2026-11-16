@@ -28,6 +28,7 @@ from commonmeta.writers.inveniordm_writer import (
     keep_citations,
     keep_custom_fields,
     record_matches,
+    to_inveniordm_reference,
     upload_pdf,
     upsert_record,
     write_inveniordm,
@@ -3382,3 +3383,17 @@ def test_a_draft_that_was_not_created_is_not_published():
     mock_publish.assert_not_called()
     assert result["status"] == "failed_create_draft"
     assert not result.get("id")
+
+
+def test_a_doi_linked_through_the_resolver_twice_is_stored_as_a_doi():
+    """https://doi.org/https://doi.org/10.31223/X58H9G, from a Substack post,
+    was stored as a url and broke the record's Crossref deposit."""
+    reference = to_inveniordm_reference(
+        {
+            "id": "https://doi.org/https://doi.org/10.31223/X58H9G",
+            "reference": "Blouin, S. (2024). Global industrial disruption.",
+        }
+    )
+
+    assert reference["identifier"] == "10.31223/x58h9g"
+    assert reference["scheme"] == "doi"

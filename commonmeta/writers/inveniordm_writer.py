@@ -31,7 +31,12 @@ from ..constants import (
     UPDATE_RELATION_TYPES,
 )
 from ..date_utils import get_iso8601_date
-from ..doi_utils import doi_from_url, is_rogue_scholar_doi, normalize_doi
+from ..doi_utils import (
+    doi_from_doi_url,
+    doi_from_url,
+    is_rogue_scholar_doi,
+    normalize_doi,
+)
 from ..inveniordm_service import active_backend, system_process
 from ..io_utils import pdf_filename, write_pdf_rendition
 from ..utils import (
@@ -694,6 +699,10 @@ def to_inveniordm_reference(reference: dict) -> dict | None:
     """Convert reference to inveniordm reference"""
     if normalize_doi(reference.get("id", None)):
         identifier = doi_from_url(reference.get("id", None))
+        scheme = "doi"
+    elif doi := doi_from_doi_url(reference.get("id", None)):
+        # a DOI linked with the resolver twice, as blog posts sometimes do
+        identifier = doi
         scheme = "doi"
     elif normalize_url(reference.get("id", None)):
         identifier = reference.get("id", None)

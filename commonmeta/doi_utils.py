@@ -63,13 +63,16 @@ def doi_from_url(url: str | None) -> str | None:
     if f.host is not None and f.scheme not in ["http", "https", "ftp"]:
         return None
 
-    # url is for a short DOI
-    if (
-        f.host == "doi.org"
-        and not f.path.segments[0].startswith("10.")
-        and len(f.path.segments[0]) > 2
-    ):
-        return short_doi_as_doi(url)
+    # url is for a short DOI, from the DOI Foundation's now retired shortener:
+    # https://doi.org/abcd or https://doi.org/10/abcd. Only a path of that
+    # shape -- a DOI URL whose path is another URL,
+    # https://doi.org/https://doi.org/10.31223/X58H9G, is not one and falls
+    # through to the rule below, which finds the DOI in it.
+    if f.host == "doi.org" and is_short_doi_path(f.path.segments):
+        resolved = short_doi_as_doi(url)
+        if resolved is None or resolved.lower() == url.lower():
+            return None
+        return doi_from_url(resolved)
 
     # special rules for specific hosts
     if f.host == "onlinelibrary.wiley.com":
@@ -93,6 +96,30 @@ def doi_from_url(url: str | None) -> str | None:
     if match is None:
         return None
     return match.group(0).lower()
+
+
+def doi_from_doi_url(url: str | None) -> str | None:
+    """Return the DOI from a doi.org URL that normalize_doi doesn't accept,
+    because its path is a DOI URL itself:
+    https://doi.org/https://doi.org/10.31223/X58H9G. Short DOIs are not
+    resolved here, and anything else gives None."""
+    if not isinstance(url, str):
+        return None
+    f = furl(url)
+    if f.host not in ("doi.org", "dx.doi.org") or is_short_doi_path(f.path.segments):
+        return None
+    doi = doi_from_url(url)
+    return doi if validate_doi(doi) else None
+
+
+SHORT_DOI_CODE = re.compile(r"\A[a-z0-9]{3,}\Z", re.IGNORECASE)
+
+
+def is_short_doi_path(segments: list[str]) -> bool:
+    """Whether a doi.org path is a short DOI: abcd, or 10/abcd."""
+    if len(segments) == 2 and segments[0] == "10":
+        segments = segments[1:]
+    return len(segments) == 1 and bool(SHORT_DOI_CODE.match(segments[0]))
 
 
 def short_doi_as_doi(doi: str | None) -> str | None:
