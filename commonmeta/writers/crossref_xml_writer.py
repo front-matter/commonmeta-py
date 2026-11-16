@@ -5,6 +5,7 @@ from __future__ import annotations
 import html
 import io
 import logging
+import re
 from datetime import datetime
 from time import time
 from typing import TYPE_CHECKING, Any, Dict
@@ -1174,6 +1175,10 @@ def flatten_markup(text: str | None) -> str | None:
     return html.unescape(nh3.clean(text, tags=set(), attributes=None, link_rel=None))
 
 
+# The pattern the Crossref 5.5.0 schema has for <citation><doi>.
+CROSSREF_CITATION_DOI = re.compile(r"\A10\.[0-9]{4,9}/.{1,200}\Z", re.DOTALL)
+
+
 def get_references(obj) -> Dict | None:
     """get references"""
     if len(wrap(dig(obj, "references"))) == 0:
@@ -1181,8 +1186,12 @@ def get_references(obj) -> Dict | None:
 
     citations = []
     for i, ref in enumerate(dig(obj, "references", [])):
-        # Validate DOI before using it
+        # Validate DOI before using it. One the Crossref schema would reject is
+        # dropped, and the reference kept with its id in unstructured_citation:
+        # a single bad reference must not fail the deposit of the whole work.
         doi = doi_from_url(ref.get("id", None))
+        if doi is not None and not CROSSREF_CITATION_DOI.match(doi):
+            doi = None
         # the commonmeta `reference` field is the formatted reference string
         # (Crossref's unstructured_citation); fall back to the legacy field.
         unstructured = ref.get("reference", None) or ref.get("unstructured", None)

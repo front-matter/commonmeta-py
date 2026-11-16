@@ -9,6 +9,7 @@ from commonmeta import Metadata, MetadataList
 from commonmeta.base_utils import dig, parse_xml
 from commonmeta.writers.crossref_xml_writer import (
     CrossrefError,
+    get_references,
     normalize_isbn_crossref,
     write_crossref_xml_list,
 )
@@ -2275,3 +2276,35 @@ def test_deposit_list_names_each_refused_record():
     assert "archive_locations" in message
     assert "; record 2: " in message
     assert "10.7554/elife.01567" not in message
+
+
+@pytest.mark.parametrize(
+    "ref_id,doi",
+    [
+        pytest.param(
+            "https://doi.org/https://doi.org/10.31223/X58H9G",
+            "10.31223/x58h9g",
+            id="doi url inside a doi url",
+        ),
+        pytest.param(
+            "https://doi.org/10.1234/" + "x" * 201,
+            None,
+            id="suffix longer than the schema allows",
+        ),
+    ],
+)
+def test_reference_doi_matches_the_crossref_schema(ref_id, doi):
+    """A citation's doi is one the Crossref schema accepts, or none at all.
+
+    Rogue Scholar record 10.59350/bq7me-wr512 failed to convert with
+    'https://doi.org/https://doi.org/10.31223/x58h9g' does not match
+    '^(?:(?:10\\.[0-9]{4,9}/.{1,200}))$': one bad reference must not fail
+    the deposit. Without a doi the id is kept in unstructured_citation.
+    """
+    obj = {"references": [{"id": ref_id, "reference": "Blouin, S. (2024)."}]}
+
+    citation = get_references(obj)["citation"][0]
+
+    assert citation.get("doi") == doi
+    if doi is None:
+        assert citation["unstructured_citation"] == f"Blouin, S. (2024). {ref_id}"
