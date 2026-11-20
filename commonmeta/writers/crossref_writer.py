@@ -145,7 +145,7 @@ def _build_funder(funding_references: list[dict] | None) -> list[dict]:
                 "award": [],
             }
             order.append(key)
-        award = f.get("award_number", "")
+        award = f.get("grant_number", "")
         if award:
             seen[key]["award"].append(award)
 

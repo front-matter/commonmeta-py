@@ -816,7 +816,7 @@ def crossref_funding(programs: list) -> list:
             references.append(base)
         else:
             for award in award_numbers:
-                references.append(compact({**base, "award_number": award}))
+                references.append(compact({**base, "grant_number": award}))
     return unique(references)
 
 

@@ -1047,8 +1047,8 @@ def test_rogue_scholar_with_relations_and_funding():
         {
             "funder_id": "https://ror.org/00k4n6c32",
             "funder_name": "European Commission",
-            "award_id": "https://doi.org/10.3030/777523",
-            "award_number": "777523",
+            "grant_id": "https://doi.org/10.3030/777523",
+            "grant_number": "777523",
         }
     ]
     assert subject.version == "v1"
@@ -1114,8 +1114,8 @@ def test_inveniordm_with_relations_and_funding():
         {
             "funder_id": "https://ror.org/00k4n6c32",
             "funder_name": "European Commission",
-            "award_id": "https://doi.org/10.3030/777523",
-            "award_number": "777523",
+            "grant_id": "https://doi.org/10.3030/777523",
+            "grant_number": "777523",
         }
     ]
     assert subject.state == "findable"
@@ -1308,12 +1308,12 @@ def test_proceedings_article_with_multiple_funding_references():
     assert subject.funding_references[0] == {
         "funder_id": "https://ror.org/021nxhr62",
         "funder_name": "NSF (National Science Foundation)",
-        "award_number": "CCF 805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680",
+        "grant_number": "CCF 805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680",
     }
     assert subject.funding_references[1] == {
         "funder_id": "https://ror.org/01bj3aw27",
         "funder_name": "DOE U.S. Department of Energy",
-        "award_number": "DE-AC02-05CH11231,17-SC-20-SC",
+        "grant_number": "DE-AC02-05CH11231,17-SC-20-SC",
     }
     assert subject.state == "findable"
 

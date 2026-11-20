@@ -210,7 +210,7 @@ def test_journal_article_with_funding():
     assert subject.funding_references == [
         {
             "funder_name": "COST (European Cooperation in Science and Technology)",
-            "award_number": "CA17111",
+            "grant_number": "CA17111",
         }
     ]
     assert subject.container == {
@@ -715,11 +715,11 @@ def test_date_in_future():
         {"id": "http://issn.org/resource/ISSN/0014-2999", "type": "IsPartOf"},
     ]
     assert subject.funding_references == [
-        {"funder_name": "NIH", "award_number": "R01 NS089482"},
-        {"funder_name": "NIH", "award_number": "R01 NS077869"},
-        {"funder_name": "NIH", "award_number": "P01 MH070306"},
-        {"funder_name": "NIH", "award_number": "P40 OD013117"},
-        {"funder_name": "NIH", "award_number": "T32 OD011089"},
+        {"funder_name": "NIH", "grant_number": "R01 NS089482"},
+        {"funder_name": "NIH", "grant_number": "R01 NS077869"},
+        {"funder_name": "NIH", "grant_number": "P01 MH070306"},
+        {"funder_name": "NIH", "grant_number": "P40 OD013117"},
+        {"funder_name": "NIH", "grant_number": "T32 OD011089"},
     ]
     assert subject.container == {
         "identifiers": [{"identifier": "0014-2999", "identifier_type": "ISSN"}],
@@ -1243,12 +1243,12 @@ def test_proceedings_article():
         {
             "funder_id": "https://ror.org/021nxhr62",
             "funder_name": "NSF (National Science Foundation)",
-            "award_number": "CCF 805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680",
+            "grant_number": "CCF 805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680",
         },
         {
             "funder_id": "https://ror.org/01bj3aw27",
             "funder_name": "DOE U.S. Department of Energy",
-            "award_number": "DE-AC02-05CH11231,17-SC-20-SC",
+            "grant_number": "DE-AC02-05CH11231,17-SC-20-SC",
         },
     ]
     assert subject.container == {

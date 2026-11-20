@@ -1249,7 +1249,7 @@ def get_funding_references(obj) -> dict | None:
 
     # Check if we need funding groups (multiple funders with award numbers)
     funders_with_awards = [
-        f for f in funding_refs if f.get("award_number", None) is not None
+        f for f in funding_refs if f.get("grant_number", None) is not None
     ]
     unique_funders = set(
         f.get("funder_id", None) or f.get("funder_name", None)
@@ -1275,7 +1275,7 @@ def get_funding_references(obj) -> dict | None:
             group_assertions.append(funder_assertion)
 
         # Handle award number
-        award_number = funding_reference.get("award_number", None)
+        award_number = funding_reference.get("grant_number", None)
         if award_number:
             award_assertion = {"@name": "award_number", "#text": award_number}
             group_assertions.append(award_assertion)

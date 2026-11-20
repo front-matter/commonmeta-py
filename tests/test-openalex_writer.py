@@ -67,8 +67,8 @@ WORK = {
         {
             "funder_id": "https://ror.org/00yjd3n13",
             "funder_name": "SNSF",
-            "award_number": "123",
-            "award_title": "A grant",
+            "grant_number": "123",
+            "grant_title": "A grant",
         }
     ],
     "subjects": [
@@ -144,8 +144,8 @@ def test_a_work_written_as_openalex_reads_back():
         {
             "funder_id": "https://ror.org/00yjd3n13",
             "funder_name": "SNSF",
-            "award_number": "123",
-            "award_title": "A grant",
+            "grant_number": "123",
+            "grant_title": "A grant",
         }
     ]
     assert back.title == WORK["title"]
@@ -270,4 +270,7 @@ def test_openalex_reader_matches_commonmeta_rs(path):
         "date_published",
         "description",
     ):
-        assert actual.get(key) == expected.get(key), key
+        # An empty value and an absent one are the same, as in the conformance
+        # tests: commonmeta-rs writes a work OpenAlex has no DOI for with an
+        # empty id, commonmeta-py without one.
+        assert (actual.get(key) or None) == (expected.get(key) or None), key

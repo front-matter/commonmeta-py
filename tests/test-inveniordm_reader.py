@@ -301,6 +301,7 @@ def test_dataset():
         and subject.date_updated == "2023-04-17T14:26:45Z"
     )
     assert subject.relations == [
+        {"id": "http://www.panacealab.org/covid19/", "type": "IsContinuedBy"},
         {"id": "https://arxiv.org/abs/2004.03688", "type": "IsSupplementTo"},
         {"id": "https://doi.org/10.5281/zenodo.3723939", "type": "IsVersionOf"},
     ]

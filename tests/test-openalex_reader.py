@@ -176,7 +176,7 @@ def test_journal_article():
     # }
     assert subject.funding_references == [
         {
-            "award_number": "S9302-B05",
+            "grant_number": "S9302-B05",
             "funder_id": "https://ror.org/013tf3c58",
             "funder_name": "Austrian Science Fund",
         },
@@ -286,7 +286,7 @@ def test_journal_article_with_funding():
     # }
     assert subject.funding_references == [
         {
-            "award_number": "CA17111",
+            "grant_number": "CA17111",
             "funder_id": "https://ror.org/01bstzn19",
             "funder_name": "European Cooperation in Science and Technology",
         },
@@ -973,7 +973,7 @@ def test_date_in_future():
     assert subject.relations is None
     assert len(subject.funding_references) == 15
     assert subject.funding_references[0] == {
-        "award_number": "T32 OD011089",
+        "grant_number": "T32 OD011089",
         "funder_id": "https://ror.org/01cwqze88",
         "funder_name": "National Institutes of Health",
     }
@@ -1034,12 +1034,12 @@ def test_vor_with_url():
     assert subject.references[-1] == {"id": "https://openalex.org/W4252286580"}
     assert subject.funding_references == [
         {
-            "award_number": "1R03DE022403-01",
+            "grant_number": "1R03DE022403-01",
             "funder_id": "https://ror.org/004a2wv92",
             "funder_name": "National Institute of Dental and Craniofacial Research",
         },
         {
-            "award_number": "R03 DE022403",
+            "grant_number": "R03 DE022403",
             "funder_id": "https://ror.org/004a2wv92",
             "funder_name": "National Institute of Dental and Craniofacial Research",
         },
@@ -1672,7 +1672,7 @@ def test_proceedings_article():
     # }
     assert len(subject.funding_references) == 38
     assert subject.funding_references[0] == {
-        "award_number": "AC02-05CH11231",
+        "grant_number": "AC02-05CH11231",
         "funder_id": "https://ror.org/03sk1we31",
         "funder_name": "National Nuclear Security Administration",
     }

@@ -466,7 +466,7 @@ def test_even_more_subject_scheme_for():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.4225/03/5a31ec65634ef"
-    assert subject.type == "Presentation"
+    assert subject.type == "Poster"
     assert subject.subjects == [
         {"subject": "130103 Higher Education", "scheme": "FOR"},
         {
@@ -533,9 +533,9 @@ def test_funding_schema_version_3():
         {
             "funder_id": "https://ror.org/00k4n6c32",
             "funder_name": "European Commission",
-            "award_id": "info:eu-repo/grantAgreement/EC/FP7/246686/",
-            "award_title": "Open Access Infrastructure for Research in Europe",
-            "award_number": "246686",
+            "grant_id": "info:eu-repo/grantAgreement/EC/FP7/246686/",
+            "grant_title": "Open Access Infrastructure for Research in Europe",
+            "grant_number": "246686",
         }
     ]
     assert subject.subjects == [
@@ -861,14 +861,14 @@ def test_geolocation_box():
         {
             "funder_id": "https://ror.org/05v01mk25",
             "funder_name": "Division of Earth Sciences",
-            "award_title": "Southern Sierra Critical Zone Observatory",
-            "award_number": "1331939",
+            "grant_title": "Southern Sierra Critical Zone Observatory",
+            "grant_number": "1331939",
         },
         {
             "funder_id": "https://ror.org/05v01mk25",
             "funder_name": "Division of Earth Sciences",
-            "award_title": "\n        CZO: Critical Zone Observatory--Snowline Processes in the Southern\n        Sierra Nevada\n      ",
-            "award_number": "0725097",
+            "grant_title": "\n        CZO: Critical Zone Observatory--Snowline Processes in the Southern\n        Sierra Nevada\n      ",
+            "grant_number": "0725097",
         },
     ]
     # assert subject.sizes == ["2592742591 bytes"]

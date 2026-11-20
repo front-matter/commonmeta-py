@@ -367,9 +367,9 @@ def to_datacite_funding_reference(funding: dict) -> dict:
             "funderName": funding.get("funder_name", None),
             "funderIdentifier": funder_id,
             "funderIdentifierType": "ROR" if funder_id else None,
-            "awardUri": funding.get("award_id", None),
-            "awardTitle": funding.get("award_title", None),
-            "awardNumber": funding.get("award_number", None),
+            "awardUri": funding.get("grant_id", None),
+            "awardTitle": funding.get("grant_title", None),
+            "awardNumber": funding.get("grant_number", None),
         }
     )
 

@@ -741,12 +741,12 @@ def to_inveniordm_funding(funding: dict) -> dict | None:
     """Convert a v1.0 flat funding reference (ROR-only funder_id) to
     inveniordm funding"""
     funder_identifier = validate_ror(funding.get("funder_id", None))
-    award_number = funding.get("award_number", None)
-    award_title = funding.get("award_title", None)
+    award_number = funding.get("grant_number", None)
+    award_title = funding.get("grant_title", None)
     if award_title:
         award_title = {"en": award_title}
-    if funding.get("award_id", None):
-        award_identifier = funding.get("award_id", None)
+    if funding.get("grant_id", None):
+        award_identifier = funding.get("grant_id", None)
         scheme = "doi" if normalize_doi(award_identifier) else "url"
         if scheme == "doi":
             award_identifier = doi_from_url(award_identifier)

@@ -267,13 +267,16 @@
               "funder_name": {
                 "type": "string"
               },
-              "award_id": {
+              "grant_id": {
+                "description": "The persistent identifier of the grant, e.g. a Crossref grant DOI or a DataCite Award DOI (DataCite awardURI).",
                 "$ref": "#/$defs/id"
               },
-              "award_title": {
+              "grant_title": {
+                "description": "The title of the grant (DataCite awardTitle).",
                 "type": "string"
               },
-              "award_number": {
+              "grant_number": {
+                "description": "The funder's own number for the grant (DataCite awardNumber).",
                 "type": "string"
               },
               "asserted_by": {
@@ -293,12 +296,12 @@
               },
               {
                 "required": [
-                  "award_number"
+                  "grant_number"
                 ]
               },
               {
                 "required": [
-                  "award_title"
+                  "grant_title"
                 ]
               }
             ]
@@ -357,7 +360,7 @@
           }
         },
         "relations": {
-          "description": "Other resolvable persistent unique IDs related to the resource.",
+          "description": "Other resolvable persistent unique IDs related to the resource. The relation types follow DataCite's, except that the works a resource cites (DataCite Cites, References) are references, the works citing it (IsCitedBy) are IsReferencedBy, and reviews use IsReviewOf and HasReview (DataCite Reviews, IsReviewedBy).",
           "type": "array",
           "items": {
             "type": "object",
@@ -397,6 +400,25 @@
                   "Withdraws",
                   "IsReinstatedBy",
                   "Reinstates",
+                  "IsCollectedBy",
+                  "Collects",
+                  "IsCompiledBy",
+                  "Compiles",
+                  "IsContinuedBy",
+                  "Continues",
+                  "IsDerivedFrom",
+                  "IsSourceOf",
+                  "IsDescribedBy",
+                  "Describes",
+                  "IsDocumentedBy",
+                  "Documents",
+                  "HasMetadata",
+                  "IsMetadataFor",
+                  "IsObsoletedBy",
+                  "Obsoletes",
+                  "IsPublishedIn",
+                  "IsRequiredBy",
+                  "Requires",
                   "Other"
                 ]
               },
@@ -1253,6 +1275,7 @@
         "Proceedings",
         "ProceedingsArticle",
         "ProceedingsSeries",
+        "Project",
         "Report",
         "ReportComponent",
         "ReportSeries",

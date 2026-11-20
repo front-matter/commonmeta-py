@@ -301,8 +301,8 @@ def get_funding_references(meta: dict) -> list:
             {
                 "funder_id": funder_id(a.get("funder_id")),
                 "funder_name": a["funder_display_name"],
-                "award_number": a.get("funder_award_id") or None,
-                "award_title": a.get("display_name") or None,
+                "grant_number": a.get("funder_award_id") or None,
+                "grant_title": a.get("display_name") or None,
             }
         )
         for a in awards
@@ -326,7 +326,7 @@ def get_funding_references(meta: dict) -> list:
                 if g.get("funder")
                 else None,
                 "funder_name": g["funder_display_name"],
-                "award_number": g.get("award_id") or None,
+                "grant_number": g.get("grant_id") or None,
             }
         )
         for g in wrap(meta.get("grants"))

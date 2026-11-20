@@ -349,29 +349,54 @@ DC_TO_CM_RELATION_TYPES = {
 }
 
 
+# The DataCite relation types read as relations. Cites and References are read
+# as references instead, and IsSupplementedBy too.
+DC_RELATION_TYPES = (
+    "IsCitedBy",
+    "IsNewVersionOf",
+    "IsPreviousVersionOf",
+    "IsVersionOf",
+    "HasVersion",
+    "IsPartOf",
+    "HasPart",
+    "IsVariantFormOf",
+    "IsOriginalFormOf",
+    "IsIdenticalTo",
+    "IsTranslationOf",
+    "HasTranslation",
+    "IsReviewedBy",
+    "Reviews",
+    "IsPreprintOf",
+    "HasPreprint",
+    "IsSupplementTo",
+    "IsCollectedBy",
+    "Collects",
+    "IsCompiledBy",
+    "Compiles",
+    "IsContinuedBy",
+    "Continues",
+    "IsDerivedFrom",
+    "IsSourceOf",
+    "IsDescribedBy",
+    "Describes",
+    "IsDocumentedBy",
+    "Documents",
+    "HasMetadata",
+    "IsMetadataFor",
+    "IsObsoletedBy",
+    "Obsoletes",
+    "IsPublishedIn",
+    "IsRequiredBy",
+    "Requires",
+)
+
+
 def get_relations(relations: list) -> list:
     """get_relations"""
 
     def is_relation(relation) -> bool:
         """relation"""
-        return relation.get("relationType", None) in [
-            "IsCitedBy",
-            "IsNewVersionOf",
-            "IsPreviousVersionOf",
-            "IsVersionOf",
-            "HasVersion",
-            "IsPartOf",
-            "HasPart",
-            "IsVariantFormOf",
-            "IsOriginalFormOf",
-            "IsIdenticalTo",
-            "IsTranslationOf",
-            "IsReviewedBy",
-            "Reviews",
-            "IsPreprintOf",
-            "HasPreprint",
-            "IsSupplementTo",
-        ]
+        return relation.get("relationType", None) in DC_RELATION_TYPES
 
     def map_relation(relation) -> dict | None:
         """map_relation"""
@@ -511,9 +536,9 @@ def get_funding_references(funding_references: list) -> list:
             {
                 "funder_id": funder_id,
                 "funder_name": funding.get("funderName", None),
-                "award_id": funding.get("awardUri", None),
-                "award_title": funding.get("awardTitle", None),
-                "award_number": funding.get("awardNumber", None),
+                "grant_id": funding.get("awardUri", None),
+                "grant_title": funding.get("awardTitle", None),
+                "grant_number": funding.get("awardNumber", None),
             }
         )
 

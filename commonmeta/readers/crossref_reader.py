@@ -534,7 +534,7 @@ def from_crossref_funding(funding_references: list) -> list:
         ):
             for award in wrap(funding["award"]):
                 fund_ref = f.copy()
-                fund_ref["award_number"] = award
+                fund_ref["grant_number"] = award
                 formatted_funding_references.append(fund_ref)
         elif f != {}:
             formatted_funding_references.append(f)

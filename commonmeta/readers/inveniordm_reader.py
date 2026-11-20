@@ -488,9 +488,9 @@ def get_funding_references(funding_references: list) -> list:
             {
                 "funder_id": funder_id,
                 "funder_name": dig(funding, "funder.name"),
-                "award_id": award_id,
-                "award_title": dig(funding, "award.title.en"),
-                "award_number": dig(funding, "award.number"),
+                "grant_id": award_id,
+                "grant_title": dig(funding, "award.title.en"),
+                "grant_number": dig(funding, "award.number"),
             }
         )
 

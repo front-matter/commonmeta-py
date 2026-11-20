@@ -146,17 +146,17 @@ def test_write_funding():
                 {
                     "funder_id": "https://doi.org/10.13039/501100000780",
                     "funder_name": "European Commission",
-                    "award_number": "EC-123",
+                    "grant_number": "EC-123",
                 },
                 {
                     "funder_id": "https://doi.org/10.13039/501100000780",
                     "funder_name": "European Commission",
-                    "award_number": "EC-456",
+                    "grant_number": "EC-456",
                 },
                 {
                     "funder_id": "",
                     "funder_name": "Anonymous Donor",
-                    "award_number": "",
+                    "grant_number": "",
                 },
             ],
             "provider": "Crossref",

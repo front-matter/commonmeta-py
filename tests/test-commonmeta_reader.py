@@ -550,3 +550,31 @@ def test_string():
 #     )
 #     assert subject.type == "Article"
 #     assert subject.is_valid
+
+
+def test_funding_with_award_names():
+    """Funding written before commonmeta-schema 1.0.12 named the grant
+    award_*. It is still read, under the grant_* names the schema now
+    requires."""
+    data = {
+        "id": "https://doi.org/10.5555/a",
+        "type": "Dataset",
+        "schema_version": "https://commonmeta.org/commonmeta_v1.0.json",
+        "funding_references": [
+            {
+                "funder_name": "NSF",
+                "award_id": "https://doi.org/10.5555/g",
+                "award_number": "ABC-123",
+                "award_title": "A grant",
+            }
+        ],
+    }
+    subject = Metadata(data, via="commonmeta")
+    assert subject.funding_references == [
+        {
+            "funder_name": "NSF",
+            "grant_id": "https://doi.org/10.5555/g",
+            "grant_number": "ABC-123",
+            "grant_title": "A grant",
+        }
+    ]

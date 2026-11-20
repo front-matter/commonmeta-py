@@ -131,12 +131,12 @@ def _funding(metadata: Metadata) -> tuple[list[dict], list[dict]]:
         )
     awards = [
         {
-            "funder_award_id": f["award_number"],
-            "display_name": _text(f.get("award_title")),
+            "funder_award_id": f["grant_number"],
+            "display_name": _text(f.get("grant_title")),
             "funder_display_name": _text(f.get("funder_name")),
         }
         for f in references
-        if f.get("award_number")
+        if f.get("grant_number")
     ]
     return funders, awards
 

@@ -23,7 +23,7 @@ from ..constants import (
 )
 from ..date_utils import normalize_date_dict, strip_milliseconds
 from ..doi_utils import datacite_api_url, doi_as_url, doi_from_url, normalize_doi
-from ..readers.datacite_reader import DC_TO_CM_RELATION_TYPES
+from ..readers.datacite_reader import DC_RELATION_TYPES, DC_TO_CM_RELATION_TYPES
 from ..utils import (
     dedupe_subjects,
     dict_to_spdx,
@@ -314,24 +314,7 @@ def get_xml_relations(relations: list) -> list:
 
     def is_relation(relation):
         """is_relation"""
-        return relation.get("relationType", None) in [
-            "IsCitedBy",
-            "IsNewVersionOf",
-            "IsPreviousVersionOf",
-            "IsVersionOf",
-            "HasVersion",
-            "IsPartOf",
-            "HasPart",
-            "IsVariantFormOf",
-            "IsOriginalFormOf",
-            "IsIdenticalTo",
-            "IsTranslationOf",
-            "IsReviewedBy",
-            "Reviews",
-            "IsPreprintOf",
-            "HasPreprint",
-            "IsSupplementTo",
-        ]
+        return relation.get("relationType", None) in DC_RELATION_TYPES
 
     def map_relation(relation):
         """map_relation"""
@@ -494,9 +477,9 @@ def get_funding_references(funding_references: list) -> list:
             {
                 "funder_id": funder_id,
                 "funder_name": funding.get("funderName", None),
-                "award_id": award_id,
-                "award_title": funding.get("awardTitle", None),
-                "award_number": award_number,
+                "grant_id": award_id,
+                "grant_title": funding.get("awardTitle", None),
+                "grant_number": award_number,
             }
         )
 
