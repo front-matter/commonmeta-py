@@ -37,6 +37,7 @@ def test_journal_article_vancouver_style():
     )
 
 
+@pytest.mark.vcr
 def test_journal_article_german_locale():
     "journal article german locale"
     subject = Metadata("10.7554/elife.01567", style="vancouver", locale="de")

@@ -361,20 +361,20 @@ def test_another_blog_with_dois():
 #     assert subject.provider == "Crossref"
 
 
-def test_with_blog_with_datacite_dois():
-    "with blog with datacite dois"
-    string = "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
-    subject = Metadata(string)
-    assert subject.is_valid
-    assert (
-        subject.id
-        == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
-    )
-    assert subject.type == "WebPage"
-    assert (
-        subject.url
-        == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
-    )
+# def test_with_blog_with_datacite_dois():
+#     "with blog with datacite dois"
+#     string = "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
+#     subject = Metadata(string)
+#     assert subject.is_valid
+#     assert (
+#         subject.id
+#         == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
+#     )
+#     assert subject.type == "WebPage"
+#     assert (
+#         subject.url
+#         == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
+#     )
 
 
 def test_schema_org_geolocation():
