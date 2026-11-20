@@ -816,19 +816,23 @@ def test_dataset():
         "roles": ["Author"],
     }
     assert subject.license is None
-    assert subject.date_published == "1984-03-07"
+    assert subject.date_published == "1984"
     assert subject.publisher == {"name": "Worldwide Protein Data Bank"}
     assert subject.references is None
     assert subject.funding_references is None
     assert subject.container == {
-        "title": "Worldwide Protein Data Bank",
-        "type": "DataRepository",
+        "identifiers": [
+            {
+                "identifier": "ryng.eocfuh",
+                "identifier_type": "DataCite",
+            },
+        ],
     }
     assert subject.subjects is None
     assert subject.language is None
-    assert subject.description is None
-    assert subject.version is None
-    assert subject.provider == "Crossref"
+    assert subject.description == "EXPERIMENTAL"
+    assert subject.version == "4.3"
+    assert subject.provider == "DataCite"
     assert subject.files is None
 
 

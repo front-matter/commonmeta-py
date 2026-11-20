@@ -212,7 +212,7 @@ def write_inveniordm(
             if identifier
             else {}
         )
-    _type = CM_TO_INVENIORDM_TRANSLATIONS.get(metadata.type, "Other")
+    _type = CM_TO_INVENIORDM_TRANSLATIONS.get(metadata.type, "other")
     if generic:
         _type = INVENIORDM_GENERIC_RESOURCE_TYPES.get(_type, _type)
     creators = [
@@ -630,6 +630,53 @@ def to_inveniordm_affiliations(person: dict) -> list | None:
     )
 
 
+# Commonmeta relation type -> InvenioRDM relation_type id, as commonmeta-rs
+# writes it. Every other type has no relation type in every InvenioRDM
+# instance, and a record naming one is refused, so the relation is left out:
+# IsTranslationOf, HasTranslation, IsCollectedBy and Collects are in the stock
+# vocabulary but not in Rogue Scholar's.
+CM_TO_INVENIORDM_RELATION_TYPES = {
+    "IsCitedBy": "iscitedby",
+    "Cites": "cites",
+    "IsSupplementTo": "issupplementto",
+    "IsSupplementedBy": "issupplementedby",
+    "IsContinuedBy": "iscontinuedby",
+    "Continues": "continues",
+    "IsNewVersionOf": "isnewversionof",
+    "IsPreviousVersionOf": "ispreviousversionof",
+    "IsPartOf": "ispartof",
+    "HasPart": "haspart",
+    "IsReferencedBy": "isreferencedby",
+    "References": "references",
+    "IsDocumentedBy": "isdocumentedby",
+    "Documents": "documents",
+    "IsCompiledBy": "iscompiledby",
+    "Compiles": "compiles",
+    "IsVariantFormOf": "isvariantformof",
+    "IsOriginalFormOf": "isoriginalformof",
+    "IsIdenticalTo": "isidenticalto",
+    "IsReviewOf": "reviews",
+    "HasReview": "isreviewedby",
+    "IsDerivedFrom": "isderivedfrom",
+    "IsSourceOf": "issourceof",
+    "Describes": "describes",
+    "IsDescribedBy": "isdescribedby",
+    "IsMetadataFor": "ismetadatafor",
+    "HasMetadata": "hasmetadata",
+    "IsVersionOf": "isversionof",
+    "HasVersion": "hasversion",
+    "IsObsoletedBy": "isobsoletedby",
+    "Obsoletes": "obsoletes",
+    "IsPublishedIn": "ispublishedin",
+    "IsRequiredBy": "isrequiredby",
+    "Requires": "requires",
+    # A preprint is an earlier version of the work it became, as InvenioRDM has
+    # no preprint relations of its own.
+    "IsPreprintOf": "ispreviousversionof",
+    "HasPreprint": "isnewversionof",
+}
+
+
 def to_inveniordm_related_identifier(relation: dict) -> dict | None:
     """Convert relation to inveniordm related_identifier"""
     if normalize_doi(relation.get("id", None)):
@@ -641,14 +688,8 @@ def to_inveniordm_related_identifier(relation: dict) -> dict | None:
     else:
         return None
 
-    # normalize relation types
-    if relation.get("type", None) == "HasReview":
-        relation_type = "isreviewedby"
-    elif relation.get("type", None) == "IsPreprintOf":
-        relation_type = "ispreviousversionof"
-    elif relation.get("type", None) is not None:
-        relation_type = str(relation.get("type")).lower()
-    else:
+    relation_type = CM_TO_INVENIORDM_RELATION_TYPES.get(relation.get("type", None))
+    if relation_type is None:
         return None
 
     return compact(
