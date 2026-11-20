@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ..base_utils import compact, dig, first, presence, scrub, wrap
+from ..base_utils import compact, dig, first, presence, scrub, unique, wrap
 from ..constants import (
     CM_TO_BIB_TRANSLATIONS,
     CM_TO_CR_TRANSLATIONS,
@@ -86,6 +86,31 @@ def write_datacite(metadata: Metadata, **kwargs) -> dict | None:
         for i in wrap(metadata.contributors)
         if "Author" in wrap(i.get("roles"))
     ]
+    if metadata.type == "Grant" and not creators:
+        # DataCite requires a creator, and the registrants of awards name the
+        # funder, as the reader takes them back (see get_award).
+        creators = [
+            to_datacite_creator(
+                {
+                    "type": "Organization",
+                    "organization": compact(
+                        {"id": f.get("funder_id"), "name": f.get("funder_name")}
+                    ),
+                }
+            )
+            for f in unique(
+                [
+                    compact(
+                        {
+                            "funder_id": f.get("funder_id"),
+                            "funder_name": f.get("funder_name"),
+                        }
+                    )
+                    for f in wrap(metadata.funding_references)
+                    if f.get("funder_name")
+                ]
+            )
+        ]
     contributors = scrub(
         [
             to_datacite_contributor(i)
@@ -136,14 +161,26 @@ def write_datacite(metadata: Metadata, **kwargs) -> dict | None:
             "dateType": k.title(),
         }
 
+    # start and end are no DataCite date types: a grant's or project's span is
+    # its Coverage date, start/end, as the reader takes it back.
+    span = {k: v for k, v in (metadata.dates or {}).items() if k in ("start", "end")}
     date_fields = compact(
         {
             "published": metadata.date_published,
             "updated": metadata.date_updated,
-            **(metadata.dates or {}),
+            **{
+                k: v
+                for k, v in (metadata.dates or {}).items()
+                if k not in ("start", "end")
+            },
         }
     )
     dates = [to_datacite_date(item) for item in date_fields.items()]
+    if metadata.type in ("Grant", "Project") and span.get("start"):
+        coverage = (
+            f"{span['start']}/{span['end']}" if span.get("end") else span["start"]
+        )
+        dates.append({"date": coverage, "dateType": "Coverage"})
 
     license_ = (
         [
@@ -287,15 +324,27 @@ def to_datacite_affiliations(affiliations) -> list | None:
 
 
 def to_datacite_name_identifiers(_id: str | None) -> list | None:
-    """Format a v1.0 person.id (ORCID) as DataCite nameIdentifiers"""
+    """Format a v1.0 person.id (ORCID) or organization.id (ROR) as DataCite
+    nameIdentifiers. Any other id, such as a funder's Crossref Funder ID, is a
+    URL, as commonmeta-rs writes it."""
     if not _id:
         return None
+
+    def scheme(i: str) -> tuple[str, str]:
+        if i.startswith("https://orcid.org/"):
+            return "ORCID", "https://orcid.org"
+        if i.startswith("https://ror.org/"):
+            return "ROR", "https://ror.org"
+        return "URL", ""
+
     return [
-        {
-            "nameIdentifier": i,
-            "nameIdentifierScheme": "ORCID",
-            "schemeUri": "https://orcid.org",
-        }
+        compact(
+            {
+                "nameIdentifier": i,
+                "nameIdentifierScheme": scheme(i)[0],
+                "schemeUri": scheme(i)[1] or None,
+            }
+        )
         for i in wrap(_id)
     ]
 

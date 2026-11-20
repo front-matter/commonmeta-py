@@ -206,6 +206,14 @@
             },
             "other": {
               "$ref": "#/$defs/date"
+            },
+            "start": {
+              "description": "When the resource began, e.g. the start of a grant, project or event.",
+              "$ref": "#/$defs/date"
+            },
+            "end": {
+              "description": "When the resource ended or is planned to end, e.g. the end of a grant, project or event.",
+              "$ref": "#/$defs/date"
             }
           }
         },
@@ -277,6 +285,10 @@
               },
               "grant_number": {
                 "description": "The funder's own number for the grant (DataCite awardNumber).",
+                "type": "string"
+              },
+              "program": {
+                "description": "The funder's program or scheme the grant was made under, e.g. Horizon Europe or a Crossref grant's funding scheme.",
                 "type": "string"
               },
               "asserted_by": {

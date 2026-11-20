@@ -167,6 +167,16 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
         ]
     )
     state = "findable" if meta or read_options else "not_found"
+    number = presence((meta.get("article-number", None) or "").strip())
+    dates = None
+    if _type == "Grant":
+        grant = get_grant(meta)
+        title = title or grant["title"]
+        description = description or grant["description"]
+        contributors += grant["contributors"]
+        number = number or grant["number"]
+        funding_references = unique(funding_references + grant["funding_references"])
+        dates = presence(grant["dates"])
 
     return {
         **{
@@ -181,6 +191,7 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
             "container": presence(container),
             "contributors": presence(contributors),
             "date_published": presence(date_published),
+            "dates": dates,
             "description": description,
             "files": presence(files),
             "funding_references": presence(funding_references),
@@ -188,7 +199,7 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
             "identifiers": presence(identifiers),
             "language": meta.get("language", None),
             "license": license_,
-            "number": presence((meta.get("article-number", None) or "").strip()),
+            "number": number,
             "provider": "Crossref",
             "publisher": presence(publisher),
             "references": presence(references),
@@ -200,6 +211,96 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
             "version": dig(meta, "version.version"),
         },
         **read_options,
+    }
+
+
+def get_grant(meta: dict) -> dict:
+    """What a grant record keeps in its project rather than where a work keeps
+    it, as commonmeta-rs reads it: the title and description, the investigators,
+    the dates the grant runs and its funders. The grant's number is the work's
+    number, and each funder a funding reference with that number and the scheme
+    it was made under. A funder keeps its Crossref Funder ID."""
+    award = (meta.get("award", None) or "").strip()
+    title = None
+    description = None
+    contributors: list = []
+    funding_references: list = []
+    dates: dict = {}
+
+    def investigators(people: list, role: str) -> list:
+        return get_authors(
+            [{**person, "contributorType": role} for person in wrap(people)],
+            via="crossref",
+        )
+
+    for project in wrap(meta.get("project", None)):
+        if title is None:
+            title = next(
+                (
+                    " ".join(t.get("title", "").split())
+                    for t in wrap(project.get("project-title", None))
+                    if t.get("title", "").strip()
+                ),
+                None,
+            )
+        if description is None:
+            description = next(
+                (
+                    sanitize(d.get("description"))
+                    for d in wrap(project.get("project-description", None))
+                    if (d.get("description") or "").strip()
+                ),
+                None,
+            )
+        contributors += investigators(
+            wrap(project.get("lead-investigator", None))
+            + wrap(project.get("co-lead-investigator", None)),
+            "ProjectLeader",
+        )
+        contributors += investigators(
+            wrap(project.get("investigator", None)), "ProjectMember"
+        )
+        dates.setdefault(
+            "start",
+            get_date_from_date_parts(project.get("award-start", None))
+            or get_date_from_date_parts(project.get("award-planned-start", None)),
+        )
+        dates.setdefault(
+            "end",
+            get_date_from_date_parts(project.get("award-end", None))
+            or get_date_from_date_parts(project.get("award-planned-end", None)),
+        )
+        for funding in wrap(project.get("funding", None)):
+            funder = funding.get("funder", None) or {}
+            funder_doi = next(
+                (
+                    i.get("id")
+                    for i in wrap(funder.get("id", None))
+                    if (i.get("id-type") or "").upper() == "DOI"
+                ),
+                None,
+            )
+            reference = compact(
+                {
+                    "funder_id": doi_as_url(funder_doi) if funder_doi else None,
+                    "funder_name": (funder.get("name") or "").strip() or None,
+                    "grant_number": award or None,
+                    "program": (funding.get("scheme") or "").strip() or None,
+                }
+            )
+            if (
+                reference.get("funder_id") or reference.get("funder_name")
+            ) and reference not in funding_references:
+                funding_references.append(reference)
+    if not dates.get("start"):
+        dates["start"] = get_date_from_date_parts(meta.get("award-start", None))
+    return {
+        "title": title,
+        "description": description,
+        "contributors": contributors,
+        "number": award or None,
+        "funding_references": funding_references,
+        "dates": compact(dates),
     }
 
 

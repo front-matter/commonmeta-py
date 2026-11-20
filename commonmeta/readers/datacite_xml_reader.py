@@ -23,7 +23,11 @@ from ..constants import (
 )
 from ..date_utils import normalize_date_dict, strip_milliseconds
 from ..doi_utils import datacite_api_url, doi_as_url, doi_from_url, normalize_doi
-from ..readers.datacite_reader import DC_RELATION_TYPES, DC_TO_CM_RELATION_TYPES
+from ..readers.datacite_reader import (
+    DC_RELATION_TYPES,
+    DC_TO_CM_RELATION_TYPES,
+    get_award,
+)
 from ..utils import (
     dedupe_subjects,
     dict_to_spdx,
@@ -157,6 +161,22 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
 
     files = meta.get("contentUrl", None)
     state = "findable" if _id or read_options else "not_found"
+    number = None
+    if _type in ("Grant", "Project"):
+        award = get_award(
+            _type,
+            [
+                {"dateType": d.get("dateType"), "date": d.get("#text")}
+                for d in wrap(dig(meta, "dates.date"))
+                if isinstance(d, dict)
+            ],
+            wrap(identifiers),
+            contributors,
+            funding_references,
+        )
+        dates = presence({**(dates or {}), **award["dates"]})
+        number = award["number"]
+        funding_references = award["funding_references"]
 
     return {
         **{
@@ -179,6 +199,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             "identifiers": identifiers,
             "language": meta.get("language", None),
             "license": presence(license_),
+            "number": number,
             "provider": "DataCite",
             "publisher": publisher,
             "references": presence(references),

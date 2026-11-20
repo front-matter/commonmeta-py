@@ -210,6 +210,18 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         [format_subject(i) for i in wrap(meta.get("subjects", None))]
     )
     state = "findable"
+    number = None
+    if _type in ("Grant", "Project"):
+        award = get_award(
+            _type,
+            wrap(meta.get("dates", None)),
+            identifiers,
+            contributors,
+            funding_references,
+        )
+        dates = presence({**(dates or {}), **award["dates"]})
+        number = award["number"]
+        funding_references = award["funding_references"]
 
     return {
         **{
@@ -232,6 +244,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
             "identifiers": presence(identifiers),
             "language": meta.get("language", None),
             "license": presence(license_),
+            "number": number,
             "provider": "DataCite",
             "publisher": publisher,
             "references": presence(references),
@@ -244,6 +257,72 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
             **get_published_in(meta.get("relatedItems", None)),
         },
         **read_options,
+    }
+
+
+def get_award(
+    _type: str,
+    dates: list,
+    identifiers: list,
+    contributors: list,
+    funding_references: list,
+) -> dict:
+    """What a DataCite Award, read as a Grant, keeps where a work does not,
+    and a Project's dates too, as commonmeta-rs reads them.
+
+    A grant runs over the span its Coverage date gives (2020-01-01/2023-12-31),
+    as a project does; a dataset's coverage is the time its data describe, so
+    only these two types read it as their start and end. The registrants of
+    awards name the funder as the award's creator rather than in a funding
+    reference, so a grant without funding references gets one from each
+    organization among its creators that has a ROR id, and some give the
+    award's number as an alternate identifier.
+    """
+    span: dict = {}
+    coverage = next(
+        (
+            (d.get("date") or "").strip()
+            for d in dates
+            if d.get("dateType") == "Coverage" and (d.get("date") or "").strip()
+        ),
+        "",
+    )
+    if "/" in coverage:
+        start, end = coverage.split("/", 1)
+        span = compact({"start": start.strip() or None, "end": end.strip() or None})
+    elif coverage:
+        span = {"start": coverage}
+    if _type != "Grant":
+        return {"dates": span, "number": None, "funding_references": funding_references}
+
+    number = next(
+        (
+            (i.get("identifier") or "").strip()
+            for i in identifiers
+            if (i.get("scheme") or "").lower().replace(" ", "-").replace("_", "-")
+            in ("award-number", "grant-number")
+        ),
+        None,
+    )
+    if not funding_references:
+        funding_references = [
+            compact(
+                {
+                    "funder_id": c["organization"]["id"],
+                    "funder_name": c["organization"].get("name"),
+                    "grant_number": number,
+                }
+            )
+            for c in contributors
+            if "Author" in (c.get("roles") or [])
+            and (c.get("organization") or {})
+            .get("id", "")
+            .startswith("https://ror.org/")
+        ]
+    return {
+        "dates": span,
+        "number": number or None,
+        "funding_references": funding_references,
     }
 
 
@@ -299,16 +378,21 @@ def get_identifiers(identifiers: list) -> list:
         ]
 
     def format_identifier(identifier) -> dict:
-        """format_identifier"""
+        """format_identifier
+
+        An identifier of a type commonmeta does not list is Other, with the
+        type it was given kept as its scheme, as commonmeta-rs keeps it."""
+        raw_type = identifier.get("alternateIdentifierType")
         if is_identifier(identifier):
-            type_ = identifier.get("alternateIdentifierType")
+            type_, scheme = raw_type, None
         else:
-            type_ = "Other"
+            type_, scheme = "Other", raw_type
 
         return compact(
             {
                 "identifier": identifier.get("alternateIdentifier", None),
                 "identifier_type": type_,
+                "scheme": scheme or None,
             }
         )
 

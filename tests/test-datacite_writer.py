@@ -379,3 +379,51 @@ def test_publisher_is_written_as_datacite_4_7_publisher():
         "publisherIdentifierScheme": "ROR",
         "schemeUri": "https://ror.org/",
     }
+
+
+def test_grant_written_as_award_and_read_back():
+    """A grant is written as a DataCite Award, its funder the creator and its
+    span the Coverage date, and reads back as the grant it was."""
+    import json as _json
+
+    from commonmeta_schema import fixtures_path
+
+    path = fixtures_path() / "commonmeta" / "crossref_grant.json"
+    subject = Metadata(_json.loads(path.read_text()), via="commonmeta")
+    datacite = _json.loads(subject.write(to="datacite"))
+    assert datacite["types"]["resourceTypeGeneral"] == "Award"
+    assert datacite["creators"] == [
+        {
+            "name": "Wellcome Trust",
+            "nameType": "Organizational",
+            "nameIdentifiers": [
+                {
+                    "nameIdentifier": "https://doi.org/10.13039/100010269",
+                    "nameIdentifierScheme": "URL",
+                }
+            ],
+        }
+    ]
+    assert {"date": "2006-12-01/2009-11-30", "dateType": "Coverage"} in datacite[
+        "dates"
+    ]
+
+    back = Metadata(datacite, via="datacite")
+    assert back.type == "Grant"
+    assert back.dates == {"start": "2006-12-01", "end": "2009-11-30"}
+    assert back.funding_references[0]["grant_number"] == "079527"
+
+
+@pytest.mark.parametrize(
+    "identifier,scheme",
+    [
+        ("https://orcid.org/0000-0002-1825-0097", "ORCID"),
+        ("https://ror.org/00dmfq477", "ROR"),
+        ("https://doi.org/10.13039/100010269", "URL"),
+    ],
+)
+def test_name_identifier_scheme(identifier, scheme):
+    """A name identifier's scheme follows the identifier."""
+    from commonmeta.writers.datacite_writer import to_datacite_name_identifiers
+
+    assert to_datacite_name_identifiers(identifier)[0]["nameIdentifierScheme"] == scheme
