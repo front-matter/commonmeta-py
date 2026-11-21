@@ -29,10 +29,10 @@ def write_csl_item(metadata: Metadata) -> dict | None:
     else:
         author = to_csl(wrap(metadata.contributors))
 
-    if metadata.type == "Software" and metadata.version is not None:
-        _type = "book"
-    else:
-        _type = CM_TO_CSL_TRANSLATIONS.get(metadata.type, "Document")
+    # Software is CSL's "software" (CSL 1.0.2), whose styles render its version
+    # and label it, e.g. APA 7's "[Computer software]". It was once written as
+    # "book", for styles that dropped the version of software.
+    _type = CM_TO_CSL_TRANSLATIONS.get(metadata.type, "Document")
 
     container = metadata.container or {}
     publisher = metadata.publisher or {}

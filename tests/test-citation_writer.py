@@ -3,6 +3,7 @@
 
 from os import path
 
+import orjson as json
 import pytest
 
 from commonmeta import Metadata, MetadataList
@@ -72,11 +73,12 @@ def test_missing_author():
 
 
 def test_software_with_version():
-    """software with version"""
+    """software with version: CSL's software type, labelled by APA 7"""
     subject = Metadata("https://doi.org/10.5281/zenodo.2598836")
+    assert json.loads(subject.write(to="csl"))["type"] == "software"
     assert (
         subject.write(to="citation").decode("utf-8")
-        == "Lab For Exosphere And Near Space Environment Studies. (2019). <i>lenses-lab/LYAO_RT-2018JA026426: Original Release</i> (Version 1.0.0). Zenodo. https://doi.org/10.5281/zenodo.2598836"
+        == "Lab For Exosphere And Near Space Environment Studies. (2019). <i>lenses-lab/LYAO_RT-2018JA026426: Original Release</i> (Version 1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.2598836"
     )
 
 
