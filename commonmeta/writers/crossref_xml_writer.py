@@ -561,10 +561,19 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
         # a retraction or correction notice is deposited as a journal article
         publisher_item = None
         kwargs["language"] = metadata.language
+        journal_metadata = get_journal_metadata(metadata)
+        # Crossref rejects a journal known by its title alone (msg 28, "must
+        # deposit with an ISSN and/or journal title DOI"), which the XSD
+        # allows: refuse it here rather than after the deposit.
+        if not journal_metadata.get("issn") and not journal_metadata.get("doi_data"):
+            raise CrossrefError(
+                "ISSN or journal DOI missing for Crossref XML: journal "
+                f"{journal_metadata.get('full_title')!r} for {metadata.id}"
+            )
         data = compact(
             {
                 "journal": {},
-                "journal_metadata": get_journal_metadata(metadata),
+                "journal_metadata": journal_metadata,
                 "journal_issue": get_journal_issue(metadata),
                 "journal_article": get_attributes(metadata, **kwargs),
                 "titles": titles,

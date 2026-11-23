@@ -17,6 +17,14 @@ from commonmeta.writers.crossref_xml_writer import (
 )
 
 
+def with_issn(container: dict | None) -> dict:
+    """A container with an ISSN, as a Crossref journal deposit needs one."""
+    return {
+        **(container or {}),
+        "identifiers": [{"identifier": "1234-5679", "identifier_type": "ISSN"}],
+    }
+
+
 def test_write_crossref_xml_header():
     """Write crossref_xml header"""
     string = "https://doi.org/10.1371/journal.pone.0000030"
@@ -200,6 +208,11 @@ def test_write_crossref_journal_article_from_datacite():
     assert subject.id == "https://doi.org/10.2312/geowissenschaften.1989.7.181"
     assert subject.description == "Die Geowissenschaften"
     assert subject.state == "findable"
+
+    # DataCite names the journal by its title alone, which Crossref refuses
+    with pytest.raises(CrossrefError, match="ISSN or journal DOI missing"):
+        subject.write(to="crossref_xml")
+    subject.container = with_issn(subject.container)
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -1687,6 +1700,11 @@ def test_zenodo():
     assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
     assert subject.type == "JournalArticle"
 
+    # the container is the Zenodo repository, which has no ISSN
+    with pytest.raises(CrossrefError, match="ISSN or journal DOI missing"):
+        subject.write(to="crossref_xml")
+    subject.container = with_issn(subject.container)
+
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -2406,25 +2424,13 @@ ISSN = {"identifier": "3033-3695", "identifier_type": "ISSN"}
             },
             id="without an issn the journal doi",
         ),
-        pytest.param(
-            [JOURNAL_DOI],
-            None,
-            {"full_title": "Sauropod Vertebra Picture of the Week"},
-            id="a journal doi without a url to resolve to",
-        ),
-        pytest.param(
-            None,
-            "https://svpow.com",
-            {"full_title": "Sauropod Vertebra Picture of the Week"},
-            id="neither issn nor journal doi",
-        ),
     ],
 )
 def test_journal_is_identified_by_issn_else_journal_doi(
     identifiers, url, journal_metadata
 ):
     """The journal goes by its ISSN, else by the journal-level DOI registered
-    for it beforehand, else by its title alone, which the deposit accepts."""
+    for it beforehand."""
     container = {
         "type": "Journal",
         "title": "Sauropod Vertebra Picture of the Week",
@@ -2442,3 +2448,35 @@ def test_journal_is_identified_by_issn_else_journal_doi(
     assert dig(journal, "journal_metadata") == journal_metadata
     assert dig(journal, "journal_article.doi_data.doi") == "10.59350/6h6s7-vvv66"
     assert xml_schema_errors(output) is None
+
+
+@pytest.mark.parametrize(
+    "identifiers,url",
+    [
+        pytest.param(None, "https://svpow.com", id="neither issn nor journal doi"),
+        pytest.param(
+            [JOURNAL_DOI], None, id="a journal doi without a url to resolve to"
+        ),
+    ],
+)
+def test_journal_by_title_alone_is_refused(identifiers, url):
+    """The XSD allows a journal known by its title alone, Crossref does not:
+    "must deposit with an ISSN and/or journal title DOI" (msg 28)."""
+    container = {
+        "type": "Journal",
+        "title": "Sauropod Vertebra Picture of the Week",
+        "identifiers": identifiers,
+        "url": url,
+    }
+    subject = Metadata(
+        _journal_article(container={k: v for k, v in container.items() if v}),
+        via="commonmeta",
+    )
+    with pytest.raises(CrossrefError) as error:
+        subject.write(to="crossref_xml")
+
+    assert str(error.value) == (
+        "ISSN or journal DOI missing for Crossref XML: journal "
+        "'Sauropod Vertebra Picture of the Week' for "
+        "https://doi.org/10.59350/6h6s7-vvv66"
+    )
