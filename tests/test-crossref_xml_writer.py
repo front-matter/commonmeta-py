@@ -7,8 +7,10 @@ import pytest
 
 from commonmeta import Metadata, MetadataList
 from commonmeta.base_utils import dig, parse_xml
+from commonmeta.schema_utils import xml_schema_errors
 from commonmeta.writers.crossref_xml_writer import (
     CrossrefError,
+    get_journal_metadata,
     get_references,
     normalize_isbn_crossref,
     write_crossref_xml_list,
@@ -2308,3 +2310,133 @@ def test_reference_doi_matches_the_crossref_schema(ref_id, doi):
     assert citation.get("doi") == doi
     if doi is None:
         assert citation["unstructured_citation"] == f"Blouin, S. (2024). {ref_id}"
+
+
+def _journal_article(**overrides) -> dict:
+    """A journal article in a journal with an ISSN, as Rogue Scholar deposits it."""
+    return {
+        "id": "https://doi.org/10.59350/6h6s7-vvv66",
+        "type": "JournalArticle",
+        "url": "https://staging.rogue-scholar.org/doi/10.59350/6h6s7-vvv66",
+        "title": "The Crown of Metro",
+        "contributors": [
+            {
+                "type": "Person",
+                "person": {"given_name": "Rainbow", "family_name": "Magazine"},
+                "roles": ["Author"],
+            }
+        ],
+        "container": {
+            "type": "Journal",
+            "title": "Sauropod Vertebra Picture of the Week",
+            "identifiers": [{"identifier": "3033-3695", "identifier_type": "ISSN"}],
+        },
+        "publisher": {"name": "Front Matter"},
+        "date_published": "2026-11-20",
+        "license": {
+            "id": "CC-BY-4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        },
+        "schema_version": "https://commonmeta.org/commonmeta_v1.0.json",
+        **overrides,
+    }
+
+
+def test_journal_article_doi_is_not_the_journal_doi():
+    """The article's DOI is deposited once, for the article.
+
+    With the DOI in journal_metadata as well, Crossref registered it as the
+    journal's DOI and rejected the article: "submitted version ... is less or
+    equal to previously submitted version" (msg 4). commonmeta-rs writes no
+    doi_data in journal_metadata.
+    """
+    subject = Metadata(_journal_article(), via="commonmeta")
+    output = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    assert output.count("<doi>10.59350/6h6s7-vvv66</doi>") == 1
+
+    journal = dig(parse_xml(output, dialect="crossref"), "doi_batch.body.journal")
+    assert dig(journal, "journal_metadata") == {
+        "full_title": "Sauropod Vertebra Picture of the Week",
+        "issn": "3033-3695",
+    }
+    assert dig(journal, "journal_article.doi_data.doi") == "10.59350/6h6s7-vvv66"
+    assert xml_schema_errors(output) is None
+
+
+@pytest.mark.parametrize("work_type", ["JournalArticle", "Retraction", "Erratum"])
+def test_journal_metadata_without_doi_data(work_type):
+    """No work deposited inside a journal gives the journal its DOI."""
+    metadata = Metadata(_journal_article(type=work_type), via="commonmeta")
+    assert "doi_data" not in get_journal_metadata(metadata)
+
+
+def test_journal_metadata_of_a_journal_keeps_its_doi():
+    """A blog registered as a title is the journal, so its DOI is the journal's."""
+    metadata = Metadata(_journal_article(type="Blog"), via="commonmeta")
+    assert get_journal_metadata(metadata, is_journal=True)["doi_data"]["doi"] == (
+        "10.59350/6h6s7-vvv66"
+    )
+
+
+JOURNAL_DOI = {"identifier": "https://doi.org/10.59350/svpow", "identifier_type": "DOI"}
+ISSN = {"identifier": "3033-3695", "identifier_type": "ISSN"}
+
+
+@pytest.mark.parametrize(
+    "identifiers,url,journal_metadata",
+    [
+        pytest.param(
+            [ISSN],
+            "https://svpow.com",
+            {
+                "full_title": "Sauropod Vertebra Picture of the Week",
+                "issn": "3033-3695",
+            },
+            id="an issn is enough",
+        ),
+        pytest.param(
+            [JOURNAL_DOI],
+            "https://svpow.com",
+            {
+                "full_title": "Sauropod Vertebra Picture of the Week",
+                "doi_data": {"doi": "10.59350/svpow", "resource": "https://svpow.com"},
+            },
+            id="without an issn the journal doi",
+        ),
+        pytest.param(
+            [JOURNAL_DOI],
+            None,
+            {"full_title": "Sauropod Vertebra Picture of the Week"},
+            id="a journal doi without a url to resolve to",
+        ),
+        pytest.param(
+            None,
+            "https://svpow.com",
+            {"full_title": "Sauropod Vertebra Picture of the Week"},
+            id="neither issn nor journal doi",
+        ),
+    ],
+)
+def test_journal_is_identified_by_issn_else_journal_doi(
+    identifiers, url, journal_metadata
+):
+    """The journal goes by its ISSN, else by the journal-level DOI registered
+    for it beforehand, else by its title alone, which the deposit accepts."""
+    container = {
+        "type": "Journal",
+        "title": "Sauropod Vertebra Picture of the Week",
+        "identifiers": identifiers,
+        "url": url,
+    }
+    subject = Metadata(
+        _journal_article(container={k: v for k, v in container.items() if v}),
+        via="commonmeta",
+    )
+    output = subject.write(to="crossref_xml")
+
+    assert subject.is_valid
+    journal = dig(parse_xml(output, dialect="crossref"), "doi_batch.body.journal")
+    assert dig(journal, "journal_metadata") == journal_metadata
+    assert dig(journal, "journal_article.doi_data.doi") == "10.59350/6h6s7-vvv66"
+    assert xml_schema_errors(output) is None

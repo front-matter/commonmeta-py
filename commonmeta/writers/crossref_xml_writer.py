@@ -452,7 +452,7 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
         data = compact(
             {
                 "journal": {},
-                "journal_metadata": get_journal_metadata(metadata),
+                "journal_metadata": get_journal_metadata(metadata, is_journal=True),
             }
         )
     elif metadata.type == "Book":
@@ -842,16 +842,48 @@ def get_attributes(obj, **kwargs) -> dict:
     )
 
 
-def get_journal_metadata(obj) -> dict | None:
-    """get journal metadata"""
+def get_journal_metadata(obj, is_journal: bool = False) -> dict | None:
+    """get journal metadata
+
+    The journal is identified by its ISSN, else by a journal-level DOI
+    registered for it beforehand (Crossref does not create one on the fly),
+    else by its title alone.
+
+    The DOI of the work itself belongs here only when the work is the journal
+    (a blog registered as a title). For an article it is the article's DOI,
+    and depositing it here as well registers it twice in one batch with the
+    same version: Crossref takes it as the journal's DOI and rejects the
+    article (msg 4, "submitted version ... is less or equal to previously
+    submitted version").
+    """
+    issn = get_issn(obj)
+    if is_journal:
+        doi_data = get_doi_data(obj)
+    elif issn is None:
+        doi_data = get_journal_doi_data(dig(obj, "container"))
+    else:
+        doi_data = None
     return compact(
         {
             "@language": dig(obj, "language"),
             "full_title": dig(obj, "container.title") or dig(obj, "title"),
-            "issn": get_issn(obj),
-            "doi_data": get_doi_data(obj),
+            "issn": issn,
+            "doi_data": doi_data,
         }
     )
+
+
+def get_journal_doi_data(container: dict | None) -> dict | None:
+    """The journal-level doi_data of a container with a DOI of its own.
+
+    It needs the URL the journal DOI resolves to (the XSD requires a resource),
+    so a container without one gets none, and the journal goes by its title.
+    """
+    doi = doi_from_url(get_identifier(container, "DOI"))
+    url = dig(container, "url")
+    if doi is None or url is None:
+        return None
+    return {"doi": doi, "resource": url}
 
 
 def get_book_metadata(obj) -> dict | None:
