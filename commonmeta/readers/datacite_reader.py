@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-import requests
 from requests.exceptions import ReadTimeout
 
+from ..api_utils import http
 from ..author_utils import get_authors
 from ..base_utils import compact, dig, presence, wrap
 from ..constants import (
@@ -48,7 +48,7 @@ def get_datacite(pid: str | None, **kwargs) -> dict:
         return {"state": "not_found"}
     url = datacite_api_url(doi)
     try:
-        response = requests.get(url, timeout=10, **kwargs)
+        response = http.get(url, timeout=10, **kwargs)
         if response.status_code != 200:
             return {"state": "not_found"}
         body = response.json()
@@ -713,7 +713,7 @@ def get_random_datacite_id(number: int = 1) -> list:
     number = 20 if number > 20 else number
     url = datacite_api_sample_url(number)
     try:
-        response = requests.get(url, timeout=60)
+        response = http.get(url, timeout=60)
         if response.status_code != 200:
             return []
 

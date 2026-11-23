@@ -4,10 +4,9 @@ from __future__ import annotations
 
 from xml.parsers.expat import ExpatError
 
-import requests
 from requests.exceptions import ConnectionError, ReadTimeout
 
-from ..api_utils import COMMONMETA_USER_AGENT
+from ..api_utils import COMMONMETA_USER_AGENT, http
 from ..author_utils import get_authors
 from ..base_utils import (
     compact,
@@ -55,7 +54,7 @@ def get_crossref_list(query: dict, **kwargs) -> list[dict]:
     """get_crossref list from Crossref API."""
     url = crossref_api_query_url(query, **kwargs)
     headers = {"User-Agent": COMMONMETA_USER_AGENT}
-    response = requests.get(url, timeout=30, headers=headers, **kwargs)
+    response = http.get(url, timeout=30, headers=headers, **kwargs)
     if response.status_code != 200:
         return []
     return response.json().get("message", {}).get("items", [])
@@ -68,7 +67,7 @@ def get_crossref(pid: str | None, **kwargs) -> dict:
         return {"state": "not_found"}
     url = crossref_api_url(doi)
     headers = {"User-Agent": COMMONMETA_USER_AGENT}
-    response = requests.get(url, timeout=10, headers=headers, **kwargs)
+    response = http.get(url, timeout=10, headers=headers, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     return {**response.json().get("message", {}), "via": "crossref"}
@@ -648,7 +647,7 @@ def get_random_crossref_id(number: int = 1, **kwargs) -> list:
     url = crossref_api_sample_url(number, **kwargs)
     headers = {"User-Agent": COMMONMETA_USER_AGENT}
     try:
-        response = requests.get(url, timeout=10, headers=headers)
+        response = http.get(url, timeout=10, headers=headers)
         if response.status_code != 200:
             return []
 

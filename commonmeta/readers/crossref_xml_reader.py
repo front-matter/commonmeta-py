@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-import requests
-
+from ..api_utils import http
 from ..author_utils import get_authors
 from ..base_utils import (
     compact,
@@ -46,7 +45,7 @@ def get_crossref_xml(pid: str, **kwargs) -> dict:
     if doi is None:
         return {"state": "not_found"}
     url = crossref_xml_api_url(doi)
-    response = requests.get(
+    response = http.get(
         url, headers={"Accept": "text/xml;charset=utf-8"}, timeout=10, **kwargs
     )
     if response.status_code != 200:
