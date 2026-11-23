@@ -1185,6 +1185,7 @@ def test_rogue_scholar_with_citations():
     }
     assert subject.container == {
         "identifiers": [{"identifier": "2749-9952", "identifier_type": "ISSN"}],
+        "url": "https://blog.front-matter.de/",
         "platform": "Ghost",
         "title": "Front Matter",
         "type": "Blog",
@@ -1352,6 +1353,7 @@ def test_inveniordm_record_with_references():
             }
         ],
         "title": "Crossref Blog",
+        "url": "https://www.crossref.org/blog/",
         "type": "Blog",
         "platform": "Hugo",
     }

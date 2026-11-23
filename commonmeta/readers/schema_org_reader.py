@@ -737,6 +737,7 @@ def schema_org_container(meta, _type: str) -> dict:
             "type": container_type,
             "title": part.get("name", None),
             "identifiers": presence(identifiers),
+            "url": normalize_url(part.get("url", None)),
             "platform": dig(part, "provider.name"),
             "volume": meta.get("volumeNumber", None),
             "issue": meta.get("issueNumber", None),

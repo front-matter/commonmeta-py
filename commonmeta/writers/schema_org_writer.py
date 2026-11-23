@@ -85,6 +85,7 @@ def write_schema_org(metadata: Metadata, **kwargs) -> dict:
                 "additionalType": (None if schema_org_container else container_type),
                 "issn": get_identifier(container, "ISSN"),
                 "name": container.get("title", None),
+                "url": container.get("url", None),
                 # the platform a blog is published on is the service behind
                 # the container rather than a work of its own, which is what
                 # schema.org calls a provider

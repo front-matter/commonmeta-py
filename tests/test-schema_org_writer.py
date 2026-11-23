@@ -906,6 +906,7 @@ def test_the_container_is_written_as_ispartof():
         "@id": "https://doi.org/10.54900/upstream",
         "@type": "Blog",
         "name": "Upstream",
+        "url": "https://upstream.force11.org",
         # the platform is the service behind the blog, not a work of its own
         "provider": {"@type": "Organization", "name": "Ghost"},
     }

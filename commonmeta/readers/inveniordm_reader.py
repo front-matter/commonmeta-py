@@ -93,6 +93,8 @@ def read_inveniordm_parent(record) -> dict:
 
     - ``community_issn`` / ``community_doi``: the blog ISSN/DOI registered on the
       community via the communities UI (preferred over the record-level fields).
+    - ``community_url``: the blog's home page, the community website. A journal
+      DOI registered for a blog without an ISSN resolves to it.
     - ``concept_doi`` / ``concept_id``: the parent/concept record used to build
       version relationships.
     """
@@ -101,6 +103,7 @@ def read_inveniordm_parent(record) -> dict:
     return {
         "community_issn": community_fields.get("rs:issn"),
         "community_doi": community_fields.get("rs:doi"),
+        "community_url": dig(parent, "communities.entries.0.metadata.website"),
         "concept_doi": dig(parent, "pids.doi.identifier"),
         "concept_id": parent.get("id"),
     }
@@ -184,6 +187,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         meta, "custom_fields.journal:journal.issn"
     )
     journal_doi = kwargs.get("community_doi") or dig(meta, "custom_fields.rs:doi")
+    journal_url = normalize_url(kwargs.get("community_url"))
     identifier = issn or journal_doi or None
     identifier_type = (
         ("ISSN" if issn else "DOI" if journal_doi else None) if identifier else None
@@ -210,6 +214,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                     if identifier
                     else None
                 ),
+                "url": journal_url,
                 "platform": get_generator_platform(
                     dig(meta, "custom_fields.rs:generator", None)
                 ),

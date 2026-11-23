@@ -504,6 +504,7 @@ def test_rogue_scholar():
         "identifiers": [
             {"identifier": "https://doi.org/10.59350/musings", "identifier_type": "DOI"}
         ],
+        "url": "https://aarontay.substack.com",
         "platform": "Substack",
     }
     assert subject.subjects == [
@@ -571,6 +572,7 @@ def test_rogue_scholar_with_citations():
         "identifiers": [
             {"identifier": "https://doi.org/10.63485/oan", "identifier_type": "DOI"}
         ],
+        "url": "https://www.earlham.edu/~peters/fos/fosblog.html/",
         "platform": "Blogger",
     }
     assert subject.subjects == [
@@ -638,6 +640,7 @@ def test_rogue_scholar_with_parent_doi():
         "type": "Blog",
         "title": "Sauropod Vertebra Picture of the Week",
         "identifiers": [{"identifier": "3033-3695", "identifier_type": "ISSN"}],
+        "url": "https://svpow.com",
         "platform": "WordPress.com",
     }
     assert subject.subjects == [
