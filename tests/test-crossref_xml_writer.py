@@ -122,6 +122,37 @@ def test_normalize_isbn_crossref():
 
 
 @pytest.mark.vcr
+def test_write_crossref_xml_journal():
+    string = "https://doi.org/10.1155/ecam"
+    subject = Metadata(string)
+
+    assert subject.id == "https://doi.org/10.1155/ecam"
+    assert subject.state == "findable"
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    assert xml_schema_errors(crossref_xml) is None
+
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+
+    assert dig(crossref_xml, "doi_batch.body.journal.journal_issue") is None
+    assert dig(crossref_xml, "doi_batch.body.journal.journal_article") is None
+
+    crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_metadata", {})
+    assert dig(crossref_xml, "language") == "en"
+    assert dig(crossref_xml, "doi_data.doi") == "10.1155/ecam"
+    assert (
+        dig(crossref_xml, "doi_data.resource")
+        == "http://www.hindawi.com/journals/ecam/"
+    )
+    assert (
+        dig(crossref_xml, "full_title")
+        == "Evidence-Based Complementary and Alternative Medicine"
+    )
+    assert dig(crossref_xml, "issn") == "1741-4288"
+
+
+@pytest.mark.vcr
 def test_write_crossref_xml_journal_article_plos():
     """Write crossref_xml journal article plos"""
     string = "https://doi.org/10.1371/journal.pone.0000030"

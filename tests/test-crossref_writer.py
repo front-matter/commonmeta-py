@@ -6,6 +6,28 @@ from commonmeta import Metadata
 from commonmeta.writers.crossref_writer import write_crossref
 
 
+def test_write_journal():
+    subject = Metadata("https://doi.org/10.1155/ecam", via="crossref")
+    output = stdlib_json.loads(subject.write(to="crossref"))
+
+    assert output["status"] == "ok"
+    assert output["message-type"] == "work"
+    assert output["message-version"] == "1.0.0"
+
+    msg = output["message"]
+    assert msg["DOI"] == "10.1155/ecam"
+    assert msg["type"] == "journal"
+    assert msg["title"] == ["Evidence-Based Complementary and Alternative Medicine"]
+    assert msg["publisher"] == "Hindawi Limited"
+    assert msg["ISSN"] == ["1741-4288"]
+    assert msg["language"] == "en"
+    assert msg["issued"] == {"date-parts": [[2010, 8, 3]]}
+    assert msg["URL"] == "https://doi.org/10.1155/ecam"
+    assert msg["resource"] == {
+        "primary": {"URL": "http://www.hindawi.com/journals/ecam/"}
+    }
+
+
 def test_write_journal_article():
     """Round-trip a Crossref journal article through the writer."""
     subject = Metadata("https://doi.org/10.7554/elife.01567", via="crossref")

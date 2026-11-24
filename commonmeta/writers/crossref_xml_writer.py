@@ -385,6 +385,7 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
         "Dataset",
         "Dissertation",
         "Erratum",
+        "Journal",
         "JournalArticle",
         "PeerReview",
         "Poster",
@@ -556,7 +557,20 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
                 "doi_data": doi_data,
             }
         )
+    elif metadata.type == "Journal":
+        journal_metadata = get_journal_metadata(metadata, is_journal=True)
 
+        if not journal_metadata.get("issn") and not journal_metadata.get("doi_data"):
+            raise CrossrefError(
+                "ISSN or journal DOI missing for Crossref XML: journal "
+                f"{journal_metadata.get('full_title')!r} for {metadata.id}"
+            )
+        data = compact(
+            {
+                "journal": {},
+                "journal_metadata": journal_metadata,
+            }
+        )
     elif metadata.type in ("JournalArticle", "Retraction", "Erratum"):
         # a retraction or correction notice is deposited as a journal article
         publisher_item = None
